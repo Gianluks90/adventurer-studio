@@ -1,1 +1,47 @@
-<p>form works!</p>
+<div class="">
+  <div class="">
+    <!-- <div class="col-span-7 lg:col-span-2 order-2 lg:order-1">
+      <h2>Upload Submission</h2>
+      <div id="drop-area">
+        <form class="my-form">
+          <div class="border border-dotted text-center border-euPrimary p-10 bg-euPrimary/5 rounded-md">
+            <div class="text-center mb-6"><img class="inline-block" src="./assets/images/ico_upload.png" alt=""></div>
+            <p>Drag and drop a compatible file</p>
+            <input type="file" id="fileElem" accept=".xml,.xlsx,.xlsm,.xlsb,.xls,.csv" (change)="uploadFile($event)" >
+            <div class="mb-6"></div>
+            <label class="text-sm" for="fileElem">Or choose the file from file manager</label>
+          </div>
+        </form>
+      </div>
+    </div> -->
+    <div class="">
+      <div class="">
+        <h2 class=""></h2>
+        <form >
+          <mat-stepper orientation="vertical" #stepper>
+            <mat-step>
+              <form>
+                <ng-template matStepLabel class="">
+                  <div>basic information</div>
+                </ng-template>
+                <app-basic-information></app-basic-information>
+                <div>
+                  <button mat-stroked-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <form>
+                <ng-template matStepLabel>save</ng-template>
+                <div>
+                  <button mat-stroked-button matStepperPrevious>Back</button>
+                  <button mat-stroked-button>Save</button>
+                </div>
+              </form>
+            </mat-step>
+          </mat-stepper>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
