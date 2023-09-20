@@ -1,2 +1,27 @@
 <p>home works!</p>
-<button (click)="logout()">Logout</button>
+<!-- <button mat-mini-fab class="logout-button" color="accent" (click)="logout()">
+    <mat-icon>menu</mat-icon>
+</button> -->
+<button mat-mini-fab class="logout-button" color="accent" [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
+</button>
+
+<mat-menu class="mat-menu-bottom" #menu="matMenu">
+    <div class="user-container" *ngIf="firebaseService.user.value">
+        <div class="user-image-container">
+            <img class="user-image" src="{{firebaseService.user.value.photoURL ? firebaseService.user.value.photoURL : ''}}" referrerpolicy="no-referrer">
+        </div>
+        <div class="user-name" >
+            {{firebaseService.user.value.displayName}}
+        </div>
+    </div>
+    
+    <button mat-menu-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+    </button>
+</mat-menu>
+
+<!-- <div class="user-button" *ngIf="firebaseService.user.value">
+    <img class="user-button-image" src="{{firebaseService.user.value.photoURL ? firebaseService.user.value.photoURL : ''}}" referrerpolicy="no-referrer">
+</div> -->

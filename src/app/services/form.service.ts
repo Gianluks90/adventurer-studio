@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
-import { FormModel } from 'src/assets/models/formModel';
+import { FormModel } from 'src/app/models/formModel';
 
 @Injectable({
   providedIn: 'root'

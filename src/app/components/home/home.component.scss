@@ -1,0 +1,39 @@
+.logout-button {
+    position: absolute;
+    bottom: 12px;
+    right: 12px; 
+    border-radius: 0 !important;
+    box-shadow: none;
+}
+
+.logout-button:hover {
+    background-color: black !important;
+    color: #efefef !important;
+}
+
+.mat-menu-bottom {
+    width: 200px !important;
+    max-width: 300px;
+}
+
+.user-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user-image-container {
+    width: 20%;
+}
+
+.user-name {
+    padding: 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.user-image {
+    width: 100%;
+}
+

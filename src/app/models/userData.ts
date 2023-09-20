@@ -2,20 +2,20 @@ import { User } from "firebase/auth";
 
 export class UserData {
     id: string;
-    name: string;
-    surname: string;
+    displayName: string;
     photoURL: string;
+    characters: string[] = [];
 
-    constructor(id: string, name: string, surname: string, photoURL: string) {
+    constructor(id: string, displayName: string, photoURL: string, characters?: string[]) {
         this.id = id;
-        this.name = name;
-        this.surname = surname;
+        this.displayName = displayName;
         this.photoURL = photoURL;
+        this.characters = characters || [];
     }
 
     static parseUser(user: User, userData: any): UserData {
         console.log(user, userData);
         
-        return new UserData(user.uid, userData.displayName, userData.surname, userData.photoURL);
-    }
+        return new UserData(user.uid, user.displayName || '', user.photoURL || '', userData.characters);
+        }
 }
