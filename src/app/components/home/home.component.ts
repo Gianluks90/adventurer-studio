@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  public logout() {
+    getAuth().signOut();
+    // window.location.reload();
+  }
 }
