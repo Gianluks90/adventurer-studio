@@ -1,7 +1,15 @@
-<p>home works!</p>
-<!-- <button mat-mini-fab class="logout-button" color="accent" (click)="logout()">
-    <mat-icon>menu</mat-icon>
-</button> -->
+<div class="home-container">
+    <div class="empty-container" *ngIf="firebaseService.user.value && firebaseService.user.value.characters.length === 0">
+        <div class="empty-message">
+            Ancora nessuna scheda personaggio
+        </div>
+        <button class="new-sheet-button" mat-raised-button color="primary">
+            Nuova scheda
+        </button>
+    </div>
+</div>
+
+
 <button mat-mini-fab class="logout-button" color="accent" [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
 </button>
@@ -15,10 +23,21 @@
             {{firebaseService.user.value.displayName}}
         </div>
     </div>
+    <hr class="hr-opacity">
+
+    <button mat-menu-item [routerLink]="['/home']">
+        <mat-icon>description</mat-icon>
+        <span>Schede personaggi</span>
+    </button>
     
     <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Logout</span>
+        <mat-icon>add</mat-icon>
+        <span>Nuova scheda</span>
+    </button>
+
+    <button mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Esci</span>
     </button>
 </mat-menu>
 

@@ -1,3 +1,38 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.empty-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.empty-message {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.new-sheet-button {
+    border-radius: 0;
+    max-width: 200px;
+}
+
+.new-sheet-button:hover {
+    background-color: black;
+    color: #efefef;
+}
+
 .logout-button {
     position: absolute;
     bottom: 12px;
@@ -35,5 +70,9 @@
 
 .user-image {
     width: 100%;
+}
+
+.hr-opacity {
+    opacity: 0.1;
 }
 
