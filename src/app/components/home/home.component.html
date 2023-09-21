@@ -3,7 +3,7 @@
         <div class="empty-message">
             Ancora nessuna scheda personaggio
         </div>
-        <button class="new-sheet-button" mat-raised-button color="primary">
+        <button class="new-sheet-button" mat-raised-button color="primary" (click)="createCharacter()">
            <mat-icon>add</mat-icon> Nuova scheda
         </button>
     </div>
@@ -29,7 +29,7 @@
         <mat-icon>description</mat-icon>
         <span>Schede personaggi</span>
     </button>
-    
+
     <button mat-menu-item>
         <mat-icon>add</mat-icon>
         <span>Nuova scheda</span>
