@@ -26,6 +26,9 @@
 .new-sheet-button {
     border-radius: 0;
     max-width: 200px;
+    background-image: url("../../../assets/banner.jpg");
+    // background-size: cover;
+    background-position: bottom;
 }
 
 .new-sheet-button:hover {
@@ -38,12 +41,17 @@
     bottom: 12px;
     right: 12px; 
     border-radius: 0 !important;
-    box-shadow: none;
+    box-shadow: none !important;
+    // background-color: black;
+    background-image: url("../../../assets/banner.jpg");
+    // background-size: cover;
+    background-position: bottom;
 }
 
 .logout-button:hover {
-    background-color: black !important;
+    // background-color:  !important;
     color: #efefef !important;
+    box-shadow: none !important;
 }
 
 .mat-menu-bottom {
