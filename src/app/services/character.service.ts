@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { FormGroup } from '@angular/forms';
-import { DocumentData, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { DocumentData, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +53,12 @@ export class CharacterService {
 
   public async deleteCharacterById(id: string): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
-    return await deleteDoc(docRef);
+    return await deleteDoc(docRef).then(() => {
+      const userRef = doc(this.firebaseService.database, 'users', this.firebaseService.user.value!.id);
+      setDoc(userRef, {
+        characters: arrayRemove(id)
+      }, { merge: true });
+    });
    }
 
   public async updateCharacterById(id: string, form: FormGroup): Promise<any> {

@@ -17,25 +17,29 @@
     <div class="">
       <div class="">
         <h2 class=""></h2>
-        <form >
-          <mat-stepper orientation="vertical" #stepper>
+        <form class="form-container">
+          <mat-stepper class="stepper-container" orientation="vertical" #stepper>
             <mat-step>
               <form>
-                <ng-template matStepLabel class="">
-                  <div>basic information</div>
+                <ng-template matStepLabel>
+                  <div class="step-label">Informazioni base</div>
                 </ng-template>
+                <br>
                 <app-basic-information></app-basic-information>
-                <div>
-                  <button mat-stroked-button matStepperNext>Next</button>
-                </div>
+                <!-- <div> -->
+                <button mat-stroked-button matStepperNext>Seguente</button>
+                <!-- </div> -->
               </form>
             </mat-step>
             <mat-step>
               <form>
-                <ng-template matStepLabel>save</ng-template>
-                <div>
-                  <button mat-stroked-button matStepperPrevious>Back</button>
-                  <button mat-stroked-button>Save</button>
+                <ng-template matStepLabel>
+                  <div class="step-label">Completa</div>
+                </ng-template>
+                <div class="button-container">
+                  <button mat-stroked-button matStepperPrevious>Indietro</button>
+                  <button mat-raised-button color="accent">
+                    <mat-icon>save</mat-icon> Salva</button>
                 </div>
               </form>
             </mat-step>

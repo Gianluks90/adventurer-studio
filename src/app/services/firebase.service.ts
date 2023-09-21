@@ -38,18 +38,15 @@ export class FirebaseService {
       } else {
         localStorage.setItem('dndCS-2023-logged', 'false');
         this.isAuth.next(false);
-      }
+      }      
     });
    }
-
+   
   public async checkUser(user: User): Promise<boolean> {
     return await this.getUser(user).then(userSnap => {
       if (userSnap.exists()) {
         const userResult = UserData.parseUser(user, userSnap.data());
-
-
         this.user.next(userResult);
-        console.log('result',userResult,'user',this.user.value);
         this.isAuth.next(true);
         return true;
       } else {
@@ -61,7 +58,7 @@ export class FirebaseService {
   }
 
   public async getUser(user: User) {
-    const q = doc(this.database, 'users', user.uid); // TODO dire a Nico di rivedere come ha pensato questa cosa per tutti
+    const q = doc(this.database, 'users', user.uid);
     const docSnap = await getDoc(q);
     return docSnap;
   }

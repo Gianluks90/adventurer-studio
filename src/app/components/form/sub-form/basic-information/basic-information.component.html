@@ -1,16 +1,16 @@
 <ng-container *ngIf="group">
-  <div class="" [formGroup]="group">
-    <div class="">
-      <mat-form-field color="primary" class="" >
-        <mat-label class="">Insert player name</mat-label>
+  <div class="step-form" [formGroup]="group">
+    <!-- <div class=""> -->
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Nome giocatore</mat-label>
         <input class="" matInput formControlName="playerName" >
       </mat-form-field>
-    </div>
-    <div class="">
-      <mat-form-field color="accent" class="" >
-        <mat-label class="">Insert character name</mat-label>
+    <!-- </div> -->
+    <!-- <div class=""> -->
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Nome personaggio</mat-label>
         <input class="" matInput formControlName="characterName" >
       </mat-form-field>
-    </div>
+    <!-- </div> -->
   </div>
 </ng-container>

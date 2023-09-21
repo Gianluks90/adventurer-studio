@@ -1,0 +1,22 @@
+.form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stepper-container {
+    width: 80%;
+}
+
+.step-label {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
