@@ -16,6 +16,8 @@ export class BasicInformationComponent {
   ngOnInit(): void {
     this.formService.form.subscribe(form => {
       this.group = form.get('basicInformation') as FormGroup;
+      console.log('grouop',this.group);
+
      });
 
   }

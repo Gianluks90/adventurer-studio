@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { FormGroup } from '@angular/forms';
-import { DocumentData, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { DocumentData, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -36,15 +36,16 @@ export class CharacterService {
     const newCharacterId = user.id + '-' + (user.progressive + 1);
     const docRef = doc(this.firebaseService.database, 'characters', newCharacterId);
     return await setDoc(docRef, {
+      ...form.value,
       status: {
         creationDate: new Date(),
         userId: user.id,
         author: user.displayName,
-      },
-      ...form.value
+      }
     }).then(() => {
       const userRef = doc(this.firebaseService.database, 'users', user.id);
       setDoc(userRef, {
+        characters: arrayUnion(newCharacterId),
         progressive: user.progressive + 1
       }, { merge: true });
     });

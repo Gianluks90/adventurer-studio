@@ -16,7 +16,6 @@ export class UserData {
     }
 
     static parseUser(user: User, userData: any): UserData {
-        console.log(user, userData);
         return new UserData(user.uid, user.displayName || '', user.photoURL || '', userData.progressive || 0, userData.characters || []);
     }
 }

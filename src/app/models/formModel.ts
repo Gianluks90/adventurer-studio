@@ -11,9 +11,6 @@ export class FormModel {
       proficiencyBonus: 2,
       savingThrows: FormModel.savingThrows(builder),
       // skills: FormModel.skills(builder),
-      status: {
-        statusCode: '' // B - Bozza, C - Completata
-      }
     }
   }
 
