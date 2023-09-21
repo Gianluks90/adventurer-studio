@@ -4,7 +4,10 @@
     align-items: center;
     height: 80px;
     padding: 5px;
-    background-color: #C20A0A;
+    background-image: url("../../../assets/banner.jpg");
+    background-size: cover;
+    background-position: bottom;
+    // background-color: #C20A0A;
     color: #efefef;
     box-shadow: 2px 2px 17px -10px #000;
 }
@@ -12,7 +15,30 @@
 .header-title {
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-left: 8px;
     font-size: large;
     font-weight: bold;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-icon {
+    width: 40px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    animation: infinite pulse 2s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
