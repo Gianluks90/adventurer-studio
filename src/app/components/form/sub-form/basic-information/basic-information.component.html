@@ -1,16 +1,39 @@
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
-    <!-- <div class=""> -->
-      <mat-form-field color="accent" appearance="outline">
-        <mat-label class="input-field">Nome giocatore</mat-label>
-        <input class="" matInput formControlName="playerName" >
-      </mat-form-field>
-    <!-- </div> -->
-    <!-- <div class=""> -->
       <mat-form-field color="accent" appearance="outline">
         <mat-label class="input-field">Nome personaggio</mat-label>
-        <input class="" matInput formControlName="characterName" >
+        <input class="" matInput formControlName="classe">
       </mat-form-field>
-    <!-- </div> -->
+
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Classe</mat-label>
+        <input class="" matInput formControlName="classe" >
+      </mat-form-field>
+
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Livello</mat-label>
+        <input class="" matInput formControlName="livello" >
+      </mat-form-field>
+
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Background</mat-label>
+        <input class="" matInput formControlName="background" >
+      </mat-form-field>
+
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Nome giocatore</mat-label>
+        <input class="" matInput formControlName="nomeGiocatore" >
+      </mat-form-field>
+
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Razza</mat-label>
+        <input class="" matInput formControlName="razza" >
+      </mat-form-field>
+
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Allineamento</mat-label>
+        <input class="" matInput formControlName="allineamento" >
+      </mat-form-field>
+
   </div>
 </ng-container>
