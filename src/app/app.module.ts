@@ -18,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu'; 
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddCharacterDialogComponent } from './components/home/add-character-dialog/add-character-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
     ViewComponent,
     HeaderComponent,
     BasicInformationComponent,
+    AddCharacterDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatInputModule,
     MatStepperModule,
     MatMenuModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormModel } from 'src/app/models/formModel';
 import { CharacterService } from 'src/app/services/character.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-form',
@@ -12,17 +14,17 @@ export class FormComponent implements OnInit {
 
   public form: FormGroup = this.fb.group(FormModel.create(this.fb))
 
-  constructor(private characterService: CharacterService, private fb:FormBuilder) {}
+  constructor(public firebaseService: FirebaseService, private fb:FormBuilder, private formService: FormService) {}
 
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
-    console.log('character',characterId);
+    this.formService.initForm(characterId!);
+  }
 
-    this.characterService.getCharacterById(characterId!).then((character) => {
-      this.form.patchValue(character);
-      // this.form.get('basicInformation')?.setValue(character.basicInformation)
-      console.log('FORM', this.form);
-      console.log('CHAR', character);
-    });
+  public saveDraft(): void {
+    const charId = window.location.href.split('/').pop();
+    this.formService.saveDraft(charId!, this.formService.formSubject.value).then(() => {
+      alert('Salvataggio effettuato');
+    })
   }
 }

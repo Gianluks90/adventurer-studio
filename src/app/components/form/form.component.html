@@ -1,5 +1,150 @@
-<div class="">
-  <div class="">
+<div class="blurred-background">
+</div>
+
+<div class="home-container">
+    <div class="first-section">
+        <div class="home-title">
+            Adventurer Studio
+        </div>
+        <div class="user-box" *ngIf="firebaseService.user.value">
+            <div class="user-identity-container">
+                <img class="user-image" src="{{firebaseService.user.value.photoURL}}" referrerpolicy="no-referrer">
+                <div class="user-name">
+                    {{firebaseService.user.value.displayName}}
+                </div>
+            </div>
+        </div>
+
+        <button mat-raised-button color="primary" disabled>
+            <mat-icon>description</mat-icon>
+            I tuoi personaggi
+        </button>
+        <button mat-raised-button color="primary" disabled>
+            <mat-icon>group</mat-icon>
+            I tuoi party
+        </button>
+
+        <button mat-raised-button color="primary" (click)="saveDraft()">
+          <mat-icon>save</mat-icon>
+          Salva bozza
+      </button>
+      <button mat-raised-button color="primary">
+        <mat-icon>check</mat-icon>
+        Pubblica
+      </button>
+      <button mat-raised-button color="primary" [routerLink]="['/home']">
+        <mat-icon>arrow_back</mat-icon>
+        Indietro
+      </button>
+
+    </div>
+    <div class="second-section">
+      <form class="form-container">
+        <mat-stepper class="stepper-container" orientation="vertical" #stepper>
+          <ng-template matStepperIcon="edit">
+            <mat-icon><img src="./assets/image/falling-blob.svg" alt=""></mat-icon>
+        </ng-template>
+
+          <mat-step label="Informazioni base">
+            <form>
+              <br>
+              <app-basic-information></app-basic-information>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Caratteristiche" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Tiri salvezza" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Abilità" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Parametri vitali" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Competenze e linguaggi" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Equipaggiamento" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Privilegi e tratti" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Background" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step label="Storia del personaggio" >
+            <form>
+              <br>
+              <!-- <div> -->
+              <button mat-stroked-button matStepperNext>Seguente</button>
+              <!-- </div> -->
+            </form>
+          </mat-step>
+          <mat-step>
+            <form>
+              <ng-template matStepLabel>
+                <div class="step-label">Completa</div>
+              </ng-template>
+              <div class="button-container">
+                <button mat-stroked-button matStepperPrevious>Indietro</button>
+                <button mat-raised-button color="accent">
+                  <mat-icon>save</mat-icon> Salva</button>
+              </div>
+            </form>
+          </mat-step>
+        </mat-stepper>
+      </form>
+    </div>
+</div>
+
+<!-- <div class="">
+  <div class=""> -->
     <!-- <div class="col-span-7 lg:col-span-2 order-2 lg:order-1">
       <h2>Upload Submission</h2>
       <div id="drop-area">
@@ -14,111 +159,11 @@
         </form>
       </div>
     </div> -->
-    <div class="">
+    <!-- <div class="">
       <div class="">
         <h2 class=""></h2>
-        <form class="form-container">
-          <mat-stepper class="stepper-container" orientation="vertical" #stepper>
-            <ng-template matStepperIcon="edit">
-              <mat-icon><img src="./assets/image/falling-blob.svg" alt=""></mat-icon>
-          </ng-template>
-
-            <mat-step label="Informazioni base" >
-              <form>
-                <br>
-                <app-basic-information></app-basic-information>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Caratteristiche" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Tiri salvezza" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Abilità" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Parametri vitali" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Competenze e linguaggi" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Equipaggiamento" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Privilegi e tratti" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Background" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step label="Storia del personaggio" >
-              <form>
-                <br>
-                <!-- <div> -->
-                <button mat-stroked-button matStepperNext>Seguente</button>
-                <!-- </div> -->
-              </form>
-            </mat-step>
-            <mat-step>
-              <form>
-                <ng-template matStepLabel>
-                  <div class="step-label">Completa</div>
-                </ng-template>
-                <div class="button-container">
-                  <button mat-stroked-button matStepperPrevious>Indietro</button>
-                  <button mat-raised-button color="accent">
-                    <mat-icon>save</mat-icon> Salva</button>
-                </div>
-              </form>
-            </mat-step>
-          </mat-stepper>
-        </form>
+        
       </div>
     </div>
   </div>
-</div>
+</div> -->

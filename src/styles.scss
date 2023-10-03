@@ -16,7 +16,7 @@ $light-dividers: rgba(white, 0.12);
 $light-focused: rgba(white, 0.12);
 
 $custom-palette: (
-    50 : #f9e0e0,
+    50 : #ffffff,
     100 : #f0b3b3,
     200 : #e68080,
     300 : #db4d4d,
@@ -81,7 +81,7 @@ $custom-error: (
     )
 );
 
-$my-primary: mat.define-palette($custom-palette, 500);
+$my-primary: mat.define-palette($custom-palette, 50);
 $my-accent: mat.define-palette($custom-palette, 700);
 $my-warn: mat.define-palette($custom-error, 500);
 

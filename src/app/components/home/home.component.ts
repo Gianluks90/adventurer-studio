@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { getAuth } from 'firebase/auth';
 import { FormModel } from 'src/app/models/formModel';
 import { CharacterService } from 'src/app/services/character.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { AddCharacterDialogComponent } from './add-character-dialog/add-character-dialog.component';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +15,13 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  public form : FormGroup = this.fb.group(FormModel.create(this.fb))
+  public characters: any[] = [];
 
-  constructor(public firebaseService: FirebaseService, private charService: CharacterService, private fb:FormBuilder, private router:Router) {}
+  constructor(
+    public firebaseService: FirebaseService, 
+    private router:Router,
+    public dialog: MatDialog,
+    private platform: Platform) {}
 
   public logout() {
     getAuth().signOut();
@@ -22,9 +29,12 @@ export class HomeComponent {
   }
 
   public createCharacter(){
-      this.charService.createCharacter(this.form).then(()=> {
-        this.router.navigate(['/edit', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)]);
-        console.log('Character created');
-      })
+    this.dialog.open(AddCharacterDialogComponent, {
+      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+    }).afterClosed().subscribe((result: string) => {
+      if (result === 'confirm') {
+      this.router.navigate(['/edit', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)])
+      }
+    });
   }
 }

@@ -9,16 +9,11 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class BasicInformationComponent {
   public group: FormGroup | null = null;
-  public isError: boolean = false;
-
   constructor(public formService: FormService) { }
 
   ngOnInit(): void {
-    this.formService.form.subscribe(form => {
+    this.formService.formSubject.subscribe((form: any) => {
       this.group = form.get('informazioniBase') as FormGroup;
-      console.log('grouop',this.group);
-
      });
-
   }
 }

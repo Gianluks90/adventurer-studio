@@ -1,46 +1,39 @@
-<div class="home-container">
-    <div class="empty-container" *ngIf="firebaseService.user.value && firebaseService.user.value.characters.length === 0">
-        <div class="empty-message">
-            Ancora nessuna scheda personaggio
-        </div>
-        <button class="new-sheet-button" mat-raised-button color="primary" (click)="createCharacter()">
-           <mat-icon>add</mat-icon> Nuova scheda
-        </button>
-    </div>
+<div class="blurred-background">
 </div>
 
-
-<button mat-mini-fab class="logout-button" color="accent" [matMenuTriggerFor]="menu">
-    <mat-icon>menu</mat-icon>
-</button>
-
-<mat-menu class="mat-menu-bottom" #menu="matMenu">
-    <div class="user-container" *ngIf="firebaseService.user.value">
-        <div class="user-image-container">
-            <img class="user-image" src="{{firebaseService.user.value.photoURL ? firebaseService.user.value.photoURL : ''}}" referrerpolicy="no-referrer">
+<div class="home-container">
+    <div class="first-section">
+        <div class="home-title">
+            Adventurer Studio
         </div>
-        <div class="user-name" >
-            {{firebaseService.user.value.displayName}}
+        <div class="user-box" *ngIf="firebaseService.user.value">
+            <div class="user-identity-container">
+                <img class="user-image" src="{{firebaseService.user.value.photoURL}}" referrerpolicy="no-referrer">
+                <div class="user-name">
+                    {{firebaseService.user.value.displayName}}
+                </div>
+            </div>
         </div>
+
+        <button mat-raised-button color="primary" (click)="createCharacter()">
+            <mat-icon>add</mat-icon>
+            Nuova scheda personaggio
+        </button>
+        <button mat-raised-button color="primary" disabled>
+            <mat-icon>description</mat-icon>
+            I tuoi personaggi
+        </button>
+        <button mat-raised-button color="primary" disabled>
+            <mat-icon>group</mat-icon>
+            I tuoi party
+        </button>
+
+        <button mat-raised-button color="primary" (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            Disconnettiti
+        </button>
     </div>
-    <hr class="hr-opacity">
-
-    <button mat-menu-item [routerLink]="['/home']">
-        <mat-icon>description</mat-icon>
-        <span>Schede personaggi</span>
-    </button>
-
-    <button mat-menu-item>
-        <mat-icon>add</mat-icon>
-        <span>Nuova scheda</span>
-    </button>
-
-    <button mat-menu-item (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Esci</span>
-    </button>
-</mat-menu>
-
-<!-- <div class="user-button" *ngIf="firebaseService.user.value">
-    <img class="user-button-image" src="{{firebaseService.user.value.photoURL ? firebaseService.user.value.photoURL : ''}}" referrerpolicy="no-referrer">
-</div> -->
+    <div class="second-section">
+        Ancora nessun contenuto qui
+    </div>
+</div>
