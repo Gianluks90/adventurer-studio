@@ -1,0 +1,29 @@
+<ng-container *ngIf="group">
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Linguaggi conosciuti</mat-label>
+      <input class="" matInput formControlName="linguaggi">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Competenza in armi</mat-label>
+      <input class="" matInput formControlName="armi">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Competenza in armature</mat-label>
+      <input class="" matInput formControlName="armature">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Competenza in strumenti</mat-label>
+      <input class="" matInput  formControlName="strumenti">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Altre competenze</mat-label>
+      <input class="" matInput  formControlName="altro">
+    </mat-form-field>
+  </div>
+</ng-container>
+

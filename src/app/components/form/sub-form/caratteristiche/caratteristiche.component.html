@@ -1,0 +1,33 @@
+<ng-container *ngIf="group">
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Forza</mat-label>
+      <input class="" type="number" matInput formControlName="forza">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Destrezza</mat-label>
+      <input class="" type="number" matInput formControlName="destrezza">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Costituzione</mat-label>
+      <input class="" type="number" matInput formControlName="costituzione">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Intelligenza</mat-label>
+      <input class="" matInput type="number" formControlName="intelligenza">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Saggezza</mat-label>
+      <input class="" matInput type="number" formControlName="saggezza">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Carisma</mat-label>
+      <input class="" matInput type="number" formControlName="carisma">
+    </mat-form-field>
+  </div>
+</ng-container>

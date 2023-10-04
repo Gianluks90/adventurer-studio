@@ -1,0 +1,21 @@
+<ng-container *ngIf="group && group2">
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Bonus Competenza</mat-label>
+      <input class="" type="number" matInput value="{{group.value}}">
+    </mat-form-field>
+  </div>
+  <div class="step-form" [formGroup]="group2">
+    <section class="checkbox-section">
+      <mat-checkbox formControlName="forza">Forza</mat-checkbox>
+      <mat-checkbox formControlName="destrezza">Destrezza</mat-checkbox>
+      <mat-checkbox formControlName="costituzione">Costituzione</mat-checkbox>
+      <mat-checkbox formControlName="intelligenza">Intelligenza</mat-checkbox>
+      <mat-checkbox formControlName="saggezza">Saggezza</mat-checkbox>
+      <mat-checkbox formControlName="carisma">Carisma</mat-checkbox>
+    </section>
+  </div>
+</ng-container>
+
+
+

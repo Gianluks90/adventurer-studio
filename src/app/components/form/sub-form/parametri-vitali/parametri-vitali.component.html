@@ -1,0 +1,47 @@
+<ng-container *ngIf="group && group2 && group3 && group4">
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">CA</mat-label>
+      <input class="" matInput type="number" value="{{group.value}}">
+    </mat-form-field>
+ </div>
+
+  <div class="step-form" [formGroup]="group2">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Iniziativa</mat-label>
+      <input class="" type="number" matInput value="{{group2.value}}">
+    </mat-form-field>
+  </div>
+  <div class="step-form" [formGroup]="group3">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Velocità</mat-label>
+      <input class="" type="number" matInput value="{{group3.value}}">
+    </mat-form-field>
+  </div>
+  <div class="step-form" [formGroup]="group4">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Massimo dei punti ferita</mat-label>
+      <input class="" type="number" matInput formControlName="massimoPuntiFerita">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Punti ferita attuali</mat-label>
+      <input class="" type="number" matInput formControlName="puntiFeritaAttuali">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Punti ferita temporanei</mat-label>
+      <input class="" matInput type="number" formControlName="puntiFeritaTemporanei">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Totale</mat-label>
+      <input class="" matInput type="number" formControlName="totaleDadiVita">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Dadi vita</mat-label>
+      <input class="" matInput formControlName="dadiVita">
+    </mat-form-field>
+  </div>
+</ng-container>

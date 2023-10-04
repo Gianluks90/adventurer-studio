@@ -5,15 +5,23 @@ import { FormService } from 'src/app/services/form.service';
 @Component({
   selector: 'app-basic-information',
   templateUrl: './basic-information.component.html',
-  styleUrls: ['./basic-information.component.scss']
+  styleUrls: ['./basic-information.component.scss'],
 })
 export class BasicInformationComponent {
   public group: FormGroup | null = null;
-  constructor(public formService: FormService) { }
+  public group2: FormGroup | null = null;
+  public group3: FormGroup | null = null
+
+  constructor(public formService: FormService) {}
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
-      this.group = form.get('informazioniBase') as FormGroup;
-     });
+      if (form) {
+        this.group = form.get('informazioniBase') as FormGroup;
+        this.group2 = form.get('caratteristicheFisiche') as FormGroup;
+        // this.group3 = form.get('urlImmaginePersonaggio') as FormGroup;
+
+      }
+    });
   }
 }

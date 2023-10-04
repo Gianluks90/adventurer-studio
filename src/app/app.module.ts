@@ -17,9 +17,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatMenuModule } from '@angular/material/menu'; 
+import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 import { AddCharacterDialogComponent } from './components/home/add-character-dialog/add-character-dialog.component';
+import { CaratteristicheComponent } from './components/form/sub-form/caratteristiche/caratteristiche.component';
+import { TiriSalvezzaComponent } from './components/form/sub-form/tiri-salvezza/tiri-salvezza.component';
+import { AbilitaComponent } from './components/form/sub-form/abilita/abilita.component';
+import { ParametriVitaliComponent } from './components/form/sub-form/parametri-vitali/parametri-vitali.component';
+import { LinguaggiCompetenzeComponent } from './components/form/sub-form/linguaggi-competenze/linguaggi-competenze.component';
+import { EquipaggiamentoComponent } from './components/form/sub-form/equipaggiamento/equipaggiamento.component';
+import { PrivilegiTrattiComponent } from './components/form/sub-form/privilegi-tratti/privilegi-tratti.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +40,13 @@ import { AddCharacterDialogComponent } from './components/home/add-character-dia
     HeaderComponent,
     BasicInformationComponent,
     AddCharacterDialogComponent,
+    CaratteristicheComponent,
+    TiriSalvezzaComponent,
+    AbilitaComponent,
+    ParametriVitaliComponent,
+    LinguaggiCompetenzeComponent,
+    EquipaggiamentoComponent,
+    PrivilegiTrattiComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +60,8 @@ import { AddCharacterDialogComponent } from './components/home/add-character-dia
     MatInputModule,
     MatStepperModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

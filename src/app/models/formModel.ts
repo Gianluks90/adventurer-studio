@@ -89,7 +89,8 @@ export class FormModel {
       persuasione: false,
       rapiditaDiMano: false,
       religione: false,
-      sopravvivenza: false
+      sopravvivenza: false,
+      storia:false
     })
   }
 
@@ -98,6 +99,7 @@ export class FormModel {
       massimoPuntiFerita: 0,
       puntiFeritaAttuali: 0,
       puntiFeritaTemporanei: 0,
+      totaleDadiVita:0,
       dadiVita: ''
     })
   }
@@ -108,7 +110,7 @@ export class FormModel {
       ideali: '',
       legami: '',
       difetti: '',
-    }) 
+    })
   }
 
   static altreCompetenze(builder: FormBuilder) {

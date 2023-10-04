@@ -111,4 +111,5 @@ html, body {
     // font-size: calc(8px + (16 - 8) * ((100vw - 300px) / (1600 - 300))) !important;
     box-sizing: border-box;
     scrollbar-width: thin;
+    overflow-y:auto;
   }

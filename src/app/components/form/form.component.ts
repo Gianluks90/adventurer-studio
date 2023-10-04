@@ -21,10 +21,5 @@ export class FormComponent implements OnInit {
     this.formService.initForm(characterId!);
   }
 
-  public saveDraft(): void {
-    const charId = window.location.href.split('/').pop();
-    this.formService.saveDraft(charId!, this.formService.formSubject.value).then(() => {
-      alert('Salvataggio effettuato');
-    })
-  }
+
 }

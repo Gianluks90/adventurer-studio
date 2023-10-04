@@ -1,0 +1,30 @@
+<ng-container *ngIf=" group2">
+  <div class="step-form" [formGroup]="group2">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Monete di Rame</mat-label>
+      <input class="" matInput formControlName="MR">
+    </mat-form-field>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Monete di Argento</mat-label>
+      <input class="" matInput formControlName="MA">
+    </mat-form-field>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Monete di Electrum</mat-label>
+      <input class="" matInput formControlName="ME">
+    </mat-form-field>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Monete d'Oro</mat-label>
+      <input class="" matInput formControlName="MO">
+    </mat-form-field>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Monete di Platino</mat-label>
+      <input class="" matInput formControlName="MP">
+    </mat-form-field>
+  </div>
+</ng-container>
+<ng-container *ngIf="group">
+  <div class="step-form" [formGroup]="group">
+    <label for="equip">Equipaggiamento personaggio</label>
+    <textarea name="equip" id="equip" [value]="group.value"></textarea>
+  </div>
+</ng-container>
