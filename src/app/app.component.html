@@ -1,7 +1,7 @@
 <div class="blurred-background">
 </div>
 <div class="main">
-  <div class="first-section" *ngIf="isLogged">
+  <div class="first-section" *ngIf="authGuardService.authStatus">
      <app-sidenav></app-sidenav>
   </div>
   <div class="second-section">

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { doc, getDoc } from '@firebase/firestore';
 import { GoogleAuthProvider, getAuth, setPersistence, browserLocalPersistence, signInWithPopup } from 'firebase/auth';
+import { DocumentData, DocumentSnapshot } from 'firebase/firestore';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
@@ -23,21 +24,17 @@ export class AuthComponent {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential!.accessToken;
         const user = result.user;
-        
+
         this.checkUser(user.uid).then((doc) => {
-
-        }).catch((error) => {
-
-        });
-
-        if (user) {
-          localStorage.setItem('dndCS-2023-logged', 'true');
-          this.authGuardService.logStatus(true);
-          //const loginResult = await this.firebaseService.checkUser(user);
-          // if (loginResult) {
+          if (doc.exists()) {
+            localStorage.setItem('dndCS-2023-logged', 'true');
+            this.authGuardService.authStatus = true;
             this.router.navigate(['/home']);
-          //}
-        }
+
+          } else{
+            this.authGuardService.authStatus = false;
+          }
+        })
       })
       .catch(error => {
         const errorCode = error.code;
@@ -45,12 +42,11 @@ export class AuthComponent {
         const email = error.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
         localStorage.setItem('dndCS-2023-logged', 'false');
-        this.authGuardService.logStatus(false);
       })
     })
   }
 
-  private async checkUser(uid: string): Promise<any> {
+  private async checkUser(uid: string): Promise<DocumentSnapshot> {
     const docRef = doc(this.firebaseService.database, 'users', uid);
     return await getDoc(docRef);
   }

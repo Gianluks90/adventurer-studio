@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FirebaseService } from './services/firebase.service';
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -7,19 +7,7 @@ import { AuthGuardService } from './services/auth-guard.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'dndCharacterSheet';
-  public isLogged:boolean = false
-  constructor(private firebaseService: FirebaseService, private authGuardService: AuthGuardService) {}
-
-  ngOnInit(): void {
-    this.authGuardService.emitterlogStatus.subscribe((status)=>{
-      this.isLogged = status
-    });
-    if(localStorage.getItem('dndCS-2023-logged') === 'true'){
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
-  }
+  constructor(private firebaseService: FirebaseService, public authGuardService: AuthGuardService) {}
 }

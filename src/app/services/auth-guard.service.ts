@@ -6,8 +6,7 @@ import { getAuth } from 'firebase/auth';
   providedIn: 'root'
 })
 export class AuthGuardService {
-
-  @Output() emitterlogStatus = new EventEmitter;
+  authStatus: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -24,7 +23,4 @@ export class AuthGuardService {
     })
   }
 
-  public logStatus(status:boolean){
-   return this.emitterlogStatus.emit(status);
-  }
 }

@@ -1,5 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { getAuth } from 'firebase/auth';
@@ -16,6 +16,7 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 export class SidenavComponent {
   public characters: any[] = [];
 
+
   constructor(
     public firebaseService: FirebaseService,
     private formService: FormService,
@@ -26,9 +27,9 @@ export class SidenavComponent {
 
   public logout() {
     getAuth().signOut().then(()=>{
-      localStorage.setItem('dndCS-2023-logged','false')
+      localStorage.setItem('dndCS-2023-logged','false');
+      this.authGuardService.authStatus = false
     });
-    this.authGuardService.logStatus(false);
     // window.location.reload();
   }
 
