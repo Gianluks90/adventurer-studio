@@ -34,14 +34,14 @@ export class FirebaseService {
     getAuth().onAuthStateChanged(async user => {
       if (user) {
         this.checkUser(user);
-        localStorage.setItem('dndCS-2023-logged', 'true');
+        // localStorage.setItem('dndCS-2023-logged', 'true');
       } else {
-        localStorage.setItem('dndCS-2023-logged', 'false');
+        // localStorage.setItem('dndCS-2023-logged', 'false');
         this.isAuth.next(false);
-      }      
+      }
     });
    }
-   
+
   public async checkUser(user: User): Promise<boolean> {
     return await this.getUser(user).then(userSnap => {
       if (userSnap.exists()) {
