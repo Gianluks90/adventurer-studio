@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { getAuth } from 'firebase/auth';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { AddCharacterDialogComponent } from '../home/add-character-dialog/add-character-dialog.component';
+import { AddCharacterDialogComponent } from './add-character-dialog/add-character-dialog.component';
 import { FormService } from 'src/app/services/form.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 

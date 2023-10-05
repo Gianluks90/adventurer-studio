@@ -20,7 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { AddCharacterDialogComponent } from './components/home/add-character-dialog/add-character-dialog.component';
+import { AddCharacterDialogComponent } from './components/sidenav/add-character-dialog/add-character-dialog.component';
 import { AbilitaComponent } from './components/form/sub-form/abilita/abilita.component';
 import { BackgroundComponent } from './components/form/sub-form/background/background.component';
 import { BasicInformationComponent } from './components/form/sub-form/basic-information/basic-information.component';
@@ -32,6 +32,7 @@ import { PrivilegiTrattiComponent } from './components/form/sub-form/privilegi-t
 import { StoriaComponent } from './components/form/sub-form/storia/storia.component';
 import { TiriSalvezzaComponent } from './components/form/sub-form/tiri-salvezza/tiri-salvezza.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { CharacterListComponent } from './components/character-list/character-list.component';
 
 
 
@@ -54,6 +55,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     TiriSalvezzaComponent,
     BackgroundComponent,
     StoriaComponent,
+    CharacterListComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ import { getAuth } from 'firebase/auth';
 import { FormModel } from 'src/app/models/formModel';
 import { CharacterService } from 'src/app/services/character.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { AddCharacterDialogComponent } from './add-character-dialog/add-character-dialog.component';
+import { AddCharacterDialogComponent } from '../sidenav/add-character-dialog/add-character-dialog.component';
 import { Platform } from '@angular/cdk/platform';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 

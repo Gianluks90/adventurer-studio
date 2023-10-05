@@ -16,7 +16,7 @@
     Nuova scheda personaggio
   </button>
 
-  <button mat-raised-button color="primary" disabled>
+  <button mat-raised-button color="primary" [routerLink]="['/characters']">
     <mat-icon>description</mat-icon>
     I tuoi personaggi
   </button>
@@ -31,7 +31,7 @@
     Salva bozza
   </button>
 
-  <button mat-raised-button color="primary">
+  <button mat-raised-button color="primary" disabled>
     <mat-icon>check</mat-icon>
     Pubblica
   </button>

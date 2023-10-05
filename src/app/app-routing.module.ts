@@ -5,6 +5,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { FormComponent } from './components/form/form.component';
 import { ViewComponent } from './components/view/view.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { CharacterListComponent } from './components/character-list/character-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'edit/:id', component: FormComponent, canActivate: [AuthGuardService] },
   { path: 'view/:id', component: ViewComponent, canActivate: [AuthGuardService] },
+  { path: 'characters', component: CharacterListComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

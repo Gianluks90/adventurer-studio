@@ -22,7 +22,7 @@ export class CharacterService {
 
   public async getCharactersByUserId(id: string): Promise<any[]> {
     const docRef = collection(this.firebaseService.database, 'characters');
-    const q = query(docRef, where('userId', '==', id));
+    const q = query(docRef, where('status.userId', '==', id));
     const docs = await getDocs(q);
     const result: any[] = [];
     docs.forEach(doc => {
