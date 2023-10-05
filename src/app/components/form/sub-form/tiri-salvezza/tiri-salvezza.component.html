@@ -2,7 +2,7 @@
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Bonus Competenza</mat-label>
-      <input class="" type="number" matInput value="{{group.value}}">
+      <input class="" type="number" matInput formControlName="bonusCompetenza">
     </mat-form-field>
   </div>
   <div class="step-form" [formGroup]="group2">
@@ -16,6 +16,3 @@
     </section>
   </div>
 </ng-container>
-
-
-

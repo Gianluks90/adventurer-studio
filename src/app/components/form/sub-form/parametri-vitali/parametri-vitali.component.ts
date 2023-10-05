@@ -18,10 +18,8 @@ export class ParametriVitaliComponent {
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
-        this.group = form.get('CA') as FormGroup;
-        this.group2 = form.get('iniziativa') as FormGroup;
-        this.group3 = form.get('velocita') as FormGroup;
-        this.group4 = form.get('puntiFerita') as FormGroup;
+        this.group = form as FormGroup;
+        this.group2 = form.get('puntiFerita') as FormGroup;
       }
     });
   }

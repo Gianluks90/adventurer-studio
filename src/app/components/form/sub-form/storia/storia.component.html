@@ -1,0 +1,13 @@
+<ng-container *ngIf="group">
+  <div class="step-form" [formGroup]="group">
+    <label for="stor">Storia del personaggio</label>
+    <textarea name="sto" id="sto" formControlName="storiaPersonaggio"></textarea>
+    <label for="all">Alleati e Organizzazioni</label>
+    <textarea name="all" id="all" formControlName="alleatiOrganizzazioni"></textarea>
+    <label for="prev">Trattti e privilegi aggiuntivi</label>
+    <textarea name="prev" id="prev" formControlName="trattiPrivilegiAggiuntivi"></textarea>
+    <label for="tes">tesoro</label>
+    <textarea name="tes" id="tes" formControlName="tesoro"></textarea>
+  </div>
+</ng-container>
+

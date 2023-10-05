@@ -1,0 +1,20 @@
+<ng-container *ngIf="group">
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field>
+      <mat-label>Tratti caratteriali</mat-label>
+      <input matInput formControlName="trattiCaratteriali">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ideali</mat-label>
+      <input matInput formControlName="ideali">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Legami</mat-label>
+      <input matInput formControlName="legami">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Difetti</mat-label>
+      <input matInput formControlName="difetti">
+    </mat-form-field>
+  </div>
+</ng-container>

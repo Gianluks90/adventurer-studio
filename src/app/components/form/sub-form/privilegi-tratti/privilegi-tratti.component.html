@@ -1,6 +1,6 @@
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
     <label for="prev">Privilegi e tratti</label>
-    <textarea name="prev" id="prev" [value]="group.value"></textarea>
+    <textarea name="prev" id="prev" formControlName="privilegiTratti"></textarea>
   </div>
 </ng-container>

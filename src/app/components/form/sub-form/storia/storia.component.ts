@@ -3,14 +3,12 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-tiri-salvezza',
-  templateUrl: './tiri-salvezza.component.html',
-  styleUrls: ['./tiri-salvezza.component.scss']
+  selector: 'app-storia',
+  templateUrl: './storia.component.html',
+  styleUrls: ['./storia.component.scss']
 })
-export class TiriSalvezzaComponent {
-
+export class StoriaComponent {
   public group: FormGroup | null = null;
-  public group2: FormGroup | null = null;
 
   constructor(public formService: FormService) {}
 
@@ -18,8 +16,6 @@ export class TiriSalvezzaComponent {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.group = form as FormGroup;
-        console.log(this.group);
-        this.group2 = form.get('caratteristiche') as FormGroup;
       }
     });
   }

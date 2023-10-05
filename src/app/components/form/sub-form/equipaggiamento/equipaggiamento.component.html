@@ -25,6 +25,6 @@
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
     <label for="equip">Equipaggiamento personaggio</label>
-    <textarea name="equip" id="equip" [value]="group.value"></textarea>
+    <textarea name="equip" id="equip" formControlName="equipaggiamento"></textarea>
   </div>
 </ng-container>

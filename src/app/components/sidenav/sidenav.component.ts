@@ -1,32 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Platform } from '@angular/cdk/platform';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { getAuth } from 'firebase/auth';
-import { FormModel } from 'src/app/models/formModel';
-import { CharacterService } from 'src/app/services/character.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { AddCharacterDialogComponent } from './add-character-dialog/add-character-dialog.component';
-import { Platform } from '@angular/cdk/platform';
+import { AddCharacterDialogComponent } from '../home/add-character-dialog/add-character-dialog.component';
+import { FormService } from 'src/app/services/form.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-sidenav',
+  templateUrl: './sidenav.component.html',
+  styleUrls: ['./sidenav.component.scss']
 })
-export class HomeComponent {
+export class SidenavComponent {
   public characters: any[] = [];
 
   constructor(
     public firebaseService: FirebaseService,
+    private formService: FormService,
     private router:Router,
     public dialog: MatDialog,
     private platform: Platform,
-    private authGuardService:AuthGuardService) {}
+    private authGuardService: AuthGuardService) {}
 
   public logout() {
-    getAuth().signOut();
+    getAuth().signOut().then(()=>{
+      localStorage.setItem('dndCS-2023-logged','false')
+    });
     this.authGuardService.logStatus(false);
     // window.location.reload();
   }
@@ -39,5 +40,12 @@ export class HomeComponent {
       this.router.navigate(['/edit', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)])
       }
     });
+  }
+
+  public saveDraft(): void {
+    const charId = window.location.href.split('/').pop();
+    this.formService.saveDraft(charId!, this.formService.formSubject.value).then(() => {
+      alert('Salvataggio effettuato');
+    })
   }
 }

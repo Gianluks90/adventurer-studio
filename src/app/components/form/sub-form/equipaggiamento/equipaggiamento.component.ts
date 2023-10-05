@@ -16,10 +16,8 @@ export class EquipaggiamentoComponent {
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
-        this.group = form.get('equipaggiamento') as FormGroup;
+        this.group = form as FormGroup;
         this.group2 = form.get('denaro') as FormGroup;
-        console.log(this.group.value);
-
       }
     });
   }

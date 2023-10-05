@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GoogleAuthProvider, getAuth, setPersistence, browserLocalPersistence, signInWithPopup } from 'firebase/auth';
+import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,7 +10,7 @@ import { GoogleAuthProvider, getAuth, setPersistence, browserLocalPersistence, s
 })
 export class AuthComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authGuardService: AuthGuardService) {}
 
   public loginWithGoogle() {
     const provider = new GoogleAuthProvider();
@@ -23,6 +24,7 @@ export class AuthComponent {
 
         if (user) {
           localStorage.setItem('dndCS-2023-logged', 'true');
+          this.authGuardService.logStatus(true);
           //const loginResult = await this.firebaseService.checkUser(user);
           // if (loginResult) {
             this.router.navigate(['/home']);
@@ -35,6 +37,7 @@ export class AuthComponent {
         const email = error.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
         localStorage.setItem('dndCS-2023-logged', 'false');
+        this.authGuardService.logStatus(false);
       })
     })
   }

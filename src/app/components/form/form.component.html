@@ -1,8 +1,6 @@
-<div class="blurred-background">
-</div>
+
 
 <div class="home-container">
-
     <div class="second-section">
       <form class="form-container">
         <mat-stepper class="stepper-container" orientation="vertical" #stepper>
@@ -40,6 +38,7 @@
           <mat-step label="Abilità" >
             <form>
               <br>
+              <app-abilita></app-abilita>
               <!-- <div> -->
                 <app-abilita></app-abilita>
               <button mat-stroked-button matStepperNext>Seguente</button>
@@ -85,6 +84,7 @@
           <mat-step label="Background" >
             <form>
               <br>
+              <app-background></app-background>
               <!-- <div> -->
               <button mat-stroked-button matStepperNext>Seguente</button>
               <!-- </div> -->
@@ -93,6 +93,7 @@
           <mat-step label="Storia del personaggio">
             <form>
               <br>
+              <app-storia></app-storia>
               <!-- <div> -->
               <button mat-stroked-button matStepperNext>Seguente</button>
               <!-- </div> -->

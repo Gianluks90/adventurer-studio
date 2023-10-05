@@ -1,35 +1,9 @@
-.blurred-background {
-    background-image: url("../../../assets/background.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    z-index: -1;
-}
+
 
 .home-container {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-}
-
-.first-section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    height: 100%;
-    width: 20%;
-    margin: 8px;
-    box-sizing: border-box;
-    position: fixed;
-    left: 0;
-    // background-color: blue;
 }
 
 .home-title {
@@ -70,13 +44,11 @@
 .second-section {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
     width: 80%;
     margin: 8px;
 }
 
 .form-container {
-    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;

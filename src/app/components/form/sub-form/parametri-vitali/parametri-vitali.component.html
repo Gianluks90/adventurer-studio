@@ -1,24 +1,25 @@
-<ng-container *ngIf="group && group2 && group3 && group4">
+
+<ng-container *ngIf="group && group2">
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">CA</mat-label>
-      <input class="" matInput type="number" value="{{group.value}}">
+      <input class="" matInput type="number" formControlName="CA">
     </mat-form-field>
  </div>
 
-  <div class="step-form" [formGroup]="group2">
+  <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Iniziativa</mat-label>
-      <input class="" type="number" matInput value="{{group2.value}}">
+      <input class="" type="number" matInput formControlName="iniziativa">
     </mat-form-field>
   </div>
-  <div class="step-form" [formGroup]="group3">
+  <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Velocità</mat-label>
-      <input class="" type="number" matInput value="{{group3.value}}">
+      <input class="" type="number" matInput formControlName="velocita">
     </mat-form-field>
   </div>
-  <div class="step-form" [formGroup]="group4">
+  <div class="step-form" [formGroup]="group2">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Massimo dei punti ferita</mat-label>
       <input class="" type="number" matInput formControlName="massimoPuntiFerita">

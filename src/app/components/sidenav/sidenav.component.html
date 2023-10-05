@@ -1,0 +1,47 @@
+<div class="home-container">
+  <div class="home-title">
+    Adventurer Studio
+  </div>
+  <div class="user-box" *ngIf="firebaseService.user.value">
+    <div class="user-identity-container">
+      <img class="user-image" src="{{firebaseService.user.value.photoURL}}" referrerpolicy="no-referrer">
+      <div class="user-name">
+        {{firebaseService.user.value.displayName}}
+      </div>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="createCharacter()">
+    <mat-icon>add</mat-icon>
+    Nuova scheda personaggio
+  </button>
+
+  <button mat-raised-button color="primary" disabled>
+    <mat-icon>description</mat-icon>
+    I tuoi personaggi
+  </button>
+
+  <button mat-raised-button color="primary" disabled>
+    <mat-icon>group</mat-icon>
+    I tuoi party
+  </button>
+
+  <button mat-raised-button color="primary" (click)="saveDraft()">
+    <mat-icon>save</mat-icon>
+    Salva bozza
+  </button>
+
+  <button mat-raised-button color="primary">
+    <mat-icon>check</mat-icon>
+    Pubblica
+  </button>
+  <button mat-raised-button color="primary" [routerLink]="['/home']">
+    <mat-icon>arrow_back</mat-icon>
+    Indietro
+  </button>
+
+  <button mat-raised-button color="primary" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Disconnettiti
+  </button>
+</div>
