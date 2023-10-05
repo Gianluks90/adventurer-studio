@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { doc, getDoc } from '@firebase/firestore';
 import { GoogleAuthProvider, getAuth, setPersistence, browserLocalPersistence, signInWithPopup } from 'firebase/auth';
-import { DocumentData, DocumentSnapshot } from 'firebase/firestore';
+import { DocumentSnapshot } from 'firebase/firestore';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 
