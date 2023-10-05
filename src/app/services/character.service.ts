@@ -32,6 +32,8 @@ export class CharacterService {
       }
       result.push(character);
     });
+    console.log(result);
+
     return result;
   }
 

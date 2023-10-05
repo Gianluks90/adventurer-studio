@@ -1,1 +1,15 @@
-<p>character-list works!</p>
+<div class="card-container" *ngFor="let character of characters">
+  <div>
+    {{character.informazioniBase.nomePersonaggio}}
+  </div>
+  <div>
+    <button mat-raised-button color="primary" [routerLink]="'/edit/' + character.id">
+      <mat-icon>edit</mat-icon>
+      edit
+    </button>
+    <button mat-raised-button color="primary" disabled>
+      <mat-icon>menu_book</mat-icon>
+      view
+    </button>
+  </div>
+</div>

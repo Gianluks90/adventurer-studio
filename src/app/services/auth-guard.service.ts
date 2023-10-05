@@ -15,6 +15,7 @@ export class AuthGuardService {
       getAuth().onAuthStateChanged(user => {
         if (user) {
           resolve(true);
+          this.authStatus = true;
         } else {
           this.router.navigate(['/login']);
           resolve(false);

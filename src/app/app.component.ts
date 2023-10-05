@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from './services/firebase.service';
 import { AuthGuardService } from './services/auth-guard.service';
 
@@ -7,7 +7,12 @@ import { AuthGuardService } from './services/auth-guard.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+
   title = 'dndCharacterSheet';
   constructor(private firebaseService: FirebaseService, public authGuardService: AuthGuardService) {}
+ngOnInit(): void {
+console.log( 'status', this.authGuardService.authStatus);
+
+}
 }

@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormModel } from 'src/app/models/formModel';
 import { FirebaseService } from './firebase.service';
 import { CharacterService } from './character.service';
-import { doc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc, updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class FormService {
   public formSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(
-    private fb: FormBuilder, 
-    private firebaseService: FirebaseService, 
+    private fb: FormBuilder,
+    private firebaseService: FirebaseService,
     private characterService: CharacterService) {
   }
 
@@ -30,12 +30,14 @@ export class FormService {
 
   public async saveDraft(charId: string, form: FormGroup): Promise<void> {
     const docRef = doc(this.firebaseService.database, 'characters', charId);
-    return await updateDoc(docRef, {
+    return await setDoc(docRef, {
       ...form.value,
       status: {
         draft: true
       }
+    }, {
+      merge:true
     });
   }
-  
+
 }
