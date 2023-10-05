@@ -16,7 +16,6 @@ import { AuthGuardService } from 'src/app/services/auth-guard.service';
 export class SidenavComponent {
   public characters: any[] = [];
 
-
   constructor(
     public firebaseService: FirebaseService,
     private formService: FormService,
@@ -30,7 +29,6 @@ export class SidenavComponent {
       localStorage.setItem('dndCS-2023-logged','false');
       this.authGuardService.authStatus = false
     });
-    // window.location.reload();
   }
 
   public createCharacter(){
