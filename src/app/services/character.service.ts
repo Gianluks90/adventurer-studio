@@ -26,7 +26,11 @@ export class CharacterService {
     const docs = await getDocs(q);
     const result: any[] = [];
     docs.forEach(doc => {
-      result.push(doc.data());
+      const character = {
+        id: doc.id,
+        ...doc.data()
+      }
+      result.push(character);
     });
     return result;
   }
