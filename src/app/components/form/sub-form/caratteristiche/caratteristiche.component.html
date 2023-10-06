@@ -3,7 +3,7 @@
     <div class="form-field-container">
       <mat-form-field color="accent" appearance="outline">
         <mat-label class="input-field">Forza</mat-label>
-        <input class="" type="number" matInput formControlName="forza">
+        <input class="" type="number" matInput formControlName="forza" max="20">
       </mat-form-field>
       <div class="modificatore"> <span *ngIf="modForza > 0">+ </span> {{modForza}}</div>
     </div>
@@ -11,7 +11,7 @@
     <div class="form-field-container">
       <mat-form-field color="accent" appearance="outline">
         <mat-label class="input-field">Destrezza</mat-label>
-        <input class="" type="number" matInput formControlName="destrezza">
+        <input class="" type="number" matInput formControlName="destrezza" max="20">
       </mat-form-field>
       <div class="modificatore"> <span *ngIf="modDestrezza > 0">+ </span> {{modDestrezza}}</div>
     </div>
@@ -19,7 +19,7 @@
     <div class="form-field-container">
       <mat-form-field color="accent" appearance="outline">
         <mat-label class="input-field">Costituzione</mat-label>
-        <input class="" type="number" matInput formControlName="costituzione">
+        <input class="" type="number" matInput formControlName="costituzione" max="20">
       </mat-form-field>
       <div class="modificatore"> <span *ngIf="modCostituzione > 0">+ </span> {{modCostituzione}}</div>
     </div>
@@ -27,7 +27,7 @@
     <div class="form-field-container">
       <mat-form-field color="accent" appearance="outline">
         <mat-label class="input-field">Intelligenza</mat-label>
-        <input class="" matInput type="number" formControlName="intelligenza">
+        <input class="" matInput type="number" formControlName="intelligenza" max="20">
       </mat-form-field>
       <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span> {{modIntelligenza}}</div>
     </div>
@@ -35,7 +35,7 @@
     <div class="form-field-container">
       <mat-form-field color="accent" appearance="outline">
         <mat-label class="input-field">Saggezza</mat-label>
-        <input class="" matInput type="number" formControlName="saggezza">
+        <input class="" matInput type="number" formControlName="saggezza" max="20">
       </mat-form-field>
       <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span> {{modSaggezza}}</div>
     </div>
@@ -43,7 +43,7 @@
     <div class="form-field-container">
       <mat-form-field color="accent" appearance="outline">
         <mat-label class="input-field">Carisma</mat-label>
-        <input class="" matInput type="number" formControlName="carisma">
+        <input class="" matInput type="number" formControlName="carisma" max="20">
       </mat-form-field>
       <div class="modificatore"> <span *ngIf="modCarisma > 0">+ </span> {{modCarisma}}</div>
     </div>

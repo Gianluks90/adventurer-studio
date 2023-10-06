@@ -8,7 +8,7 @@ export class FormModel {
     return {
       informazioniBase: FormModel.informazioniBase(builder),
       caratteristiche: FormModel.caratteristiche(builder),
-      bonusCompetenza: 2,
+      
       tiriSalvezza: FormModel.tiriSalvezza(builder),
       competenzaAbilita: FormModel.competenzaAbilita(builder),
       CA: 0,
@@ -38,7 +38,7 @@ export class FormModel {
 
   static informazioniBase(builder: FormBuilder) {
     return builder.group({
-      nomeGiocatore:'',
+      nomeGiocatore: '',
       classe: '',
       specializzazione: '',
       livello: [1, Validators.max(20)],
@@ -63,6 +63,7 @@ export class FormModel {
 
   static tiriSalvezza(builder: FormBuilder) {
     return builder.group({
+      bonusCompetenza: [2, Validators.max(6)],
       forza: false,
       destrezza: false,
       costituzione: false,
@@ -92,7 +93,28 @@ export class FormModel {
       rapiditaDiMano: false,
       religione: false,
       sopravvivenza: false,
-      storia:false
+      storia:false,
+
+      maestriaAcrobazia: false,
+      maestriaAddestrareAnimali: false,
+      maestriaArcano: false,
+      maestriaAtletica: false,
+      maestriaFurtivita: false,
+      maestriaIndagare: false,
+      maestriaInganno: false,
+      maestriaIntimidire: false,
+      maestriaIntuizione: false,
+      maestriaIntrattenere: false,
+      maestriaInvestigare: false,
+      maestriaMedicina: false,
+      maestriaNatura: false,
+      maestriaPercezione: false,
+      maestriaPersuasione: false,
+      maestriaRapiditaDiMano: false,
+      maestriaReligione: false,
+      maestriaSopravvivenza: false,
+      maestriaStoria: false,
+
     })
   }
 

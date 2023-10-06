@@ -1,113 +1,107 @@
-
-
 <div class="home-container">
-    <div class="second-section">
-      <form class="form-container">
-        <mat-stepper class="stepper-container" orientation="vertical" #stepper>
-          <!-- <ng-template matStepperIcon="edit">
+  <div class="second-section">
+    <form class="form-container">
+      <mat-stepper class="stepper-container" orientation="vertical" #stepper>
+        <!-- <ng-template matStepperIcon="edit">
             <mat-icon><img src="./assets/image/falling-blob.svg" alt=""></mat-icon>
         </ng-template> -->
 
-          <mat-step label="Informazioni base">
-            <form>
-              <br>
-              <app-basic-information></app-basic-information>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Caratteristiche" >
-            <form>
-              <br>
-              <app-caratteristiche></app-caratteristiche>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Tiri salvezza" >
-            <form>
-              <br>
-              <app-tiri-salvezza></app-tiri-salvezza>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Abilità" >
-            <form>
-              <br>
-              <app-abilita></app-abilita>
-              <!-- <div> -->
-                <app-abilita></app-abilita>
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Parametri vitali" >
-            <form>
-              <br>
-              <app-parametri-vitali></app-parametri-vitali>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Competenze e linguaggi" >
-            <form>
-              <br>
-              <app-linguaggi-competenze></app-linguaggi-competenze>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Equipaggiamento" >
-            <form>
-              <br>
-              <app-equipaggiamento></app-equipaggiamento>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Privilegi e tratti" >
-            <form>
-              <br>
-              <app-privilegi-tratti></app-privilegi-tratti>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Background" >
-            <form>
-              <br>
-              <app-background></app-background>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
-          <mat-step label="Storia del personaggio">
-            <form>
-              <br>
-              <app-storia></app-storia>
-              <!-- <div> -->
-              <button mat-stroked-button matStepperNext>Seguente</button>
-              <!-- </div> -->
-            </form>
-          </mat-step>
+        <mat-step label="Informazioni base">
+          <form>
+            <br>
+            <app-basic-information></app-basic-information>
+            <!-- <div> -->
 
-        </mat-stepper>
-      </form>
-    </div>
+            <!-- </div> -->
+          </form>
+        </mat-step>
+        <mat-step label="Caratteristiche">
+          <form>
+            <br>
+            <app-caratteristiche></app-caratteristiche>
+            <!-- <div> -->
+
+            <!-- </div> -->
+          </form>
+        </mat-step>
+        <mat-step label="Tiri salvezza">
+          <form>
+            <br>
+            <app-tiri-salvezza></app-tiri-salvezza>
+            <!-- <div> -->
+
+            <!-- </div> -->
+          </form>
+        </mat-step>
+        <mat-step label="Abilità">
+          <form>
+            <br>
+            <app-abilita></app-abilita>
+          </form>
+        </mat-step>
+        <mat-step label="Parametri vitali">
+          <form>
+            <br>
+            <app-parametri-vitali></app-parametri-vitali>
+            <!-- <div> -->
+
+            <!-- </div> -->
+          </form>
+        </mat-step>
+        <mat-step label="Competenze e linguaggi">
+          <form>
+            <br>
+            <app-linguaggi-competenze></app-linguaggi-competenze>
+            <!-- <div> -->
+
+            <!-- </div> -->
+          </form>
+        </mat-step>
+        <mat-step label="Equipaggiamento">
+          <form>
+            <br>
+            <app-equipaggiamento></app-equipaggiamento>
+            <!-- <div> -->
+
+            <!-- </div> -->
+          </form>
+        </mat-step>
+        <mat-step label="Privilegi e tratti">
+          <form>
+            <br>
+            <app-privilegi-tratti></app-privilegi-tratti>
+            <!-- <div> -->
+
+            <!-- </div> -->
+          </form>
+        </mat-step>
+        <mat-step label="Background">
+          <form>
+            <br>
+            <app-background></app-background>
+            <!-- <div> -->
+
+            <!-- </div> -->
+          </form>
+        </mat-step>
+        <mat-step label="Storia del personaggio">
+          <form>
+            <br>
+            <app-storia></app-storia>
+            <!-- <div> -->
+
+            <!-- </div> -->
+          </form>
+        </mat-step>
+
+      </mat-stepper>
+    </form>
+  </div>
 </div>
 
 <!-- <div class="">
   <div class=""> -->
-    <!-- <div class="col-span-7 lg:col-span-2 order-2 lg:order-1">
+<!-- <div class="col-span-7 lg:col-span-2 order-2 lg:order-1">
       <h2>Upload Submission</h2>
       <div id="drop-area">
         <form class="my-form">
@@ -121,7 +115,7 @@
         </form>
       </div>
     </div> -->
-    <!-- <div class="">
+<!-- <div class="">
       <div class="">
         <h2 class=""></h2>
 

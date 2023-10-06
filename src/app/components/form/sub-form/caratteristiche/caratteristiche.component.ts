@@ -22,7 +22,7 @@ export class CaratteristicheComponent {
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
-        this.group = form.get('tiriSalvezza') as FormGroup;
+        this.group = form.get('caratteristiche') as FormGroup;
         this.applyModifier();
 
         this.group.valueChanges.subscribe(() => {

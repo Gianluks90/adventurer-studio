@@ -1,18 +1,43 @@
-<ng-container *ngIf="group && group2">
+<ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Bonus Competenza</mat-label>
-      <input class="" type="number" matInput formControlName="bonusCompetenza">
+      <input class="" type="number" matInput formControlName="bonusCompetenza" min="2" max="6">
+      <mat-hint class="hint">Al 1° Livello il bonus di competenza è 2.</mat-hint>
     </mat-form-field>
   </div>
-  <div class="step-form" [formGroup]="group2">
+  <div class="step-form" [formGroup]="group">
     <section class="checkbox-section">
-      <mat-checkbox formControlName="forza">Forza</mat-checkbox>
-      <mat-checkbox formControlName="destrezza">Destrezza</mat-checkbox>
-      <mat-checkbox formControlName="costituzione">Costituzione</mat-checkbox>
-      <mat-checkbox formControlName="intelligenza">Intelligenza</mat-checkbox>
-      <mat-checkbox formControlName="saggezza">Saggezza</mat-checkbox>
-      <mat-checkbox formControlName="carisma">Carisma</mat-checkbox>
+      <div class="checkbox-line">
+        <mat-checkbox formControlName="forza">Forza</mat-checkbox>
+        <div class="divider"></div>
+        <div class="modificatore"> <span *ngIf="modForza > 0 || group.value.forza">+ </span> {{tiroForza}}</div>
+      </div>
+      <div class="checkbox-line">
+        <mat-checkbox formControlName="destrezza">Destrezza</mat-checkbox>
+        <div class="divider"></div>
+        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.destrezza">+ </span> {{tiroDestrezza}}</div>
+      </div>
+      <div class="checkbox-line">
+        <mat-checkbox formControlName="costituzione">Costituzione</mat-checkbox>
+        <div class="divider"></div>
+        <div class="modificatore"> <span *ngIf="modCostituzione > 0 || group.value.costituzione">+ </span> {{tiroCostituzione}}</div>
+      </div>
+      <div class="checkbox-line">
+        <mat-checkbox formControlName="intelligenza">Intelligenza</mat-checkbox>
+        <div class="divider"></div>
+        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.intelligenza || group.value.intelligenza">+ </span> {{tiroIntelligenza}}</div>
+      </div>
+      <div class="checkbox-line">
+        <mat-checkbox formControlName="saggezza">Saggezza</mat-checkbox>
+        <div class="divider"></div>
+        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.saggezza">+ </span> {{tiroSaggezza}}</div>
+      </div>
+      <div class="checkbox-line">
+        <mat-checkbox formControlName="carisma">Carisma</mat-checkbox>
+        <div class="divider"></div>
+        <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.carisma">+ </span> {{tiroCarisma}}</div>
+      </div>
     </section>
   </div>
 </ng-container>
