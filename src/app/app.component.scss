@@ -26,3 +26,18 @@
   position: fixed;
   z-index: -1;
 }
+
+@media screen and (max-width: 500px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .first-section {
+    width: 100%;
+  }
+
+  .second-section {
+    width: auto;
+    // width: 100%;
+  }
+}

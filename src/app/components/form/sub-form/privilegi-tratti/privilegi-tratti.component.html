@@ -1,6 +1,8 @@
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
-    <label for="prev">Privilegi e tratti</label>
-    <textarea name="prev" id="prev" formControlName="privilegiTratti"></textarea>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Privilegi e tratti</mat-label>
+      <textarea matInput formControlName="privilegiTratti" rows="10"></textarea>
+    </mat-form-field>
   </div>
 </ng-container>

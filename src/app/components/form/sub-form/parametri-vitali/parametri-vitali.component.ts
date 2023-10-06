@@ -9,9 +9,8 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class ParametriVitaliComponent {
   public group: FormGroup | null = null;
-  public group2: FormGroup | null = null;
-  public group3: FormGroup | null = null;
-  public group4: FormGroup | null = null;
+  public groupVita: FormGroup | null = null;
+  public modDestrezza: number = 0;
 
   constructor(public formService: FormService) {}
 
@@ -19,7 +18,12 @@ export class ParametriVitaliComponent {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.group = form as FormGroup;
-        this.group2 = form.get('puntiFerita') as FormGroup;
+        this.groupVita = form.get('puntiFerita') as FormGroup;
+
+        this.group.get('caratteristiche')?.valueChanges.subscribe((value: any) => {
+          this.modDestrezza = Math.floor((value.destrezza - 10) / 2);
+          this.group?.get('iniziativa')?.setValue(this.modDestrezza);
+        });
       }
     });
   }

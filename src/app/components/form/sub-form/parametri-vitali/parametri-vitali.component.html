@@ -1,39 +1,38 @@
-
-<ng-container *ngIf="group && group2">
+<ng-container *ngIf="group && groupVita">
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">CA</mat-label>
+      <mat-label class="input-field">Classe Armatura (CA)</mat-label>
       <input class="" matInput type="number" formControlName="CA">
     </mat-form-field>
- </div>
+  </div>
 
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Iniziativa</mat-label>
-      <input class="" type="number" matInput formControlName="iniziativa">
+      <input class="" type="number" matInput formControlName="iniziativa" placeholder="{{modDestrezza}}">
     </mat-form-field>
+    <div class="description-text">L'<strong>Iniziativa</strong> è pari al modificatore di Destrezza attuale e questo
+      campo è legato alla modifica della caratteristica 'Destrezza'. Se hai un Personaggio con un'iniziativa
+      personalizzata (e il Master è d'accordo) aggiorna pure questo campo ma ricorda che se modifichi la Destrezza anche
+      questo campo sarà aggiornato di conseguenza.</div>
   </div>
+
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Velocità</mat-label>
       <input class="" type="number" matInput formControlName="velocita">
     </mat-form-field>
   </div>
-  <div class="step-form" [formGroup]="group2">
+
+  <div class="section-title">Punti Ferita</div>
+
+  <div class="step-form" [formGroup]="groupVita">
     <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Massimo dei punti ferita</mat-label>
-      <input class="" type="number" matInput formControlName="massimoPuntiFerita">
+      <mat-label class="input-field">Iniziali</mat-label>
+      <input class="" type="number" matInput formControlName="massimoPuntiFerita" min="1">
     </mat-form-field>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Punti ferita attuali</mat-label>
-      <input class="" type="number" matInput formControlName="puntiFeritaAttuali">
-    </mat-form-field>
-
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Punti ferita temporanei</mat-label>
-      <input class="" matInput type="number" formControlName="puntiFeritaTemporanei">
-    </mat-form-field>
+    <div class="section-title">Dadi Vita</div>
 
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Totale</mat-label>
@@ -41,7 +40,7 @@
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Dadi vita</mat-label>
+      <mat-label class="input-field">Tipologia</mat-label>
       <input class="" matInput formControlName="dadiVita">
     </mat-form-field>
   </div>

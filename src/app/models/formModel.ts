@@ -38,26 +38,26 @@ export class FormModel {
 
   static informazioniBase(builder: FormBuilder) {
     return builder.group({
-      nomeGiocatore: '',
-      classe: '',
+      nomeGiocatore: ['', Validators.required],
+      classe: ['', Validators.required],
       specializzazione: '',
       livello: [1, Validators.max(20)],
-      background: '',
-      razza: '',
+      background: ['', Validators.required],
+      razza: ['', Validators.required],
       sottorazza: '',
-      allineamento: '',
-      nomePersonaggio:''
+      allineamento: ['', Validators.required],
+      nomePersonaggio: ['', Validators.required]
     })
   }
 
   static caratteristiche(builder: FormBuilder) {
     return builder.group({
-      forza: [0, Validators.max(20)],
-      destrezza: [0, Validators.max(20)],
-      costituzione: [0, Validators.max(20)],
-      intelligenza: [0, Validators.max(20)],
-      saggezza: [0, Validators.max(20)],
-      carisma: [0, Validators.max(20)]
+      forza: [0, [Validators.max(20), Validators.required]],
+      destrezza: [0, [Validators.max(20), Validators.required]],
+      costituzione: [0, [Validators.max(20), Validators.required]],
+      intelligenza: [0, [Validators.max(20), Validators.required]],
+      saggezza: [0, [Validators.max(20), Validators.required]],
+      carisma: [0, [Validators.max(20), Validators.required]]
     })
   }
 
@@ -120,7 +120,7 @@ export class FormModel {
 
   static puntiFerita(builder: FormBuilder) {
     return builder.group({
-      massimoPuntiFerita: 0,
+      massimoPuntiFerita: [0, [Validators.min(1), Validators.required]],
       puntiFeritaAttuali: 0,
       puntiFeritaTemporanei: 0,
       totaleDadiVita:0,

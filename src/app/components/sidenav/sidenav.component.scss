@@ -1,11 +1,11 @@
 .home-container {
   display: flex;
   gap: 12px;
-  margin: 8px;
+  margin: 16px;
   box-sizing: border-box;
   flex-direction: column;
-  position: fixed;
-  width: 25%;
+  // position: fixed;
+  // width: 25%;
 }
 
 .first-section {
@@ -46,6 +46,7 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  width: 100%;
 }
 
 .user-image {
@@ -65,15 +66,33 @@
   margin: 8px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 501px) {
+  .home-container {
+      position: fixed;
+      // width: 25%;
+  }
+}
+
+@media screen and (max-width: 900px) {
   .home-container {
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
   }
 
-  .first-section, .second-section {
-      width: 90%;
-      height: auto;
+  .home-title {
+    width: 100%;
+    box-sizing: border-box;
   }
+
+  button {
+    width: 100%;
+  }
+
+  // .first-section, .second-section {
+  //     width: 90%;
+  //     height: auto;
+  // }
 }
+
+

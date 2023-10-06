@@ -1,6 +1,6 @@
-<ng-container *ngIf="group">
+<!-- <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
-    <mat-form-field>
+    <mat-form-field >
       <mat-label>Tratti caratteriali</mat-label>
       <input matInput formControlName="trattiCaratteriali">
     </mat-form-field>
@@ -17,4 +17,35 @@
       <input matInput formControlName="difetti">
     </mat-form-field>
   </div>
+</ng-container> -->
+
+<ng-container *ngIf="group">
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Tratti caratteriali</mat-label>
+      <textarea matInput formControlName="trattiCaratteriali" rows="2"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Ideali</mat-label>
+      <textarea matInput formControlName="ideali" rows="2"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Legami</mat-label>
+      <textarea matInput formControlName="legami" rows="2"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="step-form" [formGroup]="group">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Difetti</mat-label>
+      <textarea matInput formControlName="difetti" rows="2"></textarea>
+    </mat-form-field>
+  </div>
+
 </ng-container>

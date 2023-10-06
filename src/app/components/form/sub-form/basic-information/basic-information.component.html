@@ -13,6 +13,11 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Classe</mat-label>
       <input class="" matInput formControlName="classe">
+      <!-- <span matTextSuffix class="suffix">
+        <mat-icon>auto_stories</mat-icon> PHB 45
+      </span> -->
+      <mat-icon class="suffix-icon" matSuffix 
+      matTooltip="Da PHB 45">auto_stories</mat-icon>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
@@ -33,6 +38,9 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Razza</mat-label>
       <input class="" matInput formControlName="razza">
+      <span matTextSuffix class="suffix">
+        <mat-icon>auto_stories</mat-icon> PHB 17
+      </span>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
@@ -43,8 +51,14 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Allineamento</mat-label>
       <input class="" matInput formControlName="allineamento">
+      <span matTextSuffix class="suffix">
+        <mat-icon>auto_stories</mat-icon> PHB 122
+      </span>
     </mat-form-field>
   </div>
+
+  <div class="section-title">Caratteristiche fisiche</div>
+
   <div class="step-form" [formGroup]="groupCaratteristiche">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Eta personaggio</mat-label>

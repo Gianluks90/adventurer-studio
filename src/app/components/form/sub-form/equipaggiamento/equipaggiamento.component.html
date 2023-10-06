@@ -24,7 +24,12 @@
 </ng-container>
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
-    <label for="equip">Equipaggiamento personaggio</label>
-    <textarea name="equip" id="equip" formControlName="equipaggiamento"></textarea>
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Equipaggiamento</mat-label>
+      <textarea matInput formControlName="equipaggiamento" rows="10"></textarea>
+    </mat-form-field>
+    <!-- <label for="equip">Equipaggiamento personaggio</label>
+    <textarea matInput name="equip" id="equip" formControlName="equipaggiamento"></textarea> -->
   </div>
 </ng-container>
+

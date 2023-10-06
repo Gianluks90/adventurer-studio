@@ -3,8 +3,10 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Bonus Competenza</mat-label>
       <input class="" type="number" matInput formControlName="bonusCompetenza" min="2" max="6">
-      <mat-hint class="hint">Al 1° Livello il bonus di competenza è 2.</mat-hint>
     </mat-form-field>
+    <div class="description-text">Al 1° Livello il <strong>Bonus di Competenza</strong> è sempre 2 tuttavia in accordo con il Master
+      potresti volerlo cambiare, ricorda che questo bonus influenza parecchio i tiri che effettuerai durante il gioco.
+    </div>
   </div>
   <div class="step-form" [formGroup]="group">
     <section class="checkbox-section">
@@ -16,22 +18,27 @@
       <div class="checkbox-line">
         <mat-checkbox formControlName="destrezza">Destrezza</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.destrezza">+ </span> {{tiroDestrezza}}</div>
+        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.destrezza">+ </span> {{tiroDestrezza}}
+        </div>
       </div>
       <div class="checkbox-line">
         <mat-checkbox formControlName="costituzione">Costituzione</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modCostituzione > 0 || group.value.costituzione">+ </span> {{tiroCostituzione}}</div>
+        <div class="modificatore"> <span *ngIf="modCostituzione > 0 || group.value.costituzione">+ </span>
+          {{tiroCostituzione}}</div>
       </div>
       <div class="checkbox-line">
         <mat-checkbox formControlName="intelligenza">Intelligenza</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.intelligenza || group.value.intelligenza">+ </span> {{tiroIntelligenza}}</div>
+        <div class="modificatore"> <span
+            *ngIf="modIntelligenza > 0 || group.value.intelligenza || group.value.intelligenza">+ </span>
+          {{tiroIntelligenza}}</div>
       </div>
       <div class="checkbox-line">
         <mat-checkbox formControlName="saggezza">Saggezza</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.saggezza">+ </span> {{tiroSaggezza}}</div>
+        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.saggezza">+ </span> {{tiroSaggezza}}
+        </div>
       </div>
       <div class="checkbox-line">
         <mat-checkbox formControlName="carisma">Carisma</mat-checkbox>

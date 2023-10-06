@@ -7,3 +7,27 @@
 .input-field {
     width: 100%;
 }
+
+.suffix {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.suffix-icon {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.section-title {
+    margin-bottom: 20px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+}

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { FormModel } from 'src/app/models/formModel';
-import { CharacterService } from 'src/app/services/character.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { FormService } from 'src/app/services/form.service';
 import { MenuService } from 'src/app/services/menu.service';
@@ -15,13 +15,26 @@ export class FormComponent implements OnInit {
 
   public form: FormGroup = this.fb.group(FormModel.create(this.fb))
 
-  constructor(public firebaseService: FirebaseService, private fb:FormBuilder, private formService: FormService,
-              private menuService:MenuService) {}
+  @ViewChild('stepper') stepper!: MatStepper;
+
+  constructor(
+    public firebaseService: FirebaseService, 
+    private fb:FormBuilder, 
+    private formService: FormService,
+    private menuService:MenuService) {}
 
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
     this.formService.initForm(characterId!);
     this.menuService.hiddenButton = [''];
+  }
+
+  public previousStep() {
+    this.stepper.previous();
+  }
+
+  public nextStep() {
+    this.stepper.next();
   }
 
 
