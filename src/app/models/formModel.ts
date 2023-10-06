@@ -40,9 +40,11 @@ export class FormModel {
     return builder.group({
       nomeGiocatore:'',
       classe: '',
+      specializzazione: '',
       livello: [1, Validators.max(20)],
       background: '',
       razza: '',
+      sottorazza: '',
       allineamento: '',
       nomePersonaggio:''
     })

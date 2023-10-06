@@ -8,19 +8,16 @@ import { FormService } from 'src/app/services/form.service';
   styleUrls: ['./basic-information.component.scss'],
 })
 export class BasicInformationComponent {
-  public group: FormGroup | null = null;
-  public group2: FormGroup | null = null;
-  public group3: FormGroup | null = null
+  public groupInfo: FormGroup | null = null;
+  public groupCaratteristiche: FormGroup | null = null;
 
   constructor(public formService: FormService) {}
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
-        this.group = form.get('informazioniBase') as FormGroup;
-        this.group2 = form.get('caratteristicheFisiche') as FormGroup;
-        // this.group3 = form.get('urlImmaginePersonaggio') as FormGroup;
-
+        this.groupInfo = form.get('informazioniBase') as FormGroup;
+        this.groupCaratteristiche = form.get('caratteristicheFisiche') as FormGroup;
       }
     });
   }

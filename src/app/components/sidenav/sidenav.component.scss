@@ -1,10 +1,11 @@
-
 .home-container {
   display: flex;
   gap: 12px;
   margin: 8px;
   box-sizing: border-box;
   flex-direction: column;
+  position: fixed;
+  width: 25%;
 }
 
 .first-section {
@@ -51,6 +52,10 @@
   width: 40px;
   height: 40px;
   border-radius: 5px;
+}
+
+.user-name {
+  text-transform: uppercase;
 }
 
 .second-section {

@@ -1,5 +1,10 @@
-<ng-container *ngIf="group && group2">
-  <div class="step-form" [formGroup]="group">
+<ng-container *ngIf="groupInfo && groupCaratteristiche">
+  <div class="step-form" [formGroup]="groupInfo">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Nome giocatore</mat-label>
+      <input class="" matInput formControlName="nomeGiocatore">
+    </mat-form-field>
+
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Nome personaggio</mat-label>
       <input class="" matInput formControlName="nomePersonaggio">
@@ -8,6 +13,11 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Classe</mat-label>
       <input class="" matInput formControlName="classe">
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Specializzazione</mat-label>
+      <input class="" matInput formControlName="specializzazione">
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
@@ -21,22 +31,21 @@
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Nome giocatore</mat-label>
-      <input class="" matInput formControlName="nomeGiocatore">
+      <mat-label class="input-field">Razza</mat-label>
+      <input class="" matInput formControlName="razza">
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Razza</mat-label>
-      <input class="" matInput formControlName="razza">
+      <mat-label class="input-field">Sottorazza</mat-label>
+      <input class="" matInput formControlName="sottorazza">
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Allineamento</mat-label>
       <input class="" matInput formControlName="allineamento">
     </mat-form-field>
-
   </div>
-  <div class="step-form" [formGroup]="group2">
+  <div class="step-form" [formGroup]="groupCaratteristiche">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Eta personaggio</mat-label>
       <input class="" type="number" matInput formControlName="eta">
@@ -67,10 +76,4 @@
       <input class="" matInput formControlName="capelli">
     </mat-form-field>
   </div>
-  <!-- <div class="step-form" [formGroup]="group3">
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Aspetto personaggio</mat-label>
-      <input class="" matInput formControlName="group3">
-    </mat-form-field>
-  </div> -->
 </ng-container>

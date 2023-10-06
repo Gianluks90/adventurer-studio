@@ -29,7 +29,7 @@ $custom-palette: (
     A100 : #ffd7d7,
     A200 : #ffa4a4,
     A400 : #ff7171,
-    A700 : #ff5858,
+    A700 : black,
   contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
@@ -44,7 +44,7 @@ $custom-palette: (
     A100: $dark-primary-text,
     A200: $dark-primary-text,
     A400: $dark-primary-text,
-    A700: black,
+    A700: white,
   )
 );
 
@@ -82,7 +82,7 @@ $custom-error: (
 );
 
 $my-primary: mat.define-palette($custom-palette, 50);
-$my-accent: mat.define-palette($custom-palette, 700);
+$my-accent: mat.define-palette($custom-palette, A700);
 $my-warn: mat.define-palette($custom-error, 500);
 
 $my-theme: mat.define-light-theme((

@@ -1,15 +1,23 @@
-<div class="card-container" *ngFor="let character of characters">
-  <div>
-    {{character.informazioniBase.nomePersonaggio}}
+<div class="card-container" *ngFor="let c of characters">
+  <div class="character-info-container">
+    <div class="character-name">
+      {{c.informazioniBase.nomePersonaggio}}
+    </div>
+    <div class="character-info">
+      <div *ngIf="c.informazioniBase.classe !=''">
+        {{c.informazioniBase.classe}}
+      </div>
+    </div>
+
   </div>
-  <div>
-    <button mat-raised-button color="primary" [routerLink]="'/edit/' + character.id">
+  <div class="button-container">
+    <button mat-raised-button color="primary" [routerLink]="'/edit/' + c.id">
       <mat-icon>edit</mat-icon>
-      edit
+      Modifica
     </button>
     <button mat-raised-button color="primary" disabled>
-      <mat-icon>menu_book</mat-icon>
-      view
+      <mat-icon>visibility</mat-icon>
+      Visualizza
     </button>
   </div>
 </div>

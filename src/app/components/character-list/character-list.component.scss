@@ -3,6 +3,27 @@
   background-color: #fff;
   border-radius: 4px;
   justify-content: space-between;
-  padding: 4px;
-  margin: 8px;
+  align-items: center;
+  padding: 8px;
+  margin: 10px;
+}
+
+.character-name {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.character-name::first-letter {
+  font-size: large;
+}
+
+.character-info {
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+.button-container {
+  display: flex;
+  gap: 12px;
 }

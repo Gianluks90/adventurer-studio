@@ -1,33 +1,51 @@
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Forza</mat-label>
-      <input class="" type="number" matInput formControlName="forza">
-    </mat-form-field>
+    <div class="form-field-container">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Forza</mat-label>
+        <input class="" type="number" matInput formControlName="forza">
+      </mat-form-field>
+      <div class="modificatore"> <span *ngIf="modForza > 0">+ </span> {{modForza}}</div>
+    </div>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Destrezza</mat-label>
-      <input class="" type="number" matInput formControlName="destrezza">
-    </mat-form-field>
+    <div class="form-field-container">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Destrezza</mat-label>
+        <input class="" type="number" matInput formControlName="destrezza">
+      </mat-form-field>
+      <div class="modificatore"> <span *ngIf="modDestrezza > 0">+ </span> {{modDestrezza}}</div>
+    </div>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Costituzione</mat-label>
-      <input class="" type="number" matInput formControlName="costituzione">
-    </mat-form-field>
+    <div class="form-field-container">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Costituzione</mat-label>
+        <input class="" type="number" matInput formControlName="costituzione">
+      </mat-form-field>
+      <div class="modificatore"> <span *ngIf="modCostituzione > 0">+ </span> {{modCostituzione}}</div>
+    </div>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Intelligenza</mat-label>
-      <input class="" matInput type="number" formControlName="intelligenza">
-    </mat-form-field>
+    <div class="form-field-container">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Intelligenza</mat-label>
+        <input class="" matInput type="number" formControlName="intelligenza">
+      </mat-form-field>
+      <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span> {{modIntelligenza}}</div>
+    </div>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Saggezza</mat-label>
-      <input class="" matInput type="number" formControlName="saggezza">
-    </mat-form-field>
+    <div class="form-field-container">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Saggezza</mat-label>
+        <input class="" matInput type="number" formControlName="saggezza">
+      </mat-form-field>
+      <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span> {{modSaggezza}}</div>
+    </div>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Carisma</mat-label>
-      <input class="" matInput type="number" formControlName="carisma">
-    </mat-form-field>
+    <div class="form-field-container">
+      <mat-form-field color="accent" appearance="outline">
+        <mat-label class="input-field">Carisma</mat-label>
+        <input class="" matInput type="number" formControlName="carisma">
+      </mat-form-field>
+      <div class="modificatore"> <span *ngIf="modCarisma > 0">+ </span> {{modCarisma}}</div>
+    </div>
   </div>
 </ng-container>

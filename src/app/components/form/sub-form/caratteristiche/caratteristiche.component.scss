@@ -4,6 +4,26 @@
   width: 100%;
 }
 
+.form-field-container {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+
+.modificatore {
+  font-size: x-large;
+  background-color: black;
+  padding: 12px;
+  border-radius: 4px;
+  color: white;
+  width: 40px;
+  text-align: center;
+}
+
 .input-field {
   width: 100%;
+}
+
+mat-form-field {
+  width: 100% !important;
 }

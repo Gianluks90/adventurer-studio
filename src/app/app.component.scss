@@ -4,21 +4,16 @@
     display: flex;
 }
 
-.header {
-    height: 10%;
-}
-
-
 .first-section{
   display: flex;
   flex-direction: column;
-  width: 20%;
+  width: 30%;
 }
 
 .second-section{
   width: 80%;
-
 }
+
 .blurred-background {
   background-image: url("../assets/background.jpg");
   background-position: center;
