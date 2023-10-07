@@ -1,4 +1,4 @@
-<div class="blurred-background">
+<div class="blurred-background" *ngIf="authGuardService.authStatus">
 </div>
 <div class="main">
   <div class="first-section" *ngIf="authGuardService.authStatus">

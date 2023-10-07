@@ -79,12 +79,22 @@
 }
 
 .stepper-buttons {
-    position: absolute;
+    position: fixed;
     top: 16px;
     right: 16px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.mobile-stepper-buttons {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    display: none;
 }
 
 .step-button {
@@ -96,7 +106,7 @@
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .home-container {
         flex-direction: column;
         align-items: center;
@@ -106,6 +116,14 @@
     .first-section, .second-section {
         width: 90%;
         height: auto;
+    }
+
+    .stepper-buttons {
+        display: none;
+    }
+
+    .mobile-stepper-buttons {
+        display: flex;
     }
 }
 

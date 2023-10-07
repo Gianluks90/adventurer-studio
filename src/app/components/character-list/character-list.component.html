@@ -11,13 +11,17 @@
 
   </div>
   <div class="button-container">
-    <button mat-raised-button color="primary" [routerLink]="'/edit/' + c.id">
+    <button mat-raised-button color="accent" [routerLink]="'/edit/' + c.id">
       <mat-icon>edit</mat-icon>
       Modifica
     </button>
-    <button mat-raised-button color="primary" disabled>
+    <button mat-raised-button color="accent" disabled>
       <mat-icon>visibility</mat-icon>
       Visualizza
+    </button>
+    <button mat-raised-button color="accent" disabled>
+      <mat-icon>arrow_upward</mat-icon>
+      LV+
     </button>
   </div>
 </div>
