@@ -5,6 +5,7 @@ import { FormModel } from 'src/app/models/formModel';
 import { FirebaseService } from './firebase.service';
 import { CharacterService } from './character.service';
 import { doc, setDoc, updateDoc } from 'firebase/firestore';
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,38 @@ export class FormService {
       }
     }, {
       merge:true
+    });
+  }
+
+
+  public async uploadImage(event: any): Promise<string> {
+    console.log(event.target.files[0]);
+    const file: File = event.target.files[0];
+    const imageRef = ref(this.firebaseService.storage, 'characterImages/' + file.name);
+    return await uploadBytes(imageRef, file).then(async () => {
+      return await getDownloadURL(imageRef).then((url) => {
+        console.log(url);
+        return url;
+      }).catch((error) => {
+        console.log(error);
+        alert('Errore nel caricamento dell\'immagine');
+        return 'error';
+      });
+    }).catch((error) => {
+      console.log(error);
+      alert('Errore nel caricamento dell\'immagine');
+      return 'error';
+    });
+  }
+
+  public async deleteImage(nomeImmagine: string): Promise<string> {
+    const imageRef = ref(this.firebaseService.storage, 'characterImages/' + nomeImmagine);
+    return deleteObject(imageRef).then(() => {
+      return 'success';
+    }).catch((error) => {
+      console.log(error);
+      alert('Errore nell\'eliminazione dell\'immagine');
+      return 'error';
     });
   }
 

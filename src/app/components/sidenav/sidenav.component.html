@@ -31,7 +31,7 @@
     Salva bozza
   </button>
 
-  <button mat-raised-button color="primary" [hidden]="menuService.hiddenButton.includes('pubblica') ? true : false">
+  <button mat-raised-button color="primary" disabled [hidden]="menuService.hiddenButton.includes('pubblica') ? true : false">
     <mat-icon>check</mat-icon>
     Pubblica
   </button>

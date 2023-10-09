@@ -8,7 +8,6 @@ export class FormModel {
     return {
       informazioniBase: FormModel.informazioniBase(builder),
       caratteristiche: FormModel.caratteristiche(builder),
-      
       tiriSalvezza: FormModel.tiriSalvezza(builder),
       competenzaAbilita: FormModel.competenzaAbilita(builder),
       CA: 0,
@@ -46,7 +45,9 @@ export class FormModel {
       razza: ['', Validators.required],
       sottorazza: '',
       allineamento: ['', Validators.required],
-      nomePersonaggio: ['', Validators.required]
+      nomePersonaggio: ['', Validators.required],
+      urlImmaginePersonaggio: '',
+      nomeImmaginePersonaggio: '',
     })
   }
 

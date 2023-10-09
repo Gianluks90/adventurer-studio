@@ -31,3 +31,23 @@
     letter-spacing: 1px;
     border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
 }
+
+.step-form-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+}
+
+.image-button {
+    width: 100%;
+}
+
+.image-preview {
+    width: 85px;
+    height: 36px;
+    border-radius: 4px;
+    object-fit: cover;
+    cursor: pointer;
+}

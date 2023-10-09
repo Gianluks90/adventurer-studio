@@ -13,9 +13,6 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Classe</mat-label>
       <input class="" matInput formControlName="classe">
-      <!-- <span matTextSuffix class="suffix">
-        <mat-icon>auto_stories</mat-icon> PHB 45
-      </span> -->
       <mat-icon class="suffix-icon" matSuffix 
       matTooltip="Da PHB 45">auto_stories</mat-icon>
     </mat-form-field>
@@ -38,9 +35,11 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Razza</mat-label>
       <input class="" matInput formControlName="razza">
-      <span matTextSuffix class="suffix">
+      <!-- <span matTextSuffix class="suffix">
         <mat-icon>auto_stories</mat-icon> PHB 17
-      </span>
+      </span> -->
+      <mat-icon class="suffix-icon" matSuffix 
+      matTooltip="Da PHB 17">auto_stories</mat-icon>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
@@ -51,9 +50,11 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Allineamento</mat-label>
       <input class="" matInput formControlName="allineamento">
-      <span matTextSuffix class="suffix">
+      <!-- <span matTextSuffix class="suffix">
         <mat-icon>auto_stories</mat-icon> PHB 122
-      </span>
+      </span> -->
+      <mat-icon class="suffix-icon" matSuffix 
+      matTooltip="PHB 122">auto_stories</mat-icon>
     </mat-form-field>
   </div>
 
@@ -90,4 +91,20 @@
       <input class="" matInput formControlName="capelli">
     </mat-form-field>
   </div>
+
+  <div class="section-title">Immagine personaggio</div>
+
+  <div class="step-form step-form-buttons" [formGroup]="groupInfo">
+    <img *ngIf="groupInfo.value.urlImmaginePersonaggio !== ''" class="image-preview" [src]="groupInfo.value!.urlImmaginePersonaggio">
+    <button class="image-button" mat-raised-button color="accent" (click)="file.click()">
+      <mat-icon>add_a_photo</mat-icon>
+      <span>Carica immagine</span>
+    </button>
+    <button class="image-button" mat-raised-button color="accent" [disabled]="groupInfo.value!.urlImmaginePersonaggio === ''" (click)="deletePic(groupInfo.value!.nomeImmaginePersonaggio)">
+      <mat-icon>delete</mat-icon>
+      <span>Rimuovi immagine</span>
+    </button>
+      <input #file id="file" hidden class="" type="file" accept="image" (change)="onPicSelected($event)">
+  </div>
+
 </ng-container>
