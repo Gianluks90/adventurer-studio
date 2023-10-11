@@ -34,3 +34,15 @@
     color: white;
     font-size: x-large;
 }
+
+@media screen and (max-width: 500px) {
+  .auth-title {
+    font-size: xx-large;
+    margin-bottom: 48px;
+    text-align: center;
+    line-height: 1em;
+}
+.auth-description {
+  width: 90%;
+}
+}
