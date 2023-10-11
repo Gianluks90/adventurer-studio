@@ -1,28 +1,116 @@
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
+      <!-- <mat-label class="input-field">Linguaggi conosciuti</mat-label>
+      <input class="" matInput formControlName="linguaggi"> -->
       <mat-label class="input-field">Linguaggi conosciuti</mat-label>
-      <input class="" matInput formControlName="linguaggi">
+      <mat-chip-grid #chipGrid>
+        <mat-chip-row *ngFor="let linguaggio of linguaggi"
+                      (removed)="remove(linguaggio,'linguaggio')"
+                      [editable]="true"
+                      (edited)="edit(linguaggio, $event,'linguaggio')">
+          {{linguaggio}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi un nuovo linguaggio"
+               [matChipInputFor]="chipGrid"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event,'linguaggio')"/>
+
+      </mat-chip-grid>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
+      <!-- <mat-label class="input-field">Competenza in armi</mat-label>
+      <input class="" matInput formControlName="armi"> -->
       <mat-label class="input-field">Competenza in armi</mat-label>
-      <input class="" matInput formControlName="armi">
+      <mat-chip-grid #chipGridArmi>
+        <mat-chip-row *ngFor="let arma of armi"
+                      (removed)="remove( arma,'arma')"
+                      [editable]="true"
+                      (edited)="edit( arma, $event,'arma')">
+          {{arma}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi una nuova arma"
+               [matChipInputFor]="chipGridArmi"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event,'arma')"/>
+      </mat-chip-grid>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
+      <!-- <mat-label class="input-field">Competenza in armature</mat-label>
+      <input class="" matInput formControlName="armature"> -->
       <mat-label class="input-field">Competenza in armature</mat-label>
-      <input class="" matInput formControlName="armature">
+      <mat-chip-grid #chipGridArmature>
+        <mat-chip-row *ngFor="let armatura of armature"
+                      (removed)="remove(armatura,'armatura')"
+                      [editable]="true"
+                      (edited)="edit(armatura, $event,'armatura')">
+          {{armatura}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi una nuova armatura"
+               [matChipInputFor]="chipGridArmature"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event,'armatura')"/>
+
+      </mat-chip-grid>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
+      <!-- <mat-label class="input-field">Competenza in strumenti</mat-label>
+      <input class="" matInput  formControlName="strumenti"> -->
       <mat-label class="input-field">Competenza in strumenti</mat-label>
-      <input class="" matInput  formControlName="strumenti">
+      <mat-chip-grid #chipGridStrumenti>
+        <mat-chip-row *ngFor="let strumento of strumenti"
+                      (removed)="remove(strumento,'strumento')"
+                      [editable]="true"
+                      (edited)="edit(strumento, $event,'strumento')">
+          {{strumento}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi un nuovo strumento"
+               [matChipInputFor]="chipGridStrumenti"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event,'strumento')"/>
+
+      </mat-chip-grid>
     </mat-form-field>
 
     <mat-form-field color="accent" appearance="outline">
+      <!-- <mat-label class="input-field">Altre competenze</mat-label>
+      <input class="" matInput  formControlName="altro"> -->
       <mat-label class="input-field">Altre competenze</mat-label>
-      <input class="" matInput  formControlName="altro">
+      <mat-chip-grid #chipGridAltro>
+        <mat-chip-row *ngFor="let altro of altreCompetenze"
+                      (removed)="remove(altro,'altro')"
+                      [editable]="true"
+                      (edited)="edit(altro, $event,'altro')">
+          {{altro}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi una altra competenza"
+               [matChipInputFor]="chipGridAltro"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event,'altro')"/>
+      </mat-chip-grid>
     </mat-form-field>
   </div>
 </ng-container>

@@ -20,6 +20,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatChipsModule} from '@angular/material/chips';
 
 import { AddCharacterDialogComponent } from './components/sidenav/add-character-dialog/add-character-dialog.component';
 import { AbilitaComponent } from './components/form/sub-form/abilita/abilita.component';
@@ -72,7 +73,8 @@ import { CharacterListComponent } from './components/character-list/character-li
     MatMenuModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
