@@ -42,6 +42,7 @@ export class AbilitaComponent {
   constructor(public formService: FormService) {}
 
   ngOnInit(): void {
+
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.bonusCompetenza = form.get('tiriSalvezza')?.get('bonusCompetenza').value;
@@ -51,9 +52,9 @@ export class AbilitaComponent {
         this.applyBonusCompetenza();
         this.disabledMaestriaAbilita();
 
+        
         this.group.valueChanges.subscribe(() => {
           this.applyBonusCompetenza();
-          // this.disabledMaestriaAbilita();
         });
       }
     });

@@ -24,7 +24,7 @@ export class FormService {
   public initForm(charId: string): void {
     const tempForm = this.fb.group(FormModel.create(this.fb));
     this.characterService.getCharacterById(charId).then((character) => {
-      tempForm.patchValue(character);
+      this.nestedPatchValue(tempForm, character);
       this.formSubject.next(tempForm);
     });
   }
@@ -71,6 +71,43 @@ export class FormService {
       alert('Errore nell\'eliminazione dell\'immagine');
       return 'error';
     });
+  }
+
+  private nestedPatchValue(form: FormGroup, character: any) {
+    Object.keys(character).forEach(key => {
+      const control = form.get(key);
+      if (control) {
+        if (control instanceof FormGroup) {
+          this.nestedPatchValue(control, character[key]);
+        } else if (control instanceof FormArray) {
+          character[key].forEach((m: any) => {
+            const group = this.createFormGroup(m);
+            control.push(group);
+
+            // control.push(this.fb.group(m));
+          });
+        } else {
+          control!.patchValue(character[key]);
+        }
+      }
+    });
+  }
+
+  public createFormGroup(model: any) {
+    const formGroup = this.fb.group({});
+    Object.keys(model).forEach(key => {
+      // if (model[key] instanceof Array) {
+      //   formGroup.setControl(key, this.fb.array(model[key].map((m: any) => this.createFormGroup(m))));
+      if (model[key] instanceof Array) {
+        const array = this.fb.array(model[key].map((m: any) => this.createFormGroup(m)));
+        formGroup.addControl(key, array);
+      } else if (model[key] instanceof Object) {
+        formGroup.setControl(key, this.createFormGroup(model[key]));
+      } else {
+        formGroup.setControl(key, this.fb.control(model[key]));
+      }
+    });
+    return formGroup;
   }
 
 }

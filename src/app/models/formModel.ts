@@ -1,4 +1,4 @@
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, Validators } from "@angular/forms";
 
 export class FormModel {
 
@@ -18,8 +18,9 @@ export class FormModel {
       altreCompetenze: FormModel.altreCompetenze(builder),
       denaro: FormModel.denaro(builder),
       equipaggiamento: [''],
-      privilegiTratti: [''],
-      attacchiIncantesimi: FormModel.attacchiIncantesimi(builder),
+      privilegiTratti: builder.array([]),
+      trucchettiIncantesimi: builder.array([]),
+      // trucchettiIncantesimi: FormModel.trucchettiIncantesimi(builder),
       caratteristicheFisiche: FormModel.caratteristicheFisiche(builder),
       urlImmaginePersonaggio: '',
       urlImmagineSimbolo: '',
@@ -53,12 +54,12 @@ export class FormModel {
 
   static caratteristiche(builder: FormBuilder) {
     return builder.group({
-      forza: [0, [Validators.max(20), Validators.required]],
-      destrezza: [0, [Validators.max(20), Validators.required]],
-      costituzione: [0, [Validators.max(20), Validators.required]],
-      intelligenza: [0, [Validators.max(20), Validators.required]],
-      saggezza: [0, [Validators.max(20), Validators.required]],
-      carisma: [0, [Validators.max(20), Validators.required]]
+      forza: [10, [Validators.max(20), Validators.required]],
+      destrezza: [10, [Validators.max(20), Validators.required]],
+      costituzione: [10, [Validators.max(20), Validators.required]],
+      intelligenza: [10, [Validators.max(20), Validators.required]],
+      saggezza: [10, [Validators.max(20), Validators.required]],
+      carisma: [10, [Validators.max(20), Validators.required]]
     })
   }
 
@@ -115,7 +116,6 @@ export class FormModel {
       maestriaReligione: false,
       maestriaSopravvivenza: false,
       maestriaStoria: false,
-
     })
   }
 
@@ -158,11 +158,18 @@ export class FormModel {
     })
   }
 
-  static attacchiIncantesimi(builder: FormBuilder) {
-    return builder.group({
-      // Qui mi sa che ci vuole un formArray perchè ogni attacco ha un nome, un bonus e un danno e cose così
-    })
-  }
+  // static trucchettiIncantesimi(builder: FormBuilder) {
+  //   return builder.group({
+  //     classeIncantatore: '',
+  //     caratteristicaIncantatore: '',
+  //     CDTiroSalvezza: 0,
+  //     bonusAttaccoIncantesimi: 0,
+  //     // slotIncantesimi: 0,
+  //     // incantesimiConosciuti: 0,
+  //     // incantesimiPreparati: 0,
+  //     lista: builder.array([])
+  //   })
+  // }
 
   static caratteristicheFisiche(builder: FormBuilder) {
     return builder.group({

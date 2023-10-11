@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -8,14 +8,40 @@ import { FormService } from 'src/app/services/form.service';
   styleUrls: ['./privilegi-tratti.component.scss']
 })
 export class PrivilegiTrattiComponent {
-  public group: FormGroup | null = null;
-  constructor(public formService: FormService) {}
+
+  // public group: FormGroup = new FormGroup({});
+  // public array: FormArray | null = null;
+
+  public form: FormGroup = new FormGroup({});
+  public privilegiTratti: FormArray;
+
+  constructor(public formService: FormService, private fb: FormBuilder) {
+    this.privilegiTratti = this.fb.array([]);
+  }
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
-        this.group = form as FormGroup;
+        this.form = form;
+        this.privilegiTratti = this.form.controls['privilegiTratti'] as FormArray;
       }
     });
+  }
+
+  // get privilegiTratti() {
+  //   return this.form.controls['privilegiTratti'] as FormArray;
+  // }
+
+  addPrivilegioTratto() {
+    const privilegioTratto = this.fb.group({
+      nome: ['', Validators.required],
+      tipologia: ['privilegio', Validators.required],
+      descrizione: ['', Validators.required],
+    });
+    this.privilegiTratti.push(privilegioTratto);
+  }
+
+  deletePrivilegioTratto(index: number) {
+    this.privilegiTratti.removeAt(index);
   }
 }

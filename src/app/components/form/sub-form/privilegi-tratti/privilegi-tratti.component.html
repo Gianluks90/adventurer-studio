@@ -1,8 +1,35 @@
-<ng-container *ngIf="group">
-  <div class="step-form" [formGroup]="group">
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label>Privilegi e tratti</mat-label>
-      <textarea matInput formControlName="privilegiTratti" rows="10"></textarea>
-    </mat-form-field>
+<div [formGroup]="form">
+  <ng-container class="" formArrayName="privilegiTratti">
+    <ng-container *ngFor="let privilegioForm of privilegiTratti.controls; let i = index;">
+      <div class="step-form" [formGroupName]="i">
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome">
+        </mat-form-field>
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Tipologia</mat-label>
+          <mat-select formControlName="tipologia">
+              <mat-option value="privilegio">Privilegio</mat-option>
+              <mat-option value="tratto">Tratto</mat-option>
+          </mat-select>
+      </mat-form-field>
+        <mat-form-field color="accent" appearance="outline">
+          <mat-label>Descrizione</mat-label>
+          <textarea matInput formControlName="descrizione" rows="5"></textarea>
+        </mat-form-field>
+        <div class="delete-button">
+          <button mat-raised-button color="accent" (click)="deletePrivilegioTratto(i)">
+            <mat-icon>delete</mat-icon> Rimuovi
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div class="button-container">
+    <button mat-raised-button color="accent" (click)="addPrivilegioTratto()">
+      <mat-icon>add</mat-icon>
+      Aggiungi privilegio o tratto
+    </button>
   </div>
-</ng-container>
+</div>
