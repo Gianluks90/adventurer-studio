@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -29,8 +29,16 @@ export class TrucchettiIncantesimiComponent {
 
   addTrucchettoIncantesimo() {
     const trucchettoIncantesimo = this.fb.group({
-      nome: [''],
-      descrizione: [''],
+      tipologia: ['trucchetto', Validators.required],
+      nome: ['', Validators.required],
+      scuola: ['', Validators.required],
+      livello: [0, [Validators.required, Validators.min(0), Validators.max(9)]],
+      tempoLancio: ['', Validators.required],
+      gittata: ['', Validators.required],
+      componenti: ['', Validators.required],
+      durata: ['', Validators.required],
+      descrizione: ['', Validators.required],
+      livelloSuperiore: ['', Validators.required]
     });
     this.trucchettiIncantesimi.push(trucchettoIncantesimo);
   }
