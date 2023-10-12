@@ -1,0 +1,15 @@
+.step-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .input-field {
+    width: 100%;
+  }
+  
+  .delete-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+  }

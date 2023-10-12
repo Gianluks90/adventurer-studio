@@ -37,6 +37,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CharacterListComponent } from './components/character-list/character-list.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { TrucchettiIncantesimiComponent } from './components/form/sub-form/trucchetti-incantesimi/trucchetti-incantesimi.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { MatSelectModule } from '@angular/material/select';
     BackgroundComponent,
     StoriaComponent,
     CharacterListComponent,
+    TrucchettiIncantesimiComponent,
   ],
   imports: [
     BrowserModule,
