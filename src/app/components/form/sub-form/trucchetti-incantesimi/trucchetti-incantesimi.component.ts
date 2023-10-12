@@ -9,7 +9,7 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class TrucchettiIncantesimiComponent {
 
-  public form: FormGroup = new FormGroup({});
+  public form: FormGroup | null = null;
   public trucchettiIncantesimi: FormArray;
 
   constructor(public formService: FormService, private fb: FormBuilder) {

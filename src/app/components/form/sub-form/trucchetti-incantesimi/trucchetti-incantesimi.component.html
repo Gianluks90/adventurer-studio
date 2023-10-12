@@ -1,33 +1,37 @@
-<div [formGroup]="form">
-    <mat-form-field color="accent" appearance="outline">
-        <mat-label>Classe incantatore</mat-label>
-        <input matInput formControlName="classeIncantatore">
-    </mat-form-field>
-    <ng-container class="" formArrayName="trucchettiIncantesimi">
-        <ng-container *ngFor="let trucchettoIncantesimoForm of trucchettiIncantesimi.controls; let i = index;">
-            <div class="step-form" [formGroupName]="i">
-                <mat-form-field color="accent" appearance="outline">
-                    <mat-label>Nome</mat-label>
-                    <input matInput formControlName="nome">
-                </mat-form-field>
+<ng-container *ngIf="form">
+    <div class="step-form" [formGroup]="form">
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label>Classe incantatore</mat-label>
+            <input matInput formControlName="classeIncantatore">
+        </mat-form-field>
+    </div>
+    <div [formGroup]="form">
+        <ng-container class="" formArrayName="trucchettiIncantesimi">
+            <ng-container *ngFor="let trucchettoIncantesimoForm of trucchettiIncantesimi.controls; let i = index;">
+                <div class="step-form" [formGroupName]="i">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="nome">
+                    </mat-form-field>
 
-                <mat-form-field color="accent" appearance="outline">
-                    <mat-label>Descrizione</mat-label>
-                    <textarea matInput formControlName="descrizione" rows="5"></textarea>
-                </mat-form-field>
-                <div class="delete-button">
-                    <button mat-raised-button color="accent" (click)="deleteTrucchettoIncantesimo(i)">
-                        <mat-icon>delete</mat-icon> Rimuovi
-                    </button>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Descrizione</mat-label>
+                        <textarea matInput formControlName="descrizione" rows="5"></textarea>
+                    </mat-form-field>
+                    <div class="delete-button">
+                        <button mat-raised-button color="accent" (click)="deleteTrucchettoIncantesimo(i)">
+                            <mat-icon>delete</mat-icon> Rimuovi
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </ng-container>
         </ng-container>
-    </ng-container>
 
-    <div class="button-container">
-        <button mat-raised-button color="accent" (click)="addTrucchettoIncantesimo()">
-          <mat-icon>add</mat-icon>
-          Aggiungi trucchetto o incantesimo
-        </button>
-      </div>
-</div>
+        <div class="button-container">
+            <button mat-raised-button color="accent" (click)="addTrucchettoIncantesimo()">
+                <mat-icon>add</mat-icon>
+                Aggiungi trucchetto o incantesimo
+            </button>
+        </div>
+    </div>
+</ng-container>

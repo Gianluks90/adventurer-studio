@@ -1,4 +1,4 @@
-<div [formGroup]="form">
+<div [formGroup]="form" *ngIf="form">
   <ng-container class="" formArrayName="privilegiTratti">
     <ng-container *ngFor="let privilegioForm of privilegiTratti.controls; let i = index;">
       <div class="step-form" [formGroupName]="i">

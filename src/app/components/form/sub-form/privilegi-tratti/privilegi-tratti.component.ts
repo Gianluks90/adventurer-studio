@@ -12,7 +12,7 @@ export class PrivilegiTrattiComponent {
   // public group: FormGroup = new FormGroup({});
   // public array: FormArray | null = null;
 
-  public form: FormGroup = new FormGroup({});
+  public form: FormGroup | null = null;
   public privilegiTratti: FormArray;
 
   constructor(public formService: FormService, private fb: FormBuilder) {
