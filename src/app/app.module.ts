@@ -35,9 +35,10 @@ import { StoriaComponent } from './components/form/sub-form/storia/storia.compon
 import { TiriSalvezzaComponent } from './components/form/sub-form/tiri-salvezza/tiri-salvezza.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CharacterListComponent } from './components/character-list/character-list.component';
-import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { TrucchettiIncantesimiComponent } from './components/form/sub-form/trucchetti-incantesimi/trucchetti-incantesimi.component';
+import { MoneteComponent } from './components/monete/monete.component';
+
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { TrucchettiIncantesimiComponent } from './components/form/sub-form/trucc
     StoriaComponent,
     CharacterListComponent,
     TrucchettiIncantesimiComponent,
+    MoneteComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,9 +80,7 @@ import { TrucchettiIncantesimiComponent } from './components/form/sub-form/trucc
     MatCheckboxModule,
     MatTooltipModule,
     MatChipsModule,
-    MatOptionModule,
     MatSelectModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

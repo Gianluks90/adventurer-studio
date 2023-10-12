@@ -1,0 +1,22 @@
+.coins-viewer{
+  display: flex;
+  justify-content: space-around;
+}
+
+.single-coins-viewer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.coins-input{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-field{
+  display: flex;
+  width: 40%;
+}

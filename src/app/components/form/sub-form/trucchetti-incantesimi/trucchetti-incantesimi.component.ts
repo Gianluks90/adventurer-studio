@@ -19,8 +19,10 @@ export class TrucchettiIncantesimiComponent {
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
-        this.form = form;
+        this.form = form as FormGroup;
         this.trucchettiIncantesimi = this.form.controls['trucchettiIncantesimi'] as FormArray;
+        console.log('form',this.form);
+
       }
     });
   }

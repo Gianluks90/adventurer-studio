@@ -1,40 +1,6 @@
 <ng-container *ngIf=" group2">
   <div class="step-form" [formGroup]="group2">
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Monete di Rame</mat-label>
-      <input class="" matInput formControlName="MR">
-      <mat-icon matSuffix>
-        <img src="../assets/coins/copper.svg" alt="">
-    </mat-icon>
-    </mat-form-field>
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Monete di Argento</mat-label>
-      <input class="" matInput formControlName="MA">
-      <mat-icon matSuffix>
-        <img src="../assets/coins/silver.svg" alt="">
-    </mat-icon>
-    </mat-form-field>
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Monete di Electrum</mat-label>
-      <input class="" matInput formControlName="ME">
-      <mat-icon matSuffix>
-        <img src="../assets/coins/electrum.svg" alt="">
-    </mat-icon>
-    </mat-form-field>
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Monete d'Oro</mat-label>
-      <input class="" matInput formControlName="MO">
-      <mat-icon matSuffix>
-        <img src="../assets/coins/gold.svg" alt="">
-    </mat-icon>
-    </mat-form-field>
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Monete di Platino</mat-label>
-      <input class="" matInput formControlName="MP">
-      <mat-icon matSuffix>
-          <img src="../assets/coins/platinum.svg" alt="">
-      </mat-icon>
-    </mat-form-field>
+    <app-monete></app-monete>
   </div>
 </ng-container>
 <ng-container *ngIf="group">
@@ -43,8 +9,6 @@
       <mat-label>Equipaggiamento</mat-label>
       <textarea matInput formControlName="equipaggiamento" rows="10"></textarea>
     </mat-form-field>
-    <!-- <label for="equip">Equipaggiamento personaggio</label>
-    <textarea matInput name="equip" id="equip" formControlName="equipaggiamento"></textarea> -->
   </div>
 </ng-container>
 

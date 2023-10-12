@@ -1,38 +1,38 @@
 .auth-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../../../assets/background.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../../assets/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .auth-title {
-    font-family: 'Cinzel', serif;
-    color: white;
-    font-size: xxx-large;
-    margin-bottom: 24px;
-    text-shadow: 2px 2px 4px #000000;
+  font-family: 'Cinzel', serif;
+  color: white;
+  font-size: xxx-large;
+  margin-bottom: 24px;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 .auth-description {
-    font-family: 'Times New Roman', Times, serif;
-    color: white;
-    font-size: x-large;
-    margin-bottom: 24px;
-    text-shadow: 2px 2px 4px #000000;
-    text-align: center;
-    width: 30%;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  font-size: x-large;
+  margin-bottom: 24px;
+  text-shadow: 2px 2px 4px #000000;
+  text-align: center;
+  width: 30%;
 }
 
 .auth-subtitle {
-    font-family: 'Times New Roman', Times, serif;
-    color: white;
-    font-size: x-large;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  font-size: x-large;
 }
 
 @media screen and (max-width: 500px) {
@@ -41,8 +41,9 @@
     margin-bottom: 48px;
     text-align: center;
     line-height: 1em;
-}
-.auth-description {
-  width: 90%;
-}
+  }
+
+  .auth-description {
+    width: 90%;
+  }
 }

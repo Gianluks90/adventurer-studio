@@ -1,0 +1,52 @@
+<div>
+  <ng-container *ngIf="group">
+    <div class="coins-viewer" >
+      <div class="single-coins-viewer">
+        <mat-icon class="mat-18"><img src="../assets/coins/copper.svg" alt=""></mat-icon>
+        <div>
+          {{group.value.MR}}
+        </div>
+      </div>
+      <div class="single-coins-viewer">
+        <mat-icon class="mat-18"><img src="../assets/coins/silver.svg" alt=""></mat-icon>
+        <div>
+          {{group.value.MA}}
+        </div>
+      </div>
+      <div class="single-coins-viewer">
+        <mat-icon class="mat-18"><img src="../assets/coins/electrum.svg" alt=""></mat-icon>
+        <div>
+          {{group.value.ME}}
+        </div>
+      </div>
+      <div class="single-coins-viewer">
+        <mat-icon class="mat-18"><img src="../assets/coins/gold.svg" alt=""></mat-icon>
+        <div>
+          {{group.value.MO}}
+        </div>
+      </div>
+      <div class="single-coins-viewer">
+        <mat-icon class="mat-18"><img src="../assets/coins/platinum.svg" alt=""></mat-icon>
+        <div>
+          {{group.value.MP}}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <div class="coins-input">
+    <mat-form-field class="input-field">
+      <mat-label>Quante monete vuoi aggiungere</mat-label>
+      <input type="number" matInput>
+    </mat-form-field>
+    <mat-form-field class="input-field">
+      <mat-label class="label-style">seleziona il tipo di moneta da aggiungere</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let tipo of tipiMonete" [value]="tipo">
+          {{tipo}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button (click)="add_subtract({'platino':1000},{'argento':1000},'add')">+</button>
+    <button>-</button>
+  </div>
+</div>
