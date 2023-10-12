@@ -1,4 +1,8 @@
 <div [formGroup]="form">
+    <mat-form-field color="accent" appearance="outline">
+        <mat-label>Classe incantatore</mat-label>
+        <input matInput formControlName="classeIncantatore">
+    </mat-form-field>
     <ng-container class="" formArrayName="trucchettiIncantesimi">
         <ng-container *ngFor="let trucchettoIncantesimoForm of trucchettiIncantesimi.controls; let i = index;">
             <div class="step-form" [formGroupName]="i">
