@@ -1,7 +1,7 @@
 .home-container {
   display: flex;
   gap: 12px;
-  margin: 16px;
+  margin: 4px;
   box-sizing: border-box;
   flex-direction: column;
   // position: fixed;
@@ -67,10 +67,10 @@
 }
 
 @media screen and (min-width: 501px) {
-  .home-container {
-      position: fixed;
-      // width: 25%;
-  }
+  // .home-container {
+  //     // position: fixed;
+  //     // width: 25%;
+  // }
 }
 
 @media screen and (max-width: 900px) {

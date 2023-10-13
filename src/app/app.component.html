@@ -1,10 +1,17 @@
 <div class="blurred-background" *ngIf="authGuardService.authStatus">
 </div>
-<div class="main">
-  <div class="first-section" *ngIf="authGuardService.authStatus">
-     <app-sidenav></app-sidenav>
-  </div>
-  <div class="second-section">
+
+<mat-drawer-container class="main" autosize>
+  <mat-drawer #drawer class="drawer-container" mode="side">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <div class="drawer-inner-container">
     <router-outlet></router-outlet>
   </div>
-</div>
+</mat-drawer-container>
+
+<button mat-icon-button class="menu-button" (click)="drawer.toggle()">
+  <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
+  <mat-icon *ngIf="drawer.opened">close</mat-icon>
+</button>
+

@@ -4,6 +4,20 @@
     align-items: flex-start;
 }
 
+.second-section {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 16px 0;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+}
+
 .home-title {
     background-color: black;
     color: white;
@@ -39,20 +53,6 @@
     border-radius: 5px;
 }
 
-.second-section {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 16px;
-}
-
-.form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .stepper-container {
     // width: 80%;
     border-radius: 12px;
@@ -80,21 +80,11 @@
 
 .stepper-buttons {
     position: fixed;
-    top: 16px;
-    right: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.mobile-stepper-buttons {
-    position: fixed;
     bottom: 16px;
     right: 16px;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    display: none;
 }
 
 .step-button {

@@ -7,12 +7,13 @@ import { AuthGuardService } from './services/auth-guard.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   title = 'dndCharacterSheet';
-  constructor(private firebaseService: FirebaseService, public authGuardService: AuthGuardService) {}
-ngOnInit(): void {
-console.log( 'status', this.authGuardService.authStatus);
+  showFiller = false;
 
-}
+  constructor(private firebaseService: FirebaseService, public authGuardService: AuthGuardService) { }
+  ngOnInit(): void {
+    console.log('status', this.authGuardService.authStatus);
+  }
 }

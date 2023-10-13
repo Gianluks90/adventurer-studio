@@ -1,27 +1,30 @@
-<div class="card-container" *ngFor="let c of characters">
-  <div class="character-info-container">
-    <div class="character-name">
-      {{c.informazioniBase.nomePersonaggio}}
-    </div>
-    <div class="character-info">
-      <div *ngIf="c.informazioniBase.classe !=''">
-        {{c.informazioniBase.classe}}
+<div class="container">
+  <div class="card-container" *ngFor="let c of characters">
+    <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio != ''" referrerpolicy="no-referrer" [src]="c.informazioniBase.urlImmaginePersonaggio">
+    <div class="character-info-container">
+      <div class="character-name">
+        {{c.informazioniBase.nomePersonaggio}}
+      </div>
+      <div class="character-info">
+        <div *ngIf="c.informazioniBase.classe !=''">
+          {{c.informazioniBase.classe}}
+        </div>
       </div>
     </div>
-
-  </div>
-  <div class="button-container">
-    <button mat-raised-button color="accent" [routerLink]="'/edit/' + c.id">
-      <mat-icon>edit</mat-icon>
-      Modifica
-    </button>
-    <button mat-raised-button color="accent" disabled>
-      <mat-icon>visibility</mat-icon>
-      Visualizza
-    </button>
-    <button mat-raised-button color="accent" disabled>
-      <mat-icon>arrow_upward</mat-icon>
-      LV+
-    </button>
+    <div class="divider"></div>
+    <div class="button-container">
+      <button mat-raised-button color="accent" [routerLink]="'/edit/' + c.id">
+        <mat-icon>edit</mat-icon>
+        Modifica
+      </button>
+      <button mat-raised-button color="accent" disabled>
+        <mat-icon>visibility</mat-icon>
+        Visualizza
+      </button>
+      <button mat-raised-button color="accent" disabled>
+        <mat-icon>arrow_upward</mat-icon>
+        LV+
+      </button>
+    </div>
   </div>
 </div>

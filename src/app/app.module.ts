@@ -38,6 +38,7 @@ import { CharacterListComponent } from './components/character-list/character-li
 import { MatSelectModule } from '@angular/material/select';
 import { TrucchettiIncantesimiComponent } from './components/form/sub-form/trucchetti-incantesimi/trucchetti-incantesimi.component';
 import { MoneteComponent } from './components/monete/monete.component';
+import { MatSidenavModule } from '@angular/material/sidenav'
 
 
 
@@ -80,7 +81,9 @@ import { MoneteComponent } from './components/monete/monete.component';
     MatCheckboxModule,
     MatTooltipModule,
     MatChipsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSidenavModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
