@@ -9,11 +9,11 @@ import { AuthGuardService } from './services/auth-guard.service';
 })
 export class AppComponent implements OnInit {
 
-  title = 'dndCharacterSheet';
+  title = 'Adventurer Studio';
   showFiller = false;
 
   constructor(private firebaseService: FirebaseService, public authGuardService: AuthGuardService) { }
   ngOnInit(): void {
-    console.log('status', this.authGuardService.authStatus);
+    // console.log('status', this.authGuardService.authStatus);
   }
 }

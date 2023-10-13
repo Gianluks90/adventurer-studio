@@ -8,6 +8,7 @@ import { AddCharacterDialogComponent } from './add-character-dialog/add-characte
 import { FormService } from 'src/app/services/form.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-sidenav',
@@ -24,11 +25,13 @@ export class SidenavComponent {
     public dialog: MatDialog,
     private platform: Platform,
     private authGuardService: AuthGuardService,
-    public menuService: MenuService) {}
+    public menuService: MenuService,
+    private drawer: MatDrawer) {}
 
   public logout() {
     getAuth().signOut().then(()=>{
       localStorage.setItem('dndCS-2023-logged','false');
+      this.drawer.close();
       this.authGuardService.authStatus = false
     });
   }

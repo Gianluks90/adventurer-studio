@@ -3,14 +3,14 @@
 
 <mat-drawer-container class="main" autosize>
   <mat-drawer #drawer class="drawer-container" mode="side">
-    <app-sidenav></app-sidenav>
+    <app-sidenav *ngIf="authGuardService.authStatus"></app-sidenav>
   </mat-drawer>
   <div class="drawer-inner-container">
     <router-outlet></router-outlet>
   </div>
 </mat-drawer-container>
 
-<button mat-icon-button class="menu-button" (click)="drawer.toggle()">
+<button mat-icon-button class="menu-button" (click)="drawer.toggle()" *ngIf="authGuardService.authStatus">
   <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
   <mat-icon *ngIf="drawer.opened">close</mat-icon>
 </button>
