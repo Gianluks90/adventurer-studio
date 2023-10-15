@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private formService: FormService,
+    public formService: FormService,
     private menuService: MenuService) { }
 
   ngOnInit(): void {
@@ -39,12 +39,8 @@ export class FormComponent implements OnInit {
   }
 
   public completeForm() {
-    if (this.form.valid) {
       const characterId = window.location.href.split('/').pop();
-      // this.formService.completeForm(characterId, this.form.value);
-    } else {
-      alert('Non hai compilato tutti i campi obbligatori');
-    }
+      this.formService.completeForm(characterId, this.form.value);
   }
 
   public previousStep() {
