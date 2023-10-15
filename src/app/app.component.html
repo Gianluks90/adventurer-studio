@@ -5,9 +5,11 @@
   <mat-drawer #drawer class="drawer-container" mode="side">
     <app-sidenav *ngIf="authGuardService.authStatus"></app-sidenav>
   </mat-drawer>
+
   <div class="drawer-inner-container">
     <router-outlet></router-outlet>
   </div>
+  
 </mat-drawer-container>
 
 <button mat-icon-button class="menu-button" (click)="drawer.toggle()" *ngIf="authGuardService.authStatus">

@@ -24,6 +24,8 @@ export class FormService {
   public initForm(charId: string): void {
     const tempForm = this.fb.group(FormModel.create(this.fb));
     this.characterService.getCharacterById(charId).then((character) => {
+      console.log(character);
+      
       this.nestedPatchValue(tempForm, character);
       this.formSubject.next(tempForm);
     });
@@ -35,6 +37,19 @@ export class FormService {
       ...form.value,
       status: {
         draft: true
+      }
+    }, {
+      merge:true
+    });
+  }
+
+  public async completeForm(charId: string, form: FormGroup): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'characters', charId);
+    return await setDoc(docRef, {
+      ...form.value,
+      status: {
+        draft: false,
+        complete: true
       }
     }, {
       merge:true

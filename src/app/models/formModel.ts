@@ -33,6 +33,10 @@ export class FormModel {
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,
       // Trucchetti e Incantesimi da vedere come fare
+      status: {
+        draft: false,
+        complete: false
+      }
     }
   }
 

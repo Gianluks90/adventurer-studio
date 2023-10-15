@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="characters.length > 0">
   <div class="card-container" *ngFor="let c of characters">
     <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio != ''" referrerpolicy="no-referrer" [src]="c.informazioniBase.urlImmaginePersonaggio">
     <div class="character-info-container">
@@ -17,7 +17,7 @@
         <mat-icon>edit</mat-icon>
         Modifica
       </button>
-      <button mat-raised-button color="accent" disabled>
+      <button mat-raised-button color="accent" [routerLink]="'/view/' + c.id">
         <mat-icon>visibility</mat-icon>
         Visualizza
       </button>
@@ -28,3 +28,12 @@
     </div>
   </div>
 </div>
+
+<div class="container" *ngIf="characters.length == 0">
+  <div class="card-container">
+    <div class="character-info-container">
+      <div class="character-name">
+        Nessun personaggio trovato
+      </div>
+    </div>
+  </div>

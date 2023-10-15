@@ -12,8 +12,6 @@
 }
 
 .main {
-  min-height: 100%;
-  width: 100%;
   display: flex;
 }
 
@@ -32,9 +30,12 @@
   padding: 12px;
 }
 
-// .drawer-inner-container {
-//   // width: 100%;
-// }
+.drawer-inner-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .menu-button {
   position: absolute;

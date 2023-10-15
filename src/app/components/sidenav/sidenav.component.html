@@ -26,7 +26,7 @@
     I tuoi party
   </button>
 
-  <button mat-raised-button color="primary" (click)="saveDraft()" [hidden]="menuService.hiddenButton.includes('bozza') ? true : false">
+  <!-- <button mat-raised-button color="primary" (click)="saveDraft()" [hidden]="menuService.hiddenButton.includes('bozza') ? true : false">
     <mat-icon>save</mat-icon>
     Salva bozza
   </button>
@@ -34,10 +34,10 @@
   <button mat-raised-button color="primary" disabled [hidden]="menuService.hiddenButton.includes('pubblica') ? true : false">
     <mat-icon>check</mat-icon>
     Pubblica
-  </button>
+  </button> -->
   <button mat-raised-button color="primary" [routerLink]="['/home']" [hidden]="menuService.hiddenButton.includes('indietro') ? true : false">
-    <mat-icon>arrow_back</mat-icon>
-    Indietro
+    <mat-icon>home</mat-icon>
+    Inizio
   </button>
 
   <button mat-raised-button color="primary" (click)="logout()">
