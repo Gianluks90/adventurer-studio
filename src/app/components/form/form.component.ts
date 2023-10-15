@@ -28,9 +28,10 @@ export class FormComponent implements OnInit {
   }
 
   public saveForm() {
-    if (this.form.value.status.draft) {
+    if (!this.form.value.status.draft) {
       const characterId = window.location.href.split('/').pop();
-      this.formService.saveDraft(characterId, this.form.value);
+      this.formService.saveDraft(characterId, this.formService.formSubject.value);
+      alert('Salvato come bozza');
     } else {
       alert('Non puoi salvare un form completo');
     }

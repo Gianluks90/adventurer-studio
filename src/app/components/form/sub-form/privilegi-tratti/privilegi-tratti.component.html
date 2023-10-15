@@ -1,4 +1,11 @@
 <div [formGroup]="form" *ngIf="form">
+  <div class="description-text">In questa sezione puoi inserire blocchi in cui raccogliere le informazioni di ogni
+    singolo <strong>Privilegio</strong> (Classe) e <strong>Tratto</strong> (Razza) del tuo Personaggio. Puoi anche inserire <strong>Talenti</strong> anche se normalmente
+    al 1° Livello non è consuetudine, pertanto confrontati sempre con il Master prima di farlo.</div>
+   
+    <div class="section-title">Elenco Privilegi, Tratti e Talenti</div>
+
+
   <ng-container class="" formArrayName="privilegiTratti">
     <ng-container *ngFor="let privilegioForm of privilegiTratti.controls; let i = index;">
       <div class="step-form" [formGroupName]="i">

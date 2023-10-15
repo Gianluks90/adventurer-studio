@@ -1,23 +1,28 @@
-<!-- <ng-container *ngIf="group">
-  <div class="step-form" [formGroup]="group">
-    <mat-form-field >
-      <mat-label>Tratti caratteriali</mat-label>
-      <input matInput formControlName="trattiCaratteriali">
+<ng-container *ngIf="groupInfo">
+  <div class="step-form" [formGroup]="groupInfo">
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Background</mat-label>
+      <input matInput formControlName="background">
+      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 125-141" matTooltipPosition="left">auto_stories</mat-icon>
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Ideali</mat-label>
-      <input matInput formControlName="ideali">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Legami</mat-label>
-      <input matInput formControlName="legami">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Difetti</mat-label>
-      <input matInput formControlName="difetti">
-    </mat-form-field>
+
+    <button mat-raised-button color="accent" class="update-button" (click)="updateBackground()">
+      <mat-icon>sync_alt</mat-icon>
+      <span>Aggiorna background (ovunque)</span>
+    </button>
   </div>
-</ng-container> -->
+</ng-container>
+
+<div class="description-text">Alle pagine PHB 125 - 141 troverai un elenco di <strong>Background</strong> precostruiti
+  tra cui scegliere. Tuttavia potresti decidere di ritoccare alcuni privilegi di un background in modo che si adattino
+  meglio al Personaggio o all'ambientazione della campagna. Per personalizzare un Background è sufficiente sostituire un
+  privilegio con un altro qualsiasi, scegliere due abilità qualsiasi e scegliere un totale di due competenze negli
+  strumenti o linguaggi dai background di esempio.
+  È possibile usare l'equipaggiamento della dotazione indicata dal Background o spendere il denaro come descritto nel
+  capitolo 5 a pagina PHB 143 (se opta per spendere il denaro, non si ottiene anche l'equipaggiamento della dotazione
+  suggerita per la sua classe.)
+  Infine si scelgono due tratti caratteriali, un ideale, un legame e un difetto. Se un giocatore non trova alcun
+  privilegio adatto al background che desiderat pub accordarsi con il DM per crearne uno</div>
 
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">

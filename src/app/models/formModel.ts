@@ -10,29 +10,27 @@ export class FormModel {
       caratteristiche: FormModel.caratteristiche(builder),
       tiriSalvezza: FormModel.tiriSalvezza(builder),
       competenzaAbilita: FormModel.competenzaAbilita(builder),
-      CA: 0,
-      iniziativa: 0,
-      velocita: 0,
+      CA: [0, Validators.required],
+      iniziativa: [0, Validators.required],
+      velocita: [0, Validators.required],
       puntiFerita: FormModel.puntiFerita(builder),
       trattiBackground: FormModel.trattiBackground(builder),
       altreCompetenze: FormModel.altreCompetenze(builder),
       denaro: FormModel.denaro(builder),
-      equipaggiamento: [''],
+      equipaggiamento: ['', Validators.required],
       privilegiTratti: builder.array([]),
       trucchettiIncantesimi: builder.array([]),
-      // trucchettiIncantesimi: FormModel.trucchettiIncantesimi(builder),
       caratteristicheFisiche: FormModel.caratteristicheFisiche(builder),
       urlImmaginePersonaggio: '',
       urlImmagineSimbolo: '',
-      alleatiOrganizzazioni: [''],
+      alleatiOrganizzazioni: '',
       storiaPersonaggio: '',
-      trattiPrivilegiAggiuntivi: [''],
-      tesoro: [''],
+      trattiPrivilegiAggiuntivi: '',
+      tesoro: '',
       classeIncantatore: '',
       caratteristicaIncantatore: '',
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,
-      // Trucchetti e Incantesimi da vedere come fare
       status: {
         draft: false,
         complete: false
@@ -44,7 +42,7 @@ export class FormModel {
     return builder.group({
       nomeGiocatore: ['', Validators.required],
       classe: ['', Validators.required],
-      specializzazione: '',
+      sottoclasse: '',
       livello: [1, Validators.max(20)],
       background: ['', Validators.required],
       razza: ['', Validators.required],
@@ -69,7 +67,7 @@ export class FormModel {
 
   static tiriSalvezza(builder: FormBuilder) {
     return builder.group({
-      bonusCompetenza: [2, Validators.max(6)],
+      bonusCompetenza: [2, [Validators.max(6), Validators.required]],
       forza: false,
       destrezza: false,
       costituzione: false,
@@ -128,26 +126,26 @@ export class FormModel {
       massimoPuntiFerita: [0, [Validators.min(1), Validators.required]],
       puntiFeritaAttuali: 0,
       puntiFeritaTemporanei: 0,
-      totaleDadiVita:0,
-      dadiVita: ''
+      totaleDadiVita: [0, [Validators.min(1), Validators.required]],
+      dadiVita: ['', Validators.required],
     })
   }
 
   static trattiBackground(builder: FormBuilder) {
     return builder.group({
-      trattiCaratteriali: '',
-      ideali: '',
-      legami: '',
-      difetti: '',
+      trattiCaratteriali: ['', Validators.required],
+      ideali: ['', Validators.required],
+      legami: ['', Validators.required],
+      difetti: ['', Validators.required]
     })
   }
 
   static altreCompetenze(builder: FormBuilder) {
     return builder.group({
-      linguaggi: [''],
-      armi: [''],
-      armature: [''],
-      strumenti: [''],
+      linguaggi: [[''], Validators.required],
+      armi: [[''], Validators.required],
+      armature: [[''], Validators.required],
+      strumenti: [[''], Validators.required],
       altro: ['']
     })
   }
@@ -161,19 +159,6 @@ export class FormModel {
       MP: 0
     })
   }
-
-  // static trucchettiIncantesimi(builder: FormBuilder) {
-  //   return builder.group({
-  //     classeIncantatore: '',
-  //     caratteristicaIncantatore: '',
-  //     CDTiroSalvezza: 0,
-  //     bonusAttaccoIncantesimi: 0,
-  //     // slotIncantesimi: 0,
-  //     // incantesimiConosciuti: 0,
-  //     // incantesimiPreparati: 0,
-  //     lista: builder.array([])
-  //   })
-  // }
 
   static caratteristicheFisiche(builder: FormBuilder) {
     return builder.group({

@@ -51,3 +51,15 @@
     object-fit: cover;
     cursor: pointer;
 }
+
+.description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.jump-button {
+    margin-bottom: 20px;
+}

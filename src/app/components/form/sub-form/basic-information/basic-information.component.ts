@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class BasicInformationComponent {
   public groupInfo: FormGroup | null = null;
   public groupCaratteristiche: FormGroup | null = null;
 
-  constructor(public formService: FormService) { }
+  constructor(public formService: FormService, private stepper: MatStepper) { }
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
@@ -50,6 +51,9 @@ export class BasicInformationComponent {
         alert('Immagine eliminata con successo');
       }
     });
+  }
 
+  public jumpToSpecificStep(index: number) {
+    this.stepper.selectedIndex = index;
   }
 }
