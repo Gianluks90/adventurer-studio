@@ -2,18 +2,29 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    margin: 16px;
+    width: 100%;
 }
 
-.second-section {
+.character-info-header {
+    height: 100px;
     display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin: 16px 0;
-}
-
-.form-container {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    // align-items: center;
+    align-items: center;
+    gap: 8px;
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
 }
+
+.character-info-header-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.character-info-header-name {
+    font-family: Cinzel, serif;
+}
+

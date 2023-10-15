@@ -21,6 +21,6 @@ export class CharacterViewComponent {
       this.character = character;
       console.log('C', this.character);
     });
-    this.menuService.hiddenButton = ['bozza','pubblica']
+    // this.menuService.hiddenButton = ['bozza','pubblica']
   }
 }
