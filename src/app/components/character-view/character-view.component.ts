@@ -3,11 +3,11 @@ import { CharacterService } from 'src/app/services/character.service';
 import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
-  selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
+  selector: 'app-character-view',
+  templateUrl: './character-view.component.html',
+  styleUrls: ['./character-view.component.scss']
 })
-export class ViewComponent {
+export class CharacterViewComponent {
 
   public character: any;
 

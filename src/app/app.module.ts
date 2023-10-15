@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { FormComponent } from './components/form/form.component';
-import { ViewComponent } from './components/view/view.component';
+import { CharacterViewComponent } from './components/character-view/character-view.component';
 
 
 import { MatIconModule } from '@angular/material/icon';
@@ -48,7 +48,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
     HomeComponent,
     AuthComponent,
     FormComponent,
-    ViewComponent,
+    CharacterViewComponent,
     BasicInformationComponent,
     AddCharacterDialogComponent,
     SidenavComponent,
