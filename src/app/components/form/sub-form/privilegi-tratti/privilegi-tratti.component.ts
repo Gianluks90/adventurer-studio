@@ -9,9 +9,6 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class PrivilegiTrattiComponent {
 
-  // public group: FormGroup = new FormGroup({});
-  // public array: FormArray | null = null;
-
   public form: FormGroup | null = null;
   public privilegiTratti: FormArray;
 

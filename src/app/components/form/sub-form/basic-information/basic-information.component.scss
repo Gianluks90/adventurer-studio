@@ -63,3 +63,25 @@
 .jump-button {
     margin-bottom: 20px;
 }
+
+.line-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.line-input {
+    flex-grow: 1;
+}
+
+.delete-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+.button-container {
+    margin-bottom: 20px;
+}

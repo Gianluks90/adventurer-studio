@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { FormService } from 'src/app/services/form.service';
 
@@ -11,14 +11,21 @@ import { FormService } from 'src/app/services/form.service';
 export class BasicInformationComponent {
   public groupInfo: FormGroup | null = null;
   public groupCaratteristiche: FormGroup | null = null;
+  public classi: FormArray;
 
-  constructor(public formService: FormService, private stepper: MatStepper) { }
+  constructor(
+    public formService: FormService, 
+    private stepper: MatStepper,
+    private fb: FormBuilder) { 
+      this.classi = this.fb.array([]);
+    }
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.groupInfo = form.get('informazioniBase') as FormGroup;
         this.groupCaratteristiche = form.get('caratteristicheFisiche') as FormGroup;
+        this.classi = this.groupInfo.get('classi') as FormArray;
       }
     });
   }
@@ -55,5 +62,18 @@ export class BasicInformationComponent {
 
   public jumpToSpecificStep(index: number) {
     this.stepper.selectedIndex = index;
+  }
+
+  public addClasse() {
+    const classe = this.fb.group({
+      nome: ['', Validators.required],
+      livello: [1, [Validators.max(20), Validators.required]],
+      sottoclasse: '',
+    });
+    this.classi.push(classe);
+  }
+
+  public deleteClasse(index: number) {
+    this.classi.removeAt(index);
   }
 }

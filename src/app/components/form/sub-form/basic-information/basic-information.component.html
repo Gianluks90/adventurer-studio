@@ -1,36 +1,88 @@
 <ng-container *ngIf="groupInfo && groupCaratteristiche">
   <div class="step-form" [formGroup]="groupInfo">
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Nome giocatore</mat-label>
-      <input matInput formControlName="nomeGiocatore">
-    </mat-form-field>
+    <div class="line-container">
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Nome giocatore</mat-label>
+        <input matInput formControlName="nomeGiocatore">
+      </mat-form-field>
+  
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Nome Personaggio</mat-label>
+        <input matInput formControlName="nomePersonaggio">
+      </mat-form-field>
+    </div>
+    
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Nome personaggio</mat-label>
-      <input matInput formControlName="nomePersonaggio">
-    </mat-form-field>
-
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Classe</mat-label>
-      <input matInput formControlName="classe">
-      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 45-113, TCoE 9"
-        matTooltipPosition="left">auto_stories</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Sottoclasse</mat-label>
-      <input matInput formControlName="sottoclasse">
-      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 45-113, XGoE 8-59, TCoE 14-78, FToD 12-13"
-        matTooltipPosition="left">auto_stories</mat-icon>
-    </mat-form-field>
+    <div class="section-title">Classe/i</div>
+    <div class="description-text">Al 1° Livello un Personaggio può avere una singola <strong>Classe</strong> tuttavia
+      progredendo con l'esperienza sarà possibile creare Personaggi con una <strong>Multiclasse</strong>. Le opzioni di
+      Multiclasse consentono a un Personaggio di acquisire livelli in più classi. Così facendo, un Personaggio è in
+      grado di mescolare le capacità di quelle classi per dare vita a un concetto di Personaggio che forse non era
+      rappresentato a dovere dalle opzioni delle classi standard.
+      Grazie a queste regole, un Personaggio ha la possibilità di acquisire livelli in una nuova Classe ogni volta che
+      avanza di livello, anziché acquisire un livello nella sua Classe attuale. I livelli in tutte le sue classi,
+      sommati assieme, determinano il suo livello del Personaggio. Per maggiori informazioni sulla Multiclasse vai a
+      pagina PHB 163.</div>
 
     <div class="description-text">Solo alcune Classi hanno una <strong>Sottoclasse</strong> al 1° Livello quindi è
       probabile che lascerai questo campo vuoto al momento.</div>
 
-    <mat-form-field color="accent" appearance="outline">
+    <ng-container class="" formArrayName="classi">
+      <ng-container *ngFor="let c of classi.controls; let i = index;">
+        <div class="step-form" [formGroupName]="i">
+          <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="nome">
+              <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 45-113, TCoE 9"
+                matTooltipPosition="left">auto_stories</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Livello</mat-label>
+              <input type="number" matInput formControlName="livello" min="1" max="20">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Sottoclasse</mat-label>
+              <input matInput formControlName="sottoclasse">
+              <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 45-113, XGoE 8-59, TCoE 14-78, FToD 12-13"
+                matTooltipPosition="left">auto_stories</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <div class="delete-button">
+            <button mat-raised-button color="accent" (click)="deleteClasse(i)">
+              <mat-icon>delete</mat-icon> Rimuovi
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="button-container">
+      <button mat-raised-button color="accent" (click)="addClasse()">
+        <mat-icon>add</mat-icon>
+        Aggiungi Classe
+      </button>
+    </div>
+
+    <!-- <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Classe</mat-label>
+      <input matInput formControlName="classe">
+      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 45-113, TCoE 9"
+        matTooltipPosition="left">auto_stories</mat-icon>
+    </mat-form-field> -->
+
+    <!-- <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Sottoclasse</mat-label>
+      <input matInput formControlName="sottoclasse">
+      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 45-113, XGoE 8-59, TCoE 14-78, FToD 12-13"
+        matTooltipPosition="left">auto_stories</mat-icon>
+    </mat-form-field> -->
+
+    <!-- <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Livello</mat-label>
       <input type="number" matInput formControlName="livello" max="20" min="1">
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Background</mat-label>
@@ -38,33 +90,29 @@
       <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 125-141" matTooltipPosition="left">auto_stories</mat-icon>
     </mat-form-field>
 
-    <!-- <div class="description-text">Alle pagine di riferimento puoi trovare una serie di <strong>Background</strong>
-      precostruiti che ti assegneranno capacità, competenze e oggetti, tuttavia, assieme al tuo DM, potete creare un
-      Background personalizzato. Non preoccuparti di perdere quel che normalmente donerebbe un Background perchè puoi
-      scegliere, tra quelli standard, il più vicino a quello che hai creato e assegnarti tutti o alcuni dei bonus che ti
-      spettano.</div> -->
-
     <div class="description-text">Alle pagine di riferimento puoi trovare una serie di <strong>Background</strong>
       precostruiti che ti assegneranno capacità, competenze e oggetti, tuttavia, assieme al tuo DM, potete creare un
       Background personalizzato. Per maggiori informazioni prosegui nella compilazione alla sezione "Background" più
       avanti. Puoi anche lasciare vuoto questo campo al momento.</div>
 
-      <button mat-raised-button color="accent" class="jump-button" (click)="jumpToSpecificStep(8)">
-        <mat-icon>move_down</mat-icon>
-        Vai alla sezione Background
-      </button>
+    <button mat-raised-button color="accent" class="jump-button" (click)="jumpToSpecificStep(8)">
+      <mat-icon>move_down</mat-icon>
+      Vai alla sezione Background
+    </button>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Razza</mat-label>
-      <input matInput formControlName="razza">
-      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 17-42, MMoM 5-36, FToD 9-12"
-        matTooltipPosition="left">auto_stories</mat-icon>
-    </mat-form-field>
-
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Sottorazza / Discendenza / Etnia</mat-label>
-      <input matInput formControlName="sottorazza">
-    </mat-form-field>
+    <div class="line-container">
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Razza</mat-label>
+        <input matInput formControlName="razza">
+        <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 17-42, MMoM 5-36, FToD 9-12"
+          matTooltipPosition="left">auto_stories</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Sottorazza / Discendenza / Etnia</mat-label>
+        <input matInput formControlName="sottorazza">
+      </mat-form-field>
+    </div>
 
     <div class="description-text">Non tutte le Razze possiedono il tratto <strong>Sottorazza</strong> pertanto è
       probabile che lascerai questo campo vuoto. Oppure puoi indicare una Discendenza Draconica, un'Etnia umana, ecc...
@@ -82,39 +130,49 @@
 
   <div class="section-title">Caratteristiche fisiche</div>
 
+
+
   <div class="step-form" [formGroup]="groupCaratteristiche">
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Eta personaggio</mat-label>
-      <input type="number" matInput formControlName="eta">
-    </mat-form-field>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Altezza</mat-label>
-      <input type="number" matInput formControlName="altezza">
-    </mat-form-field>
+    <div class="line-container">
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Eta Personaggio</mat-label>
+        <input type="number" matInput formControlName="eta">
+      </mat-form-field>
+  
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Altezza</mat-label>
+        <input type="number" matInput formControlName="altezza">
+      </mat-form-field>
+  
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Peso</mat-label>
+        <input type="number" matInput formControlName="peso">
+      </mat-form-field>
+    </div>
+    <div class="line-container">
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Colore occhi</mat-label>
+        <input matInput formControlName="occhi">
+      </mat-form-field>
+  
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Carnagione</mat-label>
+        <input matInput formControlName="carnagione">
+      </mat-form-field>
+  
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Capelli</mat-label>
+        <input matInput formControlName="capelli">
+      </mat-form-field>
+    </div>
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Peso</mat-label>
-      <input type="number" matInput formControlName="peso">
-    </mat-form-field>
+    
 
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Colore occhi</mat-label>
-      <input matInput formControlName="occhi">
-    </mat-form-field>
-
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Carnagione</mat-label>
-      <input matInput formControlName="carnagione">
-    </mat-form-field>
-
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Capelli</mat-label>
-      <input matInput formControlName="capelli">
-    </mat-form-field>
+    
   </div>
 
-  <div class="section-title">Immagine personaggio</div>
+  <div class="section-title">Immagine Personaggio</div>
 
   <div class="step-form step-form-buttons" [formGroup]="groupInfo">
     <img *ngIf="groupInfo.value.urlImmaginePersonaggio !== ''" class="image-preview"

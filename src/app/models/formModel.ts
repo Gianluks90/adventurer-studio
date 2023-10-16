@@ -41,6 +41,7 @@ export class FormModel {
   static informazioniBase(builder: FormBuilder) {
     return builder.group({
       nomeGiocatore: ['', Validators.required],
+      classi: builder.array([]),
       classe: ['', Validators.required],
       sottoclasse: '',
       livello: [1, Validators.max(20)],
