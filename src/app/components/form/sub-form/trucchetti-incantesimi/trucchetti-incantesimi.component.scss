@@ -1,26 +1,26 @@
 .step-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .input-field {
-    width: 100%;
-  }
-  
-  .delete-button {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 12px;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-  .section-title {
-    margin-bottom: 20px;
-    font-size: medium;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+.input-field {
+  width: 100%;
+}
+
+.delete-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+  font-size: medium;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
 }
 
 .description-text {
@@ -29,4 +29,16 @@
   font-style: italic;
   margin-bottom: 20px;
   text-align: justify;
+}
+
+.line-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.line-input {
+  flex-grow: 1;
 }

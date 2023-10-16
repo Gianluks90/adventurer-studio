@@ -9,18 +9,21 @@
   <ng-container class="" formArrayName="privilegiTratti">
     <ng-container *ngFor="let privilegioForm of privilegiTratti.controls; let i = index;">
       <div class="step-form" [formGroupName]="i">
-        <mat-form-field color="accent" appearance="outline">
-          <mat-label>Nome</mat-label>
-          <input matInput formControlName="nome">
-        </mat-form-field>
-        <mat-form-field color="accent" appearance="outline">
-          <mat-label>Tipologia</mat-label>
-          <mat-select formControlName="tipologia">
-            <mat-option value="privilegio">Privilegio</mat-option>
-            <mat-option value="tratto">Tratto</mat-option>
-            <mat-option value="talento">Talento</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="line-container">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+          </mat-form-field>
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Tipologia</mat-label>
+            <mat-select formControlName="tipologia">
+              <mat-option value="privilegio">Privilegio</mat-option>
+              <mat-option value="tratto">Tratto</mat-option>
+              <mat-option value="talento">Talento</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        
         <mat-form-field color="accent" appearance="outline">
           <mat-label>Descrizione</mat-label>
           <textarea matInput formControlName="descrizione" rows="5"></textarea>

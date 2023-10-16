@@ -38,7 +38,8 @@ export class TrucchettiIncantesimiComponent {
       componenti: ['', Validators.required],
       durata: ['', Validators.required],
       descrizione: ['', Validators.required],
-      livelloSuperiore: ['', Validators.required]
+      livelloSuperiore: '',
+      riferimento: ''
     });
     this.trucchettiIncantesimi.push(trucchettoIncantesimo);
   }
