@@ -39,6 +39,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { TrucchettiIncantesimiComponent } from './components/form/sub-form/trucchetti-incantesimi/trucchetti-incantesimi.component';
 import { MoneteComponent } from './components/monete/monete.component';
 import { MatSidenavModule } from '@angular/material/sidenav'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackbarComponent } from './components/utilities/snackbar/snackbar.component';
 
 
 
@@ -64,6 +66,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
     CharacterListComponent,
     TrucchettiIncantesimiComponent,
     MoneteComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,8 @@ import { MatSidenavModule } from '@angular/material/sidenav'
     MatTooltipModule,
     MatChipsModule,
     MatSelectModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
     
   ],
   providers: [],

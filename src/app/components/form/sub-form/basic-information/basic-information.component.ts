@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { FormService } from 'src/app/services/form.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-basic-information',
@@ -16,7 +17,8 @@ export class BasicInformationComponent {
   constructor(
     public formService: FormService, 
     private stepper: MatStepper,
-    private fb: FormBuilder) { 
+    private fb: FormBuilder,
+    private notification: NotificationService) { 
       this.classi = this.fb.array([]);
     }
 
@@ -32,7 +34,7 @@ export class BasicInformationComponent {
 
   public onPicSelected(event: any) {
     if (event.target.files[0].size > 300000) {
-      alert("Dimensione dell'immagine troppo grande (massimo 3 MB)");
+      this.notification.openSnackBar('Immagine troppo grande, massimo 300kb', 'warning');
     } else {
       this.formService.uploadImage(event).then((result) => {
         if (result !== 'error') {
@@ -40,9 +42,9 @@ export class BasicInformationComponent {
             urlImmaginePersonaggio: result,
             nomeImmaginePersonaggio: event.target.files[0].name,
           })
-          alert('Immagine caricata con successo');
+          this.notification.openSnackBar('Immagine caricata con successo', 'check');
         } else {
-          alert('Errore nel caricamento dell\'immagine');
+          this.notification.openSnackBar('Errore nel caricamento dell\'immagine', 'error');
         }
       })
     }
@@ -55,7 +57,7 @@ export class BasicInformationComponent {
           urlImmaginePersonaggio: '',
           nomeImmaginePersonaggio: '',
         })
-        alert('Immagine eliminata con successo');
+        this.notification.openSnackBar('Immagine eliminata con successo', 'check');
       }
     });
   }

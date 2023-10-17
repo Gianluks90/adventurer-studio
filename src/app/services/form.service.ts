@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormModel } from 'src/app/models/formModel';
 import { FirebaseService } from './firebase.service';
 import { CharacterService } from './character.service';
-import { doc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 @Injectable({

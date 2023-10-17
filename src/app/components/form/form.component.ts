@@ -4,6 +4,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { FormModel } from 'src/app/models/formModel';
 import { FormService } from 'src/app/services/form.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-form',
@@ -19,7 +20,8 @@ export class FormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public formService: FormService,
-    private menuService: MenuService) { }
+    private menuService: MenuService,
+    private notification: NotificationService) { }
 
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
@@ -31,9 +33,9 @@ export class FormComponent implements OnInit {
     if (!this.form.value.status.draft) {
       const characterId = window.location.href.split('/').pop();
       this.formService.saveDraft(characterId, this.formService.formSubject.value);
-      alert('Salvato come bozza');
+      this.notification.openSnackBar('Bozza salvata con successo', 'check');
     } else {
-      alert('Non puoi salvare un form completo');
+      this.notification.openSnackBar('Non puoi salvare un Form Completo', 'warning');
     }
 
   }

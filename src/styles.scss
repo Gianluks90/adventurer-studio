@@ -114,3 +114,10 @@ body {
 .mat-drawer-content {
   width: 100% !important;
 }
+
+.custom-snackbar, .mdc-snackbar__surface {
+  background-color: #cc0000 !important;
+  color: white !important;
+  border-radius: 8px;
+  text-align: center;
+}
