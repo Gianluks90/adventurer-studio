@@ -1,5 +1,7 @@
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -12,13 +14,22 @@ export class ParametriVitaliComponent {
   public groupVita: FormGroup | null = null;
   public modDestrezza: number = 0;
 
+  public dadiVitaArray: FormArray | null = null;
+  public dadiVita: string[] = [];
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
   constructor(public formService: FormService) {}
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.group = form as FormGroup;
-        this.groupVita = form.get('puntiFerita') as FormGroup;
+        this.groupVita = form.get('parametriVitali') as FormGroup;
+
+        this.dadiVitaArray = this.groupVita?.get('dadiVita') as FormArray;
+        if (this.dadiVitaArray.value.length > 0) {
+          this.dadiVita = this.dadiVitaArray.value;
+        }
 
         this.group.get('caratteristiche')?.valueChanges.subscribe((value: any) => {
           this.modDestrezza = Math.floor((value.destrezza - 10) / 2);
@@ -26,5 +37,38 @@ export class ParametriVitaliComponent {
         });
       }
     });
+  }
+
+  addDadoVita(event: MatChipInputEvent): void {
+    console.log(this.dadiVita);
+    
+    const value = (event.value || '').trim();
+    if (value) {
+      this.dadiVita.push(value);
+      this.dadiVitaArray?.patchValue(this.dadiVita);
+    }
+    event.chipInput!.clear();
+  }
+
+  removeDadoVita(input: any): void {
+    const index = this.dadiVita.indexOf(input);
+    if (index >= 0) {
+      this.dadiVita.splice(index, 1);
+      this.dadiVitaArray?.patchValue(this.dadiVita);
+    }
+  }
+
+  editDadoVita(input: any, event: MatChipEditedEvent): void {
+    const value = event.value.trim();
+    if (!value) {
+      this.removeDadoVita(input);
+      return;
+    }
+
+    const index = this.dadiVita.indexOf(input);
+    if (index >= 0) {
+      this.dadiVita[index] = value;
+      this.dadiVitaArray?.patchValue(this.dadiVita);
+    }
   }
 }

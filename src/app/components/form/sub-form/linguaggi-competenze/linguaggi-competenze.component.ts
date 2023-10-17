@@ -130,11 +130,6 @@ export class LinguaggiCompetenzeComponent {
     if (value) {
       this.linguaggi.push(value);
       this.arrayDiLinguaggi?.patchValue(this.linguaggi);
-      console.log(
-        'linguaggio aggiunto',
-        this.linguaggi,
-        this.arrayDiLinguaggi?.value
-      );
     }
     event.chipInput!.clear();
   }

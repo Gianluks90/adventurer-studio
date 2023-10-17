@@ -13,7 +13,7 @@ export class FormModel {
       CA: [0, Validators.required],
       iniziativa: [0, Validators.required],
       velocita: [0, Validators.required],
-      puntiFerita: FormModel.puntiFerita(builder),
+      parametriVitali: FormModel.parametriVitali(builder),
       trattiBackground: FormModel.trattiBackground(builder),
       altreCompetenze: FormModel.altreCompetenze(builder),
       denaro: FormModel.denaro(builder),
@@ -122,13 +122,14 @@ export class FormModel {
     })
   }
 
-  static puntiFerita(builder: FormBuilder) {
+  static parametriVitali(builder: FormBuilder) {
     return builder.group({
       massimoPuntiFerita: [0, [Validators.min(1), Validators.required]],
       puntiFeritaAttuali: 0,
       puntiFeritaTemporanei: 0,
       totaleDadiVita: [0, [Validators.min(1), Validators.required]],
-      dadiVita: ['', Validators.required],
+      dadiVitaOld: ['', Validators.required],
+      dadiVita: [[''], Validators.required],
     })
   }
 

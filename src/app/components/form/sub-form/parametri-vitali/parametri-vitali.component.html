@@ -35,6 +35,25 @@
     <div class="section-title">Dadi Vita</div>
 
     <mat-form-field color="accent" appearance="outline">
+      <!-- <mat-label class="input-field">Linguaggi conosciuti</mat-label>
+      <input class="" matInput formControlName="linguaggi"> -->
+      <mat-label class="input-field">Totale Dadi vita e Tipo</mat-label>
+      <mat-chip-grid #chipGrid>
+        <mat-chip-row *ngFor="let d of dadiVita" (removed)="removeDadoVita(d)" [editable]="true"
+          (edited)="editDadoVita(d, $event)">
+          {{d}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="Aggiungi un nuovo dado" [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="addDadoVita($event)" />
+
+      </mat-chip-grid>
+    </mat-form-field>
+
+    <!-- <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Totale</mat-label>
       <input class="" matInput type="number" formControlName="totaleDadiVita">
     </mat-form-field>
@@ -42,6 +61,6 @@
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Tipologia</mat-label>
       <input class="" matInput formControlName="dadiVita">
-    </mat-form-field>
+    </mat-form-field> -->
   </div>
 </ng-container>
