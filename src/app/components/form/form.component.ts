@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDrawer } from '@angular/material/sidenav';
 import { MatStepper } from '@angular/material/stepper';
+import { AppComponent } from 'src/app/app.component';
 import { FormModel } from 'src/app/models/formModel';
 import { FormService } from 'src/app/services/form.service';
 import { MenuService } from 'src/app/services/menu.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'app-form',
@@ -21,12 +24,20 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     public formService: FormService,
     private menuService: MenuService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private sidenavService: SidenavService) { }
+
+    public menuIcon = 'menu';
 
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
     this.formService.initForm(characterId!);
-    this.menuService.hiddenButton = [''];
+    // this.menuService.hiddenButton = [''];
+    if (this.sidenavService.isOpen()) {
+      const menuButton = document.getElementById('menu-button');
+      menuButton!.style.setProperty('left', 316 + 'px');
+      this.menuIcon = 'close';
+    }
   }
 
   public saveForm() {
@@ -53,5 +64,15 @@ export class FormComponent implements OnInit {
     this.stepper.next();
   }
 
-
+  public openSidenav() {
+    const menuButton = document.getElementById('menu-button');
+    if (this.sidenavService.isOpen()) {
+      menuButton!.style.setProperty('left', 16 + 'px');
+      this.menuIcon = 'menu';
+    } else {
+      menuButton!.style.setProperty('left', 316 + 'px');
+      this.menuIcon = 'close';
+    }
+    this.sidenavService.toggle();
+  }
 }

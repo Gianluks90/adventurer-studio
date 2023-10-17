@@ -10,7 +10,6 @@ import { AuthComponent } from './components/auth/auth.component';
 import { FormComponent } from './components/form/form.component';
 import { CharacterViewComponent } from './components/character-view/character-view.component';
 
-
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -20,7 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { AddCharacterDialogComponent } from './components/sidenav/add-character-dialog/add-character-dialog.component';
 import { AbilitaComponent } from './components/form/sub-form/abilita/abilita.component';
@@ -41,8 +40,7 @@ import { MoneteComponent } from './components/monete/monete.component';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './components/utilities/snackbar/snackbar.component';
-
-
+import { SidenavService } from './services/sidenav.service';
 
 @NgModule({
   declarations: [
@@ -89,7 +87,7 @@ import { SnackbarComponent } from './components/utilities/snackbar/snackbar.comp
     MatSnackBarModule
     
   ],
-  providers: [],
+  providers: [SidenavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

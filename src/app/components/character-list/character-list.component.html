@@ -1,13 +1,14 @@
 <div class="container" *ngIf="characters.length > 0">
   <div class="card-container" *ngFor="let c of characters">
-    <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio != ''" referrerpolicy="no-referrer" [src]="c.informazioniBase.urlImmaginePersonaggio">
+    <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio != ''"
+      referrerpolicy="no-referrer" [src]="c.informazioniBase.urlImmaginePersonaggio">
     <div class="character-info-container">
       <div class="character-name">
         {{c.informazioniBase.nomePersonaggio}}
       </div>
-      <div class="character-info">
-        <div *ngIf="c.informazioniBase.classe !=''">
-          {{c.informazioniBase.classe}}
+      <div class="character-info" *ngIf="c.informazioniBase.classi.length > 0">
+        <div *ngFor="let c of c.informazioniBase.classi">
+          {{c.nome}} {{c.livello}}
         </div>
       </div>
     </div>
@@ -37,3 +38,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="sidenav-buttons" id="menu-button">
+  <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
+      <mat-icon>{{menuIcon}}</mat-icon>
+  </button>
+</div>

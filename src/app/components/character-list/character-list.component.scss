@@ -49,20 +49,20 @@
   object-fit: cover;
 }
 
-// @media screen and (max-width: 500px) {
-//   .card-container {
-//     flex-direction: column;
-//   }
+.sidenav-buttons {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-//   .character-info-container {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     gap: 16px;
-//   }
-
-//   .button-container {
-//     flex-direction: column;
-//   }
-
-// }
+.step-button {
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}

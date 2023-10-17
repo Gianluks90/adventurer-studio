@@ -45,13 +45,4 @@ export class SidenavComponent {
       }
     });
   }
-
-  public saveDraft(): void {
-    const charId = window.location.href.split('/').pop();
-    this.formService.saveDraft(charId!, this.formService.formSubject.value).then(() => {
-      console.log(charId!, this.formService.formSubject.value);
-
-      alert('Salvataggio effettuato');
-    })
-  }
 }

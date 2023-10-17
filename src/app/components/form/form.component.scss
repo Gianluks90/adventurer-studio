@@ -105,6 +105,15 @@
     gap: 8px;
 }
 
+.sidenav-buttons {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 @media screen and (max-width: 500px) {
     .home-container {
         flex-direction: column;
@@ -117,13 +126,13 @@
         height: auto;
     }
 
-    .stepper-buttons {
-        display: none;
-    }
+    // .stepper-buttons {
+    //     display: none;
+    // }
 
-    .mobile-stepper-buttons {
-        display: flex;
-    }
+    // .mobile-stepper-buttons {
+    //     display: flex;
+    // }
 }
 
 .step-button:disabled {

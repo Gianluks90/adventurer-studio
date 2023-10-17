@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuService } from 'src/app/services/menu.service';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,30 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class HomeComponent implements OnInit{
 
-  constructor(private menuService: MenuService) {}
+  constructor(
+    private menuService: MenuService,
+    private sidenavService: SidenavService) {}
+
+    public menuIcon = 'menu';
 
   ngOnInit(): void {
-    this.menuService.hiddenButton = ['bozza','pubblica','indietro']
+    // this.menuService.hiddenButton = ['bozza','pubblica','indietro']
+    const menuButton = document.getElementById('menu-button');
+    if (this.sidenavService.isOpen()) {
+      menuButton!.style.setProperty('left', 316 + 'px');
+      this.menuIcon = 'close';
+    }
+  }
+
+  public openSidenav() {
+    const menuButton = document.getElementById('menu-button');
+    if (this.sidenavService.isOpen()) {
+      menuButton!.style.setProperty('left', 16 + 'px');
+      this.menuIcon = 'menu';
+    } else {
+      menuButton!.style.setProperty('left', 316 + 'px');
+      this.menuIcon = 'close';
+    }
+    this.sidenavService.toggle();
   }
 }
