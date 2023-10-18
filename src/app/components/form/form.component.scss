@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+
 }
 
 .second-section {
@@ -121,7 +122,7 @@
         justify-content: flex-start;
     }
 
-    .first-section, .second-section {
+    .second-section {
         width: 90%;
         height: auto;
     }

@@ -35,7 +35,6 @@ export class FormComponent implements OnInit {
     // this.menuService.hiddenButton = [''];
     if (this.sidenavService.isOpen()) {
       const menuButton = document.getElementById('menu-button');
-      menuButton!.style.setProperty('left', 316 + 'px');
       this.menuIcon = 'close';
     }
   }
@@ -67,11 +66,8 @@ export class FormComponent implements OnInit {
   public openSidenav() {
     const menuButton = document.getElementById('menu-button');
     if (this.sidenavService.isOpen()) {
-      menuButton!.style.setProperty('left', 16 + 'px');
+      // menuButton!.style.setProperty('left', 16 + 'px');
       this.menuIcon = 'menu';
-    } else {
-      menuButton!.style.setProperty('left', 316 + 'px');
-      this.menuIcon = 'close';
     }
     this.sidenavService.toggle();
   }
