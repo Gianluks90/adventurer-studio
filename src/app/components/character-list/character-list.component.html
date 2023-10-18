@@ -14,11 +14,11 @@
     </div>
     <div class="divider"></div>
     <div class="button-container">
-      <button mat-raised-button color="accent" [routerLink]="'/edit/' + c.id">
+      <button mat-raised-button color="accent" [routerLink]="'/create/' + c.id" *ngIf="c.statusSalvataggio.draft">
         <mat-icon>edit</mat-icon>
         Modifica
       </button>
-      <button mat-raised-button color="accent" [routerLink]="'/view/' + c.id">
+      <button mat-raised-button color="accent" [routerLink]="'/view/' + c.id" *ngIf="c.statusSalvataggio.complete">
         <mat-icon>visibility</mat-icon>
         Visualizza
       </button>

@@ -41,7 +41,7 @@ export class SidenavComponent {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
-      this.router.navigate(['/edit', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)])
+      this.router.navigate(['/create', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)])
       }
     });
   }

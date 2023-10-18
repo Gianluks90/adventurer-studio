@@ -27,14 +27,13 @@ export class CharacterListComponent implements OnInit {
       this.characterService.getCharactersByUserId(userId).then(result => {
         this.characters = result;
       })
+
+
     }
   }
 
   ngAfterViewInit(): void {
-    const menuButton = document.getElementById('menu-button');
-    if (this.sidenavService.isOpen()) {
-      this.menuIcon = 'close';
-    }
+
   }
 
 

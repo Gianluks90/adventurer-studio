@@ -101,7 +101,7 @@ $my-theme: mat.define-light-theme((color: (primary: $my-primary,
 
 html,
 body {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -111,9 +111,6 @@ body {
   overflow-y: auto;
 }
 
-.mat-drawer-content {
-  width: 100% !important;
-}
 
 .custom-snackbar, .mdc-snackbar__surface {
   background-color: #cc0000 !important;

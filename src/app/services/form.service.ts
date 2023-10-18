@@ -33,8 +33,9 @@ export class FormService {
     const docRef = doc(this.firebaseService.database, 'characters', charId);
     return await setDoc(docRef, {
       ...form.value,
-      status: {
-        draft: true
+      statusSalvataggio: {
+        draft: true,
+        complete:false
       }
     }, {
       merge:true
@@ -45,7 +46,7 @@ export class FormService {
     const docRef = doc(this.firebaseService.database, 'characters', charId);
     return await setDoc(docRef, {
       ...form.value,
-      status: {
+      statusSalvataggio: {
         draft: false,
         complete: true
       }

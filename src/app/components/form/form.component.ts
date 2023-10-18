@@ -40,14 +40,13 @@ export class FormComponent implements OnInit {
   }
 
   public saveForm() {
-    if (!this.form.value.status.draft) {
+    if (!this.form.value.statusSalvataggio.draft) {
       const characterId = window.location.href.split('/').pop();
       this.formService.saveDraft(characterId, this.formService.formSubject.value);
       this.notification.openSnackBar('Bozza salvata con successo', 'check');
     } else {
       this.notification.openSnackBar('Non puoi salvare un Form Completo', 'warning');
     }
-
   }
 
   public completeForm() {

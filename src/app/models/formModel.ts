@@ -31,7 +31,7 @@ export class FormModel {
       caratteristicaIncantatore: '',
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,
-      status: {
+      statusSalvataggio: {
         draft: false,
         complete: false
       }
