@@ -19,7 +19,6 @@ export class CharacterViewComponent {
     const characterId = window.location.href.split('/').pop();
     this.characterService.getCharacterById(characterId).then((character) => {
       this.character = character;
-      console.log('C', this.character);
     });
     // this.menuService.hiddenButton = ['bozza','pubblica']
   }

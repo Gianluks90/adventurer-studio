@@ -40,8 +40,6 @@ export class ParametriVitaliComponent {
   }
 
   addDadoVita(event: MatChipInputEvent): void {
-    console.log(this.dadiVita);
-    
     const value = (event.value || '').trim();
     if (value) {
       this.dadiVita.push(value);

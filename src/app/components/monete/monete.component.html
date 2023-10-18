@@ -36,17 +36,17 @@
   <div class="coins-input">
     <mat-form-field class="input-field">
       <mat-label>Quante monete vuoi aggiungere</mat-label>
-      <input type="number" matInput>
+      <input min="0" type="number" matInput [(ngModel)]="modelNumeroMonete">
     </mat-form-field>
     <mat-form-field class="input-field">
       <mat-label class="label-style">seleziona il tipo di moneta da aggiungere</mat-label>
-      <mat-select>
+      <mat-select [(ngModel)]="modelTipoMonete">
         <mat-option *ngFor="let tipo of tipiMonete" [value]="tipo">
           {{tipo}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button (click)="add_subtract({'platino':1000},{'argento':1000},'add')">+</button>
-    <button>-</button>
+    <button (click)="add_subtract(modelTipoMonete,modelNumeroMonete,'add')">+</button>
+    <button (click)="add_subtract(modelTipoMonete,modelNumeroMonete,'remove')">-</button>
   </div>
 </div>

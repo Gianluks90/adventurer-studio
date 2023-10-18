@@ -7,21 +7,21 @@
           <form>
             <br>
             <app-basic-information></app-basic-information>
-            
+
           </form>
         </mat-step>
         <mat-step class="step-label" label="Caratteristiche">
           <form>
             <br>
             <app-caratteristiche></app-caratteristiche>
-            
+
           </form>
         </mat-step>
         <mat-step class="step-label" label="Tiri salvezza">
           <form>
             <br>
             <app-tiri-salvezza></app-tiri-salvezza>
-            
+
           </form>
         </mat-step>
 
@@ -80,13 +80,13 @@
             <app-trucchetti-incantesimi></app-trucchetti-incantesimi>
           </form>
         </mat-step>
-        
+
       </mat-stepper>
     </form>
   </div>
 </div>
 
-<div class="action-buttons">
+<div class="action-buttons" *ngIf="formService.formSubject.value">
   <button class="step-button" mat-icon-button (click)="saveForm()" matTooltip="Salva" matTooltipPosition="left">
     <mat-icon>save</mat-icon>
   </button>

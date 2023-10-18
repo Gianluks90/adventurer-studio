@@ -24,16 +24,12 @@ export class FormService {
   public initForm(charId: string): void {
     const tempForm = this.fb.group(FormModel.create(this.fb));
     this.characterService.getCharacterById(charId).then((character) => {
-      console.log(character);
-      
       this.nestedPatchValue(tempForm, character);
       this.formSubject.next(tempForm);
     });
   }
 
   public async saveDraft(charId: string, form: FormGroup): Promise<void> {
-    console.log(form);
-    
     const docRef = doc(this.firebaseService.database, 'characters', charId);
     return await setDoc(docRef, {
       ...form.value,
@@ -60,12 +56,10 @@ export class FormService {
 
 
   public async uploadImage(event: any): Promise<string> {
-    console.log(event.target.files[0]);
     const file: File = event.target.files[0];
     const imageRef = ref(this.firebaseService.storage, 'characterImages/' + file.name);
     return await uploadBytes(imageRef, file).then(async () => {
       return await getDownloadURL(imageRef).then((url) => {
-        console.log(url);
         return url;
       }).catch((error) => {
         console.log(error);

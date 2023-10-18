@@ -21,8 +21,6 @@ export class TrucchettiIncantesimiComponent {
       if (form) {
         this.form = form as FormGroup;
         this.trucchettiIncantesimi = this.form.controls['trucchettiIncantesimi'] as FormArray;
-        console.log('form',this.form);
-
       }
     });
   }

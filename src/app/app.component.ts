@@ -18,12 +18,11 @@ export class AppComponent implements OnInit {
   @ViewChild('drawer') public sidenav: MatSidenav;
 
   constructor(
-    private firebaseService: FirebaseService, 
+    private firebaseService: FirebaseService,
     public authGuardService: AuthGuardService,
     private sidenavService: SidenavService) { }
 
   ngOnInit(): void {
-    // console.log('status', this.authGuardService.authStatus);
   }
 
   ngAfterViewInit(): void {
