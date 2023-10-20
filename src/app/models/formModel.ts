@@ -32,8 +32,11 @@ export class FormModel {
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,
       statusSalvataggio: {
-        draft: false,
-        complete: false
+        statusCode: 0,
+        author: '',
+        creationDate: null,
+        lastUpadateDate: null,
+        userId: '',
       }
     }
   }

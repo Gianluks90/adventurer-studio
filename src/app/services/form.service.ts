@@ -34,8 +34,8 @@ export class FormService {
     return await setDoc(docRef, {
       ...form.value,
       statusSalvataggio: {
-        draft: true,
-        complete:false
+        statusCode: 1,
+        lastUpadateDate: new Date()
       }
     }, {
       merge:true
