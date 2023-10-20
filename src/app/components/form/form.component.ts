@@ -40,7 +40,7 @@ export class FormComponent implements OnInit {
   }
 
   public saveForm() {
-    if (!this.form.value.statusSalvataggio.draft) {
+    if (this.form.value.status.statusCode === 1) {
       const characterId = window.location.href.split('/').pop();
       this.formService.saveDraft(characterId, this.formService.formSubject.value);
       this.notification.openSnackBar('Bozza salvata con successo', 'check');
