@@ -41,6 +41,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackbarComponent } from './components/utilities/snackbar/snackbar.component';
 import { SidenavService } from './services/sidenav.service';
+import { DeleteCharacterDialogComponent } from './components/character-list/delete-character-dialog/delete-character-dialog.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SidenavService } from './services/sidenav.service';
     TrucchettiIncantesimiComponent,
     MoneteComponent,
     SnackbarComponent,
+    DeleteCharacterDialogComponent,
   ],
   imports: [
     BrowserModule,

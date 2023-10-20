@@ -1,0 +1,13 @@
+<div mat-dialog-title class="dialog-title">Elimina personaggio</div>
+<mat-dialog-content class="mat-typography" [formGroup]="form">
+    <div class="description">Conferma per cancellare il Personaggio. <strong>ATTENZIONE: L'AZIONE È IRREVERSIBILE.</strong> Continuare?</div>
+    <div class="sections-container" >
+        <mat-checkbox formControlName="confirm">
+            Si, voglio eliminare il Personaggio.
+          </mat-checkbox>
+      </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Annulla</button>
+  <button mat-raised-button [disabled]="!form.valid" (click)="confirm()">Conferma</button>
+</div>
