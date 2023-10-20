@@ -11,11 +11,11 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class MoneteComponent {
   public group: FormGroup | null = null;
   public tipiMonete: string[] = [
-    'rame',
-    'argento',
-    'electrum',
-    'oro',
-    'platino',
+    'Rame (MR)',
+    'Argento (MA)',
+    'Electrum (ME)',
+    'Oro (MO)',
+    'Platino (MP)',
   ];
 
   public converter_dict: { [key: string]: number } = {
@@ -28,7 +28,7 @@ export class MoneteComponent {
   public modelTipoMonete: string = '';
   public modelNumeroMonete: number = 0;
 
-  constructor(public formService: FormService, private notificationService: NotificationService) {}
+  constructor(public formService: FormService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
@@ -89,33 +89,34 @@ export class MoneteComponent {
 
   public addToPreviousBag(bagToAdd: any) {
     if (bagToAdd.MP >= 0 && bagToAdd.MO >= 0 && bagToAdd.ME >= 0 && bagToAdd.MA >= 0 && bagToAdd.MR >= 0) {
-    this.group.get('MP').patchValue(bagToAdd.MP);
-    this.group.get('MO').patchValue(bagToAdd.MO);
-    this.group.get('ME').patchValue(bagToAdd.ME);
-    this.group.get('MA').patchValue(bagToAdd.MA);
-    this.group.get('MR').patchValue(bagToAdd.MR);
+      this.group.get('MP').setValue(bagToAdd.MP);
+      this.group.get('MO').setValue(bagToAdd.MO);
+      this.group.get('ME').setValue(bagToAdd.ME);
+      this.group.get('MA').setValue(bagToAdd.MA);
+      this.group.get('MR').setValue(bagToAdd.MR);
     } else {
-      this.notificationService.openSnackBar("non puoi perche' non hai abbastanza monete", 'toll', 6000)
+      this.notificationService.openSnackBar("Non puoi perchè non hai abbastanza monete", 'toll');
     }
 
   }
 
-  public cambioTaglio(taglio): string{
+  public cambioTaglio(taglio): string {
     switch (taglio) {
-      case 'platino':
+      case 'Platino (MP)':
         return 'MP';
-        case 'oro':
 
+      case 'Oro (MO)':
         return 'MO';
-        case 'electrum':
 
+      case 'Electrum (ME)':
         return 'ME';
-        case 'argento':
 
+      case 'Argento (MA)':
         return 'MA';
-        case 'rame':
 
+      case 'Rame (MR)':
         return 'MR';
+        
       default:
         return '';
     }

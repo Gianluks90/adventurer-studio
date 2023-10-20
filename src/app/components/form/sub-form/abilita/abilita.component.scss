@@ -29,3 +29,23 @@
   opacity: 0.5;
   font-style: italic;
 }
+
+@media screen and (max-width: 500px) {
+  .checkbox-line {
+    gap: 0;
+    font-size: smaller !important;
+  }
+
+  .modificatore {
+    font-size: smaller;
+    margin: 0;
+  }
+
+  .master-icon {
+    display: none;
+  }
+
+  ::ng-deep .mat-mdc-checkbox label {
+    font-size: smaller !important;
+  }
+}

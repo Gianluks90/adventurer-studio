@@ -89,7 +89,7 @@
   <button class="step-button" mat-icon-button (click)="saveForm()" matTooltip="Salva" matTooltipPosition="left">
     <mat-icon>save</mat-icon>
   </button>
-  <button class="step-button" mat-icon-button (click)="completeForm()" matTooltip="Completa" matTooltipPosition="left" [disabled]="!formService.formSubject.value.valid">
+  <button class="step-button" mat-icon-button (click)="completeForm()" matTooltip="Completa" matTooltipPosition="left" [disabled]="formService.formSubject.value && !formService.formSubject.value.valid">
     <mat-icon>check</mat-icon>
   </button>
 </div>

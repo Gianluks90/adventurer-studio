@@ -25,6 +25,8 @@ export class FormService {
     this.characterService.getCharacterById(charId).then((character) => {
       this.nestedPatchValue(tempForm, character);
       this.formSubject.next(tempForm);
+      console.log(tempForm);
+      
     });
   }
 

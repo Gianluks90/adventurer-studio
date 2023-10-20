@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <button mat-raised-button color="primary" (click)="createCharacter()" [disabled]="firebaseService.user.value.characters.length > 3">
+  <button mat-raised-button color="primary" (click)="createCharacter()" [disabled]="firebaseService.user.value && firebaseService.user.value.characters.length > 3">
     <mat-icon>add</mat-icon>
     Nuova scheda personaggio
   </button>

@@ -2,12 +2,12 @@
   <div class="step-form" [formGroup]="group">
     <section class="checkbox-section">
 
-      <div class="description-text">Il primo selettore (stella) permette di attivare la <b>Maestria</b> sull'Abilità corrispondente. La Maestria in un'abilità consiste in un bonus competenza raddoppiato.</div>
+      <div class="description-text">Il primo selettore (sinistra) permette di attivare la <b>Maestria</b> sull'Abilità corrispondente. La Maestria in un'abilità consiste in un bonus competenza raddoppiato.</div>
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaAcrobazia" [disabled]="!group.value.acrobazia">
+        <mat-checkbox class="master" formControlName="maestriaAcrobazia" [disabled]="!group.value.acrobazia">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
-        <mat-checkbox formControlName="acrobazia">Acrobazia (Des)</mat-checkbox>
+        <mat-checkbox class="check-label" formControlName="acrobazia">Acrobazia (Des)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.acrobazia">+ </span> {{tiroAcrobazia}}</div>
       </div>
@@ -16,7 +16,7 @@
         <mat-checkbox formControlName="maestriaAddestrareAnimali" [disabled]="!group.value.addestrareAnimali">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
-        <mat-checkbox formControlName="addestrareAnimali">Addestrare animali (Sag)</mat-checkbox>
+        <mat-checkbox class="less-labels" formControlName="addestrareAnimali">Addestrare animali (Sag)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.addestrareAnimali">+ </span> {{tiroAddestrareAnimali}}</div>
       </div>

@@ -130,8 +130,8 @@ export class FormModel {
       massimoPuntiFerita: [0, [Validators.min(1), Validators.required]],
       puntiFeritaAttuali: 0,
       puntiFeritaTemporanei: 0,
-      totaleDadiVita: [0, [Validators.min(1), Validators.required]],
-      dadiVitaOld: ['', Validators.required],
+      // totaleDadiVita: [0, [Validators.min(1), Validators.required]],
+      // dadiVitaOld: ['', Validators.required],
       dadiVita: [[], Validators.required],
     })
   }

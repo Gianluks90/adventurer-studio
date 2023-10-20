@@ -1,6 +1,7 @@
 .coins-viewer{
   display: flex;
   justify-content: space-around;
+  margin-bottom: 20px;
 }
 
 .single-coins-viewer{
@@ -8,15 +9,39 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 8px;
 }
 
 .coins-input{
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .input-field{
   display: flex;
-  width: 40%;
+  flex-grow: 1;
+  // width: 40%;
+}
+
+.input-container {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.button-money {
+  flex-grow: 1;
 }

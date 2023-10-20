@@ -29,7 +29,6 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
     this.formService.initForm(characterId!);
-
     if (this.sidenavService.isOpen()) {
       const menuButton = document.getElementById('menu-button');
       this.menuIcon = 'close';
@@ -37,11 +36,7 @@ export class FormComponent implements OnInit {
   }
 
   public saveForm() {
-    console.log(this.form.value.bonusAttaccoIncantesimi);
-    
     if (this.form.value.status.statusCode < 2) {
-      console.log('Salvataggio bozza');
-      
       const characterId = window.location.href.split('/').pop();
       this.formService.saveDraft(characterId, this.formService.formSubject.value);
       this.notification.openSnackBar('Bozza salvata con successo', 'check');

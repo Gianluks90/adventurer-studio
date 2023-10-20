@@ -1,8 +1,13 @@
 <ng-container *ngIf=" group2">
   <div class="step-form" [formGroup]="group2">
+    <div class="section-title">Denaro</div>
+
     <app-monete></app-monete>
   </div>
 </ng-container>
+
+<div class="section-title">Equipaggiamento</div>
+
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
@@ -11,4 +16,3 @@
     </mat-form-field>
   </div>
 </ng-container>
-
