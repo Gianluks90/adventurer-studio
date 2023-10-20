@@ -31,8 +31,8 @@ export class FormModel {
       caratteristicaIncantatore: '',
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,
-      statusSalvataggio: {
-        statusCode: 0,
+      status: {
+        statusCode: null,
         author: '',
         creationDate: null,
         lastUpadateDate: null,
@@ -132,7 +132,7 @@ export class FormModel {
       puntiFeritaTemporanei: 0,
       totaleDadiVita: [0, [Validators.min(1), Validators.required]],
       dadiVitaOld: ['', Validators.required],
-      dadiVita: [[''], Validators.required],
+      dadiVita: [[], Validators.required],
     })
   }
 
@@ -147,11 +147,11 @@ export class FormModel {
 
   static altreCompetenze(builder: FormBuilder) {
     return builder.group({
-      linguaggi: [[''], Validators.required],
-      armi: [[''], Validators.required],
-      armature: [[''], Validators.required],
-      strumenti: [[''], Validators.required],
-      altro: ['']
+      linguaggi: [[], Validators.required],
+      armi: [[], Validators.required],
+      armature: [[], Validators.required],
+      strumenti: [[], Validators.required],
+      altro: []
     })
   }
 

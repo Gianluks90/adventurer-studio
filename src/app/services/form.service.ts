@@ -20,7 +20,6 @@ export class FormService {
     private characterService: CharacterService) {
   }
 
-
   public initForm(charId: string): void {
     const tempForm = this.fb.group(FormModel.create(this.fb));
     this.characterService.getCharacterById(charId).then((character) => {
@@ -33,7 +32,7 @@ export class FormService {
     const docRef = doc(this.firebaseService.database, 'characters', charId);
     return await setDoc(docRef, {
       ...form.value,
-      statusSalvataggio: {
+      status: {
         statusCode: 1,
         lastUpadateDate: new Date()
       }
@@ -46,7 +45,7 @@ export class FormService {
     const docRef = doc(this.firebaseService.database, 'characters', charId);
     return await setDoc(docRef, {
       ...form.value,
-      statusSalvataggio: {
+      status: {
         statusCode: 2,
         lastUpadateDate: new Date()
       }

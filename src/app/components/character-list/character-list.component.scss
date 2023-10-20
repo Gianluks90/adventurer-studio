@@ -1,22 +1,23 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
   flex-grow: 1;
   height: 100%;
+  gap: 8px;
 }
 
-.card-container{
+.card-container {
   background-color: white;
-  margin: 16px;
+  // margin: 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 12px;
   border-radius: 8px;
   padding: 12px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .divider {
@@ -66,5 +67,19 @@
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 500px) {
+  .card-container {
+    flex-direction: column;
+    padding: 8px;
+  }
+
+  .button-container {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
 }

@@ -14,6 +14,10 @@
     </div>
     <div class="divider"></div>
     <div class="button-container">
+      <button mat-raised-button color="accent" [routerLink]="'/create/' + c.id" *ngIf="c.status.statusCode === 0">
+        <mat-icon>edit</mat-icon>
+        Crea personaggio
+      </button>
       <button mat-raised-button color="accent" [routerLink]="'/create/' + c.id" *ngIf="c.status.statusCode === 1">
         <mat-icon>edit</mat-icon>
         Modifica

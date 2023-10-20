@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDrawer } from '@angular/material/sidenav';
 import { MatStepper } from '@angular/material/stepper';
-import { AppComponent } from 'src/app/app.component';
 import { FormModel } from 'src/app/models/formModel';
 import { FormService } from 'src/app/services/form.service';
 import { MenuService } from 'src/app/services/menu.service';
@@ -23,7 +21,6 @@ export class FormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public formService: FormService,
-    private menuService: MenuService,
     private notification: NotificationService,
     private sidenavService: SidenavService) { }
 
@@ -32,7 +29,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
     this.formService.initForm(characterId!);
-    // this.menuService.hiddenButton = [''];
+
     if (this.sidenavService.isOpen()) {
       const menuButton = document.getElementById('menu-button');
       this.menuIcon = 'close';
@@ -40,7 +37,11 @@ export class FormComponent implements OnInit {
   }
 
   public saveForm() {
-    if (this.form.value.status.statusCode === 1) {
+    console.log(this.form.value.bonusAttaccoIncantesimi);
+    
+    if (this.form.value.status.statusCode < 2) {
+      console.log('Salvataggio bozza');
+      
       const characterId = window.location.href.split('/').pop();
       this.formService.saveDraft(characterId, this.formService.formSubject.value);
       this.notification.openSnackBar('Bozza salvata con successo', 'check');
@@ -65,7 +66,6 @@ export class FormComponent implements OnInit {
   public openSidenav() {
     const menuButton = document.getElementById('menu-button');
     if (this.sidenavService.isOpen()) {
-      // menuButton!.style.setProperty('left', 16 + 'px');
       this.menuIcon = 'menu';
     }
     this.sidenavService.toggle();

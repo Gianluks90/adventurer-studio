@@ -44,8 +44,10 @@ export class CharacterService {
       ...form.value,
       status: {
         creationDate: new Date(),
+        lastUpdateDate: new Date(),
         userId: user.id,
         author: user.displayName,
+        statusCode: 0
       }
     }).then(() => {
       const userRef = doc(this.firebaseService.database, 'users', user.id);
