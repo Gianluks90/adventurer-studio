@@ -16,33 +16,41 @@ import { MatDrawer } from '@angular/material/sidenav';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent {
-  public characters: any[] = [];
 
   constructor(
     public firebaseService: FirebaseService,
     private formService: FormService,
-    private router:Router,
+    private router: Router,
     public dialog: MatDialog,
     private platform: Platform,
     private authGuardService: AuthGuardService,
     public menuService: MenuService,
-    private drawer: MatDrawer) {}
+    private drawer: MatDrawer) { }
+
 
   public logout() {
-    getAuth().signOut().then(()=>{
-      localStorage.setItem('dndCS-2023-logged','false');
+    getAuth().signOut().then(() => {
+      localStorage.setItem('dndCS-2023-logged', 'false');
       this.drawer.close();
       this.authGuardService.authStatus = false
     });
   }
 
-  public createCharacter(){
+  public createCharacter() {
     this.dialog.open(AddCharacterDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
-      this.router.navigate(['/create', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)])
+        // this.drawer.close();
+        window.location.reload();
+        // this.router.navigate(['/create', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)]).then(() => {
+          // window.location.reload();
+        // });
       }
     });
+  }
+
+  public close() {
+    this.drawer.close();
   }
 }

@@ -14,15 +14,20 @@
     
 
     <div class="section-title">Classe/i</div>
-    <div class="description-text">Al 1° Livello un Personaggio può avere una singola <strong>Classe</strong> tuttavia
-      progredendo con l'esperienza sarà possibile creare Personaggi con una <strong>Multiclasse</strong>. Le opzioni di
-      Multiclasse consentono a un Personaggio di acquisire livelli in più classi. Così facendo, un Personaggio è in
-      grado di mescolare le capacità di quelle classi per dare vita a un concetto di Personaggio che forse non era
-      rappresentato a dovere dalle opzioni delle classi standard.
-      Grazie a queste regole, un Personaggio ha la possibilità di acquisire livelli in una nuova Classe ogni volta che
-      avanza di livello, anziché acquisire un livello nella sua Classe attuale. I livelli in tutte le sue classi,
-      sommati assieme, determinano il suo livello del Personaggio. Per maggiori informazioni sulla Multiclasse vai a
-      pagina PHB 163.</div>
+
+    <details>
+      <summary class="summary-label">Multiclasse</summary>
+      <div class="description-text summary-text">Al 1° Livello un Personaggio può avere una singola <strong>Classe</strong> tuttavia
+        progredendo con l'esperienza sarà possibile creare Personaggi con una <strong>Multiclasse</strong>. Le opzioni di
+        Multiclasse consentono a un Personaggio di acquisire livelli in più classi. Così facendo, un Personaggio è in
+        grado di mescolare le capacità di quelle classi per dare vita a un concetto di Personaggio che forse non era
+        rappresentato a dovere dalle opzioni delle classi standard.
+        Grazie a queste regole, un Personaggio ha la possibilità di acquisire livelli in una nuova Classe ogni volta che
+        avanza di livello, anziché acquisire un livello nella sua Classe attuale. I livelli in tutte le sue classi,
+        sommati assieme, determinano il suo livello del Personaggio. Per maggiori informazioni sulla Multiclasse vai a
+        pagina PHB 163.</div>
+    </details>
+    
 
     <div class="description-text">Solo alcune Classi hanno una <strong>Sottoclasse</strong> al 1° Livello quindi è
       probabile che lascerai questo campo vuoto al momento.</div>
@@ -51,7 +56,7 @@
 
           <div class="delete-button">
             <button mat-raised-button color="accent" (click)="deleteClasse(i)">
-              <mat-icon>delete</mat-icon> Rimuovi
+              <mat-icon>arrow_upward</mat-icon><mat-icon>delete</mat-icon> Rimuovi
             </button>
           </div>
         </div>
@@ -61,7 +66,7 @@
     <div class="button-container">
       <button mat-raised-button color="accent" (click)="addClasse()">
         <mat-icon>add</mat-icon>
-        Aggiungi Classe
+        Aggiungi nuova
       </button>
     </div>
 

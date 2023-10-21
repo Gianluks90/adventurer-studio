@@ -45,7 +45,7 @@ export class FormModel {
     return builder.group({
       nomeGiocatore: ['', Validators.required],
       classi: builder.array([]),
-      classe: ['', Validators.required],
+      // classe: ['', Validators.required],
       sottoclasse: '',
       livello: [1, Validators.max(20)],
       background: ['', Validators.required],

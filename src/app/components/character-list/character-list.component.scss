@@ -25,14 +25,26 @@
 }
 
 .button-container {
+  // display: flex;
+  // gap: 12px;
   display: flex;
-  gap: 12px;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.button-container > button {
+  flex-grow: 1;
 }
 
 .character-name {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .character-name::first-letter {
@@ -46,7 +58,7 @@
 
 .immagine-personaggio {
   width: 100px;
-  height: 100px;
+  // height: 100px;
   border-radius: 4px;
   object-fit: cover;
 }
@@ -70,6 +82,21 @@
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
+.side-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.no-more-heroes {
+  margin-top: 20px;
+}
+
+.main-button {
+  width: 100%;
+}
+
 @media screen and (max-width: 500px) {
   .card-container {
     flex-direction: column;
@@ -79,7 +106,21 @@
   .button-container {
     width: 100%;
     justify-content: center;
+    gap: 8px;
     flex-wrap: wrap;
+  }
+
+  .button-container>button {
+    flex-grow: 1;
+  }
+
+  .immagine-personaggio {
+    width: 100%;
+    object-position: 50% 30%;
+  }
+
+  .no-more-heroes {
+    margin-top: 8px;
   }
 
 }

@@ -8,36 +8,35 @@
       <div class="user-name">
         {{firebaseService.user.value.displayName}}
       </div>
+      <div class="characters-count">
+        <mat-icon matTooltip="Schede create" matTooltipPosition="below">description</mat-icon> {{firebaseService.user.value.characters.length}} / 3
+      </div>
     </div>
   </div>
 
-  <button mat-raised-button color="primary" (click)="createCharacter()" [disabled]="firebaseService.user.value && firebaseService.user.value.characters.length > 3">
+  <button mat-raised-button color="primary" [routerLink]="['/home']" (click)="close()">
+    <mat-icon>home</mat-icon>
+    Inizio
+  </button>
+
+  <button mat-raised-button color="primary" (click)="createCharacter()" [disabled]="firebaseService.user.value && firebaseService.user.value.characters.length >= 3">
     <mat-icon>add</mat-icon>
     Nuova scheda personaggio
   </button>
 
-  <button mat-raised-button color="primary" [routerLink]="['/characters']">
+  <button mat-raised-button color="primary" [routerLink]="['/characters']" (click)="close()">
     <mat-icon>description</mat-icon>
     I tuoi personaggi
   </button>
 
-  <button mat-raised-button color="primary" disabled>
+  <button mat-raised-button color="primary" disabled (click)="close()">
     <mat-icon>group</mat-icon>
-    I tuoi party
+    Campagne
   </button>
 
-  <!-- <button mat-raised-button color="primary" (click)="saveDraft()" [hidden]="menuService.hiddenButton.includes('bozza') ? true : false">
-    <mat-icon>save</mat-icon>
-    Salva bozza
-  </button>
-
-  <button mat-raised-button color="primary" disabled [hidden]="menuService.hiddenButton.includes('pubblica') ? true : false">
-    <mat-icon>check</mat-icon>
-    Pubblica
-  </button> -->
-  <button mat-raised-button color="primary" [routerLink]="['/home']" [hidden]="menuService.hiddenButton.includes('indietro') ? true : false">
-    <mat-icon>home</mat-icon>
-    Inizio
+  <button mat-raised-button color="primary" disabled (click)="close()">
+    <mat-icon>inventory_2</mat-icon>
+    Creazioni
   </button>
 
   <button mat-raised-button color="primary" (click)="logout()">

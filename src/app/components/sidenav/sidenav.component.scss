@@ -39,7 +39,7 @@
   border-radius: 8px;
   padding: 4px;
   box-sizing: border-box;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .user-identity-container {
@@ -57,6 +57,7 @@
 
 .user-name {
   text-transform: uppercase;
+  flex-grow: 1;
 }
 
 .second-section {
@@ -64,6 +65,14 @@
   flex-direction: column;
   width: 80%;
   margin: 8px;
+}
+
+.characters-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: smaller;
+  margin-right: 8px;
 }
 
 @media screen and (min-width: 501px) {
@@ -75,9 +84,9 @@
 
 @media screen and (max-width: 900px) {
   .home-container {
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
   }
 
   .home-title {
@@ -94,5 +103,3 @@
   //     height: auto;
   // }
 }
-
-
