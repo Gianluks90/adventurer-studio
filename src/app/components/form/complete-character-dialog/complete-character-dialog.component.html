@@ -1,0 +1,15 @@
+<div mat-dialog-title class="dialog-title">Completa Scheda Personaggio</div>
+<mat-dialog-content class="mat-typography" [formGroup]="form">
+    <div class="description">Conferma per completare la Scheda Personaggio. Completando la Scheda potrai accedere alla
+        Visualizzazione ed usarla per le tue Sessioni di gioco.<strong>ATTENZIONE: L'AZIONE È IRREVERSIBILE.</strong>
+        Continuare?</div>
+    <div class="sections-container">
+        <mat-checkbox formControlName="confirm">
+            Si, voglio completare la Scheda Personaggio.
+        </mat-checkbox>
+    </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Annulla</button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">Conferma</button>
+</div>

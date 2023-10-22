@@ -29,6 +29,7 @@ import { SnackbarComponent } from './components/utilities/snackbar/snackbar.comp
 import { SidenavService } from './services/sidenav.service';
 import { DeleteCharacterDialogComponent } from './components/character-list/delete-character-dialog/delete-character-dialog.component';
 import { SharedModule } from './modules/shared/shared.module';
+import { CompleteCharacterDialogComponent } from './components/form/complete-character-dialog/complete-character-dialog.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { SharedModule } from './modules/shared/shared.module';
     MoneteComponent,
     SnackbarComponent,
     DeleteCharacterDialogComponent,
+    CompleteCharacterDialogComponent,
   ],
   imports: [
     SharedModule,
