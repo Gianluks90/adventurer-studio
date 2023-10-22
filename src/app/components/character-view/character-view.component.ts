@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CharacterService } from 'src/app/services/character.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { SidenavService } from 'src/app/services/sidenav.service';
 
 @Component({
   selector: 'app-character-view',
@@ -10,10 +11,12 @@ import { MenuService } from 'src/app/services/menu.service';
 export class CharacterViewComponent {
 
   public character: any;
+  public menuIcon = 'menu';
 
   constructor(
     private menuService: MenuService,
-    private characterService: CharacterService) {}
+    private characterService: CharacterService,
+    private sidenavService: SidenavService) {}
 
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
@@ -21,5 +24,13 @@ export class CharacterViewComponent {
       this.character = character;
     });
     // this.menuService.hiddenButton = ['bozza','pubblica']
+  }
+
+  public openSidenav() {
+    const menuButton = document.getElementById('menu-button');
+    if (this.sidenavService.isOpen()) {
+      this.menuIcon = 'menu';
+    }
+    this.sidenavService.toggle();
   }
 }

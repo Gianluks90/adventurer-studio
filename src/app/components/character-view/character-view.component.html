@@ -1,1 +1,21 @@
-<div>app-character-view works!</div>
+<div class="view-container">
+    <div class="view-header">
+        <img class="character-image" [src]="character.informazioniBase.urlImmaginePersonaggio">
+        <div class="character-info-container">
+            <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
+            <span>{{character.informazioniBase.razza}}</span>
+            <div *ngFor="let cl of character.informazioniBase.classi">
+                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="view-tabs">
+        B
+    </div>
+</div>
+
+<div class="sidenav-buttons" id="menu-button">
+    <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
+      <mat-icon>{{menuIcon}}</mat-icon>
+    </button>
+  </div>
