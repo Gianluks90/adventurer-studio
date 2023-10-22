@@ -23,7 +23,6 @@ export class CharacterViewComponent {
     this.characterService.getCharacterById(characterId).then((character) => {
       this.character = character;
     });
-    // this.menuService.hiddenButton = ['bozza','pubblica']
   }
 
   public openSidenav() {
