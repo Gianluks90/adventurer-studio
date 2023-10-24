@@ -13,10 +13,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  templateUrl: './form-create.component.html',
+  styleUrls: ['./form-create.component.scss']
 })
-export class FormComponent implements OnInit {
+export class FormCreateComponent implements OnInit {
 
   public form: FormGroup = this.fb.group(FormModel.create(this.fb))
 
