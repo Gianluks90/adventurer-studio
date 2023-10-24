@@ -1,0 +1,52 @@
+.checkbox-section{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .checkbox-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .divider {
+    border-bottom: 1px dotted lightgray;
+    flex-grow: 1;
+  }
+  
+  .modificatore {
+    font-size: medium;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .master-icon {
+    opacity: 0.5;
+  }
+  
+  .description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .checkbox-line {
+      gap: 0;
+      font-size: smaller !important;
+    }
+  
+    .modificatore {
+      font-size: smaller;
+      margin: 0;
+    }
+  
+    .master-icon {
+      display: none;
+    }
+  
+    ::ng-deep .mat-mdc-checkbox label {
+      font-size: smaller !important;
+    }
+  }
+  

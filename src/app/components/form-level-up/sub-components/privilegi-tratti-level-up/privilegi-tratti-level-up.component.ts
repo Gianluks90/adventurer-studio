@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
-  selector: 'app-privilegi-tratti',
-  templateUrl: './privilegi-tratti.component.html',
-  styleUrls: ['./privilegi-tratti.component.scss']
+  selector: 'app-privilegi-tratti-level-up',
+  templateUrl: './privilegi-tratti-level-up.component.html',
+  styleUrls: ['./privilegi-tratti-level-up.component.scss']
 })
-export class PrivilegiTrattiComponent {
+export class PrivilegiTrattiLevelUpComponent {
 
   public form: FormGroup | null = null;
   public privilegiTratti: FormArray;
@@ -17,13 +17,14 @@ export class PrivilegiTrattiComponent {
   }
 
   ngOnInit(): void {
-    this.formService.formSubject.subscribe((form: any) => {
+    this.formService.formLevelUpSubject.subscribe((form: any) => {
       if (form) {
         this.form = form;
         this.privilegiTratti = this.form.controls['privilegiTratti'] as FormArray;
       }
     });
   }
+
 
   addPrivilegioTratto() {
     const privilegioTratto = this.fb.group({

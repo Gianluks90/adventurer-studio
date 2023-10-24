@@ -1,0 +1,13 @@
+<ng-container *ngIf="group">
+    <div class="step-form" [formGroup]="group">
+
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label class="input-field">Bonus Competenza</mat-label>
+            <input class="" type="number" matInput formControlName="bonusCompetenza" min="2" max="6">
+        </mat-form-field>
+
+        <div class="description-text">Il <strong>Bonus di Competenza</strong> aumenta di 1 punto al 5°, al 9°, al 13° e
+            infine al 17° Livello, con un massimo valore di 6.</div>
+
+    </div>
+</ng-container>

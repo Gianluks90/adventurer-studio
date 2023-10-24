@@ -1,0 +1,37 @@
+.checkbox-section{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hint {
+    color: grey;
+  }
+  
+  .checkbox-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .divider {
+    border-bottom: 1px dotted lightgray;
+    flex-grow: 1;
+  }
+  
+  .modificatore {
+    font-size: medium;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  mat-form-field {
+    width: 100% !important;
+  }
+  
+  .description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    margin-bottom: 12px;
+  }

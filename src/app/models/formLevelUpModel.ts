@@ -1,32 +1,22 @@
 import { FormBuilder, Validators } from "@angular/forms";
 
-export class FormModel {
+export class FormLevelUpModel {
 
   constructor() { }
 
   static create(builder: FormBuilder) {
     return {
-      informazioniBase: FormModel.informazioniBase(builder),
-      caratteristiche: FormModel.caratteristiche(builder),
-      tiriSalvezza: FormModel.tiriSalvezza(builder),
-      competenzaAbilita: FormModel.competenzaAbilita(builder),
+      informazioniBase: FormLevelUpModel.informazioniBase(builder),
+      caratteristiche: FormLevelUpModel.caratteristiche(builder),
+      tiriSalvezza: FormLevelUpModel.tiriSalvezza(builder),
+      competenzaAbilita: FormLevelUpModel.competenzaAbilita(builder),
       CA: [0, Validators.required],
       iniziativa: [0, Validators.required],
       velocita: [0, Validators.required],
-      parametriVitali: FormModel.parametriVitali(builder),
-      trattiBackground: FormModel.trattiBackground(builder),
-      altreCompetenze: FormModel.altreCompetenze(builder),
-      denaro: FormModel.denaro(builder),
-      equipaggiamento: ['', Validators.required],
+      parametriVitali: FormLevelUpModel.parametriVitali(builder),
+      altreCompetenze: FormLevelUpModel.altreCompetenze(builder),
       privilegiTratti: builder.array([]),
       trucchettiIncantesimi: builder.array([]),
-      caratteristicheFisiche: FormModel.caratteristicheFisiche(builder),
-      urlImmaginePersonaggio: '',
-      urlImmagineSimbolo: '',
-      alleatiOrganizzazioni: '',
-      storiaPersonaggio: '',
-      trattiPrivilegiAggiuntivi: '',
-      tesoro: '',
       classeIncantatore: '',
       caratteristicaIncantatore: '',
       CDTiroSalvezza: 0,
@@ -43,18 +33,9 @@ export class FormModel {
 
   static informazioniBase(builder: FormBuilder) {
     return builder.group({
-      nomeGiocatore: ['', Validators.required],
       classi: builder.array([]),
-      // classe: ['', Validators.required],
-      sottoclasse: '',
       livello: [1, Validators.max(20)],
-      background: ['', Validators.required],
-      razza: ['', Validators.required],
-      sottorazza: '',
-      allineamento: ['', Validators.required],
       nomePersonaggio: ['', Validators.required],
-      urlImmaginePersonaggio: '',
-      nomeImmaginePersonaggio: '',
     })
   }
 
@@ -72,12 +53,6 @@ export class FormModel {
   static tiriSalvezza(builder: FormBuilder) {
     return builder.group({
       bonusCompetenza: [2, [Validators.max(6), Validators.required]],
-      forza: false,
-      destrezza: false,
-      costituzione: false,
-      intelligenza: false,
-      saggezza: false,
-      carisma: false
     })
   }
 
@@ -128,20 +103,7 @@ export class FormModel {
   static parametriVitali(builder: FormBuilder) {
     return builder.group({
       massimoPuntiFerita: [0, [Validators.min(1), Validators.required]],
-      puntiFeritaAttuali: 0,
-      puntiFeritaTemporanei: 0,
-      // totaleDadiVita: [0, [Validators.min(1), Validators.required]],
-      // dadiVitaOld: ['', Validators.required],
       dadiVita: [[], Validators.required],
-    })
-  }
-
-  static trattiBackground(builder: FormBuilder) {
-    return builder.group({
-      trattiCaratteriali: ['', Validators.required],
-      ideali: ['', Validators.required],
-      legami: ['', Validators.required],
-      difetti: ['', Validators.required]
     })
   }
 
@@ -152,27 +114,6 @@ export class FormModel {
       armature: [[], Validators.required],
       strumenti: [[], Validators.required],
       altro: []
-    })
-  }
-
-  static denaro(builder: FormBuilder) {
-    return builder.group({
-      MR: 0,
-      MA: 0,
-      ME: 0,
-      MO: 0,
-      MP: 0
-    })
-  }
-
-  static caratteristicheFisiche(builder: FormBuilder) {
-    return builder.group({
-      eta: 0,
-      altezza: 0,
-      peso: 0,
-      occhi: '',
-      carnagione: '',
-      capelli: '',
     })
   }
 }

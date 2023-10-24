@@ -1,0 +1,100 @@
+<div class="home-container">
+    <div class="second-section">
+        <form class="form-container">
+            <div class="header-container">
+                <div class="header-title">
+                    Aumento di Livello
+                </div>
+            </div>
+
+            <mat-stepper class="stepper-container" orientation="vertical" #stepper>
+
+                <mat-step class="step-label" label="Informazioni base">
+                    <form>
+                        <br>
+                        <app-informazioni-base-level-up></app-informazioni-base-level-up>
+
+                    </form>
+                </mat-step>
+
+                <mat-step class="step-label" label="Caratteristiche">
+                    <form>
+                        <br>
+                        <app-caratteristiche-level-up></app-caratteristiche-level-up>
+
+                    </form>
+                </mat-step>
+
+                <mat-step class="step-label" label="Bonus di Compentenza">
+                    <form>
+                        <br>
+                        <app-tiri-salvezza-level-up></app-tiri-salvezza-level-up>
+
+                    </form>
+                </mat-step>
+
+                <mat-step class="step-label" label="Compentenze Abilità">
+                    <form>
+                        <br>
+                        <app-competenze-abilita-level-up></app-competenze-abilita-level-up>
+
+                    </form>
+                </mat-step>
+
+                <mat-step class="step-label" label="Parametri Vitali">
+                    <form>
+                        <br>
+                        <app-parametri-vitali-level-up></app-parametri-vitali-level-up>
+                    </form>
+                </mat-step>
+
+                <mat-step class="step-label" label="Competenze e Linguaggi">
+                    <form>
+                        <br>
+                        <app-competenze-linguaggi-level-up></app-competenze-linguaggi-level-up>
+                    </form>
+                </mat-step>
+
+                <mat-step class="step-label" label="Privilegi, Tratti e Talenti">
+                    <form>
+                        <br>
+                        <app-privilegi-tratti-level-up></app-privilegi-tratti-level-up>
+                    </form>
+                </mat-step>
+
+                <mat-step class="step-label" label="Trucchetti e Incantesimi">
+                    <form>
+                        <br>
+                        <app-trucchetti-incantesimi-level-up></app-trucchetti-incantesimi-level-up>
+                    </form>
+                </mat-step>
+
+
+            </mat-stepper>
+        </form>
+    </div>
+</div>
+
+<div class="stepper-buttons">
+    <button class="step-button" mat-icon-button (click)="previousStep()" matTooltip="Sezione precedente"
+        matTooltipPosition="left">
+        <mat-icon>move_up</mat-icon>
+    </button>
+    <button class="step-button" mat-icon-button (click)="nextStep()" matTooltip="Sezione successiva"
+        matTooltipPosition="left">
+        <mat-icon>move_down</mat-icon>
+    </button>
+</div>
+
+<div class="action-buttons" *ngIf="formService.formLevelUpSubject.value">
+    <button class="step-button" mat-icon-button (click)="completeForm()" matTooltip="Completa" matTooltipPosition="left" [disabled]="formService.formLevelUpSubject.value && !formService.formLevelUpSubject.value.valid">
+      <mat-icon>check</mat-icon>
+    </button>
+  </div>
+
+<div class="sidenav-buttons" id="menu-button">
+    <button class="step-button" mat-icon-button (click)="sidenavService.toggle()" matTooltip="Menu"
+        matTooltipPosition="right">
+        <mat-icon>menu</mat-icon>
+    </button>
+</div>

@@ -6,6 +6,7 @@ import { FirebaseService } from './firebase.service';
 import { CharacterService } from './character.service';
 import { doc, setDoc } from 'firebase/firestore';
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { FormLevelUpModel } from '../models/formLevelUpModel';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage
 export class FormService {
 
   public formSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public formLevelUpSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(
     private fb: FormBuilder,
@@ -25,7 +27,15 @@ export class FormService {
     this.characterService.getCharacterById(charId).then((character) => {
       this.nestedPatchValue(tempForm, character);
       this.formSubject.next(tempForm);
-      console.log(tempForm);
+    });
+  }
+
+  public initLevelUpForm(charId: string): void {
+    const tempForm = this.fb.group(FormLevelUpModel.create(this.fb));
+    this.characterService.getCharacterById(charId).then((character) => {
+      this.nestedPatchValue(tempForm, character);
+      this.formLevelUpSubject.next(tempForm);
+      console.log('formLevelUpSubject', this.formLevelUpSubject.value);
       
     });
   }

@@ -1,0 +1,82 @@
+<ng-container *ngIf="group">
+    <div class="step-form" [formGroup]="group">
+        <div class="description-text">Secondo le regole ufficiali le <strong>Caratteristiche</strong> aumentano al 4°,
+            8°, 12°, 16° e 19° Livello, tuttavia è possibile, in accordo col Master e gli altri giocatori, utilizzare
+            una regola opzionale che assegna a questi Livelli un <strong>Talento</strong>. Per maggiori informazioni leggere pagina PHB
+            165. Il Privilegio di Classe <strong>Aumento dei Punteggi di Caratteristica</strong> consiste nell'aumentare
+            di 1 punto due Caratteristiche a scelta (oppure 2 punti di una Caratteristica) tenendo a mente che le Caratteristiche non possono mai superare il
+            valore di 20.
+        </div>
+
+        <details>
+            <summary class="summary-label">Spiegazione delle Caratteristiche</summary>
+            <div class="description-text summary-text">La <strong>Forza</strong> misura la potenza del proprio corpo,
+                l'addestramento
+                fisico e l'efficacia con cui un personaggio è in grado di esercitare la propria potenza fisica (PHB
+                175).</div>
+            <div class="description-text summary-text">La <strong>Destrezza</strong> misura l'agilità, i riflessi e
+                l'equilibrio (PHB 176).</div>
+            <div class="description-text summary-text">La <strong>Costituzione</strong> misura la salute, la resistenza
+                e l'energia vitale
+                del Personaggio (PHB 177).</div>
+            <div class="description-text summary-text">L'<strong>Intelligenza</strong> misura l'acume mentale, la
+                precisione della memoria
+                e le capacità logiche (PHB 177).</div>
+            <div class="description-text summary-text">La <strong>Saggezza</strong> rappresenta la percezione,
+                l'intuizione e il grado di
+                sintonia del personaggio con il mondo circostante (PHB 178).</div>
+            <div class="description-text summary-text">Il <strong>Carisma</strong> misura la capacità del personaggio di
+                interagire con
+                successo con gli altri. Include fattori come la sua sicurezza e la sua eloquenza e può rappresentare una
+                personalità accattivante o imperiosa (PHB 178).</div>
+        </details>
+
+        <div class="form-field-container">
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label class="input-field">Forza</mat-label>
+                <input class="" type="number" matInput formControlName="forza" max="20">
+            </mat-form-field>
+            <div class="modificatore"> <span *ngIf="modForza > 0">+ </span> {{modForza}}</div>
+        </div>
+
+        <div class="form-field-container">
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label class="input-field">Destrezza</mat-label>
+                <input class="" type="number" matInput formControlName="destrezza" max="20">
+            </mat-form-field>
+            <div class="modificatore"> <span *ngIf="modDestrezza > 0">+ </span> {{modDestrezza}}</div>
+        </div>
+
+        <div class="form-field-container">
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label class="input-field">Costituzione</mat-label>
+                <input class="" type="number" matInput formControlName="costituzione" max="20">
+            </mat-form-field>
+            <div class="modificatore"> <span *ngIf="modCostituzione > 0">+ </span> {{modCostituzione}}</div>
+        </div>
+
+        <div class="form-field-container">
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label class="input-field">Intelligenza</mat-label>
+                <input class="" matInput type="number" formControlName="intelligenza" max="20">
+            </mat-form-field>
+            <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span> {{modIntelligenza}}</div>
+        </div>
+
+        <div class="form-field-container">
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label class="input-field">Saggezza</mat-label>
+                <input class="" matInput type="number" formControlName="saggezza" max="20">
+            </mat-form-field>
+            <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span> {{modSaggezza}}</div>
+        </div>
+
+        <div class="form-field-container">
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label class="input-field">Carisma</mat-label>
+                <input class="" matInput type="number" formControlName="carisma" max="20">
+            </mat-form-field>
+            <div class="modificatore"> <span *ngIf="modCarisma > 0">+ </span> {{modCarisma}}</div>
+        </div>
+    </div>
+</ng-container>

@@ -18,6 +18,26 @@
     justify-content: center;
 }
 
+.header-container {
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.header-title::first-letter {
+    font-size: larger;
+}
+
 .home-title {
     background-color: black;
     color: white;

@@ -1,0 +1,83 @@
+<ng-container *ngIf="group && groupVita">
+    <div class="step-form" [formGroup]="group">
+
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label class="input-field">Classe Armatura (CA)</mat-label>
+            <input class="" matInput type="number" formControlName="CA">
+        </mat-form-field>
+
+        <div class="description-text">Senza un'armatura o uno scudo, la <strong>Classe Armatura</strong> (CA) di un personaggio è pari a 10 + il suo
+            Modificatore di Destrezza. Se il personaggio indossa un'armatura, trasporta uno scudo o fa entrambe le cose,
+            la CA deve essere calcolata usando le regole descritte a pagina PHB 144.</div>
+    </div>
+
+    <div class="step-form" [formGroup]="group">
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label class="input-field">Iniziativa</mat-label>
+            <input class="" type="number" matInput formControlName="iniziativa" placeholder="{{modDestrezza}}">
+        </mat-form-field>
+        <div class="description-text">L'<strong>Iniziativa</strong> è pari al modificatore di Destrezza attuale e questo
+            campo è legato alla modifica della caratteristica 'Destrezza'. Se hai un Personaggio con un'iniziativa
+            personalizzata (e il Master è d'accordo) aggiorna pure questo campo ma ricorda che se modifichi la Destrezza
+            anche
+            questo campo sarà aggiornato di conseguenza.</div>
+    </div>
+
+    <div class="step-form" [formGroup]="group">
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label class="input-field">Velocità</mat-label>
+            <input class="" type="number" matInput formControlName="velocita">
+        </mat-form-field>
+    </div>
+
+    <div class="step-form" [formGroup]="groupVita">
+
+        <div class="section-title">Dadi Vita</div>
+
+        <div class="description-text">Ogni volta che il personaggio acquisisce un livello, ottiene 1 <strong>Dado
+                Vita</strong>
+            aggiuntivo. Il personaggio tira quel Dado Vita. somma il modificatore di Costituzione al risultato del tiro
+            e aggiunge il totale al suo massimo
+            dei punti ferita. In alternativa. il personaggio pub usare
+            il valore fisso indicato nella sezione della sua classe, corrispondente al risultato medio del tiro del dado
+            (arrotondato per eccesso).</div>
+
+        <mat-form-field color="accent" appearance="outline">
+            <!-- <mat-label class="input-field">Linguaggi conosciuti</mat-label>
+        <input class="" matInput formControlName="linguaggi"> -->
+            <mat-label class="input-field">Totale Dadi vita e Tipo</mat-label>
+            <mat-chip-grid #chipGrid>
+                <mat-chip-row *ngFor="let d of dadiVita" (removed)="removeDadoVita(d)" [editable]="true"
+                    (edited)="editDadoVita(d, $event)">
+                    {{d}}
+                    <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip-row>
+                <input placeholder="Aggiungi un nuovo dado" [matChipInputFor]="chipGrid"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                    (matChipInputTokenEnd)="addDadoVita($event)" />
+
+            </mat-chip-grid>
+        </mat-form-field>
+
+        <div class="section-title">Punti Ferita</div>
+
+        <div class="description-text">Anche quando il modificatore di Costituzione del Personaggio aumenta di 1, i suoi
+            <strong>Punti Ferita Massimi</strong> aumentano di
+            1 per ogni livello da esso acquisito. Per esempio: un Personaggio giunge all'8° Livello come Guerriero, il
+            suo
+            Punteggio di Costituzione aumenta da 17 a 18 quindi il suo modificatore di Costituzione aumenta da +3 a +4.
+            Il
+            suo massimo dei punti ferita aumenta quindi di 8 (1 * 8 livelli).
+        </div>
+
+
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label class="input-field">Massimi</mat-label>
+            <input class="" type="number" matInput formControlName="massimoPuntiFerita" min="1">
+        </mat-form-field>
+
+
+    </div>
+</ng-container>

@@ -1,0 +1,109 @@
+<ng-container *ngIf="form">
+    <div class="step-form" [formGroup]="form">
+        <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Classe incantatore</mat-label>
+                <input matInput formControlName="classeIncantatore">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Caratteristica da incantatore</mat-label>
+                <input matInput formControlName="caratteristicaIncantatore">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>CD tiro salvezza incantesimi</mat-label>
+                <input matInput formControlName="CDTiroSalvezza">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Bonus di attacco incantesimi</mat-label>
+                <input matInput formControlName="bonusAttaccoIncantesimi">
+            </mat-form-field>
+        </div>
+
+
+
+        <div class="description-text">La <strong>CD</strong> (classe difficoltà) per resistere a un incantesimo è pari a
+            8 + il modificatore di caratteristica da incantatore + il bonus di competenza dell'incantatore, a cui si
+            sommano eventuali modificatori speciali. Mentre il <strong>bonus di attacco</strong> dell'incantatore per un attacco
+            con un incantesimo equivale al suo modificatore di caratteristica da incantatore + il suo bonus di competenza.
+        </div>
+
+    </div>
+    <div class="section-title">Elenco Incantesimi e Trucchetti</div>
+    <div class="description-text">
+        Alcune Classi come <strong>Druidi</strong> e <strong>Chierici</strong> conoscono tutti gli incantesimi della
+        loro lista, per cui non è necessario compilare questo campo con tutti gli incantesimi che conoscono ma solo
+        quelli preparati per la prima sessione.
+    </div>
+    <div [formGroup]="form">
+        <ng-container class="" formArrayName="trucchettiIncantesimi">
+            <ng-container *ngFor="let trucchettoIncantesimoForm of trucchettiIncantesimi.controls; let i = index;">
+                <div class="step-form" [formGroupName]="i">
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="nome">
+                    </mat-form-field>
+                    <div class="line-container">
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Tipologia</mat-label>
+                            <mat-select formControlName="tipologia">
+                                <mat-option value="trucchetto">Trucchetto</mat-option>
+                                <mat-option value="incantesimo">Incantesimo</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Scuola</mat-label>
+                            <input matInput formControlName="scuola">
+                        </mat-form-field>
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Livello</mat-label>
+                            <input matInput type="number" formControlName="livello" min="0" max="9">
+                        </mat-form-field>
+                    </div>
+                    <div class="line-container">
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Tempo di Lancio</mat-label>
+                            <input matInput formControlName="tempoLancio">
+                        </mat-form-field>
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Gittata</mat-label>
+                            <input matInput formControlName="gittata">
+                        </mat-form-field>
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Durata</mat-label>
+                            <input matInput formControlName="durata">
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Componenti</mat-label>
+                        <input matInput formControlName="componenti">
+                    </mat-form-field>
+
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Descrizione</mat-label>
+                        <textarea matInput formControlName="descrizione" rows="5"></textarea>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Ai livelli superiori</mat-label>
+                        <textarea matInput formControlName="livelloSuperiore" rows="5"></textarea>
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Riferimento (Sigla manuale / pagina)</mat-label>
+                        <input matInput formControlName="riferimento">
+                    </mat-form-field>
+                    <div class="delete-button">
+                        <button mat-raised-button color="accent" (click)="deleteTrucchettoIncantesimo(i)">
+                            <mat-icon>arrow_upward</mat-icon><mat-icon>delete</mat-icon> Rimuovi
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <div class="button-container">
+            <button mat-raised-button color="accent" (click)="addTrucchettoIncantesimo()">
+                <mat-icon>add</mat-icon>
+                Aggiungi nuovo
+            </button>
+        </div>
+    </div>
+</ng-container>

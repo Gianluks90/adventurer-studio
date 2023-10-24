@@ -1,0 +1,52 @@
+.step-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .form-field-container {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+  }
+  
+  .modificatore {
+    font-size: x-large;
+    background-color: black;
+    padding: 12px;
+    border-radius: 4px;
+    color: white;
+    width: 60px;
+    text-align: center;
+  }
+  
+  .input-field {
+    width: 100%;
+  }
+  
+  mat-form-field {
+    width: 100% !important;
+  }
+  
+  .description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+  
+  .summary-label {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    font-size: smaller;
+  }
+  
+  .summary-text {
+    margin-bottom: 4px;
+  }
+  
+  details {
+    margin-bottom: 20px;
+  }
