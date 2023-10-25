@@ -1,0 +1,59 @@
+.step-button {
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.dice-button {
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    padding: 8px;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.dice-button img {
+    height: auto;
+    width: 24px;
+}
+
+.dadi-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.dadi-container button {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: black;
+    top: 2px;
+    border-radius: 100%;
+    font-size: 8px;
+    color: white;
+    line-height: 1.8;
+}
+
+.displayer-valore {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+}
+
+#dddice {
+    height: auto;
+    width: 100%;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+}
