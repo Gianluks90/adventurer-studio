@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DiceService } from 'src/app/services/dice.service';
 import { ThreeDDice } from 'dddice-js';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-dice',
@@ -9,7 +10,8 @@ import { ThreeDDice } from 'dddice-js';
 })
 export class DiceComponent {
   private dddice: any
-  private idStanza: string = "VlClkLL" // DEVE ESSERE FORNITO DALL'UTENTE (POSSIBILE AGGIUNTA DI PASSWORD AL MOMENTO DELLA CONNESSIONE)
+  // private idStanza: string = "VlClkLL" // DEVE ESSERE FORNITO DALL'UTENTE (POSSIBILE AGGIUNTA DI PASSWORD AL MOMENTO DELLA CONNESSIONE)
+  private idStanza: string = "";
   public totale: number = 0;
   public arrayDadiSalvati: string[] = [];
   public dadi = [
@@ -51,6 +53,7 @@ export class DiceComponent {
       },
       error: err => console.log(err)
     })
+    this.idStanza = getAuth().currentUser!.uid.slice(0,5);
   }
 
   ngOnInit() {

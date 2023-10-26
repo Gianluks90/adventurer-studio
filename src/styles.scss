@@ -111,10 +111,14 @@ body {
   overflow-y: auto;
 }
 
-
 .custom-snackbar, .mdc-snackbar__surface {
   background-color: #cc0000 !important;
   color: white !important;
   border-radius: 8px;
   text-align: center;
+}
+
+app-character-list{
+  display: flex;
+  width: 100% !important;
 }

@@ -24,7 +24,7 @@ import { TrucchettiIncantesimiComponent } from "./components/form-create/sub-for
 import { FormLevelUpComponent } from "./components/form-level-up/form-level-up.component";
 import { HomeComponent } from "./components/home/home.component";
 import { MoneteComponent } from "./components/monete/monete.component";
-import { AddCharacterDialogComponent } from "./components/sidenav/add-character-dialog/add-character-dialog.component";
+import { AddCharacterDialogComponent } from "./components/character-list/add-character-dialog/add-character-dialog.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { SnackbarComponent } from "./components/utilities/snackbar/snackbar.component";
 import { SharedModule } from "./modules/shared/shared.module";
@@ -62,7 +62,7 @@ import { HttpClientModule } from "@angular/common/http";
     // UTILITIES COMPONENTS
     MoneteComponent,
     SnackbarComponent,
-   
+
     // FORM CREATE COMPONENTS AND SUB-COMPONENTS
     FormCreateComponent,
     // sub-components

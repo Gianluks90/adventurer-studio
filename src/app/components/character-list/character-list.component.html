@@ -1,68 +1,137 @@
-<div class="container" *ngIf="characters.length > 0">
-  <div class="card-container" *ngFor="let c of characters">
-    <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio != ''"
-      referrerpolicy="no-referrer" [src]="c.informazioniBase.urlImmaginePersonaggio">
-    <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio == ''" src="./assets/images/hero-placeholder.png">
-    <div class="side-container">
-      <div class="character-info-container">
-        <div class="character-name">
-          <mat-icon>description</mat-icon> {{c.informazioniBase.nomePersonaggio}}
+<!-- <div class="container" *ngIf="characters.length > 0">
+  <div class="card-order">
+    <div class="card-container" *ngFor="let c of characters">
+      <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio != ''"
+        referrerpolicy="no-referrer" [src]="c.informazioniBase.urlImmaginePersonaggio">
+      <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio == ''"
+        src="./assets/images/hero-placeholder.png">
+      <div class="side-container">
+        <div class="character-info-container">
+          <div class="character-name">
+            <mat-icon>description</mat-icon> {{c.informazioniBase.nomePersonaggio}}
+          </div>
+
+          <div class="character-info" *ngIf="c.informazioniBase.classi.length > 0">
+            <div *ngFor="let cl of c.informazioniBase.classi">
+              {{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span>
+            </div>
+          </div>
         </div>
-        <div class="character-info" *ngIf="c.informazioniBase.classi.length > 0">
-          <div *ngFor="let cl of c.informazioniBase.classi">
-            {{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span>
+
+        <div class="button-container">
+          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
+            *ngIf="c.status.statusCode === 0">
+            <mat-icon>star</mat-icon>
+            Crea
+          </button>
+          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
+            *ngIf="c.status.statusCode === 1">
+            <mat-icon>edit</mat-icon>
+            Modifica
+          </button>
+          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/' + c.id"
+            *ngIf="c.status.statusCode === 2">
+            <mat-icon>visibility</mat-icon>
+            Visualizza
+          </button>
+          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id"
+            *ngIf="c.status.statusCode === 2">
+            <mat-icon>arrow_upward</mat-icon>
+            LV+
+          </button>
+          <button class="main-button" mat-raised-button color="accent" (click)="deleteCharacter(c.id)">
+            <mat-icon>delete</mat-icon>
+            Elimina
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="string-order">
+    <div *ngIf="characters.length == 0">
+      <div class="card-container">
+        <div class="character-info-container">
+          <div class="character-name">
+            Nessun personaggio trovato
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="button-container">
-        <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id" *ngIf="c.status.statusCode === 0">
-          <mat-icon>star</mat-icon>
-          Crea
-        </button>
-        <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id" *ngIf="c.status.statusCode === 1">
-          <mat-icon>edit</mat-icon>
-          Modifica
-        </button>
-        <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/' + c.id" *ngIf="c.status.statusCode === 2">
-          <mat-icon>visibility</mat-icon>
-          Visualizza
-        </button>
-        <button mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id" *ngIf="c.status.statusCode === 2" >
-          <mat-icon>arrow_upward</mat-icon>
-          LV+
-        </button>
-        <button mat-raised-button color="accent" (click)="deleteCharacter(c.id)">
-          <mat-icon>delete</mat-icon>
-          Elimina
-        </button>
+    <div *ngIf="characters.length >= 3">
+      <div class="card-container no-more-heroes">
+        <div class="character-info-container">
+          <div class="character-name">
+            Hai raggiunto il limite di schede creabili
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="container" *ngIf="characters.length == 0">
+<div class="main-container">
   <div class="card-container">
-    <div class="character-info-container">
-      <div class="character-name">
-        Nessun personaggio trovato
+    <div class="card-details" *ngFor="let c of characters">
+      <div class="card-header">
+        <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio != ''"
+          referrerpolicy="no-referrer" [src]="c.informazioniBase.urlImmaginePersonaggio">
+        <img class="immagine-personaggio" *ngIf="c.informazioniBase.urlImmaginePersonaggio == ''"
+          src="./assets/images/hero-placeholder.png">
+        <div class="side-container">
+          <div class="character-info-container">
+            <div class="character-name">
+              <mat-icon>description</mat-icon> {{c.informazioniBase.nomePersonaggio}}
+            </div>
+
+            <div class="character-info" *ngIf="c.informazioniBase.classi.length > 0">
+              <div *ngFor="let cl of c.informazioniBase.classi">
+                {{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="button-container">
+            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
+              *ngIf="c.status.statusCode === 0">
+              <mat-icon>star</mat-icon>
+              Crea
+            </button>
+            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
+              *ngIf="c.status.statusCode === 1">
+              <mat-icon>edit</mat-icon>
+              Modifica
+            </button>
+            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/' + c.id"
+              *ngIf="c.status.statusCode === 2">
+              <mat-icon>visibility</mat-icon>
+              Visualizza
+            </button>
+            <div class="second-buttons">
+              <button mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id" [disabled]="c.status.statusCode !== 2">
+                <mat-icon>arrow_upward</mat-icon>
+                LV+
+              </button>
+              <button mat-raised-button color="accent" (click)="deleteCharacter(c.id)">
+                <mat-icon>delete</mat-icon>
+                Elimina
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="container" *ngIf="characters.length >= 3">
-  <div class="card-container no-more-heroes">
-    <div class="character-info-container">
-      <div class="character-name">
-        Hai raggiunto il limite di schede creabili
-      </div>
-    </div>
+  <div class="sidenav-buttons" id="menu-button">
+    <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
+      <mat-icon>menu</mat-icon>
+    </button>
   </div>
-</div>
-
-<div class="sidenav-buttons" id="menu-button">
-  <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
-    <mat-icon>menu</mat-icon>
-  </button>
-</div>
+  <div class="add-buttons" id="add-button" >
+    <button class="step-button" (click)="createCharacter()" mat-icon-button matTooltip="add" matTooltipPosition="left" [disabled]="characters.length >= 3">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>

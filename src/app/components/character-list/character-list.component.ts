@@ -6,6 +6,8 @@ import { MenuService } from 'src/app/services/menu.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { DeleteCharacterDialogComponent } from './delete-character-dialog/delete-character-dialog.component';
 import { Platform } from '@angular/cdk/platform';
+import { AddCharacterDialogComponent } from './add-character-dialog/add-character-dialog.component';
+
 
 @Component({
   selector: 'app-character-list',
@@ -45,14 +47,30 @@ export class CharacterListComponent implements OnInit {
   public deleteCharacter(id: string) {
     this.dialog.open(DeleteCharacterDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
-      data: { 
-        id: id 
+      data: {
+        id: id
       }
     }).afterClosed().subscribe((result: string) => {
       if ( result === 'confirm') {
+
         window.location.reload();
+        // this.characters = this.characters.filter(p => p.id !== id);
+        console.log('id', this.characters, id);
+
       }
     });
   }
 
+  public createCharacter() {
+    this.dialog.open(AddCharacterDialogComponent, {
+      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+    }).afterClosed().subscribe((result: string) => {
+      if (result === 'confirm') {
+        window.location.reload();
+        // this.router.navigate(['/create', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)]).then(() => {
+          // window.location.reload();
+        // });
+      }
+    });
+  }
 }
