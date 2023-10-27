@@ -15,6 +15,7 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -35,4 +36,89 @@
     padding: 8px;
     font-weight: bold;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+}
+
+.title {
+    font-family: Cinzel, serif;
+    color: white;
+    font-weight: 400;
+    font-size: 64px;
+    opacity: 0;
+    animation: appearAfterSeconds 2s ease-in-out 0.5s forwards;
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    letter-spacing: 8px;
+}
+
+@keyframes appearAfterSeconds {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.subtitle {
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    // font-size: small;
+    font-weight: 300;
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    opacity: 0;
+    // text-transform: uppercase;
+    animation: appearSubtitle 2s ease-in-out 1s forwards;
+    animation-delay: 1s;
+}
+
+@keyframes appearSubtitle {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    gap: 8px;
+}
+
+.buttons-container > button {
+    flex-grow: 1;
+}
+
+.button-character {
+    opacity: 0;
+    animation: appearAfterSeconds 2s ease-in-out 1.5s forwards;
+    animation-delay: 1.5s;
+}
+
+.button-campaign {
+    opacity: 0;
+    animation: appearAfterSeconds 2s ease-in-out 1.5s forwards;
+    animation-delay: 2s;
+}
+
+.button-collection {
+    opacity: 0;
+    animation: appearAfterSeconds 2s ease-in-out 1.5s forwards;
+    animation-delay: 2.5s;
+}
+
+@media screen and (max-width: 500px) {
+    .title {
+        font-size: xx-large;
+        text-align: center;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .subtitle {
+        width: 60%;
+        text-align: center;
+        font-size: medium;
+    }
 }
