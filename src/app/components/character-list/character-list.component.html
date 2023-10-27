@@ -82,43 +82,46 @@
         <div class="side-container">
           <div class="character-info-container">
             <div class="character-name">
-              <mat-icon>description</mat-icon> {{c.informazioniBase.nomePersonaggio}}
+              {{c.informazioniBase.nomePersonaggio}}
             </div>
 
             <div class="character-info" *ngIf="c.informazioniBase.classi.length > 0">
               <div *ngFor="let cl of c.informazioniBase.classi">
-                {{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span>
+                {{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != '';">, {{cl.sottoclasse}}</span>
               </div>
             </div>
+            <div class="character-info" *ngIf="c.informazioniBase.classi.length == 0">
+              Senza classe
           </div>
         </div>
-        <div class="card-body">
-          <div class="button-container">
-            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
-              *ngIf="c.status.statusCode === 0">
-              <mat-icon>star</mat-icon>
-              Crea
+        
+      </div>
+      <div class="card-body">
+        <div class="button-container">
+          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
+            *ngIf="c.status.statusCode === 0">
+            <mat-icon>star</mat-icon>
+            Crea
+          </button>
+          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
+            *ngIf="c.status.statusCode === 1">
+            <mat-icon>edit</mat-icon>
+            Modifica
+          </button>
+          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/' + c.id"
+            *ngIf="c.status.statusCode === 2">
+            <mat-icon>visibility</mat-icon>
+            Visualizza
+          </button>
+          <div class="second-buttons">
+            <button mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id" [disabled]="c.status.statusCode !== 2">
+              <mat-icon>arrow_upward</mat-icon>
+              LV+
             </button>
-            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
-              *ngIf="c.status.statusCode === 1">
-              <mat-icon>edit</mat-icon>
-              Modifica
+            <button mat-raised-button color="accent" (click)="deleteCharacter(c.id)">
+              <mat-icon>delete</mat-icon>
+              Elimina
             </button>
-            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/' + c.id"
-              *ngIf="c.status.statusCode === 2">
-              <mat-icon>visibility</mat-icon>
-              Visualizza
-            </button>
-            <div class="second-buttons">
-              <button mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id" [disabled]="c.status.statusCode !== 2">
-                <mat-icon>arrow_upward</mat-icon>
-                LV+
-              </button>
-              <button mat-raised-button color="accent" (click)="deleteCharacter(c.id)">
-                <mat-icon>delete</mat-icon>
-                Elimina
-              </button>
-            </div>
           </div>
         </div>
       </div>
