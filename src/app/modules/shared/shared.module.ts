@@ -15,6 +15,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatChipsModule,
     MatSelectModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule
   ],
   exports: [
     MatIconModule,
@@ -47,7 +49,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatChipsModule,
     MatSelectModule,
     MatSidenavModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule
   ]
 })
 export class SharedModule { }

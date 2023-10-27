@@ -5,17 +5,61 @@
             <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
             <span>{{character.informazioniBase.razza}}</span>
             <div *ngFor="let cl of character.informazioniBase.classi">
-                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div>
+                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">,
+                        {{cl.sottoclasse}}</span></div>
             </div>
         </div>
     </div>
     <div class="view-tabs">
-        B
+        <mat-tab-group color="accent">
+            <mat-tab>
+                <ng-template mat-tab-label class="tab-label">
+                    <mat-icon class="label-icon">thumb_up</mat-icon> Parametri
+                </ng-template>
+                Content 1
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon class="label-icon">star</mat-icon> Privilegi e tratti
+                </ng-template>
+                Content 2
+            </mat-tab>
+
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <mat-icon class="label-icon">inventory_2</mat-icon> Inventario
+                </ng-template>
+                {{character.equipaggiamento}}
+            </mat-tab>
+
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <mat-icon class="label-icon">brightness_5</mat-icon> Incantesimi
+                </ng-template>
+                Content 4
+            </mat-tab>
+
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <mat-icon class="label-icon">reorder</mat-icon> Attacchi
+                </ng-template>
+                Content 5
+            </mat-tab>
+
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <mat-icon class="label-icon">description</mat-icon> Descrizione
+                </ng-template>
+                Content 6
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>
 
 <div class="sidenav-buttons" id="menu-button">
+    <!-- <app-dice></app-dice> -->
     <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
-      <mat-icon>{{menuIcon}}</mat-icon>
+        <mat-icon>{{menuIcon}}</mat-icon>
     </button>
-  </div>
+</div>
