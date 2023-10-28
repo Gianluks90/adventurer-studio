@@ -40,6 +40,8 @@ import { PrivilegiTrattiLevelUpComponent } from './components/form-level-up/sub-
 import { TrucchettiIncantesimiLevelUpComponent } from './components/form-level-up/sub-components/trucchetti-incantesimi-level-up/trucchetti-incantesimi-level-up.component';
 import { DiceComponent } from './components/dice/dice.component';
 import { HttpClientModule } from "@angular/common/http";
+import { CharacterViewStatusComponent } from "./components/character-view/sub-components/character-view-status/character-view-status.component";
+import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/privilegi-tratti-tab-view.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,6 @@ import { HttpClientModule } from "@angular/common/http";
     AuthComponent,
 
     // VIEWS COMPONENTS
-    CharacterViewComponent,
     SidenavComponent,
 
     // DIALOG COMPONENTS
@@ -62,6 +63,7 @@ import { HttpClientModule } from "@angular/common/http";
     // UTILITIES COMPONENTS
     MoneteComponent,
     SnackbarComponent,
+    DiceComponent,
 
     // FORM CREATE COMPONENTS AND SUB-COMPONENTS
     FormCreateComponent,
@@ -89,7 +91,12 @@ import { HttpClientModule } from "@angular/common/http";
      CompetenzeLinguaggiLevelUpComponent,
      PrivilegiTrattiLevelUpComponent,
      TrucchettiIncantesimiLevelUpComponent,
-     DiceComponent,
+
+     // CHARACTER VIEW COMPONENT AND SUB-COMPONENTS
+     CharacterViewComponent,
+     // sub-components
+     CharacterViewStatusComponent,
+     PrivilegiTrattiTabViewComponent,
 
   ],
   imports: [

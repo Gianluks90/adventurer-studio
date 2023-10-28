@@ -1,0 +1,42 @@
+.description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.section-title {
+    margin-bottom: 16px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+}
+
+.pt-container {
+    margin-bottom: 4px;
+}
+
+.pt-name {
+    background-color: black;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.pt-type {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.pt-type::first-letter {
+    text-transform: uppercase;
+}
+
+.pt-description {
+    // padding: 4px
+}

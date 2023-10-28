@@ -1,0 +1,105 @@
+<div class="section-title">Caratteristiche</div>
+<div class="caratteristiche-main-container">
+    <div class="caratteristiche-line">
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">FOR</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.forza}}</div>
+            <div class="caratteristica-mod">{{modForza}}</div>
+        </div>
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">DES</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.destrezza}}</div>
+            <div class="caratteristica-mod">{{modDestrezza}}</div>
+        </div>
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">COS</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.costituzione}}</div>
+            <div class="caratteristica-mod">{{modCostituzione}}</div>
+        </div>
+    </div>
+    <div class="caratteristiche-line">
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">INT</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.intelligenza}}</div>
+            <div class="caratteristica-mod">{{modIntelligenza}}</div>
+        </div>
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">SAG</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.saggezza}}</div>
+            <div class="caratteristica-mod">{{modSaggezza}}</div>
+        </div>
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">CAR</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.carisma}}</div>
+            <div class="caratteristica-mod">{{modCarisma}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="section-title">Tiri salvezza</div>
+<div class="bonus-competenza">
+    <div>Bonus Competenza</div>
+    <div>+ {{characterData.tiriSalvezza.bonusCompetenza}}</div>
+</div>
+<div class="caratteristiche-main-container">
+    <div class="caratteristiche-line">
+        <div class="ts">
+            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.forza" matTooltipPosition="left" matTooltip="Competente">●</div> FOR</div>
+            <div class="ts-value">{{TSForza}}</div>
+        </div>
+        <div class="ts">
+            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.destrezza" matTooltipPosition="left" matTooltip="Competente">●</div> DES</div>
+            <div class="ts-value">{{TSDestrezza}}</div>
+        </div> 
+        <div class="ts">
+            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.costituzione" matTooltipPosition="left" matTooltip="Competente">●</div> COS</div>
+            <div class="ts-value">{{TSCostituzione}}</div>
+        </div> 
+    </div>
+    <div class="caratteristiche-line">
+        <div class="ts">
+            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.intelligenza" matTooltipPosition="left" matTooltip="Competente">●</div> INT</div>
+            <div class="ts-value">{{TSIntelligenza}}</div>
+        </div>
+        <div class="ts">
+            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.saggezza" matTooltipPosition="left" matTooltip="Competente">●</div> SAG</div>
+            <div class="ts-value">{{TSSaggezza}}</div>
+        </div>
+        <div class="ts">
+            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.carisma" matTooltipPosition="left" matTooltip="Competente">●</div> CAR</div>
+            <div class="ts-value">{{TSCarisma}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="section-title">Parametri vitali</div>
+<div class="punti-ferita-container">
+    <div class="pf-line">
+        <mat-icon class="pf-icon">favorite</mat-icon> <span class="PF">{{characterData.parametriVitali.massimoPuntiFerita}}</span> Punti Ferita Massimi 
+    </div>
+    <div class="pf-line">
+        <img src="./assets/dice/dice-d6-2.svg"> Dadi vita <span class="PF" *ngFor="let dice of characterData.parametriVitali.dadiVita">{{dice}}</span> 
+    </div>
+</div>
+
+<div class="section-title">Prove passive</div>
+<div class="passive-container">
+    <div class="passive-line">
+        <div class="passive-label">Percezione</div>
+        <div class="passive-divider"></div>
+        <div class="passive-value">{{percezionePassiva}}</div>
+    </div>
+
+    <div class="passive-line">
+        <div class="passive-label">Intuizione</div>
+        <div class="passive-divider"></div>
+        <div class="passive-value">{{intuizionePassiva}}</div>
+    </div>
+
+    <div class="passive-line">
+        <div class="passive-label">Indagare</div>
+        <div class="passive-divider"></div>
+        <div class="passive-value">{{indagarePassiva}}</div>
+    </div>
+</div>
+

@@ -11,47 +11,43 @@
         </div>
     </div>
     <div class="view-tabs">
+        <div class="status-container">
+            <app-character-view-status [character]="character"></app-character-view-status>
+        </div>
         <mat-tab-group color="accent">
             <mat-tab>
-                <ng-template mat-tab-label class="tab-label">
-                    <mat-icon class="label-icon">thumb_up</mat-icon> Parametri
+                <ng-template mat-tab-label>
+                    <mat-icon matTooltipPosition="below" matTooltip="Privilegi e Tratti" class="label-icon">star</mat-icon> 
                 </ng-template>
-                Content 1
+                <app-privilegi-tratti-tab-view [privilegiTratti]="character.privilegiTratti"></app-privilegi-tratti-tab-view>
             </mat-tab>
 
-            <mat-tab>
+            <mat-tab >
                 <ng-template mat-tab-label>
-                    <mat-icon class="label-icon">star</mat-icon> Privilegi e tratti
-                </ng-template>
-                Content 2
-            </mat-tab>
-
-            <mat-tab disabled>
-                <ng-template mat-tab-label>
-                    <mat-icon class="label-icon">inventory_2</mat-icon> Inventario
+                    <mat-icon matTooltipPosition="below" matTooltip="Inventario" class="label-icon">inventory_2</mat-icon>
                 </ng-template>
                 {{character.equipaggiamento}}
             </mat-tab>
 
             <mat-tab disabled>
                 <ng-template mat-tab-label>
-                    <mat-icon class="label-icon">brightness_5</mat-icon> Incantesimi
+                    <mat-icon matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi" class="label-icon">brightness_5</mat-icon> 
                 </ng-template>
-                Content 4
+                Trucchetti e Incantesimi
             </mat-tab>
 
             <mat-tab disabled>
                 <ng-template mat-tab-label>
-                    <mat-icon class="label-icon">reorder</mat-icon> Attacchi
+                    <mat-icon matTooltipPosition="below" matTooltip="Attacchi" class="label-icon">reorder</mat-icon> 
                 </ng-template>
-                Content 5
+                Attacchi
             </mat-tab>
 
             <mat-tab disabled>
                 <ng-template mat-tab-label>
-                    <mat-icon class="label-icon">description</mat-icon> Descrizione
+                    <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background" class="label-icon">description</mat-icon> 
                 </ng-template>
-                Content 6
+                Descrizione e background
             </mat-tab>
         </mat-tab-group>
     </div>

@@ -1,0 +1,157 @@
+.description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.section-title {
+    margin: 16px 0;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+}
+
+.caratteristiche-main-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 4px;
+}
+
+.caratteristiche-line {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.caratteristiche-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-grow: 1;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+}
+
+.caratteristica-label {
+    font-size: medium;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    width: 100%;
+    background-color: lightgray;
+    padding: 10px;
+    margin-top: -10px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.caratteristica-value {
+    font-size: small;
+    opacity: 0.7;
+}
+
+.caratteristica-mod {
+    font-size: large;
+    font-weight: bold;
+    background-color: black;
+    width: 100%;
+    padding: 4px;
+    border-radius: 4px;
+    color: white;
+}
+
+.bonus-competenza {
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    padding: 8px 20px;
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+
+.ts {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.ts-label {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+    font-size: medium;
+    margin-bottom: 4px;
+}
+
+.ts-value {
+    font-weight: bold;
+}
+
+.punti-ferita-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.pf-icon {
+    color: red;
+}
+
+.pf-line {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.pf-line > img {
+    width: 20px;
+    height: auto;
+}
+.PF {
+    font-weight: bold;
+    font-size: xx-large;
+    margin-right: 4px;
+}
+
+.passive-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.passive-line {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.passive-divider {
+    border-bottom: 1px dotted lightgray;
+    flex-grow: 1;
+    opacity: 0.5;
+}
+
+.passive-label {
+    font-size: small;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.passive-value {
+    font-size: large;
+}
