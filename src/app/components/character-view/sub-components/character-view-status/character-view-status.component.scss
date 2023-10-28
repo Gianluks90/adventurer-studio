@@ -118,10 +118,11 @@
     align-items: center;
 }
 
-.pf-line > img {
+.pf-line>img {
     width: 20px;
     height: auto;
 }
+
 .PF {
     font-weight: bold;
     font-size: xx-large;
@@ -154,4 +155,17 @@
 
 .passive-value {
     font-size: large;
+}
+
+@media screen and (max-width: 500px) {
+    .pf-line {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .PF {
+        font-weight: bold;
+        font-size: large;
+        margin-right: 4px;
+    }
 }
