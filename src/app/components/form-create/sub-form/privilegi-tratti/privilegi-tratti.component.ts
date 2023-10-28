@@ -29,6 +29,7 @@ export class PrivilegiTrattiComponent {
     const privilegioTratto = this.fb.group({
       nome: ['', Validators.required],
       tipologia: ['privilegio', Validators.required],
+      riferimento: '',
       descrizione: ['', Validators.required],
     });
     this.privilegiTratti.push(privilegioTratto);

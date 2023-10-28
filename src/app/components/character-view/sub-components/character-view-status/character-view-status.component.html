@@ -44,29 +44,47 @@
 <div class="caratteristiche-main-container">
     <div class="caratteristiche-line">
         <div class="ts">
-            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.forza" matTooltipPosition="left" matTooltip="Competente">●</div> FOR</div>
+            <div class="ts-label">
+                <div *ngIf="characterData.tiriSalvezza.forza" matTooltipPosition="left" matTooltip="Competente">●</div>
+                FOR
+            </div>
             <div class="ts-value">{{TSForza}}</div>
         </div>
         <div class="ts">
-            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.destrezza" matTooltipPosition="left" matTooltip="Competente">●</div> DES</div>
+            <div class="ts-label">
+                <div *ngIf="characterData.tiriSalvezza.destrezza" matTooltipPosition="left" matTooltip="Competente">●
+                </div> DES
+            </div>
             <div class="ts-value">{{TSDestrezza}}</div>
-        </div> 
+        </div>
         <div class="ts">
-            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.costituzione" matTooltipPosition="left" matTooltip="Competente">●</div> COS</div>
+            <div class="ts-label">
+                <div *ngIf="characterData.tiriSalvezza.costituzione" matTooltipPosition="left" matTooltip="Competente">●
+                </div> COS
+            </div>
             <div class="ts-value">{{TSCostituzione}}</div>
-        </div> 
+        </div>
     </div>
     <div class="caratteristiche-line">
         <div class="ts">
-            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.intelligenza" matTooltipPosition="left" matTooltip="Competente">●</div> INT</div>
+            <div class="ts-label">
+                <div *ngIf="characterData.tiriSalvezza.intelligenza" matTooltipPosition="left" matTooltip="Competente">●
+                </div> INT
+            </div>
             <div class="ts-value">{{TSIntelligenza}}</div>
         </div>
         <div class="ts">
-            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.saggezza" matTooltipPosition="left" matTooltip="Competente">●</div> SAG</div>
+            <div class="ts-label">
+                <div *ngIf="characterData.tiriSalvezza.saggezza" matTooltipPosition="left" matTooltip="Competente">●
+                </div> SAG
+            </div>
             <div class="ts-value">{{TSSaggezza}}</div>
         </div>
         <div class="ts">
-            <div class="ts-label"><div *ngIf="characterData.tiriSalvezza.carisma" matTooltipPosition="left" matTooltip="Competente">●</div> CAR</div>
+            <div class="ts-label">
+                <div *ngIf="characterData.tiriSalvezza.carisma" matTooltipPosition="left" matTooltip="Competente">●
+                </div> CAR
+            </div>
             <div class="ts-value">{{TSCarisma}}</div>
         </div>
     </div>
@@ -75,10 +93,12 @@
 <div class="section-title">Parametri vitali</div>
 <div class="punti-ferita-container">
     <div class="pf-line">
-        <mat-icon class="pf-icon">favorite</mat-icon>Punti Ferita Massimi <span class="PF">{{characterData.parametriVitali.massimoPuntiFerita}}</span> 
+        <mat-icon class="pf-icon">favorite</mat-icon>Punti Ferita Massimi <span
+            class="PF">{{characterData.parametriVitali.massimoPuntiFerita}}</span>
     </div>
     <div class="pf-line">
-        <img src="./assets/dice/dice-d6-2.svg"> Dadi vita <span class="PF" *ngFor="let dice of characterData.parametriVitali.dadiVita">{{dice}}</span> 
+        <img src="./assets/dice/dice-d6-2.svg"> Dadi vita <span class="PF"
+            *ngFor="let dice of characterData.parametriVitali.dadiVita">{{dice}}</span>
     </div>
 </div>
 
@@ -102,4 +122,3 @@
         <div class="passive-value">{{indagarePassiva}}</div>
     </div>
 </div>
-
