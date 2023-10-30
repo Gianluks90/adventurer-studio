@@ -10,8 +10,8 @@ import { getAuth } from 'firebase/auth';
 })
 export class DiceComponent {
   private dddice: any
-  // private idStanza: string = "VlClkLL" // DEVE ESSERE FORNITO DALL'UTENTE (POSSIBILE AGGIUNTA DI PASSWORD AL MOMENTO DELLA CONNESSIONE)
-  private idStanza: string = "";
+  private idStanza: string = "VlClkLL" // DEVE ESSERE FORNITO DALL'UTENTE (POSSIBILE AGGIUNTA DI PASSWORD AL MOMENTO DELLA CONNESSIONE)
+  // private idStanza: string = "";
   public totale: number = 0;
   public arrayDadiSalvati: string[] = [];
   public dadi = [
@@ -53,7 +53,7 @@ export class DiceComponent {
       },
       error: err => console.log(err)
     })
-    this.idStanza = getAuth().currentUser!.uid.slice(0,5);
+
   }
 
   ngOnInit() {
