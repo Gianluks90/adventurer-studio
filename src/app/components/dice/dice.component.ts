@@ -100,11 +100,18 @@ export class DiceComponent {
 
   // FUNZIONE CHE SALVA I VALORI DEI DADI NELL'ARRAY E LA QUANTITA' ALL'INTERNO DELL'OGGETTO
   public salvaDadi(valoreDadi: any) {
-    for (const dado of this.dadi) {
+
+    if (this.arrayDadiSalvati.length < 25) {
+      for (const dado of this.dadi) {
       if (dado.valore === valoreDadi) {
         dado.selezionati += 1;
       }
     }
-    this.arrayDadiSalvati.push(valoreDadi);
+      this.arrayDadiSalvati.push(valoreDadi);
+    } else {
+      console.log('limite raggiunto');
+
+    }
+
   }
 }
