@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DiceService } from 'src/app/services/dice.service';
 import { ThreeDDice } from 'dddice-js';
 import { getAuth } from 'firebase/auth';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-dice',
@@ -43,12 +44,13 @@ export class DiceComponent {
   ]
   public isMenuOpen = false;
 
-  constructor(private service: DiceService) {
+  constructor(private service: DiceService, private notification: NotificationService,) {
     this.service.result.subscribe({
       next: res => {
         if(res){
           console.log(res)
           this.totale = res
+          this.notification.openSnackBar( 'il totale del tuo tiro è ' + res.toString(),'check', 3000);
         }
       },
       error: err => console.log(err)
@@ -93,8 +95,9 @@ export class DiceComponent {
 
   //FUNZIONE CHE CHIAMA IL SERVICE PER EFFETTUARE IL TIRO
   private callForRoll(dice: any) {
-    this.service.getRoll(dice);
+    this.service.getRoll(dice)
     setTimeout(() => this.totale = 0, 10000);
+
     this.arrayDadiSalvati = [];
   }
 
@@ -110,7 +113,7 @@ export class DiceComponent {
       this.arrayDadiSalvati.push(valoreDadi);
     } else {
       console.log('limite raggiunto');
-
+      this.notification.openSnackBar( 'hai raggiunto il limite dei dadi selezionabili','warning', 3000);
     }
 
   }

@@ -128,3 +128,7 @@ app-character-view{
   justify-content: center;
   width: 100% !important;
 }
+
+.mdc-button__label{
+  z-index: 0 !important;
+}

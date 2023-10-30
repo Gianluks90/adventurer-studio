@@ -51,9 +51,11 @@
 }
 
 #dddice {
-    height: auto;
-    width: 100%;
+    height: auto!important;
+    width: 100% !important;
     pointer-events: none;
     position: fixed;
     top: 0;
+    left: 0;
+    z-index: 100000000000;
 }
