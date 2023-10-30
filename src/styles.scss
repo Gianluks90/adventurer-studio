@@ -111,24 +111,69 @@ body {
   overflow-y: auto;
 }
 
-.custom-snackbar, .mdc-snackbar__surface {
-  background-color: #cc0000 !important;
+//Chrome
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+    width: 8px;
+    border: none;
+    background: transparent;
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background-image: url("https://i.imgur.com/GvV1R30.png");
+    background-repeat: repeat-y;
+    background-size: contain;
+}
+
+//Firefox
+* {
+  scrollbar-width: thin;
+}
+
+.custom-snackbar,
+.mdc-snackbar__surface {
+  // background-color: #cc0000 !important;
   color: white !important;
   border-radius: 8px;
   text-align: center;
 }
 
-app-character-list{
+app-character-list {
   display: flex;
   width: 100% !important;
 }
 
-app-character-view{
+app-character-view {
   display: flex;
   justify-content: center;
   width: 100% !important;
 }
 
-.mdc-button__label{
+.mdc-button__label {
   z-index: 0 !important;
+}
+
+.background-red {
+  background-color: red !important;
+}
+
+.background-green {
+  background-color: green !important;
+}
+
+.background-yellow {
+  background-color: yellow !important;
 }

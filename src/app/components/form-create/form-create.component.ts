@@ -46,9 +46,9 @@ export class FormCreateComponent implements OnInit {
     if (this.form.value.status.statusCode < 2) {
       const characterId = window.location.href.split('/').pop();
       this.formService.saveDraft(characterId, this.formService.formSubject.value);
-      this.notification.openSnackBar('Bozza salvata con successo', 'check');
+      this.notification.openSnackBar('Bozza salvata con successo', 'check', 3000, 'limegreen');
     } else {
-      this.notification.openSnackBar('Non puoi salvare un Form Completo', 'warning');
+      this.notification.openSnackBar('Non puoi salvare un Form Completo', 'warning', 3000, 'red');
     }
   }
 
@@ -56,7 +56,7 @@ export class FormCreateComponent implements OnInit {
       const characterId = window.location.href.split('/').pop();
       this.dialog.open(CompleteCharacterDialogComponent, {
         width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
-        data: { 
+        data: {
           id: characterId,
           form: this.form.value
         }

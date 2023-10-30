@@ -8,8 +8,8 @@ import { MAT_SNACK_BAR_DATA, MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SnackbarComponent {
   constructor(
-    public snackbar: MatSnackBar, 
-    @Inject(MAT_SNACK_BAR_DATA) public data: {message: string, icon: string} ) { }
+    public snackbar: MatSnackBar,
+    @Inject(MAT_SNACK_BAR_DATA) public data: {message: string, icon: string, color:string} ) { }
 
   public close() {
     this.snackbar.dismiss();

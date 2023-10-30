@@ -50,7 +50,7 @@ export class DiceComponent {
         if(res){
           console.log(res)
           this.totale = res
-          this.notification.openSnackBar( 'il totale del tuo tiro è ' + res.toString(),'check', 3000);
+          this.notification.openSnackBar( 'il totale del tuo tiro è ' + res.toString(),'check', 3000, 'limegreen');
         }
       },
       error: err => console.log(err)
@@ -113,7 +113,7 @@ export class DiceComponent {
       this.arrayDadiSalvati.push(valoreDadi);
     } else {
       console.log('limite raggiunto');
-      this.notification.openSnackBar( 'hai raggiunto il limite dei dadi selezionabili','warning', 3000);
+      this.notification.openSnackBar( 'hai raggiunto il limite dei dadi selezionabili','warning', 3000,'red');
     }
 
   }
