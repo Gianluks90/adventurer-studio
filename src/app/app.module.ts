@@ -42,6 +42,7 @@ import { DiceComponent } from './components/dice/dice.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CharacterViewStatusComponent } from "./components/character-view/sub-components/character-view-status/character-view-status.component";
 import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/privilegi-tratti-tab-view.component';
+import { EquipaggiamentoTabViewComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/equipaggiamento-tab-view.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub
      // sub-components
      CharacterViewStatusComponent,
      PrivilegiTrattiTabViewComponent,
+     EquipaggiamentoTabViewComponent,
 
   ],
   imports: [

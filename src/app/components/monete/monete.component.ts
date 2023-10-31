@@ -34,6 +34,8 @@ export class MoneteComponent {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.group = form.get('denaro') as FormGroup;
+        console.log(this.group.value);
+        
       }
     });
   }

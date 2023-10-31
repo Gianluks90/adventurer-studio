@@ -26,7 +26,7 @@
                 <ng-template mat-tab-label>
                     <mat-icon matTooltipPosition="below" matTooltip="Inventario" class="label-icon">inventory_2</mat-icon>
                 </ng-template>
-                {{character.equipaggiamento}}
+                <app-equipaggiamento-tab-view [equipaggiamento]="character.equipaggiamento" [denaro]="character.denaro"></app-equipaggiamento-tab-view>
             </mat-tab>
 
             <mat-tab disabled>

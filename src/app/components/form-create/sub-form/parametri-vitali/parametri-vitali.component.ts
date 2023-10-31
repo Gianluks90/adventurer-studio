@@ -35,6 +35,10 @@ export class ParametriVitaliComponent {
           this.modDestrezza = Math.floor((value.destrezza - 10) / 2);
           this.group?.get('iniziativa')?.setValue(this.modDestrezza);
         });
+
+        this.groupVita.get('massimoPuntiFerita').valueChanges.subscribe((value: any) => {
+          this.groupVita?.get('puntiFeritaAttuali')?.setValue(value);
+        });
       }
     });
   }

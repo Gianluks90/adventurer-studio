@@ -17,27 +17,32 @@ export class DiceComponent {
   public arrayDadiSalvati: string[] = [];
   public dadi = [
     {
-      nome: "./assets/images/4-dice.png",
+      nome: "./assets/dice/dice-d4.svg",
       valore: "d4",
       selezionati: 0
     },
     {
-      nome: "D6",
+      nome: "./assets/dice/dice-d6.svg",
       valore: "d6",
       selezionati: 0
     },
     {
-      nome: "D8",
+      nome: "./assets/dice/dice-d8.svg",
       valore: "d8",
       selezionati: 0
     },
     {
-      nome: "D12",
+      nome: "./assets/dice/dice-d10.svg",
+      valore: "d10",
+      selezionati: 0
+    },
+    {
+      nome: "./assets/dice/dice-d12.svg",
       valore: "d12",
       selezionati: 0
     },
     {
-      nome: "./assets/images/20-dice.svg",
+      nome: "./assets/dice/dice-d20.svg",
       valore: "d20",
       selezionati: 0
     }
@@ -50,7 +55,7 @@ export class DiceComponent {
         if(res){
           console.log(res)
           this.totale = res
-          this.notification.openSnackBar( 'il totale del tuo tiro è ' + res.toString(),'check', 3000, 'limegreen');
+          this.notification.openSnackBar( 'Il risultato del tiro è ' + res.toString(),'check', 5000, 'limegreen');
         }
       },
       error: err => console.log(err)
