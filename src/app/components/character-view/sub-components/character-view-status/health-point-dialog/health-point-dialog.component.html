@@ -1,0 +1,42 @@
+<div mat-dialog-title class="dialog-title">Aggiorna Punti Ferita</div>
+<div class="pf-container">
+    <span class="PF">{{data.group.value.puntiFeritaAttuali}}/{{data.group.value.massimoPuntiFerita}}</span>
+    <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi" matTooltipPosition="above">favorite</mat-icon>
+    <progress class="pf-progress" max="{{data.group.value.massimoPuntiFerita}}"
+        value="{{data.group.value.puntiFeritaAttuali}}"></progress>
+    <span *ngIf="data.group.value.massimoPuntiFeritaTemporanei > 0"
+        class="PF">{{data.group.value.puntiFeritaTemporaneiAttuali}}/{{data.group.value.massimoPuntiFeritaTemporanei}}</span>
+    <mat-icon *ngIf="data.group.value.massimoPuntiFeritaTemporanei > 0" class="pft-icon"
+        matTooltip="Punti Ferita Temporanei" matTooltipPosition="above">hourglass_empty</mat-icon>
+    <progress *ngIf="data.group.value.massimoPuntiFeritaTemporanei > 0" class="pf-temp-progress"
+        max="{{data.group.value.massimoPuntiFeritaTemporanei}}"
+        value="{{data.group.value.puntiFeritaTemporaneiAttuali}}"></progress>
+</div>
+
+<div mat-dialog-content class="dialog-content" [formGroup]="hpForm">
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Valore</mat-label>
+        <input type="number" min="0" matInput formControlName="value">
+    </mat-form-field>
+    <button mat-icon-button class="hp-button" color="accent" (click)="add()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button class="hp-button" color="accent" (click)="remove()">
+        <mat-icon>remove</mat-icon>
+    </button>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Valore temporaneo</mat-label>
+        <input type="number" min="0" matInput formControlName="valueTemp">
+    </mat-form-field>
+    <button mat-icon-button class="hp-button" color="accent" (click)="addTemp()">
+        <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button class="hp-button" color="accent" (click)="removeTemp()">
+        <mat-icon>remove</mat-icon>
+    </button>
+
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="accent" (click)="close()">Chiudi</button>
+</div>

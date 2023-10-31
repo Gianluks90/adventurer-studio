@@ -114,10 +114,6 @@
     overflow: unset;
 }
 
-.ca-icon {
-    color: rgb(78, 78, 252);
-}
-
 .pf-group {
     display: flex;
     justify-content: space-evenly;
@@ -195,7 +191,7 @@
     height: 10px;
     border-radius: 4px;
     background-color: lightgray;
-    margin: 0 8px;
+    // margin: 0 8px;
 }
 
 .heart-button {
@@ -203,6 +199,27 @@
     border-radius: 4px;
     color: white;
     box-shadow: 0 0 4px black;
+}
+
+.pft-icon {
+    color: orange;
+    overflow: unset;
+}
+
+.pf-temp-progress {
+    max-width: 60px;
+    height: 10px;
+    border-radius: 4px;
+    background-color: lightgray;
+    border-radius: 4px;
+}
+
+.pf-temp-progress::-webkit-progress-value {
+    background-color: orange;
+}
+
+.pf-temp-progress::-moz-progress-bar {
+    background-color: orange;
 }
 
 @media screen and (max-width: 500px) {

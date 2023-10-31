@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { FormGroup } from '@angular/forms';
-import { DocumentData, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { DocumentData, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -66,10 +66,21 @@ export class CharacterService {
         characters: arrayRemove(id)
       }, { merge: true });
     });
-   }
+  }
 
   public async updateCharacterById(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, form.value, { merge: true });
+  }
+
+  public async updateCharacterPFById(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      parametriVitali: {
+        puntiFeritaAttuali: form.value.puntiFeritaAttuali,
+        puntiFeritaTemporaneiAttuali: form.value.puntiFeritaTemporaneiAttuali,
+        massimoPuntiFeritaTemporanei: form.value.massimoPuntiFeritaTemporanei
+      }
+    }, { merge: true });
   }
 }

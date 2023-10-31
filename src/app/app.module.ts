@@ -45,6 +45,7 @@ import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub
 import { EquipaggiamentoTabViewComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/equipaggiamento-tab-view.component';
 import { MoneyDialogComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/money-dialog/money-dialog.component';
 import { AbilitaTabViewComponent } from './components/character-view/sub-components/abilita-tab-view/abilita-tab-view.component';
+import { HealthPointDialogComponent } from './components/character-view/sub-components/character-view-status/health-point-dialog/health-point-dialog.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +104,7 @@ import { AbilitaTabViewComponent } from './components/character-view/sub-compone
      EquipaggiamentoTabViewComponent,
      MoneyDialogComponent,
      AbilitaTabViewComponent,
+     HealthPointDialogComponent,
 
   ],
   imports: [

@@ -97,9 +97,15 @@
             class="PF">{{characterData.parametriVitali.puntiFeritaAttuali}}/{{characterData.parametriVitali.massimoPuntiFerita}}</span>
         <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi"
             matTooltipPosition="above">favorite</mat-icon>
-        <progress class="pf-progress" max="{{characterData.parametriVitali.massimoPuntiFerita}}"
+        <progress blueProgress class="pf-progress" max="{{characterData.parametriVitali.massimoPuntiFerita}}"
             value="{{characterData.parametriVitali.puntiFeritaAttuali}}"></progress>
-        <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button color="accent">
+        <span *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0"
+            class="PF">{{characterData.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{characterData.parametriVitali.massimoPuntiFeritaTemporanei}}</span>
+        <mat-icon *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0" class="pft-icon" matTooltip="Punti Ferita Temporanei Attuali / Massimi"
+            matTooltipPosition="above">hourglass_empty</mat-icon>
+        <progress *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0" class="pf-temp-progress" max="{{characterData.parametriVitali.massimoPuntiFeritaTemporanei}}"
+            value="{{characterData.parametriVitali.puntiFeritaTemporaneiAttuali}}"></progress>
+        <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button color="accent" (click)="openHPDialog()">
             <img src="./assets/icons/heart-check.svg">
         </button>
     </div>

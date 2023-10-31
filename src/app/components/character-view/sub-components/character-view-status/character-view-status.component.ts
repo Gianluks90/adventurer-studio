@@ -1,4 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { HealthPointDialogComponent } from './health-point-dialog/health-point-dialog.component';
+import { Platform } from '@angular/cdk/platform';
+import { FormGroup } from '@angular/forms';
+import { FormService } from 'src/app/services/form.service';
+import { NotificationService } from 'src/app/services/notification.service';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-character-view-status',
@@ -27,7 +34,14 @@ export class CharacterViewStatusComponent {
   public percezionePassiva: number = 0;
   public indagarePassiva: number = 0;
 
-  constructor() { }
+  public parametriVitaliForm: FormGroup | null = null;
+
+  constructor(
+    private dialog: MatDialog, 
+    private platform: Platform, 
+    private formService: FormService, 
+    private notification: NotificationService,
+    private charService: CharacterService) { }
 
   @Input() set character(character: any) {
     this.characterData = character;
@@ -36,6 +50,15 @@ export class CharacterViewStatusComponent {
     this.initTiriSalvezza();
     this.initProvePassive();
   }
+
+  ngOnInit(): void {
+    this.formService.formSubject.subscribe((form: any) => {
+      if (form) {
+        this.parametriVitaliForm = form.get('parametriVitali') as FormGroup;
+      }
+    });
+  }
+
 
   public initCaratteristiche(): void {
     this.modForza = Math.floor((this.characterData.caratteristiche.forza - 10) / 2) > 0 ? '+ ' + Math.floor((this.characterData.caratteristiche.forza - 10) / 2) : Math.floor((this.characterData.caratteristiche.forza - 10) / 2) + '';
@@ -83,5 +106,23 @@ export class CharacterViewStatusComponent {
     this.indagarePassiva = 10 + intelligenza;
     this.percezionePassiva = 10 + saggezza;
     this.intuizionePassiva = 10 + saggezza;
+  }
+
+  public openHPDialog() {
+    const characterId = window.location.href.split('/').pop();
+    this.dialog.open(HealthPointDialogComponent, {
+      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      data: {
+        group: this.parametriVitaliForm,
+      }
+    }).afterClosed().subscribe((result: any) => {
+      if (result.status === 'success') {
+        this.characterData.parametriVitali = result.newValue.value;
+        console.log(this.parametriVitaliForm.value);
+        this.charService.updateCharacterPFById(characterId!, this.parametriVitaliForm).then(() => {
+          this.notification.openSnackBar('Punti Ferita Aggiornati.', 'favorite', 3000, 'limegreen');
+        });
+      }
+    });
   }
 }

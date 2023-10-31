@@ -127,9 +127,8 @@ export class FormModel {
     return builder.group({
       massimoPuntiFerita: [0, [Validators.min(1), Validators.required]],
       puntiFeritaAttuali: 0,
-      puntiFeritaTemporanei: 0,
-      // totaleDadiVita: [0, [Validators.min(1), Validators.required]],
-      // dadiVitaOld: ['', Validators.required],
+      massimoPuntiFeritaTemporanei: 0,
+      puntiFeritaTemporaneiAttuali: 0,
       dadiVita: [[], Validators.required],
     })
   }
