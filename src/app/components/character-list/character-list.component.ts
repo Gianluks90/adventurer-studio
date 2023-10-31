@@ -52,11 +52,7 @@ export class CharacterListComponent implements OnInit {
       }
     }).afterClosed().subscribe((result: string) => {
       if ( result === 'confirm') {
-
         window.location.reload();
-        // this.characters = this.characters.filter(p => p.id !== id);
-        console.log('id', this.characters, id);
-
       }
     });
   }

@@ -1,0 +1,49 @@
+.section-title {
+    margin-bottom: 16px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+}
+
+.a-container {
+    margin-bottom: 4px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.a-name {
+    font-size: medium;
+}
+
+.maestria-icon {
+    font-size: smaller;
+}
+
+.a-name::first-letter {
+    text-transform: uppercase;
+}
+
+.a-divider {
+    border-bottom: 1px dotted lightgray;
+    flex-grow: 1;
+    margin: 0 12px;
+}
+
+.a-value {
+    font-weight: bold;
+    font-size: medium;
+}
+
+@media screen and (max-width: 500px) {
+    .a-name {
+        font-size: small;
+    }
+
+    .a-divider {
+        margin: 0 6px;
+    }
+}

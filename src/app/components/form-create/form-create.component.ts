@@ -36,10 +36,6 @@ export class FormCreateComponent implements OnInit {
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
     this.formService.initForm(characterId!);
-    // if (this.sidenavService.isOpen()) {
-    //   const menuButton = document.getElementById('menu-button');
-    //   this.menuIcon = 'close';
-    // }
   }
 
   public saveForm() {
@@ -63,7 +59,7 @@ export class FormCreateComponent implements OnInit {
       }).afterClosed().subscribe((result: string) => {
         if ( result === 'confirm') {
           this.router.navigate(['/characters']).then(() => {
-            this.notification.openSnackBar('Scheda Personaggio Completata', 'check', 4000);
+            this.notification.openSnackBar('Scheda Personaggio Completata', 'check', 4000, 'limegreen');
           });
         }
       });

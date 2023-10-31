@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
@@ -9,7 +9,9 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./monete.component.scss'],
 })
 export class MoneteComponent {
+
   public group: FormGroup | null = null;
+
   public tipiMonete: string[] = [
     'Rame (MR)',
     'Argento (MA)',
@@ -25,19 +27,14 @@ export class MoneteComponent {
     MA: 10,
     MR: 1,
   };
+
   public modelTipoMonete: string = '';
   public modelNumeroMonete: number = 0;
 
   constructor(public formService: FormService, private notificationService: NotificationService) { }
 
-  ngOnInit(): void {
-    this.formService.formSubject.subscribe((form: any) => {
-      if (form) {
-        this.group = form.get('denaro') as FormGroup;
-        console.log(this.group.value);
-        
-      }
-    });
+  @Input() public set denaro(denaro: FormGroup) {
+      this.group = denaro;
   }
 
   public converti(valore: number, da: string, a: string): number {
@@ -97,7 +94,7 @@ export class MoneteComponent {
       this.group.get('MA').setValue(bagToAdd.MA);
       this.group.get('MR').setValue(bagToAdd.MR);
     } else {
-      this.notificationService.openSnackBar("Non puoi perchè non hai abbastanza monete", 'toll');
+      this.notificationService.openSnackBar("Non hai abbastanza monete per farlo!", 'toll', 3000, 'red');
     }
 
   }
@@ -118,7 +115,7 @@ export class MoneteComponent {
 
       case 'Rame (MR)':
         return 'MR';
-        
+
       default:
         return '';
     }

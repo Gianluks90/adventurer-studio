@@ -7,7 +7,7 @@
 }
 
 .section-title {
-    margin: 16px 0;
+    margin: 8px 0;
     font-size: medium;
     font-weight: bold;
     text-transform: uppercase;
@@ -103,23 +103,33 @@
 
 .punti-ferita-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    width: 100%;
     gap: 16px;
 }
 
 .pf-icon {
     color: red;
+    overflow: unset;
 }
 
 .ca-icon {
     color: rgb(78, 78, 252);
 }
 
+.pf-group {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    margin-bottom: 8px;
+}
+
 .pf-line {
     display: flex;
-    gap: 8px;
+    flex-direction: row;
     align-items: center;
+    gap: 8px;
 }
 
 .pf-line>img {
@@ -127,10 +137,29 @@
     height: auto;
 }
 
+.pf-title {
+    font-size: large;
+    font-weight: bold;
+
+    background-color: lightgray;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    gap: 18px;
+    width: calc(100% - 29px);
+    flex-grow: 1;
+    margin: 0 4px;
+}
+
+.pg-title, span {
+    font-weight: 400;
+    font-size: small;
+}
+
 .PF {
     font-weight: bold;
     font-size: x-large;
-    margin-right: 4px;
+    margin-left: 4px;
 }
 
 .passive-container {
@@ -161,10 +190,24 @@
     font-size: large;
 }
 
+.pf-progress {
+    width: 100%;
+    height: 10px;
+    border-radius: 4px;
+    background-color: lightgray;
+    margin: 0 8px;
+}
+
+.heart-button {
+    background-color: black;
+    border-radius: 4px;
+    color: white;
+    box-shadow: 0 0 4px black;
+}
+
 @media screen and (max-width: 500px) {
     .pf-line {
-        flex-direction: column;
-        justify-content: center;
+        gap: 4px;
     }
 
     .PF {

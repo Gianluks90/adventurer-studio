@@ -1,0 +1,9 @@
+<div mat-dialog-title class="dialog-title">Aggiorna il Denaro</div>
+<mat-dialog-content class="mat-typography">
+    <app-monete [denaro]="data.group"></app-monete>
+
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Annulla</button>
+    <button mat-raised-button color="accent" (click)="close()">Conferma</button>
+</div>

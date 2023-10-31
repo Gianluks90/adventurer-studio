@@ -30,7 +30,12 @@
         {{denaroData.MP}} MP
       </div>
     </div>
+    <div class="single-coins-viewer">
+      <button class="money-button" mat-icon-button color="accent" matTooltip="Aggiorna il Denaro" matTooltipPosition="above" (click)="openMoneyDialog()">
+        <mat-icon>toll</mat-icon>
+      </button>
+    </div>
   </div>
-<!-- <app-monete></app-monete> -->
+<!-- <app-monete [denaro]="denaroData"></app-monete> -->
 <div class="section-title">Equipaggiamento</div>
 {{equipaggiamentoData}}

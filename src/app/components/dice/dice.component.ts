@@ -53,7 +53,6 @@ export class DiceComponent {
     this.service.result.subscribe({
       next: res => {
         if(res){
-          console.log(res)
           this.totale = res
           this.notification.openSnackBar( 'Il risultato del tiro è ' + res.toString(),'check', 5000, 'limegreen');
         }

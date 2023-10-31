@@ -12,7 +12,6 @@ export class PrivilegiTrattiTabViewComponent {
 
   @Input() set privilegiTratti(privilegiTratti: any) {
     this.privilegiTrattiData = privilegiTratti;
-    console.log(privilegiTratti);
     
   }
 

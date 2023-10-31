@@ -43,6 +43,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { CharacterViewStatusComponent } from "./components/character-view/sub-components/character-view-status/character-view-status.component";
 import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/privilegi-tratti-tab-view.component';
 import { EquipaggiamentoTabViewComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/equipaggiamento-tab-view.component';
+import { MoneyDialogComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/money-dialog/money-dialog.component';
+import { AbilitaTabViewComponent } from './components/character-view/sub-components/abilita-tab-view/abilita-tab-view.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,8 @@ import { EquipaggiamentoTabViewComponent } from './components/character-view/sub
      CharacterViewStatusComponent,
      PrivilegiTrattiTabViewComponent,
      EquipaggiamentoTabViewComponent,
+     MoneyDialogComponent,
+     AbilitaTabViewComponent,
 
   ],
   imports: [

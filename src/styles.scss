@@ -177,3 +177,16 @@ app-character-view {
 .background-yellow {
   background-color: yellow !important;
 }
+
+progress {
+  border: none;
+  background: red;
+}
+
+progress::-moz-progress-bar {
+  background: red;
+}
+
+progress::-webkit-progress-value {
+  background: red;
+}

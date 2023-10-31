@@ -46,7 +46,7 @@ export class LinguaggiCompetenzeComponent {
         if (this.arrayDiStrumenti.value.length > 0) {
           this.strumenti = this.arrayDiStrumenti.value;
         }
-        if (this.arrayDiAltreCompetenze.value.length > 0) {
+        if (this.arrayDiAltreCompetenze.value && this.arrayDiAltreCompetenze.value.length > 0) {
           this.altreCompetenze = this.arrayDiAltreCompetenze.value;
         }
       }

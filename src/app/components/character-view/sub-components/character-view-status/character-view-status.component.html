@@ -93,24 +93,35 @@
 <div class="section-title">Parametri vitali</div>
 <div class="punti-ferita-container">
     <div class="pf-line">
-        <mat-icon matTooltip="Classe Armatura" matTooltipPosition="above">shield</mat-icon> <span class="PF">{{characterData.CA}}</span>
+        <span
+            class="PF">{{characterData.parametriVitali.puntiFeritaAttuali}}/{{characterData.parametriVitali.massimoPuntiFerita}}</span>
+        <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi"
+            matTooltipPosition="above">favorite</mat-icon>
+        <progress class="pf-progress" max="{{characterData.parametriVitali.massimoPuntiFerita}}"
+            value="{{characterData.parametriVitali.puntiFeritaAttuali}}"></progress>
+        <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button color="accent">
+            <img src="./assets/icons/heart-check.svg">
+        </button>
     </div>
-    <div class="pf-line">
-        <mat-icon matTooltip="Iniziativa" matTooltipPosition="above">bolt</mat-icon> <span class="PF">+{{characterData.iniziativa}}</span>
-    </div>
-    <div class="pf-line">
-        <mat-icon matTooltip="Velocità" matTooltipPosition="above">fast_forward</mat-icon> <span class="PF">{{characterData.velocita}} m</span>
-    </div>
-    <div class="pf-line">
-        <mat-icon class="pf-icon" matTooltip="Punti Ferita Massimi" matTooltipPosition="above">favorite</mat-icon> <span
-            class="PF">{{characterData.parametriVitali.massimoPuntiFerita}} / {{characterData.parametriVitali.puntiFeritaAttuali}}</span>
-    </div>
-    <div class="pf-line">
-        <img src="./assets/dice/dice-d6-2.svg" matTooltip="Dadi vita" matTooltipPosition="above"><span class="PF"
-            *ngFor="let dice of characterData.parametriVitali.dadiVita">{{dice}}</span>
+    <div class="pf-group">
+        <div class="pf-title"><span>CA</span> {{characterData.CA}}</div>
+        <div class="pf-title"><span>Iniziativa</span> +{{characterData.iniziativa}}</div>
+        <div class="pf-title"><span>Velocità</span> {{characterData.velocita}} m</div>
     </div>
 </div>
 
+<div class="section-title">Dadi vita</div>
+<div class="punti-ferita-container">
+
+    <div class="pf-group">
+        <div class="pf-line">
+            <img src="./assets/dice/dice-d6-2.svg" matTooltip="Dadi vita" matTooltipPosition="above">
+            <span class="PF" *ngFor="let dice of characterData.parametriVitali.dadiVita">{{dice}}</span>
+        </div>
+       
+        
+    </div>
+</div>
 <div class="section-title">Prove passive</div>
 <div class="passive-container">
     <div class="passive-line">

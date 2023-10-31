@@ -3,10 +3,9 @@
         <img class="character-image" [src]="character.informazioniBase.urlImmaginePersonaggio">
         <div class="character-info-container">
             <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
-            <span>{{character.informazioniBase.razza}}</span>
+            <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}}, {{character.informazioniBase.allineamento}}</span>
             <div *ngFor="let cl of character.informazioniBase.classi">
-                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">,
-                        {{cl.sottoclasse}}</span></div>
+                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div>
             </div>
         </div>
     </div>
@@ -17,44 +16,61 @@
         <mat-tab-group color="accent">
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Privilegi e Tratti" class="label-icon">star</mat-icon> 
+                    <mat-icon matTooltipPosition="below" matTooltip="Privilegi e Tratti"
+                        class="label-icon">format_list_bulleted</mat-icon>
                 </ng-template>
-                <app-privilegi-tratti-tab-view [privilegiTratti]="character.privilegiTratti"></app-privilegi-tratti-tab-view>
+                <app-abilita-tab-view 
+                    [abilita]="character.competenzaAbilita"
+                    [bonusCompetenza]="character.tiriSalvezza.bonusCompetenza"
+                    [caratteristiche]="character.caratteristiche"></app-abilita-tab-view>
             </mat-tab>
 
-            <mat-tab >
+            <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Inventario" class="label-icon">inventory_2</mat-icon>
+                    <mat-icon matTooltipPosition="below" matTooltip="Privilegi e Tratti"
+                        class="label-icon">star</mat-icon>
                 </ng-template>
-                <app-equipaggiamento-tab-view [equipaggiamento]="character.equipaggiamento" [denaro]="character.denaro"></app-equipaggiamento-tab-view>
+                <app-privilegi-tratti-tab-view
+                    [privilegiTratti]="character.privilegiTratti"></app-privilegi-tratti-tab-view>
+            </mat-tab>
+
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon matTooltipPosition="below" matTooltip="Inventario"
+                        class="label-icon">inventory_2</mat-icon>
+                </ng-template>
+                <app-equipaggiamento-tab-view [equipaggiamento]="character.equipaggiamento"
+                    [denaro]="character.denaro"></app-equipaggiamento-tab-view>
             </mat-tab>
 
             <mat-tab disabled>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi" class="label-icon">brightness_5</mat-icon> 
+                    <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background"
+                        class="label-icon">description</mat-icon>
+                </ng-template>
+                Descrizione e background
+            </mat-tab>
+
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <mat-icon matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi"
+                        class="label-icon">brightness_5</mat-icon>
                 </ng-template>
                 Trucchetti e Incantesimi
             </mat-tab>
 
             <mat-tab disabled>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Attacchi" class="label-icon">reorder</mat-icon> 
+                    <mat-icon matTooltipPosition="below" matTooltip="Attacchi" class="label-icon">reorder</mat-icon>
                 </ng-template>
                 Attacchi
-            </mat-tab>
-
-            <mat-tab disabled>
-                <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background" class="label-icon">description</mat-icon> 
-                </ng-template>
-                Descrizione e background
             </mat-tab>
         </mat-tab-group>
     </div>
 </div>
 
 <div class="sidenav-buttons" id="menu-button">
-    <!-- <app-dice></app-dice> -->
+    <app-dice></app-dice>
     <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
         <mat-icon>{{menuIcon}}</mat-icon>
     </button>

@@ -25,9 +25,7 @@ export class InformazioniBaseLevelUpComponent {
 
     ngOnInit(): void {
       this.formService.formLevelUpSubject.subscribe((form: any) => {
-        if (form) {
-          console.log(form.value);
-          
+        if (form) {     
           this.groupInfo = form.get('informazioniBase') as FormGroup;
           // this.groupCaratteristiche = form.get('caratteristicheFisiche') as FormGroup;
           this.classi = this.groupInfo.get('classi') as FormArray;

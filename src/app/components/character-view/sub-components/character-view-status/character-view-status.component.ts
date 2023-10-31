@@ -31,7 +31,6 @@ export class CharacterViewStatusComponent {
 
   @Input() set character(character: any) {
     this.characterData = character;
-    console.log(character);
     
     this.initCaratteristiche();
     this.initTiriSalvezza();

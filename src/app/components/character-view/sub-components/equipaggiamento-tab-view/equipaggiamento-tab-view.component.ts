@@ -1,4 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MoneyDialogComponent } from './money-dialog/money-dialog.component';
+import { Platform } from '@angular/cdk/platform';
+import { NotificationService } from 'src/app/services/notification.service';
+import { FormService } from 'src/app/services/form.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-equipaggiamento-tab-view',
@@ -10,7 +16,9 @@ export class EquipaggiamentoTabViewComponent {
   public equipaggiamentoData: string = '';
   public denaroData: any = {};
 
-  constructor() { }
+  public denaroForm: FormGroup | null = null;
+
+  constructor(private dialog: MatDialog, private platform: Platform, private notification: NotificationService, private formService: FormService) { }
 
   @Input() set equipaggiamento(value: string) {
     this.equipaggiamentoData = value;
@@ -18,7 +26,30 @@ export class EquipaggiamentoTabViewComponent {
 
   @Input() set denaro(value: any) {
     this.denaroData = value;
-    console.log(this.denaroData);
-    
+  }
+
+  ngOnInit(): void {
+    this.formService.formSubject.subscribe((form: any) => {
+      if (form) {
+        this.denaroForm = form.get('denaro') as FormGroup;
+      }
+    });
+  }
+
+  public openMoneyDialog() {
+    const characterId = window.location.href.split('/').pop();
+    this.dialog.open(MoneyDialogComponent, {
+      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      data: {
+        group: this.denaroForm,
+      }
+    }).afterClosed().subscribe((result: any) => {
+      if (result.status === 'success') {
+        console.log(result.newValue.value);
+        this.denaroData = result.newValue.value;
+        
+        this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, 'limegreen');
+      }
+    });
   }
 }
