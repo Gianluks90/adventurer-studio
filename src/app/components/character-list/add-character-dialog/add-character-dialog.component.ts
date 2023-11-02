@@ -37,11 +37,11 @@ export class AddCharacterDialogComponent {
     fileReader.onload = () => {
         const fileContent = fileReader.result as string;
         const jsonData = JSON.parse(fileContent);
-        const newForm = this.formService.initJsonForm(jsonData)
-        this.form.patchValue(this.formService.formSubject.value.value);
-        console.log(this.form.value);
-
-        this.charForm.get('name').patchValue(jsonData.informazioniBase.nomePersonaggio);
+        this.formService.initJsonForm(jsonData);
+        this.characterService.createCharacter(this.formService.formSubject.value).then(() => {
+        }).then(() => {
+          this.dialogRef.close('confirm');
+        })
     };
     fileReader.readAsText(fileToParse)
   }
