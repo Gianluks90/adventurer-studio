@@ -5,6 +5,12 @@
     <input matInput formControlName="name">
   </mat-form-field>
 </div>
+<div mat-dialog-content class="dialog-content" [formGroup]="charForm">
+  <div class="custom-form-field">
+    <mat-label>Importa il personaggio</mat-label>
+    <input type="file" accept=".json" (change)="uploadFile($event)">
+  </div>
+</div>
 <div mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close>Annulla</button>
   <button mat-raised-button color="accent" [disabled]="!charForm.valid" (click)="confirm()">Conferma</button>

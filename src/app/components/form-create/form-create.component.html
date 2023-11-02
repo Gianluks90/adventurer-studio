@@ -89,16 +89,24 @@
   <button class="step-button" mat-icon-button (click)="saveForm()" matTooltip="Salva" matTooltipPosition="left">
     <mat-icon>save</mat-icon>
   </button>
-  <button class="step-button" mat-icon-button (click)="completeForm()" matTooltip="Completa" matTooltipPosition="left" [disabled]="formService.formSubject.value && !formService.formSubject.value.valid">
+  <button class="step-button" mat-icon-button (click)="completeForm()" matTooltip="Completa" matTooltipPosition="left"
+    [disabled]="formService.formSubject.value && !formService.formSubject.value.valid">
     <mat-icon>check</mat-icon>
   </button>
+  <a href="" target="_blank" id="export-button">
+    <button class="step-button" (click)="parseExport()" mat-icon-button matTooltip="esporta" matTooltipPosition="left">
+      <mat-icon>download</mat-icon>
+    </button>
+  </a>
 </div>
 
 <div class="stepper-buttons">
-  <button class="step-button" mat-icon-button (click)="previousStep()" matTooltip="Sezione precedente" matTooltipPosition="left">
+  <button class="step-button" mat-icon-button (click)="previousStep()" matTooltip="Sezione precedente"
+    matTooltipPosition="left">
     <mat-icon>move_up</mat-icon>
   </button>
-  <button class="step-button" mat-icon-button (click)="nextStep()" matTooltip="Sezione successiva" matTooltipPosition="left">
+  <button class="step-button" mat-icon-button (click)="nextStep()" matTooltip="Sezione successiva"
+    matTooltipPosition="left">
     <mat-icon>move_down</mat-icon>
   </button>
 </div>

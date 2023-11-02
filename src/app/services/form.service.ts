@@ -30,12 +30,20 @@ export class FormService {
     });
   }
 
+  public initJsonForm(jsonImport: any): void {
+    console.log('teste',jsonImport);
+
+    const tempForm = this.fb.group(FormModel.create(this.fb));
+      this.nestedPatchValue(tempForm, jsonImport);
+      this.formSubject.next(tempForm);
+  }
+
   public initLevelUpForm(charId: string): void {
     const tempForm = this.fb.group(FormLevelUpModel.create(this.fb));
     this.characterService.getCharacterById(charId).then((character) => {
       this.nestedPatchValue(tempForm, character);
       this.formLevelUpSubject.next(tempForm);
-      
+
     });
   }
 
@@ -96,6 +104,7 @@ export class FormService {
   }
 
   private nestedPatchValue(form: FormGroup, character: any) {
+    console.log('teste',character);
     Object.keys(character).forEach(key => {
       const control = form.get(key);
       if (control) {

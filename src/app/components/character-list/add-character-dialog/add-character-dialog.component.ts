@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormModel } from 'src/app/models/formModel';
 import { CharacterService } from 'src/app/services/character.service';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-add-character-dialog',
@@ -14,7 +15,8 @@ export class AddCharacterDialogComponent {
   constructor(
     private fb: FormBuilder,
     private characterService: CharacterService,
-    public dialogRef: MatDialogRef<AddCharacterDialogComponent>,) { }
+    public dialogRef: MatDialogRef<AddCharacterDialogComponent>,
+    public formService: FormService) { }
 
   public form: FormGroup = this.fb.group(FormModel.create(this.fb))
   public charForm = this.fb.group({
@@ -27,5 +29,20 @@ export class AddCharacterDialogComponent {
     }).then(() => {
       this.dialogRef.close('confirm');
     })
+  }
+
+  public uploadFile(file:any){
+    const fileToParse = file.target.files[0]
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+        const fileContent = fileReader.result as string;
+        const jsonData = JSON.parse(fileContent);
+        const newForm = this.formService.initJsonForm(jsonData)
+        this.form.patchValue(this.formService.formSubject.value.value);
+        console.log(this.form.value);
+
+        this.charForm.get('name').patchValue(jsonData.informazioniBase.nomePersonaggio);
+    };
+    fileReader.readAsText(fileToParse)
   }
 }

@@ -11,6 +11,7 @@ import { CompleteCharacterDialogComponent } from './complete-character-dialog/co
 import { Platform } from '@angular/cdk/platform';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-form',
   templateUrl: './form-create.component.html',
@@ -18,7 +19,8 @@ import { Router } from '@angular/router';
 })
 export class FormCreateComponent implements OnInit {
 
-  public form: FormGroup = this.fb.group(FormModel.create(this.fb))
+  public form: FormGroup = this.fb.group(FormModel.create(this.fb));
+
 
   @ViewChild('stepper') stepper!: MatStepper;
 
@@ -79,5 +81,16 @@ export class FormCreateComponent implements OnInit {
       this.menuIcon = 'menu';
     }
     this.sidenavService.toggle();
+  }
+
+  public parseExport(){
+
+    const jsonFile = JSON.stringify(this.formService.formSubject.value.value);
+    console.log(jsonFile);
+
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonFile);
+    const exportButton = document.getElementById('export-button');
+    exportButton.setAttribute("href", dataStr );
+    exportButton.setAttribute("download", "personaggio.json");
   }
 }
