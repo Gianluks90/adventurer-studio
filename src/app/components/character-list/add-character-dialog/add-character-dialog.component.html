@@ -1,13 +1,16 @@
 <div mat-dialog-title class="dialog-title">Creazione nuovo personaggio</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="charForm">
+  <div class="description">Inserisci un Nome (minimo 4 caratteri) poi Conferma per creare un Personaggio
+    <strong>OPPURE</strong> carica un backup (in formato JSON) che hai esportato precedentemente, questo genererà un
+    Personaggio già precompilato.</div>
+
   <mat-form-field color="accent" class="custom-form-field" appearance="outline">
     <mat-label>Nome personaggio</mat-label>
     <input matInput formControlName="name">
   </mat-form-field>
-</div>
-<div mat-dialog-content class="dialog-content" [formGroup]="charForm">
+
   <div class="custom-form-field">
-    <mat-label>Importa il personaggio</mat-label>
+    <mat-label>Allega un file JSON (precedentemente esportato) </mat-label>
     <input type="file" accept=".json" (change)="uploadFile($event)">
   </div>
 </div>
