@@ -16,7 +16,7 @@
         <mat-tab-group color="accent">
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Privilegi e Tratti"
+                    <mat-icon matTooltipPosition="below" matTooltip="Abilità"
                         class="label-icon">format_list_bulleted</mat-icon>
                 </ng-template>
                 <app-abilita-tab-view 
@@ -27,7 +27,7 @@
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Privilegi e Tratti"
+                    <mat-icon matTooltipPosition="below" matTooltip="Privilegi, Tratti e Talenti"
                         class="label-icon">star</mat-icon>
                 </ng-template>
                 <app-privilegi-tratti-tab-view
@@ -43,12 +43,12 @@
                     [denaro]="character.denaro"></app-equipaggiamento-tab-view>
             </mat-tab>
 
-            <mat-tab disabled>
+            <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background"
                         class="label-icon">description</mat-icon>
                 </ng-template>
-                Descrizione e background
+                <app-descrizione-background-tab-view [backgroundName]="character.informazioniBase.background" [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche"></app-descrizione-background-tab-view>
             </mat-tab>
 
             <mat-tab disabled>

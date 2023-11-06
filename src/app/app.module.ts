@@ -46,6 +46,7 @@ import { EquipaggiamentoTabViewComponent } from './components/character-view/sub
 import { MoneyDialogComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/money-dialog/money-dialog.component';
 import { AbilitaTabViewComponent } from './components/character-view/sub-components/abilita-tab-view/abilita-tab-view.component';
 import { HealthPointDialogComponent } from './components/character-view/sub-components/character-view-status/health-point-dialog/health-point-dialog.component';
+import { DescrizioneBackgroundTabViewComponent } from './components/character-view/sub-components/descrizione-background-tab-view/descrizione-background-tab-view.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +106,7 @@ import { HealthPointDialogComponent } from './components/character-view/sub-comp
      MoneyDialogComponent,
      AbilitaTabViewComponent,
      HealthPointDialogComponent,
+     DescrizioneBackgroundTabViewComponent,
 
   ],
   imports: [
