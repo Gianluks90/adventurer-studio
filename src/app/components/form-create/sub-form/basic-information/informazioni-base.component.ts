@@ -33,8 +33,8 @@ export class InformazioniBaseComponent {
   }
 
   public onPicSelected(event: any) {
-    if (event.target.files[0].size > 300000) {
-      this.notification.openSnackBar('Immagine troppo grande, massimo 300kb', 'warning');
+    if (event.target.files[0].size > 500000) {
+      this.notification.openSnackBar('Immagine troppo grande, dim. massima: 500kb.', 'warning', 3000, 'yellow');
     } else {
       this.formService.uploadImage(event).then((result) => {
         if (result !== 'error') {
@@ -42,7 +42,7 @@ export class InformazioniBaseComponent {
             urlImmaginePersonaggio: result,
             nomeImmaginePersonaggio: event.target.files[0].name,
           })
-          this.notification.openSnackBar('Immagine caricata con successo', 'check');
+          this.notification.openSnackBar('Immagine caricata con successo!', 'add_photo_alternate', 3000, 'limegreen');
         } else {
           this.notification.openSnackBar('Errore nel caricamento dell\'immagine', 'error');
         }
