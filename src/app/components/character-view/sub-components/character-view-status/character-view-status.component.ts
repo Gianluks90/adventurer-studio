@@ -37,15 +37,15 @@ export class CharacterViewStatusComponent {
   public parametriVitaliForm: FormGroup | null = null;
 
   constructor(
-    private dialog: MatDialog, 
-    private platform: Platform, 
-    private formService: FormService, 
+    private dialog: MatDialog,
+    private platform: Platform,
+    private formService: FormService,
     private notification: NotificationService,
     private charService: CharacterService) { }
 
   @Input() set character(character: any) {
     this.characterData = character;
-    
+
     this.initCaratteristiche();
     this.initTiriSalvezza();
     this.initProvePassive();
@@ -102,7 +102,7 @@ export class CharacterViewStatusComponent {
   public initProvePassive(): void {
     const intelligenza = Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2);
     const saggezza = Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2);
-    
+
     this.indagarePassiva = 10 + intelligenza;
     this.percezionePassiva = 10 + saggezza;
     this.intuizionePassiva = 10 + saggezza;
@@ -118,7 +118,6 @@ export class CharacterViewStatusComponent {
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         this.characterData.parametriVitali = result.newValue.value;
-        console.log(this.parametriVitaliForm.value);
         this.charService.updateCharacterPFById(characterId!, this.parametriVitaliForm).then(() => {
           this.notification.openSnackBar('Punti Ferita Aggiornati.', 'favorite', 3000, 'limegreen');
         });

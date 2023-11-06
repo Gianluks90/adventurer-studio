@@ -45,9 +45,8 @@ export class EquipaggiamentoTabViewComponent {
       }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
-        console.log(result.newValue.value);
         this.denaroData = result.newValue.value;
-        
+
         this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, 'limegreen');
       }
     });

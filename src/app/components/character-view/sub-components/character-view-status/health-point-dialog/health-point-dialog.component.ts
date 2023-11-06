@@ -19,8 +19,6 @@ export class HealthPointDialogComponent {
     private dialogRef: MatDialogRef<HealthPointDialogComponent>, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    console.log(this.data.group.value);
-    
   }
 
   public add() {

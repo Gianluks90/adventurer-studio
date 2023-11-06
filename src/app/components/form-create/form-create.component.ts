@@ -84,10 +84,7 @@ export class FormCreateComponent implements OnInit {
   }
 
   public parseExport(){
-
     const jsonFile = JSON.stringify(this.formService.formSubject.value.value);
-    console.log(jsonFile);
-
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonFile);
     const exportButton = document.getElementById('export-button');
     exportButton.setAttribute("href", dataStr );

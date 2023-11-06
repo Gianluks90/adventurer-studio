@@ -116,7 +116,6 @@ export class DiceComponent {
     }
       this.arrayDadiSalvati.push(valoreDadi);
     } else {
-      console.log('limite raggiunto');
       this.notification.openSnackBar( 'hai raggiunto il limite dei dadi selezionabili','warning', 3000,'red');
     }
 

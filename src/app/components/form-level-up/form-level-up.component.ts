@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
@@ -37,6 +37,7 @@ export class FormLevelUpComponent {
 
   completeForm() {
     const characterId = window.location.href.split('/').pop();
+
     this.dialog.open(CompleteLevelUpDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
       data: {

@@ -23,8 +23,9 @@ export class AbilitaTabViewComponent {
     });
 
     this.maestrieData.forEach((maestria) => {
+      const maestriaAbilita = maestria.name.replace('maestria');
       this.abilitaData.find((abilita) => {
-        if (abilita.name === maestria.name.toLowerCase()) {
+        if (abilita.name === maestriaAbilita.toLowerCase()) {
           abilita.maestria = true;
         } else {
           abilita.maestria = false;
@@ -92,9 +93,9 @@ export class AbilitaTabViewComponent {
     if (this.abilitaData.length > 0) {
       this.abilitaData.forEach((abilita) => {
         abilita.mod += Math.floor((caratteristiche[abilita.caratteristica] - 10) / 2);
-        // if (abilita.maestria) {
-        //   abilita.mod += this.bonusCompetenzaData;
-        // }
+        if (abilita.maestria) {
+          abilita.mod += this.bonusCompetenzaData;
+        }
         abilita.mod > 0 ? abilita.mod = '+ ' + abilita.mod : abilita.mod = abilita.mod + '';
       });
     }
