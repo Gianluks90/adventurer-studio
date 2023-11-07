@@ -1,6 +1,9 @@
 <div class="section-title">Abilità</div>
 <div *ngFor="let a of abilitaData" class="a-container">
-    <div class="a-name">{{a.name}} ({{a.short}}) <span matTooltip="Competente" matTooltipPosition="right" *ngIf="a.value">•</span></div>
+    <div class="a-name">{{a.name}} ({{a.short}}) 
+        <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
+        <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span>
+    </div>
     <!-- <mat-icon class="maestria-icon" *ngIf="a.maestria">star</mat-icon> -->
     <div class="a-divider"></div>
     <div class="a-value">{{a.mod}}</div>
