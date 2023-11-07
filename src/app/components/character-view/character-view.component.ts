@@ -12,6 +12,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 export class CharacterViewComponent {
 
   public character: any;
+  public competenzeAbilita: any;
   public menuIcon = 'menu';
 
   constructor(
@@ -24,7 +25,12 @@ export class CharacterViewComponent {
     const characterId = window.location.href.split('/').pop();
     this.characterService.getCharacterById(characterId).then((character) => {
       this.character = character;
-      console.log(this.character);
+      
+      this.competenzeAbilita = {
+        abilita: this.character.competenzaAbilita,
+        bonusCompetenza: this.character.tiriSalvezza.bonusCompetenza,
+        caratteristiche: this.character.caratteristiche
+      };
       
       this.formService.initForm(characterId!); // Un po raffazzonato, va sistemato usando solo il formSubject
     });

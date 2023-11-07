@@ -38,8 +38,6 @@ export class DescrizioneBackgroundTabViewComponent {
   }
 
   @Input() set storia(storia: string) {
-    console.log(storia);
-    
     this.storiaData = storia;
   }
 
