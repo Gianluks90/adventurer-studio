@@ -72,5 +72,43 @@
         <div class="description-text">Solo alcune Classi hanno una <strong>Sottoclasse</strong> al 1° Livello quindi è
             probabile che lascerai quel campo vuoto al momento.</div>
 
+        <div class="section-title">Risorse aggiuntive</div>
+
+        <div class="description-text">Alcune Classi possono assegnare (solitamente a livelli superiori al 1°) delle
+            <strong>Risorse Aggiuntive</strong>, come punti o dadi, da spendere per utilizzare delle capacità speciali.
+            È quindi probabile
+            che lascerai questo campo vuoto al momento.
+        </div>
+
+        <ng-container class="" formArrayName="risorseAggiuntive">
+            <ng-container *ngFor="let r of risorseAggiuntive.controls; let i = index;">
+                <div class="step-form" [formGroupName]="i">
+                    <div class="line-container">
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Nome</mat-label>
+                            <input matInput formControlName="nome">
+                        </mat-form-field>
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Valore massimo</mat-label>
+                            <input #valoreRisorsa type="number" matInput formControlName="valoreMassimo" min="1"
+                                (change)="setValoreAttuale(i, valoreRisorsa.value)">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="delete-button">
+                        <button mat-raised-button color="accent" (click)="deleteRisorsa(i)">
+                            <mat-icon>arrow_upward</mat-icon><mat-icon>delete</mat-icon> Rimuovi
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <div class="button-container">
+            <button mat-raised-button color="accent" (click)="addRisorsa()">
+                <mat-icon>add</mat-icon>
+                Aggiungi nuova
+            </button>
+        </div>
     </div>
 </ng-container>

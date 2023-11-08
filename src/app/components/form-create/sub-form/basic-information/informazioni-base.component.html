@@ -5,29 +5,30 @@
         <mat-label class="input-field">Nome giocatore</mat-label>
         <input matInput formControlName="nomeGiocatore">
       </mat-form-field>
-  
+
       <mat-form-field class="line-input" color="accent" appearance="outline">
         <mat-label class="input-field">Nome Personaggio</mat-label>
         <input matInput formControlName="nomePersonaggio">
       </mat-form-field>
     </div>
-    
 
     <div class="section-title">Classe/i</div>
 
     <details>
       <summary class="summary-label">Multiclasse</summary>
-      <div class="description-text summary-text">Al 1° Livello un Personaggio può avere una singola <strong>Classe</strong> tuttavia
-        progredendo con l'esperienza sarà possibile creare Personaggi con una <strong>Multiclasse</strong>. Le opzioni di
+      <div class="description-text summary-text">Al 1° Livello un Personaggio può avere una singola
+        <strong>Classe</strong> tuttavia
+        progredendo con l'esperienza sarà possibile creare Personaggi con una <strong>Multiclasse</strong>. Le opzioni
+        di
         Multiclasse consentono a un Personaggio di acquisire livelli in più classi. Così facendo, un Personaggio è in
         grado di mescolare le capacità di quelle classi per dare vita a un concetto di Personaggio che forse non era
         rappresentato a dovere dalle opzioni delle classi standard.
         Grazie a queste regole, un Personaggio ha la possibilità di acquisire livelli in una nuova Classe ogni volta che
         avanza di livello, anziché acquisire un livello nella sua Classe attuale. I livelli in tutte le sue classi,
         sommati assieme, determinano il suo livello del Personaggio. Per maggiori informazioni sulla Multiclasse vai a
-        pagina PHB 163.</div>
+        pagina PHB 163.
+      </div>
     </details>
-    
 
     <div class="description-text">Solo alcune Classi hanno una <strong>Sottoclasse</strong> al 1° Livello quindi è
       probabile che lascerai questo campo vuoto al momento.</div>
@@ -70,24 +71,44 @@
       </button>
     </div>
 
-    <!-- <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Classe</mat-label>
-      <input matInput formControlName="classe">
-      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 45-113, TCoE 9"
-        matTooltipPosition="left">auto_stories</mat-icon>
-    </mat-form-field> -->
+    <div class="section-title">Risorse aggiuntive</div>
 
-    <!-- <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Sottoclasse</mat-label>
-      <input matInput formControlName="sottoclasse">
-      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 45-113, XGoE 8-59, TCoE 14-78, FToD 12-13"
-        matTooltipPosition="left">auto_stories</mat-icon>
-    </mat-form-field> -->
+    <div class="description-text">Alcune Classi possono assegnare (solitamente a livelli superiori al 1°) delle
+      <strong>Risorse Aggiuntive</strong>, come punti o dadi, da spendere per utilizzare delle capacità speciali. È quindi probabile
+      che lascerai questo campo vuoto al momento.</div>
 
-    <!-- <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Livello</mat-label>
-      <input type="number" matInput formControlName="livello" max="20" min="1">
-    </mat-form-field> -->
+    <ng-container class="" formArrayName="risorseAggiuntive">
+      <ng-container *ngFor="let r of risorseAggiuntive.controls; let i = index;">
+        <div class="step-form" [formGroupName]="i">
+          <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="nome">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Valore massimo</mat-label>
+              <input #valoreRisorsa type="number" matInput formControlName="valoreMassimo" min="1" (change)="setValoreAttuale(i, valoreRisorsa.value)">
+            </mat-form-field>
+          </div>
+
+          <div class="delete-button">
+            <button mat-raised-button color="accent" (click)="deleteRisorsa(i)">
+              <mat-icon>arrow_upward</mat-icon><mat-icon>delete</mat-icon> Rimuovi
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="button-container">
+      <button mat-raised-button color="accent" (click)="addRisorsa()">
+        <mat-icon>add</mat-icon>
+        Aggiungi nuova
+      </button>
+    </div>
+
+    <div class="section-title">Background</div>
+
 
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Background</mat-label>
@@ -105,14 +126,16 @@
       Vai alla sezione Background
     </button>
 
+    <div class="section-title">Razza</div>
+
     <div class="line-container">
       <mat-form-field class="line-input" color="accent" appearance="outline">
-        <mat-label class="input-field">Razza</mat-label>
+        <mat-label class="input-field">Nome</mat-label>
         <input matInput formControlName="razza">
         <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 17-42, MMoM 5-36, FToD 9-12"
           matTooltipPosition="left">auto_stories</mat-icon>
       </mat-form-field>
-  
+
       <mat-form-field class="line-input" color="accent" appearance="outline">
         <mat-label class="input-field">Sottorazza / Discendenza / Etnia</mat-label>
         <input matInput formControlName="sottorazza">
@@ -129,7 +152,7 @@
       <!-- <span matTextSuffix class="suffix">
         <mat-icon>auto_stories</mat-icon> PHB 122
       </span> -->
-      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 122">auto_stories</mat-icon>
+      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 122" matTooltipPosition="left">auto_stories</mat-icon>
     </mat-form-field>
   </div>
 
@@ -142,12 +165,12 @@
         <mat-label class="input-field">Eta Personaggio</mat-label>
         <input type="number" matInput formControlName="eta">
       </mat-form-field>
-  
+
       <mat-form-field class="line-input" color="accent" appearance="outline">
         <mat-label class="input-field">Altezza</mat-label>
         <input type="number" matInput formControlName="altezza">
       </mat-form-field>
-  
+
       <mat-form-field class="line-input" color="accent" appearance="outline">
         <mat-label class="input-field">Peso</mat-label>
         <input type="number" matInput formControlName="peso">
@@ -158,12 +181,12 @@
         <mat-label class="input-field">Colore occhi</mat-label>
         <input matInput formControlName="occhi">
       </mat-form-field>
-  
+
       <mat-form-field class="line-input" color="accent" appearance="outline">
         <mat-label class="input-field">Carnagione</mat-label>
         <input matInput formControlName="carnagione">
       </mat-form-field>
-  
+
       <mat-form-field class="line-input" color="accent" appearance="outline">
         <mat-label class="input-field">Capelli</mat-label>
         <input matInput formControlName="capelli">

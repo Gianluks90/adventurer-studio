@@ -34,6 +34,7 @@ export class FormLevelUpModel {
   static informazioniBase(builder: FormBuilder) {
     return builder.group({
       classi: builder.array([]),
+      risorseAggiuntive: builder.array([]),
       livello: [1, Validators.max(20)],
       nomePersonaggio: ['', Validators.required],
     })

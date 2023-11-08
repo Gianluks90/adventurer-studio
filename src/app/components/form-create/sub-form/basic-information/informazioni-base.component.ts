@@ -12,7 +12,9 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class InformazioniBaseComponent {
   public groupInfo: FormGroup | null = null;
   public groupCaratteristiche: FormGroup | null = null;
+
   public classi: FormArray;
+  public risorseAggiuntive: FormArray;
 
   constructor(
     public formService: FormService, 
@@ -20,6 +22,7 @@ export class InformazioniBaseComponent {
     private fb: FormBuilder,
     private notification: NotificationService) { 
       this.classi = this.fb.array([]);
+      this.risorseAggiuntive = this.fb.array([]);
     }
 
   ngOnInit(): void {
@@ -28,6 +31,7 @@ export class InformazioniBaseComponent {
         this.groupInfo = form.get('informazioniBase') as FormGroup;
         this.groupCaratteristiche = form.get('caratteristicheFisiche') as FormGroup;
         this.classi = this.groupInfo.get('classi') as FormArray;
+        this.risorseAggiuntive = this.groupInfo.get('risorseAggiuntive') as FormArray;
       }
     });
   }
@@ -77,5 +81,25 @@ export class InformazioniBaseComponent {
 
   public deleteClasse(index: number) {
     this.classi.removeAt(index);
+  }
+
+  public addRisorsa() {
+    const risorsa = this.fb.group({
+      nome: ['', Validators.required],
+      valoreMassimo: [0, Validators.required],
+      valoreAttuale: 0,
+    });
+    this.risorseAggiuntive.push(risorsa);
+  }
+
+  public deleteRisorsa(index: number) {
+    this.risorseAggiuntive.removeAt(index);
+  }
+
+  public setValoreAttuale(index: number, value: any) {
+    const risorsa = this.risorseAggiuntive.at(index);
+    risorsa.patchValue({
+      valoreAttuale: parseInt(value)
+    });
   }
 }
