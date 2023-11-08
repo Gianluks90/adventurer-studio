@@ -13,7 +13,9 @@ export class CharacterViewComponent {
 
   public character: any;
   public competenzeAbilita: any;
-  public menuIcon = 'menu';
+  public trucchettiIncantesimi: any;
+
+  // public menuIcon = 'menu';
 
   constructor(
     private menuService: MenuService,
@@ -31,6 +33,14 @@ export class CharacterViewComponent {
         bonusCompetenza: this.character.tiriSalvezza.bonusCompetenza,
         caratteristiche: this.character.caratteristiche
       };
+
+      this.trucchettiIncantesimi = {
+        lista: this.character.trucchettiIncantesimi,
+        classeIncantatore: this.character.classeIncantatore,
+        caratteristicaIncantatore: this.character.caratteristicaIncantatore,
+        bonusAttaccoIncantesimi: this.character.bonusAttaccoIncantesimi,
+        CD: this.character.CDTiroSalvezza
+      }
       
       this.formService.initForm(characterId!); // Un po raffazzonato, va sistemato usando solo il formSubject
     });
@@ -38,10 +48,6 @@ export class CharacterViewComponent {
   }
 
   public openSidenav() {
-    const menuButton = document.getElementById('menu-button');
-    if (this.sidenavService.isOpen()) {
-      this.menuIcon = 'menu';
-    }
     this.sidenavService.toggle();
   }
 }

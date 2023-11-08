@@ -47,6 +47,7 @@ import { MoneyDialogComponent } from './components/character-view/sub-components
 import { AbilitaTabViewComponent } from './components/character-view/sub-components/abilita-tab-view/abilita-tab-view.component';
 import { HealthPointDialogComponent } from './components/character-view/sub-components/character-view-status/health-point-dialog/health-point-dialog.component';
 import { DescrizioneBackgroundTabViewComponent } from './components/character-view/sub-components/descrizione-background-tab-view/descrizione-background-tab-view.component';
+import { TrucchettiIncantesimiTabViewComponent } from './components/character-view/sub-components/trucchetti-incantesimi-tab-view/trucchetti-incantesimi-tab-view.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,8 @@ import { DescrizioneBackgroundTabViewComponent } from './components/character-vi
     MoneteComponent,
     SnackbarComponent,
     DiceComponent,
+    HealthPointDialogComponent,
+    MoneyDialogComponent,
 
     // FORM CREATE COMPONENTS AND SUB-COMPONENTS
     FormCreateComponent,
@@ -103,10 +106,9 @@ import { DescrizioneBackgroundTabViewComponent } from './components/character-vi
      CharacterViewStatusComponent,
      PrivilegiTrattiTabViewComponent,
      EquipaggiamentoTabViewComponent,
-     MoneyDialogComponent,
      AbilitaTabViewComponent,
-     HealthPointDialogComponent,
      DescrizioneBackgroundTabViewComponent,
+     TrucchettiIncantesimiTabViewComponent,
 
   ],
   imports: [

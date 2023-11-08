@@ -49,12 +49,12 @@
                 <app-descrizione-background-tab-view [backgroundName]="character.informazioniBase.background" [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche"></app-descrizione-background-tab-view>
             </mat-tab>
 
-            <mat-tab disabled>
+            <mat-tab>
                 <ng-template mat-tab-label>
                     <mat-icon matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi"
                         class="label-icon">brightness_5</mat-icon>
                 </ng-template>
-                Trucchetti e Incantesimi
+                <app-trucchetti-incantesimi-tab-view [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
             </mat-tab>
 
             <mat-tab disabled>
@@ -70,6 +70,6 @@
 <div class="sidenav-buttons" id="menu-button">
     <app-dice></app-dice>
     <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
-        <mat-icon>{{menuIcon}}</mat-icon>
+        <mat-icon>menu</mat-icon>
     </button>
 </div>

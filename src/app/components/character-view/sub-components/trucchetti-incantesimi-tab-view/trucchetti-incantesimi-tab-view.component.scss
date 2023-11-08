@@ -1,0 +1,66 @@
+.section-title {
+    margin-bottom: 8px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+}
+
+.ti-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.ti-element {
+    background: lightgray;
+    padding: 8px;
+    border-radius: 8px;
+    flex-grow: 1;
+}
+
+.ti-label {
+    font-weight: bold;
+}
+
+.spell-container {
+    display: flex;
+    flex-direction: column;
+    // gap: 2px;
+}
+
+.spell-title {
+    background-color: black;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+
+.spell-attributes {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    padding: 2px;
+}
+
+.spell-info {
+    padding: 2px;
+}
+
+.spell-label {
+    font-weight: bold;
+}
+
+.spell-description {
+    text-align: justify;
+    font-size: smaller;
+    padding: 2px;
+}
+
+.spell-attributes::first-letter {
+    text-transform: uppercase;
+}
