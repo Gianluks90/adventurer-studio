@@ -50,11 +50,11 @@ export class CompetenzeAbilitaLevelUpComponent {
         this.applyModifier();
         this.group = form.get('competenzaAbilita') as FormGroup;
         this.applyBonusCompetenza();
-        this.disabledMaestriaAbilita();
+        // this.disabledMaestriaAbilita();
 
-        this.group.valueChanges.subscribe(() => {
-          this.applyBonusCompetenza();
-        });
+        // this.group.valueChanges.subscribe(() => {
+        //   this.applyBonusCompetenza();
+        // });
       }
     });
   }
@@ -89,24 +89,29 @@ export class CompetenzeAbilitaLevelUpComponent {
     this.tiroStoria = this.group?.get('storia')?.value ? this.modIntelligenza + (this.group?.get('maestriaStoria')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modIntelligenza;
   }
 
-  public disabledMaestriaAbilita(): void {
-    this.group?.value.acrobazia ? this.group?.controls['maestriaAcrobazia'].enable() : this.group?.controls['maestriaAcrobazia'].disable();
-    this.group?.value.addestrareAnimali ? this.group?.controls['maestriaAddestrareAnimali'].enable() : this.group?.controls['maestriaAddestrareAnimali'].disable();
-    this.group?.value.arcano ? this.group?.controls['maestriaArcano'].enable() : this.group?.controls['maestriaArcano'].disable();
-    this.group?.value.atletica ? this.group?.controls['maestriaAtletica'].enable() : this.group?.controls['maestriaAtletica'].disable();
-    this.group?.value.furtivita ? this.group?.controls['maestriaFurtivita'].enable() : this.group?.controls['maestriaFurtivita'].disable();
-    this.group?.value.indagare ? this.group?.controls['maestriaIndagare'].enable() : this.group?.controls['maestriaIndagare'].disable();
-    this.group?.value.inganno ? this.group?.controls['maestriaInganno'].enable() : this.group?.controls['maestriaInganno'].disable();
-    this.group?.value.intimidire ? this.group?.controls['maestriaIntimidire'].enable() : this.group?.controls['maestriaIntimidire'].disable();
-    this.group?.value.intrattenere ? this.group?.controls['maestriaIntrattenere'].enable() : this.group?.controls['maestriaIntrattenere'].disable();
-    this.group?.value.intuizione ? this.group?.controls['maestriaIntuizione'].enable() : this.group?.controls['maestriaIntuizione'].disable();
-    this.group?.value.medicina ? this.group?.controls['maestriaMedicina'].enable() : this.group?.controls['maestriaMedicina'].disable();
-    this.group?.value.natura ? this.group?.controls['maestriaNatura'].enable() : this.group?.controls['maestriaNatura'].disable();
-    this.group?.value.percezione ? this.group?.controls['maestriaPercezione'].enable() : this.group?.controls['maestriaPercezione'].disable();
-    this.group?.value.persuasione ? this.group?.controls['maestriaPersuasione'].enable() : this.group?.controls['maestriaPersuasione'].disable();
-    this.group?.value.rapiditaDiMano ? this.group?.controls['maestriaRapiditaDiMano'].enable() : this.group?.controls['maestriaRapiditaDiMano'].disable();
-    this.group?.value.religione ? this.group?.controls['maestriaReligione'].enable() : this.group?.controls['maestriaReligione'].disable();
-    this.group?.value.sopravvivenza ? this.group?.controls['maestriaSopravvivenza'].enable() : this.group?.controls['maestriaSopravvivenza'].disable();
-    this.group?.value.storia ? this.group?.controls['maestriaStoria'].enable() : this.group?.controls['maestriaStoria'].disable();
+  // public disabledMaestriaAbilita(): void {
+  //   this.group?.value.acrobazia ? this.group?.controls['maestriaAcrobazia'].enable() : this.group?.controls['maestriaAcrobazia'].disable();
+  //   this.group?.value.addestrareAnimali ? this.group?.controls['maestriaAddestrareAnimali'].enable() : this.group?.controls['maestriaAddestrareAnimali'].disable();
+  //   this.group?.value.arcano ? this.group?.controls['maestriaArcano'].enable() : this.group?.controls['maestriaArcano'].disable();
+  //   this.group?.value.atletica ? this.group?.controls['maestriaAtletica'].enable() : this.group?.controls['maestriaAtletica'].disable();
+  //   this.group?.value.furtivita ? this.group?.controls['maestriaFurtivita'].enable() : this.group?.controls['maestriaFurtivita'].disable();
+  //   this.group?.value.indagare ? this.group?.controls['maestriaIndagare'].enable() : this.group?.controls['maestriaIndagare'].disable();
+  //   this.group?.value.inganno ? this.group?.controls['maestriaInganno'].enable() : this.group?.controls['maestriaInganno'].disable();
+  //   this.group?.value.intimidire ? this.group?.controls['maestriaIntimidire'].enable() : this.group?.controls['maestriaIntimidire'].disable();
+  //   this.group?.value.intrattenere ? this.group?.controls['maestriaIntrattenere'].enable() : this.group?.controls['maestriaIntrattenere'].disable();
+  //   this.group?.value.intuizione ? this.group?.controls['maestriaIntuizione'].enable() : this.group?.controls['maestriaIntuizione'].disable();
+  //   this.group?.value.medicina ? this.group?.controls['maestriaMedicina'].enable() : this.group?.controls['maestriaMedicina'].disable();
+  //   this.group?.value.natura ? this.group?.controls['maestriaNatura'].enable() : this.group?.controls['maestriaNatura'].disable();
+  //   this.group?.value.percezione ? this.group?.controls['maestriaPercezione'].enable() : this.group?.controls['maestriaPercezione'].disable();
+  //   this.group?.value.persuasione ? this.group?.controls['maestriaPersuasione'].enable() : this.group?.controls['maestriaPersuasione'].disable();
+  //   this.group?.value.rapiditaDiMano ? this.group?.controls['maestriaRapiditaDiMano'].enable() : this.group?.controls['maestriaRapiditaDiMano'].disable();
+  //   this.group?.value.religione ? this.group?.controls['maestriaReligione'].enable() : this.group?.controls['maestriaReligione'].disable();
+  //   this.group?.value.sopravvivenza ? this.group?.controls['maestriaSopravvivenza'].enable() : this.group?.controls['maestriaSopravvivenza'].disable();
+  //   this.group?.value.storia ? this.group?.controls['maestriaStoria'].enable() : this.group?.controls['maestriaStoria'].disable();
+  // }
+
+  public updateAbilita() {
+    this.applyModifier();
+    this.applyBonusCompetenza();
   }
 }

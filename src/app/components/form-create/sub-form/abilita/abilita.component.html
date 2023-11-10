@@ -2,36 +2,45 @@
   <div class="step-form" [formGroup]="group">
     <section class="checkbox-section">
 
-      <div class="description-text">Il primo selettore (sinistra) permette di attivare la <b>Maestria</b> sull'Abilità corrispondente. La Maestria in un'abilità consiste in un bonus competenza raddoppiato.</div>
+      <div class="description-text">
+        Il selettore a Sinitra (con un'icona a stella - l'icona non è visibile nella visualizzazione mobile) serve ad
+        indicare la <strong>Maestria</strong> nell'abilità selezionata. Secondo il
+        regolamento essere "maestri" in un'abilità comporta un Bonus Competenza raddoppiato. Presta molta
+        attenzione a non confondere i due selettori. Quando hai finito, premi il tasto <strong>Aggiorna</strong> in
+        fondo all'elenco per calcolare e quindi aggiornare i punteggi.
+      </div>
       <div class="checkbox-line">
-        <mat-checkbox class="master" formControlName="maestriaAcrobazia" [disabled]="!group.value.acrobazia">
+        <mat-checkbox class="master" formControlName="maestriaAcrobazia">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox class="check-label" formControlName="acrobazia">Acrobazia (Des)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.acrobazia">+ </span> {{tiroAcrobazia}}</div>
+        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.acrobazia">+ </span> {{tiroAcrobazia}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaAddestrareAnimali" [disabled]="!group.value.addestrareAnimali">
+        <mat-checkbox formControlName="maestriaAddestrareAnimali">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox class="less-labels" formControlName="addestrareAnimali">Addestrare animali (Sag)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.addestrareAnimali">+ </span> {{tiroAddestrareAnimali}}</div>
+        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.addestrareAnimali">+ </span>
+          {{tiroAddestrareAnimali}}</div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaArcano" [disabled]="!group.value.arcano">
+        <mat-checkbox formControlName="maestriaArcano">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="arcano">Arcano (Int)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.arcano">+ </span> {{tiroArcano}}</div>
+        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.arcano">+ </span> {{tiroArcano}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaAtletica" [disabled]="!group.value.atletica">
+        <mat-checkbox formControlName="maestriaAtletica">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="atletica">Atletica (For)</mat-checkbox>
@@ -40,25 +49,27 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaFurtivita" [disabled]="!group.value.furtivita">
+        <mat-checkbox formControlName="maestriaFurtivita">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="furtivita">Furtività (Des)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.furtivita">+ </span> {{tiroFurtivita}}</div>
+        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.furtivita">+ </span> {{tiroFurtivita}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaIndagare" [disabled]="!group.value.indagare">
+        <mat-checkbox formControlName="maestriaIndagare">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="indagare">Indagare (Int)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.indagare">+ </span> {{tiroIndagare}}</div>
+        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.indagare">+ </span> {{tiroIndagare}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaInganno" [disabled]="!group.value.inganno">
+        <mat-checkbox formControlName="maestriaInganno">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="inganno">Inganno (Car)</mat-checkbox>
@@ -67,103 +78,117 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaIntimidire" [disabled]="!group.value.intimidire">
+        <mat-checkbox formControlName="maestriaIntimidire">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="intimidire">Intimidire (Car)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.intimidire">+ </span> {{tiroIntimidire}}</div>
+        <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.intimidire">+ </span> {{tiroIntimidire}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaIntrattenere" [disabled]="!group.value.intrattenere">
+        <mat-checkbox formControlName="maestriaIntrattenere">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="intrattenere">Intrattenere (Car)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.intrattenere">+ </span> {{tiroIntrattenere}}</div>
+        <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.intrattenere">+ </span>
+          {{tiroIntrattenere}}</div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaIntuizione" [disabled]="!group.value.intuizione">
+        <mat-checkbox formControlName="maestriaIntuizione">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="intuizione">Intuizione (Sag)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.intuizione">+ </span> {{tiroIntuizione}}</div>
+        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.intuizione">+ </span> {{tiroIntuizione}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaMedicina" [disabled]="!group.value.medicina">
+        <mat-checkbox formControlName="maestriaMedicina">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="medicina">Medicina (Sag)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.medicina">+ </span> {{tiroMedicina}}</div>
+        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.medicina">+ </span> {{tiroMedicina}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaNatura" [disabled]="!group.value.natura">
+        <mat-checkbox formControlName="maestriaNatura">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="natura">Natura (Int)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.natura">+ </span> {{tiroNatura}}</div>
+        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.natura">+ </span> {{tiroNatura}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaPercezione" [disabled]="!group.value.percezione">
+        <mat-checkbox formControlName="maestriaPercezione">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="percezione">Percezione (Sag)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.percezione">+ </span> {{tiroPercezione}}</div>
+        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.percezione">+ </span> {{tiroPercezione}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaPersuasione" [disabled]="!group.value.persuasione">
+        <mat-checkbox formControlName="maestriaPersuasione">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="persuasione">Persuasione (Car)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.persuasione">+ </span> {{tiroPersuasione}}</div>
+        <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.persuasione">+ </span> {{tiroPersuasione}}
+        </div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaRapiditaDiMano" [disabled]="!group.value.rapiditaDiMano">
+        <mat-checkbox formControlName="maestriaRapiditaDiMano">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="rapiditaDiMano">Rapidità di mano (Des)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.rapiditaDiMano">+ </span> {{tiroRapiditaMano}}</div>
+        <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.rapiditaDiMano">+ </span>
+          {{tiroRapiditaMano}}</div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaReligione" [disabled]="!group.value.religione">
+        <mat-checkbox formControlName="maestriaReligione">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="religione">Religione (Int)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.religione">+ </span> {{tiroReligione}}</div>
+        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.religione">+ </span>
+          {{tiroReligione}}</div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaSopravvivenza" [disabled]="!group.value.sopravvivenza">
+        <mat-checkbox formControlName="maestriaSopravvivenza">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="sopravvivenza">Sopravvivenza (Sag)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.sopravvivenza">+ </span> {{tiroSopravvivenza}}</div>
+        <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.sopravvivenza">+ </span>
+          {{tiroSopravvivenza}}</div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaStoria" [disabled]="!group.value.storia">
+        <mat-checkbox formControlName="maestriaStoria">
           <mat-icon class="master-icon">star</mat-icon>
         </mat-checkbox>
         <mat-checkbox formControlName="storia">Storia (Int)</mat-checkbox>
         <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.storia">+ </span> {{tiroStoria}}</div>
+        <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.storia">+ </span> {{tiroStoria}}
+        </div>
       </div>
+
+      <button mat-raised-button color="accent" (click)="updateAbilita()">
+        <mat-icon>update</mat-icon> Aggiorna</button>
     </section>
   </div>
 </ng-container>
