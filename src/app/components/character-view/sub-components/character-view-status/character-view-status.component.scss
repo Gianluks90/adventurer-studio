@@ -221,6 +221,20 @@
     background-color: orange;
 }
 
+.dice-container {
+    display: flex;
+    gap: 8px;
+}
+
+.dice-icon {
+    width: 30px;
+    cursor: pointer;
+}
+
+.dice-used {
+    opacity: 0.2;
+}
+
 @media screen and (max-width: 500px) {
     .pf-line {
         gap: 4px;

@@ -83,4 +83,13 @@ export class CharacterService {
       }
     }, { merge: true });
   }
+
+  public async updateCharacterDadiVitaById(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      parametriVitali: {
+        dadiVita: form.value.dadiVita
+      }
+    }, { merge: true });
+  }
 }

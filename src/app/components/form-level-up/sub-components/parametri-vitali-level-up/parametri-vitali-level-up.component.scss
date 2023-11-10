@@ -24,3 +24,31 @@
     margin-bottom: 20px;
     text-align: justify;
 }
+
+.line-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.line-input {
+    flex-grow: 1;
+}
+
+.delete-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+@media screen and (max-width: 500px) {
+    .delete-button>button {
+        width: 100%;
+    }
+
+    .button-container>button {
+        width: 100%;
+    }
+}

@@ -36,6 +36,8 @@ export class CharacterViewStatusComponent {
 
   public parametriVitaliForm: FormGroup | null = null;
 
+  public dadiVitaData: any[] = [];
+
   constructor(
     private dialog: MatDialog,
     private platform: Platform,
@@ -45,10 +47,12 @@ export class CharacterViewStatusComponent {
 
   @Input() set character(character: any) {
     this.characterData = character;
-
+    console.log(this.characterData.parametriVitali);
+    
     this.initCaratteristiche();
     this.initTiriSalvezza();
     this.initProvePassive();
+    this.initDadiVita();
   }
 
   ngOnInit(): void {
@@ -122,6 +126,37 @@ export class CharacterViewStatusComponent {
           this.notification.openSnackBar('Punti Ferita Aggiornati.', 'favorite', 3000, 'limegreen');
         });
       }
+    });
+  }
+
+  public initDadiVita(): void {
+    this.characterData.parametriVitali.dadiVita.forEach((dado: any) => {
+      const dadiUsati = dado.usati;
+      for (let i = 0; i < dado.quantita; i++) {
+        this.dadiVitaData.push({
+          tipologia: dado.tipologia,
+          usato: dado.usati > i ? true : false,
+          icon: './assets/dice/dice-' + dado.tipologia + '.svg'
+        });
+      }
+    });
+  }
+
+  public updateDadiVita(index: number, type: string) {
+    this.dadiVitaData.at(index).usato = !this.dadiVitaData.at(index).usato;
+    const dadiVita = this.characterData.parametriVitali.dadiVita;
+    dadiVita.forEach((dado: any) => {
+      if (dado.tipologia === type) {
+        dado.usati = this.dadiVitaData.at(index).usato ? dado.usati + 1 : dado.usati - 1;
+      }
+    });
+
+    this.parametriVitaliForm.get('dadiVita').patchValue(dadiVita);
+    console.log('DV', this.parametriVitaliForm.get('dadiVita')?.value);
+    
+    const characterId = window.location.href.split('/').pop();
+    this.charService.updateCharacterDadiVitaById(characterId, this.parametriVitaliForm).then(() => {
+      this.notification.openSnackBar('Dadi Vita Aggiornati.', 'check', 3000, 'limegreen');
     });
   }
 }

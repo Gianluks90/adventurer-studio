@@ -128,7 +128,7 @@ export class FormModel {
       puntiFeritaAttuali: 0,
       massimoPuntiFeritaTemporanei: 0,
       puntiFeritaTemporaneiAttuali: 0,
-      dadiVita: [[], Validators.required],
+      dadiVita: builder.array([]),
     })
   }
 

@@ -1,6 +1,6 @@
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent, MatChipEditedEvent } from '@angular/material/chips';
 import { FormService } from 'src/app/services/form.service';
 
@@ -15,59 +15,41 @@ export class ParametriVitaliLevelUpComponent {
   public groupVita: FormGroup | null = null;
   public modDestrezza: number = 0;
 
-  public dadiVitaArray: FormArray | null = null;
-  public dadiVita: string[] = [];
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  public dadiVita: FormArray;
 
-  constructor(public formService: FormService) {}
+  constructor(public formService: FormService, private fb: FormBuilder) {
+    this.dadiVita = this.fb.array([]);
+  }
 
   ngOnInit(): void {
     this.formService.formLevelUpSubject.subscribe((form: any) => {
       if (form) {
         this.group = form as FormGroup;
         this.groupVita = form.get('parametriVitali') as FormGroup;
-
-        this.dadiVitaArray = this.groupVita?.get('dadiVita') as FormArray;
-        if (this.dadiVitaArray.value.length > 0) {
-          this.dadiVita = this.dadiVitaArray.value;
-        }
+        this.dadiVita = this.groupVita.controls['dadiVita'] as FormArray;
 
         this.group.get('caratteristiche')?.valueChanges.subscribe((value: any) => {
           this.modDestrezza = Math.floor((value.destrezza - 10) / 2);
           this.group?.get('iniziativa')?.setValue(this.modDestrezza);
         });
+
+        this.groupVita.get('massimoPuntiFerita').valueChanges.subscribe((value: any) => {
+          this.groupVita?.get('puntiFeritaAttuali')?.setValue(value);
+        });
       }
     });
   }
 
-  addDadoVita(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    if (value) {
-      this.dadiVita.push(value);
-      this.dadiVitaArray?.patchValue(this.dadiVita);
-    }
-    event.chipInput!.clear();
+  addDadoVita() {
+    const dadoVita = this.fb.group({
+      tipologia: ['', Validators.required],
+      quantita: [0, Validators.required],
+      usati: 0
+    });
+    this.dadiVita.push(dadoVita);
   }
 
-  removeDadoVita(input: any): void {
-    const index = this.dadiVita.indexOf(input);
-    if (index >= 0) {
-      this.dadiVita.splice(index, 1);
-      this.dadiVitaArray?.patchValue(this.dadiVita);
-    }
-  }
-
-  editDadoVita(input: any, event: MatChipEditedEvent): void {
-    const value = event.value.trim();
-    if (!value) {
-      this.removeDadoVita(input);
-      return;
-    }
-
-    const index = this.dadiVita.indexOf(input);
-    if (index >= 0) {
-      this.dadiVita[index] = value;
-      this.dadiVitaArray?.patchValue(this.dadiVita);
-    }
+  deleteDadoVita(index: number) {
+    this.dadiVita.removeAt(index);
   }
 }

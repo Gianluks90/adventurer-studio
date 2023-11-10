@@ -117,16 +117,17 @@
 </div>
 
 <div class="section-title">Dadi vita</div>
-<div class="punti-ferita-container">
-
-    <div class="pf-group">
+<div class="dice-container">
+    <div *ngFor="let d of dadiVitaData; let i = index;">
+        <img class="dice-icon" [ngClass]="{'dice-used' : d.usato}" [src]="d.icon" (click)="updateDadiVita(i, d.tipologia)">
+    </div>
+    
+    <!-- <div class="pf-group">
         <div class="pf-line">
             <img src="./assets/dice/dice-d6-2.svg" matTooltip="Dadi vita" matTooltipPosition="above">
             <span class="PF" *ngFor="let dice of characterData.parametriVitali.dadiVita">{{dice}}</span>
         </div>
-       
-        
-    </div>
+    </div> -->
 </div>
 <div class="section-title">Prove passive</div>
 <div class="passive-container">

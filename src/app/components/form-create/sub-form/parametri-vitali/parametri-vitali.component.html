@@ -38,9 +38,44 @@
 
     <div class="section-title">Dadi Vita</div>
 
-    <mat-form-field color="accent" appearance="outline">
-      <!-- <mat-label class="input-field">Linguaggi conosciuti</mat-label>
-      <input class="" matInput formControlName="linguaggi"> -->
+    <ng-container class="" formArrayName="dadiVita">
+      <ng-container *ngFor="let d of dadiVita.controls; let i = index;">
+        <div class="step-form" [formGroupName]="i">
+          <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Tipologia</mat-label>
+              <mat-select formControlName="tipologia">
+                <mat-option value="d4">d4</mat-option>
+                <mat-option value="d6">d6</mat-option>
+                <mat-option value="d8">d8</mat-option>
+                <mat-option value="d10">d10</mat-option>
+                <mat-option value="d12">d12</mat-option>
+                <mat-option value="d20">d20</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Quantità</mat-label>
+              <input #valoreRisorsa type="number" matInput formControlName="quantita" min="1">
+            </mat-form-field>
+          </div>
+
+          <div class="delete-button">
+            <button mat-raised-button color="accent" (click)="deleteDadoVita(i)">
+              <mat-icon>arrow_upward</mat-icon><mat-icon>delete</mat-icon> Rimuovi
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="button-container">
+      <button mat-raised-button color="accent" (click)="addDadoVita()">
+        <mat-icon>add</mat-icon>
+        Aggiungi nuovo
+      </button>
+    </div>
+
+    <!-- <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Totale Dadi vita e Tipo</mat-label>
       <mat-chip-grid #chipGrid>
         <mat-chip-row *ngFor="let d of dadiVita" (removed)="removeDadoVita(d)" [editable]="true"
@@ -55,7 +90,7 @@
           (matChipInputTokenEnd)="addDadoVita($event)" />
 
       </mat-chip-grid>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <!-- <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Totale</mat-label>

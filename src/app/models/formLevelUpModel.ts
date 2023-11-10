@@ -104,7 +104,7 @@ export class FormLevelUpModel {
   static parametriVitali(builder: FormBuilder) {
     return builder.group({
       massimoPuntiFerita: [0, [Validators.min(1), Validators.required]],
-      dadiVita: [[], Validators.required],
+      dadiVita: builder.array([])
     })
   }
 
