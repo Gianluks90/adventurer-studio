@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { FormGroup } from '@angular/forms';
 import { DocumentData, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -91,5 +92,29 @@ export class CharacterService {
         dadiVita: form.value.dadiVita
       }
     }, { merge: true });
+  }
+
+  public async setRoom(slug: string) {
+    const docRef = doc(this.firebaseService.database, 'users', getAuth().currentUser.uid);
+    return await setDoc(docRef, {
+      dddice_RoomSlug: slug
+    }, { merge: true })
+  }
+
+  public async getRoom(): Promise<string> {
+    const docRef = doc(this.firebaseService.database, 'users', getAuth().currentUser.uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return docSnap.data()['dddice_RoomSlug'];
+    } else {
+      return '';
+    }
+  }
+
+  public async destroyRoom() {
+    const docRef = doc(this.firebaseService.database, 'users', getAuth().currentUser.uid);
+    return await setDoc(docRef, {
+      dddice_RoomSlug: ''
+    }, { merge: true })
   }
 }

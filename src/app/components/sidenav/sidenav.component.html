@@ -38,4 +38,10 @@
     <mat-icon>exit_to_app</mat-icon>
     Disconnettiti
   </button>
+
+  <div class="toggle-container">
+    <div class="toggle-label">Abilita tiri</div>
+    <mat-slide-toggle color="primary" [checked]="roomExist" (change)="toggle($event)"></mat-slide-toggle>
+  </div>
+  
 </div>

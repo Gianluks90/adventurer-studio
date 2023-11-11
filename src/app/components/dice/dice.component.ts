@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { DiceService } from 'src/app/services/dice.service';
-import { ThreeDDice } from 'dddice-js';
+import { DiceEvent, ThreeDDice, ThreeDDiceRollEvent } from 'dddice-js';
 import { getAuth } from 'firebase/auth';
 import { NotificationService } from 'src/app/services/notification.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-dice',
@@ -10,8 +11,8 @@ import { NotificationService } from 'src/app/services/notification.service';
   styleUrls: ['./dice.component.scss']
 })
 export class DiceComponent {
-  private dddice: any
-  private idStanza: string = "VlClkLL" // DEVE ESSERE FORNITO DALL'UTENTE (POSSIBILE AGGIUNTA DI PASSWORD AL MOMENTO DELLA CONNESSIONE)
+  private dddice: ThreeDDice;
+  private idStanza: string = "" // DEVE ESSERE FORNITO DALL'UTENTE (POSSIBILE AGGIUNTA DI PASSWORD AL MOMENTO DELLA CONNESSIONE)
   // private idStanza: string = "";
   public totale: number = 0;
   public arrayDadiSalvati: string[] = [];
@@ -49,7 +50,7 @@ export class DiceComponent {
   ]
   public isMenuOpen = false;
 
-  constructor(private service: DiceService, private notification: NotificationService,) {
+  constructor(private service: DiceService, private notification: NotificationService, private firebaseService: FirebaseService) {
     this.service.result.subscribe({
       next: res => {
         if(res){
@@ -58,18 +59,20 @@ export class DiceComponent {
         }
       },
       error: err => console.log(err)
-    })
-
+    });
+    this.firebaseService.getUser(getAuth().currentUser).then(res => {this.idStanza = res.data()["dddice_RoomSlug"]; this.initRollTable()})
   }
 
   ngOnInit() {
-    this.initRollTable();
+    // if(this.idStanza){
+    //   this.initRollTable();
+    // }
   }
 
   // FUNZIONE CHE INIZIALIZZA E CONNETTE AL TAVOLO DI GIOCO
   private initRollTable() {
     let element = (document.getElementById("dddice") as HTMLCanvasElement);
-    this.dddice = new ThreeDDice(element, "xWudPBDUPShExHODFj3LpVTfHnpq5sNYmz5Cq88s851a8216");
+    this.dddice = new ThreeDDice(element, "CQSIqORUGw8et99lyxShEdYLWvyq4rmzATYTyftR1ced18ab");
     this.dddice.start();
     this.dddice.connect(this.idStanza);
   }
@@ -99,15 +102,13 @@ export class DiceComponent {
 
   //FUNZIONE CHE CHIAMA IL SERVICE PER EFFETTUARE IL TIRO
   private callForRoll(dice: any) {
-    this.service.getRoll(dice)
+    this.service.getRoll(dice);
     setTimeout(() => this.totale = 0, 10000);
-
     this.arrayDadiSalvati = [];
   }
 
   // FUNZIONE CHE SALVA I VALORI DEI DADI NELL'ARRAY E LA QUANTITA' ALL'INTERNO DELL'OGGETTO
   public salvaDadi(valoreDadi: any) {
-
     if (this.arrayDadiSalvati.length < 25) {
       for (const dado of this.dadi) {
       if (dado.valore === valoreDadi) {

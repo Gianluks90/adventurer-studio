@@ -75,6 +75,16 @@
   margin-right: 8px;
 }
 
+.toggle-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.toggle-label {
+  text-transform: uppercase;
+}
+
 @media screen and (min-width: 501px) {
   // .home-container {
   //     // position: fixed;

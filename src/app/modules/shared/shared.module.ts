@@ -16,6 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -34,7 +35,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatIconModule,
@@ -50,7 +52,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSelectModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSlideToggleModule
   ]
 })
 export class SharedModule { }
