@@ -115,7 +115,7 @@
 @media screen and (max-width: 500px) {
     .view-tabs>mat-tab-group {
         max-width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 80px;
     }
 
     .status-container {
@@ -126,5 +126,10 @@
     .view-tabs {
         height: max-content;
         margin-bottom: 20px;
+    }
+
+    .sidenav-buttons {
+        flex-direction: row-reverse;
+        z-index: 2000;
     }
 }

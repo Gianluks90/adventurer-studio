@@ -64,3 +64,11 @@
 .spell-attributes::first-letter {
     text-transform: uppercase;
 }
+
+details {
+    margin-bottom: 8px;
+}
+
+details[open] {
+    margin-bottom: 16px;
+}
