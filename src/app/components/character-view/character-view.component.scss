@@ -113,6 +113,11 @@
 }
 
 @media screen and (max-width: 500px) {
+
+    .view-container {
+        width: 90%;
+    }
+    
     .view-tabs>mat-tab-group {
         max-width: 100%;
         margin-bottom: 80px;
@@ -131,5 +136,9 @@
     .sidenav-buttons {
         flex-direction: row-reverse;
         z-index: 2000;
+    }
+
+    ::ng-deep.mat-mdc-tab-header {
+        padding: 10px;
     }
 }

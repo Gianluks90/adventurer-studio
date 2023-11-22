@@ -14,7 +14,7 @@
 .auth-title {
   font-family: 'Cinzel', serif;
   color: white;
-  font-size: xxx-large;
+  font-size: 5rem;
   margin-bottom: 24px;
   text-shadow: 2px 2px 4px #000000;
 }
@@ -22,11 +22,12 @@
 .auth-description {
   font-family: 'Times New Roman', Times, serif;
   color: white;
-  font-size: x-large;
+  font-size: 2rem;
   margin-bottom: 24px;
   text-shadow: 2px 2px 4px #000000;
   text-align: center;
-  width: 30%;
+  line-height: 1.2;
+  width: 40%;
 }
 
 .auth-subtitle {
@@ -35,15 +36,31 @@
   font-size: x-large;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 850px) {
   .auth-title {
-    font-size: xx-large;
-    margin-bottom: 48px;
+    font-size: 3rem;
     text-align: center;
     line-height: 1em;
   }
 
   .auth-description {
     width: 90%;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .auth-title {
+    font-size: 2.5rem;
+    text-align: center;
+    line-height: 1em;
+    margin-bottom: 20px;
+  }
+
+  .auth-description {
+    width: 90%;
+    font-size: 1.2rem;
+    line-height: 1.5;
   }
 }

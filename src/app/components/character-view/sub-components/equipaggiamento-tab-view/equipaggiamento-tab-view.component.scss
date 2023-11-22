@@ -35,3 +35,19 @@
   color: white;
   box-shadow: 0 0 4px black;
 }
+
+@media screen and (max-width: 500px) {
+  .desktop {
+    display: none;
+  }
+
+  .coins-viewer {
+    margin-bottom: 10px;
+  }
+
+  .money-button-mobile {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+}

@@ -85,6 +85,11 @@ export class AbilitaComponent {
   }
 
   public updateAbilita() {
+    this.formService.formSubject.subscribe((form: any) => {
+      if (form) {
+        this.bonusCompetenza = form.get('tiriSalvezza')?.get('bonusCompetenza').value;
+      }
+    }).unsubscribe();
     this.applyModifier();
     this.applyBonusCompetenza();
   }
