@@ -14,34 +14,34 @@
     </div>
   </div>
 
-  <button mat-raised-button color="primary" [routerLink]="['/home']" (click)="close()">
+  <button mat-raised-button color="accent" [routerLink]="['/home']" (click)="close()">
     <mat-icon>home</mat-icon>
     Inizio
   </button>
 
-  <button mat-raised-button color="primary" [routerLink]="['/characters']" (click)="close()">
+  <button mat-raised-button color="accent" [routerLink]="['/characters']" (click)="close()">
     <mat-icon>description</mat-icon>
     I tuoi personaggi
   </button>
 
-  <button mat-raised-button color="primary" disabled (click)="close()">
+  <button mat-raised-button color="accent" disabled (click)="close()">
     <mat-icon>group</mat-icon>
     Campagne
   </button>
 
-  <button mat-raised-button color="primary" disabled (click)="close()">
+  <button mat-raised-button color="accent" disabled (click)="close()">
     <mat-icon>inventory_2</mat-icon>
     Creazioni
   </button>
 
-  <button mat-raised-button color="primary" (click)="logout()">
+  <button mat-raised-button color="accent" (click)="logout()">
     <mat-icon>exit_to_app</mat-icon>
     Disconnettiti
   </button>
 
-  <div class="toggle-container">
+  <!-- <div class="toggle-container">
     <div class="toggle-label">Abilita tiri</div>
-    <mat-slide-toggle color="primary" [checked]="roomExist" (change)="toggle($event)"></mat-slide-toggle>
-  </div>
+    <mat-slide-toggle color="accent" [checked]="roomExist" (change)="toggle($event)"></mat-slide-toggle>
+  </div> -->
   
 </div>

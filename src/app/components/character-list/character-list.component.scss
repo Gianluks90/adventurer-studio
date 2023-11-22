@@ -1,148 +1,3 @@
-// .container {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   flex-wrap: wrap;
-//   flex-grow: 1;
-//   height: 100%;
-//   width:100%;
-//   gap: 8px;
-// }
-
-// .card-order{
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   justify-content: space-between;
-//   height: max-content;
-//   width: 100%;
-//   gap: 12px;
-// }
-
-// .card-container {
-//   background-color: white;
-//   // margin: 16px;
-//   flex-direction: column;
-//   height: max-content;
-//   display: flex;
-//   align-items: center;
-//   flex-grow: 1;
-//   gap: 12px;
-//   border-radius: 8px;
-//   padding: 12px;
-//   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-// }
-
-// .divider {
-//   flex-grow: 1;
-// }
-
-// .button-container {
-//   // display: flex;
-//   // gap: 12px;
-//   display: flex;
-//   width: 100%;
-//   flex-direction: column;
-//   gap: 8px;
-//   align-items: center;
-//   justify-content: space-around;
-//   flex-grow: 1;
-// }
-
-// .button-container > button {
-//   flex-grow: 1;
-// }
-
-// .character-name {
-//   text-transform: uppercase;
-//   letter-spacing: 1px;
-//   font-weight: bold;
-//   display: flex;
-//   align-items: center;
-//   gap: 4px;
-// }
-
-// .character-name::first-letter {
-//   font-size: large;
-// }
-
-// .character-info {
-//   opacity: 0.5;
-//   text-transform: uppercase;
-// }
-
-// .immagine-personaggio {
-//   width: 100px;
-//   // height: 100px;
-//   border-radius: 4px;
-//   object-fit: cover;
-// }
-
-// .sidenav-buttons {
-//   position: fixed;
-//   bottom: 16px;
-//   left: 16px;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 8px;
-//   z-index: 1;
-// }
-
-// .step-button {
-//   background-color: black;
-//   color: white;
-//   border-radius: 8px;
-//   padding: 8px;
-//   font-weight: bold;
-//   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-// }
-
-// .side-container {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 8px;
-//   width: 100%;
-// }
-
-// .no-more-heroes {
-//   margin-top: 20px;
-// }
-
-// .main-button {
-//   width: 100%;
-// }
-
-// @media screen and (max-width: 500px) {
-
-//   .card-container {
-//     flex-direction: column;
-//     padding: 8px;
-//     width: fit-content;
-//   }
-
-//   .button-container {
-//     width: 100%;
-//     justify-content: center;
-//     gap: 8px;
-//     flex-wrap: wrap;
-//   }
-
-//   .button-container>button {
-//     flex-grow: 1;
-//   }
-
-//   .immagine-personaggio {
-//     width: 100%;
-//     object-position: 50% 30%;
-//   }
-
-//   .no-more-heroes {
-//     margin-top: 8px;
-//   }
-
-// }
-
 .main-container {
   display: flex;
   flex-direction: column;
@@ -269,5 +124,35 @@
 @media screen and (max-width: 500px) {
   .card-container {
     justify-content: center;
+  }
+
+  .card-details {
+    max-width: 80%;
+  }
+
+  .card-header {
+    width: 100%;
+  }
+
+  .side-container {
+    width: 100%;
+  }
+
+  .character-name {
+    width: 100%;
+  }
+
+  .button-container {
+    width: 100%;
+  }
+
+  .button-container>button {
+    width: auto;
+  }
+
+  .second-buttons>button {
+    flex-grow: 1;
+    max-width: 49%;
+
   }
 }
