@@ -131,10 +131,12 @@
 @media screen and (max-width: 500px) {
   .card-container {
     justify-content: center;
+    padding: 20px 0 70px 0;
+
   }
 
   .card-details {
-    max-width: 80%;
+    max-width: 200px;
   }
 
   .card-header {
@@ -146,20 +148,24 @@
   }
 
   .character-name {
-    width: 100%;
+    width: 170px;
+    margin-left: 8px;
+  }
+
+  .character-info {
+    margin-left: 8px;
   }
 
   .button-container {
     width: 100%;
   }
 
-  .button-container>button {
+  .button-container > button {
     width: auto;
   }
 
-  .second-buttons>button {
+  .second-buttons > button {
     flex-grow: 1;
-    max-width: 49%;
 
   }
 }
