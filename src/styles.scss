@@ -4,11 +4,11 @@
 
 @include mat.core();
 
-$dark-primary-text: rgba(black, 0.87);
-$dark-secondary-text: rgba(black, 0.54);
-$dark-disabled-text: rgba(black, 0.38);
-$dark-dividers: rgba(black, 0.12);
-$dark-focused: rgba(black, 0.12);
+$dark-primary-text: rgba(#212121, 0.87);
+$dark-secondary-text: rgba(#212121, 0.54);
+$dark-disabled-text: rgba(#212121, 0.38);
+$dark-dividers: rgba(#212121, 0.12);
+$dark-focused: rgba(#212121, 0.12);
 $light-primary-text: white;
 $light-secondary-text: rgba(white, 0.7);
 $light-disabled-text: rgba(white, 0.5);
@@ -29,7 +29,7 @@ $custom-palette: (
   A100 : #ffd7d7,
   A200 : #ffa4a4,
   A400 : #ff7171,
-  A700 : black,
+  A700 : #212121,
   contrast: (50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
@@ -128,7 +128,6 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-
     border-radius: 6px;
 }
 
@@ -145,9 +144,8 @@ body {
 
 .custom-snackbar,
 .mdc-snackbar__surface {
-  // background-color: #cc0000 !important;
   color: white !important;
-  border-radius: 8px;
+  // border-radius: 8px;
   text-align: center;
 }
 

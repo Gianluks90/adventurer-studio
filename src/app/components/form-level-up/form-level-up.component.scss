@@ -20,7 +20,7 @@
 
 .header-container {
     width: 100%;
-    background-color: black;
+    background-color: #212121;
     color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -39,7 +39,7 @@
 }
 
 .home-title {
-    background-color: black;
+    background-color: #212121;
     color: white;
     font-family: Cinzel, serif;
     font-size: large;
@@ -90,7 +90,7 @@
 }
 
 ::ng-deep.mat-step-icon {
-    background-color: black !important;
+    background-color: #212121 !important;
     color: white !important;
 }
 
@@ -108,7 +108,7 @@
 }
 
 .step-button {
-    background-color: black;
+    background-color: #212121;
     color: white;
     border-radius: 8px;
     padding: 8px;

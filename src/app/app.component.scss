@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   filter: blur(8px);
-  -webkit-filter: blur(8px);
+  -webkit-filter: blur(18px);
   height: 100vh;
   width: 100vw;
   position: fixed;
@@ -42,9 +42,9 @@
   bottom: 20px;
   left: 20px;
   z-index: 2;
-  background-color: black;
+  background-color: #212121;
   color: white;
-  border-radius: 8px;
+  // border-radius: 8px;
   padding: 8px;
   font-weight: bold;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);

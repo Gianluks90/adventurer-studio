@@ -12,7 +12,7 @@
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+  border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
 }
 
 .coins-viewer {
@@ -30,10 +30,14 @@
 }
 
 .money-button {
-  background-color: black;
-  border-radius: 4px;
+  background-color: #212121;
+  border-radius: 0px;
   color: white;
-  box-shadow: 0 0 4px black;
+  box-shadow: 0 0 4px #212121;
+}
+
+.money-button-mobile {
+  display: none;
 }
 
 @media screen and (max-width: 500px) {
@@ -46,6 +50,7 @@
   }
 
   .money-button-mobile {
+    display: block;
     margin-bottom: 10px;
     width: 100%;
   }

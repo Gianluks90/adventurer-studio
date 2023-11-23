@@ -4,7 +4,7 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
 }
 
 .background-main-container {
@@ -25,7 +25,7 @@
 .bg-info {
     background-color: lightgray;
     padding: 4px 8px;
-    border-radius: 8px;
+    // border-radius: 8px;
     flex-grow: 1;
 }
 
@@ -42,12 +42,12 @@
 }
 
 .bg-name {
-    background-color: black;
+    background-color: #212121;
     color: white;
     padding: 8px;
-    border-radius: 8px;
+    // border-radius: 8px;
 }
 
 .bg-description {
-    padding: 4px;
+    padding: 8px;
 }

@@ -1,7 +1,6 @@
 .view-container {
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     gap: 8px;
     width: 80%;
     padding: 16px 0;
@@ -9,19 +8,19 @@
 }
 
 .view-header {
-    background-color: black;
+    background-color: #212121;
     color: white;
-    border-radius: 8px;
+    // border-radius: 8px;
     display: flex;
     align-items: center;
-    padding: 8px;
+    // padding: 8px;
     gap: 12px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 
 }
 
 .character-image {
-    width: 60px;
+    width: 80px;
     border-radius: 8px;
     object-fit: cover;
 }
@@ -56,11 +55,11 @@
     flex-grow: 1;
 }
 
-.view-tabs>mat-tab-group {
+.view-tabs > mat-tab-group {
     max-width: 50%;
     flex-grow: 1;
     background-color: white;
-    border-radius: 8px;
+    // border-radius: 8px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -69,7 +68,7 @@
 }
 
 .status-container {
-    border-radius: 8px;
+    // border-radius: 8px;
     background-color: white;
     flex-grow: 1;
     padding: 20px;
@@ -86,9 +85,9 @@
 }
 
 .step-button {
-    background-color: black;
+    background-color: #212121;
     color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 8px;
     font-weight: bold;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -96,12 +95,12 @@
 
 .mat-tab-label {
     background: #e7e7e7;
-    color: black;
+    color: #212121;
     min-width: 60px !important;
 }
 
 .tab-label:active {
-    color: black;
+    color: #212121;
 }
 
 ::ng-deep.mat-mdc-tab-header {
@@ -134,7 +133,7 @@
     }
 
     .sidenav-buttons {
-        flex-direction: row-reverse;
+        flex-direction: row;
         z-index: 2000;
     }
 

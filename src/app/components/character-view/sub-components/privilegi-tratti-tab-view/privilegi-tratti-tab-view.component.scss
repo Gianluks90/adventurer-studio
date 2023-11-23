@@ -12,7 +12,7 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 1px solid rgba($color: black, $alpha: 0.3);
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
 }
 
 .pt-container {
@@ -20,10 +20,9 @@
 }
 
 .pt-name {
-    background-color: black;
+    background-color: #212121;
     color: white;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 12px;
     margin-bottom: 4px;
 }
 
@@ -31,6 +30,12 @@
     font-size: small;
     opacity: 0.5;
     font-style: italic;
+    padding: 0 4px;
+
+}
+
+.pt-description {
+    padding: 0 4px;
 }
 
 .pt-type::first-letter {
