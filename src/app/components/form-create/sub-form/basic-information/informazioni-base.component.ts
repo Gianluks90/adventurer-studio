@@ -17,18 +17,20 @@ export class InformazioniBaseComponent {
   public risorseAggiuntive: FormArray;
 
   constructor(
-    public formService: FormService, 
+    public formService: FormService,
     private stepper: MatStepper,
     private fb: FormBuilder,
-    private notification: NotificationService) { 
-      this.classi = this.fb.array([]);
-      this.risorseAggiuntive = this.fb.array([]);
-    }
+    private notification: NotificationService) {
+    this.classi = this.fb.array([]);
+    this.risorseAggiuntive = this.fb.array([]);
+  }
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.groupInfo = form.get('informazioniBase') as FormGroup;
+        console.log(this.groupInfo);
+
         this.groupCaratteristiche = form.get('caratteristicheFisiche') as FormGroup;
         this.classi = this.groupInfo.get('classi') as FormArray;
         this.risorseAggiuntive = this.groupInfo.get('risorseAggiuntive') as FormArray;
@@ -43,10 +45,12 @@ export class InformazioniBaseComponent {
       this.formService.uploadImage(event).then((result) => {
         if (result !== 'error') {
           this.groupInfo?.patchValue({
-            urlImmaginePersonaggio: result,
-            nomeImmaginePersonaggio: event.target.files[0].name,
-          })
-          this.notification.openSnackBar('Immagine caricata con successo!', 'add_photo_alternate', 3000, 'limegreen');
+            urlImmaginePersonaggio: result.url,
+            nomeImmaginePersonaggio: result.name,
+          });
+          this.formService.updatePicCharacter(window.location.href.split('/').pop(), result.url, result.name).then(() => {
+            this.notification.openSnackBar('Immagine caricata con successo!', 'add_photo_alternate', 3000, 'limegreen');
+          });
         } else {
           this.notification.openSnackBar('Errore nel caricamento dell\'immagine', 'error');
         }
@@ -61,7 +65,9 @@ export class InformazioniBaseComponent {
           urlImmaginePersonaggio: '',
           nomeImmaginePersonaggio: '',
         })
-        this.notification.openSnackBar('Immagine eliminata con successo', 'check');
+        this.formService.updatePicCharacter(window.location.href.split('/').pop(), '', '').then(() => {
+          this.notification.openSnackBar('Immagine eliminata con successo', 'check');
+        });
       }
     });
   }

@@ -7,6 +7,7 @@ import { CharacterService } from './character.service';
 import { doc, setDoc } from 'firebase/firestore';
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { FormLevelUpModel } from '../models/formLevelUpModel';
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -74,12 +75,16 @@ export class FormService {
   }
 
 
-  public async uploadImage(event: any): Promise<string> {
+  public async uploadImage(event: any): Promise<any> {
     const file: File = event.target.files[0];
-    const imageRef = ref(this.firebaseService.storage, 'characterImages/' + file.name);
+    const fileName = window.location.href.split('/').pop();
+    const imageRef = ref(this.firebaseService.storage, 'characterImages/' + getAuth().currentUser?.uid + '/' + fileName);
     return await uploadBytes(imageRef, file).then(async () => {
       return await getDownloadURL(imageRef).then((url) => {
-        return url;
+        return {
+          url: url,
+          name: fileName
+        };
       }).catch((error) => {
         console.log(error);
         alert('Errore nel caricamento dell\'immagine');
@@ -93,13 +98,26 @@ export class FormService {
   }
 
   public async deleteImage(nomeImmagine: string): Promise<string> {
-    const imageRef = ref(this.firebaseService.storage, 'characterImages/' + nomeImmagine);
+    // NOTA: Il nome immagine corrisponde anche all'id del personaggio
+    const imageRef = ref(this.firebaseService.storage, 'characterImages/' + getAuth().currentUser?.uid + '/' + nomeImmagine);
     return deleteObject(imageRef).then(() => {
       return 'success';
     }).catch((error) => {
       console.log(error);
       alert('Errore nell\'eliminazione dell\'immagine');
       return 'error';
+    });
+  }
+
+  public updatePicCharacter(charId: string, url: string, name: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', charId);
+    return setDoc(docRef, {
+      informazioniBase: {
+        urlImmaginePersonaggio: url,
+        nomeImmaginePersonaggio: name,
+      }
+    }, {
+      merge:true
     });
   }
 

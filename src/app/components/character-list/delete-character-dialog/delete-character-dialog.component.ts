@@ -2,6 +2,7 @@ import { Component, Inject, Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CharacterService } from 'src/app/services/character.service';
+import { FormService } from 'src/app/services/form.service';
 
 @Component({
   selector: 'app-delete-character-dialog',
@@ -16,13 +17,17 @@ export class DeleteCharacterDialogComponent {
 
   constructor(
     private characterService: CharacterService,
+    private formService: FormService,
     public dialogRef: MatDialogRef<DeleteCharacterDialogComponent>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: {id: string} ) { }
 
     public confirm() {
       this.characterService.deleteCharacterById(this.data.id).then(() => {
-        this.dialogRef.close('confirm');
+        this.formService.deleteImage(this.data.id).then(() => {
+          this.dialogRef.close('confirm');
+        });
+        // this.dialogRef.close('confirm');
       })
     }
 }

@@ -64,24 +64,24 @@ export class AbilitaComponent {
   }
 
   public applyBonusCompetenza(): void {
-    this.tiroAcrobazia = this.group?.get('acrobazia')?.value ? this.modDestrezza + (this.group?.get('maestriaAcrobazia')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modDestrezza;
-    this.tiroAddestrareAnimali = this.group?.get('addestrareAnimali')?.value ? this.modSaggezza + (this.group?.get('maestriaAddestrareAnimali')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modSaggezza;
-    this.tiroArcano = this.group?.get('arcano')?.value ? this.modIntelligenza + (this.group?.get('maestriaArcano')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modIntelligenza;
-    this.tiroAtletica = this.group?.get('atletica')?.value ? this.modForza + (this.group?.get('maestriaAtletica')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modForza;
-    this.tiroFurtivita = this.group?.get('furtivita')?.value ? this.modDestrezza + (this.group?.get('maestriaFurtivita')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modDestrezza;
-    this.tiroIndagare = this.group?.get('indagare')?.value ? this.modIntelligenza + (this.group?.get('maestriaIndagare')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modIntelligenza;
-    this.tiroInganno = this.group?.get('inganno')?.value ? this.modCarisma + (this.group?.get('maestriaInganno')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modCarisma;
-    this.tiroIntimidire = this.group?.get('intimidire')?.value ? this.modCarisma + (this.group?.get('maestriaIntimidire')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modCarisma;
-    this.tiroIntrattenere = this.group?.get('intrattenere')?.value ? this.modCarisma + (this.group?.get('maestriaIntrattenere')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modCarisma;
-    this.tiroIntuizione = this.group?.get('intuizione')?.value ? this.modSaggezza + (this.group?.get('maestriaIntuizione')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modSaggezza;
-    this.tiroMedicina = this.group?.get('medicina')?.value ? this.modSaggezza + (this.group?.get('maestriaMedicina')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modSaggezza;
-    this.tiroNatura = this.group?.get('natura')?.value ? this.modIntelligenza + (this.group?.get('maestriaNatura')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modIntelligenza;
-    this.tiroPercezione = this.group?.get('percezione')?.value ? this.modSaggezza + (this.group?.get('maestriaPercezione')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modSaggezza;
-    this.tiroPersuasione = this.group?.get('persuasione')?.value ? this.modCarisma + (this.group?.get('maestriaPersuasione')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modCarisma;
-    this.tiroRapiditaMano = this.group?.get('rapiditaDiMano')?.value ? this.modDestrezza + (this.group?.get('maestriaRapiditaDiMano')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modDestrezza;
-    this.tiroReligione = this.group?.get('religione')?.value ? this.modIntelligenza + (this.group?.get('maestriaReligione')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modIntelligenza;
-    this.tiroSopravvivenza = this.group?.get('sopravvivenza')?.value ? this.modSaggezza + (this.group?.get('maestriaSopravvivenza')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modSaggezza;
-    this.tiroStoria = this.group?.get('storia')?.value ? this.modIntelligenza + (this.group?.get('maestriaStoria')?.value ? this.bonusCompetenza *2 : this.bonusCompetenza) : this.modIntelligenza;
+    this.tiroAcrobazia = this.group?.get('acrobazia')?.value ? this.modDestrezza + (this.group?.get('maestriaAcrobazia')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modDestrezza;
+    this.tiroAddestrareAnimali = this.group?.get('addestrareAnimali')?.value ? this.modSaggezza + (this.group?.get('maestriaAddestrareAnimali')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modSaggezza;
+    this.tiroArcano = this.group?.get('arcano')?.value ? this.modIntelligenza + (this.group?.get('maestriaArcano')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modIntelligenza;
+    this.tiroAtletica = this.group?.get('atletica')?.value ? this.modForza + (this.group?.get('maestriaAtletica')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modForza;
+    this.tiroFurtivita = this.group?.get('furtivita')?.value ? this.modDestrezza + (this.group?.get('maestriaFurtivita')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modDestrezza;
+    this.tiroIndagare = this.group?.get('indagare')?.value ? this.modIntelligenza + (this.group?.get('maestriaIndagare')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modIntelligenza;
+    this.tiroInganno = this.group?.get('inganno')?.value ? this.modCarisma + (this.group?.get('maestriaInganno')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modCarisma;
+    this.tiroIntimidire = this.group?.get('intimidire')?.value ? this.modCarisma + (this.group?.get('maestriaIntimidire')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modCarisma;
+    this.tiroIntrattenere = this.group?.get('intrattenere')?.value ? this.modCarisma + (this.group?.get('maestriaIntrattenere')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modCarisma;
+    this.tiroIntuizione = this.group?.get('intuizione')?.value ? this.modSaggezza + (this.group?.get('maestriaIntuizione')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modSaggezza;
+    this.tiroMedicina = this.group?.get('medicina')?.value ? this.modSaggezza + (this.group?.get('maestriaMedicina')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modSaggezza;
+    this.tiroNatura = this.group?.get('natura')?.value ? this.modIntelligenza + (this.group?.get('maestriaNatura')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modIntelligenza;
+    this.tiroPercezione = this.group?.get('percezione')?.value ? this.modSaggezza + (this.group?.get('maestriaPercezione')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modSaggezza;
+    this.tiroPersuasione = this.group?.get('persuasione')?.value ? this.modCarisma + (this.group?.get('maestriaPersuasione')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modCarisma;
+    this.tiroRapiditaMano = this.group?.get('rapiditaDiMano')?.value ? this.modDestrezza + (this.group?.get('maestriaRapiditaDiMano')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modDestrezza;
+    this.tiroReligione = this.group?.get('religione')?.value ? this.modIntelligenza + (this.group?.get('maestriaReligione')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modIntelligenza;
+    this.tiroSopravvivenza = this.group?.get('sopravvivenza')?.value ? this.modSaggezza + (this.group?.get('maestriaSopravvivenza')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modSaggezza;
+    this.tiroStoria = this.group?.get('storia')?.value ? this.modIntelligenza + (this.group?.get('maestriaStoria')?.value ? this.bonusCompetenza + this.bonusCompetenza : this.bonusCompetenza) : this.modIntelligenza;
   }
 
   public updateAbilita() {
