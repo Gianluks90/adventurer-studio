@@ -20,7 +20,7 @@ export class AddCharacterDialogComponent {
 
   public form: FormGroup = this.fb.group(FormModel.create(this.fb))
   public charForm = this.fb.group({
-    name: ['', [Validators.required, Validators.minLength(4)]]
+    name: ['', [Validators.required, Validators.minLength(1)]]
   });
 
   public confirm() {

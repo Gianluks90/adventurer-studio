@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    // width: 100vw !important;
 }
 
 .second-section {
@@ -26,8 +25,7 @@
     letter-spacing: 2px;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: center;
     align-items: baseline;
@@ -38,44 +36,7 @@
     font-size: larger;
 }
 
-.home-title {
-    background-color: #212121;
-    color: white;
-    font-family: Cinzel, serif;
-    font-size: large;
-    padding: 12px;
-    text-align: center;
-    border-radius: 8px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.user-box {
-    background-color: white;
-    width: 100%;
-    border-radius: 8px;
-    padding: 4px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
-}
-
-.user-identity-container {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.user-image {
-    width: 40px;
-    height: 40px;
-    border-radius: 5px;
-}
-
 .stepper-container {
-    // width: 80%;
-    border-radius: 12px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
 }
 
@@ -110,7 +71,7 @@
 .step-button {
     background-color: #212121;
     color: white;
-    border-radius: 8px;
+    border-radius: 0;
     padding: 8px;
     font-weight: bold;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
@@ -132,6 +93,10 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+::ng-deep.mat-step-icon {
+    border-radius: 0 !important;
 }
 
 @media screen and (max-width: 500px) {

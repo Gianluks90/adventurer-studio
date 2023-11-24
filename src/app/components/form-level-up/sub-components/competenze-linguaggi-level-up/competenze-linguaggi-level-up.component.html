@@ -1,91 +1,92 @@
 <ng-container *ngIf="group">
-    <div class="step-form" [formGroup]="group">
-  
-      <div class="description-text">Tutto ciò in cui il Personaggio è <strong>Competente</strong> potrebbe permetterti di aggiungere
-        l'omonimo bonus ai tiri effettuati con gli elementi indicati sotto. Scrivi del testo nello spazio e premi INVIO
-        per creare una nuova voce.</div>
-  
-      <mat-form-field color="accent" appearance="outline">
-        <mat-label class="input-field">Linguaggi conosciuti</mat-label>
-        <mat-chip-grid #chipGrid>
-          <mat-chip-row *ngFor="let linguaggio of linguaggi" (removed)="remove(linguaggio,'linguaggio')" [editable]="true"
-            (edited)="edit(linguaggio, $event,'linguaggio')">
-            {{linguaggio}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-          <input placeholder="aggiungi un nuovo linguaggio" [matChipInputFor]="chipGrid"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
-            (matChipInputTokenEnd)="add($event,'linguaggio')" />
-  
-        </mat-chip-grid>
-      </mat-form-field>
-  
-      <mat-form-field color="accent" appearance="outline">
-        <mat-label class="input-field">Competenza in armi</mat-label>
-        <mat-chip-grid #chipGridArmi>
-          <mat-chip-row *ngFor="let arma of armi" (removed)="remove( arma,'arma')" [editable]="true"
-            (edited)="edit( arma, $event,'arma')">
-            {{arma}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-          <input placeholder="aggiungi una nuova arma" [matChipInputFor]="chipGridArmi"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
-            (matChipInputTokenEnd)="add($event,'arma')" />
-        </mat-chip-grid>
-      </mat-form-field>
-  
-      <mat-form-field color="accent" appearance="outline">
-        <mat-label class="input-field">Competenza in armature</mat-label>
-        <mat-chip-grid #chipGridArmature>
-          <mat-chip-row *ngFor="let armatura of armature" (removed)="remove(armatura,'armatura')" [editable]="true"
-            (edited)="edit(armatura, $event,'armatura')">
-            {{armatura}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-          <input placeholder="aggiungi una nuova armatura" [matChipInputFor]="chipGridArmature"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
-            (matChipInputTokenEnd)="add($event,'armatura')" />
-  
-        </mat-chip-grid>
-      </mat-form-field>
-  
-      <mat-form-field color="accent" appearance="outline">
-        <mat-label class="input-field">Competenza in strumenti</mat-label>
-        <mat-chip-grid #chipGridStrumenti>
-          <mat-chip-row *ngFor="let strumento of strumenti" (removed)="remove(strumento,'strumento')" [editable]="true"
-            (edited)="edit(strumento, $event,'strumento')">
-            {{strumento}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-          <input placeholder="aggiungi un nuovo strumento" [matChipInputFor]="chipGridStrumenti"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
-            (matChipInputTokenEnd)="add($event,'strumento')" />
-  
-        </mat-chip-grid>
-      </mat-form-field>
-  
-      <mat-form-field color="accent" appearance="outline">
-        <mat-label class="input-field">Altre competenze</mat-label>
-        <mat-chip-grid #chipGridAltro>
-          <mat-chip-row *ngFor="let altro of altreCompetenze" (removed)="remove(altro,'altro')" [editable]="true"
-            (edited)="edit(altro, $event,'altro')">
-            {{altro}}
-            <button matChipRemove>
-              <mat-icon>cancel</mat-icon>
-            </button>
-          </mat-chip-row>
-          <input placeholder="aggiungi una altra competenza" [matChipInputFor]="chipGridAltro"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
-            (matChipInputTokenEnd)="add($event,'altro')" />
-        </mat-chip-grid>
-      </mat-form-field>
-    </div>
-  </ng-container>
+  <div class="step-form" [formGroup]="group">
+
+    <div class="description-text">Tutto ciò in cui il Personaggio è <strong>Competente</strong> potrebbe permetterti di
+      aggiungere
+      l'omonimo bonus ai tiri effettuati con gli elementi indicati sotto. Scrivi del testo nello spazio e premi INVIO
+      per creare una nuova voce.</div>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Linguaggi conosciuti</mat-label>
+      <mat-chip-grid #chipGrid>
+        <mat-chip-row *ngFor="let linguaggio of linguaggiData" (removed)="remove(linguaggio,'linguaggio')"
+          [editable]="true" (edited)="edit(linguaggio, $event,'linguaggio')">
+          {{linguaggio}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi un nuovo linguaggio" [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event,'linguaggio')" />
+
+      </mat-chip-grid>
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Competenza in armi</mat-label>
+      <mat-chip-grid #chipGridArmi>
+        <mat-chip-row *ngFor="let arma of armiData" (removed)="remove( arma,'arma')" [editable]="true"
+          (edited)="edit( arma, $event,'arma')">
+          {{arma}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi una nuova arma" [matChipInputFor]="chipGridArmi"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event,'arma')" />
+      </mat-chip-grid>
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Competenza in armature</mat-label>
+      <mat-chip-grid #chipGridArmature>
+        <mat-chip-row *ngFor="let armatura of armatureData" (removed)="remove(armatura,'armatura')" [editable]="true"
+          (edited)="edit(armatura, $event,'armatura')">
+          {{armatura}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi una nuova armatura" [matChipInputFor]="chipGridArmature"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event,'armatura')" />
+
+      </mat-chip-grid>
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Competenza in strumenti</mat-label>
+      <mat-chip-grid #chipGridStrumenti>
+        <mat-chip-row *ngFor="let strumento of strumentiData" (removed)="remove(strumento,'strumento')"
+          [editable]="true" (edited)="edit(strumento, $event,'strumento')">
+          {{strumento}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi un nuovo strumento" [matChipInputFor]="chipGridStrumenti"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event,'strumento')" />
+
+      </mat-chip-grid>
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Altre competenze</mat-label>
+      <mat-chip-grid #chipGridAltro>
+        <mat-chip-row *ngFor="let altro of altreCompetenzeData" (removed)="remove(altro,'altro')" [editable]="true"
+          (edited)="edit(altro, $event,'altro')">
+          {{altro}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="aggiungi una altra competenza" [matChipInputFor]="chipGridAltro"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="add($event,'altro')" />
+      </mat-chip-grid>
+    </mat-form-field>
+  </div>
+</ng-container>

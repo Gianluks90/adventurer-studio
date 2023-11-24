@@ -43,6 +43,14 @@
     margin-bottom: 12px;
 }
 
+.button-container {
+    margin-bottom: 12px;
+}
+
+button {
+    border-radius: 0;
+  }
+
 @media screen and (max-width: 500px) {
     .delete-button>button {
         width: 100%;

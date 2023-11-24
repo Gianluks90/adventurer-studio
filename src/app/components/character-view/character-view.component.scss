@@ -10,10 +10,8 @@
 .view-header {
     background-color: #212121;
     color: white;
-    // border-radius: 8px;
     display: flex;
     align-items: center;
-    // padding: 8px;
     gap: 12px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 
@@ -21,7 +19,7 @@
 
 .character-image {
     width: 80px;
-    border-radius: 8px;
+    padding: 1px;
     object-fit: cover;
 }
 

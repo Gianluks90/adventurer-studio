@@ -1,4 +1,4 @@
-.checkbox-section{
+.checkbox-section {
   display: flex;
   flex-direction: column;
 }
@@ -28,6 +28,30 @@
   font-size: small;
   opacity: 0.5;
   font-style: italic;
+}
+
+button {
+  border-radius: 0;
+}
+
+details {
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 8px;
+}
+
+details[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+details[open] summary {
+  margin-bottom: 4px;
+}
+
+summary {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 500px) {

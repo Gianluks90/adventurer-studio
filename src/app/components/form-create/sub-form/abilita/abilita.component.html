@@ -3,16 +3,12 @@
     <section class="checkbox-section">
 
       <div class="description-text">
-        Il selettore a Sinitra (con un'icona a stella - l'icona non è visibile nella visualizzazione mobile) serve ad
-        indicare la <strong>Maestria</strong> nell'abilità selezionata. Secondo il
-        regolamento essere "maestri" in un'abilità comporta un Bonus Competenza raddoppiato. Presta molta
-        attenzione a non confondere i due selettori. Quando hai finito, premi il tasto <strong>Aggiorna</strong> in
-        fondo all'elenco per calcolare e quindi aggiornare i punteggi.
+        Seleziona tutte le <strong>Abilità</strong> in cui il Personaggio ha competenza dopodichè premi il tasto "Aggiorna" (in basso)
+        per calcolare i punteggi. Ricorda che se il Personaggio ha anche delle Maestrie trovi un elenco espandibile
+        appena dopo questa lista (avere Maestria in un'abilità comporta un bonus di competenza raddoppiato per quella
+        determinata abilità).
       </div>
       <div class="checkbox-line">
-        <mat-checkbox class="master" formControlName="maestriaAcrobazia">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox class="check-label" formControlName="acrobazia">Acrobazia (Des)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.acrobazia">+ </span> {{tiroAcrobazia}}
@@ -20,9 +16,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaAddestrareAnimali">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox class="less-labels" formControlName="addestrareAnimali">Addestrare animali (Sag)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.addestrareAnimali">+ </span>
@@ -30,9 +23,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaArcano">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="arcano">Arcano (Int)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.arcano">+ </span> {{tiroArcano}}
@@ -40,18 +30,12 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaAtletica">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="atletica">Atletica (For)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modForza > 0 || group.value.atletica">+ </span> {{tiroAtletica}}</div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaFurtivita">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="furtivita">Furtività (Des)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.furtivita">+ </span> {{tiroFurtivita}}
@@ -59,9 +43,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaIndagare">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="indagare">Indagare (Int)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.indagare">+ </span> {{tiroIndagare}}
@@ -69,18 +50,12 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaInganno">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="inganno">Inganno (Car)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.inganno">+ </span> {{tiroInganno}}</div>
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaIntimidire">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="intimidire">Intimidire (Car)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.intimidire">+ </span> {{tiroIntimidire}}
@@ -88,9 +63,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaIntrattenere">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="intrattenere">Intrattenere (Car)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.intrattenere">+ </span>
@@ -98,9 +70,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaIntuizione">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="intuizione">Intuizione (Sag)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.intuizione">+ </span> {{tiroIntuizione}}
@@ -108,9 +77,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaMedicina">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="medicina">Medicina (Sag)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.medicina">+ </span> {{tiroMedicina}}
@@ -118,9 +84,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaNatura">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="natura">Natura (Int)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.natura">+ </span> {{tiroNatura}}
@@ -128,9 +91,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaPercezione">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="percezione">Percezione (Sag)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.percezione">+ </span> {{tiroPercezione}}
@@ -138,9 +98,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaPersuasione">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="persuasione">Persuasione (Car)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modCarisma > 0 || group.value.persuasione">+ </span> {{tiroPersuasione}}
@@ -148,9 +105,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaRapiditaDiMano">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="rapiditaDiMano">Rapidità di mano (Des)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modDestrezza > 0 || group.value.rapiditaDiMano">+ </span>
@@ -158,9 +112,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaReligione">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="religione">Religione (Int)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.religione">+ </span>
@@ -168,9 +119,6 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaSopravvivenza">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="sopravvivenza">Sopravvivenza (Sag)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0 || group.value.sopravvivenza">+ </span>
@@ -178,14 +126,33 @@
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="maestriaStoria">
-          <mat-icon class="master-icon">star</mat-icon>
-        </mat-checkbox>
         <mat-checkbox formControlName="storia">Storia (Int)</mat-checkbox>
         <div class="divider"></div>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0 || group.value.storia">+ </span> {{tiroStoria}}
         </div>
       </div>
+
+      <details>
+        <summary>Maestrie</summary>
+        <mat-checkbox class="master" formControlName="maestriaAcrobazia">Acrobazia</mat-checkbox>
+        <mat-checkbox formControlName="maestriaAddestrareAnimali">Addestrare Animali</mat-checkbox>
+        <mat-checkbox formControlName="maestriaArcano">Arcano</mat-checkbox>
+        <mat-checkbox formControlName="maestriaAtletica">Atletica</mat-checkbox>
+        <mat-checkbox formControlName="maestriaFurtivita">Furtività</mat-checkbox>
+        <mat-checkbox formControlName="maestriaIndagare">Indagare</mat-checkbox>
+        <mat-checkbox formControlName="maestriaInganno">Inganno</mat-checkbox>
+        <mat-checkbox formControlName="maestriaIntimidire">Intimidire</mat-checkbox>
+        <mat-checkbox formControlName="maestriaIntrattenere">Intrattenere</mat-checkbox>
+        <mat-checkbox formControlName="maestriaIntuizione">Intuizione</mat-checkbox>
+        <mat-checkbox formControlName="maestriaMedicina">Medicina</mat-checkbox>
+        <mat-checkbox formControlName="maestriaNatura">Natura</mat-checkbox>
+        <mat-checkbox formControlName="maestriaPercezione">Percezione</mat-checkbox>
+        <mat-checkbox formControlName="maestriaPersuasione">Persuasione</mat-checkbox>
+        <mat-checkbox formControlName="maestriaRapiditaDiMano">Rapidità di mano</mat-checkbox>
+        <mat-checkbox formControlName="maestriaReligione">Religione</mat-checkbox>
+        <mat-checkbox formControlName="maestriaSopravvivenza">Sopravvivenza</mat-checkbox>
+        <mat-checkbox formControlName="maestriaStoria">Storia</mat-checkbox>
+      </details>
 
       <button mat-raised-button color="accent" (click)="updateAbilita()">
         <mat-icon>update</mat-icon> Aggiorna</button>

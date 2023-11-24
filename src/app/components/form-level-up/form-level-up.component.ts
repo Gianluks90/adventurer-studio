@@ -40,6 +40,7 @@ export class FormLevelUpComponent {
 
     this.dialog.open(CompleteLevelUpDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      autoFocus: false,
       data: {
         id: characterId,
         form: this.form.value

@@ -5,14 +5,13 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { MenuService } from 'src/app/services/menu.service';
 import { MatDrawer } from '@angular/material/sidenav';
-import { DiceService } from 'src/app/services/dice.service';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent{
+export class SidenavComponent {
 
   public roomExist: boolean = false;
 
@@ -21,19 +20,10 @@ export class SidenavComponent{
     public dialog: MatDialog,
     private authGuardService: AuthGuardService,
     public menuService: MenuService,
-    private drawer: MatDrawer,
-    private diceService: DiceService) {
-    }
+    private drawer: MatDrawer,) {
+  }
 
-    ngOnInit(){
-      this.firebaseService.getUser(getAuth().currentUser).then(res => {
-        this.roomExist = res.data()["dddice_RoomSlug"] !== "" ? true : false;
-        if(this.roomExist){
-          this.diceService.getRoom(res.data()["dddice_RoomSlug"])
-        }
-      });
-      
-    }
+  ngOnInit() { }
 
   public logout() {
     getAuth().signOut().then(() => {
@@ -45,13 +35,5 @@ export class SidenavComponent{
 
   public close() {
     this.drawer.close();
-  }
-
-  public toggle(e: any){
-    if(e.checked){
-      this.diceService.createRoom();
-    } else {
-      this.diceService.destroyRoom();
-    }
   }
 }

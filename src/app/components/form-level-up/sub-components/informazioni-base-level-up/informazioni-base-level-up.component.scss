@@ -86,24 +86,37 @@
     margin-bottom: 20px;
 }
 
-.summary-label {
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    opacity: 0.6;
-    font-size: smaller;
-  }
-  
-  .summary-text {
+button {
+    border-radius: 0;
+}
+
+details {
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 8px;
+}
+
+details[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+details[open] summary {
     margin-bottom: 4px;
-  }
+}
+
+summary {
+    font-weight: bold;
+    text-transform: uppercase;
+}
 
 
 @media screen and (max-width: 500px) {
-    .delete-button > button {
+    .delete-button>button {
         width: 100%;
     }
 
-    .button-container > button {
+    .button-container>button {
         width: 100%;
     }
 

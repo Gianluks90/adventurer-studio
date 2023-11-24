@@ -36,17 +36,38 @@ mat-form-field {
   text-align: justify;
 }
 
-.summary-label {
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  opacity: 0.6;
-  font-size: smaller;
-}
+// .summary-label {
+//   margin-bottom: 20px;
+//   text-transform: uppercase;
+//   opacity: 0.6;
+//   font-size: smaller;
+// }
 
 .summary-text {
   margin-bottom: 4px;
+  opacity: 0.5;
+}
+
+button {
+  border-radius: 0;
 }
 
 details {
-  margin-bottom: 20px;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 12px;
+}
+
+details[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+details[open] summary {
+  margin-bottom: 4px;
+}
+
+summary {
+  font-weight: bold;
+  text-transform: uppercase;
 }

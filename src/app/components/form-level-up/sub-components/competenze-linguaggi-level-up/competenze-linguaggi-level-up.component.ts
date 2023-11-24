@@ -11,16 +11,16 @@ import { FormService } from 'src/app/services/form.service';
 })
 export class CompetenzeLinguaggiLevelUpComponent {
   public group: FormGroup | null = null;
-  public arrayDiLinguaggi: FormArray | null = null;
-  public arrayDiArmi: FormArray | null = null;
-  public arrayDiArmature: FormArray | null = null;
-  public arrayDiStrumenti: FormArray | null = null;
-  public arrayDiAltreCompetenze: FormArray | null = null;
-  public linguaggi: string[] = [];
-  public armi: string[] = [];
-  public armature: string[] = [];
-  public strumenti: string[] = [];
-  public altreCompetenze: string[] = [];
+  public linguaggiArray: FormArray | null = null;
+  public armiArray: FormArray | null = null;
+  public armatureArray: FormArray | null = null;
+  public strunentiArray: FormArray | null = null;
+  public altroArray: FormArray | null = null;
+  public linguaggiData: string[] = [];
+  public armiData: string[] = [];
+  public armatureData: string[] = [];
+  public strumentiData: string[] = [];
+  public altreCompetenzeData: string[] = [];
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   constructor(public formService: FormService) {}
@@ -29,26 +29,35 @@ export class CompetenzeLinguaggiLevelUpComponent {
     this.formService.formLevelUpSubject.subscribe((form: any) => {
       if (form) {
         this.group = form.get('altreCompetenze') as FormGroup;
-        this.arrayDiLinguaggi = this.group.get('linguaggi') as FormArray;
-        this.arrayDiArmi = this.group.get('armi') as FormArray;
-        this.arrayDiArmature = this.group.get('armature') as FormArray;
-        this.arrayDiStrumenti = this.group.get('strumenti') as FormArray;
-        this.arrayDiAltreCompetenze = this.group.get('altro') as FormArray;
-        if (this.arrayDiLinguaggi.value.length > 0) {
-          this.linguaggi = this.arrayDiLinguaggi.value;
-        }
-        if (this.arrayDiArmi.value.length > 0) {
-          this.armi = this.arrayDiArmi.value;
-        }
-        if (this.arrayDiArmature.value.length > 0) {
-          this.armature = this.arrayDiArmature.value;
-        }
-        if (this.arrayDiStrumenti.value.length > 0) {
-          this.strumenti = this.arrayDiStrumenti.value;
-        }
-        if (this.arrayDiAltreCompetenze.value.length > 0) {
-          this.altreCompetenze = this.arrayDiAltreCompetenze.value;
-        }
+        this.linguaggiArray = this.group.get('linguaggi') as FormArray;
+        this.armiArray = this.group.get('armi') as FormArray;
+        this.armatureArray = this.group.get('armature') as FormArray;
+        this.strunentiArray = this.group.get('strumenti') as FormArray;
+        this.altroArray = this.group.get('altro') as FormArray;
+
+        this.linguaggiData = this.linguaggiArray.value.length > 0 ? this.linguaggiArray.value : [];
+        this.armiData = this.armiArray.value.length > 0 ? this.armiArray.value : [];
+        this.armatureData = this.armatureArray.value.length > 0 ? this.armatureArray.value : [];
+        this.strumentiData = this.strunentiArray.value.length > 0 ? this.strunentiArray.value : [];
+        this.altreCompetenzeData = this.altroArray.value.length > 0 ? this.altroArray.value : [];
+        
+        // if (this.arrayDiLinguaggi.value.length > 0) {
+        //   this.linguaggi = this.arrayDiLinguaggi.value;
+        // }
+        // if (this.arrayDiArmi.value.length > 0) {
+        //   this.armi = this.arrayDiArmi.value;
+        // }
+        // if (this.arrayDiArmature.value.length > 0) {
+        //   this.armature = this.arrayDiArmature.value;
+        // }
+        // if (this.arrayDiStrumenti.value.length > 0) {
+        //   this.strumenti = this.arrayDiStrumenti.value;
+        // }
+        // if (this.arrayDiAltreCompetenze.value.length > 0) {
+        //   this.altreCompetenze = this.arrayDiAltreCompetenze.value;
+        // } else {
+        //   this.altreCompetenze = [];
+        // }
       }
     });
   }
@@ -128,8 +137,8 @@ export class CompetenzeLinguaggiLevelUpComponent {
 
     // Add our fruit
     if (value) {
-      this.linguaggi.push(value);
-      this.arrayDiLinguaggi?.patchValue(this.linguaggi);
+      this.linguaggiData.push(value);
+      this.linguaggiArray?.patchValue(this.linguaggiData);
     }
     event.chipInput!.clear();
   }
@@ -138,8 +147,8 @@ export class CompetenzeLinguaggiLevelUpComponent {
     const value = (event.value || '').trim();
 
     if (value) {
-      this.armi.push(value);
-      this.arrayDiArmi?.patchValue(this.armi);
+      this.armiData.push(value);
+      this.armiArray?.patchValue(this.armiData);
     }
 
     event.chipInput!.clear();
@@ -149,8 +158,8 @@ export class CompetenzeLinguaggiLevelUpComponent {
     const value = (event.value || '').trim();
 
     if (value) {
-      this.armature.push(value);
-      this.arrayDiArmature?.patchValue(this.armature);
+      this.armatureData.push(value);
+      this.armatureArray?.patchValue(this.armatureData);
     }
 
     event.chipInput!.clear();
@@ -159,8 +168,8 @@ export class CompetenzeLinguaggiLevelUpComponent {
     const value = (event.value || '').trim();
 
     if (value) {
-      this.strumenti.push(value);
-      this.arrayDiStrumenti?.patchValue(this.strumenti);
+      this.strumentiData.push(value);
+      this.strunentiArray?.patchValue(this.strumentiData);
     }
 
     event.chipInput!.clear();
@@ -170,55 +179,55 @@ export class CompetenzeLinguaggiLevelUpComponent {
     const value = (event.value || '').trim();
 
     if (value) {
-      this.altreCompetenze.push(value);
-      this.arrayDiAltreCompetenze?.patchValue(this.altreCompetenze);
+      this.altreCompetenzeData.push(value);
+      this.altroArray?.patchValue(this.altreCompetenzeData);
     }
 
     event.chipInput!.clear();
   }
 
   public removeLinguaggi(linguaggio: string) {
-    const index = this.linguaggi.indexOf(linguaggio);
+    const index = this.linguaggiData.indexOf(linguaggio);
 
     if (index >= 0) {
-      this.linguaggi.splice(index, 1);
-      this.arrayDiLinguaggi?.patchValue(this.linguaggi);
+      this.linguaggiData.splice(index, 1);
+      this.linguaggiArray?.patchValue(this.linguaggiData);
     }
   }
 
   public removeArmi(arma: string) {
-    const index = this.armi.indexOf(arma);
+    const index = this.armiData.indexOf(arma);
 
     if (index >= 0) {
-      this.armi.splice(index, 1);
-      this.arrayDiArmi?.patchValue(this.armi);
+      this.armiData.splice(index, 1);
+      this.armiArray?.patchValue(this.armiData);
     }
   }
 
   public removeArmature(armatura: string) {
-    const index = this.armature.indexOf(armatura);
+    const index = this.armatureData.indexOf(armatura);
 
     if (index >= 0) {
-      this.armature.splice(index, 1);
-      this.arrayDiArmature?.patchValue(this.armature);
+      this.armatureData.splice(index, 1);
+      this.armatureArray?.patchValue(this.armatureData);
     }
   }
 
   public removeStrumenti(strumento: string) {
-    const index = this.strumenti.indexOf(strumento);
+    const index = this.strumentiData.indexOf(strumento);
 
     if (index >= 0) {
-      this.strumenti.splice(index, 1);
-      this.arrayDiStrumenti?.patchValue(this.strumenti);
+      this.strumentiData.splice(index, 1);
+      this.strunentiArray?.patchValue(this.strumentiData);
     }
   }
 
   public removeAltro(altro: string) {
-    const index = this.altreCompetenze.indexOf(altro);
+    const index = this.altreCompetenzeData.indexOf(altro);
 
     if (index >= 0) {
-      this.altreCompetenze.splice(index, 1);
-      this.arrayDiAltreCompetenze?.patchValue(this.altreCompetenze);
+      this.altreCompetenzeData.splice(index, 1);
+      this.altroArray?.patchValue(this.altreCompetenzeData);
     }
   }
 
@@ -230,10 +239,10 @@ export class CompetenzeLinguaggiLevelUpComponent {
       return;
     }
 
-    const index = this.linguaggi.indexOf(input);
+    const index = this.linguaggiData.indexOf(input);
     if (index >= 0) {
-      this.linguaggi[index] = value;
-      this.arrayDiLinguaggi?.patchValue(this.linguaggi);
+      this.linguaggiData[index] = value;
+      this.linguaggiArray?.patchValue(this.linguaggiData);
     }
   }
 
@@ -245,10 +254,10 @@ export class CompetenzeLinguaggiLevelUpComponent {
       return;
     }
 
-    const index = this.armi.indexOf(input);
+    const index = this.armiData.indexOf(input);
     if (index >= 0) {
-      this.armi[index] = value;
-      this.arrayDiArmi?.patchValue(this.armi);
+      this.armiData[index] = value;
+      this.armiArray?.patchValue(this.armiData);
     }
   }
 
@@ -260,10 +269,10 @@ export class CompetenzeLinguaggiLevelUpComponent {
       return;
     }
 
-    const index = this.armature.indexOf(input);
+    const index = this.armatureData.indexOf(input);
     if (index >= 0) {
-      this.armature[index] = value;
-      this.arrayDiArmature?.patchValue(this.armature);
+      this.armatureData[index] = value;
+      this.armatureArray?.patchValue(this.armatureData);
     }
   }
 
@@ -275,10 +284,10 @@ export class CompetenzeLinguaggiLevelUpComponent {
       return;
     }
 
-    const index = this.strumenti.indexOf(input);
+    const index = this.strumentiData.indexOf(input);
     if (index >= 0) {
-      this.strumenti[index] = value;
-      this.arrayDiStrumenti?.patchValue(this.strumenti);
+      this.strumentiData[index] = value;
+      this.strunentiArray?.patchValue(this.strumentiData);
     }
   }
 
@@ -290,10 +299,10 @@ export class CompetenzeLinguaggiLevelUpComponent {
       return;
     }
 
-    const index = this.altreCompetenze.indexOf(input);
+    const index = this.altreCompetenzeData.indexOf(input);
     if (index >= 0) {
-      this.altreCompetenze[index] = value;
-      this.arrayDiAltreCompetenze?.patchValue(this.altreCompetenze);
+      this.altreCompetenzeData[index] = value;
+      this.altroArray?.patchValue(this.altreCompetenzeData);
     }
   }
 }
