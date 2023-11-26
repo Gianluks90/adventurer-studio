@@ -24,7 +24,7 @@ export class DeleteCharacterDialogComponent {
 
     public confirm() {
       this.characterService.deleteCharacterById(this.data.id).then(() => {
-        this.formService.deleteImage(this.data.id).then(() => {
+        this.formService.deleteImage(this.data.id).then((result) => {
           this.dialogRef.close('confirm');
         });
         // this.dialogRef.close('confirm');

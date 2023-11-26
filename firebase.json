@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "adventurer-studio",
     "public": "dist/dnd-character-sheet",
     "ignore": [
       "firebase.json",
@@ -21,3 +22,4 @@
     "rules": "storage.rules"
   }
 }
+

@@ -13,11 +13,32 @@
 
 </div>
 <div class="section-title">Background: {{backgroundNameData}}</div>
-<div class="bg-name">Tratti caratteriali</div>
-<div class="bg-description">
-    {{backgroundData.trattiCaratteriali}}
-</div>
-<div class="bg-name">Ideali</div>
+<details>
+    <summary class="bg-name">Tratti caratteriali</summary>
+    <div class="bg-description">
+        {{backgroundData.trattiCaratteriali}}
+    </div>
+</details>
+<details>
+    <summary class="bg-name">Ideali</summary>
+    <div class="bg-description">
+        {{backgroundData.ideali}}
+    </div>
+</details>
+<details>
+    <summary class="bg-name">Legami</summary>
+    <div class="bg-description">
+        {{backgroundData.legami}}
+    </div>
+</details>
+<details>
+    <summary class="bg-name">Difetti</summary>
+    <div class="bg-description">
+        {{backgroundData.difetti}}
+    </div>
+</details>
+
+<!-- <div class="bg-name">Ideali</div>
 <div class="bg-description">
     {{backgroundData.ideali}}
 </div>
@@ -28,7 +49,7 @@
 <div class="bg-name">Difetti</div>
 <div class="bg-description">
     {{backgroundData.difetti}}
-</div>
+</div> -->
 <div class="section-title">Storia</div>
 <div class="character-history-container">
     {{storiaData}}

@@ -45,9 +45,34 @@
     background-color: #212121;
     color: white;
     padding: 8px;
-    // border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
 }
 
 .bg-description {
     padding: 8px;
+}
+
+details[open] {
+    border: 1px solid #212121;
+    margin-bottom: 4px;
+}
+
+details>summary {
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: "▶";
+    padding-right: 8px;
+}
+
+details[open] > summary::after {
+    content: "▼";
 }

@@ -104,7 +104,7 @@ export class FormService {
       return 'success';
     }).catch((error) => {
       console.log(error);
-      alert('Errore nell\'eliminazione dell\'immagine');
+      // alert('Errore nell\'eliminazione dell\'immagine');
       return 'error';
     });
   }
