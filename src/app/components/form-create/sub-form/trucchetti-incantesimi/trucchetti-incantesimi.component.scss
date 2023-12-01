@@ -47,6 +47,11 @@ button {
   border-radius: 0;
 }
 
+.slot-button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
 @media screen and (max-width: 500px) {
   .delete-button > button {
       width: 100%;

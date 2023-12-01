@@ -36,6 +36,11 @@
     font-size: large;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-family: 'Cinzel', serif;
+}
+
+.character-name::first-letter {
+    font-size: xx-large;
 }
 
 .character-class {

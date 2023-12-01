@@ -19,15 +19,68 @@
             </mat-form-field>
         </div>
 
-
-
         <div class="description-text">La <strong>CD</strong> (classe difficoltà) per resistere a un incantesimo è pari a
             8 + il modificatore di caratteristica da incantatore + il bonus di competenza dell'incantatore, a cui si
             sommano eventuali modificatori speciali. Mentre il <strong>bonus di attacco</strong> dell'incantatore per un attacco
             con un incantesimo equivale al suo modificatore di caratteristica da incantatore + il suo bonus di competenza.
         </div>
-
     </div>
+
+    <div class="section-title">Slot Incantesimi</div>
+    <div class="description-text">
+        Ogni incantatore ha un numero limitato di <strong>Slot Incantesimo</strong> che può utilizzare per lanciare incantesimi. Indica
+        il numero degli slot incantesimo che hai a disposizione per ogni livello poi premi "Aggiorna Slot Incantesimi"
+        per applicare le modifiche.
+    </div>
+    <button class="slot-button" mat-raised-button color="accent" (click)="toggleSlot()" *ngIf="!slotFormVisibility">Modifica Slot Incantesimi</button>
+    <form *ngIf="slotFormVisibility">
+        <div class="step-form" [formGroup]="slotIncantesimiForm">
+            <div class="line-container">
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 1° livello</mat-label>
+                    <input matInput type="number" formControlName="level1" min="0">
+                </mat-form-field>
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 2° livello</mat-label>
+                    <input matInput type="number" formControlName="level2" min="0">
+                </mat-form-field>
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 3° livello</mat-label>
+                    <input matInput type="number" formControlName="level3" min="0">
+                </mat-form-field>
+            </div>
+            <div class="line-container">
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 4° livello</mat-label>
+                    <input matInput type="number" formControlName="level4" min="0">
+                </mat-form-field>
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 5° livello</mat-label>
+                    <input matInput type="number" formControlName="level5" min="0">
+                </mat-form-field>
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 6° livello</mat-label>
+                    <input matInput type="number" formControlName="level6" min="0">
+                </mat-form-field>
+            </div>
+            <div class="line-container">
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 7° livello</mat-label>
+                    <input matInput type="number" formControlName="level7" min="0">
+                </mat-form-field>
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 8° livello</mat-label>
+                    <input matInput type="number" formControlName="level8" min="0">
+                </mat-form-field>
+                <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label> 9° livello</mat-label>
+                    <input matInput type="number" formControlName="level9" min="0">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    <button class="slot-button" mat-raised-button color="accent" (click)="updateSlot()" *ngIf="slotFormVisibility">Aggiorna Slot Incantesimi</button>
+
     <div class="section-title">Elenco Incantesimi e Trucchetti</div>
     <div class="description-text">
         Alcune Classi come <strong>Druidi</strong> e <strong>Chierici</strong> conoscono tutti gli incantesimi della

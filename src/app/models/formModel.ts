@@ -31,6 +31,7 @@ export class FormModel {
       caratteristicaIncantatore: '',
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,
+      slotIncantesimi: builder.array([]),
       status: {
         statusCode: null,
         author: '',
