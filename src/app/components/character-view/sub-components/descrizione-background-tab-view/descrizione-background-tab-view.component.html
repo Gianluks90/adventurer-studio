@@ -12,7 +12,7 @@
     </div>
 
 </div>
-<div class="section-title">Background: {{backgroundNameData}}</div>
+<div class="section-title">Background: {{backgroundInfoData.name}} <span *ngIf="backgroundInfoData.detail !== ''"> ({{backgroundInfoData.detail}})</span></div>
 <details>
     <summary class="bg-name">Tratti caratteriali</summary>
     <div class="bg-description">

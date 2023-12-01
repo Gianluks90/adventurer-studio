@@ -6,6 +6,11 @@
       <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 125-141" matTooltipPosition="left">auto_stories</mat-icon>
     </mat-form-field>
 
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Dettaglio</mat-label>
+      <input matInput formControlName="dettaglioBackground">
+    </mat-form-field>
+
     <button mat-raised-button color="accent" class="update-button" (click)="updateBackground()">
       <mat-icon>sync_alt</mat-icon>
       <span>Aggiorna background (ovunque)</span>

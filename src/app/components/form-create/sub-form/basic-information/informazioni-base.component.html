@@ -12,6 +12,26 @@
       </mat-form-field>
     </div>
 
+    <div class="section-title">Razza</div>
+
+    <div class="line-container">
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Nome</mat-label>
+        <input matInput formControlName="razza">
+        <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 17-42, MMoM 5-36, FToD 9-12"
+          matTooltipPosition="left">auto_stories</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="line-input" color="accent" appearance="outline">
+        <mat-label class="input-field">Sottorazza / Discendenza / Etnia</mat-label>
+        <input matInput formControlName="sottorazza">
+      </mat-form-field>
+    </div>
+
+    <div class="description-text">Non tutte le Razze possiedono il tratto <strong>Sottorazza</strong> pertanto è
+      probabile che lascerai questo campo vuoto. Oppure puoi indicare una Discendenza Draconica, un'Etnia umana, ecc...
+    </div>
+
     <div class="section-title">Classe/i</div>
 
     <details>
@@ -74,8 +94,10 @@
     <div class="section-title">Risorse aggiuntive</div>
 
     <div class="description-text">Alcune Classi possono assegnare (solitamente a livelli superiori al 1°) delle
-      <strong>Risorse Aggiuntive</strong>, come punti o dadi, da spendere per utilizzare delle capacità speciali. È quindi probabile
-      che lascerai questo campo vuoto al momento.</div>
+      <strong>Risorse Aggiuntive</strong>, come punti o dadi, da spendere per utilizzare delle capacità speciali. È
+      quindi probabile
+      che lascerai questo campo vuoto al momento.
+    </div>
 
     <ng-container class="" formArrayName="risorseAggiuntive">
       <ng-container *ngFor="let r of risorseAggiuntive.controls; let i = index;">
@@ -87,7 +109,8 @@
             </mat-form-field>
             <mat-form-field class="line-input" color="accent" appearance="outline">
               <mat-label>Valore massimo</mat-label>
-              <input #valoreRisorsa type="number" matInput formControlName="valoreMassimo" min="1" (change)="setValoreAttuale(i, valoreRisorsa.value)">
+              <input #valoreRisorsa type="number" matInput formControlName="valoreMassimo" min="1"
+                (change)="setValoreAttuale(i, valoreRisorsa.value)">
             </mat-form-field>
           </div>
 
@@ -116,35 +139,24 @@
       <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 125-141" matTooltipPosition="left">auto_stories</mat-icon>
     </mat-form-field>
 
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label class="input-field">Dettaglio</mat-label>
+      <input matInput formControlName="dettaglioBackground">
+    </mat-form-field>
+
     <div class="description-text">Alle pagine di riferimento puoi trovare una serie di <strong>Background</strong>
       precostruiti che ti assegneranno capacità, competenze e oggetti, tuttavia, assieme al tuo DM, potete creare un
       Background personalizzato. Per maggiori informazioni prosegui nella compilazione alla sezione "Background" più
       avanti. Puoi anche lasciare vuoto questo campo al momento.</div>
 
+    <div class="description-text">Alcuni Backround specificano anche un <strong>Dettaglio</strong> aggiuntivo, per
+      esempio: le origini di un Forestiero, la Spcializzazione di un Criminale, l'Evento Segnate di un Eroe, ecc... usa
+      questo campo per annotare questa informazione, non obbligatoria.</div>
+
     <button mat-raised-button color="accent" class="jump-button" (click)="jumpToSpecificStep(8)">
       <mat-icon>move_down</mat-icon>
       Vai alla sezione Background
     </button>
-
-    <div class="section-title">Razza</div>
-
-    <div class="line-container">
-      <mat-form-field class="line-input" color="accent" appearance="outline">
-        <mat-label class="input-field">Nome</mat-label>
-        <input matInput formControlName="razza">
-        <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 17-42, MMoM 5-36, FToD 9-12"
-          matTooltipPosition="left">auto_stories</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field class="line-input" color="accent" appearance="outline">
-        <mat-label class="input-field">Sottorazza / Discendenza / Etnia</mat-label>
-        <input matInput formControlName="sottorazza">
-      </mat-form-field>
-    </div>
-
-    <div class="description-text">Non tutte le Razze possiedono il tratto <strong>Sottorazza</strong> pertanto è
-      probabile che lascerai questo campo vuoto. Oppure puoi indicare una Discendenza Draconica, un'Etnia umana, ecc...
-    </div>
 
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Allineamento</mat-label>

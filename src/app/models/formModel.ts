@@ -48,6 +48,7 @@ export class FormModel {
       risorseAggiuntive: builder.array([]),
       livello: [1, Validators.max(20)],
       background: ['', Validators.required],
+      dettaglioBackground: '',
       razza: ['', Validators.required],
       sottorazza: '',
       allineamento: ['', Validators.required],

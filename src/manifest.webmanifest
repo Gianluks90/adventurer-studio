@@ -1,6 +1,6 @@
 {
-  "name": "dndCharacterSheet",
-  "short_name": "dndCharacterSheet",
+  "name": "Adventurer Studio",
+  "short_name": "Adventurer Studio",
   "theme_color": "#1a1a1a",
   "background_color": "#1a1a1a",
   "display": "standalone",

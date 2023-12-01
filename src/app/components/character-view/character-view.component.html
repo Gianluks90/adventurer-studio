@@ -3,7 +3,7 @@
         <img class="character-image" [src]="character.informazioniBase.urlImmaginePersonaggio">
         <div class="character-info-container">
             <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
-            <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}}, {{character.informazioniBase.allineamento}}</span>
+            <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}} <span *ngIf="character.informazioniBase.dettaglioBackground !== ''"> ({{character.informazioniBase.dettaglioBackground}})</span>, {{character.informazioniBase.allineamento}}</span>
             <div *ngFor="let cl of character.informazioniBase.classi">
                 <div class="character-class">{{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div>
             </div>
@@ -46,7 +46,7 @@
                     <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background"
                         class="label-icon">description</mat-icon>
                 </ng-template>
-                <app-descrizione-background-tab-view [backgroundName]="character.informazioniBase.background" [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche"></app-descrizione-background-tab-view>
+                <app-descrizione-background-tab-view [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"  [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche"></app-descrizione-background-tab-view>
             </mat-tab>
 
             <mat-tab>

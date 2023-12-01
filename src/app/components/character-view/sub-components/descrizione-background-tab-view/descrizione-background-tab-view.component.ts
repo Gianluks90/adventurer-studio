@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class DescrizioneBackgroundTabViewComponent {
 
-  public backgroundNameData: string = '';
+  public backgroundInfoData: any;
 
   public backgroundData: {
     trattiCaratteriali: string,
@@ -29,8 +29,10 @@ export class DescrizioneBackgroundTabViewComponent {
 
   constructor() { }
 
-  @Input() set backgroundName(backgroundName: string) {
-    this.backgroundNameData = backgroundName;
+  @Input() set backgroundInfo(backgroundInfo: any) {
+    console.log(backgroundInfo);
+    
+    this.backgroundInfoData = backgroundInfo;
   }
 
   @Input() set background(background: any) {

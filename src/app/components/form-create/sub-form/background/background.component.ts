@@ -23,12 +23,15 @@ export class BackgroundComponent {
   }
 
   public updateBackground() {
-    const value = this.groupInfo?.get('background')?.value;
+    const background = this.groupInfo?.get('background')?.value;
+    const dettaglio = this.groupInfo?.get('dettaglioBackground')?.value;
     this.group?.patchValue({
-      background: value
+      background: background,
+      dettaglioBackground: dettaglio
     });
     this.groupInfo?.patchValue({
-      background: value
+      background: background,
+      dettaglioBackground: dettaglio
     });
   }
 }
