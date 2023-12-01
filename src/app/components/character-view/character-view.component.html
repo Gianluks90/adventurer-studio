@@ -16,16 +16,18 @@
         <mat-tab-group color="accent">
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Abilità"
-                        class="label-icon">format_list_bulleted</mat-icon>
+                    <img src="./assets/tabs-icons/skills.svg" class="label-icon" matTooltipPosition="below" matTooltip="Abilità">
+                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Abilità"
+                        class="label-icon">format_list_bulleted</mat-icon> -->
                 </ng-template>
                 <app-abilita-tab-view [abilita]="competenzeAbilita" [linguaggiCompetenze]="linguaggiCompetenze"></app-abilita-tab-view>
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Privilegi, Tratti e Talenti"
-                        class="label-icon">star</mat-icon>
+                    <img src="./assets/tabs-icons/talents.svg" class="label-icon" matTooltipPosition="below" matTooltip="Privilegi, Tratti e Talenti">
+                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Privilegi, Tratti e Talenti"
+                        class="label-icon">star</mat-icon> -->
                 </ng-template>
                 <app-privilegi-tratti-tab-view
                     [privilegiTratti]="character.privilegiTratti"></app-privilegi-tratti-tab-view>
@@ -33,8 +35,7 @@
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Inventario"
-                        class="label-icon">inventory_2</mat-icon>
+                    <img src="./assets/tabs-icons/inventory.svg" class="label-icon" matTooltipPosition="below" matTooltip="Inventario">
                 </ng-template>
                 <app-equipaggiamento-tab-view [equipaggiamento]="character.equipaggiamento"
                     [denaro]="character.denaro"></app-equipaggiamento-tab-view>
@@ -42,23 +43,26 @@
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background"
-                        class="label-icon">description</mat-icon>
+                    <img src="./assets/tabs-icons/tied-scroll.svg" class="label-icon" matTooltipPosition="below" matTooltip="Descrizione e background">
+                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background"
+                        class="label-icon">description</mat-icon> -->
                 </ng-template>
                 <app-descrizione-background-tab-view [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"  [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche"></app-descrizione-background-tab-view>
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi"
-                        class="label-icon">brightness_5</mat-icon>
+                    <img src="./assets/tabs-icons/magic.svg" class="label-icon" matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi">
+                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi"
+                        class="label-icon">brightness_5</mat-icon> -->
                 </ng-template>
                 <app-trucchetti-incantesimi-tab-view [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
             </mat-tab>
 
             <mat-tab disabled>
                 <ng-template mat-tab-label>
-                    <mat-icon matTooltipPosition="below" matTooltip="Attacchi" class="label-icon">reorder</mat-icon>
+                    <img src="./assets/tabs-icons/attacks.svg" class="label-icon" matTooltipPosition="below" matTooltip="Attacchi">
+                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Attacchi" class="label-icon">reorder</mat-icon> -->
                 </ng-template>
                 Attacchi
             </mat-tab>
