@@ -9,6 +9,7 @@ export class AbilitaTabViewComponent {
 
   public abilitaData: any[] = [];
   public maestrieData: any[] = [];
+  public competenzeData: any = {};
   public bonusCompetenzaData: number = 0;
   public caratteristicheData: any = {};
 
@@ -26,6 +27,10 @@ export class AbilitaTabViewComponent {
 
       return 0;
     });
+  }
+
+  @Input() set linguaggiCompetenze(linguaggiCompetenze: any) {
+    this.competenzeData = linguaggiCompetenze;
   }
 
   private initMaestrieArray(abilita: any) {

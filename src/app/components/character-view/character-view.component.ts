@@ -13,6 +13,7 @@ export class CharacterViewComponent {
 
   public character: any;
   public competenzeAbilita: any;
+  public linguaggiCompetenze: any;
   public trucchettiIncantesimi: any;
 
   // public menuIcon = 'menu';
@@ -34,6 +35,14 @@ export class CharacterViewComponent {
         abilita: this.character.competenzaAbilita,
         bonusCompetenza: this.character.tiriSalvezza.bonusCompetenza,
         caratteristiche: this.character.caratteristiche
+      };
+
+      this.linguaggiCompetenze = {
+        linguaggi: this.character.altreCompetenze.linguaggi || [],
+        armi: this.character.altreCompetenze.armi || [],
+        armature: this.character.altreCompetenze.armature || [],
+        strumenti: this.character.altreCompetenze.strumenti || [],
+        altro: this.character.altreCompetenze.altro || []
       };
 
       this.trucchettiIncantesimi = {
