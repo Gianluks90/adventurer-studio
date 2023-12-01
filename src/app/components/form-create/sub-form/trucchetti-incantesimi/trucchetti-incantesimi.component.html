@@ -73,10 +73,17 @@
                             <input matInput formControlName="durata">
                         </mat-form-field>
                     </div>
-                    <mat-form-field color="accent" appearance="outline">
-                        <mat-label>Componenti</mat-label>
-                        <input matInput formControlName="componenti">
-                    </mat-form-field>
+                    <div class="line-container">
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Componenti</mat-label>
+                            <input matInput formControlName="componenti">
+                        </mat-form-field>
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Formula danni (senza spazi)</mat-label>
+                            <input matInput formControlName="formula">
+                        </mat-form-field>
+                    </div>
+                    
 
                     <mat-form-field color="accent" appearance="outline">
                         <mat-label>Descrizione</mat-label>
@@ -92,7 +99,7 @@
                     </mat-form-field>
                     <div class="delete-button">
                         <button mat-raised-button color="accent" (click)="deleteTrucchettoIncantesimo(i)">
-                            <mat-icon>arrow_upward</mat-icon><mat-icon>delete</mat-icon> Rimuovi
+                            <mat-icon>delete</mat-icon> Rimuovi
                         </button>
                     </div>
                 </div>

@@ -54,7 +54,7 @@ export class FormService {
       ...form.value,
       status: {
         statusCode: 1,
-        lastUpadateDate: new Date()
+        lastUpdateDate: new Date()
       }
     }, {
       merge:true
@@ -67,7 +67,7 @@ export class FormService {
       ...form.value,
       status: {
         statusCode: 2,
-        lastUpadateDate: new Date()
+        lastUadateDate: new Date()
       }
     }, {
       merge:true

@@ -34,6 +34,7 @@ export class TrucchettiIncantesimiComponent {
       tempoLancio: ['', Validators.required],
       gittata: ['', Validators.required],
       componenti: ['', Validators.required],
+      formula: '',
       durata: ['', Validators.required],
       descrizione: ['', Validators.required],
       livelloSuperiore: '',

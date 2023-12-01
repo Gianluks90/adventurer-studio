@@ -25,7 +25,7 @@ export class FormLevelUpModel {
         statusCode: null,
         author: '',
         creationDate: null,
-        lastUpadateDate: null,
+        lastUpdateDate: null,
         userId: '',
       }
     }

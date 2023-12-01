@@ -35,7 +35,7 @@ export class FormModel {
         statusCode: null,
         author: '',
         creationDate: null,
-        lastUpadateDate: null,
+        lastUpdateDate: null,
         userId: '',
       }
     }

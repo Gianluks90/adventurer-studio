@@ -48,13 +48,12 @@
 .view-tabs {
     display: flex;
     justify-content: space-between;
-    // max-height: 100%;
     gap: 8px;
     flex-wrap: wrap;
     flex-grow: 1;
 }
 
-.view-tabs > mat-tab-group {
+.view-tabs>mat-tab-group {
     max-width: 50%;
     flex-grow: 1;
     background-color: white;
@@ -115,7 +114,7 @@
     .view-container {
         width: 90%;
     }
-    
+
     .view-tabs>mat-tab-group {
         max-width: 100%;
         margin-bottom: 80px;
@@ -134,9 +133,28 @@
     .sidenav-buttons {
         flex-direction: row;
         z-index: 2000;
+        left: 8px;
     }
 
     ::ng-deep.mat-mdc-tab-header {
         padding: 10px;
     }
+}
+
+@media screen and (min-width: 500px) {
+    .status-container {
+        max-height: 100%;
+        overflow: scroll;
+    }
+
+    .view-tabs {
+        // max-height: 100%;
+        overflow: hidden;
+    }
+
+    .view-tabs>mat-tab-group {
+        max-height: 100%;
+        overflow: scroll;
+    }
+    
 }
