@@ -27,6 +27,8 @@ export class CharacterViewComponent {
     const characterId = window.location.href.split('/').pop();
     this.characterService.getCharacterById(characterId).then((character) => {
       this.character = character;
+      console.log(this.character);
+      
       
       this.competenzeAbilita = {
         abilita: this.character.competenzaAbilita,
