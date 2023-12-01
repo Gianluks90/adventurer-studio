@@ -70,10 +70,9 @@ details summary::-webkit-details-marker {
 }
 
 summary::after {
-    content: "▶";
-    padding-right: 8px;
+    content: url("/assets/icons/chevron_right.svg");
 }
 
 details[open] > summary::after {
-    content: "▼";
+    content: url("/assets/icons/chevron_down.svg");
 }

@@ -41,12 +41,11 @@ details summary::-webkit-details-marker {
 }
 
 summary::after {
-    content: "▶";
-    padding-right: 8px;
+    content: url("/assets/icons/chevron_right.svg");
 }
 
 details[open] > summary::after {
-    content: "▼";
+    content: url("/assets/icons/chevron_down.svg");
 }
 
 .pt-type {
@@ -54,7 +53,6 @@ details[open] > summary::after {
     opacity: 0.5;
     font-style: italic;
     padding: 0 4px;
-
 }
 
 .pt-description {
