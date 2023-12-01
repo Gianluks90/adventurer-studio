@@ -1,13 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { getAuth } from 'firebase/auth';
 import { CharacterService } from 'src/app/services/character.service';
-import { MenuService } from 'src/app/services/menu.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { DeleteCharacterDialogComponent } from './delete-character-dialog/delete-character-dialog.component';
 import { Platform } from '@angular/cdk/platform';
 import { AddCharacterDialogComponent } from './add-character-dialog/add-character-dialog.component';
-
 
 @Component({
   selector: 'app-character-list',
@@ -26,13 +24,15 @@ export class CharacterListComponent implements OnInit {
 
   public menuIcon = 'menu';
 
-
   ngOnInit(): void {
     const userId = getAuth().currentUser?.uid;
     if (userId) {
       this.characterService.getCharactersByUserId(userId).then(result => {
         this.characters = result;
       })
+      // this.characterService.getCharacters().then(result => {
+      //   this.characters = result;
+      // });
     }
   }
 
@@ -51,7 +51,7 @@ export class CharacterListComponent implements OnInit {
         id: id
       }
     }).afterClosed().subscribe((result: string) => {
-      if ( result === 'confirm') {
+      if (result === 'confirm') {
         window.location.reload();
       }
     });
@@ -64,7 +64,7 @@ export class CharacterListComponent implements OnInit {
       if (result === 'confirm') {
         window.location.reload();
         // this.router.navigate(['/create', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)]).then(() => {
-          // window.location.reload();
+        // window.location.reload();
         // });
       }
     });

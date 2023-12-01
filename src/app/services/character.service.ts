@@ -21,6 +21,21 @@ export class CharacterService {
     }
   }
 
+  public async getCharacters(): Promise<any[]> {
+    const docRef = collection(this.firebaseService.database, 'characters');
+    const docs = await getDocs(docRef);
+    const result: any[] = [];
+    docs.forEach(doc => {
+      const character = {
+        id: doc.id,
+        ...doc.data()
+      }
+      result.push(character);
+    });
+
+    return result;
+  }
+
   public async getCharactersByUserId(id: string): Promise<any[]> {
     const docRef = collection(this.firebaseService.database, 'characters');
     const q = query(docRef, where('status.userId', '==', id));
