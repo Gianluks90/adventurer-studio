@@ -159,7 +159,7 @@
 
     .view-tabs>mat-tab-group {
         max-height: 100%;
-        overflow: scroll;
+        overflow: hidden;
     }
     
 }
