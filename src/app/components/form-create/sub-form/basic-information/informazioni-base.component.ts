@@ -39,6 +39,7 @@ export class InformazioniBaseComponent {
   }
 
   public onPicSelected(event: any) {
+    console.log('sono in immagine', this.groupInfo.value);
     if (event.target.files[0].size > 500000) {
       this.notification.openSnackBar('Immagine troppo grande, dim. massima: 500kb.', 'warning', 3000, 'yellow');
     } else {
@@ -56,6 +57,7 @@ export class InformazioniBaseComponent {
         }
       })
     }
+    (<HTMLInputElement>document.getElementById("file")).value = null;
   }
 
   public deletePic(nomeImmagine: string) {
