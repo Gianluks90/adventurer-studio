@@ -24,14 +24,19 @@
     I tuoi personaggi
   </button>
 
-  <button mat-raised-button color="accent" disabled (click)="close()">
+  <button mat-raised-button color="accent" disabled>
     <mat-icon>group</mat-icon>
     Campagne
   </button>
 
-  <button mat-raised-button color="accent" disabled (click)="close()">
+  <button mat-raised-button color="accent" disabled>
     <mat-icon>inventory_2</mat-icon>
     Creazioni
+  </button>
+
+  <button mat-raised-button color="accent" (click)="openSettingsDialog()" [disabled]="disableSettings">
+    <mat-icon>settings</mat-icon>
+    Impostazioni
   </button>
 
   <button mat-raised-button color="accent" (click)="logout()">

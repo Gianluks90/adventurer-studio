@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from "firebase/app";
-import { Firestore, doc, getDoc, getFirestore } from 'firebase/firestore';
+import { Firestore, doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
 import { BehaviorSubject } from 'rxjs';
 import { UserData } from '../models/userData';
@@ -61,6 +61,14 @@ export class FirebaseService {
     const q = doc(this.database, 'users', user.uid);
     const docSnap = await getDoc(q);
     return docSnap;
+  }
+
+  public async updateUserDddice(token:string, slug: string) {
+    const userRef = doc(this.database, 'users', getAuth().currentUser.uid);
+    return await setDoc(userRef, {
+      dddiceToken: token,
+      privateSlug: slug
+    }, { merge: true })
   }
 }
 

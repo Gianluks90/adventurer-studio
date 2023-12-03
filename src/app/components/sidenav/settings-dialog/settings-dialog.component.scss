@@ -1,0 +1,63 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dialog-content {
+    width: 100%;
+}
+
+.custom-form-field {
+    width: 100%;
+    margin-top: 20px;
+}
+
+button {
+    border-radius: 0;
+}
+
+.subtitle {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: black;
+    border-bottom: 1px solid black;
+    margin-bottom: 4px;
+}
+
+.spinner-span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.description {
+    font-size: small;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.authentication-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    padding: 8px;
+}
+
+.auth-code {
+    font-size: xx-large;
+    letter-spacing: 12px;
+    font-weight: bold;
+}
+
+mat-spinner {
+    width: 24px !important;
+    height: 24px !important;
+}

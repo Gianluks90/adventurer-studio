@@ -49,6 +49,7 @@ import { AbilitaTabViewComponent } from './components/character-view/sub-compone
 import { HealthPointDialogComponent } from './components/character-view/sub-components/character-view-status/health-point-dialog/health-point-dialog.component';
 import { DescrizioneBackgroundTabViewComponent } from './components/character-view/sub-components/descrizione-background-tab-view/descrizione-background-tab-view.component';
 import { TrucchettiIncantesimiTabViewComponent } from './components/character-view/sub-components/trucchetti-incantesimi-tab-view/trucchetti-incantesimi-tab-view.component';
+import { SettingsDialogComponent } from "./components/sidenav/settings-dialog/settings-dialog.component";
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { TrucchettiIncantesimiTabViewComponent } from './components/character-vi
 
     // VIEWS COMPONENTS
     SidenavComponent,
+    SettingsDialogComponent,
 
     // DIALOG COMPONENTS
     DeleteCharacterDialogComponent,
