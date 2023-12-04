@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ThreeDDice, ThreeDDiceRoomEvent } from 'dddice-js';
+import { ThreeDDice } from 'dddice-js';
 import { BehaviorSubject } from 'rxjs';
 import { FirebaseService } from './firebase.service';
 import { NotificationService } from './notification.service';
