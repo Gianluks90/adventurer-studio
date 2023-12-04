@@ -12,14 +12,42 @@ export class TrucchettiIncantesimiTabViewComponent {
   public caratteristicaIncantatore: string;
   public bonusAttaccoIncantesimi: number;
   public CDTiroSalvezza: number;
+  public slotIncantesimi: any;
 
-  @Input() set trucchettiIncantesimi(abilita: any) {
-    this.lista = abilita.lista;
-    this.classeIncantatore = abilita.classeIncantatore;
-    this.caratteristicaIncantatore = abilita.caratteristicaIncantatore;
-    this.bonusAttaccoIncantesimi = abilita.bonusAttaccoIncantesimi;
-    this.CDTiroSalvezza = abilita.CD;
+  @Input() set trucchettiIncantesimi(data: any) {
+    this.lista = data.lista;
+    this.classeIncantatore = data.classeIncantatore;
+    this.caratteristicaIncantatore = data.caratteristicaIncantatore;
+    this.bonusAttaccoIncantesimi = data.bonusAttaccoIncantesimi;
+    this.CDTiroSalvezza = data.CD;
+    this.slotIncantesimi = data.slotIncantesimi;
+  }
 
-    console.log(this.lista);
+  // useSlot(levelIndex: number, slotIndex: number) {
+  //   if (this.slotIncantesimi[levelIndex].used[slotIndex]) {
+  //     this.slotIncantesimi[levelIndex].used[slotIndex] = false;
+  //   } else {
+  //     this.slotIncantesimi[levelIndex].used[slotIndex] = true;
+  //   }
+  // }
+
+  useSlot(levelIndex: number, index: number): void {
+    const spellLevel = this.slotIncantesimi[levelIndex];
+  
+    // Se lo slot cliccato è falso, porta a true l'elemento più verso il fondo che è false
+    if (!spellLevel.used[index]) {
+      const lastFalseIndex = spellLevel.used.lastIndexOf(false);
+      if (lastFalseIndex !== -1) {
+        spellLevel.used[lastFalseIndex] = true;
+      }
+    } else {
+      // Se lo slot cliccato è true, porta a false l'elemento più in alto che è true
+      const firstTrueIndex = spellLevel.used.indexOf(true);
+      if (firstTrueIndex !== -1) {
+        spellLevel.used[firstTrueIndex] = false;
+      }
+    }
+  
+    // Aggiorna il tuo HTML o fai altre azioni necessarie per riflettere il cambiamento
   }
 }

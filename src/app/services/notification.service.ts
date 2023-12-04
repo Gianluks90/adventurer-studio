@@ -20,7 +20,6 @@ export class NotificationService {
     config.panelClass = ['custom-snackbar'];
     config.duration = duration || 3000;
     config.data = { message: message, icon: icon, color: color};
-    console.log('apro snackbar');
     this._snackBar.openFromComponent(SnackbarComponent, {
       data: { message },
       ...config,

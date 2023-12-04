@@ -29,8 +29,6 @@ export class InformazioniBaseComponent {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.groupInfo = form.get('informazioniBase') as FormGroup;
-        console.log(this.groupInfo);
-
         this.groupCaratteristiche = form.get('caratteristicheFisiche') as FormGroup;
         this.classi = this.groupInfo.get('classi') as FormArray;
         this.risorseAggiuntive = this.groupInfo.get('risorseAggiuntive') as FormArray;
@@ -39,7 +37,6 @@ export class InformazioniBaseComponent {
   }
 
   public onPicSelected(event: any) {
-    console.log('sono in immagine', this.groupInfo.value);
     if (event.target.files[0].size > 500000) {
       this.notification.openSnackBar('Immagine troppo grande, dim. massima: 500kb.', 'warning', 3000, 'yellow');
     } else {

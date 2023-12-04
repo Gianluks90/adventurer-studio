@@ -47,8 +47,6 @@ export class CharacterViewStatusComponent {
 
   @Input() set character(character: any) {
     this.characterData = character;
-    console.log(this.characterData.parametriVitali);
-    
     this.initCaratteristiche();
     this.initTiriSalvezza();
     this.initProvePassive();
@@ -152,8 +150,6 @@ export class CharacterViewStatusComponent {
     });
 
     this.parametriVitaliForm.get('dadiVita').patchValue(dadiVita);
-    console.log('DV', this.parametriVitaliForm.get('dadiVita')?.value);
-    
     const characterId = window.location.href.split('/').pop();
     this.charService.updateCharacterDadiVitaById(characterId, this.parametriVitaliForm).then(() => {
       this.notification.openSnackBar('Dadi Vita Aggiornati.', 'check', 3000, 'limegreen');

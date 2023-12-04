@@ -7,21 +7,31 @@
     <div class="ti-element"> <span class="ti-label">CD Tiro salvezza</span> {{CDTiroSalvezza}}</div>
     <div class="ti-element"> <span class="ti-label">Bonus attacco</span> +{{bonusAttaccoIncantesimi}}</div>
 </div>
+<div class="section-title">Slot Incantesimi</div>
+<div class="slot-container-line">
+    <div *ngFor="let slot of slotIncantesimi; let i = index;">
+        <div class="slot-container">
+            <div class="slot-title">{{i+1}}</div>
+            <div *ngFor="let used of slot.used; let j = index" [ngClass]="{'active': !used, 'used': used}"
+                (click)="useSlot(i, j)">•</div>
+        </div>
+    </div>
+</div>
 
 <div class="section-title">Elenco</div>
-<div *ngFor="let t of lista; let i = index;">
-    <div class="spell-container">
-        <div class="spell-title">{{t.nome}}</div>
+<details *ngFor="let t of lista; let i = index;" class="t-container">
+    <summary class="t-name">{{t.nome}}</summary>
         <div class="spell-attributes">{{t.tipologia}}, {{t.scuola}}, {{t.componenti}}, {{t.riferimento}}</div>
         <div class="spell-info"> <span class="spell-label">Durata</span> {{t.durata}} <span class="spell-label">Tempo di
                 lancio</span> {{t.tempoLancio}} <span class="spell-label">Gittata</span> {{t.gittata}} </div>
-        <details>
-            <summary>Descrizione</summary>
+        <!-- <details> -->
+            <!-- <summary>Descrizione</summary> -->
             <div class="spell-description"> <span class="spell-label">Descrizione</span> {{t.descrizione}}</div>
             <div *ngIf="t.livelloSuperiore !== ''" class="spell-description"> <span class="spell-label">Ai livelli
                     superiori</span> {{t.livelloSuperiore}}</div>
+        <!-- </details> -->
 
-        </details>
-
-    </div>
-</div>
+    <!-- <div class="spell-container">
+        
+    </div> -->
+</details>

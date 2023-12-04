@@ -44,11 +44,12 @@
     font-size: small;
     opacity: 0.5;
     font-style: italic;
-    padding: 2px;
+    padding: 8px;
 }
 
 .spell-info {
-    padding: 2px;
+    font-size: smaller;
+    padding: 8px;
 }
 
 .spell-label {
@@ -58,7 +59,7 @@
 .spell-description {
     text-align: justify;
     font-size: smaller;
-    padding: 2px;
+    padding: 8px;
     white-space: pre-wrap;
 }
 
@@ -66,10 +67,75 @@
     text-transform: uppercase;
 }
 
-details {
+.slot-container-line {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
     margin-bottom: 8px;
 }
 
+.slot-container {
+    background-color: #212121;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.active {
+    color: lightblue;
+    font-size: 3rem;
+    text-shadow: 0 0 2px lightblue;
+    cursor: pointer;
+}
+
+.used {
+    color: lightgrey;
+    font-size: 3rem;
+    text-shadow: none;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+.t-container {
+    margin-bottom: 4px;
+}
+
+.t-name {
+    background-color: #212121;
+    color: white;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 details[open] {
-    margin-bottom: 16px;
+    border: 1px solid #212121;
+}
+
+details>summary {
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: url("/assets/icons/chevron_right.svg");
+}
+
+details[open] > summary::after {
+    content: url("/assets/icons/chevron_down.svg");
 }

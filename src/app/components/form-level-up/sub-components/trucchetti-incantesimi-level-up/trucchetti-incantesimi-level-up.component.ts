@@ -66,8 +66,6 @@ export class TrucchettiIncantesimiLevelUpComponent {
   }
 
   patchSlotArrayForm() {
-    console.log('PATCH', this.slotIncantesimi.value);
-    
     this.slotIncantesimi.value.forEach((slot: any) => {
       this.slotIncantesimiForm.controls['level1'].setValue(slot.level1.max);
       this.slotIncantesimiForm.controls['level2'].setValue(slot.level2.max);
@@ -79,8 +77,6 @@ export class TrucchettiIncantesimiLevelUpComponent {
       this.slotIncantesimiForm.controls['level8'].setValue(slot.level8.max);
       this.slotIncantesimiForm.controls['level9'].setValue(slot.level9.max);
     });
-    console.log('FORM', this.slotIncantesimiForm.value);
-    
   }
 
   toggleSlot() {

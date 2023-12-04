@@ -30,8 +30,6 @@ export class DescrizioneBackgroundTabViewComponent {
   constructor() { }
 
   @Input() set backgroundInfo(backgroundInfo: any) {
-    console.log(backgroundInfo);
-    
     this.backgroundInfoData = backgroundInfo;
   }
 
