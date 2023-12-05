@@ -110,10 +110,10 @@ export class FormLevelUpModel {
 
   static altreCompetenze(builder: FormBuilder) {
     return builder.group({
-      linguaggi: [[], Validators.required],
-      armi: [[], Validators.required],
-      armature: [[], Validators.required],
-      strumenti: [[], Validators.required],
+      linguaggi: [],
+      armi: [],
+      armature: [],
+      strumenti: [],
       altro: []
     })
   }
