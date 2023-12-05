@@ -5,7 +5,7 @@
             <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
             <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}} <span *ngIf="character.informazioniBase.dettaglioBackground !== ''"> ({{character.informazioniBase.dettaglioBackground}})</span>, {{character.informazioniBase.allineamento}}</span>
             <div *ngFor="let cl of character.informazioniBase.classi">
-                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV <span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div>
+                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV<span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div>
             </div>
         </div>
     </div>
