@@ -22,6 +22,7 @@ export class FormLevelUpModel {
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,
       slotIncantesimi: builder.array([]),
+      incantesimiPreparabili: 0,
       status: {
         statusCode: null,
         author: '',
