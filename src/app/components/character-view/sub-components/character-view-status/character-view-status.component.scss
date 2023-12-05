@@ -167,8 +167,7 @@ span {
 .passive-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-bottom: 25px;
+    gap: 4px;
 }
 
 .passive-line {
@@ -240,6 +239,42 @@ span {
 
 .dice-used {
     opacity: 0.2;
+}
+
+.risorse-container-line {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.risorsa-container {
+    background-color: #212121;
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.active {
+    font-size: 3rem;
+    text-shadow: 0 0 2px lightblue;
+    cursor: pointer;
+}
+
+.used {
+    color: lightgrey;
+    font-size: 3rem;
+    text-shadow: none;
+    opacity: 0.3;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {

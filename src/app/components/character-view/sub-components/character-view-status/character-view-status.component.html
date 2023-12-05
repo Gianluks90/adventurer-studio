@@ -121,14 +121,18 @@
     <div *ngFor="let d of dadiVitaData; let i = index;">
         <img class="dice-icon" [ngClass]="{'dice-used' : d.usato}" [src]="d.icon" (click)="updateDadiVita(i, d.tipologia)">
     </div>
-    
-    <!-- <div class="pf-group">
-        <div class="pf-line">
-            <img src="./assets/dice/dice-d6-2.svg" matTooltip="Dadi vita" matTooltipPosition="above">
-            <span class="PF" *ngFor="let dice of characterData.parametriVitali.dadiVita">{{dice}}</span>
-        </div>
-    </div> -->
 </div>
+<div class="section-title">Risorse aggiuntive</div>
+<div class="risorse-container-line">
+    <div *ngFor="let risorsa of risorseAggiuntiveData; let i = index;">
+        <div class="risorsa-container">
+            <div class="risorsa-title">{{risorsa.nome}}</div>
+            <div *ngFor="let used of risorsa.used; let j = index" [style.color]="risorsa.color" [ngClass]="{'active': !used, 'used': used}"
+                (click)="useRisorsa(i, j)">•</div>
+        </div>
+    </div>
+</div>
+
 <div class="section-title">Prove passive</div>
 <div class="passive-container">
     <div class="passive-line">

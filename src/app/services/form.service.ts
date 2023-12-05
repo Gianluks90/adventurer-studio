@@ -61,6 +61,7 @@ export class FormService {
   }
 
   public async completeForm(charId: string, form: FormGroup): Promise<void> {
+    // await this.saveDraft(charId, form);
     const docRef = doc(this.firebaseService.database, 'characters', charId);
     return await setDoc(docRef, {
       ...form.value,
@@ -128,6 +129,7 @@ export class FormService {
           this.nestedPatchValue(control, character[key]);
         } else if (control instanceof FormArray) {
           character[key].forEach((m: any) => {
+            
             const group = this.createFormGroup(m);
             control.push(group);
 
@@ -145,8 +147,11 @@ export class FormService {
     Object.keys(model).forEach(key => {
       // if (model[key] instanceof Array) {
       //   formGroup.setControl(key, this.fb.array(model[key].map((m: any) => this.createFormGroup(m))));
-      if (model[key] instanceof Array) {
+      if (model[key] instanceof FormArray) {
         const array = this.fb.array(model[key].map((m: any) => this.createFormGroup(m)));
+        formGroup.addControl(key, array);
+      } else if (model[key] instanceof Array) {
+        const array = this.fb.array(model[key]);
         formGroup.addControl(key, array);
       } else if (model[key] instanceof Object) {
         formGroup.setControl(key, this.createFormGroup(model[key]));

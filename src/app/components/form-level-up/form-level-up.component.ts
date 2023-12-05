@@ -38,12 +38,14 @@ export class FormLevelUpComponent {
   completeForm() {
     const characterId = window.location.href.split('/').pop();
 
+    // console.log(this.formService.formLevelUpSubject.value);
+    
     this.dialog.open(CompleteLevelUpDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
       autoFocus: false,
       data: {
         id: characterId,
-        form: this.form.value
+        form: this.formService.formLevelUpSubject.value
       }
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {

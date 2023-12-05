@@ -93,6 +93,8 @@ export class InformazioniBaseComponent {
       nome: ['', Validators.required],
       valoreMassimo: [0, Validators.required],
       valoreAttuale: 0,
+      used: [],
+      color: ['', Validators.required],
     });
     this.risorseAggiuntive.push(risorsa);
   }
@@ -103,8 +105,10 @@ export class InformazioniBaseComponent {
 
   public setValoreAttuale(index: number, value: any) {
     const risorsa = this.risorseAggiuntive.at(index);
+    const used = new Array(parseInt(value)).fill(false);
     risorsa.patchValue({
-      valoreAttuale: parseInt(value)
+      valoreAttuale: parseInt(value),
+      used: used
     });
   }
 }

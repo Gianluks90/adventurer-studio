@@ -21,6 +21,7 @@ export class FormLevelUpModel {
       caratteristicaIncantatore: '',
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,
+      slotIncantesimi: builder.array([]),
       status: {
         statusCode: null,
         author: '',
@@ -36,7 +37,7 @@ export class FormLevelUpModel {
       classi: builder.array([]),
       risorseAggiuntive: builder.array([]),
       livello: [1, Validators.max(20)],
-      nomePersonaggio: ['', Validators.required],
+      nomePersonaggio: ['', Validators.required]
     })
   }
 

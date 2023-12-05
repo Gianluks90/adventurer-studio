@@ -37,6 +37,7 @@ export class CharacterViewStatusComponent {
   public parametriVitaliForm: FormGroup | null = null;
 
   public dadiVitaData: any[] = [];
+  public risorseAggiuntiveData: any[] = [];
 
   constructor(
     private dialog: MatDialog,
@@ -51,6 +52,7 @@ export class CharacterViewStatusComponent {
     this.initTiriSalvezza();
     this.initProvePassive();
     this.initDadiVita();
+    this.risorseAggiuntiveData = character.informazioniBase.risorseAggiuntive;
   }
 
   ngOnInit(): void {
@@ -60,7 +62,6 @@ export class CharacterViewStatusComponent {
       }
     });
   }
-
 
   public initCaratteristiche(): void {
     this.modForza = Math.floor((this.characterData.caratteristiche.forza - 10) / 2) > 0 ? '+ ' + Math.floor((this.characterData.caratteristiche.forza - 10) / 2) : Math.floor((this.characterData.caratteristiche.forza - 10) / 2) + '';
@@ -154,5 +155,25 @@ export class CharacterViewStatusComponent {
     this.charService.updateCharacterDadiVitaById(characterId, this.parametriVitaliForm).then(() => {
       this.notification.openSnackBar('Dadi Vita Aggiornati.', 'check', 3000, 'limegreen');
     });
+  }
+
+  useRisorsa(risorsaIndex: number, index: number): void {
+    const spellLevel = this.risorseAggiuntiveData[risorsaIndex];
+  
+    // Se lo slot cliccato è falso, porta a true l'elemento più verso il fondo che è false
+    if (!spellLevel.used[index]) {
+      const lastFalseIndex = spellLevel.used.lastIndexOf(false);
+      if (lastFalseIndex !== -1) {
+        spellLevel.used[lastFalseIndex] = true;
+      }
+    } else {
+      // Se lo slot cliccato è true, porta a false l'elemento più in alto che è true
+      const firstTrueIndex = spellLevel.used.indexOf(true);
+      if (firstTrueIndex !== -1) {
+        spellLevel.used[firstTrueIndex] = false;
+      }
+    }
+  
+    // Aggiorna il tuo HTML o fai altre azioni necessarie per riflettere il cambiamento
   }
 }

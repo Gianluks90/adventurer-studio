@@ -93,6 +93,20 @@
                             <input #valoreRisorsa type="number" matInput formControlName="valoreMassimo" min="1"
                                 (change)="setValoreAttuale(i, valoreRisorsa.value)">
                         </mat-form-field>
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Colore</mat-label>
+                            <mat-select formControlName="color">
+                              <mat-option value="red"><span style="color: red;"> Rosso</span></mat-option>
+                              <mat-option value="blue"> <span style="color: blue;">Blu</span></mat-option>
+                              <mat-option value="lightblue"> <span style="color: lightblue;">Azzurro</span></mat-option>
+                              <mat-option value="green"> <span style="color: green;">Verde</span></mat-option>
+                              <mat-option value="limegreen"> <span style="color: limegreen;">Lime</span></mat-option>
+                              <mat-option value="orange"> <span style="color: orange;">Arancione</span></mat-option>
+                              <mat-option value="purple"> <span style="color: purple;">Viola</span></mat-option>
+                              <mat-option value="palevioletred"> <span style="color: palevioletred;">Rosa</span></mat-option>
+                              <mat-option value="brown"> <span style="color: brown;">Marrone</span></mat-option>
+                            </mat-select>
+                          </mat-form-field>
                     </div>
 
                     <div class="delete-button">

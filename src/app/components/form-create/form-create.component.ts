@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { FormModel } from 'src/app/models/formModel';
 import { FormService } from 'src/app/services/form.service';
-import { MenuService } from 'src/app/services/menu.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { CompleteCharacterDialogComponent } from './complete-character-dialog/complete-character-dialog.component';
@@ -38,6 +37,11 @@ export class FormCreateComponent implements OnInit {
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
     this.formService.initForm(characterId!);
+    this.formService.formSubject.subscribe((form: any) => {
+      if (form) {
+        this.form = form;
+      }
+    });
   }
 
   public saveForm() {

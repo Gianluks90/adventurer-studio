@@ -126,6 +126,7 @@ export class TrucchettiIncantesimiComponent {
         },
       });
 
+      // let result = [];
       Object.keys(slotIncantesimi.controls).forEach((key) => {
         this.slotIncantesimi.push(slotIncantesimi.controls[key]);
       });

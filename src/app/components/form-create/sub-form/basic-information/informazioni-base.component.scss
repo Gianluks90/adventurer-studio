@@ -76,6 +76,12 @@
     flex-grow: 1;
 }
 
+.option-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .delete-button {
     display: flex;
     justify-content: flex-end;
