@@ -45,47 +45,53 @@
     <div class="caratteristiche-line">
         <div class="ts">
             <div class="ts-label">
-                <div *ngIf="characterData.tiriSalvezza.forza" matTooltipPosition="left" matTooltip="Competente">●</div>
                 FOR
             </div>
-            <div class="ts-value">{{TSForza}}</div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.forza}"
+                [matTooltip]="characterData.tiriSalvezza.forza ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSForza}}</div>
         </div>
         <div class="ts">
             <div class="ts-label">
-                <div *ngIf="characterData.tiriSalvezza.destrezza" matTooltipPosition="left" matTooltip="Competente">●
-                </div> DES
+                DES
             </div>
-            <div class="ts-value">{{TSDestrezza}}</div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.destrezza}"
+                [matTooltip]="characterData.tiriSalvezza.destrezza ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSDestrezza}}</div>
         </div>
         <div class="ts">
             <div class="ts-label">
-                <div *ngIf="characterData.tiriSalvezza.costituzione" matTooltipPosition="left" matTooltip="Competente">●
-                </div> COS
+                COS
             </div>
-            <div class="ts-value">{{TSCostituzione}}</div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.costituzione}"
+                [matTooltip]="characterData.tiriSalvezza.costituzione ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSCostituzione}}</div>
         </div>
     </div>
     <div class="caratteristiche-line">
         <div class="ts">
             <div class="ts-label">
-                <div *ngIf="characterData.tiriSalvezza.intelligenza" matTooltipPosition="left" matTooltip="Competente">●
-                </div> INT
+                INT
             </div>
-            <div class="ts-value">{{TSIntelligenza}}</div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.intelligenza}"
+                [matTooltip]="characterData.tiriSalvezza.intelligenza ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSIntelligenza}}</div>
         </div>
         <div class="ts">
             <div class="ts-label">
-                <div *ngIf="characterData.tiriSalvezza.saggezza" matTooltipPosition="left" matTooltip="Competente">●
-                </div> SAG
+                SAG
             </div>
-            <div class="ts-value">{{TSSaggezza}}</div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.saggezza}"
+                [matTooltip]="characterData.tiriSalvezza.saggezza ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSSaggezza}}</div>
         </div>
         <div class="ts">
             <div class="ts-label">
-                <div *ngIf="characterData.tiriSalvezza.carisma" matTooltipPosition="left" matTooltip="Competente">●
-                </div> CAR
+                CAR
             </div>
-            <div class="ts-value">{{TSCarisma}}</div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.carisma}"
+                [matTooltip]="characterData.tiriSalvezza.carisma ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSCarisma}}</div>
         </div>
     </div>
 </div>
@@ -101,11 +107,13 @@
             value="{{characterData.parametriVitali.puntiFeritaAttuali}}"></progress>
         <span *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0"
             class="PF">{{characterData.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{characterData.parametriVitali.massimoPuntiFeritaTemporanei}}</span>
-        <mat-icon *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0" class="pft-icon" matTooltip="Punti Ferita Temporanei Attuali / Massimi"
-            matTooltipPosition="above">hourglass_empty</mat-icon>
-        <progress *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0" class="pf-temp-progress" max="{{characterData.parametriVitali.massimoPuntiFeritaTemporanei}}"
+        <mat-icon *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0" class="pft-icon"
+            matTooltip="Punti Ferita Temporanei Attuali / Massimi" matTooltipPosition="above">hourglass_empty</mat-icon>
+        <progress *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0" class="pf-temp-progress"
+            max="{{characterData.parametriVitali.massimoPuntiFeritaTemporanei}}"
             value="{{characterData.parametriVitali.puntiFeritaTemporaneiAttuali}}"></progress>
-        <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button color="accent" (click)="openHPDialog()">
+        <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button
+            color="accent" (click)="openHPDialog()">
             <img src="./assets/icons/heart-check.svg">
         </button>
     </div>
@@ -119,7 +127,8 @@
 <div class="section-title">Dadi vita</div>
 <div class="dice-container">
     <div *ngFor="let d of dadiVitaData; let i = index;">
-        <img class="dice-icon" [ngClass]="{'dice-used' : d.usato}" [src]="d.icon" (click)="updateDadiVita(i, d.tipologia)">
+        <img class="dice-icon" [ngClass]="{'dice-used' : d.usato}" [src]="d.icon"
+            (click)="updateDadiVita(i, d.tipologia)">
     </div>
 </div>
 <div class="section-title">Risorse aggiuntive</div>
@@ -127,13 +136,21 @@
     <div *ngFor="let risorsa of risorseAggiuntiveData; let i = index;">
         <div class="risorsa-container">
             <div class="risorsa-title">{{risorsa.nome}}</div>
-            <div *ngFor="let used of risorsa.used; let j = index" [style.color]="risorsa.color" [ngClass]="{'active': !used, 'used': used}"
-                (click)="useRisorsa(i, j)">•</div>
+            <div *ngFor="let used of risorsa.used; let j = index" [style.color]="risorsa.color"
+                [ngClass]="{'active': !used, 'used': used}" (click)="useRisorsa(i, j)">•</div>
         </div>
     </div>
 </div>
 
 <div class="section-title">Prove passive</div>
+<div class="pf-group">
+    <div class="pf-title"><span>Percezione</span> {{percezionePassiva}}</div>
+    <div class="pf-title"><span>Intuizione</span> {{intuizionePassiva}}</div>
+    <div class="pf-title"><span>Indagare</span> {{indagarePassiva}}</div>
+    
+</div>
+
+<!-- <div class="section-title">Prove passive</div>
 <div class="passive-container">
     <div class="passive-line">
         <div class="passive-label">Percezione</div>
@@ -152,4 +169,4 @@
         <div class="passive-divider"></div>
         <div class="passive-value">{{indagarePassiva}}</div>
     </div>
-</div>
+</div> -->

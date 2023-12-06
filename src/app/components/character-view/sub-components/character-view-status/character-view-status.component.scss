@@ -35,11 +35,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    // gap: 4px;
     flex-grow: 1;
     text-align: center;
     width: 100%;
-    border: 1px solid lightgray;
+    border: 1px solid #212121;
     // border-radius: 8px;
     min-width: 30%;
 }
@@ -48,33 +48,34 @@
     font-size: medium;
     text-transform: uppercase;
     letter-spacing: 2px;
-
     width: 100%;
-    background-color: lightgray;
-    padding: 5px 0px;
-    // margin-top: -10px;
-    // border-top-right-radius: 4px;
-    // border-top-left-radius: 4px;
+    background-color: #212121;
+    padding: 5px 0;
+    color: whitesmoke;
 }
 
 .caratteristica-value {
-    font-size: medium;
-    opacity: 0.7;
+    font-size: large;
+    opacity: .7;
     padding: 10px 0;
+    font-weight: bold;
+    background-color: whitesmoke;
+    width: 100%;
+    letter-spacing: 2px;
 }
 
 .caratteristica-mod {
     font-size: large;
-    font-weight: bold;
+    font-weight: 700;
     background-color: #212121;
     width: 100%;
-    padding: 5px 0px;
-    color: white;
+    padding: 5px 0;
+    color: whitesmoke;
 }
 
 .bonus-competenza {
     background-color: #212121;
-    color: white;
+    color: whitesmoke;
     margin-bottom: 4px;
     padding: 8px 20px;
     display: flex;
@@ -97,14 +98,24 @@
     justify-content: center;
     align-items: center;
     font-size: medium;
-    border: 1px solid lightgrey;
+    background-color: #212121;
+    color: whitesmoke;
+    padding: 4px;
 }
 
+
+
 .ts-value {
-    font-weight: bold;
-    background-color: lightgray;
+    font-weight: 700;
+    background-color: whitesmoke;
     font-size: medium;
     padding: 4px;
+    border-bottom: 4px solid whitesmoke;
+}
+
+.proficent {
+    border-bottom: 4px solid #212121;
+
 }
 
 .punti-ferita-container {
@@ -125,6 +136,7 @@
     justify-content: space-evenly;
     flex-grow: 1;
     margin-bottom: 8px;
+    gap: 4px;
 }
 
 .pf-line {
@@ -141,15 +153,12 @@
 
 .pf-title {
     font-size: large;
-    font-weight: bold;
-
-    background-color: lightgray;
+    font-weight: 700;
+    background-color: whitesmoke;
     padding: 12px;
-    width: 100%;
-    gap: 18px;
     width: calc(100% - 29px);
     flex-grow: 1;
-    margin: 0 4px;
+    // margin: 0 4px;
 }
 
 .pg-title,
@@ -202,7 +211,7 @@ span {
 .heart-button {
     background-color: #212121;
     border-radius: 0px;
-    color: white;
+    color: whitesmoke;
     box-shadow: 0 0 4px #212121;
 }
 
@@ -253,8 +262,8 @@ span {
 .risorsa-container {
     background-color: #212121;
     padding: 8px 16px;
-    border-radius: 4px;
-    color: white;
+    // border-radius: 4px;
+    color: whitesmoke;
     display: flex;
     align-items: center;
     gap: 4px;
