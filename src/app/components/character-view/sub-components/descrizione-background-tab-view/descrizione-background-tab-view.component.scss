@@ -35,11 +35,13 @@
     font-style: italic;
     padding: 4px 0;
     white-space: pre-wrap;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .character-history-container::first-letter {
     font-size: xx-large;
     font-weight: bold;
+    font-family: 'Cinzel', serif;
 }
 
 .bg-name {
