@@ -1,0 +1,12 @@
+<div mat-dialog-title class="dialog-title">Aggiungi oggetto</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+  <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+    <mat-label>Nome oggetto</mat-label>
+    <input matInput formControlName="name">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Annulla</button>
+  <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">Aggiungi</button>
+</div>

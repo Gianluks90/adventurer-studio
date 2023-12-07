@@ -1,48 +1,3 @@
-<!-- <div class="section-title">Denaro</div>
-<div class="coins-viewer" >
-    <div class="single-coins-viewer">
-      <mat-icon class="mat-18"><img src="../assets/coins/copper.svg" alt=""></mat-icon>
-      <div>
-        {{denaroData.MR}} MR
-      </div>
-    </div>
-    <div class="single-coins-viewer">
-      <mat-icon class="mat-18"><img src="../assets/coins/silver.svg" alt=""></mat-icon>
-      <div>
-        {{denaroData.MA}} MA
-      </div>
-    </div>
-    <div class="single-coins-viewer">
-      <mat-icon class="mat-18"><img src="../assets/coins/electrum.svg" alt=""></mat-icon>
-      <div>
-        {{denaroData.ME}} ME
-      </div>
-    </div>
-    <div class="single-coins-viewer">
-      <mat-icon class="mat-18"><img src="../assets/coins/gold.svg" alt=""></mat-icon>
-      <div>
-        {{denaroData.MO}} MO
-      </div>
-    </div>
-    <div class="single-coins-viewer">
-      <mat-icon class="mat-18"><img src="../assets/coins/platinum.svg" alt=""></mat-icon>
-      <div>
-        {{denaroData.MP}} MP
-      </div>
-    </div>
-    <div class="single-coins-viewer desktop">
-      <button class="money-button" mat-icon-button color="accent" matTooltip="Aggiorna il Denaro" matTooltipPosition="above" (click)="openMoneyDialog()">
-        <mat-icon>toll</mat-icon>
-      </button>
-    </div>
-  </div>
-  <button class="money-button-mobile" mat-raised-button color="accent" matTooltip="Aggiorna il Denaro" matTooltipPosition="above" (click)="openMoneyDialog()">
-    <mat-icon>toll</mat-icon> Aggiorna il Denaro
-  </button> -->
-<!-- <app-monete [denaro]="denaroData"></app-monete> -->
-<!-- <div class="section-title">Equipaggiamento</div>
-<div class="equips">{{equipaggiamentoData}}</div> -->
-
 <div style="height: 100%; display: flex; flex-direction: column;">
   <div class="section-title">Denaro</div>
 
@@ -88,6 +43,6 @@
     </button>
   <!-- <app-monete [denaro]="denaroData"></app-monete> -->
   <div class="section-title">Equipaggiamento</div>
-  <div class="equips" style="height: 100%;overflow-y: auto;">{{equipaggiamentoData}}</div>
-  
+  <!-- <div class="equips" style="height: 100%;overflow-y: auto;">{{equipaggiamentoData}}</div> -->
+  <app-inventory style="height: 100%; overflow-y: auto;" [inventory]="[]"></app-inventory>
 </div>

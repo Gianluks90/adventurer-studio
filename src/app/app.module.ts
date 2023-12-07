@@ -50,6 +50,8 @@ import { HealthPointDialogComponent } from './components/character-view/sub-comp
 import { DescrizioneBackgroundTabViewComponent } from './components/character-view/sub-components/descrizione-background-tab-view/descrizione-background-tab-view.component';
 import { TrucchettiIncantesimiTabViewComponent } from './components/character-view/sub-components/trucchetti-incantesimi-tab-view/trucchetti-incantesimi-tab-view.component';
 import { SettingsDialogComponent } from "./components/sidenav/settings-dialog/settings-dialog.component";
+import { InventoryComponent } from "./components/utilities/inventory/inventory.component";
+import { AddItemDialogComponent } from "./components/utilities/inventory/add-item-dialog/add-item-dialog.component";
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { SettingsDialogComponent } from "./components/sidenav/settings-dialog/se
     DiceComponent,
     HealthPointDialogComponent,
     MoneyDialogComponent,
+    InventoryComponent,
+    AddItemDialogComponent,
 
     // FORM CREATE COMPONENTS AND SUB-COMPONENTS
     FormCreateComponent,
