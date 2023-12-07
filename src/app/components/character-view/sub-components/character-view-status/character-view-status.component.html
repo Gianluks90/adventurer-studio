@@ -126,9 +126,13 @@
 
 <div class="section-title">Dadi vita</div>
 <div class="dice-container">
-    <div *ngFor="let d of dadiVitaData; let i = index;">
+    <!-- <div *ngFor="let d of dadiVitaData; let i = index;">
         <img class="dice-icon" [ngClass]="{'dice-used' : d.usato}" [src]="d.icon"
             (click)="updateDadiVita(i, d.tipologia)">
+    </div> -->
+    <div *ngFor="let d of dadiVitaData; let i = index;">
+        <img *ngFor="let used of d.used; let j = index;" src="{{'./assets/dice/dice-' + d.tipologia + '.svg'}}"
+            class="dice-icon" [ngClass]="{'active': !used, 'used': used}" (click)="usaDadoVita(i, j)">
     </div>
 </div>
 <div class="section-title" *ngIf="risorseAggiuntiveData.length > 0">Risorse aggiuntive</div>

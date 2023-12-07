@@ -9,6 +9,7 @@ export class PrivilegiTrattiTabViewComponent {
 
   public privilegiTrattiData: any[] = [];
   public razzaData: string = '';
+  public sottorazzaData: string = '';
   public classiData: any[] = []
   constructor() { }
 
@@ -18,6 +19,7 @@ export class PrivilegiTrattiTabViewComponent {
 
   @Input() set informazioniBase(informazioniBase: any) {
     this.razzaData = informazioniBase.razza;
+    this.sottorazzaData = informazioniBase.sottorazza;
     this.classiData = informazioniBase.classi;
   }
 

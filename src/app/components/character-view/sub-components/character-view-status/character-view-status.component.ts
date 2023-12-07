@@ -51,8 +51,11 @@ export class CharacterViewStatusComponent {
     this.initCaratteristiche();
     this.initTiriSalvezza();
     this.initProvePassive();
-    this.initDadiVita();
+    // this.initDadiVita();
+    this.dadiVitaData = character.parametriVitali.dadiVita;
     this.risorseAggiuntiveData = character.informazioniBase.risorseAggiuntive;
+    console.log('dadiVitaData', this.dadiVitaData);
+    
   }
 
   ngOnInit(): void {
@@ -98,8 +101,6 @@ export class CharacterViewStatusComponent {
     const carisma = Math.floor((this.characterData.caratteristiche.carisma - 10) / 2);
     this.TSCarisma = this.characterData.tiriSalvezza.carisma ? (carisma + bonusCompetenza) : carisma;
     this.TSCarisma = parseInt(this.TSCarisma) > 0 ? '+ ' + this.TSCarisma : this.TSCarisma;
-
-
   }
 
   public initProvePassive(): void {
@@ -122,58 +123,70 @@ export class CharacterViewStatusComponent {
       if (result.status === 'success') {
         this.characterData.parametriVitali = result.newValue.value;
         this.charService.updateCharacterPFById(characterId!, this.parametriVitaliForm).then(() => {
-          this.notification.openSnackBar('Punti Ferita Aggiornati.', 'favorite', 3000, 'limegreen');
+          this.notification.openSnackBar('Punti Ferita Aggiornati.', 'check', 3000, 'limegreen');
         });
       }
     });
   }
 
-  public initDadiVita(): void {
-    this.characterData.parametriVitali.dadiVita.forEach((dado: any) => {
-      const dadiUsati = dado.usati;
-      for (let i = 0; i < dado.quantita; i++) {
-        this.dadiVitaData.push({
-          tipologia: dado.tipologia,
-          usato: dado.usati > i ? true : false,
-          icon: './assets/dice/dice-' + dado.tipologia + '.svg'
-        });
-      }
-    });
-  }
+  // public initDadiVita(): void {
+  //   this.characterData.parametriVitali.dadiVita.forEach((dado: any) => {
+  //     const dadiUsati = dado.usati;
+  //     for (let i = 0; i < dado.quantita; i++) {
+  //       this.dadiVitaData.push({
+  //         tipologia: dado.tipologia,
+  //         usato: dado.usati > i ? true : false,
+  //         icon: './assets/dice/dice-' + dado.tipologia + '.svg'
+  //       });
+  //     }
+  //   });
+  // }
 
-  public updateDadiVita(index: number, type: string) {
-    this.dadiVitaData.at(index).usato = !this.dadiVitaData.at(index).usato;
-    const dadiVita = this.characterData.parametriVitali.dadiVita;
-    dadiVita.forEach((dado: any) => {
-      if (dado.tipologia === type) {
-        dado.usati = this.dadiVitaData.at(index).usato ? dado.usati + 1 : dado.usati - 1;
-      }
-    });
+  // public updateDadiVita(index: number, type: string) {
+  //   this.dadiVitaData.at(index).usato = !this.dadiVitaData.at(index).usato;
+  //   const dadiVita = this.characterData.parametriVitali.dadiVita;
+  //   dadiVita.forEach((dado: any) => {
+  //     if (dado.tipologia === type) {
+  //       dado.usati = this.dadiVitaData.at(index).usato ? dado.usati + 1 : dado.usati - 1;
+  //     }
+  //   });
 
-    this.parametriVitaliForm.get('dadiVita').patchValue(dadiVita);
-    const characterId = window.location.href.split('/').pop();
-    this.charService.updateCharacterDadiVitaById(characterId, this.parametriVitaliForm).then(() => {
-      this.notification.openSnackBar('Dadi Vita Aggiornati.', 'check', 3000, 'limegreen');
-    });
-  }
+  //   this.parametriVitaliForm.get('dadiVita').patchValue(dadiVita);
+  //   const characterId = window.location.href.split('/').pop();
+  //   this.charService.updateCharacterDadiVitaById(characterId, this.parametriVitaliForm).then(() => {
+  //     this.notification.openSnackBar('Dadi Vita Aggiornati.', 'check', 3000, 'limegreen');
+  //   });
+  // }
 
   useRisorsa(risorsaIndex: number, index: number): void {
     const spellLevel = this.risorseAggiuntiveData[risorsaIndex];
   
-    // Se lo slot cliccato è falso, porta a true l'elemento più verso il fondo che è false
     if (!spellLevel.used[index]) {
       const lastFalseIndex = spellLevel.used.lastIndexOf(false);
       if (lastFalseIndex !== -1) {
         spellLevel.used[lastFalseIndex] = true;
       }
     } else {
-      // Se lo slot cliccato è true, porta a false l'elemento più in alto che è true
       const firstTrueIndex = spellLevel.used.indexOf(true);
       if (firstTrueIndex !== -1) {
         spellLevel.used[firstTrueIndex] = false;
       }
     }
+  }
+
+  usaDadoVita(dadoVitaIndex: number, index: number): void {
+    const dadoVita = this.dadiVitaData[dadoVitaIndex];
   
-    // Aggiorna il tuo HTML o fai altre azioni necessarie per riflettere il cambiamento
+    if (!dadoVita.used[index]) {
+      const lastFalseIndex = dadoVita.used.lastIndexOf(false);
+      if (lastFalseIndex !== -1) {
+        dadoVita.used[lastFalseIndex] = true;
+      }
+    } else {
+      const firstTrueIndex = dadoVita.used.indexOf(true);
+      if (firstTrueIndex !== -1) {
+        dadoVita.used[firstTrueIndex] = false;
+      }
+    }
   }
 }

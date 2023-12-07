@@ -26,7 +26,7 @@ export class ParametriVitaliLevelUpComponent {
       if (form) {
         this.group = form as FormGroup;
         this.groupVita = form.get('parametriVitali') as FormGroup;
-        this.dadiVita = this.groupVita.controls['dadiVita'] as FormArray;
+        this.dadiVita = this.groupVita.get('dadiVita') as FormArray;
 
         this.group.get('caratteristiche')?.valueChanges.subscribe((value: any) => {
           this.modDestrezza = Math.floor((value.destrezza - 10) / 2);
@@ -44,12 +44,20 @@ export class ParametriVitaliLevelUpComponent {
     const dadoVita = this.fb.group({
       tipologia: ['', Validators.required],
       quantita: [0, Validators.required],
-      usati: 0
+      used: []
     });
     this.dadiVita.push(dadoVita);
   }
 
   deleteDadoVita(index: number) {
     this.dadiVita.removeAt(index);
+  }
+
+  public setValoreAttuale(index: number, value: any) {
+    const dadoVita = this.dadiVita.at(index);
+    const used = new Array(parseInt(value)).fill(false);
+    dadoVita.patchValue({
+      used: used
+    });
   }
 }
