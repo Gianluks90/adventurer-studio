@@ -14,7 +14,7 @@
     align-items: center;
     gap: 12px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-
+    height: 110px;
 }
 
 .character-image {
@@ -22,6 +22,7 @@
     height: 110px;
     padding: 1px;
     object-fit: cover;
+    box-sizing: border-box;
 }
 
 .character-info-container {
@@ -145,6 +146,19 @@
 
     ::ng-deep.mat-mdc-tab-header {
         padding: 10px;
+    }
+
+    .character-info-container {
+        gap: 0;
+        font-size: small;
+    }
+
+    .character-name {
+        font-size: unset;
+    }
+
+    .character-name::first-letter {
+        font-size: medium;
     }
 }
 
