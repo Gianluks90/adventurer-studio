@@ -9,7 +9,6 @@
 
 .ti-container {
     display: flex;
-    flex-wrap: wrap;
     width: 100%;
     gap: 4px;
     margin-bottom: 4px;
@@ -18,8 +17,7 @@
 .ti-element {
     background: lightgray;
     padding: 8px;
-    // border-radius: 8px;
-    flex-grow: 1;
+    width: 50%;
 }
 
 .ti-label {
@@ -140,4 +138,15 @@ summary::after {
 details[open] > summary::after {
     content: url("/assets/icons/chevron_down.svg");
     cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .ti-container {
+        flex-direction: column;
+    }
+
+    .ti-element {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
