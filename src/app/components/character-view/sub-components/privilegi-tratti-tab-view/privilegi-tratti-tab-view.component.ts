@@ -8,11 +8,17 @@ import { Component, Input } from '@angular/core';
 export class PrivilegiTrattiTabViewComponent {
 
   public privilegiTrattiData: any[] = [];
+  public razzaData: string = '';
+  public classiData: any[] = []
   constructor() { }
 
   @Input() set privilegiTratti(privilegiTratti: any) {
     this.privilegiTrattiData = privilegiTratti;
-    
+  }
+
+  @Input() set informazioniBase(informazioniBase: any) {
+    this.razzaData = informazioniBase.razza;
+    this.classiData = informazioniBase.classi;
   }
 
 }

@@ -44,10 +44,12 @@ details summary::-webkit-details-marker {
 
 summary::after {
     content: url("/assets/icons/chevron_right.svg");
+    cursor: pointer;
 }
 
 details[open] > summary::after {
     content: url("/assets/icons/chevron_down.svg");
+    cursor: pointer;
 }
 
 .pt-type {
@@ -63,5 +65,40 @@ details[open] > summary::after {
 }
 
 .pt-type::first-letter {
+    text-transform: uppercase;
+}
+
+.razza-container {
+    background-color: lightgray;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 4px;
+    box-sizing: border-box;
+}
+
+.classe-label {
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+    margin-bottom: 4px;
+}
+
+.classi-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.classe {
+    background: #212121;
+    color: #efefef;
+    padding: 4px 8px;  
+    text-align: center;
+    border-radius: 4px;
+}
+
+.classe::first-letter {
     text-transform: uppercase;
 }

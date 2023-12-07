@@ -1,3 +1,10 @@
+<div class="section-title">{{razzaData}}</div>
+<div class="classe-label">Classi</div>
+<div class="classi-container">
+    <div *ngFor="let c of classiData">
+        <div class="classe">{{c.nome}} <span *ngIf="c.sottoclasse !== ''">({{c.sottoclasse}})</span> di {{c.livello}}° livello</div>
+    </div>
+</div>
 <div class="section-title">Privilegi, Tratti e Talenti</div>
 <details *ngFor="let pt of privilegiTrattiData" class="pt-container">
     <summary class="pt-name">{{pt.nome}}</summary>

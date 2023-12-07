@@ -134,8 +134,10 @@ details summary::-webkit-details-marker {
 
 summary::after {
     content: url("/assets/icons/chevron_right.svg");
+    cursor: pointer;
 }
 
 details[open] > summary::after {
     content: url("/assets/icons/chevron_down.svg");
+    cursor: pointer;
 }
