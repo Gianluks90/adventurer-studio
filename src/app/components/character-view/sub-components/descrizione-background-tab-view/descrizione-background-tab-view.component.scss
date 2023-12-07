@@ -78,3 +78,34 @@ summary::after {
 details[open] > summary::after {
     content: url("/assets/icons/chevron_down.svg");
 }
+
+.picture-container {
+    display: flex;
+    gap: 8px;
+}
+
+.picture-container > img {
+    width: 50%;
+}
+
+.action-buttons-container {
+    width: 50%;
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 500px)  {
+    .picture-container {
+        flex-direction: column;
+    }
+    
+    .picture-container > img {
+        width: 100%;
+    }
+    
+    .action-buttons-container {
+        width: 100%;
+    }
+}

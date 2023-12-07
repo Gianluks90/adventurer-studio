@@ -131,8 +131,8 @@
             (click)="updateDadiVita(i, d.tipologia)">
     </div>
 </div>
-<div class="section-title">Risorse aggiuntive</div>
-<div class="risorse-container-line">
+<div class="section-title" *ngIf="risorseAggiuntiveData.length > 0">Risorse aggiuntive</div>
+<div class="risorse-container-line" *ngIf="risorseAggiuntiveData.length > 0">
     <div *ngFor="let risorsa of risorseAggiuntiveData; let i = index;">
         <div class="risorsa-container">
             <div class="risorsa-title">{{risorsa.nome}}</div>
@@ -147,26 +147,4 @@
     <div class="pf-title"><span>Percezione</span> {{percezionePassiva}}</div>
     <div class="pf-title"><span>Intuizione</span> {{intuizionePassiva}}</div>
     <div class="pf-title"><span>Indagare</span> {{indagarePassiva}}</div>
-    
 </div>
-
-<!-- <div class="section-title">Prove passive</div>
-<div class="passive-container">
-    <div class="passive-line">
-        <div class="passive-label">Percezione</div>
-        <div class="passive-divider"></div>
-        <div class="passive-value">{{percezionePassiva}}</div>
-    </div>
-
-    <div class="passive-line">
-        <div class="passive-label">Intuizione</div>
-        <div class="passive-divider"></div>
-        <div class="passive-value">{{intuizionePassiva}}</div>
-    </div>
-
-    <div class="passive-line">
-        <div class="passive-label">Indagare</div>
-        <div class="passive-divider"></div>
-        <div class="passive-value">{{indagarePassiva}}</div>
-    </div>
-</div> -->

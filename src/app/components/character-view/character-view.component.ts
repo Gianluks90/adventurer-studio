@@ -59,4 +59,10 @@ export class CharacterViewComponent {
   public openSidenav() {
     this.sidenavService.toggle();
   }
+
+  onPictureEmitted(event: any) {
+    console.log('event', event);
+    this.character.informazioniBase.urlImmaginePersonaggio = event.urlImmaginePersonaggio;
+    this.character.informazioniBase.nomeImmaginePersonaggio = event.nomeImmaginePersonaggio;
+  }
 }

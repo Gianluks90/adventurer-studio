@@ -1,6 +1,6 @@
 <div class="view-container" *ngIf="character">
     <div class="view-header">
-        <img class="character-image" [src]="character.informazioniBase.urlImmaginePersonaggio">
+        <img class="character-image" [src]="character.informazioniBase.urlImmaginePersonaggio !== ''? character.informazioniBase.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
         <div class="character-info-container">
             <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
             <!--Quando c'è Breakpoint Observer implementare header dinamico, mostrare alcuni dati in desktop e meno in mobile-->
@@ -50,7 +50,7 @@
                     <!-- <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background"
                         class="label-icon">description</mat-icon> -->
                 </ng-template>
-                <app-descrizione-background-tab-view [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"  [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche"></app-descrizione-background-tab-view>
+                <app-descrizione-background-tab-view [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"  [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche" [immaginePersonaggio]="{url: character.informazioniBase.urlImmaginePersonaggio, nome: character.informazioniBase.nomeImmaginePersonaggio}" (pictureEmitter)="onPictureEmitted($event)"></app-descrizione-background-tab-view>
             </mat-tab>
 
             <mat-tab>
