@@ -63,7 +63,8 @@ export class CharacterService {
         lastUpdateDate: new Date(),
         userId: user.id,
         author: user.displayName,
-        statusCode: 0
+        statusCode: 0,
+        sheetColor: '#FFFFFF40'
       }
     }).then(() => {
       const userRef = doc(this.firebaseService.database, 'users', user.id);
@@ -87,6 +88,15 @@ export class CharacterService {
   public async updateCharacterById(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, form.value, { merge: true });
+  }
+
+  public async updateCharacterSheetColorById(id: string, color: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      status: {
+        sheetColor: color
+      }
+    }, { merge: true });
   }
 
   public async updateCharacterPFById(id: string, form: FormGroup): Promise<any> {

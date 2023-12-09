@@ -74,7 +74,7 @@
 
 .status-container {
     // border-radius: 8px;
-    background-color: #FFFFFF8A;
+    background: rgba($color: #FFFFFF, $alpha: 0.5);
     flex-grow: 1;
     padding: 0 20px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
@@ -198,4 +198,8 @@
         overflow: hidden!important;
         max-height: none;
     }
+}
+
+::ng-deep.mdc-tab {
+    min-width: 50px !important;
 }

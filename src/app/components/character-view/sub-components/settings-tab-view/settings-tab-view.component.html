@@ -1,0 +1,12 @@
+<div class="section-title">Impostazioni</div>
+<div class="subtitle">Colore scheda</div>
+<div class="input-container">
+    <input type="color" class="color-picker" [value]="sheetColorData" #picker>
+    <div class="divider"></div>
+    <button mat-raised-button color="accent" (click)="updateSheetColor(picker.value)">
+        <mat-icon>check</mat-icon> Applica
+    </button>
+    <button mat-raised-button color="accent" (click)="resetColor()">
+        <mat-icon>refresh</mat-icon> Predefinito
+    </button>
+</div>

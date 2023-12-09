@@ -19,7 +19,7 @@ export class CharacterViewComponent {
   // public menuIcon = 'menu';
 
   constructor(
-    private menuService: MenuService,
+    // private menuService: MenuService,
     private characterService: CharacterService,
     private sidenavService: SidenavService,
     private formService: FormService) { }

@@ -52,6 +52,7 @@ import { TrucchettiIncantesimiTabViewComponent } from './components/character-vi
 import { SettingsDialogComponent } from "./components/sidenav/settings-dialog/settings-dialog.component";
 import { InventoryComponent } from "./components/utilities/inventory/inventory.component";
 import { AddItemDialogComponent } from "./components/utilities/inventory/add-item-dialog/add-item-dialog.component";
+import { SettingsTabViewComponent } from './components/character-view/sub-components/settings-tab-view/settings-tab-view.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import { AddItemDialogComponent } from "./components/utilities/inventory/add-ite
      AbilitaTabViewComponent,
      DescrizioneBackgroundTabViewComponent,
      TrucchettiIncantesimiTabViewComponent,
+     SettingsTabViewComponent,
 
   ],
   imports: [

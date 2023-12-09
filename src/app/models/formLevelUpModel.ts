@@ -29,6 +29,7 @@ export class FormLevelUpModel {
         creationDate: null,
         lastUpdateDate: null,
         userId: '',
+        sheetColor: ''
       }
     }
   }

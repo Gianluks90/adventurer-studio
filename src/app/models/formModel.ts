@@ -39,6 +39,7 @@ export class FormModel {
         creationDate: null,
         lastUpdateDate: null,
         userId: '',
+        sheetColor: ''
       }
     }
   }
