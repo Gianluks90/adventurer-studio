@@ -20,8 +20,6 @@
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/skills.svg" class="label-icon" matTooltipPosition="below" matTooltip="Abilità">
-                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Abilità"
-                        class="label-icon">format_list_bulleted</mat-icon> -->
                 </ng-template>
                 <app-abilita-tab-view [abilita]="competenzeAbilita" [linguaggiCompetenze]="linguaggiCompetenze"></app-abilita-tab-view>
             </mat-tab>
@@ -29,8 +27,6 @@
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/talents.svg" class="label-icon" matTooltipPosition="below" matTooltip="Privilegi, Tratti e Talenti">
-                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Privilegi, Tratti e Talenti"
-                        class="label-icon">star</mat-icon> -->
                 </ng-template>
                 <app-privilegi-tratti-tab-view
                     [privilegiTratti]="character.privilegiTratti" [informazioniBase]="{razza: character.informazioniBase.razza, sottorazza: character.informazioniBase.sottorazza, classi: character.informazioniBase.classi}"></app-privilegi-tratti-tab-view>
@@ -47,32 +43,32 @@
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/tied-scroll.svg" class="label-icon" matTooltipPosition="below" matTooltip="Descrizione e background">
-                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Descrizione e background"
-                        class="label-icon">description</mat-icon> -->
                 </ng-template>
                 <app-descrizione-background-tab-view [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"  [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche" [immaginePersonaggio]="{url: character.informazioniBase.urlImmaginePersonaggio, nome: character.informazioniBase.nomeImmaginePersonaggio}" (pictureEmitter)="onPictureEmitted($event)"></app-descrizione-background-tab-view>
             </mat-tab>
 
+            <!-- <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below" matTooltip="Companions">
+                </ng-template>
+            </mat-tab> -->
+
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/magic.svg" class="label-icon" matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi">
-                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi"
-                        class="label-icon">brightness_5</mat-icon> -->
                 </ng-template>
                 <app-trucchetti-incantesimi-tab-view [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
             </mat-tab>
 
-            <mat-tab disabled>
+            <!-- <mat-tab disabled>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/attacks.svg" class="label-icon" matTooltipPosition="below" matTooltip="Attacchi">
-                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Attacchi" class="label-icon">reorder</mat-icon> -->
                 </ng-template>
-            </mat-tab>
+            </mat-tab> -->
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <mat-icon class="label-icon" matTooltipPosition="below" matTooltip="Attacchi">settings</mat-icon>
-                    <!-- <mat-icon matTooltipPosition="below" matTooltip="Attacchi" class="label-icon">reorder</mat-icon> -->
+                    <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below" matTooltip="Impostazioni">
                 </ng-template>
                 <app-settings-tab-view [sheetColor]="character.status.sheetColor"></app-settings-tab-view>
             </mat-tab>

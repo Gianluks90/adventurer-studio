@@ -169,7 +169,6 @@
     }
 
     .view-tabs {
-        // max-height: 100%;
         overflow: hidden;
     }
 
@@ -202,4 +201,9 @@
 
 ::ng-deep.mdc-tab {
     min-width: 50px !important;
+    max-width: 50px !important;
+}
+
+::ng-deep.mat-mdc-tab-labels {
+    justify-content: space-evenly;
 }
