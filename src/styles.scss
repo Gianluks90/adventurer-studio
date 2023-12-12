@@ -107,8 +107,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   // font-size: calc(8px + (16 - 8) * ((100vw - 300px) / (1600 - 300))) !important;
   box-sizing: border-box;
-  scrollbar-width: thin;
-  overflow-y: auto;
+  // scrollbar-width: thin;
+  // overflow-y: auto;
 }
 
 //Chrome
@@ -140,28 +140,25 @@ body {
 
 
 
-::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #F5F5F5;
-}
+// ::-webkit-scrollbar-track {
+//   // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+//   // background-color: #F5F5F5;
+// }
 
 ::-webkit-scrollbar {
-  width: 4px !important;
-  background-color: #F5F5F5 !important;
+  width: 0px !important;
+  // background-color: #F5F5F5 !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  background-color: #212121;
+  // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  // background-color: #212121;
   border: none;
 }
 
-
-
-
 //Firefox
 * {
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 
 .custom-snackbar,
