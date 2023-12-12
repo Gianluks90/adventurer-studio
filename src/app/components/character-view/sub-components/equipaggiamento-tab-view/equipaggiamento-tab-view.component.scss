@@ -7,7 +7,7 @@
 }
 
 .section-title {
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   font-size: medium;
   font-weight: bold;
   text-transform: uppercase;
@@ -18,7 +18,9 @@
 .coins-viewer {
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
+  padding: 8px 4px;
+  cursor: pointer;
 }
 
 .single-coins-viewer {

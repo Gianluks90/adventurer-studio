@@ -96,7 +96,6 @@ export class MoneteComponent {
     } else {
       this.notificationService.openSnackBar("Non hai abbastanza monete per farlo!", 'toll', 3000, 'red');
     }
-
   }
 
   public cambioTaglio(taglio): string {

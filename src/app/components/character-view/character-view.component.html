@@ -18,7 +18,7 @@
         </div>
         <mat-tab-group color="accent" style="height: 100%;">
             <mat-tab>
-                <ng-template mat-tab-label>
+                <ng-template mat-tab-label >
                     <img src="./assets/tabs-icons/skills.svg" class="label-icon" matTooltipPosition="below" matTooltip="Abilità">
                 </ng-template>
                 <app-abilita-tab-view [abilita]="competenzeAbilita" [linguaggiCompetenze]="linguaggiCompetenze"></app-abilita-tab-view>
@@ -38,6 +38,7 @@
                 </ng-template>
                 <app-equipaggiamento-tab-view [equipaggiamento]="character.equipaggiamento"
                     [denaro]="character.denaro"></app-equipaggiamento-tab-view>
+                    <!-- <app-inventory [inventory]="[]"></app-inventory> -->
             </mat-tab>
 
             <mat-tab>

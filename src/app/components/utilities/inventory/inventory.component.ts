@@ -32,7 +32,12 @@ export class InventoryComponent {
         name: 'bruco',
         icon: '',
         filtered: false,
-      }
+      },
+      {
+        name: 'pippo',
+        icon: '',
+        filtered: false,
+      },
     ];
   }
 

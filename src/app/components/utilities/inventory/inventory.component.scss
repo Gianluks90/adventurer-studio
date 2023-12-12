@@ -1,11 +1,12 @@
 .main-container {
-    box-sizing: border-box;
+    // box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 70%;
+    // height: 70%;
     overflow-y: auto;
-    display: block;
+    // display: block;
+    margin-top: 8px;
 }
 
 .items-container {
@@ -16,7 +17,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-top: 20px;
+    margin: 4px 0 12px 0;
+    position: sticky;
 }
 
 .search-input {
@@ -26,6 +28,8 @@
 .add-button {
     border-radius: 0;
     background-color: #212121;
+    box-shadow: 0 0 4px #212121;
+
 }
 
 ::ng-deep .mat-mdc-form-field-subscript-wrapper {
