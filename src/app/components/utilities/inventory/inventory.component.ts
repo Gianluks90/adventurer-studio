@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Item } from 'src/app/models/item';
 import { MatDialog } from '@angular/material/dialog';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { Platform } from '@angular/cdk/platform';
+import { MockItem } from 'src/app/models/mockItem';
 
 @Component({
   selector: 'app-inventory',
@@ -12,8 +12,8 @@ import { Platform } from '@angular/cdk/platform';
 })
 export class InventoryComponent {
 
-  public inventoryData: Item[] = [];
-  @Input() set inventory(inventory: Item[]) {
+  public inventoryData: MockItem[] = [];
+  @Input() set inventory(inventory: MockItem[]) {
     this.inventoryData = inventory;
   }
 
