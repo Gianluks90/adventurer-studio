@@ -2,7 +2,7 @@
   font-size: small;
   opacity: 0.5;
   font-style: italic;
-  margin-bottom: 20px;
+  margin: 12px 0;
   text-align: justify;
 }
 
@@ -19,7 +19,7 @@
   font-weight: bold;
   letter-spacing: 1px;
   // border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
-  margin-bottom: 4px;
+  margin: 8px 0;
 }
 
 .input-container {
@@ -42,4 +42,18 @@
   border-radius: 0;
   box-shadow: none;
   border: none;
+}
+
+.export-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.export-button {
+  flex-grow: 1;
+}
+
+.export-button > button {
+  width: 100%;
 }
