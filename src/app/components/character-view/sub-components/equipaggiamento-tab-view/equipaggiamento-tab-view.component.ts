@@ -5,6 +5,7 @@ import { Platform } from '@angular/cdk/platform';
 import { NotificationService } from 'src/app/services/notification.service';
 import { FormService } from 'src/app/services/form.service';
 import { FormGroup } from '@angular/forms';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-equipaggiamento-tab-view',
@@ -18,7 +19,7 @@ export class EquipaggiamentoTabViewComponent {
 
   public denaroForm: FormGroup | null = null;
 
-  constructor(private dialog: MatDialog, private platform: Platform, private notification: NotificationService, private formService: FormService) { }
+  constructor(private dialog: MatDialog, private platform: Platform, private notification: NotificationService, private formService: FormService, private charService: CharacterService) { }
 
   @Input() set equipaggiamento(value: string) {
     this.equipaggiamentoData = value;
@@ -46,8 +47,10 @@ export class EquipaggiamentoTabViewComponent {
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         this.denaroData = result.newValue.value;
-
-        this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, 'limegreen');
+        console.log(this.denaroData);
+        this.charService.updateMoney(characterId, this.denaroData).then(() => {
+          this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, 'limegreen');
+        });
       }
     });
   }

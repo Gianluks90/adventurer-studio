@@ -99,6 +99,15 @@ export class CharacterService {
     }, { merge: true });
   }
 
+  public async updateMoney(id: string, money: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      denaro: {
+        ...money
+      }
+    }, { merge: true });
+  }
+
   public async updateCharacterPFById(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {
