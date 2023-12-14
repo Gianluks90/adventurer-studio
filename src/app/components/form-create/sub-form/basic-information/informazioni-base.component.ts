@@ -104,11 +104,9 @@ export class InformazioniBaseComponent {
   }
 
   public setValoreAttuale(index: number, value: any) {
-    const risorsa = this.risorseAggiuntive.at(index);
+    const risorsa = this.risorseAggiuntive.at(index) as FormGroup;
     const used = new Array(parseInt(value)).fill(false);
-    risorsa.patchValue({
-      valoreAttuale: parseInt(value),
-      used: used
-    });
+    risorsa.removeControl('used');
+    risorsa.addControl('used', this.fb.array(used));
   }
 }

@@ -54,12 +54,9 @@ export class ParametriVitaliComponent {
   }
 
   public setValoreAttuale(index: number, value: any) {
-    const dadoVita = this.dadiVita.at(index);
+    const dadoVita = this.dadiVita.at(index) as FormGroup;
     const used = new Array(parseInt(value)).fill(false);
-    dadoVita.patchValue({
-      used: used
-    });
+    dadoVita.removeControl('used');
+    dadoVita.addControl('used', this.fb.array(used));
   }
-
-  
 }
