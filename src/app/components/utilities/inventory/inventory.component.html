@@ -10,7 +10,7 @@
         <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
         <div *ngIf="inventoryData.length > 0" class="items-icon-container" >
             <div *ngFor="let i of inventoryData" [hidden]="i.filtered">
-                <img [src]="i.icon" alt="">
+                <img [src]="i.icon" alt="" style="border: 2px solid white;" [ngStyle]="{'border-color': setColor(i.rarity)}">
             </div>
         </div>
     </div>
