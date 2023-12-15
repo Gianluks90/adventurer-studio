@@ -1,3 +1,5 @@
+import { FormBuilder } from "@angular/forms";
+
 export class Item {
     name: string;
     icon: string;
@@ -10,13 +12,18 @@ export class Item {
     weight?: number;
     cursed?: boolean;
     cursedDescription?: string;
-    traits: Trait[];
+    CA: number;
+    stelthDisadvantage?: boolean;
+    damageFormula?: string;
+    damageType?: string;
+    weaponProperties?: string[];
+    traits?: Trait[];
     attunementRequired?: boolean;
     attuned?: boolean;
     artifactProperties?: string[];
     reference?: string;
 
-    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: string, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: string[], reference?: string) {
+    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: string, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: string[], reference?: string, CA?: number, stelthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
         this.name = name;
         this.icon = icon;
         this.filtered = filtered;
@@ -33,11 +40,39 @@ export class Item {
         this.attuned = attuned;
         this.artifactProperties = artifactProperties;
         this.reference = reference;
+        this.CA = CA;
+        this.stelthDisadvantage = stelthDisadvantage;
+        this.damageFormula = damageFormula;
+        this.damageType = damageType;
+        this.weaponProperties = weaponProperties;
     }
 
-    static parseFromData(data: any): Item {
-        return new Item(data.name, data.icon, data.filtered, data.quantity, data.rarity, data.category, data.description, data.value, data.weight, data.cursed, data.cursedDescription, data.traits, data.attunementRequired, data.attuned, data.artifactProperties, data.reference);
+    static create(builder: FormBuilder) {
+        return {
+            name: '',
+            icon: '',
+            filtered: false,
+            quantity: 1,
+            rarity: '',
+            category: '',
+            description: '',
+            value: '',
+            weight: 0,
+            cursed: false,
+            cursedDescription: '',
+            traits: [],
+            attunementRequired: false,
+            attuned: false,
+            artifactProperties: [],
+            reference: '',
+            CA: 0,
+            stelthDisadvantage: false,
+            damageFormula: '',
+            damageType: '',
+            weaponProperties: []
+        }
     }
+
 }
 
 export class Trait {
@@ -45,26 +80,26 @@ export class Trait {
     description: string;
 }
 
-export class Armor extends Item {
-    CA: number;
-    stelthDisadvantage: boolean;
+// export class Armor extends Item {
+//     CA: number;
+//     stelthDisadvantage: boolean;
 
-    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: string, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: string[], reference?: string, CA?: number, stelthDisadvantage?: boolean) {
-        super(name, icon, filtered, quantity, rarity, category, description, value, weight, cursed, cursedDescription, traits, attunementRequired, attuned, artifactProperties, reference);
-        this.CA = CA;
-        this.stelthDisadvantage = stelthDisadvantage;
-    }
-}
+//     constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: string, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: string[], reference?: string, CA?: number, stelthDisadvantage?: boolean) {
+//         super(name, icon, filtered, quantity, rarity, category, description, value, weight, cursed, cursedDescription, traits, attunementRequired, attuned, artifactProperties, reference);
+//         this.CA = CA;
+//         this.stelthDisadvantage = stelthDisadvantage;
+//     }
+// }
 
-export class Weapon extends Item {
-    damageFormula: string;
-    damageType: string;
-    weaponProperties: string[];
+// export class Weapon extends Item {
+//     damageFormula: string;
+//     damageType: string;
+//     weaponProperties: string[];
 
-    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: string, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: string[], reference?: string, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
-        super(name, icon, filtered, quantity, rarity, category, description, value, weight, cursed, cursedDescription, traits, attunementRequired, attuned, artifactProperties, reference);
-        this.damageFormula = damageFormula;
-        this.damageType = damageType;
-        this.weaponProperties = weaponProperties;
-    }
-}
+//     constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: string, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: string[], reference?: string, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
+//         super(name, icon, filtered, quantity, rarity, category, description, value, weight, cursed, cursedDescription, traits, attunementRequired, attuned, artifactProperties, reference);
+//         this.damageFormula = damageFormula;
+//         this.damageType = damageType;
+//         this.weaponProperties = weaponProperties;
+//     }
+// }
