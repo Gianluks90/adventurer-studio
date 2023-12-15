@@ -11,6 +11,8 @@
         <div *ngIf="inventoryData.length > 0" class="items-icon-container" >
             <div *ngFor="let i of inventoryData" [hidden]="i.filtered">
                 <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" matTooltip="{{i.name}}" matTooltipPosition="above">
+                <span class="quantity-value">{{i.quantity}}</span>
+                <span class="weared-label" *ngIf="i.weared">E</span>
             </div>
         </div>
     </div>

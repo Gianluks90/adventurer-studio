@@ -15,7 +15,6 @@ export class InventoryComponent {
   public inventoryData: Item[] = [];
   @Input() set inventory(inventory: Item[]) {
     this.inventoryData = inventory;
-    console.log('inventoryData input', this.inventoryData);
   }
 
   constructor(private dialog: MatDialog, private platform: Platform, private characterService: CharacterService) {
@@ -28,11 +27,9 @@ export class InventoryComponent {
       disableClose: true,
       data: { inventory: this.inventoryData }
     }).afterClosed().subscribe((result: any) => {
-      console.log('result', result);
       if (result.status === 'success') {
         this.characterService.updateInventory(window.location.href.split('/').pop(), result.item).then(() => {
           this.inventoryData.push(result.item);
-          console.log('inventory aggiornato', this.inventoryData);
         });
       }
     })

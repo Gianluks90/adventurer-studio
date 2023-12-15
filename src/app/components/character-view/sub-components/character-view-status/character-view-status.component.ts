@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { CharacterService } from 'src/app/services/character.service';
+import { Item } from 'src/app/models/item';
 
 @Component({
   selector: 'app-character-view-status',
@@ -30,6 +31,9 @@ export class CharacterViewStatusComponent {
   public TSSaggezza: string = '';
   public TSCarisma: string = '';
 
+  public CA: string = '';
+  public CAShield: string = '';
+
   public intuizionePassiva: number = 0;
   public percezionePassiva: number = 0;
   public indagarePassiva: number = 0;
@@ -50,12 +54,11 @@ export class CharacterViewStatusComponent {
     this.characterData = character;
     this.initCaratteristiche();
     this.initTiriSalvezza();
+    this.initCA();
     this.initProvePassive();
     // this.initDadiVita();
     this.dadiVitaData = character.parametriVitali.dadiVita;
     this.risorseAggiuntiveData = character.informazioniBase.risorseAggiuntive;
-    console.log('dadiVitaData', this.dadiVitaData);
-    
   }
 
   ngOnInit(): void {
@@ -101,6 +104,27 @@ export class CharacterViewStatusComponent {
     const carisma = Math.floor((this.characterData.caratteristiche.carisma - 10) / 2);
     this.TSCarisma = this.characterData.tiriSalvezza.carisma ? (carisma + bonusCompetenza) : carisma;
     this.TSCarisma = parseInt(this.TSCarisma) > 0 ? '+ ' + this.TSCarisma : this.TSCarisma;
+  }
+
+  public initCA(): void {
+    const equip = this.characterData.equipaggiamento as Array<Item>;
+    console.log('equip', equip);
+    equip.forEach((item: Item) => {
+      if (item.CA > 0 && !item.shield && item.weared) {
+        if (item.plusDexterity) {
+          this.CA = (item.CA + Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2)).toString();
+        } else {
+          this.CA = item.CA.toString();
+        }
+      }
+      if (item.CA > 0 && item.shield && item.weared) {
+        this.CAShield = '+ ' + item.CA;
+      }
+    });
+    if (this.CA === '') {
+      this.CA = (10 + Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2)).toString();
+    }
+    
   }
 
   public initProvePassive(): void {

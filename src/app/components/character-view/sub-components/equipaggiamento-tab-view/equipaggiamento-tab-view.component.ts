@@ -48,7 +48,6 @@ export class EquipaggiamentoTabViewComponent {
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         this.denaroData = result.newValue.value;
-        console.log(this.denaroData);
         this.charService.updateMoney(characterId, this.denaroData).then(() => {
           this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, 'limegreen');
         });

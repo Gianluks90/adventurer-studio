@@ -1,10 +1,554 @@
 [
     {
-        "name": "0",
-        "link": "./assets/selectIcons/0.svg"
+        "name": "Amuleto 1",
+        "link": "./assets/selectIcons/amuleto_1.svg"
     },
     {
-        "name": "1",
-        "link": "./assets/selectIcons/1.svg"
+        "name": "Amuleto 2",
+        "link": "./assets/selectIcons/amuleto_2.svg"
+    },
+    {
+        "name": "Amuleto 3",
+        "link": "./assets/selectIcons/amuleto_3.svg"
+    },
+    {
+        "name": "Amuleto 4",
+        "link": "./assets/selectIcons/amuleto_4.svg"
+    },
+    {
+        "name": "Amuleto 5",
+        "link": "./assets/selectIcons/amuleto_5.svg"
+    },
+    {
+        "name": "Anello 1",
+        "link": "./assets/selectIcons/anello_1.svg"
+    },
+    {
+        "name": "Anello 2",
+        "link": "./assets/selectIcons/anello_2.svg"
+    },
+    {
+        "name": "Anello 3",
+        "link": "./assets/selectIcons/anello_3.svg"
+    },
+    {
+        "name": "Anello 4",
+        "link": "./assets/selectIcons/anello_4.svg"
+    },
+    {
+        "name": "Arma 1",
+        "link": "./assets/selectIcons/arma_1.svg"
+    },
+    {
+        "name": "Arma 2",
+        "link": "./assets/selectIcons/arma_2.svg"
+    },
+    {
+        "name": "Arma 3",
+        "link": "./assets/selectIcons/arma_3.svg"
+    },
+    {
+        "name": "Arma 4",
+        "link": "./assets/selectIcons/arma_4.svg"
+    },
+    {
+        "name": "Arma 5",
+        "link": "./assets/selectIcons/arma_5.svg"
+    },
+    {
+        "name": "Arma 6",
+        "link": "./assets/selectIcons/arma_6.svg"
+    },
+    {
+        "name": "Arma 7",
+        "link": "./assets/selectIcons/arma_7.svg"
+    },
+    {
+        "name": "Arma 8",
+        "link": "./assets/selectIcons/arma_8.svg"
+    },
+    {
+        "name": "Arma 9",
+        "link": "./assets/selectIcons/arma_9.svg"
+    },
+    {
+        "name": "Arma 10",
+        "link": "./assets/selectIcons/arma_10.svg"
+    },
+    {
+        "name": "Arma 11",
+        "link": "./assets/selectIcons/arma_11.svg"
+    },
+    {
+        "name": "Arma 12",
+        "link": "./assets/selectIcons/arma_12.svg"
+    },
+    {
+        "name": "Arma 13",
+        "link": "./assets/selectIcons/arma_13.svg"
+    },
+    {
+        "name": "Arma 14",
+        "link": "./assets/selectIcons/arma_14.svg"
+    },
+    {
+        "name": "Arma 15",
+        "link": "./assets/selectIcons/arma_15.svg"
+    },
+    {
+        "name": "Arma 16",
+        "link": "./assets/selectIcons/arma_16.svg"
+    },
+    {
+        "name": "Arma 17",
+        "link": "./assets/selectIcons/arma_17.svg"
+    },
+    {
+        "name": "Arma 18",
+        "link": "./assets/selectIcons/arma_18.svg"
+    },
+    {
+        "name": "Arma 19",
+        "link": "./assets/selectIcons/arma_19.svg"
+    },
+    {
+        "name": "Arma 20",
+        "link": "./assets/selectIcons/arma_20.svg"
+    },
+    {
+        "name": "Arma 21",
+        "link": "./assets/selectIcons/arma_21.svg"
+    },
+    {
+        "name": "Arma 22",
+        "link": "./assets/selectIcons/arma_22.svg"
+    },
+    {
+        "name": "Arma 23",
+        "link": "./assets/selectIcons/arma_23.svg"
+    },
+    {
+        "name": "Arma 24",
+        "link": "./assets/selectIcons/arma_24.svg"
+    },
+    {
+        "name": "Arma 25",
+        "link": "./assets/selectIcons/arma_25.svg"
+    },
+    {
+        "name": "Armatura 1",
+        "link": "./assets/selectIcons/armatura_1.svg"
+    },
+    {
+        "name": "Armatura 2",
+        "link": "./assets/selectIcons/armatura_2.svg"
+    },
+    {
+        "name": "Armatura 3",
+        "link": "./assets/selectIcons/armatura_3.svg"
+    },
+    {
+        "name": "Armatura 4",
+        "link": "./assets/selectIcons/armatura_4.svg"
+    },
+    {
+        "name": "Armatura 5",
+        "link": "./assets/selectIcons/armatura_5.svg"
+    },
+    {
+        "name": "Armatura 6",
+        "link": "./assets/selectIcons/armatura_6.svg"
+    },
+    {
+        "name": "Armatura 7",
+        "link": "./assets/selectIcons/armatura_7.svg"
+    },
+    {
+        "name": "Armatura 8",
+        "link": "./assets/selectIcons/armatura_8.svg"
+    },
+    {
+        "name": "Camuffamento",
+        "link": "./assets/selectIcons/camuffamento.svg"
+    },
+    {
+        "name": "Chiave 1",
+        "link": "./assets/selectIcons/chiave_1.svg"
+    },
+    {
+        "name": "Chiave 2",
+        "link": "./assets/selectIcons/chiave_2.svg"
+    },
+    {
+        "name": "Chiave 3",
+        "link": "./assets/selectIcons/chiave_3.svg"
+    },
+    {
+        "name": "Cibo 1",
+        "link": "./assets/selectIcons/cibo_1.svg"
+    },
+    {
+        "name": "Cibo 2",
+        "link": "./assets/selectIcons/cibo_2.svg"
+    },
+    {
+        "name": "Cibo 3",
+        "link": "./assets/selectIcons/cibo_3.svg"
+    },
+    {
+        "name": "Cibo 4",
+        "link": "./assets/selectIcons/cibo_4.svg"
+    },
+    {
+        "name": "Cibo 5",
+        "link": "./assets/selectIcons/cibo_5.svg"
+    },
+    {
+        "name": "Cibo 6",
+        "link": "./assets/selectIcons/cibo_6.svg"
+    },
+    {
+        "name": "Cibo 7",
+        "link": "./assets/selectIcons/cibo_7.svg"
+    },
+    {
+        "name": "Cibo 8",
+        "link": "./assets/selectIcons/cibo_8.svg"
+    },
+    {
+        "name": "Cibo 9",
+        "link": "./assets/selectIcons/cibo_9.svg"
+    },
+    {
+        "name": "Cibo 10",
+        "link": "./assets/selectIcons/cibo_10.svg"
+    },
+    {
+        "name": "Cibo 11",
+        "link": "./assets/selectIcons/cibo_11.svg"
+    },
+    {
+        "name": "Corda",
+        "link": "./assets/selectIcons/corda.svg"
+    },
+    {
+        "name": "Elmo 1",
+        "link": "./assets/selectIcons/elmo_1.svg"
+    },
+    {
+        "name": "Elmo 2",
+        "link": "./assets/selectIcons/elmo_2.svg"
+    },
+    {
+        "name": "Elmo 3",
+        "link": "./assets/selectIcons/elmo_3.svg"
+    },
+    {
+        "name": "Elmo 4",
+        "link": "./assets/selectIcons/elmo_4.svg"
+    },
+    {
+        "name": "Elmo 5",
+        "link": "./assets/selectIcons/elmo_5.svg"
+    },
+    {
+        "name": "Elmo 6",
+        "link": "./assets/selectIcons/elmo_6.svg"
+    },
+    {
+        "name": "Elmo 7",
+        "link": "./assets/selectIcons/elmo_7.svg"
+    },
+    {
+        "name": "Elmo 8",
+        "link": "./assets/selectIcons/elmo_8.svg"
+    },
+    {
+        "name": "Gemma 1",
+        "link": "./assets/selectIcons/gemma_1.svg"
+    },
+    {
+        "name": "Gemma 2",
+        "link": "./assets/selectIcons/gemma_2.svg"
+    },
+    {
+        "name": "Lanterna",
+        "link": "./assets/selectIcons/lanterna.svg"
+    },
+    {
+        "name": "Mappa",
+        "link": "./assets/selectIcons/mappa.svg"
+    },
+    {
+        "name": "Materiale 1",
+        "link": "./assets/selectIcons/materiale_1.svg"
+    },
+    {
+        "name": "Materiale 2",
+        "link": "./assets/selectIcons/materiale_2.svg"
+    },
+    {
+        "name": "Materiale 3",
+        "link": "./assets/selectIcons/materiale_3.svg"
+    },
+    {
+        "name": "Materiale 4",
+        "link": "./assets/selectIcons/materiale_4.svg"
+    },
+    {
+        "name": "Materiale 5",
+        "link": "./assets/selectIcons/materiale_5.svg"
+    },
+    {
+        "name": "Materiale 6",
+        "link": "./assets/selectIcons/materiale_6.svg"
+    },
+    {
+        "name": "Materiale 7",
+        "link": "./assets/selectIcons/materiale_7.svg"
+    },
+    {
+        "name": "Materiale 8",
+        "link": "./assets/selectIcons/materiale_8.svg"
+    },
+    {
+        "name": "Munizioni 1",
+        "link": "./assets/selectIcons/munizioni_1.svg"
+    },
+    {
+        "name": "Munizioni 2",
+        "link": "./assets/selectIcons/munizioni_2.svg"
+    },
+    {
+        "name": "Munizioni 3",
+        "link": "./assets/selectIcons/munizioni_3.svg"
+    },
+    {
+        "name": "Musica 1",
+        "link": "./assets/selectIcons/musica_1.svg"
+    },
+    {
+        "name": "Musica 2",
+        "link": "./assets/selectIcons/musica_2.svg"
+    },
+    {
+        "name": "Musica 3",
+        "link": "./assets/selectIcons/musica_3.svg"
+    },
+    {
+        "name": "Musica 4",
+        "link": "./assets/selectIcons/musica_4.svg"
+    },
+    {
+        "name": "Musica 5",
+        "link": "./assets/selectIcons/musica_5.svg"
+    },
+    {
+        "name": "Musica 6",
+        "link": "./assets/selectIcons/musica_6.svg"
+    },
+    {
+        "name": "Musica 7",
+        "link": "./assets/selectIcons/musica_7.svg"
+    },
+    {
+        "name": "Musica 8",
+        "link": "./assets/selectIcons/musica_8.svg"
+    },
+    {
+        "name": "Pergamena 1",
+        "link": "./assets/selectIcons/pergamena_1.svg"
+    },
+    {
+        "name": "Pergamena 2",
+        "link": "./assets/selectIcons/pergamena_2.svg"
+    },
+    {
+        "name": "Pozione 1",
+        "link": "./assets/selectIcons/pozione_1.svg"
+    },
+    {
+        "name": "Pozione 2",
+        "link": "./assets/selectIcons/pozione_2.svg"
+    },
+    {
+        "name": "Pozione 3",
+        "link": "./assets/selectIcons/pozione_3.svg"
+    },
+    {
+        "name": "Pozione 4",
+        "link": "./assets/selectIcons/pozione_4.svg"
+    },
+    {
+        "name": "Pozione 5",
+        "link": "./assets/selectIcons/pozione_5.svg"
+    },
+    {
+        "name": "Pozione 6",
+        "link": "./assets/selectIcons/pozione_6.svg"
+    },
+    {
+        "name": "Pozione 7",
+        "link": "./assets/selectIcons/pozione_7.svg"
+    },
+    {
+        "name": "Pozione 8",
+        "link": "./assets/selectIcons/pozione_8.svg"
+    },
+    {
+        "name": "Puzzle 1",
+        "link": "./assets/selectIcons/puzzle_1.svg"
+    },
+    {
+        "name": "Puzzle 2",
+        "link": "./assets/selectIcons/puzzle_2.svg"
+    },
+    {
+        "name": "Scudo 1",
+        "link": "./assets/selectIcons/scudo_1.svg"
+    },
+    {
+        "name": "Scudo 2",
+        "link": "./assets/selectIcons/scudo_2.svg"
+    },
+    {
+        "name": "Scudo 3",
+        "link": "./assets/selectIcons/scudo_3.svg"
+    },
+    {
+        "name": "Scudo 4",
+        "link": "./assets/selectIcons/scudo_4.svg"
+    },
+    {
+        "name": "Scudo 5",
+        "link": "./assets/selectIcons/scudo_5.svg"
+    },
+    {
+        "name": "Scudo 6",
+        "link": "./assets/selectIcons/scudo_6.svg"
+    },
+    {
+        "name": "Scudo 7",
+        "link": "./assets/selectIcons/scudo_7.svg"
+    },
+    {
+        "name": "Strumento 1",
+        "link": "./assets/selectIcons/strumento_1.svg"
+    },
+    {
+        "name": "Strumento 2",
+        "link": "./assets/selectIcons/strumento_2.svg"
+    },
+    {
+        "name": "Strumento 3",
+        "link": "./assets/selectIcons/strumento_3.svg"
+    },
+    {
+        "name": "Strumento 4",
+        "link": "./assets/selectIcons/strumento_4.svg"
+    },
+    {
+        "name": "Strumento 5",
+        "link": "./assets/selectIcons/strumento_5.svg"
+    },
+    {
+        "name": "Strumento 6",
+        "link": "./assets/selectIcons/strumento_6.svg"
+    },
+    {
+        "name": "Strumento 7",
+        "link": "./assets/selectIcons/strumento_7.svg"
+    },
+    {
+        "name": "Strumento 8",
+        "link": "./assets/selectIcons/strumento_8.svg"
+    },
+    {
+        "name": "Strumento 9",
+        "link": "./assets/selectIcons/strumento_9.svg"
+    },
+    {
+        "name": "Strumento 10",
+        "link": "./assets/selectIcons/strumento_10.svg"
+    },
+    {
+        "name": "Strumento 11",
+        "link": "./assets/selectIcons/strumento_11.svg"
+    },
+    {
+        "name": "Strumento 12",
+        "link": "./assets/selectIcons/strumento_12.svg"
+    },
+    {
+        "name": "Strumento 13",
+        "link": "./assets/selectIcons/strumento_13.svg"
+    },
+    {
+        "name": "Strumento 14",
+        "link": "./assets/selectIcons/strumento_14.svg"
+    },
+    {
+        "name": "Strumento 15",
+        "link": "./assets/selectIcons/strumento_15.svg"
+    },
+    {
+        "name": "Tenda",
+        "link": "./assets/selectIcons/tenda.svg"
+    },
+    {
+        "name": "Torcia",
+        "link": "./assets/selectIcons/torcia.svg"
+    },
+    {
+        "name": "Varie 1",
+        "link": "./assets/selectIcons/varie_1.svg"
+    },
+    {
+        "name": "Varie 2",
+        "link": "./assets/selectIcons/varie_2.svg"
+    },
+    {
+        "name": "Varie 3",
+        "link": "./assets/selectIcons/varie_3.svg"
+    },
+    {
+        "name": "Varie 4",
+        "link": "./assets/selectIcons/varie_4.svg"
+    },
+    {
+        "name": "Varie 5",
+        "link": "./assets/selectIcons/varie_5.svg"
+    },
+    {
+        "name": "Varie 6",
+        "link": "./assets/selectIcons/varie_6.svg"
+    },
+    {
+        "name": "Varie 7",
+        "link": "./assets/selectIcons/varie_7.svg"
+    },
+    {
+        "name": "Varie 8",
+        "link": "./assets/selectIcons/varie_8.svg"
+    },
+    {
+        "name": "Varie 9",
+        "link": "./assets/selectIcons/varie_9.svg"
+    },
+    {
+        "name": "Varie 10",
+        "link": "./assets/selectIcons/varie_10.svg"
+    },
+    {
+        "name": "Veleno 1",
+        "link": "./assets/selectIcons/veleno_1.svg"
+    },
+    {
+        "name": "Veleno 2",
+        "link": "./assets/selectIcons/veleno_2.svg"
+    },
+    {
+        "name": "Zaino",
+        "link": "./assets/selectIcons/zaino.svg"
     }
 ]

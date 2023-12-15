@@ -61,7 +61,6 @@ export class CharacterViewComponent {
   }
 
   onPictureEmitted(event: any) {
-    console.log('event', event);
     this.character.informazioniBase.urlImmaginePersonaggio = event.urlImmaginePersonaggio;
     this.character.informazioniBase.nomeImmaginePersonaggio = event.nomeImmaginePersonaggio;
   }

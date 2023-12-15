@@ -16,7 +16,12 @@
     <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label>Icona</mat-label>
       <mat-select formControlName="icon">
-        <mat-option *ngFor="let icon of selectIcons" [value]="icon.link">{{icon.name}}</mat-option>
+        <mat-option *ngFor="let icon of selectIcons" [value]="icon.link">
+          <div class="option-line">
+            <img class="icon-image" [src]="icon.link" alt="">
+            <div>{{icon.name}}</div>
+          </div>
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -24,7 +29,6 @@
   <div class="line-container">
     <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
       <mat-label>Categoria</mat-label>
-      <!-- <input matInput formControlName="category"> -->
       <mat-select formControlName="category">
         <mat-option value="arma">Arma</mat-option>
         <mat-option value="armatura">Armatura</mat-option>
@@ -36,6 +40,7 @@
         <mat-option value="bacchetta">Bacchetta</mat-option>
         <mat-option value="oggetto_meraviglioso">Oggetto Meraviglioso</mat-option>
         <mat-option value="oggetto_insolito">Oggetto Insolito</mat-option>
+        <mat-option value="equip_avventura">Equipaggiamento d'avventura</mat-option>
         <mat-option value="strumento">Strumento</mat-option>
         <mat-option value="pergamena">Pergamena</mat-option>
         <mat-option value="altro">Altro</mat-option>
@@ -80,6 +85,8 @@
     </mat-button-toggle-group>
   
     <div [ngSwitch]="type" >
+
+      <!-- ARMATURA -->
       <div *ngSwitchCase="'armor'" class="switch-container">
         <div class="line-container">
           <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
@@ -92,11 +99,21 @@
             <input type="number" matInput formControlName="minStrength" min="0" inputmode="numeric">
           </mat-form-field>
         </div>
-
-        <mat-checkbox formControlName="stealthDisadvantage">
-          Svantaggio Furtività
-        </mat-checkbox>
+        
+        <div class="checkbox-container">
+          <mat-checkbox formControlName="plusDexterity">
+            + modificatore Destrezza
+          </mat-checkbox>
+          <mat-checkbox formControlName="shiled">
+            È uno scudo
+          </mat-checkbox>
+          <mat-checkbox formControlName="stealthDisadvantage">
+            Svantaggio Furtività
+          </mat-checkbox>
+        </div>
       </div>
+
+      <!-- ARMA -->
       <div *ngSwitchCase="'weapon'" class="switch-container">
         <div class="line-container">
           <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
@@ -123,6 +140,10 @@
   </div>
 
   <div class="checkbox-container">
+    <mat-checkbox formControlName="weared">
+      Equipaggiato
+    </mat-checkbox>
+
     <mat-checkbox formControlName="cursed">
       Maledetto
     </mat-checkbox>

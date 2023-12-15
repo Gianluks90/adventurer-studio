@@ -51,6 +51,7 @@
 }
 
 .items-icon-container>div{
+    position: relative;
     max-width: calc(100% / 5 - 12px);
     max-height: calc(100% / 5 - 12px);
     height: 100%;
@@ -67,11 +68,75 @@
     box-sizing: border-box;
 }
 
+.quantity-value {
+    position: absolute;
+    bottom: 12px;
+    left: 6px;
+    background-color: #bebebe;
+    color: #212121;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    display: none; /* Nasconde inizialmente l'elemento quantity-value */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        display: block;
+    }
+}
+
+.items-icon-container>div:hover .quantity-value {
+    display: block;
+}
+
+.weared-label {
+    position: absolute;
+    top: 6px;
+    right: 2px;
+    background-color: #f1c952;
+    color: #212121;
+    padding: 2px 4px;
+    // border-radius: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    display: none; /* Nasconde inizialmente l'elemento quantity-value */
+}
+
+.items-icon-container>div:hover .weared-label {
+    display: block;
+}
+
 @media screen and (max-width: 500px) {
     .items-icon-container>div{
         // max-width: calc(100% / 2 - 6px);
         // max-height: calc(100% / 2 - 6px);
         max-width: calc(100% / 3 - 12px);
         max-height: calc(100% / 3 - 12px);
+    }
+
+    .quantity-value {
+        opacity: 1;
+        display: block;
+    }
+
+    .weared-label {
+        opacity: 1;
+        display: block;
     }
 }

@@ -1,5 +1,4 @@
 import { FormBuilder, Validators } from "@angular/forms";
-import { Title } from "@angular/platform-browser";
 
 export class Item {
     name: string;
@@ -15,8 +14,11 @@ export class Item {
     cursedDescription?: string;
     magicItem?: boolean;
     artifact?: boolean;
+    weared?: boolean;
     CA?: number;
+    plusDexterity?: boolean;
     minStrength?: number;
+    shield?: boolean;
     stealthDisadvantage?: boolean;
     damageFormula?: string;
     damageType?: string;
@@ -27,7 +29,7 @@ export class Item {
     artifactProperties?: Trait[];
     reference?: string;
 
-    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: number, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: Trait[], reference?: string, magicItem?: boolean, artifact?: boolean, CA?: number, minStrength?: number, stealthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
+    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: number, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: Trait[], reference?: string, magicItem?: boolean, artifact?: boolean, weared?: boolean, CA?: number, plusDexterity?: boolean,  minStrength?: number, shield?: boolean, stealthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
         this.name = name;
         this.icon = icon;
         this.filtered = filtered;
@@ -46,8 +48,11 @@ export class Item {
         this.reference = reference;
         this.magicItem = magicItem;
         this.artifact = artifact;
+        this.weared = weared;
         this.CA = CA;
+        this.plusDexterity = plusDexterity;
         this.minStrength = minStrength;
+        this.shield = shield;
         this.stealthDisadvantage = stealthDisadvantage;
         this.damageFormula = damageFormula;
         this.damageType = damageType;
@@ -74,8 +79,11 @@ export class Item {
             reference: '',
             magicItem: false,
             artifact: false,
+            weared: false,
             CA: 0,
+            plusDexterity: false,
             minStrength: 0,
+            shield: false,
             stealthDisadvantage: false,
             damageFormula: '',
             damageType: '',
