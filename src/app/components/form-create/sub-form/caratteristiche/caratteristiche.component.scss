@@ -8,6 +8,7 @@
   display: flex;
   gap: 12px;
   align-items: baseline;
+  margin-bottom: 12px;
 }
 
 .modificatore {
@@ -17,6 +18,7 @@
   border-radius: 4px;
   color: white;
   width: 60px;
+  height: 100%;
   text-align: center;
 }
 
@@ -56,6 +58,7 @@ details {
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 12px;
+  background-color: whitesmoke;
 }
 
 details[open] {
