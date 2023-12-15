@@ -1,4 +1,5 @@
-import { FormBuilder } from "@angular/forms";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Title } from "@angular/platform-browser";
 
 export class Item {
     name: string;
@@ -8,22 +9,25 @@ export class Item {
     rarity: string;
     category: string;
     description?: string;
-    value?: string;
+    value?: number;
     weight?: number;
     cursed?: boolean;
     cursedDescription?: string;
-    CA: number;
-    stelthDisadvantage?: boolean;
+    magicItem?: boolean;
+    artifact?: boolean;
+    CA?: number;
+    minStrength?: number;
+    stealthDisadvantage?: boolean;
     damageFormula?: string;
     damageType?: string;
     weaponProperties?: string[];
     traits?: Trait[];
     attunementRequired?: boolean;
     attuned?: boolean;
-    artifactProperties?: string[];
+    artifactProperties?: Trait[];
     reference?: string;
 
-    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: string, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: string[], reference?: string, CA?: number, stelthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
+    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: number, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: Trait[], reference?: string, magicItem?: boolean, artifact?: boolean, CA?: number, minStrength?: number, stealthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
         this.name = name;
         this.icon = icon;
         this.filtered = filtered;
@@ -40,8 +44,11 @@ export class Item {
         this.attuned = attuned;
         this.artifactProperties = artifactProperties;
         this.reference = reference;
+        this.magicItem = magicItem;
+        this.artifact = artifact;
         this.CA = CA;
-        this.stelthDisadvantage = stelthDisadvantage;
+        this.minStrength = minStrength;
+        this.stealthDisadvantage = stealthDisadvantage;
         this.damageFormula = damageFormula;
         this.damageType = damageType;
         this.weaponProperties = weaponProperties;
@@ -49,24 +56,27 @@ export class Item {
 
     static create(builder: FormBuilder) {
         return {
-            name: '',
-            icon: '',
+            name: ['', Validators.required],
+            icon: ['', Validators.required],
             filtered: false,
-            quantity: 1,
-            rarity: '',
-            category: '',
+            quantity: [1, [Validators.required, Validators.min(1)]],
+            rarity: ['', Validators.required],
+            category: ['', Validators.required],
             description: '',
-            value: '',
+            value: 0,
             weight: 0,
             cursed: false,
             cursedDescription: '',
-            traits: [],
+            traits: builder.array([]),
             attunementRequired: false,
             attuned: false,
-            artifactProperties: [],
+            artifactProperties: builder.array([]),
             reference: '',
+            magicItem: false,
+            artifact: false,
             CA: 0,
-            stelthDisadvantage: false,
+            minStrength: 0,
+            stealthDisadvantage: false,
             damageFormula: '',
             damageType: '',
             weaponProperties: []
@@ -78,6 +88,14 @@ export class Item {
 export class Trait {
     title: string;
     description: string;
+
+    static create(builder: FormBuilder) {
+        return {
+            title: ['', Validators.required],
+            description: ['', Validators.required],
+        }
+
+    }
 }
 
 // export class Armor extends Item {

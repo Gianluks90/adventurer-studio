@@ -5,6 +5,9 @@
 
 .dialog-content {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .custom-form-field {
@@ -14,4 +17,83 @@
 
 button {
     border-radius: 0;
+}
+
+.line-container {
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
+}
+
+.line-input {
+    flex-grow: 1;
+    min-width: 50%;
+}
+
+.text-area-input {
+    margin-top: 8px;
+}
+
+.option-label::first-letter {
+    text-transform: uppercase;
+}
+
+.switch-input {
+    margin-top: 8px;
+    width: 100%;
+}
+
+.checkbox-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.toggle-group {
+    width: 100%;
+}
+
+.magic-item-container {
+    width: 100%;
+}
+
+.step-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.section-title {
+    margin-bottom: 20px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+}
+
+.delete-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+@media screen and (max-width: 500px) {
+
+    .line-container {
+        flex-direction: column;
+    }
+
+    .line-input {
+        width: 100%;
+    }
+
+    .delete-button>button {
+        width: 100%;
+    }
+
+    .button-container>button {
+        width: 100%;
+    }
 }

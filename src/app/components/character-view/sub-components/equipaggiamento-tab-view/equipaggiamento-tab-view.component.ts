@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { FormService } from 'src/app/services/form.service';
 import { FormGroup } from '@angular/forms';
 import { CharacterService } from 'src/app/services/character.service';
+import { Item } from 'src/app/models/item';
 
 @Component({
   selector: 'app-equipaggiamento-tab-view',
@@ -14,14 +15,14 @@ import { CharacterService } from 'src/app/services/character.service';
 })
 export class EquipaggiamentoTabViewComponent {
 
-  public equipaggiamentoData: string = '';
+  public equipaggiamentoData: Item[] = [];
   public denaroData: any = {};
 
   public denaroForm: FormGroup | null = null;
 
   constructor(private dialog: MatDialog, private platform: Platform, private notification: NotificationService, private formService: FormService, private charService: CharacterService) { }
 
-  @Input() set equipaggiamento(value: string) {
+  @Input() set equipaggiamento(value: Item[]) {
     this.equipaggiamentoData = value;
   }
 

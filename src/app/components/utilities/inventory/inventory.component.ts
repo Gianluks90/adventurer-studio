@@ -3,7 +3,7 @@ import { Item } from 'src/app/models/item';
 import { MatDialog } from '@angular/material/dialog';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { Platform } from '@angular/cdk/platform';
-import { MockItem } from 'src/app/models/mockItem';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-inventory',
@@ -12,44 +12,28 @@ import { MockItem } from 'src/app/models/mockItem';
 })
 export class InventoryComponent {
 
-  public inventoryData: MockItem[] = [];
-  @Input() set inventory(inventory: MockItem[]) {
+  public inventoryData: Item[] = [];
+  @Input() set inventory(inventory: Item[]) {
     this.inventoryData = inventory;
+    console.log('inventoryData input', this.inventoryData);
   }
 
-  constructor(private dialog: MatDialog, private platform: Platform) {
+  constructor(private dialog: MatDialog, private platform: Platform, private characterService: CharacterService) {
     
-  }
-
-  ngOnInit() {
-    this.inventoryData = [
-      {
-        name: 'pippo',
-        icon: '',
-        filtered: false,
-      },
-      {
-        name: 'bruco',
-        icon: '',
-        filtered: false,
-      },
-      {
-        name: 'pippo',
-        icon: '',
-        filtered: false,
-      },
-    ];
   }
 
   openAddItemDialog(){
     this.dialog.open(AddItemDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS)? '80%' : '50%',
+      width: (this.platform.ANDROID || this.platform.IOS)? '90%' : '60%',
       disableClose: true,
       data: { inventory: this.inventoryData}
     }).afterClosed().subscribe((result: any) => {
       console.log('result', result);
       if (result.status === 'success') {
-        this.inventoryData.push(result.item);
+        this.characterService.updateInventory(window.location.href.split('/').pop(), result.item).then(()=> {
+          this.inventoryData.push(result.item);
+          console.log('inventory aggiornato', this.inventoryData);
+        });
       }
     })
   }

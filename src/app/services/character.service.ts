@@ -128,6 +128,14 @@ export class CharacterService {
     }, { merge: true });
   }
 
+
+  public async updateInventory(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      equipaggiamento: arrayUnion(form)
+    }, { merge: true });
+  }
+
   public async setRoom(slug: string) {
     const docRef = doc(this.firebaseService.database, 'users', getAuth().currentUser.uid);
     return await setDoc(docRef, {

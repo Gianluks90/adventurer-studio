@@ -9,13 +9,9 @@
     <div class="items-container">
         <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
         <div *ngIf="inventoryData.length > 0" class="items-icon-container" >
-            <!-- <div *ngFor="let i of inventoryData" [hidden]="i.filtered">
-                {{i.name}}
-            </div> -->
-            <div><img src="./assets/axe-sword.svg" alt=""></div>
-            <div><img src="./assets/axe-sword.svg" alt=""></div>
-            <div><img src="./assets/axe-sword.svg" alt=""></div>
-            <div><img src="./assets/axe-sword.svg" alt=""></div>
+            <div *ngFor="let i of inventoryData" [hidden]="i.filtered">
+                <img [src]="i.icon" alt="">
+            </div>
         </div>
     </div>
 </div>

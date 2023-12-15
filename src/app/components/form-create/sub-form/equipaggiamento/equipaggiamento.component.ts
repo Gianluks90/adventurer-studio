@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
+import { Item } from 'src/app/models/item';
 import { FormService } from 'src/app/services/form.service';
 
 @Component({
@@ -8,16 +9,16 @@ import { FormService } from 'src/app/services/form.service';
   styleUrls: ['./equipaggiamento.component.scss']
 })
 export class EquipaggiamentoComponent {
-  public group: FormGroup | null = null;
-  public group2: FormGroup | null = null;
+  public equipaggiamentoGroup: Item[] = [];
+  public denaroGroup: FormGroup | null = null;
 
   constructor(public formService: FormService) {}
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
-        this.group = form as FormGroup;
-        this.group2 = form.get('denaro') as FormGroup;
+        this.equipaggiamentoGroup = form.get('equipaggiamento').value;
+        this.denaroGroup = form.get('denaro') as FormGroup;
       }
     });
   }

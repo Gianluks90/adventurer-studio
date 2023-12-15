@@ -1,8 +1,200 @@
 <div mat-dialog-title class="dialog-title">Aggiungi oggetto</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
   <mat-form-field color="accent" class="custom-form-field" appearance="outline">
-    <mat-label>Nome oggetto</mat-label>
+    <mat-label>Nome</mat-label>
     <input matInput formControlName="name">
+  </mat-form-field>
+
+  <div class="line-container">
+    <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+      <mat-label>Quantità</mat-label>
+      <input type="number" matInput formControlName="quantity" min="1" inputmode="numeric">
+    </mat-form-field>
+
+    <mat-form-field class="line-input" color="accent" appearance="outline">
+      <mat-label>Icona</mat-label>
+      <mat-select formControlName="icon">
+        <mat-option *ngFor="let icon of selectIcons" [value]="icon.link">{{icon.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="line-container">
+    <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+      <mat-label>Categoria</mat-label>
+      <input matInput formControlName="category">
+    </mat-form-field>
+
+    <mat-form-field class="line-input" color="accent" appearance="outline">
+      <mat-label>Rarità</mat-label>
+      <mat-select formControlName="rarity">
+        <mat-option value="comune">Comune</mat-option>
+        <mat-option value="non_comune">Non Comune</mat-option>
+        <mat-option value="raro">Raro</mat-option>
+        <mat-option value="molto_raro">Molto Raro</mat-option>
+        <mat-option value="leggendario">Leggendario</mat-option>
+        <mat-option value="unico">Unico</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field color="accent" appearance="outline" class="text-area-input">
+    <mat-label>Descrizione</mat-label>
+    <textarea matInput formControlName="description" rows="3"></textarea>
+  </mat-form-field>
+
+  <div class="line-container">
+    <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+      <mat-label>Valore [MO]</mat-label>
+      <input type="number" matInput formControlName="value" min="0" inputmode="numeric">
+    </mat-form-field>
+
+    <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+      <mat-label>Peso [Kg]</mat-label>
+      <input type="number" matInput formControlName="weight" min="0" inputmode="numeric">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-button-toggle-group class="toggle-group" (change)="setType($event)">
+      <mat-button-toggle value="armor">Armatura</mat-button-toggle>
+      <mat-button-toggle value="weapon">Arma</mat-button-toggle>
+    </mat-button-toggle-group>
+  
+    <div [ngSwitch]="type">
+      <div *ngSwitchCase="'armor'">
+
+        <div class="line-container">
+          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>CA</mat-label>
+            <input type="number" matInput formControlName="CA" min="0" inputmode="numeric">
+          </mat-form-field>
+      
+          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>Forza Minima</mat-label>
+            <input type="number" matInput formControlName="minStrength" min="0" inputmode="numeric">
+          </mat-form-field>
+        </div>
+
+        <mat-checkbox formControlName="stealthDisadvantage">
+          Svantaggio Furtività
+        </mat-checkbox>
+      </div>
+      <div *ngSwitchCase="'weapon'">
+        <div class="line-container">
+          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>Formula Danni (senza spazi)</mat-label>
+            <input type="text" matInput formControlName="damageFormula" placeholder="Es. 1d6+1">
+          </mat-form-field>
+      
+          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>Tipologia Danni</mat-label>
+            <input type="text" matInput formControlName="damageType">
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="switch-input" color="accent" appearance="outline">
+          <mat-label>Proprietà</mat-label>
+          <mat-select formControlName="weaponProperties" multiple>
+            <mat-option *ngFor="let prop of weaponProperties" [value]="prop.name">
+              <div class="option-label">{{prop.name}}</div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="checkbox-container">
+    <mat-checkbox formControlName="cursed">
+      Maledetto
+    </mat-checkbox>
+
+    <mat-checkbox formControlName="magicItem">
+      Oggetto Magico
+    </mat-checkbox>
+
+    <mat-checkbox formControlName="artifact">
+      Artefatto
+    </mat-checkbox>
+
+    <mat-checkbox formControlName="attunementRequired" *ngIf="this.form.value.magicItem || this.form.value.artifact">
+      Richiede Sintonia
+    </mat-checkbox>
+  </div>
+
+  <mat-form-field *ngIf="form.value.cursed" color="accent" appearance="outline" class="text-area-input">
+    <mat-label>Descrizione Maledizione</mat-label>
+    <textarea matInput formControlName="cursedDescription" rows="3"></textarea>
+  </mat-form-field>
+
+  <div class="magic-item-container" *ngIf="form.value.magicItem">
+    <div class="section-title">Elenco Tratti</div>
+    <ng-container class="" formArrayName="traits">
+      <ng-container *ngFor="let traitForm of traits.controls; let i = index;">
+        <div class="step-form" [formGroupName]="i">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Titolo</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+          
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Descrizione</mat-label>
+            <textarea matInput formControlName="description" rows="3"></textarea>
+          </mat-form-field>
+
+          <div class="delete-button">
+            <button mat-raised-button color="accent" (click)="deleteTrait(i)">
+              <mat-icon>delete</mat-icon> Rimuovi
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="button-container">
+      <button mat-raised-button color="accent" (click)="addTrait()">
+        <mat-icon>add</mat-icon>
+        Aggiungi nuovo
+      </button>
+    </div>
+  </div>
+
+  <div class="magic-item-container" *ngIf="form.value.artifact">
+    <div class="section-title">Elenco Proprietà Artefatti</div>
+    <ng-container class="" formArrayName="artifactProperties">
+      <ng-container *ngFor="let propForm of artifactProperties.controls; let i = index;">
+        <div class="step-form" [formGroupName]="i">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Titolo</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+          
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Descrizione</mat-label>
+            <textarea matInput formControlName="description" rows="3"></textarea>
+          </mat-form-field>
+
+          <div class="delete-button">
+            <button mat-raised-button color="accent" (click)="deleteProp(i)">
+              <mat-icon>delete</mat-icon> Rimuovi
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="button-container">
+      <button mat-raised-button color="accent" (click)="addProp()">
+        <mat-icon>add</mat-icon>
+        Aggiungi nuovo
+      </button>
+    </div>
+  </div>
+
+  <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+    <mat-label>Riferimento manuale</mat-label>
+    <input matInput formControlName="reference" placeholder="Es. PHB 123">
   </mat-form-field>
 
 </div>
