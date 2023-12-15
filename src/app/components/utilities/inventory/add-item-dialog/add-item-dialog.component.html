@@ -1,5 +1,7 @@
 <div mat-dialog-title class="dialog-title">Aggiungi oggetto</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
+  <div class="section-title">Informazioni basilari</div>
+
   <mat-form-field color="accent" class="custom-form-field" appearance="outline">
     <mat-label>Nome</mat-label>
     <input matInput formControlName="name">
@@ -22,7 +24,22 @@
   <div class="line-container">
     <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
       <mat-label>Categoria</mat-label>
-      <input matInput formControlName="category">
+      <!-- <input matInput formControlName="category"> -->
+      <mat-select formControlName="category">
+        <mat-option value="arma">Arma</mat-option>
+        <mat-option value="armatura">Armatura</mat-option>
+        <mat-option value="scudo">Scudo</mat-option>
+        <mat-option value="anello">Anello</mat-option>
+        <mat-option value="pozione">Pozione</mat-option>
+        <mat-option value="bastone">Bastone</mat-option>
+        <mat-option value="verga">Verga</mat-option>
+        <mat-option value="bacchetta">Bacchetta</mat-option>
+        <mat-option value="oggetto_meraviglioso">Oggetto Meraviglioso</mat-option>
+        <mat-option value="oggetto_insolito">Oggetto Insolito</mat-option>
+        <mat-option value="strumento">Strumento</mat-option>
+        <mat-option value="pergamena">Pergamena</mat-option>
+        <mat-option value="altro">Altro</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field class="line-input" color="accent" appearance="outline">
@@ -54,16 +71,16 @@
       <input type="number" matInput formControlName="weight" min="0" inputmode="numeric">
     </mat-form-field>
   </div>
-
+  
+  <div class="section-title">Caratteristiche avanzate</div>
   <div>
     <mat-button-toggle-group class="toggle-group" (change)="setType($event)">
-      <mat-button-toggle value="armor">Armatura</mat-button-toggle>
-      <mat-button-toggle value="weapon">Arma</mat-button-toggle>
+      <mat-button-toggle class="toggle-button" value="armor">Armatura</mat-button-toggle>
+      <mat-button-toggle class="toggle-button" value="weapon">Arma</mat-button-toggle>
     </mat-button-toggle-group>
   
-    <div [ngSwitch]="type">
-      <div *ngSwitchCase="'armor'">
-
+    <div [ngSwitch]="type" >
+      <div *ngSwitchCase="'armor'" class="switch-container">
         <div class="line-container">
           <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
             <mat-label>CA</mat-label>
@@ -80,7 +97,7 @@
           Svantaggio Furtività
         </mat-checkbox>
       </div>
-      <div *ngSwitchCase="'weapon'">
+      <div *ngSwitchCase="'weapon'" class="switch-container">
         <div class="line-container">
           <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
             <mat-label>Formula Danni (senza spazi)</mat-label>
@@ -129,7 +146,7 @@
   </mat-form-field>
 
   <div class="magic-item-container" *ngIf="form.value.magicItem">
-    <div class="section-title">Elenco Tratti</div>
+    <div class="section-title">Proprietà Magiche</div>
     <ng-container class="" formArrayName="traits">
       <ng-container *ngFor="let traitForm of traits.controls; let i = index;">
         <div class="step-form" [formGroupName]="i">
@@ -161,7 +178,7 @@
   </div>
 
   <div class="magic-item-container" *ngIf="form.value.artifact">
-    <div class="section-title">Elenco Proprietà Artefatti</div>
+    <div class="section-title">Proprietà Artefatto</div>
     <ng-container class="" formArrayName="artifactProperties">
       <ng-container *ngFor="let propForm of artifactProperties.controls; let i = index;">
         <div class="step-form" [formGroupName]="i">
@@ -193,7 +210,7 @@
   </div>
 
   <mat-form-field color="accent" class="custom-form-field" appearance="outline">
-    <mat-label>Riferimento manuale</mat-label>
+    <mat-label>Riferimento (sigla manuale/pagina)</mat-label>
     <input matInput formControlName="reference" placeholder="Es. PHB 123">
   </mat-form-field>
 

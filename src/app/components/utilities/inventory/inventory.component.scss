@@ -61,6 +61,12 @@
     display: none;
 }
 
+.image-icon {
+    cursor: pointer;
+    border: 2px solid white;
+    box-sizing: border-box;
+}
+
 @media screen and (max-width: 500px) {
     .items-icon-container>div{
         // max-width: calc(100% / 2 - 6px);

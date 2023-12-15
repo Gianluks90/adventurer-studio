@@ -38,8 +38,13 @@ button {
     text-transform: uppercase;
 }
 
+.switch-container {
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.4);
+    margin: 8px 0;
+}
+
 .switch-input {
-    margin-top: 8px;
+    margin: 8px 0;
     width: 100%;
 }
 
@@ -51,6 +56,17 @@ button {
 
 .toggle-group {
     width: 100%;
+    justify-content: space-around;
+}
+
+.toggle-button {
+    max-width: 50%;
+    flex-grow: 1;
+}
+
+::ng-deep.mat-button-toggle-checked {
+    background-color: #212121 !important;
+    color: white !important;
 }
 
 .magic-item-container {
@@ -65,7 +81,7 @@ button {
 }
 
 .section-title {
-    margin-bottom: 20px;
+    margin-bottom: 4px;
     font-size: medium;
     font-weight: bold;
     text-transform: uppercase;
