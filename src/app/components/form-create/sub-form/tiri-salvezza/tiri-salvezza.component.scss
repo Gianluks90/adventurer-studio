@@ -27,6 +27,7 @@
 
 mat-form-field {
   width: 100% !important;
+  margin-bottom: 8px;
 }
 
 .description-text {
@@ -38,4 +39,25 @@ mat-form-field {
 
 button {
   border-radius: 0;
+}
+
+details {
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 12px;
+  background-color: whitesmoke;
+}
+
+details[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+details[open] summary {
+  margin-bottom: 4px;
+}
+
+summary {
+  font-weight: bold;
+  text-transform: uppercase;
 }

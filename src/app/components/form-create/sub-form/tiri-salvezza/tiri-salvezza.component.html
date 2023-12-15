@@ -1,13 +1,58 @@
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
-    <mat-form-field color="accent" appearance="outline">
-      <mat-label class="input-field">Bonus Competenza</mat-label>
-      <input class="" type="number" matInput formControlName="bonusCompetenza" min="2" max="6">
-    </mat-form-field>
-    <div class="description-text">Al 1° Livello il <strong>Bonus di Competenza</strong> è sempre 2 tuttavia in accordo con il Master
+    <!-- <div class="description-text">Al 1° Livello il <strong>Bonus di Competenza</strong> è sempre 2 tuttavia in accordo con il Master
       potresti volerlo cambiare, ricorda che questo bonus influenza parecchio i tiri che effettuerai durante il gioco.
-    </div>
+    </div> -->
+    <details>
+      <summary>Bonus Competenza</summary>
+      <div class="description-text">
+        Ogni personaggio possiede un <strong>Bonus di Competenza</strong>
+        determinato dal livello (al 1° livello è pari a 2). Anche i mostri possiedono
+        questo bonus, indicato nella loro scheda delle
+        statistiche. Il bonus viene usato nelle regole relative
+        alle prove di caratteristica, ai tiri salvezza e ai tiri per
+        colpire.
+        Il bonus di competenza non può essere aggiunto
+        a un singolo tiro del dado o a un altro numero più
+        di una volta. Per esempio, se due regole diverse
+        affermano che un personaggio può aggiungere il
+        proprio bonus di competenza a un tiro salvezza su
+        Saggezza, quel personaggio aggiunge comunque
+        il bonus soltanto una volta quando effettua il tiro
+        salvezza.
+      </div>
+    </details>
+
+    <mat-form-field color="accent" appearance="outline">
+      <mat-label>Bonus Competenza</mat-label>
+      <input type="number" matInput formControlName="bonusCompetenza" min="2" max="6">
+    </mat-form-field>
+
   </div>
+
+  <details>
+    <summary>Tiri salvezza</summary>
+    <div class="description-text">
+      Un <strong>Tiro Salvezza</strong> rappresenta un tentativo di
+      resistere a un incantesimo, una trappola, un veleno,
+      una malattia o una minaccia simile. Normalmente
+      non sono i giocatori a decidere di effettuare un tiro
+      salvezza: si è obbligati a effettuarne uno quando
+      i personaggi o i mostri rischiano di subire danni.
+      Per effettuare un tiro salvezza si tira un d20 e si
+      aggiunge al risultato il modificatore di caratteristica
+      adeguato. Per esempio, un personaggio usa il suo
+      modificatore di Destrezza per effettuare un tiro
+      salvezza su Destrezza.
+      Un tiro salvezza può essere modificato da un
+      bonus o una penalità situazionale e può essere
+      influenzato da vantaggio e svantaggio, come
+      determinato dal GM.
+      Ogni classe fornisce competenza in almeno due
+      tiri salvezza.
+    </div>
+  </details>
+
   <div class="step-form" [formGroup]="group">
     <section class="checkbox-section">
       <div class="checkbox-line">
