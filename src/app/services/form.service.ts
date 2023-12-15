@@ -67,7 +67,7 @@ export class FormService {
       ...form.value,
       status: {
         statusCode: 2,
-        lastUadateDate: new Date()
+        lastUpdateDate: new Date()
       }
     }, {
       merge:true

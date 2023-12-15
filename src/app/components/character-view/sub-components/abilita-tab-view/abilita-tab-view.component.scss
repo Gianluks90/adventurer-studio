@@ -14,11 +14,19 @@
 }
 
 .a-container {
-    margin-bottom: 8px;
+    padding: 6px;
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
+}
+
+.a-container:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.a-container.last-item {
+    margin-bottom: 12px;
 }
 
 .a-name {

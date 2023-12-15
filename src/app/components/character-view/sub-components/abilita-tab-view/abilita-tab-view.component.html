@@ -1,11 +1,11 @@
 <!-- <div class="main-abilita-container"> -->
     <div class="section-title">Competenze Abilità</div>
-    <div *ngFor="let a of abilitaData" class="a-container">
+    <div *ngFor="let a of abilitaData; let last = last" [ngClass]="{'last-item': last}" class="a-container">
         <div class="a-name">{{a.name}} ({{a.short}})
             <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
             <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span>
         </div>
-        <div class="a-divider"></div>
+        <!-- <div class="a-divider"></div> -->
         <div class="a-value">{{a.mod}}</div>
     </div>
     <div *ngIf="competenzeData">
