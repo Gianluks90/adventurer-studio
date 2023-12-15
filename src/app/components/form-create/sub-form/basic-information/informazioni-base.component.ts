@@ -71,6 +71,14 @@ export class InformazioniBaseComponent {
     });
   }
 
+  public resetRazza() {
+    this.groupInfo?.patchValue({
+      razza: '',
+      razzaPersonalizzata: '',
+      sottorazza: '',
+    });
+  }
+
   public jumpToSpecificStep(index: number) {
     this.stepper.selectedIndex = index;
   }
@@ -78,10 +86,18 @@ export class InformazioniBaseComponent {
   public addClasse() {
     const classe = this.fb.group({
       nome: ['', Validators.required],
+      nomePersonalizzato: '',
       livello: [1, [Validators.max(20), Validators.required]],
       sottoclasse: '',
     });
     this.classi.push(classe);
+
+    classe.get('nome')?.valueChanges.subscribe((value: string) => {
+      if (value === 'Altro') {
+        classe.get('nomePersonalizzato')?.setValidators(Validators.required);
+        classe.updateValueAndValidity();
+      }
+    });
   }
 
   public deleteClasse(index: number) {

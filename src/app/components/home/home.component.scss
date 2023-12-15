@@ -109,6 +109,34 @@
     animation-delay: 2.5s;
 }
 
+.disclaimer-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(#212121, 0.4);
+    color: white;
+    padding: 8px;
+    font-size: small;
+    text-align: center;
+    font-weight: 300;
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    animation: appearAfterSeconds 2s ease-in-out 1.5s forwards;
+    animation-delay: 3s;
+}
+
+.disclaimer {
+    max-width: 80%;
+}
+
+.disclaimer > a {
+    color: white;
+    font-weight: bold;
+}
+
 @media screen and (max-width: 850px) {
     .title {
         font-size: 3rem;

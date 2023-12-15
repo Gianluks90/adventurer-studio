@@ -54,6 +54,7 @@ export class FormModel {
       background: ['', Validators.required],
       dettaglioBackground: '',
       razza: ['', Validators.required],
+      razzaPersonalizzata: '',
       sottorazza: '',
       allineamento: ['', Validators.required],
       nomePersonaggio: ['', Validators.required],

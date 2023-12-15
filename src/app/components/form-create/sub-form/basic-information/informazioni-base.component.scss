@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    gap: 12px;
 }
 
 .input-field {
@@ -24,7 +25,7 @@
 }
 
 .section-title {
-    margin-bottom: 20px;
+    margin: 12px 0;
     font-size: medium;
     font-weight: bold;
     text-transform: uppercase;
@@ -56,7 +57,7 @@
     font-size: small;
     opacity: 0.5;
     font-style: italic;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     text-align: justify;
 }
 
@@ -85,7 +86,7 @@
 .delete-button {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 12px;
+    margin: 12px 0;
 }
 
 .button-container {
@@ -99,7 +100,7 @@ button {
 details {
     padding: 8px;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 details[open] {
