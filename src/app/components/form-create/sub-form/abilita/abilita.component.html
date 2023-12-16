@@ -2,138 +2,349 @@
   <div class="step-form" [formGroup]="group">
     <section class="checkbox-section">
 
-      <div class="description-text">
+      <details>
+        <summary>Informazioni sulle abilità</summary>
+        <div class="description-text">
+          Ogni caratteristica abbraccia una vasta gamma
+          di capacità, tra cui anche le <strong>Abilità</strong> in cui un
+          personaggio o un mostro può essere competente.
+          Un'abilità rappresenta un aspetto specifico di un
+          punteggio di caratteristica e la competenza di un
+          soggetto in un'abilità rappresenta una certa
+          specializzazione in quell'aspetto. (Le competenze
+          nelle abilità iniziali di un personaggio sono
+          determinate nel corso della sua creazione, mentre
+          le competenze nelle abilità di un mostro sono
+          indicate nella sua scheda delle statistiche.)
+        </div>
+      </details>
+      <details>
+        <summary>Prove Passive</summary>
+        <div class="description-text">
+          Una prova passiva è un tipo particolare di prova di
+          caratteristica che non richiede alcun tiro di dadi.
+          Una prova di questo tipo rappresenta il risultato
+          medio di un'azione intrapresa ripetutamente, come
+          per esempio cercare assiduamente porte segrete;
+          in alternativa può essere usata quando il GM vuole
+          determinare segretamente se i personaggi riescono
+          a fare qualcosa senza tirare i dadi, come per esempio
+          notare un mostro nascosto.
+        </div>
+      </details>
+      <!-- <div class="description-text">
         Seleziona tutte le <strong>Abilità</strong> in cui il Personaggio ha competenza dopodichè premi il tasto "Aggiorna" (in basso)
         per calcolare i punteggi. Ricorda che se il Personaggio ha anche delle Maestrie trovi un elenco espandibile
         appena dopo questa lista (avere Maestria in un'abilità comporta un bonus di competenza raddoppiato per quella
         determinata abilità).
+      </div> -->
+
+      <div class="toggle-container">
+        Mostra dettagli abilità <mat-slide-toggle (change)="infoToggle()"></mat-slide-toggle>
       </div>
-      <div class="checkbox-line">
+
+      <div class="checkbox-line even">
         <mat-checkbox class="check-label" formControlName="acrobazia">Acrobazia (Des)</mat-checkbox>
-        <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modDestrezza > 0">+ </span> {{tiroAcrobazia}}
-        </div>
+        <div class="modificatore"> <span *ngIf="modDestrezza > 0">+ </span> {{tiroAcrobazia}}</div>
+      </div>
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Una prova di Destrezza (Acrobazia)
+        rappresenta il tentativo di un personaggio di
+        rimanere in piedi in una situazione difficoltosa, come
+        per esempio correre su una superficie ghiacciata,
+        camminare in equilibrio su una corda tesa
+        o barcamenarsi sul ponte di una nave durante una
+        tempesta. Il GM potrebbe richiedere una prova di
+        Destrezza (Acrobazia) per determinare se un
+        personaggio è in grado di effettuare una manovra
+        acrobatica, come tuffarsi, rotolare a terra, fare un
+        salto mortale o una capriola a mezz'aria.
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox class="less-labels" formControlName="addestrareAnimali">Addestrare animali (Sag)</mat-checkbox>
-        <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span>
-          {{tiroAddestrareAnimali}}</div>
+        <mat-checkbox class="check-label" formControlName="addestrareAnimali">Addestrare animali (Sag)</mat-checkbox>
+        <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span> {{tiroAddestrareAnimali}}</div>
       </div>
 
-      <div class="checkbox-line">
-        <mat-checkbox formControlName="arcano">Arcano (Int)</mat-checkbox>
-        <div class="divider"></div>
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Quando un personaggio deve
+        determinare se sia in grado di calmare un animale
+        domestico, evitare che una cavalcatura si spaventi
+        o intuire le intenzioni di un animale, il GM può
+        richiedere una prova di Saggezza (Addestrare
+        Animali). Un personaggio effettua una prova di
+        Saggezza (Addestrare Animali) anche per controllare
+        la sua cavalcatura quando tenta una manovra
+        rischiosa.
+      </div>
+      <div class="checkbox-line even">
+        <mat-checkbox class="check-label" formControlName="arcano">Arcano (Int)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span> {{tiroArcano}}
         </div>
       </div>
 
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Una prova di Intelligenza (Arcano)
+        misura la capacità di un personaggio di ricordare
+        informazioni relative a incantesimi, oggetti magici,
+        simboli occulti, tradizioni magiche, piani di esistenza
+        e abitanti di quei piani.
+      </div>
+
       <div class="checkbox-line">
-        <mat-checkbox formControlName="atletica">Atletica (For)</mat-checkbox>
-        <div class="divider"></div>
+        <mat-checkbox class="check-label" formControlName="atletica">Atletica (For)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modForza > 0">+ </span> {{tiroAtletica}}</div>
       </div>
 
-      <div class="checkbox-line">
-        <mat-checkbox formControlName="furtivita">Furtività (Des)</mat-checkbox>
-        <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modDestrezza > 0">+ </span> {{tiroFurtivita}}
-        </div>
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Un personaggio effettua una prova di
+        Forza (Atletica) nelle situazioni difficili in cui si
+        imbatte quando nuota, salta o scala.
+      </div>
+
+      <div class="checkbox-line even">
+        <mat-checkbox class="check-label" formControlName="furtivita">Furtività (Des)</mat-checkbox>
+        <div class="modificatore"> <span *ngIf="modDestrezza > 0">+ </span> {{tiroFurtivita}}</div>
+      </div>
+
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Un personaggio effettua una prova di
+        Destrezza (Furtività) quando tenta di nascondersi
+        dai nemici, sgusciare alle spalle di una guardia,
+        dileguarsi senza essere notato o aggredire qualcuno
+        alle spalle senza essere visto o sentito.
       </div>
 
       <div class="checkbox-line">
-        <mat-checkbox formControlName="indagare">Indagare (Int)</mat-checkbox>
-        <div class="divider"></div>
-        <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span> {{tiroIndagare}}
-        </div>
+        <mat-checkbox class="check-label" formControlName="indagare">Indagare (Int)</mat-checkbox>
+        <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span> {{tiroIndagare}}</div>
       </div>
 
-      <div class="checkbox-line">
-        <mat-checkbox formControlName="inganno">Inganno (Car)</mat-checkbox>
-        <div class="divider"></div>
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Quando un personaggio cerca indizi
+        ed effettua deduzioni dipendenti da quegli indizi,
+        effettua una prova di Intelligenza (Indagare).
+        Potrebbe dedurre l'ubicazione di un oggetto
+        nascosto, capire quale arma ha inferto un certo tipo
+        di ferita o determinare il punto debole di un tunnel
+        che potrebbe provocarne il crollo. Anche esaminare
+        una raccolta di antiche pergamene in cerca di
+        conoscenze nascoste potrebbe richiedere una prova
+        di Intelligenza (Indagare).
+      </div>
+
+      <div class="checkbox-line even">
+        <mat-checkbox class="check-label" formControlName="inganno">Inganno (Car)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modCarisma > 0">+ </span> {{tiroInganno}}</div>
       </div>
 
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Una prova di Carisma (Inganno)
+        determina se un personaggio è in grado di
+        nascondere efficacemente la verità, verbalmente
+        o tramite le sue azioni. Questa forma di inganno può
+        abbracciare ogni metodo, dal fuorviare il prossimo
+        tramite affermazioni ambigue, alle bugie vere
+        e proprie. Situazioni tipiche possono includere
+        imbrogliare una guardia con le chiacchiere, truffare
+        un mercante, guadagnare denaro con il gioco
+        d'azzardo, spacciarsi per qualcun altro sotto mentite
+        spoglie, fugare i sospetti di qualcuno fornendo false
+        rassicurazioni o mantenere un volto impassibile
+        mentre si dice una bugia.
+      </div>
+
       <div class="checkbox-line">
-        <mat-checkbox formControlName="intimidire">Intimidire (Car)</mat-checkbox>
-        <div class="divider"></div>
+        <mat-checkbox class="check-label" formControlName="intimidire">Intimidire (Car)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modCarisma > 0">+ </span> {{tiroIntimidire}}
         </div>
       </div>
 
-      <div class="checkbox-line">
-        <mat-checkbox formControlName="intrattenere">Intrattenere (Car)</mat-checkbox>
-        <div class="divider"></div>
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Quando un personaggio tenta di
+        influenzare qualcuno tramite minacce dichiarate,
+        azioni ostili e atti di violenza fisica, il GM può
+        chiedergli di effettuare una prova di Carisma
+        (Intimidire). Gli esempi al riguardo possono
+        includere cercare di strappare informazioni a un
+        prigioniero, convincere dei malviventi a rinunciare
+        a uno scontro diretto o usare una bottiglia rotta per
+        convincere uno sprezzante visir a cambiare la sua
+        decisione.
+        Intrattenere. Una
+      </div>
+
+      <div class="checkbox-line even">
+        <mat-checkbox class="check-label" formControlName="intrattenere">Intrattenere (Car)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modCarisma > 0">+ </span>
           {{tiroIntrattenere}}</div>
       </div>
 
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Una prova di Carisma (Intrattenere)
+        stabilisce la misura in cui un personaggio riesce
+        a deliziare il pubblico con un'esibizione di musica,
+        danza, recitazione, narrazione o altre forme di
+        intrattenimento.
+      </div>
+
       <div class="checkbox-line">
-        <mat-checkbox formControlName="intuizione">Intuizione (Sag)</mat-checkbox>
-        <div class="divider"></div>
+        <mat-checkbox class="check-label" formControlName="intuizione">Intuizione (Sag)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span> {{tiroIntuizione}}
         </div>
       </div>
 
-      <div class="checkbox-line">
-        <mat-checkbox formControlName="medicina">Medicina (Sag)</mat-checkbox>
-        <div class="divider"></div>
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Una prova di Saggezza (Intuizione)
+        determina se il personaggio è in grado di discernere
+        le vere intenzioni di una creatura, come per esempio
+        scoprire se sta mentendo o predire la sua prossima
+        mossa. Per farlo deve cogliere indizi dal linguaggio
+        corporeo, dal modo di parlare e dalle alterazioni dei
+        modi di fare di quella creatura.
+      </div>
+
+      <div class="checkbox-line even">
+        <mat-checkbox class="check-label" formControlName="medicina">Medicina (Sag)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span> {{tiroMedicina}}
         </div>
       </div>
 
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Una prova di Saggezza (Medicina)
+        consente a un personaggio di stabilizzare un
+        compagno morente o diagnosticare una malattia.
+      </div>
+
       <div class="checkbox-line">
-        <mat-checkbox formControlName="natura">Natura (Int)</mat-checkbox>
-        <div class="divider"></div>
+        <mat-checkbox class="check-label" formControlName="natura">Natura (Int)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span> {{tiroNatura}}
         </div>
       </div>
 
-      <div class="checkbox-line">
-        <mat-checkbox formControlName="percezione">Percezione (Sag)</mat-checkbox>
-        <div class="divider"></div>
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Una prova di Intelligenza (Natura)
+        misura la capacità di un personaggio di ricordare
+        informazioni sul terreno, i vegetali, gli animali,
+        il clima e i cicli naturali.
+      </div>
+
+      <div class="checkbox-line even">
+        <mat-checkbox class="check-label" formControlName="percezione">Percezione (Sag)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span> {{tiroPercezione}}
         </div>
       </div>
 
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Una prova di Saggezza (Percezione)
+        consente a un personaggio di avvistare, udire
+        o individuare in altri modi la presenza di qualcosa.
+        Misura la consapevolezza generale dell'ambiente
+        circostante da parte di un personaggio e l'efficacia
+        dei suoi sensi. Per esempio, un personaggio
+        potrebbe origliare una conversazione attraverso una
+        porta chiusa, spiare da sotto una finestra aperta
+        o sentire dei mostri che si muovono furtivamente
+        nella foresta. Oppure potrebbe cercare di avvistare
+        qualcosa di nascosto o difficile da notare, come un
+        gruppo di orchi in agguato lungo la strada, un
+        malvivente nascosto tra le ombre di un vicolo o la
+        luce di una candela che filtra dalla fessura di una
+        porta segreta.
+      </div>
+
       <div class="checkbox-line">
-        <mat-checkbox formControlName="persuasione">Persuasione (Car)</mat-checkbox>
-        <div class="divider"></div>
+        <mat-checkbox class="check-label" formControlName="persuasione">Persuasione (Car)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modCarisma > 0">+ </span> {{tiroPersuasione}}
         </div>
       </div>
 
-      <div class="checkbox-line">
-        <mat-checkbox formControlName="rapiditaDiMano">Rapidità di mano (Des)</mat-checkbox>
-        <div class="divider"></div>
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Quando un personaggio tenta di
+        influenzare altri tramite il tatto, la socievolezza o la
+        benevolenza, il GM può chiedergli di effettuare una
+        prova di Carisma (Persuasione). Solitamente un
+        personaggio usa Persuasione quando agisce in
+        buona fede per stringere amicizia, formulare una
+        richiesta cordiale o agire come prevede il galateo.
+        Esempi di persuasione includono convincere un
+        ciambellano a portare il gruppo al cospetto del re,
+        negoziare la pace tra due tribù in guerra o ispirare
+        una folla di popolani.
+      </div>
+
+      <div class="checkbox-line even">
+        <mat-checkbox class="check-label" formControlName="rapiditaDiMano">Rapidità di mano (Des)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modDestrezza > 0">+ </span>
           {{tiroRapiditaMano}}</div>
       </div>
 
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Ogni volta che un
+        personaggio tenta di compiere un'impresa legata
+        a manipolazione di precisione e destrezza manuale,
+        come per esempio collocare un oggetto addosso
+        a qualcun altro o nasconderne uno sulla propria
+        persona, effettua una prova di Destrezza (Rapidità di
+        Mano). Il GM potrebbe anche richiedere una prova di
+        Destrezza (Rapidità di Mano) per determinare se
+        può sottrarre un borsello o sfilare qualcosa dalla
+        tasca di un'altra persona.
+      </div>
+
       <div class="checkbox-line">
-        <mat-checkbox formControlName="religione">Religione (Int)</mat-checkbox>
-        <div class="divider"></div>
+        <mat-checkbox class="check-label" formControlName="religione">Religione (Int)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span>
           {{tiroReligione}}</div>
       </div>
 
-      <div class="checkbox-line">
-        <mat-checkbox formControlName="sopravvivenza">Sopravvivenza (Sag)</mat-checkbox>
-        <div class="divider"></div>
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Una prova di Intelligenza (Religione)
+        misura la capacità di un personaggio di ricordare
+        informazioni sulle divinità, i riti, le preghiere,
+        le gerarchie religiose, i simboli sacri e le pratiche
+        dei culti segreti.
+      </div>
+
+      <div class="checkbox-line even">
+        <mat-checkbox class="check-label" formControlName="sopravvivenza">Sopravvivenza (Sag)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modSaggezza > 0">+ </span>
           {{tiroSopravvivenza}}</div>
       </div>
 
+      <div class="checkbox-line-description even" *ngIf="showInfo">
+        Il GM potrebbe richiedere a un
+        personaggio di effettuare una prova di Saggezza
+        (Sopravvivenza) per seguire tracce, cacciare animali
+        selvatici, guidare il gruppo attraverso una distesa
+        ghiacciata, riconoscere i segni della presenza di
+        orsigufo, predire il tempo o evitare sabbie mobili
+        e altri pericoli naturali.
+      </div>
       <div class="checkbox-line">
-        <mat-checkbox formControlName="storia">Storia (Int)</mat-checkbox>
-        <div class="divider"></div>
+        <mat-checkbox class="check-label" formControlName="storia">Storia (Int)</mat-checkbox>
         <div class="modificatore"> <span *ngIf="modIntelligenza > 0">+ </span> {{tiroStoria}}
         </div>
       </div>
 
+      <div class="checkbox-line-description" *ngIf="showInfo">
+        Una prova di Intelligenza (Storia) misura la
+        capacità di un personaggio di ricordare informazioni
+        relative a eventi storici, figure leggendarie, regni
+        antichi, dispute del passato, guerre recenti e civiltà
+        perdute.
+      </div>
+
       <details>
-        <summary>Maestrie</summary>
+        <summary>Aggiungi eventuali Maestrie</summary>
+        <div class="description-text">
+          In alcune occasioni il bonus di competenza
+          potrebbe essere moltiplicato o diviso (raddoppiato
+          o dimezzato, per esempio) prima di essere applicato.
+          Per esempio, il privilegio Maestria del ladro
+          raddoppia il bonus di competenza di certe prove
+          di caratteristica.
+        </div>
         <mat-checkbox class="master" formControlName="maestriaAcrobazia">Acrobazia</mat-checkbox>
         <mat-checkbox formControlName="maestriaAddestrareAnimali">Addestrare Animali</mat-checkbox>
         <mat-checkbox formControlName="maestriaArcano">Arcano</mat-checkbox>
@@ -153,6 +364,12 @@
         <mat-checkbox formControlName="maestriaSopravvivenza">Sopravvivenza</mat-checkbox>
         <mat-checkbox formControlName="maestriaStoria">Storia</mat-checkbox>
       </details>
+
+      <div class="warning-text">
+        <strong>Attenzione!</strong> Premi sempre il tasto "Aggiorna" ad ogni modifica delle Abilità altrimenti i
+        punteggi dei modificatori non verranno calcolati correttamente. Stiamo lavorando ad una versione migliore di
+        questa funzionalità ma i nostri Goblin sono molto pigri e non ci aiutano molto.
+      </div>
 
       <button mat-raised-button color="accent" (click)="updateAbilita()">
         <mat-icon>update</mat-icon> Aggiorna</button>

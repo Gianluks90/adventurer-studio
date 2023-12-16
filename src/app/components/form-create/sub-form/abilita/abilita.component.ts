@@ -39,6 +39,8 @@ export class AbilitaComponent {
   public tiroSopravvivenza: number = 0;
   public tiroStoria: number = 0;
 
+  public showInfo: boolean = false;
+
   constructor(public formService: FormService) {}
 
   ngOnInit(): void {
@@ -92,5 +94,9 @@ export class AbilitaComponent {
     }).unsubscribe();
     this.applyModifier();
     this.applyBonusCompetenza();
+  }
+
+  public infoToggle(): void {
+    this.showInfo = !this.showInfo;
   }
 }

@@ -9,8 +9,8 @@
   gap: 12px;
 }
 
-.divider {
-  border-bottom: 1px dotted lightgray;
+.check-label {
+  // border-bottom: 1px dotted lightgray;
   flex-grow: 1;
 }
 
@@ -28,6 +28,33 @@
   font-size: small;
   opacity: 0.5;
   font-style: italic;
+  text-align: justify;
+}
+
+.warning-text {
+  font-size: small;
+  opacity: 0.7;
+  font-style: italic;
+  color: rgb(183, 0, 0);
+  margin-bottom: 8px;
+}
+
+.even {
+  background-color: whitesmoke;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.checkbox-line-description {
+  padding: 4px;
+  font-size: small;
+  opacity: 0.5;
+  text-align: justify;
 }
 
 button {
@@ -38,6 +65,7 @@ details {
   padding: 8px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 8px;
+  background-color: whitesmoke;
 }
 
 details[open] {
