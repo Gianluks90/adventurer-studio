@@ -30,17 +30,22 @@
     <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
       <mat-label>Categoria</mat-label>
       <mat-select formControlName="category">
-        <mat-option value="arma">Arma</mat-option>
-        <mat-option value="armatura">Armatura</mat-option>
+        <mat-option value="Arma da mischia semplice">Arma da mischia semplice</mat-option>
+        <mat-option value="Arma a distanza semplice">Arma a distanza semplice</mat-option>
+        <mat-option value="Arma da mischia da guerra">Arma da mischia da guerra</mat-option>
+        <mat-option value="Arma a distanza da guerra">Arma a distanza da guerra</mat-option>
+        <mat-option value="Armatura leggera">Armatura leggera</mat-option>
+        <mat-option value="Armatura media">Armatura media</mat-option>
+        <mat-option value="Armatura pesante">Armatura pesante</mat-option>
         <mat-option value="scudo">Scudo</mat-option>
         <mat-option value="anello">Anello</mat-option>
         <mat-option value="pozione">Pozione</mat-option>
         <mat-option value="bastone">Bastone</mat-option>
         <mat-option value="verga">Verga</mat-option>
         <mat-option value="bacchetta">Bacchetta</mat-option>
-        <mat-option value="oggetto_meraviglioso">Oggetto Meraviglioso</mat-option>
-        <mat-option value="oggetto_insolito">Oggetto Insolito</mat-option>
-        <mat-option value="equip_avventura">Equipaggiamento d'avventura</mat-option>
+        <mat-option value="Oggetto Meraviglioso">Oggetto Meraviglioso</mat-option>
+        <mat-option value="Oggetto Insolito">Oggetto Insolito</mat-option>
+        <mat-option value="Equipaggiamento d'avventura">Equipaggiamento d'avventura</mat-option>
         <mat-option value="strumento">Strumento</mat-option>
         <mat-option value="pergamena">Pergamena</mat-option>
         <mat-option value="altro">Altro</mat-option>
@@ -108,7 +113,7 @@
             È uno scudo
           </mat-checkbox>
           <mat-checkbox formControlName="stealthDisadvantage">
-            Svantaggio Furtività
+            Svantaggio (Furtività)
           </mat-checkbox>
         </div>
       </div>
@@ -164,7 +169,7 @@
     </mat-checkbox>
 
     <mat-checkbox formControlName="focus">
-      Focus da incantatore
+      È un Focus da incantatore
     </mat-checkbox>
 
     <mat-checkbox formControlName="cursed">

@@ -47,6 +47,10 @@ button {
   border-radius: 0;
 }
 
+mat-form-field {
+  margin-bottom: 12px;
+}
+
 @media screen and (max-width: 500px) {
   .delete-button > button {
       width: 100%;

@@ -17,7 +17,7 @@
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip-row>
-        <input placeholder="aggiungi un nuovo linguaggio" [matChipInputFor]="chipGrid"
+        <input [matChipInputFor]="chipGrid"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
           (matChipInputTokenEnd)="add($event,'linguaggio')" />
       </mat-chip-grid>
@@ -35,7 +35,7 @@
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip-row>
-        <input placeholder="aggiungi una nuova arma" [matChipInputFor]="chipGridArmi"
+        <input [matChipInputFor]="chipGridArmi"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
           (matChipInputTokenEnd)="add($event,'arma')" />
       </mat-chip-grid>
@@ -53,7 +53,7 @@
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip-row>
-        <input placeholder="aggiungi una nuova armatura" [matChipInputFor]="chipGridArmature"
+        <input [matChipInputFor]="chipGridArmature"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
           (matChipInputTokenEnd)="add($event,'armatura')" />
 
@@ -72,7 +72,7 @@
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip-row>
-        <input placeholder="aggiungi un nuovo strumento" [matChipInputFor]="chipGridStrumenti"
+        <input [matChipInputFor]="chipGridStrumenti"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
           (matChipInputTokenEnd)="add($event,'strumento')" />
 
@@ -91,7 +91,7 @@
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip-row>
-        <input placeholder="aggiungi una altra competenza" [matChipInputFor]="chipGridAltro"
+        <input [matChipInputFor]="chipGridAltro"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
           (matChipInputTokenEnd)="add($event,'altro')" />
       </mat-chip-grid>
