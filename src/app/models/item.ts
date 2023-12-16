@@ -24,12 +24,13 @@ export class Item {
     damageType?: string;
     weaponProperties?: string[];
     traits?: Trait[];
+    focus?: boolean;
     attunementRequired?: boolean;
     attuned?: boolean;
     artifactProperties?: Trait[];
     reference?: string;
 
-    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: number, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], attunementRequired?: boolean, attuned?: boolean, artifactProperties?: Trait[], reference?: string, magicItem?: boolean, artifact?: boolean, weared?: boolean, CA?: number, plusDexterity?: boolean,  minStrength?: number, shield?: boolean, stealthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
+    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: number, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], focus?: boolean, attunementRequired?: boolean, attuned?: boolean, artifactProperties?: Trait[], reference?: string, magicItem?: boolean, artifact?: boolean, weared?: boolean, CA?: number, plusDexterity?: boolean,  minStrength?: number, shield?: boolean, stealthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
         this.name = name;
         this.icon = icon;
         this.filtered = filtered;
@@ -42,6 +43,7 @@ export class Item {
         this.cursed = cursed;
         this.cursedDescription = cursedDescription;
         this.traits = traits;
+        this.focus = focus;
         this.attunementRequired = attunementRequired;
         this.attuned = attuned;
         this.artifactProperties = artifactProperties;
@@ -73,6 +75,7 @@ export class Item {
             cursed: false,
             cursedDescription: '',
             traits: builder.array([]),
+            focus: false,
             attunementRequired: false,
             attuned: false,
             artifactProperties: builder.array([]),

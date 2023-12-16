@@ -121,9 +121,28 @@
             <input type="text" matInput formControlName="damageFormula" placeholder="Es. 1d6+1">
           </mat-form-field>
       
-          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+          <!-- <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
             <mat-label>Tipologia Danni</mat-label>
             <input type="text" matInput formControlName="damageType">
+          </mat-form-field> -->
+
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Tipo di danno</mat-label>
+            <mat-select formControlName="damageType">
+              <mat-option value="acido">Acido</mat-option>
+              <mat-option value="contundente">Contundente</mat-option>
+              <mat-option value="forza">Forza</mat-option>
+              <mat-option value="freddo">Freddo</mat-option>
+              <mat-option value="fulmine">Fulmine</mat-option>
+              <mat-option value="fuoco">Fuoco</mat-option>
+              <mat-option value="necrotico">Necrotico</mat-option>
+              <mat-option value="perforante">Perforante</mat-option>
+              <mat-option value="psichico">Psichico</mat-option>
+              <mat-option value="radioso">Radioso</mat-option>
+              <mat-option value="tagliente">Tagliente</mat-option>
+              <mat-option value="tuono">Tuono</mat-option>
+              <mat-option value="veleno">Veleno</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
 
@@ -142,6 +161,10 @@
   <div class="checkbox-container">
     <mat-checkbox formControlName="weared">
       Equipaggiato
+    </mat-checkbox>
+
+    <mat-checkbox formControlName="focus">
+      Focus da incantatore
     </mat-checkbox>
 
     <mat-checkbox formControlName="cursed">

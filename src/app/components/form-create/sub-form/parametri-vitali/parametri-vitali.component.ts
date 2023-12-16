@@ -46,6 +46,12 @@ export class ParametriVitaliComponent {
       quantita: [0, Validators.required],
       used: []
     });
+    dadoVita.get('quantita').disable();
+    dadoVita.get('tipologia').valueChanges.subscribe((value: any) => {
+      if (value !== '')  {
+        dadoVita.get('quantita').enable();
+      }
+    });
     this.dadiVita.push(dadoVita);
   }
 

@@ -42,11 +42,7 @@
       <ng-container *ngFor="let d of dadiVita.controls; let i = index;">
         <div class="step-form" [formGroupName]="i">
           <div class="line-container">
-            <mat-form-field class="line-input" color="accent" appearance="outline">
-              <mat-label>Quantità</mat-label>
-              <input #valoreRisorsa type="number" matInput formControlName="quantita" min="1"
-              (change)="setValoreAttuale(i, valoreRisorsa.value)">
-            </mat-form-field>
+            
             <mat-form-field class="line-input" color="accent" appearance="outline">
               <mat-label>Tipologia</mat-label>
               <mat-select formControlName="tipologia">
@@ -57,6 +53,11 @@
                 <mat-option value="d12">d12</mat-option>
                 <mat-option value="d20">d20</mat-option>
               </mat-select>
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Quantità</mat-label>
+              <input #valoreRisorsa type="number" matInput formControlName="quantita" min="1"
+              (change)="setValoreAttuale(i, valoreRisorsa.value)" >
             </mat-form-field>
           </div>
 
