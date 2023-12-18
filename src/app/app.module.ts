@@ -39,7 +39,7 @@ import { ParametriVitaliLevelUpComponent } from './components/form-level-up/sub-
 import { CompetenzeLinguaggiLevelUpComponent } from './components/form-level-up/sub-components/competenze-linguaggi-level-up/competenze-linguaggi-level-up.component';
 import { PrivilegiTrattiLevelUpComponent } from './components/form-level-up/sub-components/privilegi-tratti-level-up/privilegi-tratti-level-up.component';
 import { TrucchettiIncantesimiLevelUpComponent } from './components/form-level-up/sub-components/trucchetti-incantesimi-level-up/trucchetti-incantesimi-level-up.component';
-import { DiceComponent } from './components/dice/dice.component';
+import { DiceComponent } from './components/utilities/dice/dice.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CharacterViewStatusComponent } from "./components/character-view/sub-components/character-view-status/character-view-status.component";
 import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/privilegi-tratti-tab-view.component';
