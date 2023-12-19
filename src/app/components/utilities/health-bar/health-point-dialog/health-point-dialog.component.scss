@@ -3,13 +3,13 @@
     letter-spacing: 2px;
 }
 
-.dialog-content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    gap: 4px;
-}
+// .dialog-content {
+//     width: 100%;
+//     display: flex;
+//     align-items: center;
+//     padding: 0 20px;
+//     gap: 4px;
+// }
 
 .hp-button {
     background-color: #212121;
@@ -22,7 +22,7 @@
 
 .custom-form-field {
     width: 100%;
-    margin-top: 20px;
+    // margin-top: 20px;
 }
 
 .pf-container {
@@ -36,7 +36,8 @@
     display: flex;
     gap: 4px;
     align-items: center;
-    width: 50%;
+    // width: 50%;
+    flex-grow: 1;
 }
 
 .pf-value {
@@ -73,9 +74,23 @@
 
 .input-pf-container{
     display: flex;
-    width: 50%;
+    // width: 50%;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.health-buttons-container {
+    display: flex;
+    gap: 8px;
+}
+
+.description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    margin: 12px 0px;
+    text-align: justify;
 }
 
 @media screen and (max-width: 500px) {
@@ -97,5 +112,15 @@
 
     .input-pf-container{
         width: 100%;
+        flex-direction: column;
+    }
+
+    .health-buttons-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .hp-button {
+        flex-grow: 1;
     }
 }

@@ -46,13 +46,14 @@ import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub
 import { EquipaggiamentoTabViewComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/equipaggiamento-tab-view.component';
 import { MoneyDialogComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/money-dialog/money-dialog.component';
 import { AbilitaTabViewComponent } from './components/character-view/sub-components/abilita-tab-view/abilita-tab-view.component';
-import { HealthPointDialogComponent } from './components/character-view/sub-components/character-view-status/health-point-dialog/health-point-dialog.component';
+import { HealthPointDialogComponent } from './components/utilities/health-bar/health-point-dialog/health-point-dialog.component';
 import { DescrizioneBackgroundTabViewComponent } from './components/character-view/sub-components/descrizione-background-tab-view/descrizione-background-tab-view.component';
 import { TrucchettiIncantesimiTabViewComponent } from './components/character-view/sub-components/trucchetti-incantesimi-tab-view/trucchetti-incantesimi-tab-view.component';
 import { SettingsDialogComponent } from "./components/sidenav/settings-dialog/settings-dialog.component";
 import { InventoryComponent } from "./components/utilities/inventory/inventory.component";
 import { AddItemDialogComponent } from "./components/utilities/inventory/add-item-dialog/add-item-dialog.component";
 import { SettingsTabViewComponent } from './components/character-view/sub-components/settings-tab-view/settings-tab-view.component';
+import { HealthBarComponent } from './components/utilities/health-bar/health-bar.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { SettingsTabViewComponent } from './components/character-view/sub-compon
     MoneyDialogComponent,
     InventoryComponent,
     AddItemDialogComponent,
+    HealthBarComponent,
 
     // FORM CREATE COMPONENTS AND SUB-COMPONENTS
     FormCreateComponent,

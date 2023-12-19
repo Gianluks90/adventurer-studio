@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { HealthPointDialogComponent } from './health-point-dialog/health-point-dialog.component';
+import { HealthPointDialogComponent } from '../../../utilities/health-bar/health-point-dialog/health-point-dialog.component';
 import { Platform } from '@angular/cdk/platform';
 import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
@@ -136,22 +136,22 @@ export class CharacterViewStatusComponent {
     this.intuizionePassiva = 10 + saggezza;
   }
 
-  public openHPDialog() {
-    const characterId = window.location.href.split('/').pop();
-    this.dialog.open(HealthPointDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
-      data: {
-        group: this.parametriVitaliForm,
-      }
-    }).afterClosed().subscribe((result: any) => {
-      if (result.status === 'success') {
-        this.characterData.parametriVitali = result.newValue.value;
-        this.charService.updateCharacterPFById(characterId!, this.parametriVitaliForm).then(() => {
-          this.notification.openSnackBar('Punti Ferita Aggiornati.', 'check', 3000, 'limegreen');
-        });
-      }
-    });
-  }
+  // public openHPDialog() {
+  //   const characterId = window.location.href.split('/').pop();
+  //   this.dialog.open(HealthPointDialogComponent, {
+  //     width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+  //     data: {
+  //       group: this.parametriVitaliForm,
+  //     }
+  //   }).afterClosed().subscribe((result: any) => {
+  //     if (result.status === 'success') {
+  //       this.characterData.parametriVitali = result.newValue.value;
+  //       this.charService.updateCharacterPFById(characterId!, this.parametriVitaliForm).then(() => {
+  //         this.notification.openSnackBar('Punti Ferita Aggiornati.', 'check', 3000, 'limegreen');
+  //       });
+  //     }
+  //   });
+  // }
 
   // public initDadiVita(): void {
   //   this.characterData.parametriVitali.dadiVita.forEach((dado: any) => {

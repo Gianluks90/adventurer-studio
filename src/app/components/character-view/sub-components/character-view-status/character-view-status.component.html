@@ -102,7 +102,7 @@
     <div class="section-title">Parametri vitali</div>
     <div class="punti-ferita-container">
         <div class="pf-line">
-            <span
+            <!-- <span
                 class="PF">{{characterData.parametriVitali.puntiFeritaAttuali}}/{{characterData.parametriVitali.massimoPuntiFerita}}</span>
             <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi"
                 matTooltipPosition="above">favorite</mat-icon>
@@ -119,7 +119,8 @@
             <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button
                 color="accent" (click)="openHPDialog()">
                 <img src="./assets/icons/heart-check.svg">
-            </button>
+            </button> -->
+            <app-health-bar class="health-bar-component" [parametriVitali]="characterData.parametriVitali"></app-health-bar>
         </div>
         <div class="pf-group">
             <div class="pf-title"><span>CA</span> {{CA}} {{CAShield}}</div>

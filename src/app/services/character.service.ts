@@ -108,13 +108,13 @@ export class CharacterService {
     }, { merge: true });
   }
 
-  public async updateCharacterPFById(id: string, form: FormGroup): Promise<any> {
+  public async updateCharacterPFById(id: string, form: any): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {
       parametriVitali: {
-        puntiFeritaAttuali: form.value.puntiFeritaAttuali,
-        puntiFeritaTemporaneiAttuali: form.value.puntiFeritaTemporaneiAttuali,
-        massimoPuntiFeritaTemporanei: form.value.massimoPuntiFeritaTemporanei
+        puntiFeritaAttuali: form.pf,
+        puntiFeritaTemporaneiAttuali: form.pft,
+        massimoPuntiFeritaTemporanei: form.pftMax
       }
     }, { merge: true });
   }

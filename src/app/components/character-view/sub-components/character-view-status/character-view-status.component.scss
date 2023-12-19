@@ -289,6 +289,10 @@ span {
     cursor: pointer;
 }
 
+.health-bar-component {
+    width: 100%;
+}
+
 @media screen and (max-width: 500px) {
     .pf-line {
         gap: 4px;
