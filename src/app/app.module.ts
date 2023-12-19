@@ -38,7 +38,6 @@ import { ParametriVitaliLevelUpComponent } from './components/form-level-up/sub-
 import { CompetenzeLinguaggiLevelUpComponent } from './components/form-level-up/sub-components/competenze-linguaggi-level-up/competenze-linguaggi-level-up.component';
 import { PrivilegiTrattiLevelUpComponent } from './components/form-level-up/sub-components/privilegi-tratti-level-up/privilegi-tratti-level-up.component';
 import { TrucchettiIncantesimiLevelUpComponent } from './components/form-level-up/sub-components/trucchetti-incantesimi-level-up/trucchetti-incantesimi-level-up.component';
-import { DiceComponent } from './components/utilities/dice/dice.component';
 import { HttpClientModule } from "@angular/common/http";
 import { CharacterViewStatusComponent } from "./components/character-view/sub-components/character-view-status/character-view-status.component";
 import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/privilegi-tratti-tab-view.component';
@@ -54,6 +53,8 @@ import { AddItemDialogComponent } from "./components/utilities/inventory/add-ite
 import { SettingsTabViewComponent } from './components/character-view/sub-components/settings-tab-view/settings-tab-view.component';
 import { HealthBarComponent } from './components/utilities/health-bar/health-bar.component';
 import { MoneyComponent } from "./components/utilities/money/money.component";
+import { DiceComponent } from "./components/utilities/dice/dice.component";
+import { ItemInfoSheetComponent } from './components/utilities/inventory/item-info-sheet/item-info-sheet.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { MoneyComponent } from "./components/utilities/money/money.component";
      DescrizioneBackgroundTabViewComponent,
      TrucchettiIncantesimiTabViewComponent,
      SettingsTabViewComponent,
+     ItemInfoSheetComponent,
 
   ],
   imports: [

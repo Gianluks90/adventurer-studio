@@ -1,0 +1,13 @@
+<div class="sheet-container">
+    <div class="item-name">{{data.item.name}}</div>
+    <div class="item-type">{{data.item.category}}, {{data.item.rarity}}</div>
+    <div class="item-description">
+        {{data.item.description}}
+    </div>
+    <div class="sheet-footer">
+        <div *ngIf="data.item.weight" class="footer-element"><img src="./assets/icons/weight.svg"> {{data.item.weight * data.item.quantity}}</div>
+        <div class="footer-element"><img src="./assets/tabs-icons/inventory.svg"> {{data.item.quantity}}</div>
+        <div class="footer-element"><img class="gold-icon" src="./assets/coins/gold.svg"> {{data.item.value * data.item.quantity}}</div>
+        <div *ngIf="data.item.reference" class="footer-element"><img src="./assets/icons/bookmark.svg"> {{data.item.reference}}</div>
+    </div>
+</div>

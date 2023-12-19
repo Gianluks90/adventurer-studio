@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
 import { Platform } from '@angular/cdk/platform';
 import { CharacterService } from 'src/app/services/character.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ItemInfoSheetComponent } from './item-info-sheet/item-info-sheet.component';
 
 @Component({
   selector: 'app-inventory',
@@ -17,7 +19,7 @@ export class InventoryComponent {
     this.inventoryData = inventory;
   }
 
-  constructor(private dialog: MatDialog, private platform: Platform, private characterService: CharacterService) {
+  constructor(private dialog: MatDialog, private bottomSheet: MatBottomSheet, private platform: Platform, private characterService: CharacterService) {
 
   }
 
@@ -41,6 +43,16 @@ export class InventoryComponent {
       return {
         ...item, filtered: !item.name.toLowerCase().includes(filter)
       }
+    })
+  }
+
+  public openInfoSheet(item: Item) {
+    console.log('open info sheet', item);
+    this.bottomSheet.open(ItemInfoSheetComponent, {
+      // disableClose: true,
+      panelClass: 'item-info-sheet',
+      autoFocus: false,
+      data: { item }
     })
   }
 
