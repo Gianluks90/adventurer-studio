@@ -33,7 +33,6 @@ export class HealthPointDialogComponent {
   }
 
   public remove() {
-    console.log('remove prima', this.data.parametriVitali);
     const pfAttuali = this.data.parametriVitali.pf;
     if (this.data.parametriVitali.pft > 0) {
       this.data.parametriVitali.pft -= this.hpForm.value.value;
@@ -50,7 +49,6 @@ export class HealthPointDialogComponent {
       }
     }
     this.hpForm.reset();
-    console.log('remove dopo', this.data.parametriVitali);
   }
 
   public addTemp() {

@@ -1,16 +1,20 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
-  selector: 'app-monete',
-  templateUrl: './monete.component.html',
-  styleUrls: ['./monete.component.scss'],
+  selector: 'app-money',
+  templateUrl: './money.component.html',
+  styleUrls: ['./money.component.scss'],
 })
-export class MoneteComponent {
+export class MoneyComponent {
 
   public group: FormGroup | null = null;
+  public form: FormGroup = this.fb.group({
+    value: [null, [Validators.required, Validators.min(1)]],
+    type: [null, [Validators.required]]
+  });
 
   public tipiMonete: string[] = [
     'Rame (MR)',
@@ -28,10 +32,7 @@ export class MoneteComponent {
     MR: 1,
   };
 
-  public modelTipoMonete: string = '';
-  public modelNumeroMonete: number = 0;
-
-  constructor(public formService: FormService, private notificationService: NotificationService) { }
+  constructor(public formService: FormService, private notificationService: NotificationService, private fb: FormBuilder) { }
 
   @Input() public set denaro(denaro: FormGroup) {
       this.group = denaro;
@@ -83,6 +84,7 @@ export class MoneteComponent {
       totale = totale % entry[1];
     }
     this.addToPreviousBag(return_dict);
+    this.form.reset();
     return return_dict;
   }
 

@@ -20,7 +20,6 @@ export class HealthBarComponent {
       this.parametriVitaliData.pf = parametriVitali.puntiFeritaAttuali;
       this.parametriVitaliData.pftMax = parametriVitali.massimoPuntiFeritaTemporanei;
       this.parametriVitaliData.pft = parametriVitali.puntiFeritaTemporaneiAttuali;
-      console.log('parametriVitaliData', this.parametriVitaliData);
     }
   }
 

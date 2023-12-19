@@ -42,6 +42,8 @@ export class EquipaggiamentoTabViewComponent {
     const characterId = window.location.href.split('/').pop();
     this.dialog.open(MoneyDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      disableClose: true,
+      autoFocus: false,
       data: {
         group: this.denaroForm,
       }

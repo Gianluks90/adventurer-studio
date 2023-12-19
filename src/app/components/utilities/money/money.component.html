@@ -34,14 +34,14 @@
     </div>
   </ng-container>
   <div class="coins-input">
-    <div class="input-container">
+    <div class="input-container" [formGroup]="form">
       <mat-form-field class="input-field" color="accent" appearance="outline">
         <mat-label>Quantità</mat-label>
-        <input min="0" type="number" matInput [(ngModel)]="modelNumeroMonete">
+        <input min="0" type="number" matInput formControlName="value">
       </mat-form-field>
       <mat-form-field class="input-field" color="accent" appearance="outline">
         <mat-label class="label-style">Taglio</mat-label>
-        <mat-select [(ngModel)]="modelTipoMonete">
+        <mat-select formControlName="type">
           <mat-option *ngFor="let tipo of tipiMonete" [value]="tipo">
             {{tipo}}
           </mat-option>
@@ -49,10 +49,10 @@
       </mat-form-field>
     </div>
     <div class="button-container">
-      <button class="button-money" mat-raised-button color="accent" (click)="add_subtract(modelTipoMonete,modelNumeroMonete,'add')">
+      <button class="button-money" mat-raised-button color="accent" (click)="add_subtract(form.value.type,form.value.value,'add')" [disabled]="!form.valid">
         <mat-icon>add</mat-icon> Somma
       </button>
-      <button class="button-money" mat-raised-button color="accent" (click)="add_subtract(modelTipoMonete,modelNumeroMonete,'remove')">
+      <button class="button-money" mat-raised-button color="accent" (click)="add_subtract(form.value.type,form.value.value,'remove')" [disabled]="!form.valid">
         <mat-icon>remove</mat-icon> Sottrai
       </button>
     </div>

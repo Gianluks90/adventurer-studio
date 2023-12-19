@@ -24,7 +24,6 @@ import { TiriSalvezzaComponent } from "./components/form-create/sub-form/tiri-sa
 import { TrucchettiIncantesimiComponent } from "./components/form-create/sub-form/trucchetti-incantesimi/trucchetti-incantesimi.component";
 import { FormLevelUpComponent } from "./components/form-level-up/form-level-up.component";
 import { HomeComponent } from "./components/home/home.component";
-import { MoneteComponent } from "./components/monete/monete.component";
 import { AddCharacterDialogComponent } from "./components/character-list/add-character-dialog/add-character-dialog.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { SnackbarComponent } from "./components/utilities/snackbar/snackbar.component";
@@ -54,6 +53,7 @@ import { InventoryComponent } from "./components/utilities/inventory/inventory.c
 import { AddItemDialogComponent } from "./components/utilities/inventory/add-item-dialog/add-item-dialog.component";
 import { SettingsTabViewComponent } from './components/character-view/sub-components/settings-tab-view/settings-tab-view.component';
 import { HealthBarComponent } from './components/utilities/health-bar/health-bar.component';
+import { MoneyComponent } from "./components/utilities/money/money.component";
 
 @NgModule({
   declarations: [
@@ -74,7 +74,7 @@ import { HealthBarComponent } from './components/utilities/health-bar/health-bar
     CompleteLevelUpDialogComponent,
 
     // UTILITIES COMPONENTS
-    MoneteComponent,
+    MoneyComponent,
     SnackbarComponent,
     DiceComponent,
     HealthPointDialogComponent,

@@ -108,7 +108,6 @@ export class CharacterViewStatusComponent {
 
   public initCA(): void {
     const equip = this.characterData.equipaggiamento as Array<Item>;
-    console.log('equip', equip);
     equip.forEach((item: Item) => {
       if (item.CA > 0 && !item.shield && item.weared) {
         if (item.plusDexterity) {
