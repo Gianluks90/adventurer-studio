@@ -29,6 +29,7 @@ export class FormModel {
       tesoro: '',
       trucchettiIncantesimi: builder.array([]),
       classeIncantatore: '',
+      classeIncantatorePersonalizzata: '',
       caratteristicaIncantatore: '',
       CDTiroSalvezza: 0,
       bonusAttaccoIncantesimi: 0,

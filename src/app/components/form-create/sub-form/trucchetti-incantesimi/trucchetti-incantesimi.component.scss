@@ -43,6 +43,11 @@
   flex-grow: 1;
 }
 
+mat-form-field {
+  // width: 100% !important;
+  margin-bottom: 12px;
+}
+
 button {
   border-radius: 0;
 }
@@ -50,6 +55,27 @@ button {
 .slot-button {
   width: 100%;
   margin-bottom: 20px;
+}
+
+details {
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 12px;
+  background-color: whitesmoke;
+}
+
+details[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+details[open] summary {
+  margin-bottom: 4px;
+}
+
+summary {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 500px) {

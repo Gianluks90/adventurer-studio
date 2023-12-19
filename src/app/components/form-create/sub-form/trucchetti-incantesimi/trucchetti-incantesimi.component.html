@@ -1,13 +1,59 @@
 <ng-container *ngIf="form">
     <div class="step-form" [formGroup]="form">
+        <details>
+            <summary>Suggerimenti di compilazione</summary>
+            <div class="description-text">La <strong>CD</strong> (classe difficoltà) per resistere a un incantesimo è
+                pari a
+                8 + il modificatore di caratteristica da incantatore + il bonus di competenza dell'incantatore, a cui si
+                sommano eventuali modificatori speciali. Mentre il <strong>bonus di attacco</strong> dell'incantatore
+                per un
+                attacco
+                con un incantesimo equivale al suo modificatore di caratteristica da incantatore + il suo bonus di
+                competenza. Se vuoi puoi indicare anche il numero di <strong>Incantesimi preparabili</strong> per questo
+                personaggio (solitamente è pari al modificatore della caratteristica da incantatore più il livello della
+                classe da incantatore).
+            </div>
+        </details>
         <div class="line-container">
-            <mat-form-field class="line-input" color="accent" appearance="outline">
+            <!-- <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>Classe incantatore</mat-label>
                 <input matInput formControlName="classeIncantatore">
+            </mat-form-field> -->
+            <mat-form-field class="line-input" color="accent" appearance="outline"
+                *ngIf="form.value.classeIncantatore === '' || form.value.classeIncantatore !== 'Altro'">
+                <mat-label>Classe incantatore</mat-label>
+                <mat-select formControlName="classeIncantatore">
+                    <mat-option value="Barbaro">Barbaro</mat-option>
+                    <mat-option value="Bardo">Bardo</mat-option>
+                    <mat-option value="Chierico">Chierico</mat-option>
+                    <mat-option value="Druido">Druido</mat-option>
+                    <mat-option value="Guerriero">Guerriero</mat-option>
+                    <mat-option value="Ladro">Ladro</mat-option>
+                    <mat-option value="Mago">Mago</mat-option>
+                    <mat-option value="Monaco">Monaco</mat-option>
+                    <mat-option value="Paladino">Paladino</mat-option>
+                    <mat-option value="Ranger">Ranger</mat-option>
+                    <mat-option value="Stregone">Stregone</mat-option>
+                    <mat-option value="Warlock">Warlock</mat-option>
+                    <mat-option value="Altro">Altro (specificare)</mat-option>
+                </mat-select>
             </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline"
+                *ngIf="form.value.classeIncantatore === 'Altro'">
+                <mat-label>Classe personalizzata</mat-label>
+                <input matInput formControlName="classeIncantatorePersonalizzata">
+            </mat-form-field>
+
             <mat-form-field class="line-input" color="accent" appearance="outline">
-                <mat-label>Caratteristica da incantatore</mat-label>
-                <input matInput formControlName="caratteristicaIncantatore">
+                <mat-label>Caratt. da incantatore</mat-label>
+                <mat-select formControlName="caratteristicaIncantatore">
+                    <mat-option value="Forza">Forza</mat-option>
+                    <mat-option value="Destrezza">Destrezza</mat-option>
+                    <mat-option value="Costituzione">Costituzione</mat-option>
+                    <mat-option value="Intelligenza">Intelligenza</mat-option>
+                    <mat-option value="Saggezza">Saggezza</mat-option>
+                    <mat-option value="Carisma">Carisma</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>CD tiro salvezza incantesimi</mat-label>
@@ -17,74 +63,108 @@
                 <mat-label>Bonus di attacco incantesimi</mat-label>
                 <input matInput formControlName="bonusAttaccoIncantesimi">
             </mat-form-field>
-            <mat-form-field class="line-input" color="accent" appearance="outline">
-                <mat-label>Incantesimi preparabili</mat-label>
-                <input matInput formControlName="incantesimiPreparabili">
-            </mat-form-field>
         </div>
 
-        <div class="description-text">La <strong>CD</strong> (classe difficoltà) per resistere a un incantesimo è pari a
-            8 + il modificatore di caratteristica da incantatore + il bonus di competenza dell'incantatore, a cui si
-            sommano eventuali modificatori speciali. Mentre il <strong>bonus di attacco</strong> dell'incantatore per un
-            attacco
-            con un incantesimo equivale al suo modificatore di caratteristica da incantatore + il suo bonus di
-            competenza. Se vuoi puoi indicare anche il numero di <strong>Incantesimi preparabili</strong> per questo
-            personaggio (solitamente è pari al modificatore della caratteristica da incantatore più il livello della
-            classe da incantatore).
-        </div>
+        <details>
+            <summary>Incantesimi conosciuti e preparati</summary>
+            <div class="description-text">
+                Prima che un incantatore possa usare un
+                incantesimo, deve averlo ben chiaro in mente,
+                oppure deve avere accesso a un oggetto magico che
+                custodisce l'incantesimo in questione. I membri di
+                alcune classi, compresi bardi e stregoni, hanno una
+                lista limitata di incantesimi conosciuti che sono
+                sempre impressi nella loro mente. Lo stesso vale
+                per molti mostri in grado di usare la magia.
+                Altri incantatori, come i chierici e i maghi,
+                si sottopongono a un processo di preparazione
+                degli incantesimi. Questo processo può variare
+                da classe a classe, come definito nella loro
+                descrizione.
+                In ogni caso, il numero di incantesimi che un
+                incantatore ha sempre impressi nella mente dipende
+                dal livello del personaggio.
+            </div>
+        </details>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Incantesimi preparabili</mat-label>
+            <input matInput formControlName="incantesimiPreparabili">
+        </mat-form-field>
+
 
     </div>
     <div class="section-title">Slot Incantesimi</div>
-    <div class="description-text">
-        Ogni incantatore ha un numero limitato di <strong>Slot Incantesimo</strong> che può utilizzare per lanciare
-        incantesimi. Indica
-        il numero degli slot incantesimo che hai a disposizione per ogni livello poi premi "Aggiorna Slot Incantesimi"
-        per applicare le modifiche.
-    </div>
-    <button class="slot-button" mat-raised-button color="accent" (click)="toggleSlot()"
-        *ngIf="!slotFormVisibility">Modifica Slot Incantesimi</button>
+    <details>
+        <summary>Quanti slot?</summary>
+        <div class="description-text">
+            A prescindere da quanti incantesimi un incantatore
+            conosce o prepara, egli può lanciarne soltanto
+            un numero limitato prima di dover riposare.
+            Manipolare la trama della magia e incanalarne
+            l'energia anche nel più semplice degli incantesimi
+            è fisicamente e mentalmente spossante e lo è ancora
+            di più nel caso di incantesimi di alto livello.
+            La descrizione di ogni classe da incantatore (fatta
+            eccezione per quella del warlock) include quindi una
+            tabella che indica quanti <strong>Slot Incantesimo</strong> di ogni
+            livello di incantesimo un personaggio può usare
+            a ciascun livello del personaggio.
+            Completare un riposo lungo ripristina tutti gli slot
+            incantesimo spesi.
+            Alcuni personaggi e mostri sono dotati di capacità
+            speciali che consentono loro di lanciare incantesimi
+            senza usare slot incantesimo: per esempio,
+            un monaco che segue la Via dei Quattro Elementi,
+            un warlock che sceglie certe suppliche occulte e un
+            diavolo della fossa dei Nove Inferi.
+        </div>
+    </details>
+
+    <button class="slot-button" mat-raised-button color="accent" (click)="toggleSlot()" *ngIf="!slotFormVisibility">
+        <mat-icon>apps</mat-icon> Modifica Slot Incantesimi
+    </button>
     <form *ngIf="slotFormVisibility">
         <div class="step-form" [formGroup]="slotIncantesimiForm">
             <div class="line-container">
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 1° livello</mat-label>
-                    <input matInput type="number" formControlName="level1" min="0">
+                    <input matInput type="number" formControlName="level1" min="0" inputmode="numeric">
                 </mat-form-field>
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 2° livello</mat-label>
-                    <input matInput type="number" formControlName="level2" min="0">
+                    <input matInput type="number" formControlName="level2" min="0" inputmode="numeric">
                 </mat-form-field>
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 3° livello</mat-label>
-                    <input matInput type="number" formControlName="level3" min="0">
+                    <input matInput type="number" formControlName="level3" min="0" inputmode="numeric">
                 </mat-form-field>
             </div>
             <div class="line-container">
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 4° livello</mat-label>
-                    <input matInput type="number" formControlName="level4" min="0">
+                    <input matInput type="number" formControlName="level4" min="0" inputmode="numeric">
                 </mat-form-field>
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 5° livello</mat-label>
-                    <input matInput type="number" formControlName="level5" min="0">
+                    <input matInput type="number" formControlName="level5" min="0" inputmode="numeric">
                 </mat-form-field>
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 6° livello</mat-label>
-                    <input matInput type="number" formControlName="level6" min="0">
+                    <input matInput type="number" formControlName="level6" min="0" inputmode="numeric">
                 </mat-form-field>
             </div>
             <div class="line-container">
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 7° livello</mat-label>
-                    <input matInput type="number" formControlName="level7" min="0">
+                    <input matInput type="number" formControlName="level7" min="0" inputmode="numeric">
                 </mat-form-field>
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 8° livello</mat-label>
-                    <input matInput type="number" formControlName="level8" min="0">
+                    <input matInput type="number" formControlName="level8" min="0" inputmode="numeric">
                 </mat-form-field>
                 <mat-form-field class="line-input" color="accent" appearance="outline">
                     <mat-label> 9° livello</mat-label>
-                    <input matInput type="number" formControlName="level9" min="0">
+                    <input matInput type="number" formControlName="level9" min="0" inputmode="numeric">
                 </mat-form-field>
             </div>
         </div>
@@ -116,11 +196,20 @@
                         </mat-form-field>
                         <mat-form-field class="line-input" color="accent" appearance="outline">
                             <mat-label>Scuola</mat-label>
-                            <input matInput formControlName="scuola">
+                            <mat-select formControlName="scuola">
+                                <mat-option value="Abiurazione">Abiurazione</mat-option>
+                                <mat-option value="Ammaliamento">Ammaliamento</mat-option>
+                                <mat-option value="Divinazione">Divinazione</mat-option>
+                                <mat-option value="Evocazione">Evocazione</mat-option>
+                                <mat-option value="Illusione">Illusione</mat-option>
+                                <mat-option value="Invocazione">Invocazione</mat-option>
+                                <mat-option value="Necromanzia">Necromanzia</mat-option>
+                                <mat-option value="Trasmutazione">Trasmutazione</mat-option>
+                            </mat-select>
                         </mat-form-field>
                         <mat-form-field class="line-input" color="accent" appearance="outline">
                             <mat-label>Livello</mat-label>
-                            <input matInput type="number" formControlName="livello" min="0" max="9">
+                            <input matInput type="number" formControlName="livello" min="0" max="9" inputmode="numeric">
                         </mat-form-field>
                     </div>
                     <div class="line-container">

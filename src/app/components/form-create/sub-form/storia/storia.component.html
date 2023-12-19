@@ -26,7 +26,18 @@
     </mat-form-field>
   </div>
 
-  <div class="step-form" [formGroup]="group">
+  <details>
+    <summary>Tesoro, Tratti e privilegi aggiunti</summary>
+    <div class="description-text">
+      Nella scheda del personaggio assieme alla Storia e alle Alleanze si trovano altre due sezioni nominate <strong>
+        Tratti e privilegi aggiuntivi</strong> e <strong>Tesoro</strong>. Se quindi stai trasferendo qui sopra le
+      informazioni da una scheda cartacea pre compilata potresti avere dei dubbi su dove inserire quei dati: inserisci i
+      vari <strong>Tesori</strong> come oggetti nella sezione 7 inventario e tutti i <strong>Privilegi e Tratti
+        Aggiuntivi</strong> come elementi della sezione "Privilegi e Tratti", la numero 8.
+    </div>
+  </details>
+
+  <!-- <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label>Tratti e Privilegi Aggiuntivi</mat-label>
       <textarea matInput formControlName="trattiPrivilegiAggiuntivi" rows="5"></textarea>
@@ -38,6 +49,5 @@
       <mat-label>Tesoro</mat-label>
       <textarea matInput formControlName="tesoro" rows="5"></textarea>
     </mat-form-field>
-  </div>
+  </div> -->
 </ng-container>
-

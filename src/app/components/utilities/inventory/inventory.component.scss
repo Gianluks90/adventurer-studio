@@ -63,9 +63,10 @@
 }
 
 .image-icon {
+    border-radius: 4px;
     cursor: pointer;
-    border: 2px solid white;
     box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .quantity-value {

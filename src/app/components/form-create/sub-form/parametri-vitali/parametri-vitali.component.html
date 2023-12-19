@@ -1,24 +1,105 @@
 <ng-container *ngIf="group && groupVita">
   <div class="step-form" [formGroup]="group">
+
+    <details>
+      <summary>Proteggersi dagli attacchi</summary>
+      <div class="description-text">
+        L'armatura protegge dagli
+        attacchi. L'armatura e l'eventuale scudo di un
+        personaggio determinano la sua Classe Armatura
+        base. Senza un'armatura o uno scudo, la <strong>Classe Armatura</strong> (CA) di un
+        personaggio è pari a 10 + il suo
+        Modificatore di Destrezza. Se il personaggio indossa un'armatura, trasporta uno scudo o fa entrambe le cose,
+        la CA deve essere calcolata usando le regole descritte a pagina PHB 144.
+      </div>
+    </details>
+
+    <details>
+      <summary>Copertura</summary>
+      <div class="description-text">
+        e pareti, gli alberi, le creature e altri ostacoli
+        possono fornire copertura durante un
+        combattimento, rendendo un bersaglio più difficile
+        da colpire. Un bersaglio può beneficiare di copertura
+        soltanto quando un attacco o un altro effetto ha
+        origine sul lato opposto della copertura.
+        Esistono tre gradi di copertura. Se un bersaglio si
+        trova dietro più fonti di copertura, viene applicato
+        soltanto il grado più protettivo di copertura; i gradi
+        non sono cumulativi. Per esempio, se un bersaglio
+        si trova dietro una creatura che fornisce mezza
+        copertura e un tronco d'albero che fornisce tre
+        quarti di copertura, il bersaglio beneficia di tre
+        quarti di copertura.
+        Un bersaglio con <strong>mezza copertura</strong> ottiene un
+        bonus di +2 alla CA e ai tiri salvezza su Destrezza.
+        Un bersaglio beneficia di mezza copertura se un
+        ostacolo blocca almeno metà del suo corpo.
+        L'ostacolo in questione potrebbe essere un muretto,
+        un grosso mobile, un tronco d'albero esile o una
+        creatura (amica o nemica che sia).
+        Un bersaglio con <strong>tre quarti di copertura</strong> ottiene
+        un bonus di +5 alla CA e ai tiri salvezza su Destrezza.
+        Un bersaglio beneficia di tre quarti di copertura se
+        almeno tre quarti del suo corpo sono coperti da un
+        ostacolo. L'ostacolo in questione potrebbe essere
+        una saracinesca, una feritoia per frecce o un grosso
+        tronco d'albero.
+        Un bersaglio con <strong>copertura totale</strong> non può essere
+        bersagliato direttamente da un attacco o da un
+        incantesimo, anche se certi incantesimi possono
+        raggiungere un bersaglio di questo tipo includendolo
+        in un'area di effetto. Un bersaglio beneficia di
+        copertura totale se è completamente occultato da
+        un ostacolo.
+      </div>
+    </details>
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Classe Armatura (CA)</mat-label>
       <input class="" matInput type="number" formControlName="CA">
     </mat-form-field>
 
-    <div class="description-text">Senza un'armatura o uno scudo, la <strong>Classe Armatura</strong> (CA) di un personaggio è pari a 10 + il suo
-      Modificatore di Destrezza. Se il personaggio indossa un'armatura, trasporta uno scudo o fa entrambe le cose,
-      la CA deve essere calcolata usando le regole descritte a pagina PHB 144.</div>
+    <!-- <div class="description-text"></div> -->
   </div>
+
+  <details>
+    <summary>Iniziativa</summary>
+    <div class="description-text">
+      L'iniziativa determina l'ordine dei turni durante
+      il combattimento. Quando il combattimento inizia,
+      ogni partecipante effettua una prova di Destrezza
+      per determinare la sua posizione nell'ordine di
+      <strong>Iniziativa</strong> (quindi il bonus di inziativa è pari al modificatore di Destrezza).
+      Il GM effettua un solo tiro per un intero
+      gruppo di creature identiche, quindi tutti i membri
+      di quel gruppo agiscono contemporaneamente.
+      Il GM elenca i combattenti in un ordine che va da
+      quello con il totale più alto della prova di Destrezza
+      a quello con il totale più basso. Questo è l'ordine
+      (chiamato ordine di iniziativa) in cui i combattenti
+      agiranno nel corso di ogni round. L'ordine di
+      iniziativa rimane lo stesso per tutti i round.
+      In caso di parità, il GM decide l'ordine tra le
+      creature in parità sotto il suo controllo e i giocatori
+      decidono l'ordine tra i loro personaggi in parità.
+      Se si verifica una parità tra un mostro e un
+      personaggio giocante, è il GM a decidere l'ordine.
+      In alternativa, il GM può chiedere ai personaggi
+      e ai mostri in parità di tirare un d20 a testa per
+      determinare l'ordine: chi ottiene il risultato più alto
+      agisce per primo.
+    </div>
+  </details>
 
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Iniziativa</mat-label>
       <input class="" type="number" matInput formControlName="iniziativa" placeholder="{{modDestrezza}}">
     </mat-form-field>
-    <div class="description-text">L'<strong>Iniziativa</strong> è pari al modificatore di Destrezza attuale e questo
+    <!-- <div class="description-text">L'<strong>Iniziativa</strong> è pari al modificatore di Destrezza attuale e questo
       campo è legato alla modifica della caratteristica 'Destrezza'. Se hai un Personaggio con un'iniziativa
       personalizzata (e il Master è d'accordo) aggiorna pure questo campo ma ricorda che se modifichi la Destrezza anche
-      questo campo sarà aggiornato di conseguenza.</div>
+      questo campo sarà aggiornato di conseguenza.</div> -->
   </div>
 
   <div class="step-form" [formGroup]="group">
@@ -42,7 +123,7 @@
       <ng-container *ngFor="let d of dadiVita.controls; let i = index;">
         <div class="step-form" [formGroupName]="i">
           <div class="line-container">
-            
+
             <mat-form-field class="line-input" color="accent" appearance="outline">
               <mat-label>Tipologia</mat-label>
               <mat-select formControlName="tipologia">
@@ -57,7 +138,7 @@
             <mat-form-field class="line-input" color="accent" appearance="outline">
               <mat-label>Quantità</mat-label>
               <input #valoreRisorsa type="number" matInput formControlName="quantita" min="1"
-              (change)="setValoreAttuale(i, valoreRisorsa.value)" >
+                (change)="setValoreAttuale(i, valoreRisorsa.value)">
             </mat-form-field>
           </div>
 

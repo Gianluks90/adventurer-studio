@@ -1,35 +1,81 @@
+<details>
+  <summary>La storia fin qui</summary>
+  <div class="description-text">
+    Ogni storia ha un inizio. Il <strong>Background</strong> di un
+    personaggio rivela da dove viene, come è diventato
+    un avventuriero e qual è il suo posto nel mondo.
+    Un guerriero potrebbe essere stato un coraggioso
+    cavaliere o un soldato veterano in passato. Un mago
+    potrebbe essere stato un sapiente o un artigiano.
+    Un ladro potrebbe essersi guadagnato da vivere
+    lavorando per una gilda o intrattenendo il pubblico
+    come giullare.
+    La scelta di un background fornisce a un
+    personaggio alcuni importanti spunti narrativi
+    sulla sua identità. La domanda più importante da
+    porsi riguardo al background è: cosa è cambiato?
+    Perché il personaggio ha smesso di fare ciò che stava
+    facendo nel background e si è dato all'avventura?
+    Dove ha trovato il denaro per acquistare il suo
+    equipaggiamento di partenza, oppure, se proviene
+    da un background benestante, perché ora non
+    possiede una maggiore quantità di denaro? Come
+    ha appreso le abilità della sua classe? Cosa lo
+    distingue dagli individui comuni che condividono
+    il suo stesso background?
+  </div>
+</details>
+
+<details>
+  <summary>Linguaggi e competenze</summary>
+  <div class="description-text">
+    Ogni background fornisce a un personaggio
+    competenza in due abilità (descritte in "Usare
+    i Punteggi di Caratteristica").
+    Inoltre, la maggior parte dei background fornisce
+    a un personaggio competenza in uno o più strumenti
+    (descritti in "Equipaggiamento").
+    Se un personaggio ottiene la stessa competenza
+    da due fonti diverse, può invece scegliere una
+    competenza diversa dello stesso tipo (abilità
+    o strumento).
+    Alcuni background consentono ai personaggi di
+    apprendere ulteriori linguaggi oltre a quelli forniti
+    dalla razza.
+  </div>
+</details>
+
 <ng-container *ngIf="groupInfo">
-  <div class="step-form" [formGroup]="groupInfo">
-    <mat-form-field color="accent" appearance="outline">
+  <div class="line-container" [formGroup]="groupInfo">
+    <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label class="input-field">Background</mat-label>
       <input matInput formControlName="background">
-      <mat-icon class="suffix-icon" matSuffix matTooltip="PHB 125-141" matTooltipPosition="left">auto_stories</mat-icon>
     </mat-form-field>
 
-    <mat-form-field color="accent" appearance="outline">
+    <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label class="input-field">Dettaglio</mat-label>
       <input matInput formControlName="dettaglioBackground">
     </mat-form-field>
 
-    <button mat-raised-button color="accent" class="update-button" (click)="updateBackground()">
+    <!-- <button mat-raised-button color="accent" class="update-button" (click)="updateBackground()">
       <mat-icon>sync_alt</mat-icon>
       <span>Aggiorna background (ovunque)</span>
-    </button>
+    </button> -->
   </div>
 </ng-container>
 
-<div class="description-text">Alle pagine PHB 125 - 141 troverai un elenco di <strong>Background</strong> precostruiti
-  tra cui scegliere. Un giocatore potrebbe decidere di ritoccare alcuni privilegi di un background in modo che si
-  adattino meglio al suo personaggio o all'ambientazione della campagna. Per personalizzare un background è sufficiente
-  sostituire un privilegio con un altro qualsiasi, scegliere due abilità qualsiasi e un totale di due competenze negli
-  strumenti o linguaggi dai background di esempio. È possibile usare l'equipaggiamento della dotazione indicata dal
-  background o spendere il denaro come descritto nella sezione "Equipaggiamento". (Se un personaggio sceglie di spendere
-  il denaro, non può ottenere anche l'equipaggiamento della dotazione suggerita per la sua classe.) Infine si scelgono
-  due tratti caratteriali, un ideale, un legame e un difetto. Se un giocatore non trova alcun privilegio adatto al
-  background che desidera, può accordarsi con il GM per crearne uno.</div>
-
-  
-
+<div class="section-title">Caratteristiche personali</div>
+<details>
+  <summary>Suggerimenti</summary>
+  <div class="description-text">
+    Un background indica le caratteristiche personali
+    suggerite per il giocatore che lo seleziona.
+    Il giocatore può scegliere le caratteristiche, tirare
+    i dadi per determinarle casualmente o usare quei
+    suggerimenti come ispirazione per le caratteristiche
+    di sua creazione.
+  </div>
+</details>
 <ng-container *ngIf="group">
   <div class="step-form" [formGroup]="group">
     <mat-form-field color="accent" appearance="outline">
@@ -58,5 +104,29 @@
       <textarea matInput formControlName="difetti" rows="2"></textarea>
     </mat-form-field>
   </div>
+
+  <details>
+    <summary>Personalizzare un background</summary>
+    <div class="description-text">Alle pagine PHB 125 - 141 troverai un elenco di <strong>Background</strong>
+      precostruiti
+      tra cui scegliere. Un giocatore potrebbe decidere di ritoccare alcuni
+      privilegi di un background in modo che si adattino
+      meglio al suo personaggio o all'ambientazione della
+      campagna. Per personalizzare un background
+      è sufficiente sostituire un privilegio con un altro
+      qualsiasi, scegliere due abilità qualsiasi e un totale
+      di due competenze negli strumenti o linguaggi
+      dai background di esempio. È possibile usare
+      l'equipaggiamento della dotazione indicata
+      dal background o spendere il denaro come
+      descritto nella sezione "Equipaggiamento". (Se un
+      personaggio sceglie di spendere il denaro, non può
+      ottenere anche l'equipaggiamento della dotazione
+      suggerita per la sua classe.) Infine si scelgono due
+      tratti caratteriali, un ideale, un legame e un difetto.
+      Se un giocatore non trova alcun privilegio adatto al
+      background che desidera, può accordarsi con il GM
+      per crearne uno.</div>
+  </details>
 
 </ng-container>
