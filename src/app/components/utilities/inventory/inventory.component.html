@@ -9,7 +9,7 @@
     <div class="items-container">
         <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
         <div *ngIf="inventoryData.length > 0" class="items-icon-container" >
-            <div *ngFor="let i of inventoryData" [hidden]="i.filtered" (click)="openInfoSheet(i)">
+            <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
                 <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" matTooltip="{{i.name}}" matTooltipPosition="above">
                 <span class="quantity-value">{{i.quantity}}</span>
                 <span class="weared-label" *ngIf="i.weared">E</span>

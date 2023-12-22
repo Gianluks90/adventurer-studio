@@ -1,6 +1,9 @@
+import { Platform } from '@angular/cdk/platform';
 import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
 import { Item } from 'src/app/models/item';
+import { AddItemDialogComponent } from '../add-item-dialog/add-item-dialog.component';
 
 @Component({
   selector: 'app-item-info-sheet',
@@ -9,6 +12,20 @@ import { Item } from 'src/app/models/item';
 })
 export class ItemInfoSheetComponent {
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item }, private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>) {}
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item }, private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>, private dialog: MatDialog, private platform: Platform) {}
 
+  openEditDialog(item: Item) {
+    this.dialog.open(AddItemDialogComponent, {
+      width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
+      disableClose: true,
+      data: { inventory: [], item: item }
+    }).afterClosed().subscribe((result: any) => {
+      if (result.status === 'edited') {
+        this.sheetRef.dismiss({ status: 'edited', item: result.item });
+        // this.characterService.updateInventory(window.location.href.split('/').pop(), result.item).then(() => {
+        //   this.inventoryData.push(result.item);
+        // });
+      }
+    })
+  }
 }

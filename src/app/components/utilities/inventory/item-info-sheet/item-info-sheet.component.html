@@ -1,6 +1,12 @@
 <div class="sheet-container">
     <div class="item-name">{{data.item.name}}</div>
     <div class="item-type">{{data.item.category}}, {{data.item.rarity}}</div>
+    <div class="arcane-focus-label" *ngIf="data.item.focus">
+        <img src="./assets/icons/arcane-focus.svg"> Focus Arcano
+    </div>
+    <div class="consumable-label" *ngIf="data.item.consumable">
+        <img src="./assets/icons/consumable.svg"> Uso singolo
+    </div>
     <div class="item-description">
         {{data.item.description}}
     </div>
@@ -11,3 +17,7 @@
         <div *ngIf="data.item.reference" class="footer-element"><img src="./assets/icons/bookmark.svg"> {{data.item.reference}}</div>
     </div>
 </div>
+
+<button mat-mini-fab class="edit-button" (click)="openEditDialog(data.item)">
+    <mat-icon>edit</mat-icon>
+</button>

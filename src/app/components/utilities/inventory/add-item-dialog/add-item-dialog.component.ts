@@ -1,5 +1,4 @@
 import { Component, Inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Item, Trait } from 'src/app/models/item';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -19,7 +18,7 @@ export class AddItemDialogComponent {
   public traits: FormArray;
   public artifactProperties: FormArray;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {inventory: Item[]}, private dialogRef: MatDialogRef<AddItemDialogComponent>, private fb: FormBuilder, private httpClient: HttpClient){
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {inventory: Item[], item?: Item}, private dialogRef: MatDialogRef<AddItemDialogComponent>, private fb: FormBuilder, private httpClient: HttpClient){
     this.traits = this.fb.array([]);
     this.artifactProperties = this.fb.array([]);
   }
@@ -33,13 +32,33 @@ export class AddItemDialogComponent {
     });
     this.traits = this.form.controls['traits'] as FormArray;
     this.artifactProperties = this.form.controls['artifactProperties'] as FormArray;
+
+    if (this.data.item) {
+      this.form.patchValue(this.data.item);
+      this.type = this.data.item.category;
+      this.data.item.traits.forEach((trait: Trait) => {
+        this.traits.push(this.fb.group(trait));
+      });
+      this.data.item.artifactProperties.forEach((prop: Trait) => {
+        this.artifactProperties.push(this.fb.group(prop));
+      });
+    }
   }
 
   confirm() {
-    this.dialogRef.close({
-      status: 'success',
-      item: this.form.value
-    })
+    if (this.data.item) {
+      this.dialogRef.close({
+        status: 'edited',
+        item: this.form.value
+      })
+    } else {
+      this.dialogRef.close({
+        status: 'success',
+        item: this.form.value
+      })
+    }
+
+    
   }
 
   setType(event: any) {

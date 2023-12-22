@@ -3,6 +3,7 @@ import { FirebaseService } from './firebase.service';
 import { FormGroup } from '@angular/forms';
 import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { Item } from '../models/item';
 
 @Injectable({
   providedIn: 'root'
@@ -129,10 +130,17 @@ export class CharacterService {
   }
 
 
-  public async updateInventory(id: string, form: FormGroup): Promise<any> {
+  public async addItemInventory(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {
       equipaggiamento: arrayUnion(form)
+    }, { merge: true });
+  }
+
+  public async updateInventory(id: string, inventory: Item[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      equipaggiamento: inventory
     }, { merge: true });
   }
 

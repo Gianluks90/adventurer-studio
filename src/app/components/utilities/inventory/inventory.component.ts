@@ -30,7 +30,7 @@ export class InventoryComponent {
       data: { inventory: this.inventoryData }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
-        this.characterService.updateInventory(window.location.href.split('/').pop(), result.item).then(() => {
+        this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item).then(() => {
           this.inventoryData.push(result.item);
         });
       }
@@ -46,14 +46,22 @@ export class InventoryComponent {
     })
   }
 
-  public openInfoSheet(item: Item) {
+  public openInfoSheet(item: Item, index: number) {
     console.log('open info sheet', item);
     this.bottomSheet.open(ItemInfoSheetComponent, {
       // disableClose: true,
       panelClass: 'item-info-sheet',
       autoFocus: false,
       data: { item }
-    })
+    }).afterDismissed().subscribe((result: any) => {
+      if (result && result.status === 'edited') {
+        console.log('edited inventory', result.item);
+        this.inventoryData[index] = result.item;
+        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData).then(() => {
+          console.log('updated inventory');
+        });
+      }
+    });
   }
 
   setColor(rarity: string): string {

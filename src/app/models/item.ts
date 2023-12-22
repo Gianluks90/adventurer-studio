@@ -29,8 +29,9 @@ export class Item {
     attuned?: boolean;
     artifactProperties?: Trait[];
     reference?: string;
+    consumable?: boolean;
 
-    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: number, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], focus?: boolean, attunementRequired?: boolean, attuned?: boolean, artifactProperties?: Trait[], reference?: string, magicItem?: boolean, artifact?: boolean, weared?: boolean, CA?: number, plusDexterity?: boolean,  minStrength?: number, shield?: boolean, stealthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[]) {
+    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: number, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], focus?: boolean, attunementRequired?: boolean, attuned?: boolean, artifactProperties?: Trait[], reference?: string, magicItem?: boolean, artifact?: boolean, weared?: boolean, CA?: number, plusDexterity?: boolean,  minStrength?: number, shield?: boolean, stealthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[], consumable?: boolean) {
         this.name = name;
         this.icon = icon;
         this.filtered = filtered;
@@ -90,7 +91,8 @@ export class Item {
             stealthDisadvantage: false,
             damageFormula: '',
             damageType: '',
-            weaponProperties: []
+            weaponProperties: [],
+            consumable: false
         }
     }
 
