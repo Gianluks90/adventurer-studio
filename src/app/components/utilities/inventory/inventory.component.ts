@@ -17,11 +17,10 @@ export class InventoryComponent {
   public inventoryData: Item[] = [];
   @Input() set inventory(inventory: Item[]) {
     this.inventoryData = inventory;
+    this.sortInventory();
   }
 
-  constructor(private dialog: MatDialog, private bottomSheet: MatBottomSheet, private platform: Platform, private characterService: CharacterService) {
-
-  }
+  constructor(private dialog: MatDialog, private bottomSheet: MatBottomSheet, private platform: Platform, private characterService: CharacterService) {}
 
   openAddItemDialog() {
     this.dialog.open(AddItemDialogComponent, {
@@ -32,6 +31,7 @@ export class InventoryComponent {
       if (result.status === 'success') {
         this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item).then(() => {
           this.inventoryData.push(result.item);
+          this.sortInventory();
         });
       }
     })
@@ -47,7 +47,6 @@ export class InventoryComponent {
   }
 
   public openInfoSheet(item: Item, index: number) {
-    console.log('open info sheet', item);
     this.bottomSheet.open(ItemInfoSheetComponent, {
       // disableClose: true,
       panelClass: 'item-info-sheet',
@@ -55,11 +54,8 @@ export class InventoryComponent {
       data: { item }
     }).afterDismissed().subscribe((result: any) => {
       if (result && result.status === 'edited') {
-        console.log('edited inventory', result.item);
         this.inventoryData[index] = result.item;
-        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData).then(() => {
-          console.log('updated inventory');
-        });
+        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
     });
   }
@@ -88,6 +84,16 @@ export class InventoryComponent {
         return '#FFF'
         break;
     }
+  }
+
+  private sortInventory() {
+    this.inventoryData.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
   }
 
 }
