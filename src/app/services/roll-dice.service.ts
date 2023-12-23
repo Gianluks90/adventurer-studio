@@ -8,6 +8,9 @@ import { ThreeDDiceRollEvent } from 'dddice-js';
 })
 export class RollDiceService {
 
+  // public diceTheme: string = "dddice-black";
+  public diceTheme: string = "dungeonscompanion2023-enemy-lp882vo8";
+
   constructor(private dddice: DddiceService, private notification: NotificationService) { }
 
   // public async rollDice(dices: string[]): Promise<any> {
@@ -36,7 +39,7 @@ export class RollDiceService {
       DDDICE.roll(
         dices.map((dice) => {
           return {
-            theme: "dddice-red",
+            theme: this.diceTheme != '' ? this.diceTheme : 'dddice-black',
             type: dice,
           }
         })
@@ -55,7 +58,7 @@ export class RollDiceService {
     if (DDDICE) {
       DDDICE.roll(
         [{
-          theme: "dddice-red",
+          theme: this.diceTheme != '' ? this.diceTheme : 'dddice-black',
           type: dice,
         }]
       ).then((result) => {
@@ -73,11 +76,11 @@ export class RollDiceService {
     if (DDDICE) {
       DDDICE.roll(
         [{
-          theme: "dddice-red",
+          theme: this.diceTheme != '' ? this.diceTheme : 'dddice-black',
           type: "d20", 
         },
         {
-          theme: "dddice-red",
+          theme: this.diceTheme != '' ? this.diceTheme : 'dddice-black',
           type: "d20", 
         }
       ]).then((result) => {
