@@ -78,8 +78,14 @@
 </div>
 
 <div class="sidenav-buttons" id="menu-button">
-    <app-dice></app-dice>
+    <!-- <app-dice></app-dice> -->
     <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
         <mat-icon>menu</mat-icon>
+    </button>
+</div>
+
+<div class="dice-buttons" id="dice-button">
+    <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi" matTooltipPosition="right">
+        <img src="./assets/dice/dice-d20.svg" alt="">
     </button>
 </div>

@@ -98,6 +98,15 @@
     gap: 8px;
 }
 
+.dice-buttons {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .step-button {
     background-color: #212121;
     color: white;

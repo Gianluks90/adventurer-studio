@@ -1,3 +1,10 @@
+.main-dice-selector-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px 0;
+}
+
 .step-button {
     background-color: #212121;
     color: white;
@@ -5,59 +12,48 @@
     padding: 8px;
     font-weight: bold;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    flex-grow: 1;
 }
 
-.dice-button {
-    background-color: white;
-    color: #212121;
-    border-radius: 8px;
-    padding: 8px;
-    font-weight: bold;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-    border: none;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+.close-dice-selector-button{
+    align-self: flex-end;
 }
 
-.dice-button img {
-    height: auto;
-    width: 24px;
-}
-
-.dadi-container {
+.dice-container{
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: 8px;
+    justify-content: space-around;
 }
 
-.dadi-container button {
-    position: relative;
+.selection-displayer {
+    min-height: 20px;
+    font-size: 16px;
+    font-style: italic;
+    color: black;
+    opacity: 0.5;
 }
 
-.badge {
-    position: absolute;
-    height: 16px;
-    width: 16px;
-    background-color: #212121;
-    top: 2px;
-    border-radius: 100%;
-    font-size: 8px;
-    color: white;
-    line-height: 1.8;
+.modifier-container, .action-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
 }
 
-.displayer-valore {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
+::ng-deep .modifier-container button{
+    line-height: 0 !important;
 }
 
-#dddice {
-    height: auto!important;
-    width: 100% !important;
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100000000000;
+.modifier-container img {
+    height: 20px;
+    width: 20px;
+}
+
+.modifier {
+    display: flex;
+    gap: 8px;
+}
+
+.modifier>button{
+    flex-grow: 1;
 }

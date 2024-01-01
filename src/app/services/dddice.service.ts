@@ -23,7 +23,7 @@ export class DddiceService {
   
   constructor(private firebaseService: FirebaseService, private notification: NotificationService) {
     this.firebaseService.user.subscribe(user => {
-      if(user && user.dddiceToken !== ""){
+      if (user && user.dddiceToken !== ""){
         this.dddiceInit(user.dddiceToken).then((dddice) => {
           this.authenticated.next(true);
           if (user.privateSlug) {
@@ -33,8 +33,6 @@ export class DddiceService {
       }
     });
   }
-
-  // ngOnInit() {}
 
   public async dddiceInit(token: string): Promise<ThreeDDice> {
     const canvas = document.getElementById("dddice") as HTMLCanvasElement;

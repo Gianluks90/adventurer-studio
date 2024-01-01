@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
 import { MenuService } from 'src/app/services/menu.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { DiceComponent } from '../utilities/dice/dice.component';
 
 @Component({
   selector: 'app-character-view',
@@ -22,7 +24,8 @@ export class CharacterViewComponent {
     // private menuService: MenuService,
     private characterService: CharacterService,
     private sidenavService: SidenavService,
-    private formService: FormService) { }
+    private formService: FormService,
+    private diceSelector: MatBottomSheet) { }
 
   ngOnInit(): void {
     const characterId = window.location.href.split('/').pop();
@@ -58,6 +61,10 @@ export class CharacterViewComponent {
 
   public openSidenav() {
     this.sidenavService.toggle();
+  }
+  
+  public openDiceSelector() {
+    this.diceSelector.open(DiceComponent);
   }
 
   onPictureEmitted(event: any) {

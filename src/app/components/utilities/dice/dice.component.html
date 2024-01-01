@@ -1,1 +1,45 @@
+<div class="main-dice-selector-container">
 
+   
+
+    <div class="selection-displayer">
+        <span>{{selectedDiceResult}}{{modifier}}</span>
+    </div>
+
+    <div class="dice-container">
+        <div *ngFor="let dice of diceInformationList">
+            <button mat-icon-button [matTooltip]="dice.value" matTooltipPosition="below" (click)="addDiceToRoll(dice.value)">
+                <img [src]="dice.icon" alt="">
+            </button>
+        </div>
+    </div>
+
+    
+
+
+    <div class="modifier-container">
+        <div *ngFor="let positiveModifier of modifierInformationList.positive">
+            <button *ngIf="!positiveModifier.icon" class="step-button" mat-flat-button [matTooltip]="positiveModifier.value" matTooltipPosition="below" (click)="addModifier(positiveModifier.value)">
+                <span>{{positiveModifier.name}}</span>
+            </button>
+            <button *ngIf="positiveModifier.icon" class="step-button" mat-flat-button [matTooltip]="positiveModifier.value" matTooltipPosition="below" (click)="addModifier(positiveModifier.value)">
+                <img *ngIf="positiveModifier.icon" [src]="positiveModifier.icon" alt="">
+            </button>
+        </div>
+        <div *ngFor="let negativeModifier of modifierInformationList.negative">
+            <button class="step-button" mat-flat-button [matTooltip]="negativeModifier.value" matTooltipPosition="below" (click)="addModifier(negativeModifier.value)">
+                {{negativeModifier.name}}
+            </button>
+        </div>
+    </div>
+
+    <div class="action-container">
+        <button class="step-button" mat-flat-button (click)="closeDiceSheet($event)">
+            <mat-icon>close</mat-icon>
+        </button>
+        <button class="step-button" mat-flat-button (click)="rollDice($event)" [disabled]="selectedDiceResult.length <= 0">roll</button>
+    </div>
+    
+    
+    
+</div>
