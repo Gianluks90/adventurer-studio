@@ -22,7 +22,7 @@
 .dice-container{
     display: flex;
     gap: 8px;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .selection-displayer {
@@ -45,8 +45,8 @@
 }
 
 .modifier-container img {
-    height: 20px;
-    width: 20px;
+    // height: 20px;
+    width: 40px;
 }
 
 .modifier {
@@ -56,4 +56,14 @@
 
 .modifier>button{
     flex-grow: 1;
+}
+
+.dice-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.dice-icon {
+    width: 40px;
 }

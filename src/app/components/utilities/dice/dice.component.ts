@@ -41,53 +41,54 @@ export class DiceComponent {
       value: "d20",
     }
   ];
-  public modifierInformationList: any = 
+  public modifierInformationList: any =
     {
       positive: [
-       {
-        name: "adv",
-        value: "adv",
-        icon: "./assets/dice/dice-d20-adv-black.svg"
-       },
-       {
-        name: "+5",
-        value: 5
-       },
-       {
-        name: "+3",
-        value: 3
-       },
-       {
-        name: "+1",
-        value: 1
-       }
+        {
+          name: "adv",
+          value: "adv",
+          icon: "./assets/dice/dice-d20-adv-black.svg"
+        },
+        {
+          name: "+5",
+          value: 5
+        },
+        {
+          name: "+3",
+          value: 3
+        },
+        {
+          name: "+1",
+          value: 1
+        }
       ],
       negative: [
         {
           name: "-1",
           value: -1
-         },
-         {
+        },
+        {
           name: "-3",
           value: -3
-         },
-         {
+        },
+        {
           name: "-5",
           value: -5
-         },
-         {
+        },
+        {
           name: "dis",
           value: "dis"
-         },
+        },
       ]
     };
   private diceSelectedList: string[] = [];
   public selectedDiceResult: string = "";
-  public modifier: string = "";
+  public modifier: string = "Seleziona i dadi che vuoi lanciare poi premi il tasto TIRA per lanciarli.";
   private modTotal: number = 0;
 
 
   public addDiceToRoll(diceValue: string,) {
+    this.modifier = "";
     this.diceSelectedList.push(diceValue);
     this.selectedDiceResult = "";
     this.countDice();
@@ -100,25 +101,25 @@ export class DiceComponent {
       );
     }, {});
     for (const key in count) {
-      if(this.selectedDiceResult.length > 0){
+      if (this.selectedDiceResult.length > 0) {
         this.selectedDiceResult += " + "
       }
       this.selectedDiceResult += count[key] + key;
     }
   }
 
-  public addModifier(modValue: number){
+  public addModifier(modValue: number) {
     this.modifier = "";
     this.modTotal += modValue;
-    this.modifier += (this.modTotal < 0 ? " - " : " + " ) + Math.abs(this.modTotal);
+    this.modifier += (this.modTotal < 0 ? " - " : " + ") + Math.abs(this.modTotal);
   }
 
-  public rollDice(event: any){
+  public rollDice(event: any) {
     this.closeDiceSheet(event)
     this.dddiceRollService.rollDice(this.diceSelectedList, this.modTotal);
   }
 
-  public closeDiceSheet(event: any){
+  public closeDiceSheet(event: any) {
     this._diceSelector.dismiss();
     event.preventDefault();
   }
