@@ -34,7 +34,7 @@ export class TrucchettiIncantesimiComponent {
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
-        this.form = form as FormGroup;
+        this.form = form.get('magia') as FormGroup;
         this.trucchettiIncantesimi = this.form.controls['trucchettiIncantesimi'] as FormArray;
         this.slotIncantesimi = this.form.controls['slotIncantesimi'] as FormArray;
         this.patchSlotArrayForm();
@@ -130,8 +130,7 @@ export class TrucchettiIncantesimiComponent {
       Object.keys(slotIncantesimi.controls).forEach((key) => {
         this.slotIncantesimi.push(slotIncantesimi.controls[key]);
       });
-      
-      this.toggleSlot();      
+      this.toggleSlot();
     }
   }
 }

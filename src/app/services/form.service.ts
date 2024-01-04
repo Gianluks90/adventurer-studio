@@ -47,7 +47,7 @@ export class FormService {
   }
 
   public async saveDraft(charId: string, form: FormGroup): Promise<void> {
-    console.log('Form', form);
+    console.log('Form',form);
     const docRef = doc(this.firebaseService.database, 'characters', charId);
     return await setDoc(docRef, {
       ...form.value,
@@ -129,7 +129,7 @@ export class FormService {
           this.nestedPatchValue(control, character[key]);
         } else if (control instanceof FormArray) {
           character[key].forEach((m: any) => {
-            
+
             const group = this.createFormGroup(m);
             control.push(group);
 

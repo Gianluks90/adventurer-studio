@@ -23,6 +23,7 @@ export class FormLevelUpModel {
       bonusAttaccoIncantesimi: 0,
       slotIncantesimi: builder.array([]),
       incantesimiPreparabili: 0,
+      magia: FormLevelUpModel.magia(builder),
       status: {
         statusCode: null,
         author: '',
@@ -116,6 +117,18 @@ export class FormLevelUpModel {
       armature: [],
       strumenti: [],
       altro: []
+    })
+  }
+
+  static magia(builder: FormBuilder){
+    return builder.group({
+      trucchettiIncantesimi: builder.array([]),
+      classeIncantatore: '',
+      caratteristicaIncantatore: '',
+      CDTiroSalvezza: 0,
+      bonusAttaccoIncantesimi: 0,
+      slotIncantesimi: builder.array([]),
+      incantesimiPreparabili: 0,
     })
   }
 }

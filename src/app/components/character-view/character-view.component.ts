@@ -46,14 +46,14 @@ export class CharacterViewComponent {
       };
 
       this.trucchettiIncantesimi = {
-        lista: this.character.trucchettiIncantesimi,
-        classeIncantatore: this.character.classeIncantatore,
-        caratteristicaIncantatore: this.character.caratteristicaIncantatore,
-        bonusAttaccoIncantesimi: this.character.bonusAttaccoIncantesimi,
-        CD: this.character.CDTiroSalvezza,
-        slotIncantesimi: this.character.slotIncantesimi
+        lista: this.character.magia.trucchettiIncantesimi,
+        classeIncantatore: this.character.magia.classeIncantatore,
+        caratteristicaIncantatore: this.character.magia.caratteristicaIncantatore,
+        bonusAttaccoIncantesimi: this.character.magia.bonusAttaccoIncantesimi,
+        CD: this.character.magia.CDTiroSalvezza,
+        slotIncantesimi: this.character.magia.slotIncantesimi
       }
-      
+
       this.formService.initForm(characterId!); // Un po raffazzonato, va sistemato usando solo il formSubject
     });
 
@@ -62,7 +62,7 @@ export class CharacterViewComponent {
   public openSidenav() {
     this.sidenavService.toggle();
   }
-  
+
   public openDiceSelector() {
     this.diceSelector.open(DiceComponent);
   }

@@ -34,7 +34,7 @@ export class TrucchettiIncantesimiLevelUpComponent {
   ngOnInit(): void {
     this.formService.formLevelUpSubject.subscribe((form: any) => {
       if (form) {
-        this.form = form as FormGroup;
+        this.form = form.get('magia') as FormGroup;
         this.trucchettiIncantesimi = this.form.controls['trucchettiIncantesimi'] as FormArray;
         this.slotIncantesimi = this.form.controls['slotIncantesimi'] as FormArray;
         this.patchSlotArrayForm();
@@ -139,8 +139,7 @@ export class TrucchettiIncantesimiLevelUpComponent {
       Object.keys(slotIncantesimi.controls).forEach((key) => {
         this.slotIncantesimi.push(slotIncantesimi.controls[key]);
       });
-      
-      this.toggleSlot();      
+      this.toggleSlot();
     }
   }
 }

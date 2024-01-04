@@ -27,14 +27,7 @@ export class FormModel {
       alleatiOrganizzazioni: '',
       trattiPrivilegiAggiuntivi: '',
       tesoro: '',
-      trucchettiIncantesimi: builder.array([]),
-      classeIncantatore: '',
-      classeIncantatorePersonalizzata: '',
-      caratteristicaIncantatore: '',
-      CDTiroSalvezza: 0,
-      bonusAttaccoIncantesimi: 0,
-      slotIncantesimi: builder.array([]),
-      incantesimiPreparabili: 0,
+      magia: FormModel.magia(builder),
       status: {
         statusCode: null,
         author: '',
@@ -176,6 +169,19 @@ export class FormModel {
       occhi: '',
       carnagione: '',
       capelli: '',
+    })
+  }
+
+  static magia(builder: FormBuilder){
+    return builder.group({
+      trucchettiIncantesimi: builder.array([]),
+      classeIncantatore: '',
+      classeIncantatorePersonalizzata: '',
+      caratteristicaIncantatore: '',
+      CDTiroSalvezza: 0,
+      bonusAttaccoIncantesimi: 0,
+      slotIncantesimi: builder.array([]),
+      incantesimiPreparabili: 0,
     })
   }
 }
