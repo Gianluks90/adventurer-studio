@@ -59,6 +59,15 @@ export class CharacterViewStatusComponent {
     // this.initDadiVita();
     this.dadiVitaData = character.parametriVitali.dadiVita;
     this.risorseAggiuntiveData = character.informazioniBase.risorseAggiuntive;
+    this.risorseAggiuntiveData.push({
+      color: 'yellow',
+      nome: 'Ispirazione',
+      used: [character.ispirazione],
+      valoreAttuale: 1,
+      valoreMassimo: 1,
+    })
+    console.log('risorseAggiuntiveData', this.risorseAggiuntiveData);
+    
   }
 
   ngOnInit(): void {

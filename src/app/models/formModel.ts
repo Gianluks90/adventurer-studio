@@ -28,6 +28,7 @@ export class FormModel {
       trattiPrivilegiAggiuntivi: '',
       tesoro: '',
       magia: FormModel.magia(builder),
+      ispirazione: [true, Validators.required],
       status: {
         statusCode: null,
         author: '',
