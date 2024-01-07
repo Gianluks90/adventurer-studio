@@ -13,26 +13,6 @@ export class RollDiceService {
 
   constructor(private dddice: DddiceService, private notification: NotificationService) { }
 
-  // public async rollDice(dices: string[]): Promise<any> {
-  //   const DDDICE = this.dddice.dddice;
-  //   if (DDDICE) {
-  //     DDDICE.roll(
-  //       dices.map((dice) => {
-  //         return {
-  //           theme: "dddice-red",
-  //           type: dice,
-  //         }
-  //       })
-  //     ).then((result) => {
-  //       // this.notification.dismissSnackBar();
-  //       DDDICE.on(ThreeDDiceRollEvent.RollFinished, () => {
-  //         const message = (result.data.values.map((value: any) => value.value).join(", ")) + (result.data.values.length > 1 ? " = " + result.data.total_value : "");
-  //         this.notification.openSnackBar("Ottenuto: " + message, "casino");
-  //       });
-  //     });
-  //   }
-  // }
-
   public async rollDice(dices: string[], modifier?: number): Promise<any> {
     const DDDICE = this.dddice.dddice;
     if (DDDICE) {
@@ -47,7 +27,7 @@ export class RollDiceService {
         // this.notification.dismissSnackBar();
         DDDICE.on(ThreeDDiceRollEvent.RollFinished, () => {
           const message = (result.data.values.map((value: any) => (modifier) ? value.value + modifier : value.value).join(", ")) + (result.data.values.length > 1 ? " = " + result.data.total_value : "");
-          this.notification.openSnackBar("Ottenuto: " + message, "casino");
+          this.notification.openDiceSnackBar("Ottenuto: " + message, "casino");
         });
       });
     }
@@ -64,8 +44,8 @@ export class RollDiceService {
       ).then((result) => {
         // this.notification.dismissSnackBar();
         DDDICE.on(ThreeDDiceRollEvent.RollFinished, () => {
-          const message = (result.data.values.map((value: any) => (modifier && modifier > 0) ? value.value + modifier : value.value).join(", ")) + (result.data.values.length > 1 ? " = " + result.data.total_value : "");
-          this.notification.openSnackBar("Ottenuto: " + message, "casino");
+          const message = (Number(result.data.total_value) + modifier);
+          this.notification.openDiceSnackBar("Ottenuto: " + message, "casino");
         });
       });
     }
@@ -84,10 +64,19 @@ export class RollDiceService {
           type: "d20", 
         }
       ]).then((result) => {
-        if (mode === "advantage") {
-          
+        let rollResult = 0;
+        if (mode === "adv") {
+          result.data.values.map(value => {
+            rollResult = value.value;
+            value.value > rollResult ? rollResult = value.value : rollResult = rollResult
+          });
+          this.notification.openSnackBar("Ottenuto: " + rollResult, "casino");
         } else {
-
+          result.data.values.map(value => {
+            rollResult = value.value;
+            value.value < rollResult ? rollResult = value.value : rollResult = rollResult
+          });
+          this.notification.openSnackBar("Ottenuto: " + rollResult, "casino");
         }
       });
     }

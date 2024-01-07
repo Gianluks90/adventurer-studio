@@ -47,7 +47,7 @@ export class DiceComponent {
         {
           name: "adv",
           value: "adv",
-          icon: "./assets/dice/dice-d20-adv-black.svg"
+          icon: "./assets/dice/adv.png"
         },
         {
           name: "+5",
@@ -77,19 +77,25 @@ export class DiceComponent {
         },
         {
           name: "dis",
-          value: "dis"
+          value: "dis",
+          icon: "./assets/dice/dis.png"
         },
       ]
     };
-  private diceSelectedList: string[] = [];
+  public diceSelectedList: string[] = [];
   public selectedDiceResult: string = "";
-  public modifier: string = "Seleziona i dadi che vuoi lanciare poi premi il tasto TIRA per lanciarli.";
+  public modifier: string = "";
   private modTotal: number = 0;
+  public typeOfLaunch: string = "";
+  public activeRoll: boolean = false;
 
 
   public addDiceToRoll(diceValue: string,) {
-    this.modifier = "";
-    this.diceSelectedList.push(diceValue);
+    this.activeRoll = false;
+    if (this.diceSelectedList.length < 20) {
+      this.diceSelectedList.push(diceValue);
+      console.log(this.diceSelectedList)
+    }
     this.selectedDiceResult = "";
     this.countDice();
   }
@@ -105,18 +111,28 @@ export class DiceComponent {
         this.selectedDiceResult += " + "
       }
       this.selectedDiceResult += count[key] + key;
+      this.activeRoll = true;
     }
   }
 
-  public addModifier(modValue: number) {
-    this.modifier = "";
-    this.modTotal += modValue;
-    this.modifier += (this.modTotal < 0 ? " - " : " + ") + Math.abs(this.modTotal);
+  public addModifier(modValue: number | string) {
+    if (modValue == "adv" || modValue == "dis") {
+      this.typeOfLaunch = modValue;
+      this.activeRoll = true
+    } else if (typeof modValue == "number") {
+      this.modifier = "";
+      this.modTotal += modValue;
+      this.modifier += (this.modTotal < 0 ? " - " : " + ") + Math.abs(this.modTotal);
+    }
   }
 
   public rollDice(event: any) {
-    this.closeDiceSheet(event)
-    this.dddiceRollService.rollDice(this.diceSelectedList, this.modTotal);
+    this.closeDiceSheet(event);
+    if (this.typeOfLaunch) {
+      this.dddiceRollService.rollAdvantageDisadvantage(this.typeOfLaunch, this.modTotal);
+    } else {
+      this.dddiceRollService.rollDice(this.diceSelectedList, this.modTotal);
+    }
   }
 
   public closeDiceSheet(event: any) {

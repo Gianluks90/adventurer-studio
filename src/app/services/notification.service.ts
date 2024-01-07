@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../components/utilities/snackbar/snackbar.component';
+import { SnackbarDiceComponent } from '../components/utilities/dice/snackbar-dice/snackbar-dice.component';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,18 @@ export class NotificationService {
     config.duration = duration || 3000;
     config.data = { message: message, icon: icon, color: color};
     this._snackBar.openFromComponent(SnackbarComponent, {
+      data: { message },
+      ...config,
+
+    });
+  }
+
+  public openDiceSnackBar(message: string, icon: string, duration?: number, color?:string) {
+    const config = new MatSnackBarConfig();
+    config.panelClass = ['custom-snackbar'];
+    config.duration = duration || 3000;
+    config.data = { message: message, icon: icon, color: color};
+    this._snackBar.openFromComponent(SnackbarDiceComponent, {
       data: { message },
       ...config,
 

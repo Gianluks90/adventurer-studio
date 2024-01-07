@@ -1,12 +1,14 @@
 <div class="main-dice-selector-container">
 
     <div class="selection-displayer">
+        <p *ngIf="selectedDiceResult.length === 0">Seleziona i dadi che vuoi lanciare poi premi il tasto TIRA per lanciarli.</p>
+        <p *ngIf="diceSelectedList.length === 20">Hai raggiunto il limite massimo di dadi selezionabili.</p>
         <span>{{selectedDiceResult}}{{modifier}}</span>
     </div>
 
     <div class="dice-container">
         <div *ngFor="let dice of diceInformationList">
-            <button class="dice-button" (click)="addDiceToRoll(dice.value)">
+            <button class="dice-button" (click)="addDiceToRoll(dice.value)" [disabled]="typeOfLaunch">
                 <img class="dice-icon" [src]="dice.icon" alt="">
             </button>
         </div>
@@ -14,16 +16,19 @@
 
     <div class="modifier-container">
         <div *ngFor="let positiveModifier of modifierInformationList.positive">
-            <button *ngIf="!positiveModifier.icon" class="step-button" mat-flat-button (click)="addModifier(positiveModifier.value)">
+            <button class="step-button" *ngIf="!positiveModifier.icon" mat-flat-button (click)="addModifier(positiveModifier.value)">
                 <span>{{positiveModifier.name}}</span>
             </button>
-            <button *ngIf="positiveModifier.icon" class="step-button" mat-flat-button (click)="addModifier(positiveModifier.value)">
-                <img *ngIf="positiveModifier.icon" [src]="positiveModifier.icon" alt="">
+            <button class="step-button" *ngIf="positiveModifier.icon" mat-flat-button (click)="addModifier(positiveModifier.value)" [disabled]="selectedDiceResult.length > 0">
+                <img [src]="positiveModifier.icon" alt="">
             </button>
         </div>
         <div *ngFor="let negativeModifier of modifierInformationList.negative">
-            <button class="step-button" mat-flat-button (click)="addModifier(negativeModifier.value)">
-                {{negativeModifier.name}}
+            <button class="step-button" *ngIf="!negativeModifier.icon" mat-flat-button (click)="addModifier(negativeModifier.value)">
+                <span>{{negativeModifier.name}}</span>
+            </button>
+            <button *ngIf="negativeModifier.icon" class="step-button" mat-flat-button (click)="addModifier(negativeModifier.value)" [disabled]="selectedDiceResult.length > 0">
+                <img [src]="negativeModifier.icon" alt="">
             </button>
         </div>
     </div>
@@ -32,7 +37,7 @@
         <button class="step-button" mat-flat-button (click)="closeDiceSheet($event)">
             <mat-icon>refresh</mat-icon> RESET
         </button>
-        <button class="step-button" mat-flat-button (click)="rollDice($event)" [disabled]="selectedDiceResult.length <= 0">
+        <button class="step-button" mat-flat-button (click)="rollDice($event)" [disabled]="!activeRoll">
             <mat-icon>casino</mat-icon> TIRA
         </button>
     </div>

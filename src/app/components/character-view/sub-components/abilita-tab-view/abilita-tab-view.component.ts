@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { RollDiceService } from 'src/app/services/roll-dice.service';
 
 @Component({
   selector: 'app-abilita-tab-view',
@@ -6,6 +7,10 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./abilita-tab-view.component.scss']
 })
 export class AbilitaTabViewComponent {
+
+  constructor(
+    private rollService: RollDiceService
+  ){}
 
   public abilitaData: any[] = [];
   public maestrieData: any[] = [];
@@ -104,7 +109,11 @@ export class AbilitaTabViewComponent {
       }
 
       abilita.maestria ? abilita.mod += bonusCompetenza : +0;
-      abilita.mod > 0 ? abilita.mod = '+ ' + abilita.mod : abilita.mod = abilita.mod + '';
+      abilita.mod > 0 ? abilita.mod = '+' + abilita.mod : abilita.mod = abilita.mod + '';
     });
+  }
+
+  public rollSpecificDice(modifier?: string): void {
+    this.rollService.rollSpecificDice('d20', Number(modifier));
   }
 }

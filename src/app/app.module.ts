@@ -55,6 +55,7 @@ import { HealthBarComponent } from './components/utilities/health-bar/health-bar
 import { MoneyComponent } from "./components/utilities/money/money.component";
 import { DiceComponent } from "./components/utilities/dice/dice.component";
 import { ItemInfoSheetComponent } from './components/utilities/inventory/item-info-sheet/item-info-sheet.component';
+import { SnackbarDiceComponent } from './components/utilities/dice/snackbar-dice/snackbar-dice.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +123,7 @@ import { ItemInfoSheetComponent } from './components/utilities/inventory/item-in
      TrucchettiIncantesimiTabViewComponent,
      SettingsTabViewComponent,
      ItemInfoSheetComponent,
+     SnackbarDiceComponent,
 
   ],
   imports: [

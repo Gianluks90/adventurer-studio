@@ -7,6 +7,7 @@ import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { CharacterService } from 'src/app/services/character.service';
 import { Item } from 'src/app/models/item';
+import { RollDiceService } from 'src/app/services/roll-dice.service';
 
 @Component({
   selector: 'app-character-view-status',
@@ -48,7 +49,8 @@ export class CharacterViewStatusComponent {
     private platform: Platform,
     private formService: FormService,
     private notification: NotificationService,
-    private charService: CharacterService) { }
+    private charService: CharacterService,
+    private rollService: RollDiceService) { }
 
   @Input() set character(character: any) {
     this.characterData = character;
@@ -79,12 +81,12 @@ export class CharacterViewStatusComponent {
   }
 
   public initCaratteristiche(): void {
-    this.modForza = Math.floor((this.characterData.caratteristiche.forza - 10) / 2) > 0 ? '+ ' + Math.floor((this.characterData.caratteristiche.forza - 10) / 2) : Math.floor((this.characterData.caratteristiche.forza - 10) / 2) + '';
-    this.modDestrezza = Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) > 0 ? '+ ' + Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) : Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) + '';
-    this.modCostituzione = Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) > 0 ? '+ ' + Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) : Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) + '';
-    this.modIntelligenza = Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) > 0 ? '+ ' + Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) : Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) + '';
-    this.modSaggezza = Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) > 0 ? '+ ' + Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) : Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) + '';
-    this.modCarisma = Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) > 0 ? '+ ' + Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) : Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) + '';
+    this.modForza = Math.floor((this.characterData.caratteristiche.forza - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.forza - 10) / 2) : Math.floor((this.characterData.caratteristiche.forza - 10) / 2) + '';
+    this.modDestrezza = Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) : Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) + '';
+    this.modCostituzione = Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) : Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) + '';
+    this.modIntelligenza = Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) : Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) + '';
+    this.modSaggezza = Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) : Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) + '';
+    this.modCarisma = Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) : Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) + '';
   }
 
   public initTiriSalvezza(): void {
@@ -92,27 +94,27 @@ export class CharacterViewStatusComponent {
 
     const forza = Math.floor((this.characterData.caratteristiche.forza - 10) / 2);
     this.TSForza = this.characterData.tiriSalvezza.forza ? (forza + bonusCompetenza) : forza;
-    this.TSForza = parseInt(this.TSForza) > 0 ? '+ ' + this.TSForza : this.TSForza;
+    this.TSForza = parseInt(this.TSForza) > 0 ? '+' + this.TSForza : this.TSForza;
 
     const destrezza = Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2);
     this.TSDestrezza = this.characterData.tiriSalvezza.destrezza ? (destrezza + bonusCompetenza) : destrezza;
-    this.TSDestrezza = parseInt(this.TSDestrezza) > 0 ? '+ ' + this.TSDestrezza : this.TSDestrezza;
+    this.TSDestrezza = parseInt(this.TSDestrezza) > 0 ? '+' + this.TSDestrezza : this.TSDestrezza;
 
     const costituzione = Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2);
     this.TSCostituzione = this.characterData.tiriSalvezza.costituzione ? (costituzione + bonusCompetenza) : costituzione;
-    this.TSCostituzione = parseInt(this.TSCostituzione) > 0 ? '+ ' + this.TSCostituzione : this.TSCostituzione;
+    this.TSCostituzione = parseInt(this.TSCostituzione) > 0 ? '+' + this.TSCostituzione : this.TSCostituzione;
 
     const intelligenza = Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2);
     this.TSIntelligenza = this.characterData.tiriSalvezza.intelligenza ? (intelligenza + bonusCompetenza) : intelligenza;
-    this.TSIntelligenza = parseInt(this.TSIntelligenza) > 0 ? '+ ' + this.TSIntelligenza : this.TSIntelligenza;
+    this.TSIntelligenza = parseInt(this.TSIntelligenza) > 0 ? '+' + this.TSIntelligenza : this.TSIntelligenza;
 
     const saggezza = Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2);
     this.TSSaggezza = this.characterData.tiriSalvezza.saggezza ? (saggezza + bonusCompetenza) : saggezza;
-    this.TSSaggezza = parseInt(this.TSSaggezza) > 0 ? '+ ' + this.TSSaggezza : this.TSSaggezza;
+    this.TSSaggezza = parseInt(this.TSSaggezza) > 0 ? '+' + this.TSSaggezza : this.TSSaggezza;
 
     const carisma = Math.floor((this.characterData.caratteristiche.carisma - 10) / 2);
     this.TSCarisma = this.characterData.tiriSalvezza.carisma ? (carisma + bonusCompetenza) : carisma;
-    this.TSCarisma = parseInt(this.TSCarisma) > 0 ? '+ ' + this.TSCarisma : this.TSCarisma;
+    this.TSCarisma = parseInt(this.TSCarisma) > 0 ? '+' + this.TSCarisma : this.TSCarisma;
   }
 
   public initCA(): void {
@@ -221,4 +223,9 @@ export class CharacterViewStatusComponent {
       }
     }
   }
+
+    public rollSpecificDice(modifier?: string): void {
+      this.rollService.rollSpecificDice('d20', Number(modifier));
+    }
+  
 }
