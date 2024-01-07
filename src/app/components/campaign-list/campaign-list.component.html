@@ -1,0 +1,46 @@
+<div class="main-container">
+  <div class="card-container" *ngIf="campaigns.length > 0">
+    <div class="card-details" *ngFor="let c of campaigns">
+      <div class="card-header">
+        <!-- <img class="immagine-personaggio" *ngIf="c.imgUrl != ''" referrerpolicy="no-referrer" [src]="c.imgUrl">
+        <img class="immagine-personaggio" *ngIf="c.imgUrl == ''" src="./assets/images/hero-placeholder.png"> -->
+        <div class="side-container">
+          <div class="character-name">
+            {{c.title}}
+          </div>
+          <div class="card-body">
+            <div class="button-container">
+              <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/'" disabled>
+                <mat-icon>visibility</mat-icon>
+                Visualizza
+              </button>
+              <div class="second-buttons">
+                <button mat-raised-button color="accent" (click)="deleteCampaigns(c.id)">
+                  <mat-icon>delete</mat-icon>
+                  Elimina
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="empty-card-container" *ngIf="campaigns.length == 0">
+    <div class="empty-message">Qui puoi creare le tue Campagne, premi il tasto qui sotto per iniziare.</div>
+    <button class="empty-char-button" mat-raised-button color="accent" (click)="createCampaigns()">Nuova campagna</button>
+  </div>
+  <div class="sidenav-buttons" id="menu-button">
+    <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="add-buttons" id="add-button">
+    <button class="step-button" (click)="createCampaigns()" mat-icon-button matTooltip="Nuova Campagna"
+      matTooltipPosition="left" [disabled]="campaigns.length >= 3">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+

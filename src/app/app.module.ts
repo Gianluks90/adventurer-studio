@@ -55,7 +55,10 @@ import { HealthBarComponent } from './components/utilities/health-bar/health-bar
 import { MoneyComponent } from "./components/utilities/money/money.component";
 import { DiceComponent } from "./components/utilities/dice/dice.component";
 import { ItemInfoSheetComponent } from './components/utilities/inventory/item-info-sheet/item-info-sheet.component';
-import { SnackbarDiceComponent } from './components/utilities/dice/snackbar-dice/snackbar-dice.component';
+import { CampaignListComponent } from './components/campaign-list/campaign-list.component';
+import { AddCampaignDialogComponent } from './components/campaign-list/add-campaign-dialog/add-campaign-dialog.component';
+import { DeleteCampaignDialogComponent } from './components/campaign-list/delete-campaign-dialog/delete-campaign-dialog.component';
+import { SnackbarDiceComponent } from "./components/utilities/dice/snackbar-dice/snackbar-dice.component";
 
 @NgModule({
   declarations: [
@@ -124,6 +127,9 @@ import { SnackbarDiceComponent } from './components/utilities/dice/snackbar-dice
      SettingsTabViewComponent,
      ItemInfoSheetComponent,
      SnackbarDiceComponent,
+     CampaignListComponent,
+     AddCampaignDialogComponent,
+     DeleteCampaignDialogComponent,
 
   ],
   imports: [

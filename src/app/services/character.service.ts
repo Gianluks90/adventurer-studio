@@ -129,6 +129,14 @@ export class CharacterService {
     }, { merge: true });
   }
 
+  public async updateCharacterStatus(id: string): Promise<any> {
+    const ref = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(ref, {
+      status: {
+        statusCode: 1
+      }
+    }, { merge: true })
+  }
 
   public async addItemInventory(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);

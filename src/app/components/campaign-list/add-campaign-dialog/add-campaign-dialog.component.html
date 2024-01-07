@@ -1,0 +1,17 @@
+<div mat-dialog-title class="dialog-title">Creazione nuova campagna</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="campForm">
+  <div class="description">Inserisci un Titolo e una Password poi Conferma per creare una campagna</div>
+  <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+    <mat-label>Titolo campagna</mat-label>
+    <input matInput formControlName="title">
+  </mat-form-field>
+
+  <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+    <mat-label>Password campagna</mat-label>
+    <input matInput formControlName="password">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button mat-dialog-close>Annulla</button>
+  <button mat-raised-button color="accent" [disabled]="!campForm.valid" (click)="confirm()">Conferma</button>
+</div>

@@ -1,36 +1,39 @@
 <div mat-dialog-title class="dialog-title">Impostazioni</div>
 <div mat-dialog-content class="dialog-content">
-    <div class="subtitle">Autenticazione dddice.com</div>
-    <div class="description">Qui puoi autenticarti al servizio per lanciare dadi virtuali in tutta l'app. È
-        consigliabile essere autenticati <a href="https://dddice.com" target="_blank">qui</a> prima di iniziare la
-        procedura di collegamento (evitando di esaurire il tempo limite a disposizione).</div>
+  <div class="subtitle">Autenticazione dddice.com</div>
+  <div class="description">Qui puoi autenticarti al servizio per lanciare dadi virtuali in tutta l'app. È
+    consigliabile essere autenticati <a href="https://dddice.com" target="_blank">qui</a> prima di iniziare la
+    procedura di collegamento (evitando di esaurire il tempo limite a disposizione).</div>
 
-    <div class="authentication-container">
-        <button mat-raised-button color="accent" (click)="getActivationCode()"
-            *ngIf="firebaseService.user.value.dddiceToken === '' && activationCode === '' && !dddice.authenticated.value">
-            <mat-icon>vpn_key</mat-icon> Ottieni codice
+  <div class="authentication-container">
+    <button mat-raised-button color="accent" (click)="getActivationCode()"
+      *ngIf="firebaseService.user.value.dddiceToken === '' && activationCode === '' && !dddice.authenticated.value">
+      <mat-icon>vpn_key</mat-icon> Ottieni codice
+    </button>
+    <div class="inner-container" *ngIf="activationCode !== ''">
+      <div class="auth-code">{{activationCode}}</div>
+      <a href="https://dddice.com/activate" target="_blank">
+        <button mat-raised-button color="accent">
+          <mat-icon>open_in_new</mat-icon> Inserisci codice
         </button>
-        <div class="inner-container" *ngIf="activationCode !== ''">
-            <div class="auth-code">{{activationCode}}</div>
-            <a href="https://dddice.com/activate" target="_blank">
-                <button mat-raised-button color="accent">
-                    <mat-icon>open_in_new</mat-icon> Inserisci codice
-                </button>
-            </a>
-            <span class="spinner-span" *ngIf="activationCode && !dddice.authenticated.value">
-                <mat-spinner color="accent"></mat-spinner>
-                In attesa...
-            </span>
-        </div>
-        <span class="spinner-span" *ngIf="dddice.authenticated.value">
-            <mat-icon>check</mat-icon> Autenticazione eseguita!
-        </span>
+      </a>
+      <span class="spinner-span" *ngIf="activationCode && !dddice.authenticated.value">
+        <mat-spinner color="accent"></mat-spinner>
+        In attesa...
+      </span>
     </div>
+    <span class="spinner-span" *ngIf="dddice.authenticated.value">
+      <mat-icon>check</mat-icon> Autenticazione eseguita!
+    </span>
+  </div>
 
-    <div class="subtitle">Gestione stanza e dadi (Prossimamente)</div>
-    <div class="description">Qui <strong>potrai presto</strong> gestire la tua stanza dddice e scegliere il tema per i
-        tuoi dadi.</div>
+  <div class="subtitle">Gestione stanza e dadi (Prossimamente)</div>
+  <div class="description">Qui <strong>potrai presto</strong> gestire la tua stanza dddice e scegliere il tema per i
+    tuoi dadi.</div>
+
+  <div class="subtitle">Admin Panel</div>
+  <button mat-raised-button (click)="resetStatusAllCharacter()" color="accent">reset status</button>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close color="accent">Chiudi</button>
+  <button mat-raised-button mat-dialog-close color="accent">Chiudi</button>
 </div>

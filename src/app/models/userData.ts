@@ -8,8 +8,9 @@ export class UserData {
     dddiceToken: string;
     privateSlug: string;
     characters: string[];
+    role: string
 
-    constructor(id: string, displayName: string, photoURL: string, progressive: number, dddiceToken: string, privateSlug: string, characters: string[]) {
+    constructor(id: string, displayName: string, photoURL: string, progressive: number, dddiceToken: string, privateSlug: string, characters: string[], role: string) {
         this.id = id;
         this.displayName = displayName;
         this.photoURL = photoURL;
@@ -17,6 +18,7 @@ export class UserData {
         this.dddiceToken = dddiceToken;
         this.privateSlug = privateSlug;
         this.characters = characters;
+        this.role = role
     }
 
     static parseUser(user: User, userData: any): UserData {
@@ -27,7 +29,8 @@ export class UserData {
             userData.progressive || 0,
             userData.dddiceToken || "",
             userData.privateSlug || "",
-            userData.characters || []
+            userData.characters || [],
+            userData.role || ''
         );
     }
 }

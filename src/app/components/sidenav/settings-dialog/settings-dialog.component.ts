@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CharacterService } from 'src/app/services/character.service';
 import { DddiceService } from 'src/app/services/dddice.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
@@ -15,18 +16,18 @@ export class SettingsDialogComponent {
   private activationResult: any = null;
 
   constructor(
-    private dialogRef: MatDialogRef<SettingsDialogComponent>, 
+    private dialogRef: MatDialogRef<SettingsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { dddiceToken: string, privateSlug: string },
     public dddice: DddiceService,
-    public firebaseService: FirebaseService) { }
+    public firebaseService: FirebaseService, private characterService: CharacterService) { }
 
-    ngOnInit() { 
+    ngOnInit() {
       // if(this.data.dddiceToken) {
       //   this.dddice.dddiceInit(this.data.dddiceToken).then((dddice) => {
       //     this.dddice.authenticated.next(true);
       //     if (this.data.privateSlug) {
       //       dddice.connect(this.data.privateSlug);
-            
+
       //     }
       //   }).catch((error) => { this.dddice.authenticated.next(false); })
       // }
@@ -44,7 +45,7 @@ export class SettingsDialogComponent {
             clearInterval(myInterval);
             this.dddice.dddiceInit(this.activationResult.data.token).then((dddice) => {
               this.dddice.createRoom(this.activationResult.data.token).then((room) => {
-                dddice.connect(room.data.slug); 
+                dddice.connect(room.data.slug);
                 this.firebaseService.updateUserDddice(this.activationResult.data.token, room.data.slug);
               });
               this.dddice.authenticated.next(true);
@@ -53,5 +54,17 @@ export class SettingsDialogComponent {
           }
         }, 5000);
       }).catch((error) => console.log(error));
+    }
+
+    public resetStatusAllCharacter(){
+      let allcharacters = []
+      this.characterService.getCharacters().then((characters)=>{
+        allcharacters = characters;
+        // allcharacters.push(characters[0]);
+        allcharacters.forEach(character => {
+          this.characterService.updateCharacterStatus(character.id);
+        });
+      });
+
     }
 }

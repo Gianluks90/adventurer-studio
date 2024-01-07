@@ -173,6 +173,11 @@ app-character-list {
   // width: 100% !important;
 }
 
+app-campaign-list {
+  display: flex;
+  width: 100% !important;
+}
+
 app-character-view {
   display: flex;
   justify-content: center;
@@ -210,4 +215,4 @@ progress::-webkit-progress-value {
 
 .item-info-sheet {
   max-width: 450px !important;
-} 
+}

@@ -7,6 +7,7 @@ import { FormCreateComponent } from "./components/form-create/form-create.compon
 import { FormLevelUpComponent } from "./components/form-level-up/form-level-up.component";
 import { HomeComponent } from "./components/home/home.component";
 import { AuthGuardService } from "./services/auth-guard.service";
+import { CampaignListComponent } from "./components/campaign-list/campaign-list.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'levelup/:id', component: FormLevelUpComponent, canActivate: [AuthGuardService]},
   { path: 'view/:id', component: CharacterViewComponent, canActivate: [AuthGuardService] },
   { path: 'characters', component: CharacterListComponent, canActivate: [AuthGuardService] },
+  { path: 'campaigns', component: CampaignListComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

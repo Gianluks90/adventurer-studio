@@ -19,55 +19,59 @@
             </div>
             <div class="character-info" *ngIf="c.informazioniBase.classi.length == 0">
               Senza classe
+            </div>
           </div>
+
         </div>
-        
-      </div>
-      <div class="card-body">
-        <div class="button-container">
-          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
-            *ngIf="c.status.statusCode === 0">
-            <mat-icon>star</mat-icon>
-            Crea
-          </button>
-          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
-            *ngIf="c.status.statusCode === 1">
-            <mat-icon>edit</mat-icon>
-            Modifica
-          </button>
-          <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/' + c.id"
-            *ngIf="c.status.statusCode === 2">
-            <mat-icon>visibility</mat-icon>
-            Visualizza
-          </button>
-          <div class="second-buttons">
-            <button mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id" [disabled]="c.status.statusCode !== 2">
-              <mat-icon>arrow_upward</mat-icon>
-              LV+
+        <div class="card-body">
+          <div class="button-container">
+            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
+              *ngIf="c.status.statusCode === 0">
+              <mat-icon>star</mat-icon>
+              Crea
             </button>
-            <button mat-raised-button color="accent" (click)="deleteCharacter(c.id)">
-              <mat-icon>delete</mat-icon>
-              Elimina
+            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
+              *ngIf="c.status.statusCode === 1">
+              <mat-icon>edit</mat-icon>
+              Modifica
             </button>
+            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/' + c.id"
+              *ngIf="c.status.statusCode === 2">
+              <mat-icon>visibility</mat-icon>
+              Visualizza
+            </button>
+            <div class="second-buttons">
+              <button mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id"
+                [disabled]="c.status.statusCode !== 2">
+                <mat-icon>arrow_upward</mat-icon>
+                LV+
+              </button>
+              <button mat-raised-button color="accent" (click)="deleteCharacter(c.id)">
+                <mat-icon>delete</mat-icon>
+                Elimina
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="empty-card-container" *ngIf="characters.length == 0">
-  <div class="empty-message">Qui puoi creare i tuoi Personaggi, premi il tasto qui sotto per iniziare.</div>
-  <button class="empty-char-button" mat-raised-button color="accent" (click)="createCharacter()">Nuovo personaggio</button>
-</div>
+  <div class="empty-card-container" *ngIf="characters.length == 0">
+    <div class="empty-message">Qui puoi creare i tuoi Personaggi, premi il tasto qui sotto per iniziare.</div>
+    <button class="empty-char-button" mat-raised-button color="accent" (click)="createCharacter()">Nuovo
+      personaggio</button>
+  </div>
 
-<div class="sidenav-buttons" id="menu-button">
-  <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
-    <mat-icon>menu</mat-icon>
-  </button>
-</div>
-<div class="add-buttons" id="add-button" >
-  <button class="step-button" (click)="createCharacter()" mat-icon-button matTooltip="Nuovo Personaggio" matTooltipPosition="left" [disabled]="characters.length >= 3">
-    <mat-icon>add</mat-icon>
-  </button>
+  <div class="sidenav-buttons" id="menu-button">
+    <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div class="add-buttons" id="add-button">
+    <button class="step-button" (click)="createCharacter()" mat-icon-button matTooltip="Nuovo Personaggio"
+      matTooltipPosition="left" [disabled]="characters.length >= 3">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>
