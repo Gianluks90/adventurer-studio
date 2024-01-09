@@ -5,12 +5,13 @@ import requests
 import threading as th
 import gc
 from PIL import Image
-import pypdfium2 as pdfium
+#import pypdfium2 as pdfium
 from .dat_object import DataDeD
 
 MAXNUMBER = 30
 
 def check_file():
+    lain = []
     if not os.path.exists("done.txt"):
         with open("done.txt", "w") as f:
             f.write("")
@@ -37,7 +38,7 @@ def check_file():
                 f.write(line+ '\n')
     del lain
 
-def write_txt_to_pdf_new(info_struct2 : dict, page_order : list = [], urls=[], id : str = "temp", status : bool = False):
+def write_txt_to_pdf_new(info_struct2 : dict, document : int = 1, page_order : list = [], urls=[], id : str = "temp", status : bool = False):
     '''This function writes the replacement values to the PDF
 
     Args:
@@ -50,8 +51,8 @@ def write_txt_to_pdf_new(info_struct2 : dict, page_order : list = [], urls=[], i
     Returns:
         pdf_path (str): path of the PDF to download
     '''
-    if len(urls) > 0:
-        urlatore_new(urls, id, status)
+    # if len(urls) > 0:
+    #     urlatore_new(urls, id)
 
     # Set the path of the PDF
     pdf_path = id + '.pdf'
@@ -99,7 +100,8 @@ def write_txt_to_pdf_new(info_struct2 : dict, page_order : list = [], urls=[], i
             else:
                 formato = image.split('.')[-1]
                 if formato == 'pdf':
-                    merge_pdf_new(pdf, image, i)
+                    # merge_pdf_new(pdf, image, i)
+                    pass
                 else:
                     true_w, true_h = proportion_detector(image)
                     orientation = 'L' if true_w > true_h else 'P'
@@ -214,52 +216,52 @@ def add_interpausa(pdf, i, status, name_file = ''):
     pdf.set_xy(50, 70)
     pdf.cell(w=0, h=0, txt=name_file, border=0, ln=1, align="L", fill=False)
 
-def merge_pdf_new(pdf : FPDF, base : str, i: int):
-    '''Merge all the pdfs in the list of urls in a single pdf
+# def merge_pdf_new(pdf : FPDF, base : str, i: int):
+#     '''Merge all the pdfs in the list of urls in a single pdf
 
-    Args:
-        pdf_path (str): The path of the pdf to merge
-        urls (list): The list of urls to merge
-        id (str): The ID of the run
+#     Args:
+#         pdf_path (str): The path of the pdf to merge
+#         urls (list): The list of urls to merge
+#         id (str): The ID of the run
 
-    Returns:
-        None
-    '''
+#     Returns:
+#         None
+#     '''
 
-    pages = []
-    if os.path.exists(base):
-        pdfx = pdfium.PdfDocument(base)
-        n_pages = len(pdfx)
-        page_indices = [i for i in range(n_pages)]  # all pages
-        renderer = pdfx.render(
-            pdfium.PdfBitmap.to_pil,
-            page_indices = page_indices,
-            scale = 300/72,  # 300dpi resolution
-            )
-        for i, image in zip(page_indices, renderer):
-            image.save("out_image_{}.png".format(i))
-            orientation = 'P' if image.size[0] < image.size[1] else 'L'
-            pages.append(("out_image_{}.png".format(i), orientation))
+#     pages = []
+#     if os.path.exists(base):
+#         pdfx = pdfium.PdfDocument(base)
+#         n_pages = len(pdfx)
+#         page_indices = [i for i in range(n_pages)]  # all pages
+#         renderer = pdfx.render(
+#             pdfium.PdfBitmap.to_pil,
+#             page_indices = page_indices,
+#             scale = 300/72,  # 300dpi resolution
+#             )
+#         for i, image in zip(page_indices, renderer):
+#             image.save("out_image_{}.png".format(i))
+#             orientation = 'P' if image.size[0] < image.size[1] else 'L'
+#             pages.append(("out_image_{}.png".format(i), orientation))
 
         
-        try:
-            for baseim, orient in pages:
-                # add a page to the pdf
-                pdf.add_page(orientation=orient)
-                # write the image to the pdf
-                if orient == 'L':
-                    pdf.image(baseim, 0, 0, 210, 297)
-                elif orient == 'P':
-                    pdf.image(baseim, 0, 0, 297, 210)
-                os.remove(baseim)
-            #pdf.image(base, 0, 0, 297, 210, type='L')
-        except Exception as e:
-            print(e)
-            error_attachement_new(pdf, i*1000)
+#         try:
+#             for baseim, orient in pages:
+#                 # add a page to the pdf
+#                 pdf.add_page(orientation=orient)
+#                 # write the image to the pdf
+#                 if orient == 'L':
+#                     pdf.image(baseim, 0, 0, 210, 297)
+#                 elif orient == 'P':
+#                     pdf.image(baseim, 0, 0, 297, 210)
+#                 os.remove(baseim)
+#             #pdf.image(base, 0, 0, 297, 210, type='L')
+#         except Exception as e:
+#             print(e)
+#             error_attachement_new(pdf, i*1000)
     
-    else:
-        print('no base', base)
-        error_attachement_new(pdf, i*1000)
+#     else:
+#         print('no base', base)
+#         error_attachement_new(pdf, i*1000)
 
 def urlatore_new(urls, id):
     '''Download the files in the list of urls
@@ -434,3 +436,56 @@ def add_page(pdf, image, status):
 
     pdf.set_font("Arial", size=12)
     pdf.set_xy(0, 0)
+
+
+def text_manipulation(text : str, max_len : int, acc : bool, max_len2 : int = 0, max_righe : int = 0):
+    '''This function takes a string and returns a list of strings
+    This function takes a string and returns a list of strings
+    If the string is less than max_len characters long, then it is returned as a list containing that string and the font size 12
+    If the string is greater than max_len characters long but less then max_len2, then it is returned as a list containing the string and the font size 10
+    If the string is greater than max_len2 characters long and not acc, then it is returned as a list containing the first max_len2 character of the string and the font size 10
+    If the string is greater than max_len2 characters long and acc and less then max_len2*max_righe, then it is returned as a list containing the string split into max_len2 character long strings and the font size 10
+    If the string is greater than max_len2 characters long and acc and greater then max_len2*max_righe, then it is returned as a list containing the string split into max_righe max_len2 character long strings and the font size 10
+    
+    Args:
+        text (str): The string to be manipulated
+        max_len (int): The maximum length of the string for the font 12
+        acc (bool): If the string can be split into multiple lines
+        max_len2 (int, optional): The maximum length of the string for the font 10
+        max_righe (int, optional): The maximum number of lines for the font 10
+
+    Returns:
+        list of str: The manipulated string
+        int: The font size
+    '''
+    from types import NoneType
+    if isinstance(text, list):
+        text = " ".join(text)
+    elif isinstance(text, NoneType):
+        return [""], 12
+    elif isinstance(text, int):
+        text = str(text)
+    elif isinstance(text, float):
+        text = str(text)
+    if max_len is None or len(text) <= max_len:
+        return [text], 12
+    if not acc:
+        return ([text[:max_len2]], 10) if len(text) >= max_len2 else ([text], 10)
+    crop = len(text)// max_len
+    if crop < max_righe:
+        texts = [text[i*max_len:(i+1)*max_len] for i in range(crop)]
+        texts.append(text[crop*max_len:])
+        return texts, 12
+    elif crop == max_righe:
+        texts = [text[i*max_len:(i+1)*max_len] for i in range(crop)]
+        return texts, 12
+    else:
+        crop2 = len(text)// max_len2
+        if crop2 < max_righe:
+            texts = [text[i*max_len2:(i+1)*max_len2] for i in range(crop2)]
+            texts.append(text[crop2*max_len2:])
+        elif crop2 == max_righe:
+            texts = [text[i*max_len2:(i+1)*max_len2] for i in range(crop2)]
+        else:
+            texts = [text[i*max_len2:(i+1)*max_len2] for i in range(max_righe)]
+        return texts, 10

@@ -5,19 +5,20 @@ import math
 MAP = {}
 COMPETENZA = 2
 
-def parsinator(data, what="shedabase"):
+def parsinator(data, what="schedabase"):
     global MAP
     if what == "shedabase":
-        MAP = json.loads(open("templates/shedabase.json", "r").read())
+        MAP = json.loads(open("templates/schedabase/map_base.json", "r").read())
     output_objects, urls = binder(data, MAP)
     return output_objects, urls
 
 def modificatore_caratteristiche(data):
     try:
-        value = int(math.floor((data - 10) / 2, 0))
+        value = int(math.floor((int(data) - 10) / 2))
         value = str(value) if value >= 0 else "-" + str(abs(value))
-    except:
+    except Exception as e:
         value = ""
+        print(str(e))
     return value
 
 
@@ -49,7 +50,7 @@ def binder(data, map):
                 wha = "text"
                 break
             elif wha == "tiroSalvezza":
-                user_data = tirosalvatore(data, data_to_put, user_data, whe)
+                user_data = tirosalvatore(data_to_put, user_data, whe, data)
                 break
             else:
                 user_data = user_data.get(whe)
@@ -69,12 +70,13 @@ def binder(data, map):
             urls.append(content)
     return output_objects, urls
 
-def tirosalvatore(data, data_to_put, user_data, whe):
+def tirosalvatore(data_to_put, user_data, whe, data):
     user_data = user_data.get(whe)
-    user_data = modificatore_caratteristiche(user_data)
+    user_data = modificatore_caratteristiche(user_data) 
     checker = data_to_put + "BOL"
-    user_data_temp = data.get(checker).get("JSON")
-    for whe_temp, wha_temp in zip(user_data_temp.get("WHERE"), user_data_temp.get("WHAT")):
+    user_data_temp = data
+    where_temp, wha_temp = MAP.get(checker).get("JSON").get("WHERE"), MAP.get(checker).get("JSON").get("WHAT")
+    for whe_temp, wha_temp in zip(where_temp, wha_temp):
         if wha_temp == "dict":
             user_data_temp = user_data_temp.get(whe_temp)
         elif "list" in wha_temp:

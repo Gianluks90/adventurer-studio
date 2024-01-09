@@ -2,10 +2,10 @@ import fastapi
 import uvicorn
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
-from .functions.fast_ask import *
+from functions.fast_ask import *
 import uuid
-from .functions.pdf_writer import write_txt_to_pdf_new as pdf_writer
-from .functions.data_parse import parsinator
+from functions.pdf_writer import write_txt_to_pdf_new as pdf_writer
+from functions.data_parse import parsinator
 import gc
 
 app = fastapi.FastAPI(middleware=[Middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"])])
@@ -42,4 +42,4 @@ async def results_post(data: dict):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="8001", port=8001)
+    uvicorn.run(app, host="127.0.0.1", port=8001)
