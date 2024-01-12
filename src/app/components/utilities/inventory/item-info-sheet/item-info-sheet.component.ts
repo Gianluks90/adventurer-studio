@@ -22,9 +22,9 @@ export class ItemInfoSheetComponent {
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'edited') {
         this.sheetRef.dismiss({ status: 'edited', item: result.item });
-        // this.characterService.updateInventory(window.location.href.split('/').pop(), result.item).then(() => {
-        //   this.inventoryData.push(result.item);
-        // });
+      }
+      if (result.status === 'deleted') {
+        this.sheetRef.dismiss({ status: 'deleted', item: result.item });       
       }
     })
   }

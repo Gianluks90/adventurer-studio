@@ -56,9 +56,16 @@ export class AddItemDialogComponent {
         status: 'success',
         item: this.form.value
       })
-    }
+    }    
+  }
 
-    
+  delete() {
+    if (this.data.item) {
+      this.dialogRef.close({
+        status: 'deleted',
+        item: this.form.value
+      })
+    }
   }
 
   setType(event: any) {

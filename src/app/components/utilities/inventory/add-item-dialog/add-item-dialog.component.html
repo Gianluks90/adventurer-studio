@@ -273,5 +273,8 @@
 </div>
 <div mat-dialog-actions align="end">
   <button mat-raised-button mat-dialog-close>Annulla</button>
+  <button *ngIf="data.item" mat-raised-button mat-dialog-close color="warn" (click)="delete()">
+    <mat-icon>delete</mat-icon> Elimina
+  </button>
   <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">{{data.item ? 'Modifica' : 'Aggiungi'}}</button>
 </div>

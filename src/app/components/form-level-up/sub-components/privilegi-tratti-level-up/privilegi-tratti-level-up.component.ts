@@ -32,6 +32,7 @@ export class PrivilegiTrattiLevelUpComponent {
       tipologia: ['privilegio', Validators.required],
       riferimento: '',
       descrizione: ['', Validators.required],
+      tag: ''
     });
     this.privilegiTratti.push(privilegioTratto);
   }

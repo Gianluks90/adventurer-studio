@@ -57,6 +57,10 @@ export class InventoryComponent {
         this.inventoryData[index] = result.item;
         this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
+      if (result && result.status === 'deleted') {
+        this.inventoryData.splice(index, 1);
+        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+      }
     });
   }
 

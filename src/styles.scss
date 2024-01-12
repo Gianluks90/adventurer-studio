@@ -81,7 +81,7 @@ $custom-error: (
 
 $my-primary: mat.define-palette($custom-palette, 50);
 $my-accent: mat.define-palette($custom-palette, A700);
-$my-warn: mat.define-palette($custom-palette, A700);
+$my-warn: mat.define-palette($custom-palette, 800);
 
 $my-theme: mat.define-light-theme((color: (primary: $my-primary,
         accent: $my-accent,

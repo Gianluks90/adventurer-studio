@@ -10,11 +10,16 @@ export class PrivilegiTrattiTabViewComponent {
   public privilegiTrattiData: any[] = [];
   public razzaData: string = '';
   public sottorazzaData: string = '';
-  public classiData: any[] = []
+  public classiData: any[] = [];
+  public tags: string[] = [];
   constructor() { }
 
   @Input() set privilegiTratti(privilegiTratti: any) {
     this.privilegiTrattiData = privilegiTratti;
+    this.tags = [...new Set(this.privilegiTrattiData.map((privilegioTratto: any) => privilegioTratto.tag.toLowerCase()))];
+    this.tags = this.tags.filter((tag: string) => tag !== '').sort();
+    console.log('tratti data', this.privilegiTrattiData);
+    console.log('tags', this.tags);
   }
 
   @Input() set informazioniBase(informazioniBase: any) {

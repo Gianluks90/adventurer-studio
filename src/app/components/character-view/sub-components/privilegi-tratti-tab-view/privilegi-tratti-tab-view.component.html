@@ -8,10 +8,23 @@
         </div>
     </div>
     <div class="section-title">Privilegi, Tratti e Talenti</div>
-    <details *ngFor="let pt of privilegiTrattiData" class="pt-container">
-        <summary class="pt-name">{{pt.nome}}</summary>
-        <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
-                {{pt.riferimento}}</span></div>
-        <div class="pt-description">{{pt.descrizione}}</div>
-    </details>
+    <div *ngFor="let pt of privilegiTrattiData">
+        <details *ngIf="pt.tag === ''" class="pt-container">
+            <summary class="pt-name">{{pt.nome}}</summary>
+            <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
+                    {{pt.riferimento}}</span></div>
+            <div class="pt-description">{{pt.descrizione}}</div>
+        </details>
+    </div>
+    <div *ngFor="let t of tags">
+        <div class="privilegi-label">{{t}}</div>
+        <div *ngFor="let pt of privilegiTrattiData">
+            <details *ngIf="pt.tag.toLowerCase() === t" class="pt-container">
+                <summary class="pt-name">{{pt.nome}}</summary>
+                <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
+                        {{pt.riferimento}}</span></div>
+                <div class="pt-description">{{pt.descrizione}}</div>
+            </details>
+        </div>
+    </div>
 <!-- </div> -->
