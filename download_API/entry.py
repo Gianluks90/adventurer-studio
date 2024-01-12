@@ -30,15 +30,15 @@ async def results_post(data: dict):
         )
     
     status_data = status_getter(data)
-    data, urls = parsinator(data, "shedabase")
-    path = pdf_writer(data, document=1, urls=urls, id=ido, status=status_data)
+    data, urls, page_order = parsinator(data, "shedabase")
+    path = pdf_writer(data, document=1, urls=urls, id=ido, status=status_data, page_order=page_order)
     
     # delete unnecessary variables
     del data, urls, ido, status_data
     gc.collect()
     
     # Download file
-    return fastapi.responses.FileResponse(path, filename="LV0.pdf")
+    return fastapi.responses.FileResponse(path, filename="Personaggio.pdf")
 
 
 if __name__ == "__main__":

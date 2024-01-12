@@ -10,7 +10,8 @@ def parsinator(data, what="schedabase"):
     if what == "shedabase":
         MAP = json.loads(open("templates/schedabase/map_base.json", "r").read())
     output_objects, urls = binder(data, MAP)
-    return output_objects, urls
+    page_order = [(0, "normal","base/base1.png"), (1, "normal","base/base2.png"), (2, "normal","base/base3.png")]
+    return output_objects, urls, page_order
 
 def modificatore_caratteristiche(data):
     try:
@@ -40,7 +41,7 @@ def binder(data, map):
             elif "list" in wha:
                 postition = int(wha.split("_")[1])
                 try:
-                    user_data = user_data[postition].get(whe)
+                    user_data = user_data.get(whe)[postition]
                 except:
                     user_data = ""
                     break
@@ -65,6 +66,8 @@ def binder(data, map):
         new_object = DataDeD(name = data_to_put, data_type = last_wha, data_text = content)
         for attr, value in scheda_map_content.items():
             new_object.add_parameter(attr, value)
+        if "size" not in scheda_map_content.keys():
+            new_object.add_parameter("size", 12)
         output_objects.append(new_object)
         if last_wha == "url":
             urls.append(content)

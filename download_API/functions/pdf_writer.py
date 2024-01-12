@@ -61,7 +61,7 @@ def write_txt_to_pdf_new(info_struct2 : dict, document : int = 1, page_order : l
 
     print('*'*50)
     # Create the PDF
-    pdf = FPDF(orientation='L', format='A4', unit='mm')
+    pdf = FPDF(orientation='P', format='A4', unit='mm')
 
     gc.collect()
 
@@ -70,9 +70,9 @@ def write_txt_to_pdf_new(info_struct2 : dict, document : int = 1, page_order : l
         pop_elements = []
         print(i, ' ', image, ' ', '*'*200)
         # Add a page to the PDF
-        if kind == 'pre-allegato':
-            add_interpausa(pdf, i, status, image)
-        elif kind in ['normal', 'appendice']:
+        # if kind == 'pre-allegato':
+        #     add_interpausa(pdf, i, status, image)
+        if kind in ['normal', 'appendice']:
             add_page(pdf, image, status)
             # For each key in the dictionary with the data text and position in the PDF extract the data for that page and write it to the PDF
             for element in info_struct2:
@@ -95,19 +95,20 @@ def write_txt_to_pdf_new(info_struct2 : dict, document : int = 1, page_order : l
                 info_struct2.remove(element)      
                 # add used data to the list of used data
         elif kind == 'allegato':
-            if image == 'error':
-                error_attachement_new(pdf, i)           
-            else:
-                formato = image.split('.')[-1]
-                if formato == 'pdf':
-                    # merge_pdf_new(pdf, image, i)
-                    pass
-                else:
-                    true_w, true_h = proportion_detector(image)
-                    orientation = 'L' if true_w > true_h else 'P'
-                    pdf.add_page(orientation=orientation)
-                    pdf.image(image, x=0, y=0, w=true_w, h=true_h)
-            os.remove(image)
+            # if image == 'error':
+            #     error_attachement_new(pdf, i)           
+            # else:
+            #     formato = image.split('.')[-1]
+            #     if formato == 'pdf':
+            #         # merge_pdf_new(pdf, image, i)
+            #         pass
+            #     else:
+            #         true_w, true_h = proportion_detector(image)
+            #         orientation = 'L' if true_w > true_h else 'P'
+            #         pdf.add_page(orientation=orientation)
+            #         pdf.image(image, x=0, y=0, w=true_w, h=true_h)
+            # os.remove(image)
+            pass
         elif kind == "lista/allegati":
             add_lista_allegati(pdf, i, image)
         elif kind == "appendice_listonespeciale":
@@ -200,21 +201,21 @@ def add_lista_allegati(pdf, i, lista_allegati):
             print(allegato)
             print("\\"*50)
 
-def add_interpausa(pdf, i, status, name_file = ''):
-    pdf.add_page() 
+# def add_interpausa(pdf, i, status, name_file = ''):
+#     pdf.add_page() 
 
-    if not status:
-        print('adding bozza')
-        pdf.image('./app/templates/BOZZA.png', 0, 0, 297, 210)
-        print('added bozza')
-    print('+'*200)
-    line = f'Attachment {i}:'
-    pdf.set_font("Arial", size=30)
-    pdf.set_xy(50, 50)
-    pdf.cell(w=0, h=0, txt=line, border=0, ln=1, align="L", fill=False)
-    pdf.set_font("Arial", size=20)
-    pdf.set_xy(50, 70)
-    pdf.cell(w=0, h=0, txt=name_file, border=0, ln=1, align="L", fill=False)
+#     if not status:
+#         print('adding bozza')
+#         pdf.image('./app/templates/BOZZA.png', 0, 0, 297, 210)
+#         print('added bozza')
+#     print('+'*200)
+#     line = f'Attachment {i}:'
+#     pdf.set_font("Arial", size=30)
+#     pdf.set_xy(50, 50)
+#     pdf.cell(w=0, h=0, txt=line, border=0, ln=1, align="L", fill=False)
+#     pdf.set_font("Arial", size=20)
+#     pdf.set_xy(50, 70)
+#     pdf.cell(w=0, h=0, txt=name_file, border=0, ln=1, align="L", fill=False)
 
 # def merge_pdf_new(pdf : FPDF, base : str, i: int):
 #     '''Merge all the pdfs in the list of urls in a single pdf
@@ -326,7 +327,7 @@ def image_to_pdf(i, formato, id):
         None
     '''
     try:
-        pdfl = FPDF(orientation='L', format='A4', unit='mm')
+        pdfl = FPDF(orientation='P', format='A4', unit='mm')
         pdfl.add_page()
         pdfl.image(f"{id}_{i}_temp.{formato}", x=0, y=0, w=210, h=297)
         pdfl.output(f"{id}_{i}_temp.pdf", "F")
@@ -339,25 +340,25 @@ def image_to_pdf(i, formato, id):
         print('Error with the image to pdf conversion')
         print("\\"*50)
 
-def error_attachement_new(pdf, i):
-    '''Create a new pdf with the error message to put before the allegato itself in the final pdf
+# def error_attachement_new(pdf, i):
+#     '''Create a new pdf with the error message to put before the allegato itself in the final pdf
     
-    Args:
-        i (int): The number of the allegato
-        id (str): The ID of the run
+#     Args:
+#         i (int): The number of the allegato
+#         id (str): The ID of the run
         
-    Returns:
-        None
-    '''
-    line = f'Error with the attachement {i+1}'
-            #create a new pdf
-    pdf.add_page() 
-    pdf.set_font("Arial", size=30)
-    pdf.set_xy(50, 50)
-    pdf.cell(w=0, h=0, txt=line, border=0, ln=1, align="L", fill=False)
-    gc.collect()
+#     Returns:
+#         None
+#     '''
+#     line = f'Error with the attachement {i+1}'
+#             #create a new pdf
+#     pdf.add_page() 
+#     pdf.set_font("Arial", size=30)
+#     pdf.set_xy(50, 50)
+#     pdf.cell(w=0, h=0, txt=line, border=0, ln=1, align="L", fill=False)
+#     gc.collect()
 
-def write_to_pdf_p(pdf, element):
+def write_to_pdf_p_handling(pdf, element):
     '''Write the text in the pdf
 
     Args:
@@ -369,16 +370,40 @@ def write_to_pdf_p(pdf, element):
     '''
     # Ectraction of the text and the size of the font
     try:
-        to_write, size = text_manipulation(element.text, element.max_len, acc = element.accapo, max_len2 = element.max_len2, max_righe = element.max_righe)
-        pdf.set_font("Arial", size=size)
-        # Write the text in the pdf
-        for l, line in enumerate(to_write):   
-            if element.y +l*3 > 189.9:
-                pdf.set_xy(element.y, 189.9)     
-            else:           
-                pdf.set_xy(element.x, element.y+l*3)
-            pdf.cell(w=0, h=0, txt=line, border=0, ln=1, align="L", fill=False)
-            pdf.set_xy(0, 0)
+        text = controll_text(element.text)
+        # pdf write the text in the pdf within the constraints of the box alligned to the center adapted to the size of the text to the size of the box
+        pdf.set_font("Arial", size=element.size)
+        pdf.set_xy(element.x, element.y)
+        pdf.multi_cell(w=element.widht_space, h=element.height_space, txt=text, border=0, align="C", fill=False)
+        pdf.set_xy(0, 0)
+    except Exception as e:
+        print(e)
+        print(element)
+        print("\\"*50)
+
+def write_to_pdf_p(pdf, element):
+    try:
+        text = controll_text(element.text)
+        font_size = element.size
+        pdf.set_font("Arial", size=font_size)
+
+        # Calculate the height of the text with the current font size
+        lines = pdf.multi_cell(w=element.widht_space, h=0, txt=text, border=0, align="C", fill=False, split_only=True)
+        text_height = len(lines) * pdf.font_size * 0.352778 
+
+        # Reduce the font size until the height of the text is less than or equal to the height of the box
+        while text_height > element.height_space:
+            font_size -= 1
+            pdf.set_font("Arial", size=font_size)
+            lines = pdf.multi_cell(w=element.widht_space, h=0, txt=text, border=0, align="C", fill=False, split_only=True)
+            text_height = len(lines) * pdf.font_size * 0.352778 
+            if font_size <= 1:
+                break
+
+        # Write the text into the box
+        pdf.set_xy(element.x, element.y)
+        pdf.multi_cell(w=element.widht_space, h=element.height_space, txt=text, border=0, align="C", fill=False)
+        pdf.set_xy(0, 0)
     except Exception as e:
         print(e)
         print(element)
@@ -426,66 +451,81 @@ def add_page(pdf, image, status):
         None
     '''
     pdf.add_page()
-    if not status:
-        print(image)
-        pdf.image(image, 0, 0, 297, 210)
-        pdf.image('./app/templates/BOZZA.png', 0, 0,  297, 210)
-    else:
-        image = image.replace(".jpg", "_y.jpg")
-        pdf.image(image, 0, 0, 297, 210)
+    pdf.image(image, 0, 0, 210, 297)
+    # if not status:
+    #     print(image)
+    #     pdf.image(image, 0, 0, 297, 210)
+    #     pdf.image('./app/templates/BOZZA.png', 0, 0,  297, 210)
+    # else:
+    #     image = image.replace(".jpg", "_y.jpg")
+    #     pdf.image(image, 0, 0, 297, 210)
 
     pdf.set_font("Arial", size=12)
     pdf.set_xy(0, 0)
 
+def controll_text(text: str):
+    from types import NoneType
+    if isinstance(text, list):
+        text = " ".join(text)
+    elif isinstance(text, NoneType):
+        return [""], 1
+    elif isinstance(text, int):
+        text = str(text)
+    elif isinstance(text, float):
+        text = str(text)
+    return text
 
-def text_manipulation(text : str, max_len : int, acc : bool, max_len2 : int = 0, max_righe : int = 0):
+
+def how_many_mm(text : str, size : int):
+    '''This function returns the number of mm that the text will occupy in the pdf
+
+    Args:
+        text (str): The text to be written
+        size (int): The size of the font
+
+    Returns:
+        int: The number of mm that the text will occupy in the pdf
+    '''
+    return len(text)*size/2.834645669291339
+
+def text_manipulation(text : str, max_len : int, height: int, size : int = 12):
     '''This function takes a string and returns a list of strings
     This function takes a string and returns a list of strings
     If the string is less than max_len characters long, then it is returned as a list containing that string and the font size 12
     If the string is greater than max_len characters long but less then max_len2, then it is returned as a list containing the string and the font size 10
-    If the string is greater than max_len2 characters long and not acc, then it is returned as a list containing the first max_len2 character of the string and the font size 10
-    If the string is greater than max_len2 characters long and acc and less then max_len2*max_righe, then it is returned as a list containing the string split into max_len2 character long strings and the font size 10
-    If the string is greater than max_len2 characters long and acc and greater then max_len2*max_righe, then it is returned as a list containing the string split into max_righe max_len2 character long strings and the font size 10
     
     Args:
         text (str): The string to be manipulated
         max_len (int): The maximum length of the string for the font 12
-        acc (bool): If the string can be split into multiple lines
-        max_len2 (int, optional): The maximum length of the string for the font 10
-        max_righe (int, optional): The maximum number of lines for the font 10
+        max_height (int): The maximum height of the string for the font 12
 
     Returns:
         list of str: The manipulated string
         int: The font size
     '''
-    from types import NoneType
-    if isinstance(text, list):
-        text = " ".join(text)
-    elif isinstance(text, NoneType):
-        return [""], 12
-    elif isinstance(text, int):
-        text = str(text)
-    elif isinstance(text, float):
-        text = str(text)
-    if max_len is None or len(text) <= max_len:
-        return [text], 12
-    if not acc:
-        return ([text[:max_len2]], 10) if len(text) >= max_len2 else ([text], 10)
-    crop = len(text)// max_len
-    if crop < max_righe:
-        texts = [text[i*max_len:(i+1)*max_len] for i in range(crop)]
-        texts.append(text[crop*max_len:])
-        return texts, 12
-    elif crop == max_righe:
-        texts = [text[i*max_len:(i+1)*max_len] for i in range(crop)]
-        return texts, 12
-    else:
-        crop2 = len(text)// max_len2
-        if crop2 < max_righe:
-            texts = [text[i*max_len2:(i+1)*max_len2] for i in range(crop2)]
-            texts.append(text[crop2*max_len2:])
-        elif crop2 == max_righe:
-            texts = [text[i*max_len2:(i+1)*max_len2] for i in range(crop2)]
-        else:
-            texts = [text[i*max_len2:(i+1)*max_len2] for i in range(max_righe)]
-        return texts, 10
+    text = controll_text(text)
+    while how_many_mm(text, size) > max_len:
+        size -= 1
+    return [text], size
+    # if max_len is None or len(text) <= max_len:
+    #     return [text], 12
+    # if not acc:
+    #     return ([text[:max_len2]], 10) if len(text) >= max_len2 else ([text], 10)
+    # crop = len(text)// max_len
+    # if crop < max_righe:
+    #     texts = [text[i*max_len:(i+1)*max_len] for i in range(crop)]
+    #     texts.append(text[crop*max_len:])
+    #     return texts, 12
+    # elif crop == max_righe:
+    #     texts = [text[i*max_len:(i+1)*max_len] for i in range(crop)]
+    #     return texts, 12
+    # else:
+    #     crop2 = len(text)// max_len2
+    #     if crop2 < max_righe:
+    #         texts = [text[i*max_len2:(i+1)*max_len2] for i in range(crop2)]
+    #         texts.append(text[crop2*max_len2:])
+    #     elif crop2 == max_righe:
+    #         texts = [text[i*max_len2:(i+1)*max_len2] for i in range(crop2)]
+    #     else:
+    #         texts = [text[i*max_len2:(i+1)*max_len2] for i in range(max_righe)]
+    #     return texts, 10

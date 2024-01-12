@@ -8,7 +8,6 @@ class DataDeD:
         self.text = data_text
         self.page_type = 'normal'
         self.font = "Arial"
-        self.font_size = 12
         self.font_color = "black"
         self.font_style = "normal"
         if data_type in ['box', 'image']:

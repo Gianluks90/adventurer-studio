@@ -1,23 +1,23 @@
 {
     "BONUSCOMPETENZA" : {
         "JSON" : {"WHERE" : ["tiriSalvezza", "bonusCompetenza"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 2, "page" : 0}},
+        "SCHEDA" : {"x" : 40.8, "y" : 64.8, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" : 5}},
+    "NOMEPERSONAGGIO": {
+        "JSON" : {"WHERE" : ["informazioniBase", "nomePersonaggio"], "WHAT" : ["dict", "text"]},
+        "SCHEDA" : {"x" : 15, "y" : 23.5, "page" : 0, "page_type" : "normal", "widht_space" : 80, "height_space" : 7, "size" : 30 }},
 
     "NOMEGIOCATORE" : {
         "JSON" : {"WHERE" : ["informazioniBase", "nomeGiocatore"], "WHAT" : ["dict", "text"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 170, "y" : 21, "page" : 0, "page_type" : "normal", "widht_space" : 20, "height_space" : 3.5, "size" : 20 }},
     "CLASSE" : {
         "JSON" : {"WHERE" : ["informazioniBase", "classi", "nome"], "WHAT" : ["dict", "list_0", "text"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" :{ "x" : 110, "y" : 21, "page" : 0, "page_type" : "normal", "widht_space" : 20, "height_space" : 3.5, "size" : 20 }},
     "LIVELLO" : {
         "JSON" : {"WHERE" : ["informazioniBase", "classi", "livello"], "WHAT" : ["dict", "list_0", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
-    "NOMEPERSONAGGIO": {
-        "JSON" : {"WHERE" : ["informazioniBase", "nomePersonaggio"], "WHAT" : ["dict", "text"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 115, "y" : 21,  "page" : 0, "page_type" : "normal", "widht_space" : 20, "height_space" : 3.5, "size" : 20 }},
     "BACKGROUND" : {
         "JSON" : {"WHERE" : ["informazioniBase", "background"], "WHAT" : ["dict", "text"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 140, "y" : 21,  "page" : 0, "page_type" : "normal", "widht_space" : 20, "height_space" :3.5, "size" : 20 }},
     "RAZZA" :{
         "JSON" : {"WHERE" : ["informazioniBase", "razza"], "WHAT" : ["dict", "text"]},
         "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
