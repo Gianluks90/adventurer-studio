@@ -30,34 +30,13 @@
     "SOTTORAZZA" : {
         "JSON" : {"WHERE" : ["informazioniBase", "sottorazza"], "WHAT" : ["dict", "text"]},
         "SCHEDA" : {"x" : 0, "y" : 0, "page" : false}},
-    "IMAGEPERSONAGGIO" : {
-        "JSON" : {"WHERE" : ["informazioniBase", "urlImmaginePersonaggio"], "WHAT" : ["dict", "url"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
-    "RISORSAAGGIUNTIVANOME_1" : {
-        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "nome"], "WHAT" : ["dict", "list_0", "text"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
-    "RISORSAAGGIUNTIVAVALORE_1" : {
-        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "valoreAttuale"], "WHAT" : ["dict", "list_0", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
-    "RISORSAAGGIUNTIVAVALOREMAX_1" : {
-        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "valoreMassimo"], "WHAT" : ["dict", "list_0", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
-    "RISORSAAGGIUNTIVANOME_2" : {
-        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "nome"], "WHAT" : ["dict", "list_1", "text"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
-    "RISORSAAGGIUNTIVAVALORE_2" : {
-        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "valoreAttuale"], "WHAT" : ["dict", "list_1", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
-    "RISORSAAGGIUNTIVAVALOREMAX_2" : {
-        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "valoreMassimo"], "WHAT" : ["dict", "list_1", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
 
     "FORZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "forza"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 22, "y" : 65, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :3, "size" : 20 }},
     "MODFORZA" : {
-        "JSON" : {"WHERE" : ["caratteristiche", "orza"], "WHAT" : ["dict", "modificatore"]},
-        "SCHEDA" : {"x" : 0, "y" : 1, "page" : 0}},
+        "JSON" : {"WHERE" : ["caratteristiche", "forza"], "WHAT" : ["dict", "modificatore"]},
+        "SCHEDA" : {"x" : 22, "y" : 65, "page" : 0, "page_type" : "normal", "widht_space" : 12, "height_space" :8, "size" : 20 }},
     "DESTREZZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "destrezza"], "WHAT" : ["dict", "number"]},
         "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
@@ -88,8 +67,8 @@
     "MODCARISMA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "carisma"], "WHAT" : ["dict", "modificatore"]},
         "SCHEDA" : {"x" : 0, "y" : 1, "page" : 0}},
+        
     
-
     "TSFORZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "forza"], "WHAT" : ["dict", "tiroSalvezza"]},
         "SCHEDA" : {"x" : 0, "y" : 3, "page" : 0}},
@@ -125,6 +104,27 @@
         "SCHEDA" : {"x" : 0, "y" : 8, "page" : 0}},
     "TSCARISMABOL" : {
         "JSON" : {"WHERE" : ["tiriSalvezza", "carisma"], "WHAT" : ["dict", "boolean"]},
-        "SCHEDA" : {"x" : 0, "y" : 8, "page" : 0}}
+        "SCHEDA" : {"x" : 0, "y" : 8, "page" : 0}},
+    "IMAGEPERSONAGGIO" : {
+        "JSON" : {"WHERE" : ["informazioniBase", "urlImmaginePersonaggio"], "WHAT" : ["dict", "url"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "RISORSAAGGIUNTIVANOME_1" : {
+        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "nome"], "WHAT" : ["dict", "list_0", "text"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+    "RISORSAAGGIUNTIVAVALORE_1" : {
+        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "valoreAttuale"], "WHAT" : ["dict", "list_0", "number"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "RISORSAAGGIUNTIVAVALOREMAX_1" : {
+        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "valoreMassimo"], "WHAT" : ["dict", "list_0", "number"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "RISORSAAGGIUNTIVANOME_2" : {
+        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "nome"], "WHAT" : ["dict", "list_1", "text"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "RISORSAAGGIUNTIVAVALORE_2" : {
+        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "valoreAttuale"], "WHAT" : ["dict", "list_1", "number"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "RISORSAAGGIUNTIVAVALOREMAX_2" : {
+        "JSON" : {"WHERE" : ["informazioniBase", "risorseAggiuntive", "valoreMassimo"], "WHAT" : ["dict", "list_1", "number"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}}
     }
 

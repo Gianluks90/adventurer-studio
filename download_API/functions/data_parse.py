@@ -48,11 +48,11 @@ def binder(data, map):
             elif wha == "modificatore":
                 user_data = user_data.get(whe)
                 user_data = modificatore_caratteristiche(user_data)
+                print(user_data)
+                print("modificatore", whe, user_data, "o"*30)
                 wha = "text"
-                break
             elif wha == "tiroSalvezza":
                 user_data = tirosalvatore(data_to_put, user_data, whe, data)
-                break
             else:
                 user_data = user_data.get(whe)
                 if wha == "number":
