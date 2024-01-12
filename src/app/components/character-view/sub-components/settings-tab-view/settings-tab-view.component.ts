@@ -18,6 +18,7 @@ export class SettingsTabViewComponent {
   }
 
   public updateSheetColor(event: any) {
+    console.log('cambio', event);
     const newColor = event + '40';
     this.charService.updateCharacterSheetColorById(window.location.href.split('/').pop()!, newColor).then(() => {
       window.location.reload();
@@ -31,6 +32,9 @@ export class SettingsTabViewComponent {
   }
 
   public parseExport() {
+    const formValue = this.formService.formSubject.value.value;
+    formValue.informazioniBase.urlImmaginePersonaggio = '';
+    formValue.informazioniBase.nomeImmaginePersonaggio = '';
     const jsonFile = JSON.stringify(this.formService.formSubject.value.value);
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonFile);
     const exportButton = document.getElementById('export-button');
