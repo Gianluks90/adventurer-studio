@@ -312,6 +312,14 @@
         "link": "./assets/selectIcons/materiale_8.svg"
     },
     {
+        "name": "Materiale 9",
+        "link": "./assets/selectIcons/materiale_9.svg"
+    },
+    {
+        "name": "Materiale 10",
+        "link": "./assets/selectIcons/materiale_10.svg"
+    },
+    {
         "name": "Munizioni 1",
         "link": "./assets/selectIcons/munizioni_1.svg"
     },
@@ -490,6 +498,14 @@
     {
         "name": "Strumento 15",
         "link": "./assets/selectIcons/strumento_15.svg"
+    },
+    {
+        "name": "Strumento 16",
+        "link": "./assets/selectIcons/strumento_16.svg"
+    },
+    {
+        "name": "Strumento 17",
+        "link": "./assets/selectIcons/strumento_17.svg"
     },
     {
         "name": "Tenda",
