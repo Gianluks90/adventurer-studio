@@ -63,6 +63,8 @@ def binder(data, map):
             content = user_data
         if data_to_put == "BONUSCOMPETENZA":
             COMPETENZA = int(content)
+        if not content or content == "None":
+            content = ""
         new_object = DataDeD(name = data_to_put, data_type = last_wha, data_text = content)
         for attr, value in scheda_map_content.items():
             new_object.add_parameter(attr, value)

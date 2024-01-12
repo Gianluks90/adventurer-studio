@@ -8,25 +8,25 @@
 
     "NOMEGIOCATORE" : {
         "JSON" : {"WHERE" : ["informazioniBase", "nomeGiocatore"], "WHAT" : ["dict", "text"]},
-        "SCHEDA" : {"x" : 170, "y" : 21, "page" : 0, "page_type" : "normal", "widht_space" : 20, "height_space" : 3.5, "size" : 20 }},
+        "SCHEDA" : {"x" : 170, "y" : 20.5, "page" : 0, "page_type" : "normal", "widht_space" : 26, "height_space" : 3.5, "size" : 20 }},
     "CLASSE" : {
         "JSON" : {"WHERE" : ["informazioniBase", "classi", "nome"], "WHAT" : ["dict", "list_0", "text"]},
-        "SCHEDA" :{ "x" : 110, "y" : 21, "page" : 0, "page_type" : "normal", "widht_space" : 20, "height_space" : 3.5, "size" : 20 }},
+        "SCHEDA" :{ "x" : 100, "y" : 20.5, "page" : 0, "page_type" : "normal", "widht_space" : 26, "height_space" : 3.5, "size" : 20 }},
     "LIVELLO" : {
         "JSON" : {"WHERE" : ["informazioniBase", "classi", "livello"], "WHAT" : ["dict", "list_0", "number"]},
-        "SCHEDA" : {"x" : 115, "y" : 21,  "page" : 0, "page_type" : "normal", "widht_space" : 20, "height_space" : 3.5, "size" : 20 }},
+        "SCHEDA" : {"x" : 126.1, "y" : 20.5,  "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" : 3.5, "size" : 20 }},
     "BACKGROUND" : {
         "JSON" : {"WHERE" : ["informazioniBase", "background"], "WHAT" : ["dict", "text"]},
-        "SCHEDA" : {"x" : 140, "y" : 21,  "page" : 0, "page_type" : "normal", "widht_space" : 20, "height_space" :3.5, "size" : 20 }},
+        "SCHEDA" : {"x" : 132, "y" : 20.5,  "page" : 0, "page_type" : "normal", "widht_space" : 32, "height_space" :3, "size" : 20 }},
     "RAZZA" :{
         "JSON" : {"WHERE" : ["informazioniBase", "razza"], "WHAT" : ["dict", "text"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 100, "y" : 30, "page" : 0, "page_type" : "normal", "widht_space" : 26, "height_space" :3, "size" : 20 }},
     "ALLINEAMENTO" : {
         "JSON" : {"WHERE" : ["informazioniBase", "allineamento"], "WHAT" : ["dict", "text"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 132, "y" : 30, "page" : 0, "page_type" : "normal", "widht_space" : 40, "height_space" :3.5, "size" : 20 }},
     "PUNTIESPERIENZA" :
         {"JSON" : {"WHERE" : ["informazioniBase", "puntiEsperienza"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 170, "y" : 30, "page" : 0, "page_type" : "normal", "widht_space" : 26, "height_space" :3.5, "size" : 20 }},
     "SOTTORAZZA" : {
         "JSON" : {"WHERE" : ["informazioniBase", "sottorazza"], "WHAT" : ["dict", "text"]},
         "SCHEDA" : {"x" : 0, "y" : 0, "page" : false}},
