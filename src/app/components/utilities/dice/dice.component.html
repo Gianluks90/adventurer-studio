@@ -31,6 +31,14 @@
                 <img [src]="negativeModifier.icon" alt="">
             </button>
         </div>
+        <div *ngFor="let specialModifier of modifierInformationList.special">
+            <button class="step-button" *ngIf="!specialModifier.icon" mat-flat-button (click)="addModifier(specialModifier.value)">
+                <span>{{specialModifier.name}}</span>
+            </button>
+            <button *ngIf="specialModifier.icon" class="step-button" mat-flat-button (click)="addModifier(specialModifier.value)" [disabled]="selectedDiceResult.length > 0">
+                <img [src]="specialModifier.icon" alt="">
+            </button>
+        </div>
     </div>
 
     <div class="action-container">

@@ -21,7 +21,7 @@
 
 .dice-container{
     display: flex;
-    gap: 8px;
+    // gap: 8px;
     justify-content: space-between;
 }
 
@@ -38,6 +38,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 ::ng-deep .modifier-container button{

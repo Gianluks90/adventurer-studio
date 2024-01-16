@@ -48,11 +48,7 @@ export class DiceComponent {
   public modifierInformationList: any =
     {
       positive: [
-        {
-          name: "adv",
-          value: "adv",
-          icon: "./assets/dice/adv.png"
-        },
+        
         {
           name: "+5",
           value: 5
@@ -78,6 +74,14 @@ export class DiceComponent {
         {
           name: "-5",
           value: -5
+        },
+        
+      ], 
+      special: [
+        {
+          name: "adv",
+          value: "adv",
+          icon: "./assets/dice/adv.png"
         },
         {
           name: "dis",
