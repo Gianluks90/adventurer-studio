@@ -1,29 +1,14 @@
 <div class="main-container">
   <div class="card-container" *ngIf="campaigns.length > 0">
     <div class="card-details" *ngFor="let c of campaigns">
-      <div class="card-header">
-        <!-- <img class="immagine-personaggio" *ngIf="c.imgUrl != ''" referrerpolicy="no-referrer" [src]="c.imgUrl">
-        <img class="immagine-personaggio" *ngIf="c.imgUrl == ''" src="./assets/images/hero-placeholder.png"> -->
-        <div class="side-container">
-          <div class="character-name">
-            {{c.title}}
-          </div>
-          <div class="card-body">
-            <div class="button-container">
-              <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/'" disabled>
-                <mat-icon>visibility</mat-icon>
-                Visualizza
-              </button>
-              <div class="second-buttons">
-                <button mat-raised-button color="accent" (click)="deleteCampaigns(c.id)">
-                  <mat-icon>delete</mat-icon>
-                  Elimina
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="card-info-container">
+        <div class="campaign-title">{{c.title}}</div>
+        <div class="campaign-description">{{c.description}}</div>
+        <div class="campaign-status">{{c.status.statusMessage}}</div>
       </div>
+      <button class="play-button" mat-icon-button [routerLink]="'/campaign-view/' + c.id">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
     </div>
   </div>
   <div class="empty-card-container" *ngIf="campaigns.length == 0">

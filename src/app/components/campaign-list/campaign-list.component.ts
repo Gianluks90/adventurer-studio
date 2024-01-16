@@ -23,7 +23,6 @@ export class CampaignListComponent implements OnInit {
     if (ownerId) {
       this.campaignService.getCampaignsByOwnerID(ownerId).then((result) => {
         this.campaigns = result;
-        console.log(this.campaigns);
       })
     }
   }

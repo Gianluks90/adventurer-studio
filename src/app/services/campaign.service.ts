@@ -10,7 +10,7 @@ export class CampaignService {
 
   constructor(private firebaseService: FirebaseService) { }
 
-  public async addCampaign(title: string, password: string, ownerId: string): Promise<any> {
+  public async addCampaign(title: string, password: string, ownerId: string, description?: string): Promise<any> {
     const ref = collection(this.firebaseService.database, 'campaigns');
     return await addDoc(ref, {
       title: title,
@@ -19,7 +19,12 @@ export class CampaignService {
       partecipants: [],
       heroes: [],
       imgUrl:'',
-      createdAt: new Date()
+      description: description || '',
+      createdAt: new Date(),
+      status: {
+        statusCode: 0, 
+        statusMessage: 'In preparazione'
+      }
     });
   }
 

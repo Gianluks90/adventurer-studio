@@ -1,6 +1,6 @@
 <div mat-dialog-title class="dialog-title">Creazione nuova campagna</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="campForm">
-  <div class="description">Inserisci un Titolo e una Password poi premi il tasto 'Conferma' per creare una campagna. La Password sarà visualizzabile nel pannello informativo all'interno della Campagna quindi non la perderai se non ne prendi nota ora.</div>
+      <div class="description">Inserisci un Titolo e una Password poi premi il tasto 'Conferma' per creare una campagna. La Password sarà visualizzabile nel pannello informativo all'interno della Campagna quindi non la perderai se non ne prendi nota ora. La lunghezza della password deve essere compresa tra 8 e 16 caratteri, sono validi tutti i caratteri numeri e simboli.</div>
   <div class="input-container">
     <mat-form-field color="accent" class="custom-form-field" appearance="outline">
       <mat-label>Titolo</mat-label>
@@ -9,7 +9,10 @@
     <mat-form-field color="accent" class="custom-form-field" appearance="outline">
       <mat-label>Password</mat-label>
       <input matInput formControlName="password">
-      <mat-hint>La lunghezza della password deve essere compresa tra 8 e 16 caratteri, sono validi tutti i caratteri numeri e simboli.</mat-hint>
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+      <mat-label>Descrizione</mat-label>
+      <textarea matInput formControlName="descrizione" rows="5"></textarea>
     </mat-form-field>
   </div>
 </div>

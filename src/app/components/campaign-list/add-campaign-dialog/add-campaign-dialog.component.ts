@@ -16,15 +16,11 @@ export class AddCampaignDialogComponent {
 
   public campForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(1)]],
-    password:['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]]
+    password:['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
+    description: ''
   });
 
   public confirm() {
-    // this.form.get('informazioniBase')?.get('nomePersonaggio')?.setValue(this.charForm.value.name);
-    // this.characterService.createCharacter(this.form).then(() => {
-    // }).then(() => {
-    //
-    // })
     this.dialogRef.close({
       status: 'confirm',
       title:this.campForm.value.title,
