@@ -51,6 +51,16 @@
     width: 100%;
     margin-bottom: 20px;
   }
+
+  .option-line {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .icon-image {
+    height: 40px;
+  }
   
   @media screen and (max-width: 500px) {
     .delete-button > button {

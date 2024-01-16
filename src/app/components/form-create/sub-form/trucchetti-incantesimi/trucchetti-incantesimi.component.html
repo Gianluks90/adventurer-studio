@@ -235,6 +235,17 @@
                             <mat-label>Formula danni (senza spazi)</mat-label>
                             <input matInput formControlName="formula" placeholder="es. 2d8+2">
                         </mat-form-field>
+                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                            <mat-label>Icona</mat-label>
+                            <mat-select formControlName="icon">
+                                <mat-option *ngFor="let icon of selectIcons" [value]="icon.link">
+                                    <div class="option-line">
+                                        <img class="icon-image" [src]="icon.link" alt="">
+                                        <div>{{icon.name}}</div>
+                                      </div>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
                     </div>
 
                     <mat-form-field color="accent" appearance="outline">

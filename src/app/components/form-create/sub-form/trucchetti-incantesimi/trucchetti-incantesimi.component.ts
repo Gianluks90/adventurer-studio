@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
@@ -26,12 +27,17 @@ export class TrucchettiIncantesimiComponent {
     level9: 0,
   });
 
-  constructor(public formService: FormService, private fb: FormBuilder) {
+  public selectIcons: any[] = [];
+
+  constructor(public formService: FormService, private fb: FormBuilder, private httpClient: HttpClient) {
     this.trucchettiIncantesimi = this.fb.array([]);
     this.slotIncantesimi = this.fb.array([]);
   }
 
   ngOnInit(): void {
+    this.httpClient.get('./assets/settings/selectIconsSpells.json').subscribe((data: any[]) => {
+      this.selectIcons = data;
+    });
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
         this.form = form.get('magia') as FormGroup;

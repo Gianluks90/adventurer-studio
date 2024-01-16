@@ -43,6 +43,16 @@
   flex-grow: 1;
 }
 
+.option-line {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.icon-image {
+  height: 40px;
+}
+
 mat-form-field {
   // width: 100% !important;
   margin-bottom: 12px;
