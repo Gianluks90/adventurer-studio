@@ -14,6 +14,7 @@ export class SettingsDialogComponent {
 
   public activationCode: string = "";
   private activationResult: any = null;
+  public isAdmin: boolean = false;
 
   constructor(
     private dialogRef: MatDialogRef<SettingsDialogComponent>,
@@ -22,6 +23,10 @@ export class SettingsDialogComponent {
     public firebaseService: FirebaseService, private characterService: CharacterService) { }
 
     ngOnInit() {
+      const user = this.firebaseService.user.value!;
+      if (user.id === "1v1WaSUh7LP68D9a4VqCGGmXmDZ2" || user.id === "TghUf9a989N9iMWKTGb0tsAv0L12" || user.id === "n9PxwrkTgUR4yR4sGcfJCpAgIRe2") {
+        this.isAdmin = true;
+      }
       // if(this.data.dddiceToken) {
       //   this.dddice.dddiceInit(this.data.dddiceToken).then((dddice) => {
       //     this.dddice.authenticated.next(true);
@@ -65,6 +70,9 @@ export class SettingsDialogComponent {
           this.characterService.updateCharacterStatus(character.id);
         });
       });
+    }
 
+    public resetSpellCharacters() {
+      this.characterService.updateCharacterSpell();
     }
 }

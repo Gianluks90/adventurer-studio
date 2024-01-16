@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { Item } from '../models/item';
+import { FormModel } from '../models/formModel';
 
 @Injectable({
   providedIn: 'root'
@@ -174,5 +175,26 @@ export class CharacterService {
     return await setDoc(docRef, {
       dddice_RoomSlug: ''
     }, { merge: true })
+  }
+
+  public async updateCharacterSpell(): Promise<any> {
+    this.getCharacters().then((characters) => {
+      console.log(characters);
+      
+      characters.forEach((character) => {
+        if (character.magia) {
+          character.magia.trucchettiIncantesimi.forEach((spell: any) => {
+            spell.preparato = false;
+            spell.filtered = false;
+            spell.icon = '';
+          });
+
+          characters.forEach((character) => {
+            const docRef = doc(this.firebaseService.database, 'characters', character.id);
+            setDoc(docRef, character, { merge: true });
+          });
+        }
+      });
+    });
   }
 }
