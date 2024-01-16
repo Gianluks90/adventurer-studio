@@ -1,0 +1,274 @@
+[
+    {
+        "name": "Acqua 1",
+        "link": "./assets/selectIconsSpells/acqua_1.svg"
+    },
+    {
+        "name": "Acqua 2",
+        "link": "./assets/selectIconsSpells/acqua_2.svg"
+    },
+    {
+        "name": "Acqua 3",
+        "link": "./assets/selectIconsSpells/acqua_3.svg"
+    },
+    {
+        "name": "Barriera",
+        "link": "./assets/selectIconsSpells/barriera_1.svg"
+    },
+    {
+        "name": "Buff 1",
+        "link": "./assets/selectIconsSpells/buff_1.svg"
+    },
+    {
+        "name": "Buff 2",
+        "link": "./assets/selectIconsSpells/buff_2.svg"
+    },
+    {
+        "name": "Buff 3",
+        "link": "./assets/selectIconsSpells/buff_3.svg"
+    },
+    {
+        "name": "Buff 4",
+        "link": "./assets/selectIconsSpells/buff_4.svg"
+    },
+    {
+        "name": "Condizione 1",
+        "link": "./assets/selectIconsSpells/condizione_1.svg"
+    },
+    {
+        "name": "Condizione 2",
+        "link": "./assets/selectIconsSpells/condizione_2.svg"
+    },
+    {
+        "name": "Debuff 1",
+        "link": "./assets/selectIconsSpells/debuff_1.svg"
+    },
+    {
+        "name": "Debuff 2",
+        "link": "./assets/selectIconsSpells/debuff_2.svg"
+    },
+    {
+        "name": "Debuff 3",
+        "link": "./assets/selectIconsSpells/debuff_3.svg"
+    },
+    {
+        "name": "Evoca 1",
+        "link": "./assets/selectIconsSpells/evoca_1.svg"
+    },
+    {
+        "name": "Evocq 2",
+        "link": "./assets/selectIconsSpells/evoca_2.svg"
+    },
+    {
+        "name": "Freddo 1",
+        "link": "./assets/selectIconsSpells/freddo_1.svg"
+    },
+    {
+        "name": "Freddo 2",
+        "link": "./assets/selectIconsSpells/freddo_2.svg"
+    },
+    {
+        "name": "Freddo 3",
+        "link": "./assets/selectIconsSpells/freddo_3.svg"
+    },
+    {
+        "name": "Fuoco 1",
+        "link": "./assets/selectIconsSpells/fuoco_1.svg"
+    },
+    {
+        "name": "Fuoco 2",
+        "link": "./assets/selectIconsSpells/fuoco_2.svg"
+    },
+    {
+        "name": "Fuoco 3",
+        "link": "./assets/selectIconsSpells/fuoco_3.svg"
+    },
+    {
+        "name": "Fuoco 4",
+        "link": "./assets/selectIconsSpells/fuoco_4.svg"
+    },
+    {
+        "name": "Guarigione 1",
+        "link": "./assets/selectIconsSpells/guarigione_1.svg"
+    },
+    {
+        "name": "Guarigione 2",
+        "link": "./assets/selectIconsSpells/guarigione_2.svg"
+    },
+    {
+        "name": "Guarigione 3",
+        "link": "./assets/selectIconsSpells/guarigione_3.svg"
+    },
+    {
+        "name": "Guarigione 4",
+        "link": "./assets/selectIconsSpells/guarigione_4.svg"
+    },
+    {
+        "name": "Guarigione 5",
+        "link": "./assets/selectIconsSpells/guarigione_5.svg"
+    },
+    {
+        "name": "Luce",
+        "link": "./assets/selectIconsSpells/luce_1.svg"
+    },
+    {
+        "name": "Maledizione 1",
+        "link": "./assets/selectIconsSpells/maledizione_1.svg"
+    },
+    {
+        "name": "Maledizione 2",
+        "link": "./assets/selectIconsSpells/maledizione_2.svg"
+    },
+    {
+        "name": "Maledizione 3",
+        "link": "./assets/selectIconsSpells/maledizione_3.svg"
+    },
+    {
+        "name": "Maledizione 4",
+        "link": "./assets/selectIconsSpells/maledizione_4.svg"
+    },
+    {
+        "name": "Natura 1",
+        "link": "./assets/selectIconsSpells/natura_1.svg"
+    },
+    {
+        "name": "Natura 2",
+        "link": "./assets/selectIconsSpells/natura_2.svg"
+    },
+    {
+        "name": "Raggio 1",
+        "link": "./assets/selectIconsSpells/raggio_1.svg"
+    },
+    {
+        "name": "Raggio 2",
+        "link": "./assets/selectIconsSpells/raggio_2.svg"
+    },
+    {
+        "name": "Raggio 3",
+        "link": "./assets/selectIconsSpells/raggio_3.svg"
+    },
+    {
+        "name": "Sacro 1",
+        "link": "./assets/selectIconsSpells/sacro_1.svg"
+    },
+    {
+        "name": "Sacro 2",
+        "link": "./assets/selectIconsSpells/sacro_2.svg"
+    },
+    {
+        "name": "Sacro 3",
+        "link": "./assets/selectIconsSpells/sacro_3.svg"
+    },
+    {
+        "name": "Sacro 4",
+        "link": "./assets/selectIconsSpells/sacro_4.svg"
+    },
+    {
+        "name": "Speciale 1",
+        "link": "./assets/selectIconsSpells/speciale_1.svg"
+    },
+    {
+        "name": "Speciale 2",
+        "link": "./assets/selectIconsSpells/speciale_2.svg"
+    },
+    {
+        "name": "Speciale 3",
+        "link": "./assets/selectIconsSpells/speciale_3.svg"
+    },
+    {
+        "name": "Speciale 4",
+        "link": "./assets/selectIconsSpells/speciale_4.svg"
+    },
+    {
+        "name": "Speciale 5",
+        "link": "./assets/selectIconsSpells/speciale_5.svg"
+    },
+    {
+        "name": "Speciale 6",
+        "link": "./assets/selectIconsSpells/speciale_6.svg"
+    },
+    {
+        "name": "Speciale 7",
+        "link": "./assets/selectIconsSpells/speciale_7.svg"
+    },
+    {
+        "name": "Speciale 8",
+        "link": "./assets/selectIconsSpells/speciale_8.svg"
+    },
+    {
+        "name": "Speciale 9",
+        "link": "./assets/selectIconsSpells/speciale_9.svg"
+    },
+    {
+        "name": "Speciale 10",
+        "link": "./assets/selectIconsSpells/speciale_10.svg"
+    },
+    {
+        "name": "Speciale 11",
+        "link": "./assets/selectIconsSpells/speciale_11.svg"
+    },
+    {
+        "name": "Tempo",
+        "link": "./assets/selectIconsSpells/tempo_1.svg"
+    },
+    {
+        "name": "Tuono 1",
+        "link": "./assets/selectIconsSpells/tuono_1.svg"
+    },
+    {
+        "name": "Tuono 2",
+        "link": "./assets/selectIconsSpells/tuono_2.svg"
+    },
+    {
+        "name": "Tuono 3",
+        "link": "./assets/selectIconsSpells/tuono_3.svg"
+    },
+    {
+        "name": "Tuono 4",
+        "link": "./assets/selectIconsSpells/tuono_4.svg"
+    },
+    {
+        "name": "Utilità 1",
+        "link": "./assets/selectIconsSpells/utilità_1.svg"
+    },
+    {
+        "name": "Utilità 2",
+        "link": "./assets/selectIconsSpells/utilità_2.svg"
+    },
+    {
+        "name": "Utilità 3",
+        "link": "./assets/selectIconsSpells/utilità_3.svg"
+    },
+    {
+        "name": "Utilità 4",
+        "link": "./assets/selectIconsSpells/utilità_4.svg"
+    },
+    {
+        "name": "Utilità 5",
+        "link": "./assets/selectIconsSpells/utilità_5.svg"
+    },
+    {
+        "name": "Utilità 6",
+        "link": "./assets/selectIconsSpells/utilità_6.svg"
+    },
+    {
+        "name": "Utilità 7",
+        "link": "./assets/selectIconsSpells/utilità_7.svg"
+    },
+    {
+        "name": "Veleno 1",
+        "link": "./assets/selectIconsSpells/veleno_1.svg"
+    },
+    {
+        "name": "Veleno 2",
+        "link": "./assets/selectIconsSpells/veleno_2.svg"
+    },
+    {
+        "name": "Veleno 3",
+        "link": "./assets/selectIconsSpells/veleno_3.svg"
+    },
+    {
+        "name": "Veleno 4",
+        "link": "./assets/selectIconsSpells/veleno_4.svg"
+    }
+]
