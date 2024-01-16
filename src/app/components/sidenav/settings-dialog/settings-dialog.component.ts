@@ -75,4 +75,8 @@ export class SettingsDialogComponent {
     public resetSpellCharacters() {
       this.characterService.updateCharacterSpell();
     }
+
+    public updateUserCampaigns() {
+      this.firebaseService.getThenUpdateAllUsers();
+    }
 }

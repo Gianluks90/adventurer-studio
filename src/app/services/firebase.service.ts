@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from "firebase/app";
-import { Firestore, doc, getDoc, getFirestore, setDoc } from 'firebase/firestore';
+import { Firestore, collection, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
 import { BehaviorSubject } from 'rxjs';
 import { UserData } from '../models/userData';
@@ -61,6 +61,25 @@ export class FirebaseService {
     const q = doc(this.database, 'users', user.uid);
     const docSnap = await getDoc(q);
     return docSnap;
+  }
+
+  public async getThenUpdateAllUsers(): Promise<any> {
+    const q = collection(this.database, 'users');
+    const docs = await getDocs(q);
+    const result: UserData[] = [];
+    docs.forEach(async doc => {
+      await this.updateUser(doc.id);
+    });
+    return result;
+  }
+
+  public async updateUser(id: string) {
+    const userRef = doc(this.database, 'users', id);
+    return await setDoc(userRef, {
+      createdCampaigns: [],
+      campaignProgressive: 0,
+      campaignsAsPartecipant: [],
+    }, { merge: true })
   }
 
   public async updateUserDddice(token:string, slug: string) {

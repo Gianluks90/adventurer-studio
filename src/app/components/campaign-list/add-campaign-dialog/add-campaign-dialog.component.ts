@@ -24,7 +24,8 @@ export class AddCampaignDialogComponent {
     this.dialogRef.close({
       status: 'confirm',
       title:this.campForm.value.title,
-      password: this.campForm.value.password
+      password: this.campForm.value.password,
+      description: this.campForm.value.description
     });
   }
 }

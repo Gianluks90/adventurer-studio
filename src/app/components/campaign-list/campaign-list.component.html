@@ -1,6 +1,7 @@
 <div class="main-container">
-  <div class="card-container" *ngIf="campaigns.length > 0">
-    <div class="card-details" *ngFor="let c of campaigns">
+  <div class="card-container" *ngIf="ownedCampaigns.length > 0">
+    <div class="cart-title">Le tue campagne</div>
+    <div class="card-details" *ngFor="let c of ownedCampaigns">
       <div class="card-info-container">
         <div class="campaign-title">{{c.title}}</div>
         <div class="campaign-description">{{c.description}}</div>
@@ -11,19 +12,28 @@
       </button>
     </div>
   </div>
-  <div class="empty-card-container" *ngIf="campaigns.length == 0">
-    <div class="empty-message">Qui puoi creare le tue Campagne, premi il tasto qui sotto per iniziare.</div>
-    <button class="empty-char-button" mat-raised-button color="accent" (click)="createCampaigns()">Nuova campagna</button>
+  <div class="empty-card-container" *ngIf="ownedCampaigns.length == 0">
+    <div class="empty-message">Qui puoi creare le tue Campagne oppure unirti ad una di esse: premi uno dei tasti qui sotto per cominciare!</div>
+    <button class="empty-char-button" mat-raised-button color="accent" (click)="createCampaigns()">
+      <mat-icon>add</mat-icon> Nuova campagna
+    </button>
+    <button class="empty-char-button" mat-raised-button color="accent" disabled>
+      <mat-icon class="ticket-icon">confirmation_number</mat-icon> Unisciti ad una Campagna
+    </button>
   </div>
   <div class="sidenav-buttons" id="menu-button">
     <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <div class="add-buttons" id="add-button">
-    <button class="step-button" (click)="createCampaigns()" mat-icon-button matTooltip="Nuova Campagna"
-      matTooltipPosition="left" [disabled]="campaigns.length >= 3">
+  <div class="add-buttons" id="add-button" *ngIf="ownedCampaigns.length > 0 || partecipantCampaigns.length > 0">
+    <button class="step-button" (click)="createCampaigns()" mat-icon-button matTooltip="Crea Nuova"
+      matTooltipPosition="left" [disabled]="ownedCampaigns.length >= 3">
       <mat-icon>add</mat-icon>
+    </button>
+    <button class="step-button" mat-icon-button matTooltip="Unisciti ad una Campagnia"
+      matTooltipPosition="left" disabled>
+      <mat-icon class="ticket-icon">confirmation_number</mat-icon>
     </button>
   </div>
 </div>

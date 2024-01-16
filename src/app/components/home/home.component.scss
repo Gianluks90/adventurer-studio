@@ -70,6 +70,12 @@
     animation-delay: 1s;
 }
 
+.subtitle-warning {
+    // max-width: 600px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
 @keyframes appearSubtitle {
     0% {
         opacity: 0;

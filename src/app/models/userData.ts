@@ -5,16 +5,18 @@ export class UserData {
     displayName: string;
     photoURL: string;
     progressive: number;
+    campaignProgressive: number;
     dddiceToken: string;
     privateSlug: string;
     characters: string[];
     role: string
 
-    constructor(id: string, displayName: string, photoURL: string, progressive: number, dddiceToken: string, privateSlug: string, characters: string[], role: string) {
+    constructor(id: string, displayName: string, photoURL: string, progressive: number, campaignProgressive: number, dddiceToken: string, privateSlug: string, characters: string[], role: string) {
         this.id = id;
         this.displayName = displayName;
         this.photoURL = photoURL;
         this.progressive = progressive;
+        this.campaignProgressive = campaignProgressive;
         this.dddiceToken = dddiceToken;
         this.privateSlug = privateSlug;
         this.characters = characters;
@@ -27,6 +29,7 @@ export class UserData {
             user.displayName || "",
             user.photoURL || "",
             userData.progressive || 0,
+            userData.campaignProgressive || 0,
             userData.dddiceToken || "",
             userData.privateSlug || "",
             userData.characters || [],

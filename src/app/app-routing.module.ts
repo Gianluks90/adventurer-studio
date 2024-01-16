@@ -8,6 +8,7 @@ import { FormLevelUpComponent } from "./components/form-level-up/form-level-up.c
 import { HomeComponent } from "./components/home/home.component";
 import { AuthGuardService } from "./services/auth-guard.service";
 import { CampaignListComponent } from "./components/campaign-list/campaign-list.component";
+import { CampaignViewComponent } from "./components/campaign-view/campaign-view.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'view/:id', component: CharacterViewComponent, canActivate: [AuthGuardService] },
   { path: 'characters', component: CharacterListComponent, canActivate: [AuthGuardService] },
   { path: 'campaigns', component: CampaignListComponent, canActivate: [AuthGuardService] },
+  { path: 'campaign-view/:id', component: CampaignViewComponent, canActivate: [AuthGuardService] },
 ];
 
 @NgModule({

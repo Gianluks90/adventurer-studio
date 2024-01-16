@@ -24,7 +24,7 @@
     I tuoi personaggi
   </button>
 
-  <button mat-raised-button color="accent" disabled>
+  <button mat-raised-button color="accent" [routerLink]="['/campaigns']" (click)="close()">
     <mat-icon>group</mat-icon>
     Campagne
   </button>

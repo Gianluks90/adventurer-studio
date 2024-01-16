@@ -14,6 +14,10 @@ import { DeleteCampaignDialogComponent } from './delete-campaign-dialog/delete-c
 })
 export class CampaignListComponent implements OnInit {
 
+  public menuIcon = 'menu';
+  public ownedCampaigns: any[] = [];
+  public partecipantCampaigns: any[] = [];
+
   constructor(private sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
 
   }
@@ -21,14 +25,34 @@ export class CampaignListComponent implements OnInit {
   ngOnInit() {
     const ownerId = getAuth().currentUser.uid;
     if (ownerId) {
-      this.campaignService.getCampaignsByOwnerID(ownerId).then((result) => {
-        this.campaigns = result;
-      })
+      this.campaignService.getUserCampaigns().then((result) => {
+        console.log('result', result);
+
+        this.ownedCampaigns = result.asOwner;
+        this.partecipantCampaigns = result.asPartecipant;
+        this.sortCampaignsByLastUpdate(this.ownedCampaigns);
+        this.sortCampaignsByLastUpdate(this.partecipantCampaigns);
+      });
+
+      // this.campaignService.getCampaignsByOwnerID(ownerId).then((result) => {
+      //   this.campaigns = result;
+      // })
     }
   }
 
-  public menuIcon = 'menu';
-  public campaigns: any[] = [];
+  private sortCampaignsByLastUpdate(list: any[]) {
+    console.log('list', list);
+
+    return list.sort((a, b) => {
+      if (a.lastUpdate > b.lastUpdate) {
+        return -1;
+      } else if (a.lastUpdate < b.lastUpdate) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
 
   public openSidenav() {
     const menuButton = document.getElementById('menu-button');
@@ -45,7 +69,7 @@ export class CampaignListComponent implements OnInit {
     }).afterClosed().subscribe((result: any) => {
       if (result && result.status === 'confirm') {
         const ownerId = getAuth().currentUser.uid;
-        this.campaignService.addCampaign(result.title, result.password, ownerId).then(() => {
+        this.campaignService.addCampaign(result.title, result.password, ownerId, result.description).then(() => {
           window.location.reload();
         });
       }
