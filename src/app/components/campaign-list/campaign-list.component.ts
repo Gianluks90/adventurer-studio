@@ -12,21 +12,20 @@ import { DeleteCampaignDialogComponent } from './delete-campaign-dialog/delete-c
   templateUrl: './campaign-list.component.html',
   styleUrl: './campaign-list.component.scss'
 })
-export class CampaignListComponent implements OnInit{
+export class CampaignListComponent implements OnInit {
 
-  constructor(private sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform){
+  constructor(private sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     const ownerId = getAuth().currentUser.uid;
     if (ownerId) {
-      this.campaignService.getCampaignsByOwnerID(ownerId).then((result)=>{
+      this.campaignService.getCampaignsByOwnerID(ownerId).then((result) => {
         this.campaigns = result;
         console.log(this.campaigns);
       })
     }
-
   }
 
   public menuIcon = 'menu';
@@ -43,17 +42,18 @@ export class CampaignListComponent implements OnInit{
   public createCampaigns() {
     this.dialog.open(AddCampaignDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      autoFocus: false,
     }).afterClosed().subscribe((result: any) => {
-      if (result && result.status === 'confirm' ) {
+      if (result && result.status === 'confirm') {
         const ownerId = getAuth().currentUser.uid;
-        this.campaignService.addCampaign(result.title, result.password, ownerId).then(()=>{
+        this.campaignService.addCampaign(result.title, result.password, ownerId).then(() => {
           window.location.reload();
         });
       }
     });
   }
 
-  public deleteCampaigns(id:string){
+  public deleteCampaigns(id: string) {
 
     this.dialog.open(DeleteCampaignDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',

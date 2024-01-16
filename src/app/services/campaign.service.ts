@@ -12,8 +12,6 @@ export class CampaignService {
 
   public async addCampaign(title: string, password: string, ownerId: string): Promise<any> {
     const ref = collection(this.firebaseService.database, 'campaigns');
-    console.log('add');
-
     return await addDoc(ref, {
       title: title,
       password: password,
@@ -40,7 +38,6 @@ export class CampaignService {
         id: doc.id,
         ...doc.data()
       }
-
       result.push(campaign);
     });
 

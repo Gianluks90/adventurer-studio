@@ -5,14 +5,15 @@
 
 .dialog-content {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
 }
 
-.custom-form-field {
-  flex-grow: 1;
-  margin-top: 20px;
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  margin-bottom: 8px;
 }
 
 button {
