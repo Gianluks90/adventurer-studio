@@ -51,6 +51,27 @@ export class RollDiceService {
     }
   }
 
+  public async rollD100(modifier?: number): Promise<any> {
+    const DDDICE = this.dddice.dddice;
+    if (DDDICE) {
+      DDDICE.roll(
+        [{
+          theme: this.diceTheme != '' ? this.diceTheme : 'dddice-black',
+          type: "d10",
+        }, {
+          theme: this.diceTheme != '' ? this.diceTheme : 'dddice-black',
+          type: "d10x",
+        }]
+      ).then((result) => {
+        // this.notification.dismissSnackBar();
+        DDDICE.on(ThreeDDiceRollEvent.RollFinished, () => {
+          const message = (Number(result.data.total_value) + modifier);
+          this.notification.openDiceSnackBar("Ottenuto: " + message, "casino");
+        });
+      });
+    }
+  }
+
   public async rollAdvantageDisadvantage(mode: string, modifier?: number): Promise<any> {
     const DDDICE = this.dddice.dddice;
     if (DDDICE) {

@@ -9,7 +9,7 @@
     <div class="dice-container">
         <div *ngFor="let dice of diceInformationList">
             <button class="dice-button" (click)="addDiceToRoll(dice.value)" [disabled]="typeOfLaunch">
-                <img class="dice-icon" [src]="dice.icon" alt="">
+                <img class="dice-icon" [src]="dice.icon" alt="" [ngClass]="{'disabled' : typeOfLaunch.length > 0 }">
             </button>
         </div>
     </div>

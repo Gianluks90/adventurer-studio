@@ -33,6 +33,10 @@ export class DiceComponent {
       value: "d10",
     },
     {
+      icon: "./assets/dice/dice-d10x.svg",
+      value: "d100",
+    },
+    {
       icon: "./assets/dice/dice-d12.svg",
       value: "d12",
     },
@@ -82,6 +86,7 @@ export class DiceComponent {
         },
       ]
     };
+
   public diceSelectedList: string[] = [];
   public selectedDiceResult: string = "";
   public modifier: string = "";
@@ -94,7 +99,6 @@ export class DiceComponent {
     this.activeRoll = false;
     if (this.diceSelectedList.length < 20) {
       this.diceSelectedList.push(diceValue);
-      console.log(this.diceSelectedList)
     }
     this.selectedDiceResult = "";
     this.countDice();
