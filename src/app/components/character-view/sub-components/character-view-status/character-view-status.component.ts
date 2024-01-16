@@ -67,9 +67,7 @@ export class CharacterViewStatusComponent {
       used: [character.ispirazione],
       valoreAttuale: 1,
       valoreMassimo: 1,
-    })
-    console.log('risorseAggiuntiveData', this.risorseAggiuntiveData);
-    
+    })    
   }
 
   ngOnInit(): void {

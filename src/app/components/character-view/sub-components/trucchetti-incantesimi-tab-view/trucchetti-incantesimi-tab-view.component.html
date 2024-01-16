@@ -1,41 +1,47 @@
 <!-- <div class="main-trucchetti-incantesimi-container"> -->
-    <div class="section-title">Trucchetti e Incantesimi</div>
-    <div class="ti-container">
-        <div class="ti-element"> <span class="ti-label">Classe Incantatore</span> {{classeIncantatore}}</div>
-        <div class="ti-element"> <span class="ti-label">Caratteristica</span> {{caratteristicaIncantatore}}</div>
-    </div>
-    <div class="ti-container">
-        <div class="ti-element"> <span class="ti-label">CD Tiro salvezza</span> {{CDTiroSalvezza}}</div>
-        <div class="ti-element"> <span class="ti-label">Bonus attacco</span> +{{bonusAttaccoIncantesimi}}</div>
-    </div>
-    <div class="section-title">Slot Incantesimi</div>
-    <div class="slot-container-line">
-        <div *ngFor="let slot of slotIncantesimi; let i = index;">
-            <div class="slot-container">
-                <div class="slot-title">{{i+1}}</div>
-                <div *ngFor="let used of slot.used; let j = index" [ngClass]="{'active': !used, 'used': used}"
-                    (click)="useSlot(i, j)">•</div>
-            </div>
+<div class="section-title">Trucchetti e Incantesimi</div>
+<div class="ti-container">
+    <div class="ti-element"> <span class="ti-label">Classe Incantatore</span> {{classeIncantatore}}</div>
+    <div class="ti-element"> <span class="ti-label">Caratteristica</span> {{caratteristicaIncantatore}}</div>
+</div>
+<div class="ti-container">
+    <div class="ti-element"> <span class="ti-label">CD Tiro salvezza</span> {{CDTiroSalvezza}}</div>
+    <div class="ti-element"> <span class="ti-label">Bonus attacco</span> +{{bonusAttaccoIncantesimi}}</div>
+</div>
+<div class="section-title">Slot Incantesimi</div>
+<div class="slot-container-line">
+    <div *ngFor="let slot of slotIncantesimi; let i = index;">
+        <div class="slot-container" *ngIf="slot.used.length > 0">
+            <div class="slot-title">{{i+1}}°</div>
+            <div *ngFor="let used of slot.used; let j = index" [ngClass]="{'active': !used, 'used': used}"
+                (click)="useSlot(i, j)">•</div>
         </div>
     </div>
+</div>
 
-    <div class="section-title">Elenco</div>
-    <details *ngFor="let t of lista; let i = index;" class="t-container">
+<div class="section-title">Incantesimi Preparati</div>
+<div class="search-container">
+    <mat-form-field appearance="outline" class="search-input" color="accent">
+        <mat-label>Cerca</mat-label>
+        <input matInput type="text" (keyup)="filterSearch($event)">
+    </mat-form-field>
+    <button mat-icon-button color="primary" class="add-button" (click)="openAddSpellDialog()" disableRipple><mat-icon>add</mat-icon></button>
+</div>
+<ng-container *ngFor="let t of lista; let i = index;">
+    <details *ngIf="t.preparato" class="t-container" [hidden]="t.filtered">
         <summary class="t-name">{{t.nome}}</summary>
         <div class="spell-attributes">{{t.tipologia}} <span *ngIf="t.livello > 0">di {{t.livello}}° Livello</span>,
             {{t.scuola}}, {{t.componenti}}, {{t.riferimento}}</div>
         <div class="spell-info"> <span class="spell-label">Durata</span> {{t.durata}} <span class="spell-label">Tempo di
                 lancio</span> {{t.tempoLancio}} <span class="spell-label">Gittata</span> {{t.gittata}} <span
-                class="spell-label">Formula </span>{{t.formula !== '' ? t.formula : '-'}}</div>
-        <!-- <details> -->
-        <!-- <summary>Descrizione</summary> -->
+                class="spell-label">Formula </span>{{t.formula !== '' ? t.formula : '-'}}
+        </div>
         <div class="spell-description"> <span class="spell-label">Descrizione</span> {{t.descrizione}}</div>
         <div *ngIf="t.livelloSuperiore !== ''" class="spell-description"> <span class="spell-label">Ai livelli
-                superiori</span> {{t.livelloSuperiore}}</div>
-        <!-- </details> -->
-
-        <!-- <div class="spell-container">
-        
-    </div> -->
+                superiori</span> {{t.livelloSuperiore}}
+        </div>
+        <div class="button-container">
+            <button mat-icon-button class="edit-spell-button" (click)="openAddSpellDialog(t)"><mat-icon>edit</mat-icon></button>
+        </div>
     </details>
-<!-- </div> -->
+</ng-container>

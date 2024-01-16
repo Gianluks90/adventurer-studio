@@ -18,8 +18,6 @@ export class PrivilegiTrattiTabViewComponent {
     this.privilegiTrattiData = privilegiTratti;
     this.tags = [...new Set(this.privilegiTrattiData.map((privilegioTratto: any) => privilegioTratto.tag.toLowerCase()))];
     this.tags = this.tags.filter((tag: string) => tag !== '').sort();
-    console.log('tratti data', this.privilegiTrattiData);
-    console.log('tags', this.tags);
   }
 
   @Input() set informazioniBase(informazioniBase: any) {

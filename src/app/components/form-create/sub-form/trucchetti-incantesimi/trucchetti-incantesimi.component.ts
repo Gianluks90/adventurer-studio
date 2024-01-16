@@ -56,7 +56,9 @@ export class TrucchettiIncantesimiComponent {
       descrizione: ['', Validators.required],
       livelloSuperiore: '',
       riferimento: '',
-      preparato: false
+      preparato: false,
+      icon: '',
+      filtered: false
     });
     this.trucchettiIncantesimi.push(trucchettoIncantesimo);
   }
