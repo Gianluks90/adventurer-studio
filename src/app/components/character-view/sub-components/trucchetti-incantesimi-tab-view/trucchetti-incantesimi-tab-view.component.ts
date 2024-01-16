@@ -61,18 +61,41 @@ export class TrucchettiIncantesimiTabViewComponent {
     })
   }
 
-  openAddSpellDialog(spell?: Spell) {
+  openAddSpellDialog(spell?: Spell, index?: number) {
     this.dialog.open(AddSpellDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
       disableClose: true,
       data: { spells: this.lista, spell: spell }
     }).afterClosed().subscribe((result: any) => {
-      if (result.status === 'success') {
-        // this.characterService.addItemInventory(window.location.href.split('/').pop(), result.spell).then(() => {
-        //   this.lista.push(result.spell);
-        //   this.sortSpells();
-        // });
+      switch (result.status) {
+        case 'success':
+          this.characterService.addSpell(window.location.href.split('/').pop(), result.spell).then(() => {
+            this.lista.push(result.spell);
+            this.sortSpells();
+          });
+          break;
+        case 'edited':
+          this.lista[index] = result.spell;
+          this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
+          break;
+        case 'deleted':
+          this.lista.splice(index, 1);
+          this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
+          break;
       }
+
+      // if (result.status === 'success') {
+      //   this.characterService.addSpell(window.location.href.split('/').pop(), result.spell).then(() => {
+      //     this.lista.push(result.spell);
+      //     this.sortSpells();
+      //   });
+      // } else if (result.status === 'edited') {
+      //   this.lista[index] = result.spell;
+      //   this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
+      // } else if (result.status === 'deleted') {
+      //   this.lista.splice(index, 1);
+      //   this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
+      // }
     })
   }
 

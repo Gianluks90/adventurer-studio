@@ -13,6 +13,13 @@
     border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
 }
 
+.subtitle {
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+    margin-bottom: 4px;
+}
+
 .ti-container {
     display: flex;
     width: 100%;
@@ -117,12 +124,17 @@
 }
 
 .t-name {
-    background-color: #212121;
+    background-color: black;
     color: white;
     padding: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.spell-icon {
+    width: 24px;
+    height: 24px;
 }
 
 .search-container {
@@ -162,6 +174,22 @@ summary::after {
 
 details[open] > summary::after {
     content: url("/assets/icons/chevron_down.svg");
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.edit-spell-button {
+    background-color: #212121;
+    color: white;
+    border-radius: 4px;
+    margin: 4px;
+    font-size: xx-small;
+    border: none;
     cursor: pointer;
 }
 

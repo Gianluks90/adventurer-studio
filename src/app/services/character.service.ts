@@ -5,6 +5,7 @@ import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, q
 import { getAuth } from 'firebase/auth';
 import { Item } from '../models/item';
 import { FormModel } from '../models/formModel';
+import { Spell } from '../models/spell';
 
 @Injectable({
   providedIn: 'root'
@@ -150,6 +151,24 @@ export class CharacterService {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {
       equipaggiamento: inventory
+    }, { merge: true });
+  }
+
+  public async addSpell(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      magia: {
+        trucchettiIncantesimi: arrayUnion(form)
+      }
+    }, { merge: true });
+  }
+
+  public async updateSpells(id: string, spells: Spell[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      magia: {
+        trucchettiIncantesimi: spells
+      }
     }, { merge: true });
   }
 

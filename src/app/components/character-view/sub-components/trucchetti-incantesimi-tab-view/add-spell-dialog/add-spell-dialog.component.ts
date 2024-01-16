@@ -21,7 +21,6 @@ export class AddSpellDialogComponent {
     this.httpClient.get('./assets/settings/selectIconsSpells.json').subscribe((data: any[]) => {
       this.selectIcons = data;
     });
-
     if (this.data.spell) {
       this.form.patchValue(this.data.spell);
     }
