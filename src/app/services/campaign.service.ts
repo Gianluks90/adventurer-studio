@@ -96,4 +96,29 @@ export class CampaignService {
       return docSnap.data();
     }
   }
+
+  public async checkCampaign(id: string, password: string): Promise<boolean> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    const docSnap = await getDoc(docRef);
+    if(docSnap.exists()){
+      const campaign = docSnap.data();
+      return campaign['password'] === password;
+    }
+    return false;
+  }
+
+  public async subscribeToCampaign(campId: string, userId: string, heroId: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      heroes: arrayUnion(heroId),
+      partecipants: arrayUnion(userId),
+      lastUpdate: new Date()
+    }, {merge: true}).then(() => {
+      const userRef = doc(this.firebaseService.database, 'users', userId);
+      setDoc(userRef, {
+        campaignsAsPartecipant: arrayUnion(campId)
+      }, {merge: true});
+    });; 
+
+  }
 }

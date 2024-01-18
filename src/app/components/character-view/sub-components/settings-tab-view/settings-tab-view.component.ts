@@ -18,7 +18,6 @@ export class SettingsTabViewComponent {
   }
 
   public updateSheetColor(event: any) {
-    console.log('cambio', event);
     const newColor = event + '40';
     this.charService.updateCharacterSheetColorById(window.location.href.split('/').pop()!, newColor).then(() => {
       window.location.reload();

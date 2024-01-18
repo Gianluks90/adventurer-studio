@@ -1,0 +1,30 @@
+<div mat-dialog-title class="dialog-title">Unisciti ad una Campagna</div>
+<div mat-dialog-content class="dialog-content" >
+    <div class="description">Testo di spiegazione.</div>
+    <div class="input-container" [formGroup]="campForm">
+        <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id">
+        </mat-form-field>
+        <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password">
+        </mat-form-field>
+    </div>
+
+    <div class="input-container" [formGroup]="charForm" *ngIf="checked">
+        <mat-form-field class="custom-form-field" color="accent" appearance="outline">
+            <mat-label>Personaggio</mat-label>
+            <mat-select formControlName="selected">
+                <mat-option *ngFor="let char of characters" [value]="char.id">{{char.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>Annulla</button>
+    <button mat-raised-button color="accent" [disabled]="!campForm.valid || checked"
+        (click)="checkForm()">Controlla</button>
+    <button mat-raised-button color="accent" [disabled]="!charForm.valid" (click)="confirm()">Unisciti</button>
+</div>

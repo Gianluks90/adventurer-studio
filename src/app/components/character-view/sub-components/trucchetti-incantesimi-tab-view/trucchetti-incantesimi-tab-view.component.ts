@@ -22,7 +22,6 @@ export class TrucchettiIncantesimiTabViewComponent {
   @Input() set trucchettiIncantesimi(data: any) {
     this.lista = data.lista;
     this.sortSpells();
-    console.log('lista',this.lista);
     this.classeIncantatore = data.classeIncantatore;
     this.caratteristicaIncantatore = data.caratteristicaIncantatore;
     this.bonusAttaccoIncantesimi = data.bonusAttaccoIncantesimi;

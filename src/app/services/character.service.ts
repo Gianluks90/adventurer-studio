@@ -198,8 +198,6 @@ export class CharacterService {
 
   public async updateCharacterSpell(): Promise<any> {
     this.getCharacters().then((characters) => {
-      console.log(characters);
-      
       characters.forEach((character) => {
         if (character.magia) {
           character.magia.trucchettiIncantesimi.forEach((spell: any) => {

@@ -6,6 +6,7 @@ import { Platform } from '@angular/cdk/platform';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { getAuth } from 'firebase/auth';
 import { DeleteCampaignDialogComponent } from './delete-campaign-dialog/delete-campaign-dialog.component';
+import { TicketCampaignDialogComponent } from './ticket-campaign-dialog/ticket-campaign-dialog.component';
 
 @Component({
   selector: 'app-campaign-list',
@@ -26,8 +27,6 @@ export class CampaignListComponent implements OnInit {
     const ownerId = getAuth().currentUser.uid;
     if (ownerId) {
       this.campaignService.getUserCampaigns().then((result) => {
-        console.log('result', result);
-
         this.ownedCampaigns = result.asOwner;
         this.partecipantCampaigns = result.asPartecipant;
         this.sortCampaignsByLastUpdate(this.ownedCampaigns);
@@ -41,8 +40,6 @@ export class CampaignListComponent implements OnInit {
   }
 
   private sortCampaignsByLastUpdate(list: any[]) {
-    console.log('list', list);
-
     return list.sort((a, b) => {
       if (a.lastUpdate > b.lastUpdate) {
         return -1;
@@ -85,6 +82,17 @@ export class CampaignListComponent implements OnInit {
       }
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
+        window.location.reload();
+      }
+    });
+  }
+
+  public ticketCampaign() {
+    this.dialog.open(TicketCampaignDialogComponent, {
+      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      autoFocus: false
+    }).afterClosed().subscribe((result: any) => {
+      if (result && result.status === 'success') {
         window.location.reload();
       }
     });

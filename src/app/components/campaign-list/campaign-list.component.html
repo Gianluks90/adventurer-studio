@@ -12,6 +12,22 @@
       </button>
     </div>
   </div>
+
+  <div class="card-container" *ngIf="partecipantCampaigns.length > 0">
+    <div class="cart-title">Iscrizioni</div>
+    <div class="card-details" *ngFor="let c of partecipantCampaigns">
+      <div class="card-info-container">
+        <div class="campaign-title">{{c.title}}</div>
+        <div class="campaign-description">{{c.description}}</div>
+        <div class="campaign-status">{{c.status.statusMessage}}</div>
+      </div>
+      <button class="play-button" mat-icon-button [routerLink]="'/campaign-view/' + c.id">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+    </div>
+  </div>
+
+
   <div class="empty-card-container" *ngIf="ownedCampaigns.length == 0">
     <div class="empty-message">Qui puoi creare le tue Campagne oppure unirti ad una di esse: premi uno dei tasti qui sotto per cominciare!</div>
     <button class="empty-char-button" mat-raised-button color="accent" (click)="createCampaigns()">
@@ -32,7 +48,7 @@
       <mat-icon>add</mat-icon>
     </button>
     <button class="step-button" mat-icon-button matTooltip="Unisciti ad una Campagnia"
-      matTooltipPosition="left" disabled>
+      matTooltipPosition="left" (click)="ticketCampaign()">
       <mat-icon class="ticket-icon">confirmation_number</mat-icon>
     </button>
   </div>
