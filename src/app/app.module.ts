@@ -80,6 +80,10 @@ import { TicketCampaignDialogComponent } from './components/campaign-list/ticket
     AddCharacterDialogComponent,
     CharacterListComponent,
     CompleteLevelUpDialogComponent,
+    AddCampaignDialogComponent,
+    DeleteCampaignDialogComponent,
+    AddSpellDialogComponent,
+    TicketCampaignDialogComponent,
 
     // UTILITIES COMPONENTS
     MoneyComponent,
@@ -90,6 +94,7 @@ import { TicketCampaignDialogComponent } from './components/campaign-list/ticket
     InventoryComponent,
     AddItemDialogComponent,
     HealthBarComponent,
+    SnackbarDiceComponent,
 
     // FORM CREATE COMPONENTS AND SUB-COMPONENTS
     FormCreateComponent,
@@ -129,13 +134,10 @@ import { TicketCampaignDialogComponent } from './components/campaign-list/ticket
      TrucchettiIncantesimiTabViewComponent,
      SettingsTabViewComponent,
      ItemInfoSheetComponent,
-     SnackbarDiceComponent,
+
+    // CAMPAIGN COMPONENTS AND SUB-COMPONENTS
      CampaignListComponent,
-     AddCampaignDialogComponent,
-     DeleteCampaignDialogComponent,
-     AddSpellDialogComponent,
      CampaignViewComponent,
-     TicketCampaignDialogComponent,
 
   ],
   imports: [

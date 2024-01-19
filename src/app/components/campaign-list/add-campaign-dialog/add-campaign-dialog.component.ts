@@ -17,6 +17,7 @@ export class AddCampaignDialogComponent {
   public campForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(1)]],
     password:['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
+    dmName: ['', [Validators.required, Validators.minLength(1)]],
     description: ''
   });
 
@@ -25,6 +26,7 @@ export class AddCampaignDialogComponent {
       status: 'confirm',
       title:this.campForm.value.title,
       password: this.campForm.value.password,
+      dmName: this.campForm.value.dmName,
       description: this.campForm.value.description
     });
   }

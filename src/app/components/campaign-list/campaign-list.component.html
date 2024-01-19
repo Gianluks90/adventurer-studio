@@ -18,6 +18,12 @@
     <div class="card-details" *ngFor="let c of partecipantCampaigns">
       <div class="card-info-container">
         <div class="campaign-title">{{c.title}}</div>
+        <div class="campaign-dm">DM | {{c.dmName}}</div>
+        <div class="character-list">
+          <!-- <div class="character"> -->
+            <img  *ngFor="let char of c.characters" src="{{char.basicInfo.urlImmaginePersonaggio}}" class="character-image" matTooltip="{{char.basicInfo.nomePersonaggio}}" matTooltipPosition="below">
+          <!-- </div> -->
+        </div>
         <div class="campaign-description">{{c.description}}</div>
         <div class="campaign-status">{{c.status.statusMessage}}</div>
       </div>
@@ -33,7 +39,7 @@
     <button class="empty-char-button" mat-raised-button color="accent" (click)="createCampaigns()">
       <mat-icon>add</mat-icon> Nuova campagna
     </button>
-    <button class="empty-char-button" mat-raised-button color="accent" disabled>
+    <button class="empty-char-button" mat-raised-button color="accent" (click)="ticketCampaign()">
       <mat-icon class="ticket-icon">confirmation_number</mat-icon> Unisciti ad una Campagna
     </button>
   </div>

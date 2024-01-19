@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
@@ -17,6 +17,7 @@ export class CharacterViewComponent {
   public competenzeAbilita: any;
   public linguaggiCompetenze: any;
   public trucchettiIncantesimi: any;
+  public charId: string = '';
 
   // public menuIcon = 'menu';
 
@@ -28,8 +29,10 @@ export class CharacterViewComponent {
     private diceSelector: MatBottomSheet) { }
 
   ngOnInit(): void {
-    const characterId = window.location.href.split('/').pop();
-    this.characterService.getCharacterById(characterId).then((character) => {
+    if (this.charId === '') {
+      this.charId = window.location.href.split('/').pop();
+    }
+    this.characterService.getCharacterById(this.charId).then((character) => {
       this.character = character;
       this.competenzeAbilita = {
         abilita: this.character.competenzaAbilita,
@@ -54,9 +57,12 @@ export class CharacterViewComponent {
         slotIncantesimi: this.character.magia.slotIncantesimi
       }
 
-      this.formService.initForm(characterId!); // Un po raffazzonato, va sistemato usando solo il formSubject
+      this.formService.initForm(this.charId); // Un po raffazzonato, va sistemato usando solo il formSubject
     });
+  }
 
+  @Input() public set characterId(id: string) {
+    this.charId = id;
   }
 
   public openSidenav() {

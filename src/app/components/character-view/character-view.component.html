@@ -71,7 +71,7 @@
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below" matTooltip="Impostazioni">
                 </ng-template>
-                <app-settings-tab-view [sheetColor]="character.status.sheetColor"></app-settings-tab-view>
+                <app-settings-tab-view [campaignId]="character.campaignId || ''" [sheetColor]="character.status.sheetColor"></app-settings-tab-view>
             </mat-tab>
         </mat-tab-group>
     </div>

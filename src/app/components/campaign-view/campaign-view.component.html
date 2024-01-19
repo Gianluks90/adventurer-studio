@@ -3,13 +3,37 @@
         <div class="header-title">
             {{campaignData.title}}
         </div>
-        <button mat-icon-button class="header-button" disabled>
+        <button mat-icon-button class="header-button" [matMenuTriggerFor]="menu">
             <mat-icon>info</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+            <div class="menu-container" (click)="$event.stopPropagation();">
+                <div class="subtitle">Informazioni</div>
+                <div *ngIf="!isOwner" class="campaign-id">DM: {{campaignData.dmName}}</div>
+                <div class="campaign-id">Giocatori iscritti (n°): {{campaignData.characters.length}}</div>
+                <div class="campaign-id">Iniziata il {{campaignData.createdAt.seconds*1000 | date:'dd/MM/yyyy'}}</div>
+            </div>
+            <div class="menu-container" (click)="$event.stopPropagation();">
+                <div class="subtitle">Stato campagna</div>
+                <div class="status-message-container">
+                    {{campaignData.status.statusMessage}}
+                </div>
+            </div>
+            <div class="menu-container" *ngIf="isOwner" (click)="$event.stopPropagation();">
+                <div class="subtitle">ID Campagna</div>
+                <div class="campaign-id">{{campaignData.id}}</div>
+                <div class="subtitle">Password</div>
+                <div class="campaign-id">{{campaignData.password}}</div>
+            </div>
+            <button mat-menu-item disabled *ngIf="isOwner">
+                <mat-icon>settings</mat-icon> Gestisci
+            </button>
+            <button mat-menu-item disabled *ngIf="isOwner">
+                <mat-icon>delete</mat-icon> Elimina campagna
+            </button>
+        </mat-menu>
     </div>
-    <div class="status-message-container">
-        {{campaignData.status.statusMessage}}
-    </div>
+    
 </div>
 
 <div class="sidenav-buttons" id="menu-button">
@@ -20,7 +44,8 @@
 </div>
 
 <div class="dice-buttons" id="dice-button">
-    <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi" matTooltipPosition="right" disabled>
+    <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi"
+        matTooltipPosition="right" disabled>
         <img src="./assets/dice/dice-d20-white.svg" alt="">
     </button>
 </div>

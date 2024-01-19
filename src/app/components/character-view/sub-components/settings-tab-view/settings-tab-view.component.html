@@ -1,4 +1,18 @@
-<div class="section-title">Impostazioni</div>
+<div class="section-title">Campagna e Impostazioni</div>
+
+<div class="subtitle">Campagna attiva</div>
+<div class="description-text" *ngIf="campaignIdData === ''">Questo personaggio non è in alcuna Campagna attiva.</div>
+<ng-container *ngIf="campaignData">
+    <div class="campaign-header">
+        <div class="campaign-title">{{campaignData.title}}</div>
+        <button mat-icon-button matTooltip="Vai alla Campagna" matTooltipPosition="below" (click)="jumpToCampaign(campaignData.id)">
+            <mat-icon>play_arrow</mat-icon>
+        </button>
+    </div>
+    <!-- <div class="description-text">{{campaignData.description}}</div>
+    <div class="campaign-status">{{campaignData.status.statusMessage}}</div> -->
+</ng-container>
+
 <div class="subtitle">Colore scheda</div>
 <div class="input-container">
     <input type="color" class="color-picker" [value]="sheetColorData" #picker>
@@ -10,7 +24,8 @@
         <mat-icon>refresh</mat-icon> Predefinito
     </button>
 </div>
-<div class="description-text"><strong>Attenzione</strong>: una volta premuto uno dei tasti 'Applica' o 'Predefinito' la pagina verrà
+<div class="description-text"><strong>Attenzione</strong>: una volta premuto uno dei tasti 'Applica' o 'Predefinito' la
+    pagina verrà
     ricaricata ed ogni modifica non salvata sarà persa. Assicurati di salvare prima di effettuare questa modifica.</div>
 <div class="subtitle">Esportazione</div>
 <div class="export-container">
@@ -18,13 +33,12 @@
         <button mat-raised-button color="accent" (click)="parseExport()">
             <mat-icon>download</mat-icon> Esporta JSON
         </button>
-      </a>
-    
+    </a>
+
     <button class="export-button" mat-raised-button color="accent" disabled>
         <mat-icon>picture_as_pdf</mat-icon> Esporta PDF
     </button>
 </div>
-<div class="description-text">Il file <strong>JSON</strong> permette di creare una copia di questo personaggio dalla sezione Personaggi. Il file <strong>PDF</strong> (funzione disponibile prossimamente) è invece la scheda personaggio ufficiale in formato .pdf pre-compilata con le informazioni inserite finora.</div>
-
-<div class="subtitle">Campagne (prossimamente)</div>
-<div class="description-text">Questo personaggio non è in alcuna Campagna attiva.</div>
+<div class="description-text">Il file <strong>JSON</strong> permette di creare una copia di questo personaggio dalla
+    sezione Personaggi. Il file <strong>PDF</strong> (funzione disponibile prossimamente) è invece la scheda personaggio
+    ufficiale in formato .pdf pre-compilata con le informazioni inserite finora.</div>

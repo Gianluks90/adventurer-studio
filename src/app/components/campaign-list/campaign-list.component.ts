@@ -29,6 +29,8 @@ export class CampaignListComponent implements OnInit {
       this.campaignService.getUserCampaigns().then((result) => {
         this.ownedCampaigns = result.asOwner;
         this.partecipantCampaigns = result.asPartecipant;
+        console.log(this.partecipantCampaigns);
+        
         this.sortCampaignsByLastUpdate(this.ownedCampaigns);
         this.sortCampaignsByLastUpdate(this.partecipantCampaigns);
       });
@@ -65,8 +67,7 @@ export class CampaignListComponent implements OnInit {
       autoFocus: false,
     }).afterClosed().subscribe((result: any) => {
       if (result && result.status === 'confirm') {
-        const ownerId = getAuth().currentUser.uid;
-        this.campaignService.addCampaign(result.title, result.password, ownerId, result.description).then(() => {
+        this.campaignService.addCampaign(result).then(() => {
           window.location.reload();
         });
       }
