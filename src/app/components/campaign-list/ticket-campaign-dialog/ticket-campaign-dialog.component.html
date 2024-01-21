@@ -28,7 +28,7 @@
 </div>
 
 <div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>Annulla</button>
+    <button mat-raised-button (click)="cancel()">Annulla</button>
     <button mat-raised-button color="accent" [disabled]="!campForm.valid || checked"
         (click)="checkForm()">Controlla</button>
     <button mat-raised-button color="accent" [disabled]="!charForm.valid" (click)="confirm()">Unisciti</button>

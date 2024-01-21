@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { getAuth } from 'firebase/auth';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { CharacterService } from 'src/app/services/character.service';
@@ -30,7 +31,7 @@ export class TicketCampaignDialogComponent {
     selected: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<TicketCampaignDialogComponent>, private campaignService: CampaignService, private characterService: CharacterService) { }
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<TicketCampaignDialogComponent>, private campaignService: CampaignService, private characterService: CharacterService, private router: Router) { }
 
   public checkForm() {
     this.campaignService.checkCampaign(this.campForm.value.id, this.campForm.value.password).then((result) => {
@@ -59,6 +60,16 @@ export class TicketCampaignDialogComponent {
         status: 'success'
       });
     });
+  }
+
+  public cancel(): void {
+    const url = window.location.href.split('/');
+    if (url.includes('campaign-view')) {
+      this.router.navigate(['campaigns']);
+      this.dialogRef.close();
+    } else {
+      this.dialogRef.close();
+    }
   }
 
 }
