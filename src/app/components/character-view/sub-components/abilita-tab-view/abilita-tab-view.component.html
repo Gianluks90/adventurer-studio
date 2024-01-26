@@ -1,6 +1,6 @@
 <!-- <div class="main-abilita-container"> -->
     <div class="section-title">Competenze Abilità</div>
-    <div *ngFor="let a of abilitaData; let last = last" [ngClass]="{'last-item': last}" class="a-container" (click)="rollSpecificDice(a.mod)">
+    <div *ngFor="let a of abilitaData; let last = last" [ngClass]="{'last-item': last, 'dice-rolls': diceService.roomConnected}" class="a-container" (click)="rollDice(a.name, a.mod)">
         <div class="a-name">
             {{a.name}} ({{a.short}})
             <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>

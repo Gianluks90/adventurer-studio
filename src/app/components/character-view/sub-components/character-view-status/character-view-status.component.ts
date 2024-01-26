@@ -8,6 +8,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { CharacterService } from 'src/app/services/character.service';
 import { Item } from 'src/app/models/item';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
+import { DddiceService } from 'src/app/services/dddice.service';
 
 @Component({
   selector: 'app-character-view-status',
@@ -45,12 +46,13 @@ export class CharacterViewStatusComponent {
   public risorseAggiuntiveData: any[] = [];
 
   constructor(
-    private dialog: MatDialog,
-    private platform: Platform,
+    // private dialog: MatDialog,
+    // private platform: Platform,
     private formService: FormService,
-    private notification: NotificationService,
-    private charService: CharacterService,
-    private rollService: RollDiceService) { }
+    // private notification: NotificationService,
+    // private charService: CharacterService,
+    private rollService: RollDiceService,
+    public diceService: DddiceService) { }
 
   @Input() set character(character: any) {
     this.characterData = character;
@@ -210,6 +212,7 @@ export class CharacterViewStatusComponent {
     const dadoVita = this.dadiVitaData[dadoVitaIndex];
   
     if (!dadoVita.used[index]) {
+      this.rollService.rollFromCharView(dadoVita.tipologia, 'Dado vita, resupero punti ferita');
       const lastFalseIndex = dadoVita.used.lastIndexOf(false);
       if (lastFalseIndex !== -1) {
         dadoVita.used[lastFalseIndex] = true;
@@ -222,8 +225,8 @@ export class CharacterViewStatusComponent {
     }
   }
 
-    public rollSpecificDice(modifier?: string): void {
-      this.rollService.rollSpecificDice('d20', Number(modifier));
+    public rollDice(message: string, modifier?: string): void {
+      this.rollService.rollFromCharView('d20', message, Number(modifier));
     }
-  
+
 }

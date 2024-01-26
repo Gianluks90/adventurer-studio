@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DddiceService } from 'src/app/services/dddice.service';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { RollDiceService } from 'src/app/services/roll-dice.service';
 export class AbilitaTabViewComponent {
 
   constructor(
-    private rollService: RollDiceService
+    private rollService: RollDiceService, 
+    public diceService: DddiceService
   ){}
 
   public abilitaData: any[] = [];
@@ -113,7 +115,8 @@ export class AbilitaTabViewComponent {
     });
   }
 
-  public rollSpecificDice(modifier?: string): void {
-    this.rollService.rollSpecificDice('d20', Number(modifier));
+  public rollDice(name: string, modifier?: string): void {
+    const message = "Prova di " + name;
+    this.rollService.rollFromCharView('d20', message, Number(modifier));
   }
 }

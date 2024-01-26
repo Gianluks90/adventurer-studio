@@ -15,7 +15,7 @@ export class DiceComponent {
   ) { }
 
   public open: boolean = false;
-  public diceInformationList: any = [
+  public dices: any = [
     {
       icon: "./assets/dice/dice-d4.svg",
       value: "d4",
@@ -34,7 +34,7 @@ export class DiceComponent {
     },
     {
       icon: "./assets/dice/dice-d10x.svg",
-      value: "d100",
+      value: "d10x",
     },
     {
       icon: "./assets/dice/dice-d12.svg",
@@ -45,10 +45,9 @@ export class DiceComponent {
       value: "d20",
     }
   ];
-  public modifierInformationList: any =
+  public modifiers: any =
     {
       positive: [
-        
         {
           name: "+5",
           value: 5
@@ -91,56 +90,78 @@ export class DiceComponent {
       ]
     };
 
-  public diceSelectedList: string[] = [];
-  public selectedDiceResult: string = "";
-  public modifier: string = "";
+  public dicesSelected: string[] = [];
+  public selectedDices: string = "";
+  public isRollActive: boolean = false;
+  public rollType: string = "";
+
+  public modifiersLabel: string = "";
   private modTotal: number = 0;
-  public typeOfLaunch: string = "";
-  public activeRoll: boolean = false;
 
 
   public addDiceToRoll(diceValue: string,) {
-    this.activeRoll = false;
-    if (this.diceSelectedList.length < 20) {
-      this.diceSelectedList.push(diceValue);
+    if (diceValue === "d10x") {
+      this.rollType = "d10x";
+      this.isRollActive = true;
+      this.selectedDices = "1d100";
+      this.countDice();
+    } else {
+      this.isRollActive = false;
+      if (this.dicesSelected.length < 20) {
+        this.dicesSelected.push(diceValue);
+      }
+      this.selectedDices = "";
+      this.countDice();
     }
-    this.selectedDiceResult = "";
-    this.countDice();
+   
   }
 
   private countDice() {
-    let count = this.diceSelectedList.reduce(function (value, value2) {
+    let count = this.dicesSelected.reduce(function (acc, curr) {
       return (
-        value[value2] ? ++value[value2] : (value[value2] = 1), value
+        acc[curr] ? ++acc[curr] : (acc[curr] = 1), acc
       );
     }, {});
     for (const key in count) {
-      if (this.selectedDiceResult.length > 0) {
-        this.selectedDiceResult += " + "
+      if (this.selectedDices.length > 0) {
+        this.selectedDices += " + "
       }
-      this.selectedDiceResult += count[key] + key;
-      this.activeRoll = true;
+      this.selectedDices += count[key] + key;
+      this.isRollActive = true;
     }
   }
 
-  public addModifier(modValue: number | string) {
-    if (modValue == "adv" || modValue == "dis") {
-      this.typeOfLaunch = modValue;
-      this.activeRoll = true
-    } else if (typeof modValue == "number") {
-      this.modifier = "";
-      this.modTotal += modValue;
-      this.modifier += (this.modTotal < 0 ? " - " : " + ") + Math.abs(this.modTotal);
-    }
+  public addModifier(mod: number) {
+      this.modifiersLabel = "";
+      this.modTotal += mod;
+      this.modifiersLabel += (this.modTotal < 0 ? " - " : " + ") + Math.abs(this.modTotal);
+  }
+
+  public addSpecialModifier(modValue: string) {
+    modValue == "adv" ? this.selectedDices = "Tiro con Vantaggio" : this.selectedDices = "Tiro con Svantaggio";
+    this.rollType = modValue; // adv or dis
+    this.isRollActive = true
   }
 
   public rollDice(event: any) {
     this.closeDiceSheet(event);
-    if (this.typeOfLaunch) {
-      this.dddiceRollService.rollAdvantageDisadvantage(this.typeOfLaunch, this.modTotal);
-    } else {
-      this.dddiceRollService.rollDice(this.diceSelectedList, this.modTotal);
+    switch (this.rollType) {
+      case "adv" || "dis":
+        this.dddiceRollService.rollAdvantageDisadvantage(this.rollType, this.modTotal);
+        break;
+      case "d10x":
+        this.dddiceRollService.rollD100(this.modTotal);
+        break;
+      default:
+        this.dddiceRollService.rollDice(this.dicesSelected, (this.selectedDices + this.modifiersLabel), this.modTotal);
+        break;
     }
+
+    // if (this.rollType !== '') {
+    //   this.dddiceRollService.rollAdvantageDisadvantage(this.rollType, this.modTotal);
+    // } else {
+    //   this.dddiceRollService.rollDice(this.dicesSelected, (this.selectedDices + this.modifiersLabel), this.modTotal);
+    // }
   }
 
   public closeDiceSheet(event: any) {

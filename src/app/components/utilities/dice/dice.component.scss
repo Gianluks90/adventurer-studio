@@ -15,6 +15,11 @@
     flex-grow: 1;
 }
 
+.step-button[disabled] {
+    opacity: 0.5;
+    cursor: default;
+}
+
 .close-dice-selector-button{
     align-self: flex-end;
 }
@@ -23,6 +28,7 @@
     display: flex;
     // gap: 8px;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .selection-displayer {
@@ -62,7 +68,7 @@
 
 .dice-button {
     border: none;
-    background: transparent;
+    background: transparent;;
 }
 
 .dice-icon {
