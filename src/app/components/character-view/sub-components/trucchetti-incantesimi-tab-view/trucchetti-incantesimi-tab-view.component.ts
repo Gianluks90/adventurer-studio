@@ -63,6 +63,7 @@ export class TrucchettiIncantesimiTabViewComponent {
   openAddSpellDialog(spell?: Spell, index?: number) {
     this.dialog.open(AddSpellDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
+      autoFocus: false,
       disableClose: true,
       data: { spells: this.lista, spell: spell }
     }).afterClosed().subscribe((result: any) => {

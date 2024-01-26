@@ -25,6 +25,7 @@ export class InventoryComponent {
   openAddItemDialog() {
     this.dialog.open(AddItemDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
+      autoFocus: false,
       disableClose: true,
       data: { inventory: this.inventoryData }
     }).afterClosed().subscribe((result: any) => {

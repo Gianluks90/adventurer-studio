@@ -44,6 +44,7 @@ export class SidenavComponent {
   public openSettingsDialog() {
     this.dialog.open(SettingsDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      autoFocus: false,
       data: { token: this.firebaseService.user.value.dddiceToken, privateSlug: this.firebaseService.user.value.privateSlug }
     })
   }

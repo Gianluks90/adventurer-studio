@@ -52,7 +52,7 @@
 <ng-container *ngFor="let t of lista; let i = index;">
     <details *ngIf="!t.preparato" class="t-container" [hidden]="t.filtered">
         <summary class="t-name">
-                <img class="spell-icon" [src]="t.icon"> <span>{{t.nome}}</span>
+                <img class="spell-icon" [src]="t.icon !== '' ? t.icon : './assets/tabs-icons/magic.svg'"> <span>{{t.nome}}</span>
         </summary>
         <div class="spell-attributes">{{t.tipologia}} <span *ngIf="t.livello > 0">di {{t.livello}}° Livello</span>,
             {{t.scuola}}, {{t.componenti}}, {{t.riferimento}}</div>

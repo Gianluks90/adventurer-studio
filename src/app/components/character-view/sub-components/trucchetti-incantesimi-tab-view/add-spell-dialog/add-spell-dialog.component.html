@@ -1,4 +1,4 @@
-<div mat-dialog-title class="dialog-title">Aggiungi incantesimo</div>
+<div mat-dialog-title class="dialog-title">{{data.spell ? 'Modifica' : 'Aggiungi'}} incantesimo</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
     <div class="step-form" [formGroup]="form">
         <mat-form-field color="accent" appearance="outline">
@@ -96,11 +96,28 @@
         </button>
     </div> -->
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>Annulla</button>
+<div mat-dialog-actions align="end" *ngIf="!isMobile">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
     <button *ngIf="data.spell" mat-raised-button mat-dialog-close color="warn" (click)="delete()">
         <mat-icon>delete</mat-icon> Elimina
     </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">{{data.spell ? 'Modifica' :
-        'Aggiungi'}}</button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>{{data.spell ? 'check' : 'add'}}</mat-icon> {{data.spell ? 'Modifica' : 'Aggiungi'}}
+    </button>
+
+   
+
+</div>
+<div mat-dialog-actions align="end" *ngIf="isMobile">
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon>close</mat-icon>
+    </button>
+    <button *ngIf="data.spell" mat-icon-button mat-dialog-close color="warn" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>{{data.spell ? 'check' : 'add'}}</mat-icon>
+    </button>
 </div>

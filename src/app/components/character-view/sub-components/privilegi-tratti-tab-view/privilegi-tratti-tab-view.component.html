@@ -16,7 +16,7 @@
             <div class="pt-description">{{pt.descrizione}}</div>
         </details>
     </div>
-    <div *ngFor="let t of tags">
+    <div *ngFor="let t of tags" class="pt-main-container">
         <div class="privilegi-label">{{t}}</div>
         <div *ngFor="let pt of privilegiTrattiData">
             <details *ngIf="pt.tag.toLowerCase() === t" class="pt-container">

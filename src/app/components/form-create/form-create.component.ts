@@ -58,6 +58,7 @@ export class FormCreateComponent implements OnInit {
       const characterId = window.location.href.split('/').pop();
       this.dialog.open(CompleteCharacterDialogComponent, {
         width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+        autoFocus: false,
         data: {
           id: characterId,
           form: this.form.value

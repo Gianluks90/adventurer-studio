@@ -47,6 +47,7 @@ export class CharacterListComponent implements OnInit {
   public deleteCharacter(id: string) {
     this.dialog.open(DeleteCharacterDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      autoFocus: false,
       data: {
         id: id
       }
@@ -60,6 +61,7 @@ export class CharacterListComponent implements OnInit {
   public createCharacter() {
     this.dialog.open(AddCharacterDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      autoFocus: false,
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
         window.location.reload();

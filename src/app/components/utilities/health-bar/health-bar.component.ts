@@ -38,6 +38,7 @@ export class HealthBarComponent {
     const characterId = window.location.href.split('/').pop();
     this.dialog.open(HealthPointDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      autoFocus: false,
       data: {
         parametriVitali: this.parametriVitaliData,
       }

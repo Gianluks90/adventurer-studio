@@ -17,6 +17,7 @@ export class ItemInfoSheetComponent {
   openEditDialog(item: Item) {
     this.dialog.open(AddItemDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
+      autoFocus: false,
       disableClose: true,
       data: { inventory: [], item: item }
     }).afterClosed().subscribe((result: any) => {

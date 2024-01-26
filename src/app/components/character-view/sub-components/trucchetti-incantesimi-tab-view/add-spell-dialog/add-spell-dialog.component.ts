@@ -13,8 +13,12 @@ import { Spell } from 'src/app/models/spell';
 export class AddSpellDialogComponent {
 
   public selectIcons: any[] = [];
+  public isMobile: boolean = false;
   public form: FormGroup = this.fb.group(Spell.create(this.fb));
   constructor(@Inject(MAT_DIALOG_DATA) public data: {spells: Spell[], spell?: Spell}, private dialogRef: MatDialogRef<AddItemDialogComponent>, private fb: FormBuilder, private httpClient: HttpClient){
+    this.isMobile = window.innerWidth <= 500;
+    console.log(this.isMobile);
+    
   }
 
   ngOnInit(){

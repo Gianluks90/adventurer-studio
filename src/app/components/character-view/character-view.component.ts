@@ -5,6 +5,7 @@ import { FormService } from 'src/app/services/form.service';
 import { MenuService } from 'src/app/services/menu.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { DiceComponent } from '../utilities/dice/dice.component';
+import { DddiceService } from 'src/app/services/dddice.service';
 
 @Component({
   selector: 'app-character-view',
@@ -26,7 +27,8 @@ export class CharacterViewComponent {
     private characterService: CharacterService,
     private sidenavService: SidenavService,
     private formService: FormService,
-    private diceSelector: MatBottomSheet) { }
+    private diceSelector: MatBottomSheet,
+    public diceService: DddiceService) { }
 
   ngOnInit(): void {
     if (this.charId === '') {
