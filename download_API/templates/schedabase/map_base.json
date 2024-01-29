@@ -33,78 +33,258 @@
 
     "FORZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "forza"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 22, "y" : 65, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :3, "size" : 20 }},
+        "SCHEDA" : {"x" : 22, "y" : 71, "page" : 0, "page_type" : "normal", "widht_space" : 8, "height_space" :3, "size" : 20 }},
     "MODFORZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "forza"], "WHAT" : ["dict", "modificatore"]},
-        "SCHEDA" : {"x" : 22, "y" : 65, "page" : 0, "page_type" : "normal", "widht_space" : 12, "height_space" :8, "size" : 20 }},
+        "SCHEDA" : {"x" : 20, "y" : 60, "page" : 0, "page_type" : "normal", "widht_space" : 12, "height_space" :8, "size" : 20 }},
     "DESTREZZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "destrezza"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 22, "y" : 98, "page" : 0, "page_type" : "normal", "widht_space" : 8, "height_space" :3, "size" : 20 }},
     "MODDESTREZZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "destrezza"], "WHAT" : ["dict", "modificatore"]},
-        "SCHEDA" : {"x" : 0, "y" : 1, "page" : 0}},
+        "SCHEDA" : {"x" : 20, "y" : 87, "page" : 0, "page_type" : "normal", "widht_space" : 12, "height_space" :8, "size" : 20 }},
     "COSTITUZIONE" : {
         "JSON" : {"WHERE" : ["caratteristiche", "costituzione"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 22, "y" : 125, "page" : 0, "page_type" : "normal", "widht_space" : 8, "height_space" :3, "size" : 20 }},
     "MODCOSTITUZIONE" : {
         "JSON" : {"WHERE" : ["caratteristiche", "costituzione"], "WHAT" : ["dict", "modificatore"]},
-        "SCHEDA" : {"x" : 0, "y" : 1, "page" : 0}},
+        "SCHEDA" : {"x" : 20, "y" : 114, "page" : 0, "page_type" : "normal", "widht_space" : 12, "height_space" :8, "size" : 20 }},
     "INTELLIGENZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "intelligenza"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 22, "y" : 152, "page" : 0, "page_type" : "normal", "widht_space" : 8, "height_space" :3, "size" : 20 }},
     "MODINTELLIGENZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "intelligenza"], "WHAT" : ["dict", "modificatore"]},
-        "SCHEDA" : {"x" : 0, "y" : 1, "page" : 0}},
+        "SCHEDA" : {"x" : 20, "y" : 141, "page" : 0, "page_type" : "normal", "widht_space" : 12, "height_space" :8, "size" : 20 }},
     "SAGGEZZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "saggezza"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 22, "y" : 179, "page" : 0, "page_type" : "normal", "widht_space" : 8, "height_space" :3, "size" : 20 }},
     "MODSAGGEZZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "saggezza"], "WHAT" : ["dict", "modificatore"]},
-        "SCHEDA" : {"x" : 0, "y" : 1, "page" : 0}},
+        "SCHEDA" : {"x" : 20, "y" : 168, "page" : 0, "page_type" : "normal", "widht_space" : 12, "height_space" :8, "size" : 20 }},
     "CARISMA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "carisma"], "WHAT" : ["dict", "number"]},
-        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 0}},
+        "SCHEDA" : {"x" : 22, "y" : 206, "page" : 0, "page_type" : "normal", "widht_space" : 8, "height_space" :3, "size" : 20 }},
     "MODCARISMA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "carisma"], "WHAT" : ["dict", "modificatore"]},
-        "SCHEDA" : {"x" : 0, "y" : 1, "page" : 0}},
-        
-    
+        "SCHEDA" : {"x" : 20, "y" : 195, "page" : 0, "page_type" : "normal", "widht_space" : 12, "height_space" :8, "size" : 20 }},
+
     "TSFORZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "forza"], "WHAT" : ["dict", "tiroSalvezza"]},
-        "SCHEDA" : {"x" : 0, "y" : 3, "page" : 0}},
+        "SCHEDA" : {"x" : 45.5, "y" : 78, "page" : 0, "page_type" : "normal", "widht_space" :5, "height_space" : 1.5, "size" : 20 }},
     "TSFORZABOL" : {
         "JSON" : {"WHERE" : ["tiriSalvezza", "forza"], "WHAT" : ["dict", "boolean"]},
-        "SCHEDA" : {"x" : 0, "y" : 3, "page" : 0}},
+        "SCHEDA" : {"x" : 34.8, "y" : 68, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
     "TSDESTREZZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "destrezza"], "WHAT" : ["dict", "tiroSalvezza"]},
-        "SCHEDA" : {"x" : 0, "y" : 4, "page" : 0}},
+        "SCHEDA" : {"x" : 45.5, "y" : 83, "page" : 0, "page_type" : "normal", "widht_space" :5, "height_space" : 1.5, "size" : 20 }},
     "TSDESTREZZABOL" : {
         "JSON" : {"WHERE" : ["tiriSalvezza", "destrezza"], "WHAT" : ["dict", "boolean"]},
-        "SCHEDA" : {"x" : 0, "y" : 4, "page" : 0}},
+        "SCHEDA" : {"x" : 34.8, "y" : 73.1, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
     "TSCOSTITUZIONE" : {
         "JSON" : {"WHERE" : ["caratteristiche", "costituzione"], "WHAT" : ["dict", "tiroSalvezza"]},
-        "SCHEDA" : {"x" : 0, "y" : 5, "page" : 0}},
+        "SCHEDA" : {"x" : 45.5, "y" : 88, "page" : 0, "page_type" : "normal", "widht_space" :5, "height_space" : 1.5, "size" : 20 }},
     "TSCOSTITUZIONEBOL" : {
         "JSON" : {"WHERE" : ["tiriSalvezza", "costituzione"], "WHAT" : ["dict", "boolean"]},
-        "SCHEDA" : {"x" : 0, "y" : 5, "page" : 0}},
+        "SCHEDA" : {"x" : 34.8, "y" : 78.2, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
     "TSINTELLIGENZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "intelligenza"], "WHAT" : ["dict", "tiroSalvezza"]},
-        "SCHEDA" : {"x" : 0, "y" : 6, "page" : 0}},
+        "SCHEDA" : {"x" : 45.5, "y" : 93, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" : 1.5, "size" : 20 }},
     "TSINTELLIGENZABOL" : {
         "JSON" : {"WHERE" : ["tiriSalvezza", "intelligenza"], "WHAT" : ["dict", "boolean"]},
-        "SCHEDA" : {"x" : 0, "y" : 6, "page" : 0}},
+        "SCHEDA" : {"x" : 34.8, "y" : 83.3, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
     "TSSAGGEZZA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "saggezza"], "WHAT" : ["dict", "tiroSalvezza"]},
-        "SCHEDA" : {"x" : 0, "y" : 7, "page" : 0}},
+        "SCHEDA" : {"x" : 45.5, "y" : 98, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
     "TSSAGGEZZABOL" : {
         "JSON" : {"WHERE" : ["tiriSalvezza", "saggezza"], "WHAT" : ["dict", "boolean"]},
-        "SCHEDA" : {"x" : 0, "y" : 7, "page" : 0}},
+        "SCHEDA" : {"x" : 34.8, "y" : 88.4, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
     "TSCARISMA" : {
         "JSON" : {"WHERE" : ["caratteristiche", "carisma"], "WHAT" : ["dict", "tiroSalvezza"]},
-        "SCHEDA" : {"x" : 0, "y" : 8, "page" : 0}},
+        "SCHEDA" : {"x" : 45.5, "y" : 103, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
     "TSCARISMABOL" : {
         "JSON" : {"WHERE" : ["tiriSalvezza", "carisma"], "WHAT" : ["dict", "boolean"]},
-        "SCHEDA" : {"x" : 0, "y" : 8, "page" : 0}},
+        "SCHEDA" : {"x" : 34.8, "y" : 93.5, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
+
+    "COMPETENZAACROBAZIABOL" : { 
+        "JSON" : { "WHERE" : ["competenzaAbilita", "acrobazia"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 111.4, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
+    "COMPETENZAACROBAZIAMESTR" : { 
+        "JSON" : { "WHERE" : ["competenzaAbilita", "maestriaAcrobazia"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 116.8, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 15 }},
+    "COMPETENZAACROBAZIA" : { 
+        "JSON" : { "WHERE" : ["competenzaAbilita", "acrobazia"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 121, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" : 1.5, "size" : 20 }},
+
+    "COMPETENZAADDESTRAREANIMALIBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "addestrareAnimali"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 116.5, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
+    "COMPETENZAADDESTRAREANIMALIMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaAddestrareAnimali"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 121.87, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 15 }},
+    "COMPETENZAADDESTRAREANIMALI" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "addestrareAnimali"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 126.1, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" : 1.5, "size" : 20 }},
+
+    "COMPETENZAARCANOBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "arcano"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 121.56, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 40 }},
+    "COMPETENZAARCANOMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaArcano"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 126.94, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" : 15, "size" : 15 }},
+    "COMPETENZAARCANO" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "arcano"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 130.7, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" : 1.5, "size" : 20 }},
+
+    "COMPETENZAATLETICABOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "atletica"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 126.65, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 40 }},
+    "COMPETENZAATLETICAMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaAtletica"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 132.01, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 15 }},
+    "COMPETENZAATLETICA" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "atletica"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 136.33, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" : 1.5, "size" : 20 }},
+
+    "COMPETENZAFURTIVITABOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "furtivita"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 131.73, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 40 }},
+    "COMPETENZAFURTIVITAMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaFurtivita"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 137.08, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 15 }},
+    "COMPETENZAFURTIVITA" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "furtivita"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 141.44, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" : 1.5, "size" : 20 }},
+    
+    "COMPETENZAINDAGAREBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "indagare"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 136.81, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 40 }},
+    "COMPETENZAINDAGAREMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaIndagare"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 142.15, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 15 }},
+    "COMPETENZAINDAGARE" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "indagare"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 146.55, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    
+    "COMPETENZAINGANNOBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "inganno"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 141.89, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 40 }},
+    "COMPETENZAINGANNOMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaInganno"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 147.22, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 15 }},
+    "COMPETENZAINGANNO" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "inganno"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 151.66, "page" : 0, "page_type" : "normal", "widht_space" :5, "height_space" : 1.5, "size" : 20 }},
+    
+    "COMPETENZAINTUIZIONEBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "intuizione"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 146.97, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 40 }},
+    "COMPETENZAINTUIZIONEMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaIntuizione"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 152.29, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 15 }},
+    "COMPETENZAINTUIZIONE" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "intuizione"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 156.77, "page" : 0, "page_type" : "normal", "widht_space" :5, "height_space" : 1.5, "size" : 20 }},
+    
+    "COMPETENZAINTIMIDIREBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "intimidire"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 152.06, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 40 }},
+    "COMPETENZAINTIMIDIREMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaIntimidire"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 157.36, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 15 }},
+    "COMPETENZAINTIMIDIRE" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "intimidire"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 161.88, "page" : 0, "page_type" : "normal", "widht_space" :5, "height_space" : 1.5, "size" : 20 }},
+    
+    "COMPETENZAINTRATTENEREBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "intrattenere"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 157.14, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 40 }},
+    "COMPETENZAINTRATTENEREMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaIntrattenere"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 162.43, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 15 }},
+    "COMPETENZAINTRATTENERE" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "intrattenere"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 166.99, "page" : 0, "page_type" : "normal", "widht_space" :5, "height_space" : 1.5, "size" : 20 }},
+    
+    "COMPETENZAMEDICINABOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "medicina"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 162.22, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 40 }},
+    "COMPETENZAMEDICINAMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaMedicina"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 167.5, "page" : 0, "page_type" : "normal", "widht_space" :15, "height_space" :15, "size" : 15 }},
+    "COMPETENZAMEDICINA" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "medicina"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 172.1, "page" : 0, "page_type" : "normal", "widht_space" :5, "height_space" :1.5, "size" : 20 }},
+    
+    "COMPETENZANATURABOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "natura"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 167.30, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 40 }},
+    "COMPETENZANATURAMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaNatura"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 172.57, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 15 }},
+    "COMPETENZANATURA" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "natura"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 177.21, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    
+    "COMPETENZAPERCEZIONEBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "percezione"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 172.38, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 40 }},
+    "COMPETENZAPERCEZIONEMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaPercezione"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 177.64, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 15 }},
+    "COMPETENZAPERCEZIONE" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "percezione"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 182.32, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    
+    "COMPETENZAPERSUASIONEBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "persuasione"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 177.47, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 40 }},
+    "COMPETENZAPERSUASIONEMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaPersuasione"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 182.71, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 15 }},
+    "COMPETENZAPERSUASIONE" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "persuasione"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 187.43, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    
+    "COMPETENZARAPIDITADIMANOBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "rapiditaDiMano"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 182.55, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 40 }},
+    "COMPETENZARAPIDITADIMANOMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaRapiditaDiMano"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 187.78, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 15 }},
+    "COMPETENZARAPIDITADIMANO" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "rapiditaDiMano"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 192.54, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    
+    "COMPETENZARELIGIONEBOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "religione"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 187.63, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 40 }},
+    "COMPETENZARELIGIONEMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaReligione"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 192.85, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 15 }},
+    "COMPETENZARELIGIONE" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "religione"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 197.65, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    
+    "COMPETENZASOPRAVVIVENZABOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "sopravvivenza"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 192.71, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 40 }},
+    "COMPETENZASOPRAVVIVENZAMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaSopravvivenza"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 197.92, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 15 }},
+    "COMPETENZASOPRAVVIVENZA" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "sopravvivenza"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 202.76, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    
+    "COMPETENZASTORIABOL" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "storia"], "WHAT" : ["dict", "boolean"]},
+        "SCHEDA" : {"x" : 34.8, "y" : 197.8, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 40 }},
+    "COMPETENZASTORIAMESTR" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "maestriaStoria"], "WHAT" : ["dict", "boolmaestria"]},
+        "SCHEDA" : {"x" : 33, "y" : 203, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" : 15, "size" : 15 }},
+    "COMPETENZASTORIA" : {
+        "JSON" : {"WHERE" : ["competenzaAbilita", "storia"], "WHAT" : ["dict", "competenza"]},
+        "SCHEDA" : {"x" : 45.5, "y" : 208, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+
     "IMAGEPERSONAGGIO" : {
         "JSON" : {"WHERE" : ["informazioniBase", "urlImmaginePersonaggio"], "WHAT" : ["dict", "url"]},
         "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},

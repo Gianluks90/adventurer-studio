@@ -2,7 +2,35 @@ from .dat_object import DataDeD
 import json
 import math
 
+MAP_VAL = {"MODFORZA" : 0,
+        "MODDESTREZZA" : 0,
+        "MODCOSTITUZIONE" : 0,
+        "MODINTELLIGENZA" : 0,
+        "MODSAGGEZZA" : 0,
+        "MODCARISMA" : 0}
+
 MAP = {}
+
+MAPPINA = {"COMPETENZAACROBAZIA" : "MODDESTREZZA",
+            "COMPETENZAADDESTRAREANIMALI" : "MODCARISMA",
+            "COMPETENZAARCANO" : "MODINTELLIGENZA",
+            "COMPETENZAATLETICA" : "MODFORZA",
+            "COMPETENZAFURTIVITA" : "MODDESTREZZA",
+            "COMPETENZAINDAGARE" : "MODINTELLIGENZA",
+            "COMPETENZAINGANNO" : "MODCARISMA",
+            "COMPETENZAINTUIZIONE" : "MODSAGGEZZA",
+            "COMPETENZAINTIMIDIRE" : "MODCARISMA",
+            "COMPETENZAINTRATTENERE" : "MODCARISMA",
+            "COMPETENZAMEDICINA" : "MODSAGGEZZA",
+            "COMPETENZANATURA" : "MODINTELLIGENZA",
+            "COMPETENZAPERCEZIONE" : "MODSAGGEZZA",
+            "COMPETENZAPERSUASIONE" : "MODCARISMA",
+            "COMPETENZARAPIDITADIMANO" : "MODDESTREZZA",
+            "COMPETENZARELIGIONE" : "MODINTELLIGENZA",
+            "COMPETENZASOPRAVVIVENZA" : "MODSAGGEZZA",
+            "COMPETENZASTORIA" : "MODINTELLIGENZA"}
+
+
 COMPETENZA = 2
 
 def parsinator(data, what="schedabase"):
@@ -24,7 +52,7 @@ def modificatore_caratteristiche(data):
 
 
 def binder(data, map):
-    global COMPETENZA
+    global COMPETENZA, MAP_VAL
     go = controll(data)
     if not go:
         return [], []
@@ -48,11 +76,29 @@ def binder(data, map):
             elif wha == "modificatore":
                 user_data = user_data.get(whe)
                 user_data = modificatore_caratteristiche(user_data)
-                print(user_data)
-                print("modificatore", whe, user_data, "o"*30)
+                MAP_VAL[data_to_put] = int(user_data)
                 wha = "text"
             elif wha == "tiroSalvezza":
                 user_data = tirosalvatore(data_to_put, user_data, whe, data)
+                wha = "text"
+            elif wha == "boolean":
+                user_data = user_data.get(whe)
+                if user_data:
+                    user_data = "."
+                    wha = "text"
+                else:
+                    user_data = ""
+            elif wha == "competenza":
+                user_data = abilita(data_to_put, user_data, whe)
+                wha = "text"
+            elif wha == "boolmaestria":
+                user_data = user_data.get(whe)
+                if user_data:
+                    user_data = "*"
+                    wha = "text"
+                else:
+                    user_data = ""
+
             else:
                 user_data = user_data.get(whe)
                 if wha == "number":
@@ -65,6 +111,8 @@ def binder(data, map):
             COMPETENZA = int(content)
         if not content or content == "None":
             content = ""
+        if content == "":
+            continue
         new_object = DataDeD(name = data_to_put, data_type = last_wha, data_text = content)
         for attr, value in scheda_map_content.items():
             new_object.add_parameter(attr, value)
@@ -100,7 +148,23 @@ def tirosalvatore(data_to_put, user_data, whe, data):
     user_data = int(user_data) + int(user_data_temp)
     user_data = str(user_data) if user_data >= 0 else "-" + str(abs(user_data))
     return user_data
-    
+
+def mod_car(data_to_put):
+    WICH = MAPPINA.get(data_to_put)
+    return MAP_VAL.get(WICH)
+
+
+def abilita(data_to_put, user_data, whe):
+    competence = user_data.get(whe)
+    base_value = mod_car(data_to_put) 
+    if competence:
+        base_value = base_value + COMPETENZA
+    maestria = "maestria" + whe.capitalize()
+    maestria_check = user_data.get(maestria)
+    if maestria_check:
+        base_value = base_value + 2
+    return str(base_value)
+
 def controll(data):
     if not isinstance(data, dict):
         return False
