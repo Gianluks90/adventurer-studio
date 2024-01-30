@@ -87,7 +87,9 @@
 </div>
 
 <div class="action-buttons" *ngIf="formService.formLevelUpSubject.value">
-    <button class="step-button" mat-icon-button (click)="completeForm()" matTooltip="Completa" matTooltipPosition="left" >
+    <button class="step-button" mat-icon-button (click)="completeForm()" 
+    [disabled]="formService.formLevelUpSubject.value && !formService.formLevelUpSubject.value.valid"
+    matTooltip="Completa" matTooltipPosition="left" >
       <mat-icon>check</mat-icon>
     </button>
   </div>

@@ -16,6 +16,8 @@ export class InformazioniBaseComponent {
   public classi: FormArray;
   public risorseAggiuntive: FormArray;
 
+  public totalLevel: number = 0;
+
   constructor(
     public formService: FormService,
     private stepper: MatStepper,
@@ -32,6 +34,7 @@ export class InformazioniBaseComponent {
         this.groupCaratteristiche = form.get('caratteristicheFisiche') as FormGroup;
         this.classi = this.groupInfo.get('classi') as FormArray;
         this.risorseAggiuntive = this.groupInfo.get('risorseAggiuntive') as FormArray;
+        this.totalLevel = this.groupInfo.get('livello')?.value;
       }
     });
   }
@@ -84,10 +87,11 @@ export class InformazioniBaseComponent {
   }
 
   public addClasse() {
+    let maxLevelValidator = 20 - this.totalLevel;
     const classe = this.fb.group({
       nome: ['', Validators.required],
       nomePersonalizzato: '',
-      livello: [1, [Validators.max(20), Validators.required]],
+      livello: [1, [Validators.max(maxLevelValidator), Validators.required]],
       sottoclasse: '',
     });
     this.classi.push(classe);
@@ -98,9 +102,11 @@ export class InformazioniBaseComponent {
         classe.updateValueAndValidity();
       }
     });
+    this.totalLevel += classe.get('livello')?.value;
   }
 
   public deleteClasse(index: number) {
+    this.totalLevel -= this.classi.at(index).get('livello')?.value;
     this.classi.removeAt(index);
   }
 
@@ -124,5 +130,20 @@ export class InformazioniBaseComponent {
     const used = new Array(parseInt(value)).fill(false);
     risorsa.removeControl('used');
     risorsa.addControl('used', this.fb.array(used));
+  }
+
+
+  public onLevelChange(event: any) {
+    const classi = this.groupInfo.get('classi') as FormArray;
+    let levels = 0;
+    classi.controls.forEach((classe: FormGroup) => {
+      levels += classe.get('livello')?.value;
+    });
+    this.totalLevel = levels;
+    if (this.totalLevel > 20) {
+      this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
+      this.totalLevel = 20;
+    }
+    this.groupInfo?.get('livello')?.setValue(this.totalLevel);
   }
 }

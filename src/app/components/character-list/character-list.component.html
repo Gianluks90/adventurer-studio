@@ -42,7 +42,7 @@
             </button>
             <div class="second-buttons">
               <button mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id"
-                [disabled]="c.status.statusCode !== 2">
+                [disabled]="c.status.statusCode !== 2 || c.informazioniBase.livello == 20">
                 <mat-icon>arrow_upward</mat-icon>
                 LV+
               </button>

@@ -15,6 +15,7 @@ export class InformazioniBaseLevelUpComponent {
   public groupCaratteristiche: FormGroup | null = null;
   public classi: FormArray;
   public risorseAggiuntive: FormArray;
+  public totalLevel: number = 0;
 
   constructor(
     public formService: FormService,
@@ -31,20 +32,37 @@ export class InformazioniBaseLevelUpComponent {
         this.groupInfo = form.get('informazioniBase') as FormGroup;
         this.classi = this.groupInfo.get('classi') as FormArray;
         this.risorseAggiuntive = this.groupInfo.get('risorseAggiuntive') as FormArray;
+        this.totalLevel = this.groupInfo.get('livello')?.value;
       }
     });
   }
 
   public addClasse() {
+    if (this.groupInfo.get('livello')?.value === 20) {
+      this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
+      return;
+    }
+    let maxLevelValidator = 20 - this.totalLevel;
     const classe = this.fb.group({
       nome: ['', Validators.required],
-      livello: [1, [Validators.max(20), Validators.required]],
+      nomePersonalizzato: '',
+      livello: [1, [Validators.max(maxLevelValidator), Validators.required]],
       sottoclasse: '',
     });
     this.classi.push(classe);
+
+    classe.get('nome')?.valueChanges.subscribe((value: string) => {
+      if (value === 'Altro') {
+        classe.get('nomePersonalizzato')?.setValidators(Validators.required);
+        classe.updateValueAndValidity();
+      }
+    });
+
+    this.totalLevel += classe.get('livello')?.value;
   }
 
   public deleteClasse(index: number) {
+    this.totalLevel -= this.classi.at(index).get('livello')?.value;
     this.classi.removeAt(index);
   }
 
@@ -68,5 +86,19 @@ export class InformazioniBaseLevelUpComponent {
     const used = new Array(parseInt(value)).fill(false);
     risorsa.removeControl('used');
     risorsa.addControl('used', this.fb.array(used));
+  }
+
+  public onLevelChange(event: any) {
+    const classi = this.groupInfo.get('classi') as FormArray;
+    let levels = 0;
+    classi.controls.forEach((classe: FormGroup) => {
+      levels += classe.get('livello')?.value;
+    });
+    this.totalLevel = levels;
+    if (this.totalLevel > 20) {
+      this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
+      this.totalLevel = 20;
+    }
+    this.groupInfo?.get('livello')?.setValue(this.totalLevel);
   }
 }

@@ -41,7 +41,7 @@
             </div>
         </details>
 
-        <ng-container class="" formArrayName="classi">
+        <!-- <ng-container class="" formArrayName="classi">
             <ng-container *ngFor="let c of classi.controls; let i = index;">
                 <div class="step-form" [formGroupName]="i">
                     <div class="line-container">
@@ -53,7 +53,7 @@
                         </mat-form-field>
                         <mat-form-field class="line-input" color="accent" appearance="outline">
                             <mat-label>Livello</mat-label>
-                            <input type="number" matInput formControlName="livello" min="1" max="20">
+                            <input type="number" matInput formControlName="livello" min="1" max="20" (change)="onLevelChange($event)">
                         </mat-form-field>
                         <mat-form-field class="line-input" color="accent" appearance="outline">
                             <mat-label>Sottoclasse</mat-label>
@@ -71,10 +71,61 @@
                     </div>
                 </div>
             </ng-container>
-        </ng-container>
+        </ng-container> -->
 
+        <ng-container formArrayName="classi">
+            <ng-container class="classe-container" *ngFor="let c of classi.controls; let i = index;" >
+              <div class="step-form" [formGroupName]="i">
+                <div class="line-container">
+      
+                  <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="c.get('nome').value === '' || c.get('nome').value !== 'Altro'">
+                    <mat-label>Nome</mat-label>
+                    <mat-select formControlName="nome">
+                      <mat-option value="Barbaro">Barbaro</mat-option>
+                      <mat-option value="Bardo">Bardo</mat-option>
+                      <mat-option value="Chierico">Chierico</mat-option>
+                      <mat-option value="Druido">Druido</mat-option>
+                      <mat-option value="Guerriero">Guerriero</mat-option>
+                      <mat-option value="Ladro">Ladro</mat-option>
+                      <mat-option value="Mago">Mago</mat-option>
+                      <mat-option value="Monaco">Monaco</mat-option>
+                      <mat-option value="Paladino">Paladino</mat-option>
+                      <mat-option value="Ranger">Ranger</mat-option>
+                      <mat-option value="Stregone">Stregone</mat-option>
+                      <mat-option value="Warlock">Warlock</mat-option>
+                      <mat-option value="Altro">Altro (specificare)</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+      
+                  <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="c.get('nome').value === 'Altro'">
+                    <mat-label class="input-field">Nome personalizzato</mat-label>
+                    <input matInput formControlName="nomePersonalizzato">
+                  </mat-form-field>
+      
+                  <!-- <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="nome">
+                  </mat-form-field> -->
+                  <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label>Livello</mat-label>
+                    <input type="number" matInput formControlName="livello" min="1" max="20" (change)="onLevelChange($event)">
+                  </mat-form-field>
+                  <mat-form-field class="line-input" color="accent" appearance="outline">
+                    <mat-label>Sottoclasse</mat-label>
+                    <input matInput formControlName="sottoclasse">
+                  </mat-form-field>
+                </div>
+                <div class="delete-button">
+                  <button mat-raised-button color="accent" (click)="deleteClasse(i)">
+                    <mat-icon>delete</mat-icon> Rimuovi
+                  </button>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+          
         <div class="button-container">
-            <button mat-raised-button color="accent" (click)="addClasse()">
+            <button mat-raised-button color="accent" (click)="addClasse()" [disabled]="totalLevel >= 20">
                 <mat-icon>add</mat-icon>
                 Aggiungi nuova
             </button>

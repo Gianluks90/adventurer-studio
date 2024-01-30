@@ -47,6 +47,7 @@ export class FormLevelUpComponent {
       }
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
+        
         this.router.navigate(['/characters']).then(() => {
           this.notification.openSnackBar('Livello Aumentato', 'arrow_upward', 4000);
         });
