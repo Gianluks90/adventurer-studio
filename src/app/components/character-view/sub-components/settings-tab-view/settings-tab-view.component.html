@@ -5,7 +5,8 @@
 <ng-container *ngIf="campaignData">
     <div class="campaign-header">
         <div class="campaign-title">{{campaignData.title}}</div>
-        <button mat-icon-button matTooltip="Vai alla Campagna" matTooltipPosition="below" (click)="jumpToCampaign(campaignData.id)">
+        <button mat-icon-button matTooltip="Vai alla Campagna" matTooltipPosition="below"
+            (click)="jumpToCampaign(campaignData.id)">
             <mat-icon>play_arrow</mat-icon>
         </button>
     </div>
@@ -42,3 +43,12 @@
 <div class="description-text">Il file <strong>JSON</strong> permette di creare una copia di questo personaggio dalla
     sezione Personaggi. Il file <strong>PDF</strong> (funzione disponibile prossimamente) è invece la scheda personaggio
     ufficiale in formato .pdf pre-compilata con le informazioni inserite finora.</div>
+
+<div class="subtitle">Mostra/Nascondi esperienza (prossimamente)</div>
+<div class="description-text">L'esperienza accumulata dal personaggio non viene mostrata di defaul agevolando il metodo
+    delle milestone per il progresso del personaggio, se invece con il tuo gruppo stai utilizzando l'accumulo di
+    esperienza attivane il visualizzatore con il bottone qui sotto (puoi accendere e spegnere questa visualizzazione
+    ogni volta che vuoi). </div>
+<div class="description-text"><strong>Attenzione</strong>: una volta modificata questa impostazione la
+    pagina verrà
+    ricaricata ed ogni modifica non salvata sarà persa. Assicurati di salvare prima di effettuare questa modifica.</div>

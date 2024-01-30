@@ -5,7 +5,7 @@
             <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
             <!--Quando c'è Breakpoint Observer implementare header dinamico, mostrare alcuni dati in desktop e meno in mobile-->
             <!-- <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}} <span *ngIf="character.informazioniBase.dettaglioBackground !== ''"> ({{character.informazioniBase.dettaglioBackground}})</span>, {{character.informazioniBase.allineamento}}</span> -->
-            <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.allineamento}}</span>
+            <span>{{character.informazioniBase.razza}} ({{character.informazioniBase.genere !== '' ? character.informazioniBase.genere : ''}} {{character.informazioniBase.pronomi !== '' ? character.informazioniBase.pronomi : ''}}), {{character.informazioniBase.allineamento}}</span>
             <div *ngFor="let cl of character.informazioniBase.classi">
                 <!-- <div class="character-class">{{cl.nome}} {{cl.livello}}° LV<span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div> -->
                 <div class="character-class">{{cl.nome}} {{cl.livello}}° LV</div>
@@ -48,11 +48,11 @@
                 <app-descrizione-background-tab-view [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"  [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche" [immaginePersonaggio]="{url: character.informazioniBase.urlImmaginePersonaggio, nome: character.informazioniBase.nomeImmaginePersonaggio}" (pictureEmitter)="onPictureEmitted($event)"></app-descrizione-background-tab-view>
             </mat-tab>
 
-            <!-- <mat-tab disabled>
+            <mat-tab disabled>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below" matTooltip="Companions">
                 </ng-template>
-            </mat-tab> -->
+            </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
@@ -61,11 +61,11 @@
                 <app-trucchetti-incantesimi-tab-view [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
             </mat-tab>
 
-            <!-- <mat-tab disabled>
+            <mat-tab disabled>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/attacks.svg" class="label-icon" matTooltipPosition="below" matTooltip="Attacchi">
                 </ng-template>
-            </mat-tab> -->
+            </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>

@@ -26,8 +26,6 @@ export class SettingsTabViewComponent {
     if (this.campaignIdData !== '') {
       this.campaignService.getCampaignById(this.campaignIdData).then((data) => {
         this.campaignData = data;
-        console.log(this.campaignData);
-        
       });
     }
   }

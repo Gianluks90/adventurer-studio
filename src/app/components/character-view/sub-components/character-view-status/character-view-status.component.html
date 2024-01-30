@@ -1,108 +1,112 @@
 <!-- <div class="main-character-container"> -->
-    <div class="section-title">Caratteristiche</div>
-    <div class="caratteristiche-main-container">
-        <div class="caratteristiche-line">
-            <div class="caratteristiche-container">
-                <div class="caratteristica-label">FOR</div>
-                <div class="caratteristica-value">{{characterData.caratteristiche.forza}}</div>
-                <div class="caratteristica-mod">{{modForza}}</div>
-            </div>
-            <div class="caratteristiche-container">
-                <div class="caratteristica-label">DES</div>
-                <div class="caratteristica-value">{{characterData.caratteristiche.destrezza}}</div>
-                <div class="caratteristica-mod">{{modDestrezza}}</div>
-            </div>
-            <div class="caratteristiche-container">
-                <div class="caratteristica-label">COS</div>
-                <div class="caratteristica-value">{{characterData.caratteristiche.costituzione}}</div>
-                <div class="caratteristica-mod">{{modCostituzione}}</div>
-            </div>
+<div class="section-title">Caratteristiche</div>
+<div class="caratteristiche-main-container">
+    <div class="caratteristiche-line">
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">FOR</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.forza}}</div>
+            <div class="caratteristica-mod">{{modForza}}</div>
         </div>
-        <div class="caratteristiche-line">
-            <div class="caratteristiche-container">
-                <div class="caratteristica-label">INT</div>
-                <div class="caratteristica-value">{{characterData.caratteristiche.intelligenza}}</div>
-                <div class="caratteristica-mod">{{modIntelligenza}}</div>
-            </div>
-            <div class="caratteristiche-container">
-                <div class="caratteristica-label">SAG</div>
-                <div class="caratteristica-value">{{characterData.caratteristiche.saggezza}}</div>
-                <div class="caratteristica-mod">{{modSaggezza}}</div>
-            </div>
-            <div class="caratteristiche-container">
-                <div class="caratteristica-label">CAR</div>
-                <div class="caratteristica-value">{{characterData.caratteristiche.carisma}}</div>
-                <div class="caratteristica-mod">{{modCarisma}}</div>
-            </div>
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">DES</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.destrezza}}</div>
+            <div class="caratteristica-mod">{{modDestrezza}}</div>
+        </div>
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">COS</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.costituzione}}</div>
+            <div class="caratteristica-mod">{{modCostituzione}}</div>
         </div>
     </div>
+    <div class="caratteristiche-line">
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">INT</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.intelligenza}}</div>
+            <div class="caratteristica-mod">{{modIntelligenza}}</div>
+        </div>
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">SAG</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.saggezza}}</div>
+            <div class="caratteristica-mod">{{modSaggezza}}</div>
+        </div>
+        <div class="caratteristiche-container">
+            <div class="caratteristica-label">CAR</div>
+            <div class="caratteristica-value">{{characterData.caratteristiche.carisma}}</div>
+            <div class="caratteristica-mod">{{modCarisma}}</div>
+        </div>
+    </div>
+</div>
 
-    <div class="section-title">Tiri salvezza</div>
-    <div class="bonus-competenza">
-        <div>Bonus Competenza</div>
-        <div class="bonus-value">+ {{characterData.tiriSalvezza.bonusCompetenza}}</div>
-    </div>
-    <div class="caratteristiche-main-container">
-        <div class="caratteristiche-line">
-            <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}" (click)="rollDice('Tiro Salvezza su Forza', TSForza)">
-                <div class="ts-label">
-                    FOR
-                </div>
-                <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.forza}"
-                    [matTooltip]="characterData.tiriSalvezza.forza ? 'Competenza' : ''" matTooltipPosition="below">
-                    {{TSForza}}</div>
+<div class="section-title">Tiri salvezza</div>
+<div class="bonus-competenza">
+    <div>Bonus Competenza</div>
+    <div class="bonus-value">+ {{characterData.tiriSalvezza.bonusCompetenza}}</div>
+</div>
+<div class="caratteristiche-main-container">
+    <div class="caratteristiche-line">
+        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+            (click)="rollDice('Tiro Salvezza su Forza', TSForza)">
+            <div class="ts-label">
+                FOR
             </div>
-            <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}" (click)="rollDice('Tiro Salvezza su Destrezza', TSDestrezza)">
-                <div class="ts-label">
-                    DES
-                </div>
-                <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.destrezza}"
-                    [matTooltip]="characterData.tiriSalvezza.destrezza ? 'Competenza' : ''" matTooltipPosition="below">
-                    {{TSDestrezza}}</div>
-            </div>
-            <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}" (click)="rollDice('Tiro Salvezza su Costituzione', TSCostituzione)">
-                <div class="ts-label">
-                    COS
-                </div>
-                <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.costituzione}"
-                    [matTooltip]="characterData.tiriSalvezza.costituzione ? 'Competenza' : ''"
-                    matTooltipPosition="below">
-                    {{TSCostituzione}}</div>
-            </div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.forza}"
+                [matTooltip]="characterData.tiriSalvezza.forza ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSForza}}</div>
         </div>
-        <div class="caratteristiche-line">
-            <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}" (click)="rollDice('Tiro Salvezza su Intelligenza', TSIntelligenza)">
-                <div class="ts-label">
-                    INT
-                </div>
-                <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.intelligenza}"
-                    [matTooltip]="characterData.tiriSalvezza.intelligenza ? 'Competenza' : ''"
-                    matTooltipPosition="below">
-                    {{TSIntelligenza}}</div>
+        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+            (click)="rollDice('Tiro Salvezza su Destrezza', TSDestrezza)">
+            <div class="ts-label">
+                DES
             </div>
-            <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}" (click)="rollDice('Tiro Salvezza su Saggezza', TSSaggezza)">
-                <div class="ts-label">
-                    SAG
-                </div>
-                <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.saggezza}"
-                    [matTooltip]="characterData.tiriSalvezza.saggezza ? 'Competenza' : ''" matTooltipPosition="below">
-                    {{TSSaggezza}}</div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.destrezza}"
+                [matTooltip]="characterData.tiriSalvezza.destrezza ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSDestrezza}}</div>
+        </div>
+        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+            (click)="rollDice('Tiro Salvezza su Costituzione', TSCostituzione)">
+            <div class="ts-label">
+                COS
             </div>
-            <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}" (click)="rollDice('Tiro Salvezza su Carisma', TSCarisma)">
-                <div class="ts-label">
-                    CAR
-                </div>
-                <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.carisma}"
-                    [matTooltip]="characterData.tiriSalvezza.carisma ? 'Competenza' : ''" matTooltipPosition="below">
-                    {{TSCarisma}}</div>
-            </div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.costituzione}"
+                [matTooltip]="characterData.tiriSalvezza.costituzione ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSCostituzione}}</div>
         </div>
     </div>
+    <div class="caratteristiche-line">
+        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+            (click)="rollDice('Tiro Salvezza su Intelligenza', TSIntelligenza)">
+            <div class="ts-label">
+                INT
+            </div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.intelligenza}"
+                [matTooltip]="characterData.tiriSalvezza.intelligenza ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSIntelligenza}}</div>
+        </div>
+        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+            (click)="rollDice('Tiro Salvezza su Saggezza', TSSaggezza)">
+            <div class="ts-label">
+                SAG
+            </div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.saggezza}"
+                [matTooltip]="characterData.tiriSalvezza.saggezza ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSSaggezza}}</div>
+        </div>
+        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+            (click)="rollDice('Tiro Salvezza su Carisma', TSCarisma)">
+            <div class="ts-label">
+                CAR
+            </div>
+            <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.carisma}"
+                [matTooltip]="characterData.tiriSalvezza.carisma ? 'Competenza' : ''" matTooltipPosition="below">
+                {{TSCarisma}}</div>
+        </div>
+    </div>
+</div>
 
-    <div class="section-title">Parametri vitali</div>
-    <div class="punti-ferita-container">
-        <div class="pf-line">
-            <!-- <span
+<div class="section-title">Parametri vitali</div>
+<div class="punti-ferita-container">
+    <div class="pf-line">
+        <!-- <span
                 class="PF">{{characterData.parametriVitali.puntiFeritaAttuali}}/{{characterData.parametriVitali.massimoPuntiFerita}}</span>
             <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi"
                 matTooltipPosition="above">favorite</mat-icon>
@@ -120,28 +124,31 @@
                 color="accent" (click)="openHPDialog()">
                 <img src="./assets/icons/heart-check.svg">
             </button> -->
-            <app-health-bar class="health-bar-component" [parametriVitali]="characterData.parametriVitali"></app-health-bar>
-        </div>
-        <div class="pf-group">
-            <div class="pf-title"><span>CA</span> {{CA}} {{CAShield}}</div>
-            <div class="pf-title" [ngClass]="{'dice-rolls': diceService.roomConnected}" (click)="rollDice('Tiro di Iniziativa', characterData.iniziativa)"><span>Iniziativa</span> +{{characterData.iniziativa}}</div>
-            <div class="pf-title"><span>Velocità</span> {{characterData.velocita}} m</div>
-        </div>
+        <app-health-bar class="health-bar-component" [parametriVitali]="characterData.parametriVitali"></app-health-bar>
     </div>
+    <div class="pf-group">
+        <div class="pf-title"><span>CA</span> {{CA}} {{CAShield}}</div>
+        <div class="pf-title" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+            (click)="rollDice('Tiro di Iniziativa', characterData.iniziativa)"><span>Iniziativa</span>
+            +{{characterData.iniziativa}}</div>
+        <div class="pf-title"><span>Velocità</span> {{characterData.velocita}} m</div>
+    </div>
+</div>
 
-    <div class="section-title">Dadi vita</div>
-    <div class="dice-container">
-        <!-- <div *ngFor="let d of dadiVitaData; let i = index;">
+<div class="section-title">Dadi vita</div>
+<div class="dice-container">
+    <!-- <div *ngFor="let d of dadiVitaData; let i = index;">
         <img class="dice-icon" [ngClass]="{'dice-used' : d.usato}" [src]="d.icon"
             (click)="updateDadiVita(i, d.tipologia)">
     </div> -->
-        <div *ngFor="let d of dadiVitaData; let i = index;">
-            <img *ngFor="let used of d.used; let j = index;" src="{{'./assets/dice/dice-' + d.tipologia + '.svg'}}"
-                class="dice-icon" [ngClass]="{'active': !used, 'used': used}" (click)="usaDadoVita(i, j)">
-        </div>
+    <div *ngFor="let d of dadiVitaData; let i = index;">
+        <img *ngFor="let used of d.used; let j = index;" src="{{'./assets/dice/dice-' + d.tipologia + '.svg'}}"
+            class="dice-icon" [ngClass]="{'active': !used, 'used': used}" (click)="usaDadoVita(i, j)">
     </div>
-    <div class="section-title" *ngIf="risorseAggiuntiveData.length > 0">Risorse aggiuntive</div>
-    <div class="risorse-container-line" *ngIf="risorseAggiuntiveData.length > 0">
+</div>
+<ng-container *ngIf="risorseAggiuntiveData.length > 0">
+    <div class="section-title">Risorse aggiuntive</div>
+    <div class="risorse-container-line">
         <div *ngFor="let risorsa of risorseAggiuntiveData; let i = index;">
             <div class="risorsa-container">
                 <div class="risorsa-title">{{risorsa.nome}}</div>
@@ -150,11 +157,13 @@
             </div>
         </div>
     </div>
+</ng-container>
 
-    <div class="section-title">Prove passive</div>
-    <div class="pf-group">
-        <div class="pf-title"><span>Percezione</span> {{percezionePassiva}}</div>
-        <div class="pf-title"><span>Intuizione</span> {{intuizionePassiva}}</div>
-        <div class="pf-title"><span>Indagare</span> {{indagarePassiva}}</div>
-    </div>
+
+<div class="section-title">Prove passive</div>
+<div class="pf-group">
+    <div class="pf-title"><span>Percezione</span> {{percezionePassiva}}</div>
+    <div class="pf-title"><span>Intuizione</span> {{intuizionePassiva}}</div>
+    <div class="pf-title"><span>Indagare</span> {{indagarePassiva}}</div>
+</div>
 <!-- </div> -->

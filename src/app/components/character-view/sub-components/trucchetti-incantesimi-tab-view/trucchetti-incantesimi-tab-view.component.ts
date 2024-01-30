@@ -4,6 +4,7 @@ import { Platform } from '@angular/cdk/platform';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Spell } from 'src/app/models/spell';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-trucchetti-incantesimi-tab-view',
@@ -29,24 +30,30 @@ export class TrucchettiIncantesimiTabViewComponent {
     this.slotIncantesimi = data.slotIncantesimi;
   }
 
-  constructor(private platform: Platform, private characterService: CharacterService, private dialog: MatDialog) { }
+  constructor(private platform: Platform, private characterService: CharacterService, private dialog: MatDialog, private notification: NotificationService) { }
 
   useSlot(levelIndex: number, index: number): void {
     const spellLevel = this.slotIncantesimi[levelIndex];
+    let message = '';
   
     // Se lo slot cliccato è falso, porta a true l'elemento più verso il fondo che è false
     if (!spellLevel.used[index]) {
       const lastFalseIndex = spellLevel.used.lastIndexOf(false);
       if (lastFalseIndex !== -1) {
         spellLevel.used[lastFalseIndex] = true;
+        message = 'Slot incantesimo utilizzato.';
       }
     } else {
       // Se lo slot cliccato è true, porta a false l'elemento più in alto che è true
       const firstTrueIndex = spellLevel.used.indexOf(true);
       if (firstTrueIndex !== -1) {
         spellLevel.used[firstTrueIndex] = false;
+        message = 'Slot incantesimo ripristinato.';
       }
     }
+    this.characterService.updateSlotIncantesimi(window.location.href.split('/').pop(), this.slotIncantesimi).then(() => {
+      this.notification.openSnackBar(message, 'check', 1000, "limegreen");
+    });
   
     // Aggiorna il tuo HTML o fai altre azioni necessarie per riflettere il cambiamento
   }

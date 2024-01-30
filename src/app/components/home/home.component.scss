@@ -185,4 +185,7 @@
     padding: 4px 16px;
     text-transform: uppercase;
     margin-bottom: 20px;
+    opacity: 0;
+    animation: appearSubtitle 2s ease-in-out 1s forwards;
+    animation-delay: 1s;
 }

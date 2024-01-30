@@ -29,6 +29,7 @@ export class FormModel {
       tesoro: '',
       magia: FormModel.magia(builder),
       ispirazione: [true, Validators.required],
+      esperienza: 0,
       status: {
         statusCode: null,
         author: '',
@@ -55,6 +56,8 @@ export class FormModel {
       nomePersonaggio: ['', Validators.required],
       urlImmaginePersonaggio: '',
       nomeImmaginePersonaggio: '',
+      pronomi: '',
+      genere: ''
     })
   }
 

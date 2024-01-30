@@ -50,6 +50,14 @@ export class RollDiceService {
           } else {
             diceFormula = dice;
           }
+          if (result.data.values[0].value == 20) {
+            this.notification.openDiceSnackBar(message + " (" + diceFormula + "), ottenuto: 20, SUCCESSO CRITICO!", "casino", 5000);
+            return;
+          }
+          if (result.data.values[0].value == 1) {
+            this.notification.openDiceSnackBar(message + " (" + diceFormula + "), ottenuto: 1, FALLIMENTO CRITICO!", "casino", 5000);
+            return;
+          }
           this.notification.openDiceSnackBar(message + " (" + diceFormula + "), ottenuto: " + finalResult, "casino", 5000);
         });
       });

@@ -67,7 +67,7 @@ export class SettingsDialogComponent {
         allcharacters = characters;
         // allcharacters.push(characters[0]);
         allcharacters.forEach(character => {
-          this.characterService.updateCharacterStatus(character.id);
+          this.characterService.adminCharUpdate(character.id);
         });
       });
     }

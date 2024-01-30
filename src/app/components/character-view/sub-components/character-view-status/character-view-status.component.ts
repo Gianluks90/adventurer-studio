@@ -1,14 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { HealthPointDialogComponent } from '../../../utilities/health-bar/health-point-dialog/health-point-dialog.component';
-import { Platform } from '@angular/cdk/platform';
 import { FormGroup } from '@angular/forms';
 import { FormService } from 'src/app/services/form.service';
-import { NotificationService } from 'src/app/services/notification.service';
-import { CharacterService } from 'src/app/services/character.service';
 import { Item } from 'src/app/models/item';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
 import { DddiceService } from 'src/app/services/dddice.service';
+import { CharacterService } from 'src/app/services/character.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-character-view-status',
@@ -46,13 +43,11 @@ export class CharacterViewStatusComponent {
   public risorseAggiuntiveData: any[] = [];
 
   constructor(
-    // private dialog: MatDialog,
-    // private platform: Platform,
     private formService: FormService,
-    // private notification: NotificationService,
-    // private charService: CharacterService,
     private rollService: RollDiceService,
-    public diceService: DddiceService) { }
+    public diceService: DddiceService,
+    private charService: CharacterService,
+    private notification: NotificationService) { }
 
   @Input() set character(character: any) {
     this.characterData = character;
@@ -60,7 +55,7 @@ export class CharacterViewStatusComponent {
     this.initTiriSalvezza();
     this.initCA();
     this.initProvePassive();
-    // this.initDadiVita();
+
     this.dadiVitaData = character.parametriVitali.dadiVita;
     this.risorseAggiuntiveData = character.informazioniBase.risorseAggiuntive;
     this.risorseAggiuntiveData.push({
@@ -193,18 +188,29 @@ export class CharacterViewStatusComponent {
   // }
 
   useRisorsa(risorsaIndex: number, index: number): void {
-    const spellLevel = this.risorseAggiuntiveData[risorsaIndex];
-  
-    if (!spellLevel.used[index]) {
-      const lastFalseIndex = spellLevel.used.lastIndexOf(false);
+    const resource = this.risorseAggiuntiveData[risorsaIndex];
+    if (!resource.used[index]) {
+      const lastFalseIndex = resource.used.lastIndexOf(false);
       if (lastFalseIndex !== -1) {
-        spellLevel.used[lastFalseIndex] = true;
+        resource.used[lastFalseIndex] = true;
+        
       }
     } else {
-      const firstTrueIndex = spellLevel.used.indexOf(true);
+      const firstTrueIndex = resource.used.indexOf(true);
       if (firstTrueIndex !== -1) {
-        spellLevel.used[firstTrueIndex] = false;
+        resource.used[firstTrueIndex] = false;
       }
+      this.risorseAggiuntiveData
+    }
+    if (resource.nome === 'Ispirazione') {
+      this.charService.updateInspiration(this.characterData.id, resource.used[0]).then(() => {
+        this.notification.openSnackBar('Ispirazione aggiornata.', 'check', 1000, 'limegreen');
+      });
+    } else {
+      const risorse = this.risorseAggiuntiveData.filter((risorsa: any) => risorsa.nome !== 'Ispirazione');
+      this.charService.updateAdditionalResources(this.characterData.id, risorse).then(() => {
+        this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
+      });
     }
   }
 
@@ -223,6 +229,9 @@ export class CharacterViewStatusComponent {
         dadoVita.used[firstTrueIndex] = false;
       }
     }
+    this.charService.updateDadiVita(this.characterData.id, this.dadiVitaData).then(() => {
+      this.notification.openSnackBar('Dado vita aggiornato.', 'check', 1000, 'limegreen');
+    });
   }
 
     public rollDice(message: string, modifier?: string): void {

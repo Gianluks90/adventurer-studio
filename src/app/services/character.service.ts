@@ -131,11 +131,16 @@ export class CharacterService {
     }, { merge: true });
   }
 
-  public async updateCharacterStatus(id: string): Promise<any> {
+  // Cambiare i parametri da aggiornare su tutti i PG a piacere prima di lanciare il comando.
+  public async adminCharUpdate(id: string): Promise<any> {
     const ref = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(ref, {
       status: {
         statusCode: 1
+      }, esperienza: 0,
+      informazioniBase: {
+        genere: '',
+        pronomi: ''
       }
     }, { merge: true })
   }
@@ -168,6 +173,40 @@ export class CharacterService {
     return await setDoc(docRef, {
       magia: {
         trucchettiIncantesimi: spells
+      }
+    }, { merge: true });
+  }
+
+  public async updateAdditionalResources(id: string, resources: any[]) {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      informazioniBase: {
+        risorseAggiuntive: resources
+      }
+    }, { merge: true });
+  }
+
+  public async updateDadiVita(id: string, dadi: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      parametriVitali: {
+        dadiVita: dadi
+      }
+    }, { merge: true });
+  }
+
+  public async updateInspiration(id: string, value: boolean): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    setDoc(docRef, {
+      ispirazione: value
+    }, { merge: true });
+  }
+
+  public async updateSlotIncantesimi(id: string, slots: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      magia: {
+        slotIncantesimi: slots
       }
     }, { merge: true });
   }
