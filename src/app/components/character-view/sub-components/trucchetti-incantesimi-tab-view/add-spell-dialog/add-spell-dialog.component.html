@@ -57,14 +57,14 @@
             <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>Icona</mat-label>
                 <mat-select formControlName="icon">
-                  <mat-option *ngFor="let icon of selectIcons" [value]="icon.link">
-                    <div class="option-line">
-                      <img class="icon-image" [src]="icon.link" alt="">
-                      <div>{{icon.name}}</div>
-                    </div>
-                  </mat-option>
+                    <mat-option *ngFor="let icon of selectIcons" [value]="icon.link">
+                        <div class="option-line">
+                            <img class="icon-image" [src]="icon.link" alt="">
+                            <div>{{icon.name}}</div>
+                        </div>
+                    </mat-option>
                 </mat-select>
-              </mat-form-field>
+            </mat-form-field>
         </div>
 
         <mat-form-field color="accent" appearance="outline">
@@ -77,7 +77,7 @@
         </mat-form-field>
         <mat-checkbox formControlName="preparato">
             Preparato
-          </mat-checkbox>
+        </mat-checkbox>
         <mat-form-field color="accent" appearance="outline">
             <mat-label>Riferimento (Sigla manuale / pagina)</mat-label>
             <input matInput formControlName="riferimento">
@@ -106,9 +106,6 @@
     <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
         <mat-icon>{{data.spell ? 'check' : 'add'}}</mat-icon> {{data.spell ? 'Modifica' : 'Aggiungi'}}
     </button>
-
-   
-
 </div>
 <div mat-dialog-actions align="end" *ngIf="isMobile">
     <button mat-icon-button mat-dialog-close>

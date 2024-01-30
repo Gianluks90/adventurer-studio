@@ -1,0 +1,29 @@
+<div class="section-title">Attacchi</div>
+<div class="search-container">
+    <mat-form-field appearance="outline" class="search-input" color="accent">
+        <mat-label>Cerca</mat-label>
+        <input matInput type="text" (keyup)="filterSearch($event)">
+    </mat-form-field>
+    <button mat-icon-button color="primary" class="add-button" (click)="openAddAttackDialog()"
+        disableRipple><mat-icon>add</mat-icon></button>
+</div>
+<div class="subtitle">Elenco</div>
+<ng-container *ngFor="let a of attacchiData; let i = index;">
+    <details class="a-container" [hidden]="a.filtered">
+        <summary class="a-name">
+            <img class="attack-icon" [src]="a.icon"> <span>{{a.name}}</span>
+        </summary>
+        <div class="attack-info">
+            <span class="attack-label">Bonus attacco</span> {{a.attackBonus}}
+            <span class="attack-label">Danno</span> {{a.damage}}
+            <span class="attack-label">Tipo</span> {{a.damageType}}
+            <span class="attack-label">Gittata</span> {{a.range}}
+        </div>
+        <div class="attack-description"> <span class="attack-label">Note</span> {{a.notes != '' ? a.notes : "-"}}</div>
+        <div class="button-container">
+            <button class="edit-attack-button" (click)="attackRoll(a)">Tiro per colpire</button>
+            <button class="edit-attack-button" (click)="damageRoll(a)">Tira Danno</button>
+            <button class="edit-attack-button" (click)="openAddAttackDialog(a, i)">Modifica</button>
+        </div>
+    </details>
+</ng-container>

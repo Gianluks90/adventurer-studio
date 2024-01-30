@@ -30,6 +30,7 @@ export class FormModel {
       magia: FormModel.magia(builder),
       ispirazione: [true, Validators.required],
       esperienza: 0,
+      attacchi: builder.array([]),
       status: {
         statusCode: null,
         author: '',

@@ -177,6 +177,20 @@ export class CharacterService {
     }, { merge: true });
   }
 
+  public async addAttack(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      attacchi: arrayUnion(form)
+    }, { merge: true });
+  }
+
+  public async updateAttacks(id: string, attacks: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      attacchi: attacks
+    }, { merge: true });
+  }
+
   public async updateAdditionalResources(id: string, resources: any[]) {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {

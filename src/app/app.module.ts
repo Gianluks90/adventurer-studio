@@ -62,6 +62,8 @@ import { SnackbarDiceComponent } from "./components/utilities/dice/snackbar-dice
 import { AddSpellDialogComponent } from './components/character-view/sub-components/trucchetti-incantesimi-tab-view/add-spell-dialog/add-spell-dialog.component';
 import { CampaignViewComponent } from './components/campaign-view/campaign-view.component';
 import { TicketCampaignDialogComponent } from './components/campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
+import { AttacchiTabViewComponent } from './components/character-view/sub-components/attacchi-tab-view/attacchi-tab-view.component';
+import { AddAttackDialogComponent } from './components/character-view/sub-components/attacchi-tab-view/add-attack-dialog/add-attack-dialog.component';
 
 @NgModule({
   declarations: [
@@ -138,6 +140,8 @@ import { TicketCampaignDialogComponent } from './components/campaign-list/ticket
     // CAMPAIGN COMPONENTS AND SUB-COMPONENTS
      CampaignListComponent,
      CampaignViewComponent,
+     AttacchiTabViewComponent,
+     AddAttackDialogComponent,
 
   ],
   imports: [

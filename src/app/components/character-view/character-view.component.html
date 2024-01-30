@@ -61,10 +61,11 @@
                 <app-trucchetti-incantesimi-tab-view [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
             </mat-tab>
 
-            <mat-tab disabled>
+            <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/attacks.svg" class="label-icon" matTooltipPosition="below" matTooltip="Attacchi">
                 </ng-template>
+                <app-attacchi-tab-view [attacchi]="character.attacchi"></app-attacchi-tab-view>
             </mat-tab>
 
             <mat-tab>

@@ -149,4 +149,44 @@ export class RollDiceService {
         });
     }
   }
+
+  public async rollDamage(diceFormula: string, modifier?: number): Promise<any> {
+    console.log('rollDamage', diceFormula, modifier);
+    
+    const dices = this.parseDiceFormula(diceFormula);
+    const DDDICE = this.dddice.dddice;
+    if (DDDICE) {
+      this.notification.openDiceSnackBar("Tiro...", "casino", 10000);
+      DDDICE.roll(
+        dices.map((dice) => {
+          return {
+            theme: this.diceTheme != '' ? this.diceTheme : 'dddice-black',
+            type: dice,
+          }
+        })
+      ).then((result) => {
+        DDDICE.on(ThreeDDiceRollEvent.RollFinished, () => {
+          this.notification.dismissSnackBar();
+          const finalResult = result.data.total_value
+          this.notification.openDiceSnackBar("Ottenuto: " + diceFormula + " = " + finalResult, "casino");
+        });
+      });
+    }
+
+  }
+
+  public parseDiceFormula(diceFormula: string): any {
+    let result = [];
+    const dicesFromString = diceFormula.split('+'); // 1d8+2d6+5
+    dicesFromString.map((dice) => {
+      const diceType = "d" + dice.split('d')[1]; // 8
+      const quantity = Number(dice.split('d')[0]); // 1
+      for (let i = 0; i < quantity; i++) {
+        result.push(diceType);
+      }
+    });
+    console.log('parseDiceFormula', result);
+    
+    return result;
+  }
 }
