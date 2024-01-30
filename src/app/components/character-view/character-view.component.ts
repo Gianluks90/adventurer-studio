@@ -31,7 +31,7 @@ export class CharacterViewComponent {
     public diceService: DddiceService) { }
 
   ngOnInit(): void {
-    if (this.charId === '') {
+    if (this.charId === '' && !window.location.href.includes('campaign-view')) {
       this.charId = window.location.href.split('/').pop();
     }
     this.characterService.getCharacterById(this.charId).then((character) => {

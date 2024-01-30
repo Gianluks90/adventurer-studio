@@ -39,6 +39,8 @@ export class CompetenzeAbilitaLevelUpComponent {
   public tiroSopravvivenza: number = 0;
   public tiroStoria: number = 0;
 
+  public showInfo: boolean = false;
+
   constructor(public formService: FormService) {}
 
   ngOnInit(): void {
@@ -113,5 +115,9 @@ export class CompetenzeAbilitaLevelUpComponent {
   public updateAbilita() {
     this.applyModifier();
     this.applyBonusCompetenza();
+  }
+
+  public infoToggle(): void {
+    this.showInfo = !this.showInfo;
   }
 }

@@ -1,76 +1,103 @@
-.checkbox-section{
-    display: flex;
-    flex-direction: column;
-  }
-  
+.checkbox-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.check-label {
+  // border-bottom: 1px dotted lightgray;
+  flex-grow: 1;
+}
+
+.modificatore {
+  font-size: medium;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.master-icon {
+  opacity: 0.5;
+}
+
+.description-text {
+  font-size: small;
+  opacity: 0.5;
+  font-style: italic;
+  text-align: justify;
+}
+
+.warning-text {
+  font-size: small;
+  opacity: 0.7;
+  font-style: italic;
+  color: rgb(183, 0, 0);
+  margin-bottom: 8px;
+}
+
+.even {
+  background-color: whitesmoke;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.checkbox-line-description {
+  padding: 4px;
+  font-size: small;
+  opacity: 0.5;
+  text-align: justify;
+}
+
+button {
+  border-radius: 0;
+}
+
+details {
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 8px;
+  background-color: whitesmoke;
+}
+
+details[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+details[open] summary {
+  margin-bottom: 4px;
+}
+
+summary {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 500px) {
   .checkbox-line {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    gap: 0;
+    font-size: smaller !important;
   }
-  
-  .divider {
-    border-bottom: 1px dotted lightgray;
-    flex-grow: 1;
-  }
-  
+
   .modificatore {
-    font-size: medium;
-    font-weight: bold;
-    margin-right: 8px;
+    font-size: smaller;
+    margin: 0;
   }
-  
+
   .master-icon {
-    opacity: 0.5;
-  }
-  
-  .description-text {
-    font-size: small;
-    opacity: 0.5;
-    font-style: italic;
+    display: none;
   }
 
-  button {
-    border-radius: 0;
+  ::ng-deep .mat-mdc-checkbox label {
+    font-size: smaller !important;
   }
-
-  details {
-    padding: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 8px;
-  }
-  
-  details[open] {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  details[open] summary {
-    margin-bottom: 4px;
-  }
-  
-  summary {
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  @media screen and (max-width: 500px) {
-    .checkbox-line {
-      gap: 0;
-      font-size: smaller !important;
-    }
-  
-    .modificatore {
-      font-size: smaller;
-      margin: 0;
-    }
-  
-    .master-icon {
-      display: none;
-    }
-  
-    ::ng-deep .mat-mdc-checkbox label {
-      font-size: smaller !important;
-    }
-  }
-  
+}

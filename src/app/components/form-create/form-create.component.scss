@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: baseline;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     max-width: 1200px;
     font-family: 'Cinzel', serif;
 }
@@ -41,7 +41,7 @@
 }
 
 .stepper-container {
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     max-width: 1200px;
 }
 
@@ -79,7 +79,7 @@
     border-radius: 0;
     padding: 8px;
     font-weight: bold;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .action-buttons {
@@ -115,6 +115,10 @@
     .second-section {
         width: 90%;
         height: auto;
+    }
+
+    .form-container {
+        margin-bottom: 60px;
     }
 }
 

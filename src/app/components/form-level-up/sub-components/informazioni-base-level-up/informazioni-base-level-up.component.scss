@@ -56,7 +56,7 @@
     font-size: small;
     opacity: 0.5;
     font-style: italic;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     text-align: justify;
 }
 
@@ -93,7 +93,9 @@ button {
 details {
     padding: 8px;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    background-color: whitesmoke;
+
 }
 
 details[open] {
@@ -109,7 +111,6 @@ summary {
     font-weight: bold;
     text-transform: uppercase;
 }
-
 
 @media screen and (max-width: 500px) {
     .delete-button>button {
