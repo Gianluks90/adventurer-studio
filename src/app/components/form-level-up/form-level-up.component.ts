@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { Component, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
@@ -47,7 +47,7 @@ export class FormLevelUpComponent {
       }
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
-        
+
         this.router.navigate(['/characters']).then(() => {
           this.notification.openSnackBar('Livello Aumentato', 'arrow_upward', 4000);
         });

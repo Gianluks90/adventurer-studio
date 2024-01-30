@@ -218,7 +218,7 @@ export class CharacterViewStatusComponent {
     const dadoVita = this.dadiVitaData[dadoVitaIndex];
   
     if (!dadoVita.used[index]) {
-      this.rollService.rollFromCharView(dadoVita.tipologia, 'Dado vita, resupero punti ferita');
+      this.rollService.rollFromCharView(dadoVita.tipologia, 'Dado vita, resupero punti ferita', null, true);
       const lastFalseIndex = dadoVita.used.lastIndexOf(false);
       if (lastFalseIndex !== -1) {
         dadoVita.used[lastFalseIndex] = true;

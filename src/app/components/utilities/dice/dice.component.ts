@@ -74,8 +74,8 @@ export class DiceComponent {
           name: "-5",
           value: -5
         },
-        
-      ], 
+
+      ],
       special: [
         {
           name: "adv",
@@ -113,7 +113,7 @@ export class DiceComponent {
       this.selectedDices = "";
       this.countDice();
     }
-   
+
   }
 
   private countDice() {
@@ -132,9 +132,9 @@ export class DiceComponent {
   }
 
   public addModifier(mod: number) {
-      this.modifiersLabel = "";
-      this.modTotal += mod;
-      this.modifiersLabel += (this.modTotal < 0 ? " - " : " + ") + Math.abs(this.modTotal);
+    this.modifiersLabel = "";
+    this.modTotal += mod;
+    this.modifiersLabel += (this.modTotal < 0 ? " - " : " + ") + Math.abs(this.modTotal);
   }
 
   public addSpecialModifier(modValue: string) {
@@ -146,7 +146,10 @@ export class DiceComponent {
   public rollDice(event: any) {
     this.closeDiceSheet(event);
     switch (this.rollType) {
-      case "adv" || "dis":
+      case "adv":
+        this.dddiceRollService.rollAdvantageDisadvantage(this.rollType, this.modTotal);
+        break;
+      case "dis":
         this.dddiceRollService.rollAdvantageDisadvantage(this.rollType, this.modTotal);
         break;
       case "d10x":

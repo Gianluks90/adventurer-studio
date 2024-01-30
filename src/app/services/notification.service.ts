@@ -39,4 +39,8 @@ export class NotificationService {
 
     });
   }
+
+  public dismissSnackBar() {
+    this._snackBar.dismiss();
+  }
 }
