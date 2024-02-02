@@ -121,7 +121,7 @@ summary::after {
     cursor: pointer;
 }
 
-details[open] > summary::after {
+details[open]>summary::after {
     content: url("/assets/icons/chevron_down.svg");
     cursor: pointer;
 }
@@ -137,9 +137,16 @@ details[open] > summary::after {
     color: white;
     border-radius: 4px;
     margin: 4px;
-    font-size: xx-small;
+    // font-size: xx-small;
     border: none;
     cursor: pointer;
+    padding: 4px;
+    flex-grow: 1;
+}
+
+.edit-attack-button[disabled] {
+    opacity: 0.5;
+    cursor: default;
 }
 
 @media screen and (max-width: 500px) {
@@ -150,5 +157,9 @@ details[open] > summary::after {
     .a-element {
         width: 100%;
         box-sizing: border-box;
+    }
+
+    .button-container {
+        flex-direction: column;
     }
 }

@@ -8,8 +8,8 @@
         disableRipple><mat-icon>add</mat-icon></button>
 </div>
 <div class="subtitle">Elenco</div>
-<ng-container *ngFor="let a of attacchiData; let i = index;">
-    <details class="a-container" [hidden]="a.filtered">
+<div *ngFor="let a of attacchiData; let i = index;" [hidden]="!a.filtered">
+    <details class="a-container">
         <summary class="a-name">
             <img class="attack-icon" [src]="a.icon"> <span>{{a.name}}</span>
         </summary>
@@ -21,9 +21,9 @@
         </div>
         <div class="attack-description"> <span class="attack-label">Note</span> {{a.notes != '' ? a.notes : "-"}}</div>
         <div class="button-container">
-            <button class="edit-attack-button" (click)="attackRoll(a)">Tiro per colpire</button>
-            <button class="edit-attack-button" (click)="damageRoll(a)">Tira Danno</button>
+            <button class="edit-attack-button" (click)="attackRoll(a)" [disabled]="!diceService.roomConnected">Tiro per colpire</button>
+            <button class="edit-attack-button" (click)="damageRoll(a)" [disabled]="!diceService.roomConnected">Tira Danno</button>
             <button class="edit-attack-button" (click)="openAddAttackDialog(a, i)">Modifica</button>
         </div>
     </details>
-</ng-container>
+</div>

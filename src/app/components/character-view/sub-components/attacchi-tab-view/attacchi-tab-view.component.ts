@@ -5,6 +5,7 @@ import { Platform } from '@angular/cdk/platform';
 import { Attack } from 'src/app/models/attack';
 import { CharacterService } from 'src/app/services/character.service';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
+import { DddiceService } from 'src/app/services/dddice.service';
 
 @Component({
   selector: 'app-attacchi-tab-view',
@@ -15,12 +16,17 @@ export class AttacchiTabViewComponent {
 
   public attacchiData: Attack[];
 
-  @Input() set attacchi (attacchi: any[]) {
+  @Input() set attacchi(attacchi: any[]) {
     this.attacchiData = attacchi;
     this.sortAttacks();
   }
 
-  constructor(private dialog: MatDialog, private platform: Platform, private charService: CharacterService, private rollService: RollDiceService) {}
+  constructor(
+    private dialog: MatDialog,
+    private platform: Platform,
+    private charService: CharacterService,
+    private rollService: RollDiceService,
+    public diceService: DddiceService) { }
 
   public filterSearch(event: any) {
     const filter = event.target.value.toLowerCase().trim();
@@ -47,7 +53,7 @@ export class AttacchiTabViewComponent {
           break;
         case 'edited':
           this.attacchiData[insex] = result.attack;
-          this.charService.updateAttacks(window.location.href.split('/').pop(), this.attacchiData);break;
+          this.charService.updateAttacks(window.location.href.split('/').pop(), this.attacchiData); break;
         case 'deleted':
           this.attacchiData.splice(insex, 1);
           this.charService.updateAttacks(window.location.href.split('/').pop(), this.attacchiData);

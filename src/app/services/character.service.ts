@@ -137,11 +137,7 @@ export class CharacterService {
     return await setDoc(ref, {
       status: {
         statusCode: 1
-      }, esperienza: 0,
-      informazioniBase: {
-        genere: '',
-        pronomi: ''
-      }
+      },
     }, { merge: true })
   }
 

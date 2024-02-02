@@ -150,10 +150,12 @@ export class RollDiceService {
     }
   }
 
-  public async rollDamage(diceFormula: string, modifier?: number): Promise<any> {
-    console.log('rollDamage', diceFormula, modifier);
+  public async rollDamage(diceFormula: string): Promise<any> {
+    const parsedFormula = this.parseDiceFormula(diceFormula);
     
-    const dices = this.parseDiceFormula(diceFormula);
+    const dices = parsedFormula.diceArray;
+    const modifier = parsedFormula.modifier;
+
     const DDDICE = this.dddice.dddice;
     if (DDDICE) {
       this.notification.openDiceSnackBar("Tiro...", "casino", 10000);
@@ -167,26 +169,35 @@ export class RollDiceService {
       ).then((result) => {
         DDDICE.on(ThreeDDiceRollEvent.RollFinished, () => {
           this.notification.dismissSnackBar();
-          const finalResult = result.data.total_value
-          this.notification.openDiceSnackBar("Ottenuto: " + diceFormula + " = " + finalResult, "casino");
+          if (modifier) {
+            const finalResult = Number(result.data.total_value) + modifier;
+            // this.notification.openDiceSnackBar("Ottenuto: " + diceFormula + " +  " + finalResult, "casino");
+            this.notification.openDiceSnackBar("Ottenuto: " + result.data.total_value + (modifier > 0 ? " +" + modifier : " " + modifier) + " = " + finalResult, "casino")
+          } else {
+            const finalResult = result.data.total_value;
+            this.notification.openDiceSnackBar("Ottenuto: " + finalResult, "casino");
+          }
+          // const finalResult = result.data.total_value
+          // this.notification.openDiceSnackBar("Ottenuto: " + diceFormula + " = " + finalResult, "casino");
         });
       });
     }
 
   }
-
-  public parseDiceFormula(diceFormula: string): any {
-    let result = [];
-    const dicesFromString = diceFormula.split('+'); // 1d8+2d6+5
-    dicesFromString.map((dice) => {
-      const diceType = "d" + dice.split('d')[1]; // 8
-      const quantity = Number(dice.split('d')[0]); // 1
-      for (let i = 0; i < quantity; i++) {
-        result.push(diceType);
+  public parseDiceFormula(formula: string): any {
+  let modifier = 0;
+    const diceArray = [];
+    const parts = formula.split(/(?=[+-])/);
+    for (const part of parts) {
+      if (part.includes('d')) {
+        const [numberOfDice, diceType] = part.split('d').map(Number);
+        for (let i = 0; i < numberOfDice; i++) {
+          diceArray.push(`d${diceType}`);
+        }
+      } else {
+        modifier += parseInt(part) || 0;
       }
-    });
-    console.log('parseDiceFormula', result);
-    
-    return result;
+    }
+    return { diceArray, modifier };
   }
 }
