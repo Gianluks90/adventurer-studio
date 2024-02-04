@@ -21,7 +21,7 @@
         <div class="campaign-dm">DM | {{c.dmName}}</div>
         <div class="character-list">
           <!-- <div class="character"> -->
-            <img  *ngFor="let char of c.characters" src="{{char.basicInfo.urlImmaginePersonaggio}}" class="character-image" matTooltip="{{char.basicInfo.nomePersonaggio}}" matTooltipPosition="below">
+            <img  *ngFor="let char of c.characters" src="{{char.basicInfo.urlImmaginePersonaggio !== '' ? char.basicInfo.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'}}" class="character-image" matTooltip="{{char.basicInfo.nomePersonaggio}}" matTooltipPosition="below">
           <!-- </div> -->
         </div>
         <div class="campaign-description">{{c.description}}</div>
@@ -34,7 +34,7 @@
   </div>
 
 
-  <div class="empty-card-container" *ngIf="ownedCampaigns.length == 0">
+  <div class="empty-card-container" *ngIf="ownedCampaigns.length <= 0 && partecipantCampaigns.length <= 0">
     <div class="empty-message">Qui puoi creare le tue Campagne oppure unirti ad una di esse: premi uno dei tasti qui sotto per cominciare!</div>
     <button class="empty-char-button" mat-raised-button color="accent" (click)="createCampaigns()">
       <mat-icon>add</mat-icon> Nuova campagna

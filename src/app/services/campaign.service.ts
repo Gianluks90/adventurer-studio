@@ -25,6 +25,10 @@ export class CampaignService {
       description: infoCampaign.description || '',
       createdAt: new Date(),
       lastUpdate: new Date(),
+      story: [],
+      quests: [],
+      npcs: [],
+      achievements: [],
       status: {
         statusCode: 0,
         statusMessage: 'Nuova'
@@ -144,5 +148,21 @@ export class CampaignService {
         }, { merge: true });
       });;
     });
+  }
+
+  public updateCampaignStory(campId: string, story: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return setDoc(docRef, {
+      story: arrayUnion(story),
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public updateCampaignQuest(campId: string, quest: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return setDoc(docRef, {
+      quests: arrayUnion(quest),
+      lastUpdate: new Date()
+    }, { merge: true });
   }
 }

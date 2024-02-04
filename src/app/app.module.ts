@@ -64,6 +64,9 @@ import { CampaignViewComponent } from './components/campaign-view/campaign-view.
 import { TicketCampaignDialogComponent } from './components/campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
 import { AttacchiTabViewComponent } from './components/character-view/sub-components/attacchi-tab-view/attacchi-tab-view.component';
 import { AddAttackDialogComponent } from './components/character-view/sub-components/attacchi-tab-view/add-attack-dialog/add-attack-dialog.component';
+import { CampaignCharListComponent } from './components/campaign-view/sub-components/campaign-char-list/campaign-char-list.component';
+import { CampaignStoryTabComponent } from './components/campaign-view/sub-components/campaign-story-tab/campaign-story-tab.component';
+import { AddStoryDialogComponent } from './components/campaign-view/sub-components/campaign-story-tab/add-story-dialog/add-story-dialog.component';
 
 @NgModule({
   declarations: [
@@ -142,6 +145,9 @@ import { AddAttackDialogComponent } from './components/character-view/sub-compon
      CampaignViewComponent,
      AttacchiTabViewComponent,
      AddAttackDialogComponent,
+     CampaignCharListComponent,
+     CampaignStoryTabComponent,
+     AddStoryDialogComponent,
 
   ],
   imports: [

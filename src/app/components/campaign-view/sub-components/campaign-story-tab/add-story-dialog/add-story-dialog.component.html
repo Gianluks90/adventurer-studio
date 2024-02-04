@@ -1,0 +1,22 @@
+<div mat-dialog-title class="dialog-title">{{data.story ? 'Modifica' : 'Nuovo'}} resoconto</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div class="description">
+        Inserisci un titolo e una descrizione per il resoconto della sessione di gioco.
+    </div>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Titolo</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Descrizione</mat-label>
+        <textarea matInput formControlName="content" rows="5"></textarea>
+      </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>{{data.story ? 'check' : 'add'}}</mat-icon> {{data.story ? 'Modifica' : 'Aggiungi'}}
+    </button>
+</div>

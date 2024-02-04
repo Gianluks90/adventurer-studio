@@ -29,8 +29,6 @@ export class CampaignListComponent implements OnInit {
       this.campaignService.getUserCampaigns().then((result) => {
         this.ownedCampaigns = result.asOwner;
         this.partecipantCampaigns = result.asPartecipant;
-        console.log(this.partecipantCampaigns);
-        
         this.sortCampaignsByLastUpdate(this.ownedCampaigns);
         this.sortCampaignsByLastUpdate(this.partecipantCampaigns);
       });
@@ -78,6 +76,7 @@ export class CampaignListComponent implements OnInit {
 
     this.dialog.open(DeleteCampaignDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      autoFocus: false,
       data: {
         id: id
       }

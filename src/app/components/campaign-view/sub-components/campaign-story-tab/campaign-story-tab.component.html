@@ -1,0 +1,17 @@
+<div class="section-title">Descrizione</div>
+<div class="description">{{descriptionData}}</div>
+<div class="section-title">Resoconto</div>
+<div class="button-container">
+    <button mat-mini-fab color="accent" class="add-button" (click)="openStoryDialog()" *ngIf="isOwnerData">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div class="story-container">
+    <div class="story-item" *ngFor="let story of storyData">
+        <ng-container *ngIf="story.visible">
+            <div class="story-title">{{story.title}}</div>
+            <div class="story-content">{{story.content}}</div>
+        </ng-container>
+    </div>
+</div>
+    

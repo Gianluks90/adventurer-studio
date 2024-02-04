@@ -19,6 +19,8 @@ export class CampaignViewComponent {
     const id = window.location.href.split('/').pop();
     this.campaignService.getCampaignById(id).then((data) => {
       this.campaignData = data;
+      // console.log(this.campaignData);
+      
       this.campaignData.id = id;
       this.isOwner = getAuth().currentUser?.uid === this.campaignData.ownerId;
       if (!this.isOwner) {
@@ -35,8 +37,6 @@ export class CampaignViewComponent {
           });
         }
       }
-      console.log(this.campaignData);
-
     });
   }
 

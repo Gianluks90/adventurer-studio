@@ -33,11 +33,38 @@
             </button>
         </mat-menu>
     </div>
-    
+    <div class="view-tabs">
+        <div class="status-container">
+            <app-campaign-char-list [characters]="campaignData.characters"></app-campaign-char-list>
+        </div>
+        <mat-tab-group color="accent">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <img src="./assets/campaign-tabs-icon/story.svg" class="label-icon" matTooltipPosition="below" matTooltip="Storia">
+                </ng-template>
+                <app-campaign-story-tab [description]="campaignData.description" [story]="campaignData.story" [isOwner]="isOwner"></app-campaign-story-tab>
+            </mat-tab>
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <img src="./assets/campaign-tabs-icon/quests.svg" class="label-icon" matTooltipPosition="below" matTooltip="Missioni">
+                </ng-template>
+            </mat-tab>
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <img src="./assets/campaign-tabs-icon/npcs.svg" class="label-icon" matTooltipPosition="below" matTooltip="Personaggi">
+                </ng-template>
+            </mat-tab>
+            <mat-tab disabled>
+                <ng-template mat-tab-label>
+                    <img src="./assets/campaign-tabs-icon/achievements.svg" class="label-icon" matTooltipPosition="below" matTooltip="Ricompense">
+                </ng-template>
+            </mat-tab>
+           
+        </mat-tab-group>
+    </div>
 </div>
 
 <div class="sidenav-buttons" id="menu-button">
-    <!-- <app-dice></app-dice> -->
     <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
         <mat-icon>menu</mat-icon>
     </button>

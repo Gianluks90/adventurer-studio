@@ -1,0 +1,14 @@
+<div class="char-container">
+    <div class="section-title">Personaggi</div>
+    <ng-template #noCharacters>
+        <div class="no-characters">
+            <div class="empty-text">Non ci sono personaggi iscritti a questa campagna</div>
+        </div>
+    </ng-template>
+    <div class="characters-line" *ngIf="charData.length > 0; else noCharacters">
+        <div class="character-item" *ngFor="let char of charData">
+            <img class="character-image" [src]="char.basicInfo.urlImmaginePersonaggio">
+            <div class="character-name">{{char.basicInfo.nomePersonaggio}}</div>
+        </div>
+    </div>
+</div>
