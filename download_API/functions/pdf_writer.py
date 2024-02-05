@@ -5,7 +5,6 @@ import requests
 import threading as th
 import gc
 from PIL import Image
-#import pypdfium2 as pdfium
 from .dat_object import DataDeD
 
 MAXNUMBER = 30
@@ -38,7 +37,7 @@ def check_file():
                 f.write(line+ '\n')
     del lain
 
-def write_txt_to_pdf_new(info_struct2 : dict, document : int = 1, page_order : list = [], urls=[], id : str = "temp", status : bool = False):
+def write_txt_to_pdf_new(info_struct2 : dict, document : int = 1, page_order : list = [], urls=[], id : str = "temp", *args):
     '''This function writes the replacement values to the PDF
 
     Args:
@@ -46,7 +45,6 @@ def write_txt_to_pdf_new(info_struct2 : dict, document : int = 1, page_order : l
         document (int, optional): document number. Defaults to 1.
         urls (list, optional): list of urls. Defaults to [].
         id (str, optional): id of the run. Defaults to "temp".
-        status (bool, optional): status of the run. Defaults to False. It means It is a BOZZA
 
     Returns:
         pdf_path (str): path of the PDF to download
@@ -69,11 +67,8 @@ def write_txt_to_pdf_new(info_struct2 : dict, document : int = 1, page_order : l
     for i, kind, image in page_order:
         pop_elements = []
         print(i, ' ', image, ' ', '*'*200)
-        # Add a page to the PDF
-        # if kind == 'pre-allegato':
-        #     add_interpausa(pdf, i, status, image)
         if kind in ['normal', 'appendice']:
-            add_page(pdf, image, status)
+            add_page(pdf, image )
             # For each key in the dictionary with the data text and position in the PDF extract the data for that page and write it to the PDF
             for element in info_struct2:
                 # If the page number of the data is the same as the page number of the image add the data to the PDF
@@ -201,76 +196,12 @@ def add_lista_allegati(pdf, i, lista_allegati):
             print(allegato)
             print("\\"*50)
 
-# def add_interpausa(pdf, i, status, name_file = ''):
-#     pdf.add_page() 
-
-#     if not status:
-#         print('adding bozza')
-#         pdf.image('./app/templates/BOZZA.png', 0, 0, 297, 210)
-#         print('added bozza')
-#     print('+'*200)
-#     line = f'Attachment {i}:'
-#     pdf.set_font("Arial", size=30)
-#     pdf.set_xy(50, 50)
-#     pdf.cell(w=0, h=0, txt=line, border=0, ln=1, align="L", fill=False)
-#     pdf.set_font("Arial", size=20)
-#     pdf.set_xy(50, 70)
-#     pdf.cell(w=0, h=0, txt=name_file, border=0, ln=1, align="L", fill=False)
-
-# def merge_pdf_new(pdf : FPDF, base : str, i: int):
-#     '''Merge all the pdfs in the list of urls in a single pdf
-
-#     Args:
-#         pdf_path (str): The path of the pdf to merge
-#         urls (list): The list of urls to merge
-#         id (str): The ID of the run
-
-#     Returns:
-#         None
-#     '''
-
-#     pages = []
-#     if os.path.exists(base):
-#         pdfx = pdfium.PdfDocument(base)
-#         n_pages = len(pdfx)
-#         page_indices = [i for i in range(n_pages)]  # all pages
-#         renderer = pdfx.render(
-#             pdfium.PdfBitmap.to_pil,
-#             page_indices = page_indices,
-#             scale = 300/72,  # 300dpi resolution
-#             )
-#         for i, image in zip(page_indices, renderer):
-#             image.save("out_image_{}.png".format(i))
-#             orientation = 'P' if image.size[0] < image.size[1] else 'L'
-#             pages.append(("out_image_{}.png".format(i), orientation))
-
-        
-#         try:
-#             for baseim, orient in pages:
-#                 # add a page to the pdf
-#                 pdf.add_page(orientation=orient)
-#                 # write the image to the pdf
-#                 if orient == 'L':
-#                     pdf.image(baseim, 0, 0, 210, 297)
-#                 elif orient == 'P':
-#                     pdf.image(baseim, 0, 0, 297, 210)
-#                 os.remove(baseim)
-#             #pdf.image(base, 0, 0, 297, 210, type='L')
-#         except Exception as e:
-#             print(e)
-#             error_attachement_new(pdf, i*1000)
-    
-#     else:
-#         print('no base', base)
-#         error_attachement_new(pdf, i*1000)
-
 def urlatore_new(urls, id):
     '''Download the files in the list of urls
 
     Args:
         urls (list): list of urls to download
         id (str): The ID of the run
-        status (str): The status of the run. For the bozza option
 
     Returns:
         None
@@ -339,24 +270,6 @@ def image_to_pdf(i, formato, id):
         print(e)
         print('Error with the image to pdf conversion')
         print("\\"*50)
-
-# def error_attachement_new(pdf, i):
-#     '''Create a new pdf with the error message to put before the allegato itself in the final pdf
-    
-#     Args:
-#         i (int): The number of the allegato
-#         id (str): The ID of the run
-        
-#     Returns:
-#         None
-#     '''
-#     line = f'Error with the attachement {i+1}'
-#             #create a new pdf
-#     pdf.add_page() 
-#     pdf.set_font("Arial", size=30)
-#     pdf.set_xy(50, 50)
-#     pdf.cell(w=0, h=0, txt=line, border=0, ln=1, align="L", fill=False)
-#     gc.collect()
 
 def write_to_pdf_p_handling(pdf, element):
     '''Write the text in the pdf
@@ -439,27 +352,18 @@ def write_box(pdf, element):
         print(element)
         print("\\"*50)
 
-def add_page(pdf, image, status):
+def add_page(pdf, image):
     '''Add a new page to the pdf
 
     Args:
         pdf (FPDF): The pdf to add the page to
         image (str): The path of the background image to add to the pdf
-        status (bool): The status of the document if False the BOZZA image will be added to the pdf
 
     Returns:
         None
     '''
     pdf.add_page()
     pdf.image(image, 0, 0, 210, 297)
-    # if not status:
-    #     print(image)
-    #     pdf.image(image, 0, 0, 297, 210)
-    #     pdf.image('./app/templates/BOZZA.png', 0, 0,  297, 210)
-    # else:
-    #     image = image.replace(".jpg", "_y.jpg")
-    #     pdf.image(image, 0, 0, 297, 210)
-
     pdf.set_font("Arial", size=12)
     pdf.set_xy(0, 0)
 
@@ -507,25 +411,4 @@ def text_manipulation(text : str, max_len : int, height: int, size : int = 12):
     while how_many_mm(text, size) > max_len:
         size -= 1
     return [text], size
-    # if max_len is None or len(text) <= max_len:
-    #     return [text], 12
-    # if not acc:
-    #     return ([text[:max_len2]], 10) if len(text) >= max_len2 else ([text], 10)
-    # crop = len(text)// max_len
-    # if crop < max_righe:
-    #     texts = [text[i*max_len:(i+1)*max_len] for i in range(crop)]
-    #     texts.append(text[crop*max_len:])
-    #     return texts, 12
-    # elif crop == max_righe:
-    #     texts = [text[i*max_len:(i+1)*max_len] for i in range(crop)]
-    #     return texts, 12
-    # else:
-    #     crop2 = len(text)// max_len2
-    #     if crop2 < max_righe:
-    #         texts = [text[i*max_len2:(i+1)*max_len2] for i in range(crop2)]
-    #         texts.append(text[crop2*max_len2:])
-    #     elif crop2 == max_righe:
-    #         texts = [text[i*max_len2:(i+1)*max_len2] for i in range(crop2)]
-    #     else:
-    #         texts = [text[i*max_len2:(i+1)*max_len2] for i in range(max_righe)]
-    #     return texts, 10
+
