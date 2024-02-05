@@ -56,6 +56,28 @@ export class SettingsTabViewComponent {
     exportButton.setAttribute("download", fileName);
   }
 
+  exportPDF() {
+    console.log("Solo per tester");
+    
+    // const endpoint = "https://fastapi-production-6b43.up.railway.app/api/schedabase/";
+    // fetch(endpoint, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(this.formService.formSubject.value.value),
+    //   redirect: 'follow'
+    // }).then(res => {
+    //   return res.blob();
+    // }).then(blob => {
+    //   var a = document.createElement("a");
+    //   a.href = window.URL.createObjectURL(blob);
+    //   a.download = this.formService.formSubject.value.value.informazioniBase.nomePersonaggio.split(' ')[0] + '.pdf';
+    //   document.body.appendChild(a);
+    //   a.click();
+    // });
+  }
+
   public jumpToCampaign(id: string) {
     this.router.navigate(['/campaign-view/' + this.campaignIdData]);
   }
