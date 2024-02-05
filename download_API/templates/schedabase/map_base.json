@@ -285,6 +285,56 @@
         "JSON" : {"WHERE" : ["competenzaAbilita", "storia"], "WHAT" : ["dict", "competenza"]},
         "SCHEDA" : {"x" : 45.5, "y" : 208, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
 
+
+
+    "CA" : {
+        "JSON" : {"WHERE" : ["CA"], "WHAT" : ["number"]},
+        "SCHEDA" : {"x" : 83, "y" : 53, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 20 }},
+    "INIZIATIVA" : {
+        "JSON" : {"WHERE" : ["iniziativa"], "WHAT" : ["number"]},
+        "SCHEDA" : {"x" : 102.5, "y" : 53, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 20 }},
+    "VELOCITA" : {
+        "JSON" : {"WHERE" : ["velocita"], "WHAT" : ["number"]},
+        "SCHEDA" : {"x" : 122.5, "y" : 53, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 20 }},
+    "PUNTIFERITAMAX" : {
+        "JSON" : {"WHERE" : ["parametriVitali", "massimoPuntiFerita"], "WHAT" : ["dict", "number"]},
+        "SCHEDA" : {"x" : 112, "y" :75, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    "PUNTIFERITAATT" : {
+        "JSON" : {"WHERE" : ["parametriVitali", "puntiFeritaAttuali"], "WHAT" : ["dict", "number"]},
+        "SCHEDA" : {"x" : 102.5, "y" : 79, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 20}},
+    "PUNTIFERITATEMPMAX" : {
+        "JSON" : {"WHERE" : ["parametriVitali", "massimoPuntiFeritaTemporanei_none"], "WHAT" : ["dict", "number"]},
+        "SCHEDA" : {"x" : 102.5, "y" : 180, "page" : 0, "page_type" : "normal", "widht_space" : 5, "height_space" :1.5, "size" : 20 }},
+    "PUNTIFERITATEMPATT" : {
+        "JSON" : {"WHERE" : ["parametriVitali", "puntiFeritaTemporaneiAttuali"], "WHAT" : ["dict", "number"]},
+        "SCHEDA" : {"x" : 102.5, "y" : 97, "page" : 0, "page_type" : "normal", "widht_space" : 15, "height_space" :15, "size" : 20}},
+    "DADIVITA" : {
+        "JSON" : {"WHERE" : ["parametriVitali", "dadiVita"], "WHAT" : [ "dict", "dadivita"]},
+        "SCHEDA" : {"x" : 83, "y" : 116, "page" : 0, "page_type" : "normal", "widht_space" : 30, "height_space" :10, "size" : 10}},
+    "DADIVITARIMASTI" : {
+            "JSON" : {"WHERE" : ["parametriVitali", "dadiVita"], "WHAT" : [ "dict", "dadivitarimasti"]},
+            "SCHEDA" : {"x" : 83, "y" : 123, "page" : 0, "page_type" : "normal", "widht_space" : 30, "height_space" :10, "size" : 13}},
+    
+
+    "ETA" : {
+        "JSON" : {"WHERE" : ["caratteristicheFisiche", "eta"], "WHAT" : ["dict", "number"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "ALTEZZA" : {
+        "JSON" : {"WHERE" : ["caratteristicheFisiche", "altezza"], "WHAT" : ["dict", "number"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "PESO" : {
+        "JSON" : {"WHERE" : ["caratteristicheFisiche", "peso"], "WHAT" : ["dict", "number"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "OCCHI" : {
+        "JSON" : {"WHERE" : ["caratteristicheFisiche", "occhi"], "WHAT" : ["dict", "text"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "CARNAGIONE" : {
+        "JSON" : {"WHERE" : ["caratteristicheFisiche", "carnagione"], "WHAT" : ["dict", "text"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+    "CAPELLI" : {
+        "JSON" : {"WHERE" : ["caratteristicheFisiche", "capelli"], "WHAT" : ["dict", "text"]},
+        "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},
+
     "IMAGEPERSONAGGIO" : {
         "JSON" : {"WHERE" : ["informazioniBase", "urlImmaginePersonaggio"], "WHAT" : ["dict", "url"]},
         "SCHEDA" : {"x" : 0, "y" : 0, "page" : 1}},

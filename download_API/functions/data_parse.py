@@ -98,7 +98,12 @@ def binder(data, map):
                     wha = "text"
                 else:
                     user_data = ""
-
+            elif wha == "dadivita":
+                user_data = dadivita( user_data.get(whe))
+                wha = "text"
+            elif wha == "dadivitarimasti":
+                user_data = dadivita_rimasti( user_data.get(whe))
+                wha = "text"
             else:
                 user_data = user_data.get(whe)
                 if wha == "number":
@@ -122,6 +127,22 @@ def binder(data, map):
         if last_wha == "url":
             urls.append(content)
     return output_objects, urls
+
+def dadivita(data : list):
+    """estrae stringa dadi vita totali"""
+    stringa = ""
+    for entries in data:
+        stringa = stringa + str(entries.get("quantita")) + entries.get("tipologia") + " "
+    return stringa
+
+def dadivita_rimasti(data : list):
+    """estrae stringa dadi vita rimasti"""
+    stringa = ""
+    for entries in data:
+        stringa = stringa + str(entries.get("quantita") - entries.get("usati")) + entries.get("tipologia") + " "
+    return stringa
+
+        
 
 def tirosalvatore(data_to_put, user_data, whe, data):
     user_data = user_data.get(whe)

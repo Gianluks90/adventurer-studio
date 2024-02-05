@@ -29,12 +29,11 @@ async def results_post(data: dict):
             status_code=400, content={"error": "Invalid JSON"}
         )
     
-    status_data = status_getter(data)
     data, urls, page_order = parsinator(data, "shedabase")
-    path = pdf_writer(data, document=1, urls=urls, id=ido, status=status_data, page_order=page_order)
+    path = pdf_writer(data, document=1, urls=urls, id=ido, page_order=page_order)
     
     # delete unnecessary variables
-    del data, urls, ido, status_data
+    del data, urls, ido
     gc.collect()
     
     # Download file
