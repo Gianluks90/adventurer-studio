@@ -33,11 +33,11 @@ async def results_post(data: dict):
     path = pdf_writer(data, document=1, urls=urls, id=ido, page_order=page_order)
     
     # delete unnecessary variables
-    del data, urls, ido
+    del data, urls, ido, page_order
     gc.collect()
     
-    # Download file
-    return fastapi.responses.FileResponse(path, filename="Personaggio.pdf")
+    # Download file 
+    return fastapi.responses.FileResponse(path, filename="SchedaBase.pdf")
 
 
 if __name__ == "__main__":
