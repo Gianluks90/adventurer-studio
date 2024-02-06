@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, WritableSignal, signal } from '@angular/core';
 import { FirebaseService } from './firebase.service';
-import { addDoc, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { addDoc, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 @Injectable({
@@ -8,7 +8,11 @@ import { getAuth } from 'firebase/auth';
 })
 export class CampaignService {
 
-  constructor(private firebaseService: FirebaseService) { }
+  public campaigns: WritableSignal<any[]> = signal([]);
+
+  constructor(private firebaseService: FirebaseService) {
+    this.getSignalCampaigns();
+  }
 
   public async addCampaign(infoCampaign: any): Promise<any> {
     const user = this.firebaseService.user.value!;
@@ -102,6 +106,21 @@ export class CampaignService {
     }
   }
 
+  public getSignalCampaigns(): void {
+    const docRef = collection(this.firebaseService.database, 'campaigns');
+    const unsub = onSnapshot(docRef, (snapshot) => {
+      const result: any[] = [];
+      snapshot.forEach(doc => {
+        const campaign = {
+          id: doc.id,
+          ...doc.data()
+        }
+        result.push(campaign);
+      });
+      this.campaigns.set(result);
+    });
+  }
+
   public async checkCampaign(id: string, password: string): Promise<boolean> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     const docSnap = await getDoc(docRef);
@@ -150,7 +169,7 @@ export class CampaignService {
     });
   }
 
-  public updateCampaignStory(campId: string, story: any): Promise<any> {
+  public updateCampaignStory(campId: string, story: any): Promise<void> {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
     return setDoc(docRef, {
       story: arrayUnion(story),

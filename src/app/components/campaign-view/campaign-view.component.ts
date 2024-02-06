@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { getAuth } from 'firebase/auth';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
-import { TicketCampaignDialogComponent } from '../campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
 import { Platform } from '@angular/cdk/platform';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { TicketCampaignDialogComponent } from '../campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-campaign-view',
@@ -15,26 +16,27 @@ export class CampaignViewComponent {
   public campaignData: any;
   public isOwner: boolean = false;
 
-  constructor(private campaignService: CampaignService, private sidenavService: SidenavService, private matDialog: MatDialog, private platform: Platform) {
-    const id = window.location.href.split('/').pop();
-    this.campaignService.getCampaignById(id).then((data) => {
-      this.campaignData = data;
-      // console.log(this.campaignData);
-      
-      this.campaignData.id = id;
-      this.isOwner = getAuth().currentUser?.uid === this.campaignData.ownerId;
-      if (!this.isOwner) {
-        const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === getAuth().currentUser?.uid);
-        if (!alreadyJoined) {
-          this.matDialog.open(TicketCampaignDialogComponent, {
-            width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
-            autoFocus: false,
-            disableClose: true,
-          }).afterClosed().subscribe((result) => {
-            if (result && result.status === 'success') {
-              window.location.reload();
-            }
-          });
+  constructor(private firebaseService: FirebaseService, private campaignService: CampaignService, private sidenavService: SidenavService, private matDialog: MatDialog, private platform: Platform) {
+
+    const id = window.location.href.split('campaign-view/').pop();
+    effect(() => {
+      this.campaignData = this.campaignService.campaigns().filter((campaign: any) => campaign.id === id)[0];
+      if (this.campaignData) {
+        this.campaignData.id = id;
+        this.isOwner = getAuth().currentUser?.uid === this.campaignData.ownerId;
+        if (!this.isOwner) {
+          const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === getAuth().currentUser?.uid);
+          if (!alreadyJoined) {
+            this.matDialog.open(TicketCampaignDialogComponent, {
+              width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+              autoFocus: false,
+              disableClose: true,
+            }).afterClosed().subscribe((result) => {
+              if (result && result.status === 'success') {
+                window.location.reload();
+              }
+            });
+          }
         }
       }
     });

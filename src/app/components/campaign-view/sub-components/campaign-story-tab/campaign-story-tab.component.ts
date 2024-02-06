@@ -40,7 +40,6 @@ export class CampaignStoryTabComponent {
       switch (result.status) {
         case 'success':
           this.campaignService.updateCampaignStory(window.location.href.split('/').pop(), result.story).then(() => {
-            this.storyData.push(result.story);
             this.storyData = this.sortStoryByLastUpdate(this.storyData);
           });
         break;
@@ -55,14 +54,18 @@ export class CampaignStoryTabComponent {
   }
 
   private sortStoryByLastUpdate(list: any[]) {
-    return list.sort((a, b) => {
-      if (a.lastUpdate > b.lastUpdate) {
-        return -1;
-      } else if (a.lastUpdate < b.lastUpdate) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    if (list.length > 0) {
+      return list.sort((a, b) => {
+        if (a.lastUpdate > b.lastUpdate) {
+          return -1;
+        } else if (a.lastUpdate < b.lastUpdate) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    } else {
+      return list;
+    }
   }
 }
