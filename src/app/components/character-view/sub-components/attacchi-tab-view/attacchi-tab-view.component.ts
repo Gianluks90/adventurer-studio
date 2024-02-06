@@ -32,7 +32,7 @@ export class AttacchiTabViewComponent {
     const filter = event.target.value.toLowerCase().trim();
     this.attacchiData = this.attacchiData.map((item) => {
       return {
-        ...item, filtered: item.name.toLowerCase().includes(filter)
+        ...item, filtered: !item.name.toLowerCase().includes(filter)
       }
     });
   }

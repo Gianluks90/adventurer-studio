@@ -8,8 +8,8 @@
         disableRipple><mat-icon>add</mat-icon></button>
 </div>
 <div class="subtitle">Elenco</div>
-<div *ngFor="let a of attacchiData; let i = index;" [hidden]="!a.filtered">
-    <details class="a-container">
+<div *ngFor="let a of attacchiData; let i = index;" [hidden]="a.filtered">
+    <details class="a-container" >
         <summary class="a-name">
             <img class="attack-icon" [src]="a.icon"> <span>{{a.name}}</span>
         </summary>

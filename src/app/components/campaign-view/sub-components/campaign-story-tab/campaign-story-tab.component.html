@@ -7,8 +7,11 @@
     </button>
 </div>
 <div class="story-container">
-    <div class="story-item" *ngFor="let story of storyData">
+    <div class="story-item" *ngFor="let story of storyData; let i = index;">
         <ng-container *ngIf="story.visible">
+            <div class="story-number-container">
+                <div class="story-number">{{i + 1}}</div>
+            </div>
             <div class="story-title">{{story.title}}</div>
             <div class="story-content">{{story.content}}</div>
         </ng-container>
