@@ -67,6 +67,7 @@ import { AddAttackDialogComponent } from './components/character-view/sub-compon
 import { CampaignCharListComponent } from './components/campaign-view/sub-components/campaign-char-list/campaign-char-list.component';
 import { CampaignStoryTabComponent } from './components/campaign-view/sub-components/campaign-story-tab/campaign-story-tab.component';
 import { AddStoryDialogComponent } from './components/campaign-view/sub-components/campaign-story-tab/add-story-dialog/add-story-dialog.component';
+import { CampaignSettingsTabComponent } from './components/campaign-view/sub-components/campaign-settings-tab/campaign-settings-tab.component';
 
 @NgModule({
   declarations: [
@@ -119,35 +120,37 @@ import { AddStoryDialogComponent } from './components/campaign-view/sub-componen
     // FORM LEVEL UP COMPONENTS AND SUB-COMPONENTS
     FormLevelUpComponent,
     // sub-components
-     InformazioniBaseLevelUpComponent,
-     CaratteristicheLevelUpComponent,
-     TiriSalvezzaLevelUpComponent,
-     CompetenzeAbilitaLevelUpComponent,
-     ParametriVitaliLevelUpComponent,
-     CompetenzeLinguaggiLevelUpComponent,
-     PrivilegiTrattiLevelUpComponent,
-     TrucchettiIncantesimiLevelUpComponent,
+    InformazioniBaseLevelUpComponent,
+    CaratteristicheLevelUpComponent,
+    TiriSalvezzaLevelUpComponent,
+    CompetenzeAbilitaLevelUpComponent,
+    ParametriVitaliLevelUpComponent,
+    CompetenzeLinguaggiLevelUpComponent,
+    PrivilegiTrattiLevelUpComponent,
+    TrucchettiIncantesimiLevelUpComponent,
 
-     // CHARACTER VIEW COMPONENT AND SUB-COMPONENTS
-     CharacterViewComponent,
-     // sub-components
-     CharacterViewStatusComponent,
-     PrivilegiTrattiTabViewComponent,
-     EquipaggiamentoTabViewComponent,
-     AbilitaTabViewComponent,
-     DescrizioneBackgroundTabViewComponent,
-     TrucchettiIncantesimiTabViewComponent,
-     SettingsTabViewComponent,
-     ItemInfoSheetComponent,
+    // CHARACTER VIEW COMPONENT AND SUB-COMPONENTS
+    CharacterViewComponent,
+    // sub-components
+    CharacterViewStatusComponent,
+    PrivilegiTrattiTabViewComponent,
+    EquipaggiamentoTabViewComponent,
+    AbilitaTabViewComponent,
+    DescrizioneBackgroundTabViewComponent,
+    TrucchettiIncantesimiTabViewComponent,
+    SettingsTabViewComponent,
+    ItemInfoSheetComponent,
+    AttacchiTabViewComponent,
+    AddAttackDialogComponent,
 
     // CAMPAIGN COMPONENTS AND SUB-COMPONENTS
-     CampaignListComponent,
-     CampaignViewComponent,
-     AttacchiTabViewComponent,
-     AddAttackDialogComponent,
-     CampaignCharListComponent,
-     CampaignStoryTabComponent,
-     AddStoryDialogComponent,
+    CampaignListComponent,
+    CampaignViewComponent,
+    // sub-components
+    CampaignCharListComponent,
+    CampaignStoryTabComponent,
+    AddStoryDialogComponent,
+    CampaignSettingsTabComponent,
 
   ],
   imports: [

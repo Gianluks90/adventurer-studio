@@ -3,10 +3,10 @@
         <div class="header-title">
             {{campaignData.title}}
         </div>
-        <button mat-icon-button class="header-button" [matMenuTriggerFor]="menu">
+        <!-- <button mat-icon-button class="header-button" [matMenuTriggerFor]="menu">
             <mat-icon>info</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
+        </button> -->
+        <!-- <mat-menu #menu="matMenu">
             <div class="menu-container" (click)="$event.stopPropagation();">
                 <div class="subtitle">Informazioni</div>
                 <div *ngIf="!isOwner" class="campaign-id">DM: {{campaignData.dmName}}</div>
@@ -31,7 +31,7 @@
             <button mat-menu-item disabled *ngIf="isOwner">
                 <mat-icon>delete</mat-icon> Elimina campagna
             </button>
-        </mat-menu>
+        </mat-menu> -->
     </div>
     <div class="view-tabs">
         <div class="status-container">
@@ -59,7 +59,12 @@
                     <img src="./assets/campaign-tabs-icon/achievements.svg" class="label-icon" matTooltipPosition="below" matTooltip="Ricompense">
                 </ng-template>
             </mat-tab>
-           
+            <mat-tab *ngIf="isOwner">
+                <ng-template mat-tab-label >
+                    <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below" matTooltip="Impostazioni">
+                </ng-template>
+                <app-campaign-settings-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-settings-tab>
+            </mat-tab>
         </mat-tab-group>
     </div>
 </div>

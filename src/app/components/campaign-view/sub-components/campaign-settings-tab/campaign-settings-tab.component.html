@@ -1,0 +1,62 @@
+<div class="section-title">Impostazioni</div>
+<div class="subtitle">Informazioni Campagna</div>
+<div class="info-line even">
+    <div class="info-label">DM</div>
+    <div class="info-value">{{campaignData.dmName}}</div>
+</div>
+<div class="info-line">
+    <div class="info-label">Giocatori iscritti (n°)</div>
+    <div class="info-value">{{campaignData.characters.length}}</div>
+</div>
+<div class="info-line even">
+    <div class="info-label">Creata il</div>
+    <div class="info-value">{{campaignData.createdAt.seconds*1000 | date:'dd/MM/yyyy'}}</div>
+</div>
+<div class="info-line">
+    <div class="info-label">Stato campagna</div>
+    <div class="info-value">{{campaignData.status.statusMessage}}</div>
+</div>
+<div class="subtitle">ID e Password</div>
+<div class="info-line even">
+    <div class="info-label">ID Campagna</div>
+    <div class="info-value">{{campaignData.id}}</div>
+</div>
+<div class="info-line">
+    <div class="info-label">Password</div>
+    <div class="info-value">{{campaignData.password}}</div>
+</div>
+<div class="subtitle">Avvia Campagna (prossimamente)</div>
+<div class="description-text">
+    "Avviare" una Campagna impedisce ad altri giocatori di unirsi. Lo stato della Campagna passa a "In corso" abilitando così tutti i tab e permettendo ai giocatori di visualizzarne il contenuto.
+</div>
+<div class="buttons-container">
+    <button mat-raised-button color="accent" disabled>
+        <mat-icon>play_arrow</mat-icon> Avvia
+    </button>
+</div>
+<div class="subtitle">Stanza dddice (prossimamente)</div>
+<div class="description-text">
+    Se vuoi permettere ai tuoi giocatori di utilizzare il lancio di dadi come avviene sulle loro schede personaggio devi
+    inserire qui sotto l'id di una stanza dddice.
+</div>
+<div class="subtitle">Gestione personaggi iscritti (prossimamente)</div>
+<div class="description-text">
+    Seleziona dall'elenco uno dei personaggi che, per qualsiasi motivo, deve essere rimosso dalla Campagna. Per
+    confermare la rimozione premi infine il tasto "Rimuovi". <strong>Attenzione</strong>: l'azione è irreversibile e il
+    personaggio non potrà unirsi nuovamente se le "iscrizioni sono chiuse".
+</div>
+<div class="subtitle">Archivia/Elimina campagna (prossimamente)</div>
+<div class="description-text">
+    Utilizza "Archivia" per chiudere la Campagna, se questa è conclusa o interrotta. Utilizza invece "Elimina" per
+    eliminare ogni traccia della Campagna dal tuo utente e dai nostri sistemi. <strong>Attenzione</strong>: entrambe
+    le azioni sono irreversibili. Una Campagna Archiviata non permette più di aggiornare le sue informazioni e sezioni
+    ma potrà solamente essere visualizzata.
+</div>
+<div class="buttons-container">
+    <button mat-raised-button color="accent" disabled>
+        <mat-icon>archive</mat-icon> Archivia
+    </button>
+    <button mat-raised-button color="warn" disabled>
+        <mat-icon>delete</mat-icon> Elimina
+    </button>
+</div>
