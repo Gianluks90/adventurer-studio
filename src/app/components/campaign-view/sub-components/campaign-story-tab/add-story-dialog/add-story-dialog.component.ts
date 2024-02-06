@@ -12,7 +12,8 @@ export class AddStoryDialogComponent {
   public form = this.fb.group({
     title: ['', Validators.required],
     content: ['', Validators.required],
-    lastUpdate: new Date()
+    lastUpdate: new Date(),
+    visible: true
   });
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddStoryDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { story: any }) {}

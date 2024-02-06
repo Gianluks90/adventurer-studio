@@ -10,11 +10,18 @@
     <div class="story-item" *ngFor="let story of storyData; let i = index;">
         <ng-container *ngIf="story.visible">
             <div class="story-number-container">
-                <div class="story-number">{{i + 1}}</div>
+                <div class="story-divider"></div>
+                <div class="story-number">{{storyData.length - i}}</div>
+                <div class="story-divider"></div>
             </div>
             <div class="story-title">{{story.title}}</div>
             <div class="story-content">{{story.content}}</div>
         </ng-container>
+        <div class="button-container">
+            <button color="accent" class="edit-button" (click)="openStoryDialog(story)" *ngIf="isOwnerData">
+                Modifica
+            </button>
+        </div>
     </div>
 </div>
     

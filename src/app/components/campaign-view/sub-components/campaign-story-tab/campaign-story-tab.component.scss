@@ -34,6 +34,16 @@
     height: 30px;
 }
 
+.edit-button {
+    width: 100%;
+    border: none;
+    background-color: #212121;
+    color: whitesmoke;
+    margin-top: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
 .story-container {
     display: flex;
     flex-direction: column;
@@ -52,4 +62,24 @@
     line-height: 1.5;
     font-style: italic;
     opacity: 0.6;
+}
+
+.story-number-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.story-number {
+    font-size: large;
+    font-weight: bold;
+    color: rgba($color: #212121, $alpha: 0.6);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.story-divider {
+    border-bottom: 1px dotted rgba($color: #212121, $alpha: 0.3);
+    width: 100%;
 }
