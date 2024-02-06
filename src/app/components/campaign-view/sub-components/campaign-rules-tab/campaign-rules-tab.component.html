@@ -9,7 +9,7 @@
 </div>
 <div class="rule-container">
     <div class="rule-item" *ngFor="let rule of rulesData; let i = index;">
-        <details class="rule-details" [hidden]="!rule.visible">
+        <details class="rule-details" [hidden]="!rule.visible && !isOwnerData">
             <summary class="rule-title"><mat-icon *ngIf="!rule.visible && isOwnerData">visibility_off</mat-icon> <div class="rule-title-label">{{rule.title}}</div></summary>
             <div class="rule-description">{{rule.content}}</div>
             <div class="rule-content">Riferimento: {{rule.reference !== '' ? rule.reference : '-'}}</div>

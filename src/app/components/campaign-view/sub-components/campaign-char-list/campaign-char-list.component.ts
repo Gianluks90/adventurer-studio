@@ -11,7 +11,6 @@ export class CampaignCharListComponent {
   public charData: any[] = [];
 
   @Input() set characters(characters: any[]) {
-    console.log(characters);
     this.charData = characters;
   }
 

@@ -26,8 +26,6 @@ export class CampaignRulesTabComponent {
   constructor(private dialog: MatDialog, private platform: Platform, private campaignService: CampaignService) {}
 
   public openRuleDialog(rule?: any, index?: number) {
-    console.log('openRuleDialog', rule, index);
-    
     this.dialog.open(AddRuleDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
       autoFocus: false,

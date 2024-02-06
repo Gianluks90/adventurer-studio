@@ -26,8 +26,6 @@ export class CampaignQuestsTabComponent {
   constructor(private dialog: MatDialog, private platform: Platform, private campaignService: CampaignService) { }
 
   public openQuestDialog(quest?: any, index?: number) {
-    console.log('openQuestDialog', quest, index);
-    
     this.dialog.open(AddQuestDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
       autoFocus: false,
