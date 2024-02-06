@@ -1,0 +1,34 @@
+<div class="section-title">Regole aggiuntive</div>
+<div class="description-text" *ngIf="!isOwnerData">
+    Le Regole seguenti vanno ad ampliare o modificare il regolamento di base, assicurati dunque di averle comprese altrimenti chiedi chiarimenti al Master.
+</div>
+<div class="button-container">
+    <button mat-mini-fab color="accent" class="add-button" (click)="openRuleDialog()" *ngIf="isOwnerData">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div class="rule-container">
+    <div class="rule-item" *ngFor="let rule of rulesData; let i = index;">
+        <details class="rule-details" [hidden]="!rule.visible">
+            <summary class="rule-title"><mat-icon *ngIf="!rule.visible && isOwnerData">visibility_off</mat-icon> <div class="rule-title-label">{{rule.title}}</div></summary>
+            <div class="rule-description">{{rule.content}}</div>
+            <div class="rule-content">Riferimento: {{rule.reference !== '' ? rule.reference : '-'}}</div>
+            <div class="button-container">
+                <button color="accent" class="edit-button" (click)="openRuleDialog(rule, i)" *ngIf="isOwnerData">
+                    Modifica
+                </button>
+            </div>
+        </details>
+    </div>
+    <!-- <div class="rule-item" *ngFor="let rule of rulesData; let i = index;">
+        <ng-container *ngIf="rule.visible">
+            <div class="rule-title">{{rule.title}}</div>
+            <div class="rule-content">{{rule.content}}</div>
+        </ng-container>
+        <div class="button-container">
+            <button color="accent" class="edit-button" (click)="openRuleDialog(rule, i)" *ngIf="isOwnerData">
+                Modifica
+            </button>
+        </div>
+    </div> -->
+</div>

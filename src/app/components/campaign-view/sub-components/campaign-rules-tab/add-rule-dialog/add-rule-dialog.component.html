@@ -1,0 +1,30 @@
+<div mat-dialog-title class="dialog-title">{{data.rule ? 'Modifica' : 'Nuova'}} Regola</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div class="description">
+        Inserisci un titolo e una descrizione per il resoconto della sessione di gioco. Ricorda che non puoi decidere di rendere invisibile un resoconto, essi vengono sempre mostrati a tutti dal momento in cui vengono creati.
+    </div>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Titolo</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Descrizione</mat-label>
+        <textarea matInput formControlName="content" rows="5"></textarea>
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Riferimento manuale</mat-label>
+        <input matInput formControlName="reference">
+    </mat-form-field>
+    <mat-checkbox color="accent" formControlName="visible">Visibile</mat-checkbox>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="warn" *ngIf="data.rule" (click)="delete()">
+        <mat-icon>delete</mat-icon> Elimina
+    </button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>{{data.rule ? 'check' : 'add'}}</mat-icon> {{data.rule ? 'Modifica' : 'Aggiungi'}}
+    </button>
+</div>

@@ -32,6 +32,7 @@ export class CampaignService {
       story: [],
       quests: [],
       npcs: [],
+      rules: [],
       achievements: [],
       status: {
         statusCode: 0,
@@ -194,10 +195,25 @@ export class CampaignService {
   }
 
   public async updateCampaignQuest(campId: string, quests: any[]): Promise<void> {
-    console.log('updateCampaignQuest', quests);
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
     return await setDoc(docRef, {
       quests: quests,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async addRule(campId: string, rule: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      rules: arrayUnion(rule),
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async updateCampaignRule(campId: string, rules: any[]): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      rules: rules,
       lastUpdate: new Date()
     }, { merge: true });
   }

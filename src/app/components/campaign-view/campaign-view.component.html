@@ -31,6 +31,12 @@
                     <img src="./assets/campaign-tabs-icon/achievements.svg" class="label-icon" matTooltipPosition="below" matTooltip="Ricompense">
                 </ng-template>
             </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <img src="./assets/campaign-tabs-icon/rules.svg" class="label-icon" matTooltipPosition="below" matTooltip="Regole aggiuntive">
+                </ng-template>
+                <app-campaign-rules-tab [rules]="campaignData.rules" [isOwner]="isOwner"></app-campaign-rules-tab>
+            </mat-tab>
             <mat-tab *ngIf="isOwner">
                 <ng-template mat-tab-label >
                     <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below" matTooltip="Impostazioni">
