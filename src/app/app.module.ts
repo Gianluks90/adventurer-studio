@@ -68,6 +68,9 @@ import { CampaignCharListComponent } from './components/campaign-view/sub-compon
 import { CampaignStoryTabComponent } from './components/campaign-view/sub-components/campaign-story-tab/campaign-story-tab.component';
 import { AddStoryDialogComponent } from './components/campaign-view/sub-components/campaign-story-tab/add-story-dialog/add-story-dialog.component';
 import { CampaignSettingsTabComponent } from './components/campaign-view/sub-components/campaign-settings-tab/campaign-settings-tab.component';
+import { CampaignQuestsTabComponent } from './components/campaign-view/sub-components/campaign-quests-tab/campaign-quests-tab.component';
+import { AddQuestDialogComponent } from './components/campaign-view/sub-components/campaign-quests-tab/add-quest-dialog/add-quest-dialog.component';
+import { CharacterBottomSheetComponent } from "./components/campaign-view/sub-components/character-bottom-sheet/character-bottom-sheet.component";
 
 @NgModule({
   declarations: [
@@ -151,6 +154,9 @@ import { CampaignSettingsTabComponent } from './components/campaign-view/sub-com
     CampaignStoryTabComponent,
     AddStoryDialogComponent,
     CampaignSettingsTabComponent,
+    CharacterBottomSheetComponent,
+    CampaignQuestsTabComponent,
+    AddQuestDialogComponent,
 
   ],
   imports: [

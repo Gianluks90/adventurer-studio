@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-campaign-char-list',
@@ -11,9 +12,16 @@ export class CampaignCharListComponent {
 
   @Input() set characters(characters: any[]) {
     console.log(characters);
-    
     this.charData = characters;
   }
 
-  constructor() { }
+  constructor(private bottomSheet: MatBottomSheet) { }
+
+  public openCharBottomSheet(charId: string): void {
+    // this.bottomSheet.open(CharacterBottomSheetComponent, {
+    //   autoFocus: false,
+    //   disableClose: true,
+    //   data: { id: charId }
+    // })
+  }
 }

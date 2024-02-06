@@ -1,0 +1,106 @@
+.section-title {
+    margin-bottom: 10px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+}
+
+.description {
+    font-size: small;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.description::first-letter {
+    font-size: large;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    // font-family: 'Times New Roman', Times, serif;
+    margin-right: 4px;
+}
+
+.description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    margin: 12px 0;
+    text-align: justify;
+}
+
+.subtitle {
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+    margin: 8px 0;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.add-button {
+    width: 30px;
+    height: 30px;
+}
+
+.edit-button {
+    width: 100%;
+    border: none;
+    background-color: #212121;
+    color: whitesmoke;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.quest-container {
+    margin: 8px 0;
+}
+
+.quest-title {
+    background-color: #212121;
+    color: white;
+    padding: 8px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.quest-title-label {
+    flex-grow: 1;
+}
+
+.quest-description {
+    padding: 8px;
+}
+
+details[open] {
+    border: 1px solid #212121;
+    margin-bottom: 4px;
+}
+
+details>summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: url("/assets/icons/chevron_right.svg");
+    cursor: pointer;
+}
+
+details[open] > summary::after {
+    content: url("/assets/icons/chevron_down.svg");
+    cursor: pointer;
+}

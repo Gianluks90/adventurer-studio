@@ -169,18 +169,35 @@ export class CampaignService {
     });
   }
 
-  public updateCampaignStory(campId: string, story: any): Promise<void> {
+  public async addStory(campId: string, story: any): Promise<void> {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
-    return setDoc(docRef, {
+    return await setDoc(docRef, {
       story: arrayUnion(story),
       lastUpdate: new Date()
     }, { merge: true });
   }
 
-  public updateCampaignQuest(campId: string, quest: any): Promise<any> {
+  public async updateCampaignStory(campId: string, stories: any[]): Promise<void> {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
-    return setDoc(docRef, {
+    return await setDoc(docRef, {
+      story: stories,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async addQuest(campId: string, quest: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
       quests: arrayUnion(quest),
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async updateCampaignQuest(campId: string, quests: any[]): Promise<void> {
+    console.log('updateCampaignQuest', quests);
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      quests: quests,
       lastUpdate: new Date()
     }, { merge: true });
   }

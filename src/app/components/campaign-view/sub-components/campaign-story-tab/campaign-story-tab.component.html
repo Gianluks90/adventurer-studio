@@ -18,7 +18,7 @@
             <div class="story-content">{{story.content}}</div>
         </ng-container>
         <div class="button-container">
-            <button color="accent" class="edit-button" (click)="openStoryDialog(story)" *ngIf="isOwnerData">
+            <button color="accent" class="edit-button" (click)="openStoryDialog(story, i)" *ngIf="isOwnerData">
                 Modifica
             </button>
         </div>

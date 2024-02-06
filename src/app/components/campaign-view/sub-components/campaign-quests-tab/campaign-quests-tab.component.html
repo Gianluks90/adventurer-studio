@@ -1,0 +1,38 @@
+<div class="section-title">Missioni</div>
+<!-- <div class="description">{{descriptionData}}</div> -->
+<div class="subtitle">Scoperte</div>
+<div class="button-container">
+    <button mat-mini-fab color="accent" class="add-button" (click)="openQuestDialog()" *ngIf="isOwnerData">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div class="quest-container">
+    <div class="story-item" *ngFor="let quest of questsData; let i = index;">
+        <details class="quest-details" [hidden]="quest.completed || (!quest.visible && isOwnerData)">
+            <summary class="quest-title"><mat-icon *ngIf="!quest.visible && isOwnerData">visibility_off</mat-icon> <div class="quest-title-label">{{quest.title}}</div></summary>
+            <div class="quest-description">{{quest.description}}</div>
+            <div class="button-container">
+                <button color="accent" class="edit-button" (click)="openQuestDialog(quest, i)" *ngIf="isOwnerData">
+                    Modifica
+                </button>
+            </div>
+        </details>
+        
+    </div>
+</div>
+<div class="subtitle">Completate</div>
+<div class="quest-container">
+    <div class="story-item" *ngFor="let quest of questsData; let i = index;">
+        <details class="quest-details" [hidden]="!quest.completed || (!quest.visible && isOwnerData)">
+            <summary class="quest-title"><mat-icon *ngIf="!quest.visible && isOwnerData">visibility_off</mat-icon><div class="quest-title-label">{{quest.title}}</div></summary>
+            <div class="quest-description">{{quest.description}}</div>
+            <div class="quest-description" *ngIf="quest.result"><strong>Completata</strong>: {{quest.result}}</div>
+            <div class="button-container">
+                <button color="accent" class="edit-button" (click)="openQuestDialog(quest, i)" *ngIf="isOwnerData">
+                    Modifica
+                </button>
+            </div>
+        </details>
+        
+    </div>
+</div>

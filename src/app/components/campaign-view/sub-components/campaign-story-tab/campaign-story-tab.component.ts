@@ -39,7 +39,7 @@ export class CampaignStoryTabComponent {
     }).afterClosed().subscribe((result: any) => {
       switch (result.status) {
         case 'success':
-          this.campaignService.updateCampaignStory(window.location.href.split('/').pop(), result.story).then(() => {
+          this.campaignService.addStory(window.location.href.split('/').pop(), result.story).then(() => {
             this.storyData = this.sortStoryByLastUpdate(this.storyData);
           });
         break;

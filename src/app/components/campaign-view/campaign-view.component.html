@@ -3,35 +3,6 @@
         <div class="header-title">
             {{campaignData.title}}
         </div>
-        <!-- <button mat-icon-button class="header-button" [matMenuTriggerFor]="menu">
-            <mat-icon>info</mat-icon>
-        </button> -->
-        <!-- <mat-menu #menu="matMenu">
-            <div class="menu-container" (click)="$event.stopPropagation();">
-                <div class="subtitle">Informazioni</div>
-                <div *ngIf="!isOwner" class="campaign-id">DM: {{campaignData.dmName}}</div>
-                <div class="campaign-id">Giocatori iscritti (n°): {{campaignData.characters.length}}</div>
-                <div class="campaign-id">Iniziata il {{campaignData.createdAt.seconds*1000 | date:'dd/MM/yyyy'}}</div>
-            </div>
-            <div class="menu-container" (click)="$event.stopPropagation();">
-                <div class="subtitle">Stato campagna</div>
-                <div class="status-message-container">
-                    {{campaignData.status.statusMessage}}
-                </div>
-            </div>
-            <div class="menu-container" *ngIf="isOwner" (click)="$event.stopPropagation();">
-                <div class="subtitle">ID Campagna</div>
-                <div class="campaign-id">{{campaignData.id}}</div>
-                <div class="subtitle">Password</div>
-                <div class="campaign-id">{{campaignData.password}}</div>
-            </div>
-            <button mat-menu-item disabled *ngIf="isOwner">
-                <mat-icon>settings</mat-icon> Gestisci
-            </button>
-            <button mat-menu-item disabled *ngIf="isOwner">
-                <mat-icon>delete</mat-icon> Elimina campagna
-            </button>
-        </mat-menu> -->
     </div>
     <div class="view-tabs">
         <div class="status-container">
@@ -44,10 +15,11 @@
                 </ng-template>
                 <app-campaign-story-tab [description]="campaignData.description" [story]="campaignData.story" [isOwner]="isOwner"></app-campaign-story-tab>
             </mat-tab>
-            <mat-tab disabled>
+            <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/campaign-tabs-icon/quests.svg" class="label-icon" matTooltipPosition="below" matTooltip="Missioni">
                 </ng-template>
+                <app-campaign-quests-tab [quests]="campaignData.quests" [isOwner]="isOwner"></app-campaign-quests-tab>
             </mat-tab>
             <mat-tab disabled>
                 <ng-template mat-tab-label>
