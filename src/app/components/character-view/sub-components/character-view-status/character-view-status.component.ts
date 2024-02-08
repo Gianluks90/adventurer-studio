@@ -64,7 +64,7 @@ export class CharacterViewStatusComponent {
       used: [character.ispirazione],
       valoreAttuale: 1,
       valoreMassimo: 1,
-    })    
+    })
   }
 
   ngOnInit(): void {
@@ -127,9 +127,9 @@ export class CharacterViewStatusComponent {
       }
     });
     if (this.CA === '') {
-      this.CA = (10 + Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2)).toString();
+      this.CA = this.characterData.CA
     }
-    
+
   }
 
   public initProvePassive(): void {
@@ -193,7 +193,7 @@ export class CharacterViewStatusComponent {
       const lastFalseIndex = resource.used.lastIndexOf(false);
       if (lastFalseIndex !== -1) {
         resource.used[lastFalseIndex] = true;
-        
+
       }
     } else {
       const firstTrueIndex = resource.used.indexOf(true);
@@ -216,7 +216,7 @@ export class CharacterViewStatusComponent {
 
   usaDadoVita(dadoVitaIndex: number, index: number): void {
     const dadoVita = this.dadiVitaData[dadoVitaIndex];
-  
+
     if (!dadoVita.used[index]) {
       this.rollService.rollFromCharView(dadoVita.tipologia, 'Dado vita, resupero punti ferita', null, true);
       const lastFalseIndex = dadoVita.used.lastIndexOf(false);
