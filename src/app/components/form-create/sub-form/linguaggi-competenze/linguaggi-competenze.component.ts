@@ -34,16 +34,16 @@ export class LinguaggiCompetenzeComponent {
         this.arrayDiArmature = this.group.get('armature') as FormArray;
         this.arrayDiStrumenti = this.group.get('strumenti') as FormArray;
         this.arrayDiAltreCompetenze = this.group.get('altro') as FormArray;
-        if (this.arrayDiLinguaggi.value.length > 0) {
+        if (this.arrayDiLinguaggi.value && this.arrayDiLinguaggi.value.length > 0) {
           this.linguaggi = this.arrayDiLinguaggi.value;
         }
-        if (this.arrayDiArmi.value.length > 0) {
+        if (this.arrayDiArmi.value && this.arrayDiArmi.value.length > 0) {
           this.armi = this.arrayDiArmi.value;
         }
-        if (this.arrayDiArmature.value.length > 0) {
+        if (this.arrayDiArmature.value && this.arrayDiArmature.value.length > 0) {
           this.armature = this.arrayDiArmature.value;
         }
-        if (this.arrayDiStrumenti.value.length > 0) {
+        if (this.arrayDiStrumenti.value && this.arrayDiStrumenti.value.length > 0) {
           this.strumenti = this.arrayDiStrumenti.value;
         }
         if (this.arrayDiAltreCompetenze.value && this.arrayDiAltreCompetenze.value.length > 0) {

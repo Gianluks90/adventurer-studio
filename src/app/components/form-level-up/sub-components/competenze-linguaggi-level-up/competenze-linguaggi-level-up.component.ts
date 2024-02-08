@@ -35,12 +35,12 @@ export class CompetenzeLinguaggiLevelUpComponent {
         this.strunentiArray = this.group.get('strumenti') as FormArray;
         this.altroArray = this.group.get('altro') as FormArray;
 
-        this.linguaggiData = this.linguaggiArray.value.length > 0 ? this.linguaggiArray.value : [];
-        this.armiData = this.armiArray.value.length > 0 ? this.armiArray.value : [];
-        this.armatureData = this.armatureArray.value.length > 0 ? this.armatureArray.value : [];
-        this.strumentiData = this.strunentiArray.value.length > 0 ? this.strunentiArray.value : [];
-        this.altreCompetenzeData = this.altroArray.value.length > 0 ? this.altroArray.value : [];
-        
+        this.linguaggiData = this.linguaggiArray.value && this.linguaggiArray.value.length > 0 ? this.linguaggiArray.value : [];
+        this.armiData = this.armiArray.value && this.armiArray.value.length > 0 ? this.armiArray.value : [];
+        this.armatureData = this.armatureArray.value && this.armatureArray.value.length > 0 ? this.armatureArray.value : [];
+        this.strumentiData = this.strunentiArray.value && this.strunentiArray.value.length > 0 ? this.strunentiArray.value : [];
+        this.altreCompetenzeData = this.altroArray.value && this.altroArray.value.length > 0 ? this.altroArray.value : [];
+
         // if (this.arrayDiLinguaggi.value.length > 0) {
         //   this.linguaggi = this.arrayDiLinguaggi.value;
         // }
