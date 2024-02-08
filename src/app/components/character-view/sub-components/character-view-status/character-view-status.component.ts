@@ -50,6 +50,8 @@ export class CharacterViewStatusComponent {
     private notification: NotificationService) { }
 
   @Input() set character(character: any) {
+    console.log(character.id);
+
     this.characterData = character;
     this.initCaratteristiche();
     this.initTiriSalvezza();
