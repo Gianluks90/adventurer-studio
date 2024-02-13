@@ -11,6 +11,7 @@
         <details class="quest-details" [hidden]="quest.completed || (!quest.visible && !isOwnerData)">
             <summary class="quest-title"><mat-icon *ngIf="!quest.visible && isOwnerData">visibility_off</mat-icon> <div class="quest-title-label">{{quest.title}}</div></summary>
             <div class="quest-description">{{quest.description}}</div>
+            <div class="quest-dm-notes" *ngIf="isOwnerData"><strong>Note del DM</strong>: {{quest.dmNotes !== '' ? quest.dmNotes : '-'}}</div>
             <div class="button-container">
                 <button color="accent" class="edit-button" (click)="openQuestDialog(quest, i)" *ngIf="isOwnerData">
                     Modifica

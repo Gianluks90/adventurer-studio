@@ -1,28 +1,3 @@
-.section-title {
-    margin-bottom: 10px;
-    font-size: medium;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
-}
-
-.description {
-    font-size: small;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    line-height: 1.5;
-    font-style: italic;
-    margin-bottom: 20px;
-}
-
-.description::first-letter {
-    font-size: large;
-    font-weight: bold;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    // font-family: 'Times New Roman', Times, serif;
-    margin-right: 4px;
-}
-
 .description-text {
     font-size: small;
     opacity: 0.5;
@@ -31,11 +6,42 @@
     text-align: justify;
 }
 
+.section-title {
+    margin-bottom: 16px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+}
+
 .subtitle {
     font-weight: bold;
     letter-spacing: 1px;
     border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
     margin: 8px 0;
+}
+
+.info-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 2px;
+}
+
+.info-label {
+    font-size: small;
+    color: #212121;
+}
+
+.info-value {
+    font-weight: bold;
+    font-size: small;
+    color: #212121;
+}
+
+.even {
+    background-color: #f5f5f5;
 }
 
 .button-container {
@@ -58,11 +64,24 @@
     cursor: pointer;
 }
 
-.quest-container {
+.achievement-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.achievement-content {
+    font-style: italic;
+    opacity: 0.6;
+    padding: 4px 8px;
+}
+
+.achievement-container {
     margin: 8px 0;
 }
 
-.quest-title {
+.achievement-title {
     background-color: #212121;
     color: white;
     padding: 8px;
@@ -73,18 +92,12 @@
     margin-bottom: 4px;
 }
 
-.quest-title-label {
+.achievement-title-label {
     flex-grow: 1;
 }
 
-.quest-description {
+.achievement-description {
     padding: 8px;
-}
-
-.quest-dm-notes {
-    opacity: 0.6;
-    padding: 8px;
-    font-style: italic;
 }
 
 details[open] {
@@ -109,4 +122,10 @@ summary::after {
 details[open] > summary::after {
     content: url("/assets/icons/chevron_down.svg");
     cursor: pointer;
+}
+
+@media (max-width: 500px) {
+    .buttons-container {
+        flex-wrap: wrap;
+    }
 }

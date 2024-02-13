@@ -1,0 +1,41 @@
+<div mat-dialog-title class="dialog-title">{{data.achievement ? 'Modifica' : 'Nuovo'}} Riconoscimento</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div class="description">
+        Dopo aver inserito un titolo pensa se il Riconoscimento sarà visibile o no anche se non reclamato. Se sarà
+        visibile puoi decidere di rendere la descrizione un po' criptica per spingere i giocatori a capire come
+        sbloccarlo.
+
+    </div>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Titolo</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Descrizione (breve)</mat-label>
+        <input matInput formControlName="content">
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Note del DM</mat-label>
+        <textarea matInput formControlName="dmNotes" rows="5"></textarea>
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-select formControlName="reclamedBy" multiple>
+            <mat-option *ngFor="let character of data.characters" [value]="character.id">
+                {{character.basicInfo.nomePersonaggio}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-checkbox color="accent" formControlName="visible">Visibile</mat-checkbox>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="warn" *ngIf="data.achievement" (click)="delete()">
+        <mat-icon>delete</mat-icon> Elimina
+    </button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>{{data.achievement ? 'check' : 'add'}}</mat-icon> {{data.achievement ? 'Modifica' : 'Aggiungi'}}
+    </button>
+</div>

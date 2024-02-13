@@ -11,6 +11,10 @@
         <mat-label>Descrizione</mat-label>
         <textarea matInput formControlName="description" rows="5"></textarea>
     </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Note del DM</mat-label>
+        <textarea matInput formControlName="dmNotes" rows="5"></textarea>
+    </mat-form-field>
     <mat-checkbox formControlName="visible" color="accent">Visibile</mat-checkbox>
     <mat-checkbox formControlName="completed" color="accent">Completata</mat-checkbox>
     <mat-form-field color="accent" class="custom-form-field" appearance="outline" *ngIf="form.value.completed">

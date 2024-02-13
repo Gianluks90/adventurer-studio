@@ -217,4 +217,20 @@ export class CampaignService {
       lastUpdate: new Date()
     }, { merge: true });
   }
+
+  public async addAchievement(campId: string, achievement: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      achievements: arrayUnion(achievement),
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async updateCampaignAchievement(campId: string, achievements: any[]): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      achievements: achievements,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
 }

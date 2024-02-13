@@ -11,6 +11,7 @@ export class AddQuestDialogComponent {
   public form = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
+    dmNotes: '',
     lastUpdate: new Date(),
     // steps: this.fb.array([]),
     visible: false,

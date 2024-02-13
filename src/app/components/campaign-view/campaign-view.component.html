@@ -8,7 +8,7 @@
         <div class="status-container">
             <app-campaign-char-list [characters]="campaignData.characters"></app-campaign-char-list>
         </div>
-        <mat-tab-group color="accent">
+        <mat-tab-group color="accent" selectedIndex="3">
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/campaign-tabs-icon/story.svg" class="label-icon" matTooltipPosition="below" matTooltip="Storia">
@@ -26,10 +26,11 @@
                     <img src="./assets/campaign-tabs-icon/npcs.svg" class="label-icon" matTooltipPosition="below" matTooltip="Personaggi">
                 </ng-template>
             </mat-tab>
-            <mat-tab disabled>
+            <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/campaign-tabs-icon/achievements.svg" class="label-icon" matTooltipPosition="below" matTooltip="Ricompense">
                 </ng-template>
+                <app-campaign-achievements-tab [achievements]="campaignData.achievements" [isOwner]="isOwner" [characters]="campaignData.characters"></app-campaign-achievements-tab>
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
