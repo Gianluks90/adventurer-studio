@@ -25,29 +25,43 @@
         <mat-label>Cerca</mat-label>
         <input matInput type="text" (keyup)="filterSearch($event)">
     </mat-form-field>
-    <button mat-icon-button color="primary" class="add-button" (click)="openAddSpellDialog()" disableRipple><mat-icon>add</mat-icon></button>
-    <button mat-icon-button color="primary" class="add-button" [matMenuTriggerFor]="menu" disableRipple><mat-icon>filter_list</mat-icon></button>
+    <button mat-icon-button color="primary" class="add-button" (click)="openAddSpellDialog()"
+        disableRipple><mat-icon>add</mat-icon></button>
+    <button mat-icon-button color="primary" class="add-button" [matMenuTriggerFor]="menu"
+        disableRipple><mat-icon>filter_list</mat-icon></button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="sortSpellsBy('nome', 'crescente')">
-          <span>Alfabetico crescente</span>
+            <div class="sort-button">
+                <img src="./assets/sort_icons/sort_abc_dec.svg">
+                <div>Alfabetico</div>
+            </div>
         </button>
         <button mat-menu-item (click)="sortSpellsBy('nome', 'decrescente')">
-            <span>Alfabetico decrescente</span>
+            <div class="sort-button">
+                <img src="./assets/sort_icons/sort_abc_asc.svg">
+                <div>Alfabetico inverso</div>
+            </div>
         </button>
         <button mat-menu-item (click)="sortSpellsBy('livello', 'crescente')">
-          <span>Livello incantesimo crescente</span>
+            <div class="sort-button">
+                <img src="./assets/sort_icons/sort_lev_asc.svg">
+                <div>Livello incantesimo</div>
+            </div>
         </button>
         <button mat-menu-item (click)="sortSpellsBy('livello', 'decrescente')">
-            <span>Livello incantesimo decrescente</span>
+            <div class="sort-button">
+                <img src="./assets/sort_icons/sort_lev_dec.svg">
+                <div>Livello incantesimo inverso</div>
+            </div>
         </button>
-      </mat-menu>
+    </mat-menu>
 
 </div>
 <div class="subtitle">Preparati</div>
 <ng-container *ngFor="let t of lista; let i = index;">
     <details *ngIf="t.preparato" class="t-container" [hidden]="t.filtered">
         <summary class="t-name">
-                <img class="spell-icon" [src]="t.icon"> <span>{{t.nome}}</span>
+            <img class="spell-icon" [src]="t.icon"> <span>{{t.nome}}</span>
         </summary>
         <div class="spell-attributes">{{t.tipologia}} <span *ngIf="t.livello > 0">di {{t.livello}}° Livello</span>,
             {{t.scuola}}, {{t.componenti}}, {{t.riferimento}}</div>
@@ -68,7 +82,8 @@
 <ng-container *ngFor="let t of lista; let i = index;">
     <details *ngIf="!t.preparato" class="t-container" [hidden]="t.filtered">
         <summary class="t-name">
-                <img class="spell-icon" [src]="t.icon !== '' ? t.icon : './assets/tabs-icons/magic.svg'"> <span>{{t.nome}}</span>
+            <img class="spell-icon" [src]="t.icon !== '' ? t.icon : './assets/tabs-icons/magic.svg'">
+            <span>{{t.nome}}</span>
         </summary>
         <div class="spell-attributes">{{t.tipologia}} <span *ngIf="t.livello > 0">di {{t.livello}}° Livello</span>,
             {{t.scuola}}, {{t.componenti}}, {{t.riferimento}}</div>
