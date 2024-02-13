@@ -43,10 +43,10 @@
     <div class="picture-container">
         <img [src]="immaginePersonaggioData.url" referrerpolicy="no-referrer">
         <div class="action-buttons-container">
-            <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url !== ''"
+            <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url !== '' || inCampaign"
                 (click)="file.click()"><mat-icon>add_photo_alternate</mat-icon> Carica Immagine</button>
             <input #file id="file" hidden class="" type="file" accept="image" (change)="onPicSelected($event)">
-            <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url === ''"
+            <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url === '' || inCampaign"
                 (click)="deletePic(immaginePersonaggioData.nome)"><mat-icon>delete</mat-icon>Elimina Immagine</button>
         </div>
     </div>

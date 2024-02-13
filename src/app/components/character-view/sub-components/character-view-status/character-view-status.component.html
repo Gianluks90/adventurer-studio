@@ -124,7 +124,7 @@
                 color="accent" (click)="openHPDialog()">
                 <img src="./assets/icons/heart-check.svg">
             </button> -->
-        <app-health-bar class="health-bar-component" [parametriVitali]="characterData.parametriVitali"></app-health-bar>
+        <app-health-bar class="health-bar-component" [characterId]="characterData.id" [parametriVitali]="characterData.parametriVitali"></app-health-bar>
     </div>
     <div class="pf-group">
         <div class="pf-title"><span>CA</span> {{CA}} {{CAShield}}</div>

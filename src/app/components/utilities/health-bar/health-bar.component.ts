@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { HealthPointDialogComponent } from './health-point-dialog/health-point-dialog.component';
 import { Platform } from '@angular/cdk/platform';
@@ -23,6 +22,10 @@ export class HealthBarComponent {
     }
   }
 
+  @Input() set characterId(id: string) {
+    this.idData = id;
+  }
+
   constructor(private dialog: MatDialog, private platform: Platform, private charService: CharacterService, private notification: NotificationService) {
 
   }
@@ -34,8 +37,10 @@ export class HealthBarComponent {
     pftMax: 0
   }
 
+  public idData: string = '';
+
   public openHPDialog() {
-    const characterId = window.location.href.split('/').pop();
+    // const characterId = window.location.href.split('/').pop();
     this.dialog.open(HealthPointDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
       autoFocus: false,
@@ -45,7 +50,7 @@ export class HealthBarComponent {
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         this.parametriVitaliData = result.newValue;
-        this.charService.updateCharacterPFById(characterId!, this.parametriVitaliData).then(() => {
+        this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData).then(() => {
           this.notification.openSnackBar('Punti Ferita Aggiornati.', 'check', 3000, 'limegreen');
         });
       }

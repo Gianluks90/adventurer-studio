@@ -75,7 +75,7 @@ export class FormService {
   }
 
 
-  public async uploadImage(event: any): Promise<any> {
+  public async uploadImage(event: any, id?: string): Promise<any> {
     const file: File = event.target.files[0];
     const fileName = window.location.href.split('/').pop();
     const imageRef = ref(this.firebaseService.storage, 'characterImages/' + getAuth().currentUser?.uid + '/' + fileName);

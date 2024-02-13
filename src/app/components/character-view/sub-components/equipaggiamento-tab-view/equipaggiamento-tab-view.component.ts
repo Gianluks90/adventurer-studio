@@ -17,6 +17,7 @@ export class EquipaggiamentoTabViewComponent {
 
   public equipaggiamentoData: Item[] = [];
   public denaroData: any = {};
+  public idData: string = '';
 
   public denaroForm: FormGroup | null = null;
 
@@ -30,6 +31,10 @@ export class EquipaggiamentoTabViewComponent {
     this.denaroData = value;
   }
 
+  @Input() set characterId(id: string) {
+    this.idData = id;
+  }
+
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {
       if (form) {
@@ -39,7 +44,7 @@ export class EquipaggiamentoTabViewComponent {
   }
 
   public openMoneyDialog() {
-    const characterId = window.location.href.split('/').pop();
+    // const characterId = window.location.href.split('/').pop();
     this.dialog.open(MoneyDialogComponent, {
       width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
       disableClose: true,
@@ -50,7 +55,7 @@ export class EquipaggiamentoTabViewComponent {
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         this.denaroData = result.newValue.value;
-        this.charService.updateMoney(characterId, this.denaroData).then(() => {
+        this.charService.updateMoney(this.idData, this.denaroData).then(() => {
           this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, 'limegreen');
         });
       }

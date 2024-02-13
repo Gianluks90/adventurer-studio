@@ -30,8 +30,13 @@ export class DescrizioneBackgroundTabViewComponent {
   };
 
   public immaginePersonaggioData: any;
+  public inCampaign: boolean = false;
 
-  constructor(private notification: NotificationService, private formService: FormService) { }
+  constructor(private notification: NotificationService, private formService: FormService) { 
+    if (window.location.href.includes('campaign-view/')) {
+      this.inCampaign = true;
+    }
+  }
 
   @Input() set backgroundInfo(backgroundInfo: any) {
     this.backgroundInfoData = backgroundInfo;
