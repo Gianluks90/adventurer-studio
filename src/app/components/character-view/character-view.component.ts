@@ -19,6 +19,7 @@ export class CharacterViewComponent {
   public linguaggiCompetenze: any;
   public trucchettiIncantesimi: any;
   public charId: string = '';
+  public inCampaign: boolean = false;
 
   // public menuIcon = 'menu';
 
@@ -28,7 +29,11 @@ export class CharacterViewComponent {
     private sidenavService: SidenavService,
     private formService: FormService,
     private diceSelector: MatBottomSheet,
-    public diceService: DddiceService) { }
+    public diceService: DddiceService) {
+      if (window.location.href.includes('campaign-view/')) {
+        this.inCampaign = true;
+      }  
+    }
 
   ngOnInit(): void {
     if (this.charId === '' && !window.location.href.includes('campaign-view')) {

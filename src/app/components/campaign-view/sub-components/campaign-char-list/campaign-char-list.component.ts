@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { CharacterBottomSheetComponent } from '../character-bottom-sheet/character-bottom-sheet.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-campaign-char-list',
@@ -14,13 +16,17 @@ export class CampaignCharListComponent {
     this.charData = characters;
   }
 
-  constructor(private bottomSheet: MatBottomSheet) { }
+  constructor(private bottomSheet: MatBottomSheet, private router: Router) { }
 
   public openCharBottomSheet(charId: string): void {
-    // this.bottomSheet.open(CharacterBottomSheetComponent, {
-    //   autoFocus: false,
-    //   disableClose: true,
-    //   data: { id: charId }
-    // })
+    this.bottomSheet.open(CharacterBottomSheetComponent, {
+      autoFocus: false,
+      disableClose: true,
+      data: { id: charId }
+    })
+  }
+
+  public navigateToChar(charId: string): void {
+    window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');
   }
 }

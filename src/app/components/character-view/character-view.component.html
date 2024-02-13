@@ -77,13 +77,13 @@
     </div>
 </div>
 
-<div class="sidenav-buttons" id="menu-button">
+<div class="sidenav-buttons" id="menu-button" *ngIf="!inCampaign">
     <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
         <mat-icon>menu</mat-icon>
     </button>
 </div>
 
-<div class="dice-buttons" id="dice-button">
+<div class="dice-buttons" id="dice-button" *ngIf="!inCampaign">
     <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi" matTooltipPosition="right" [disabled]="!diceService.roomConnected">
         <img src="./assets/dice/dice-d20-white.svg" alt="">
     </button>
