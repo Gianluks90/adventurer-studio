@@ -26,6 +26,22 @@
         <input matInput type="text" (keyup)="filterSearch($event)">
     </mat-form-field>
     <button mat-icon-button color="primary" class="add-button" (click)="openAddSpellDialog()" disableRipple><mat-icon>add</mat-icon></button>
+    <button mat-icon-button color="primary" class="add-button" [matMenuTriggerFor]="menu" disableRipple><mat-icon>filter_list</mat-icon></button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="sortSpellsBy('nome', 'crescente')">
+          <span>Alfabetico crescente</span>
+        </button>
+        <button mat-menu-item (click)="sortSpellsBy('nome', 'decrescente')">
+            <span>Alfabetico decrescente</span>
+        </button>
+        <button mat-menu-item (click)="sortSpellsBy('livello', 'crescente')">
+          <span>Livello incantesimo crescente</span>
+        </button>
+        <button mat-menu-item (click)="sortSpellsBy('livello', 'decrescente')">
+            <span>Livello incantesimo decrescente</span>
+        </button>
+      </mat-menu>
+
 </div>
 <div class="subtitle">Preparati</div>
 <ng-container *ngFor="let t of lista; let i = index;">

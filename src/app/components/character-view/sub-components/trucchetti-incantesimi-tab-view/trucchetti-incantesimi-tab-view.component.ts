@@ -107,6 +107,7 @@ export class TrucchettiIncantesimiTabViewComponent {
   }
 
   private sortSpells() {
+    console.log('this.lista',this.lista);
     this.lista.sort((a, b) => {
       if (a.nome < b.nome) {
         return -1;
@@ -116,5 +117,15 @@ export class TrucchettiIncantesimiTabViewComponent {
     });
   }
 
+  sortSpellsBy(sortString: string, order: string) {
+    this.lista.sort((a, b) => {
+      if (a[sortString] < b[sortString]) {
+        return order === 'crescente' ? -1 : 1;
+      } else {
+        return order === 'crescente' ? 1 : -1;
+      }
+    });
+    console.log('this.lista sorted',this.lista);
+  }
 
 }
