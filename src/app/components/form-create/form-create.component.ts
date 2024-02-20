@@ -55,6 +55,7 @@ export class FormCreateComponent implements OnInit {
   }
 
   public completeForm() {
+    this.saveForm();
       const characterId = window.location.href.split('/').pop();
       this.dialog.open(CompleteCharacterDialogComponent, {
         width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',

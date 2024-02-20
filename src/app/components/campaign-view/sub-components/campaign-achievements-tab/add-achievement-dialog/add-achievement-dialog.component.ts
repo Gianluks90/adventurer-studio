@@ -32,12 +32,12 @@ export class AddAchievementDialogComponent {
     if (this.data.achievement) {
       this.dialogRef.close({
         status: 'edited',
-        rule: this.form.value
+        achievement: this.form.value
       })
     } else {
       this.dialogRef.close({
         status: 'success',
-        rule: this.form.value
+        achievement: this.form.value
       })
     }
   }
@@ -46,7 +46,7 @@ export class AddAchievementDialogComponent {
     if (this.data.achievement) {
       this.dialogRef.close({
         status: 'deleted',
-        spell: this.form.value
+        achievement: this.form.value
       })
     }
   }

@@ -124,6 +124,20 @@ details[open] > summary::after {
     cursor: pointer;
 }
 
+.reclamedby-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 8px;
+}
+
+.reclamedby-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
 @media (max-width: 500px) {
     .buttons-container {
         flex-wrap: wrap;

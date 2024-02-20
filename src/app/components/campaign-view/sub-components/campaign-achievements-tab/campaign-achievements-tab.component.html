@@ -9,6 +9,9 @@
         <details class="achievement-details" [hidden]="!achievement.visible && !isOwnerData">
             <summary class="achievement-title"><mat-icon *ngIf="!achievement.visible && isOwnerData">visibility_off</mat-icon> <div class="achievement-title-label">{{achievement.title}}</div></summary>
             <div class="achievement-description">{{achievement.content}}</div>
+            <div class="reclamedby-container">
+                <img *ngFor="let url of achievement.urls" [src]="url" class="reclamedby-image" />
+            </div>
             <!-- <div class="achievement-content">Riferimento: {{achievement.reference !== '' ? achievement.reference : '-'}}</div> -->
             <div class="button-container">
                 <button color="accent" class="edit-button" (click)="openAchievementDialog(achievement, i)" *ngIf="isOwnerData">

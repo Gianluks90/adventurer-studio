@@ -27,6 +27,11 @@ export class CampaignAchievementsTabComponent {
 
   @Input() set characters(characters: any) {
     this.charactersData = characters;
+    this.achievementsData.map((achievement: any) => {
+      if (achievement.reclamedBy && achievement.reclamedBy.length > 0 && this.charactersData) {
+        achievement.urls = this.charactersData.filter((character: any) => achievement.reclamedBy.includes(character.id)).map((character: any) => character.basicInfo.urlImmaginePersonaggio);
+      }
+    });
   }
 
   public openAchievementDialog(achievement?: any, index?: number) {
@@ -38,12 +43,12 @@ export class CampaignAchievementsTabComponent {
     }).afterClosed().subscribe((result: any) => {
       switch (result.status) {
         case 'success':
-          this.campaignService.addAchievement(window.location.href.split('/').pop(), result.rule).then(() => {
+          this.campaignService.addAchievement(window.location.href.split('/').pop(), result.achievement).then(() => {
             this.achievementsData = this.sortRuleAlphabetical(this.achievementsData);
           });
         break;
         case 'edited':
-          this.achievementsData[index] = result.rule;
+          this.achievementsData[index] = result.achievement;
           this.campaignService.updateCampaignAchievement(window.location.href.split('/').pop(), this.achievementsData);
         break;
         case 'deleted':
