@@ -90,5 +90,7 @@ export class AddItemDialogComponent {
     this.artifactProperties.removeAt(index);
   }
 
-
+  compareFn(prop1: any, prop2: any): boolean {
+    return prop1 && prop2 ? prop1.name === prop2.name : prop1 === prop2;
+  }
 }

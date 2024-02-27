@@ -10,6 +10,10 @@
     <div class="item-description">
         {{data.item.description}}
     </div>
+    <div *ngFor="let prop of data.item.weaponProperties">
+        <div class="property-label">{{prop.name}}</div>
+        <div class="property-description">{{prop.description}}</div>
+    </div>
     <div class="sheet-footer">
         <div *ngIf="data.item.weight" class="footer-element"><img src="./assets/icons/weight.svg"> {{data.item.weight * data.item.quantity}}</div>
         <div class="footer-element"><img src="./assets/tabs-icons/inventory.svg"> {{data.item.quantity}}</div>

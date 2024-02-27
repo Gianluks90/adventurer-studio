@@ -22,7 +22,7 @@ export class Item {
     stealthDisadvantage?: boolean;
     damageFormula?: string;
     damageType?: string;
-    weaponProperties?: string[];
+    weaponProperties?: any[];
     traits?: Trait[];
     focus?: boolean;
     attunementRequired?: boolean;

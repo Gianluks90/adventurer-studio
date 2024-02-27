@@ -154,8 +154,8 @@
 
         <mat-form-field class="switch-input" color="accent" appearance="outline">
           <mat-label>Proprietà</mat-label>
-          <mat-select formControlName="weaponProperties" multiple>
-            <mat-option *ngFor="let prop of weaponProperties" [value]="prop.name">
+          <mat-select formControlName="weaponProperties" multiple [compareWith]="compareFn">
+            <mat-option *ngFor="let prop of weaponProperties" [value]="prop">
               <div class="option-label">{{prop.name}}</div>
             </mat-option>
           </mat-select>
