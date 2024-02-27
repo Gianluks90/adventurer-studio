@@ -122,6 +122,24 @@ export class CampaignService {
     });
   }
 
+
+  // public getSignalCharacters(ids: string[]): void {
+  //   const docRef = collection(this.firebaseService.database, 'characters');
+  //   const unsub = onSnapshot(docRef, (snapshot) => {
+  //     const result: any[] = [];
+  //     snapshot.forEach(doc => {
+  //       const character = {
+  //         id: doc.id,
+  //         ...doc.data()
+  //       }
+  //       if (ids.includes(character.id)) {
+  //         result.push(character);
+  //       }
+  //     });
+  //     this.campaignCharacters.set(result);
+  //   });
+  // }
+
   public async checkCampaign(id: string, password: string): Promise<boolean> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     const docSnap = await getDoc(docRef);
@@ -139,14 +157,14 @@ export class CampaignService {
     let character;
     const heroRef = doc(this.firebaseService.database, 'characters', heroId);
     const heroSnap = await getDoc(heroRef).then(async char => {
-      character = {
-        id: char.id,
-        basicInfo: char.data()['informazioniBase'],
-        money: char.data()['denaro'],
-        inspiration: char.data()['ispirazione'],
-        healthParameter: char.data()['parametriVitali'],
-        status: char.data()['status'],
-      }
+      // character = {
+      //   id: char.id,
+      //   basicInfo: char.data()['informazioniBase'],
+      //   money: char.data()['denaro'],
+      //   inspiration: char.data()['ispirazione'],
+      //   healthParameter: char.data()['parametriVitali'],
+      //   status: char.data()['status'],
+      // }
 
       await setDoc(heroRef, {
         campaignId: campId
@@ -154,7 +172,8 @@ export class CampaignService {
 
       const docRef = doc(this.firebaseService.database, 'campaigns', campId);
       return await setDoc(docRef, {
-        characters: arrayUnion(character),
+        // characters: arrayUnion(character),
+        characters: arrayUnion(char.id),
         partecipants: arrayUnion(userId),
         lastUpdate: new Date(),
         status: {

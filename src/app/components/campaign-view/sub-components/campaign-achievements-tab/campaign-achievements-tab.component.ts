@@ -29,7 +29,7 @@ export class CampaignAchievementsTabComponent {
     this.charactersData = characters;
     this.achievementsData.map((achievement: any) => {
       if (achievement.reclamedBy && achievement.reclamedBy.length > 0 && this.charactersData) {
-        achievement.urls = this.charactersData.filter((character: any) => achievement.reclamedBy.includes(character.id)).map((character: any) => character.basicInfo.urlImmaginePersonaggio);
+        achievement.urls = this.charactersData.filter((character: any) => achievement.reclamedBy.includes(character.id)).map((character: any) => character.informazioniBase.urlImmaginePersonaggio);
       }
     });
   }

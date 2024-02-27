@@ -7,8 +7,16 @@
     </ng-template>
     <div class="characters-line" *ngIf="charData.length > 0; else noCharacters">
         <div class="character-item" *ngFor="let char of charData" (click)="navigateToChar(char.id)">
-            <img class="character-image" [src]="char.basicInfo.urlImmaginePersonaggio">
-            <div class="character-name">{{char.basicInfo.nomePersonaggio}}</div>
+            <div class="character-header-card">
+                <img class="character-image" [src]="char.informazioniBase.urlImmaginePersonaggio">
+                <div class="character-name">{{char.informazioniBase.nomePersonaggio}}</div>
+            </div>
+            <div class="character-parameters-container">
+                <!-- <div class="armor-class-label">CA</div>
+                <div class="armor-class-value">{{char.CA}}</div> -->
+                <mat-icon>favorite</mat-icon>
+                <div class="health-points-value">{{char.parametriVitali.puntiFeritaAttuali}} / {{char.parametriVitali.massimoPuntiFerita}}</div>
+            </div>
         </div>
     </div>
 </div>

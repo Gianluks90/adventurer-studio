@@ -6,7 +6,7 @@
     </div>
     <div class="view-tabs">
         <div class="status-container">
-            <app-campaign-char-list [characters]="campaignData.characters"></app-campaign-char-list>
+            <app-campaign-char-list [characters]="charData"></app-campaign-char-list>
         </div>
         <mat-tab-group color="accent">
             <mat-tab>
@@ -30,7 +30,7 @@
                 <ng-template mat-tab-label>
                     <img src="./assets/campaign-tabs-icon/achievements.svg" class="label-icon" matTooltipPosition="below" matTooltip="Ricompense">
                 </ng-template>
-                <app-campaign-achievements-tab [achievements]="campaignData.achievements" [isOwner]="isOwner" [characters]="campaignData.characters"></app-campaign-achievements-tab>
+                <app-campaign-achievements-tab [achievements]="campaignData.achievements" [isOwner]="isOwner" [characters]="charData"></app-campaign-achievements-tab>
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>

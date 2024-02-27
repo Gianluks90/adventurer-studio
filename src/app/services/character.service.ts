@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, WritableSignal, signal } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { FormGroup } from '@angular/forms';
-import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { Item } from '../models/item';
 import { FormModel } from '../models/formModel';
@@ -12,7 +12,11 @@ import { Spell } from '../models/spell';
 })
 export class CharacterService {
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService) { 
+    this.getSignalCharacters();
+  }
+
+  public campaignCharacters: WritableSignal<any[]> = signal([]);
 
   public async getCharacterById(id: string): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
@@ -38,6 +42,36 @@ export class CharacterService {
 
     return result;
   }
+
+  public getSignalCharacters(): void {
+    const docRef = collection(this.firebaseService.database, 'characters');
+    const unsub = onSnapshot(docRef, (snapshot) => {
+      const result: any[] = [];
+      snapshot.forEach(doc => {
+        const character = {
+          id: doc.id,
+          ...doc.data()
+        }
+        result.push(character);
+      });
+      this.campaignCharacters.set(result);
+    });
+  }
+  
+  // public getSignalCampaigns(): void {
+  //   const docRef = collection(this.firebaseService.database, 'campaigns');
+  //   const unsub = onSnapshot(docRef, (snapshot) => {
+  //     const result: any[] = [];
+  //     snapshot.forEach(doc => {
+  //       const campaign = {
+  //         id: doc.id,
+  //         ...doc.data()
+  //       }
+  //       result.push(campaign);
+  //     });
+  //     this.campaigns.set(result);
+  //   });
+  // }
 
   public async getCharactersByUserId(id: string): Promise<any[]> {
     const docRef = collection(this.firebaseService.database, 'characters');

@@ -6,6 +6,7 @@ import { Platform } from '@angular/cdk/platform';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { TicketCampaignDialogComponent } from '../campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
 import { getAuth } from 'firebase/auth';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-campaign-view',
@@ -14,9 +15,16 @@ import { getAuth } from 'firebase/auth';
 })
 export class CampaignViewComponent {
   public campaignData: any;
+  public charData: any[] = [];
   public isOwner: boolean = false;
 
-  constructor(private firebaseService: FirebaseService, private campaignService: CampaignService, private sidenavService: SidenavService, private matDialog: MatDialog, private platform: Platform) {
+  constructor(
+    private firebaseService: FirebaseService, 
+    private campaignService: CampaignService, 
+    private sidenavService: SidenavService, 
+    private matDialog: MatDialog, 
+    private platform: Platform, 
+    private charService: CharacterService) {
 
     const id = window.location.href.split('campaign-view/').pop();
     effect(() => {
@@ -39,6 +47,9 @@ export class CampaignViewComponent {
           }
         }
       }
+    });
+    effect(() => {
+      this.charData = this.charService.campaignCharacters().filter((char: any) => this.campaignData.characters.includes(char.id));
     });
   }
 

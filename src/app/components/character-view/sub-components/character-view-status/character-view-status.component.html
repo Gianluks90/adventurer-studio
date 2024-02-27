@@ -130,7 +130,7 @@
         <div class="pf-title"><span>CA</span> {{CA}} {{CAShield}}</div>
         <div class="pf-title" [ngClass]="{'dice-rolls': diceService.roomConnected}"
             (click)="rollDice('Tiro di Iniziativa', characterData.iniziativa)"><span>Iniziativa</span>
-            +{{characterData.iniziativa}}</div>
+            {{characterData.iniziativa > 0 ? '+' + characterData.iniziativa : characterData.iniziativa}}</div>
         <div class="pf-title"><span>Velocità</span> {{characterData.velocita}} m</div>
     </div>
 </div>

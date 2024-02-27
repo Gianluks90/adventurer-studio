@@ -37,12 +37,20 @@
 
 .character-item {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    gap: 12px;
-    align-items: center;
+    // gap: 12px;
+    // align-items: center;
     background-color: rgba($color: #212121, $alpha: 0.9);
     color: white;
     cursor: pointer;
+}
+
+.character-header-card {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border-bottom: 1px dotted rgba(white, 0.5);
 }
 
 .character-image {
@@ -56,4 +64,17 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-family: 'Cinzel', serif;
+}
+
+.character-parameters-container {
+    display: flex;
+    padding: 4px 12px;
+    gap: 8px;
+}
+
+.armor-class-label {
+    font-size: small;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
