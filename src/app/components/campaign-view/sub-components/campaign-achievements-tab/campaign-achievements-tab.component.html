@@ -10,7 +10,7 @@
             <summary class="achievement-title"><mat-icon *ngIf="!achievement.visible && isOwnerData">visibility_off</mat-icon> <div class="achievement-title-label">{{achievement.title}}</div></summary>
             <div class="achievement-description">{{achievement.content}}</div>
             <div class="reclamedby-container">
-                <img *ngFor="let url of achievement.urls" [src]="url" class="reclamedby-image" />
+                <img *ngFor="let char of achievement.reclamedBy" [src]="char.url" class="reclamedby-image" />
             </div>
             <!-- <div class="achievement-content">Riferimento: {{achievement.reference !== '' ? achievement.reference : '-'}}</div> -->
             <div class="button-container">

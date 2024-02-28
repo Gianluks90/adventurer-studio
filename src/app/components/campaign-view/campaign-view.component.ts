@@ -49,7 +49,8 @@ export class CampaignViewComponent {
       }
     });
     effect(() => {
-      this.charData = this.charService.campaignCharacters().filter((char: any) => this.campaignData.characters.includes(char.id));
+      this.charData = this.charService.campaignCharacters();
+      this.charData = this.charData.filter((char: any) => char.campaignId === id);
     });
   }
 
