@@ -1,1 +1,9 @@
-<svg style="height: 512px; width: 512px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 0h512v512H0z" fill="#000" fill-opacity="1"></path><g class="" style="" transform="translate(0,0)"><path d="M281 24.15L246.4 77.2l80 51.7 55.7 129.4c5.6-2.6 13.4-6.9 21.8-12.7 12.7-8.9 27.2-20.9 40.3-34.4 13.2-13.5 25.1-28.4 32.7-42.8 6.6-12.6 9.9-24.5 9-34.8L359.1 74.97zm-33.4 75.26C164.4 214.2 107.9 325.2 25.98 453.3c0 .1 0 0 .15.4.32 1.1 1.49 3.4 3.53 5.9 4.07 5.1 11.33 11.4 19.22 16.5 7.89 5.1 16.55 9.2 22.88 10.9 3.16.8 5.71.9 6.88.8.37-.1.37-.1.47-.1 21.99-33.8 31.99-49 48.09-110.3l.3-1.3.8-1.1c60.5-97.7 84.9-157 155-252.5z" fill="#fff" fill-opacity="1"></path></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect x="0" y="0" width="512" height="512" style="fill-rule:nonzero;"/>
+    <g>
+        <path d="M247.6,99.41C164.4,214.2 107.9,325.2 25.98,453.3C25.98,453.4 25.98,453.3 26.13,453.7C26.45,454.8 27.62,457.1 29.66,459.6C33.73,464.7 40.99,471 48.88,476.1C56.77,481.2 65.43,485.3 71.76,487C74.92,487.8 77.47,487.9 78.64,487.8C79.01,487.7 79.01,487.7 79.11,487.7C101.1,453.9 111.1,438.7 127.2,377.4L127.5,376.1L128.3,375C188.8,277.3 213.2,218 283.3,122.5L247.6,99.41Z" style="fill:rgb(153,84,9);fill-rule:nonzero;"/>
+        <path d="M281,24.15L359.1,74.97L485.9,133.6C486.8,143.9 483.5,155.8 476.9,168.4C469.3,182.8 457.4,197.7 444.2,211.2C431.1,224.7 416.6,236.7 403.9,245.6C395.5,251.4 387.7,255.7 382.1,258.3L326.4,128.9L246.4,77.2L281,24.15Z" style="fill:rgb(215,215,215);"/>
+    </g>
+</svg>

@@ -168,6 +168,18 @@
         "link": "./assets/selectIcons/armatura_8.svg"
     },
     {
+        "name": "Armatura 9",
+        "link": "./assets/selectIcons/armatura_9.svg"
+    },
+    {
+        "name": "Armatura 10",
+        "link": "./assets/selectIcons/armatura_10.svg"
+    },
+    {
+        "name": "Armatura 11",
+        "link": "./assets/selectIcons/armatura_11.svg"
+    },
+    {
         "name": "Camuffamento",
         "link": "./assets/selectIcons/camuffamento.svg"
     },
@@ -226,6 +238,10 @@
     {
         "name": "Cibo 11",
         "link": "./assets/selectIcons/cibo_11.svg"
+    },
+    {
+        "name": "Cibo 12",
+        "link": "./assets/selectIcons/cibo_12.svg"
     },
     {
         "name": "Corda",
@@ -322,6 +338,10 @@
     {
         "name": "Materiale 11",
         "link": "./assets/selectIcons/materiale_11.svg"
+    },
+    {
+        "name": "Materiale 12",
+        "link": "./assets/selectIcons/materiale_12.svg"
     },
     {
         "name": "Munizioni 1",
@@ -512,6 +532,14 @@
         "link": "./assets/selectIcons/strumento_17.svg"
     },
     {
+        "name": "Strumento 18",
+        "link": "./assets/selectIcons/strumento_18.svg"
+    },
+    {
+        "name": "Strumento 19",
+        "link": "./assets/selectIcons/strumento_19.svg"
+    },
+    {
         "name": "Tenda",
         "link": "./assets/selectIcons/tenda.svg"
     },
@@ -558,6 +586,26 @@
     {
         "name": "Varie 10",
         "link": "./assets/selectIcons/varie_10.svg"
+    },
+    {
+        "name": "Varie 11",
+        "link": "./assets/selectIcons/varie_11.svg"
+    },
+    {
+        "name": "Varie 12",
+        "link": "./assets/selectIcons/varie_12.svg"
+    },
+    {
+        "name": "Varie 13",
+        "link": "./assets/selectIcons/varie_13.svg"
+    },
+    {
+        "name": "Varie 14",
+        "link": "./assets/selectIcons/varie_14.svg"
+    },
+    {
+        "name": "Varie 15",
+        "link": "./assets/selectIcons/varie_15.svg"
     },
     {
         "name": "Veleno 1",
