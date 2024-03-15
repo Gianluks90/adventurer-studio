@@ -189,6 +189,17 @@ export class CampaignService {
     });
   }
 
+  public startCampaign(campId: string): void {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    setDoc(docRef, {
+      status: {
+        statusCode: 2,
+        statusMessage: 'In corso'
+      },
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
   public async addStory(campId: string, story: any): Promise<void> {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
     return await setDoc(docRef, {

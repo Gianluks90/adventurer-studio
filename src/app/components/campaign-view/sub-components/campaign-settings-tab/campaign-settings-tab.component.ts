@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
   selector: 'app-campaign-settings-tab',
@@ -7,6 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class CampaignSettingsTabComponent {
 
+  constructor(private campaignService: CampaignService) {}
+  
   public campaignData: any;
   public isOwnerData: boolean = false;
 
@@ -18,5 +21,8 @@ export class CampaignSettingsTabComponent {
     this.isOwnerData = isOwner;
   }
 
+  public startCampaign(): void {
+    this.campaignService.startCampaign(this.campaignData.id);
+  }
 
 }

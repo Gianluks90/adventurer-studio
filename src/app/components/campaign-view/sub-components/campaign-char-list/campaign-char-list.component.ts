@@ -16,6 +16,7 @@ export class CampaignCharListComponent {
 
   @Input() set characters(characters: any[]) {
     this.charData = characters;
+    this.sortCharByABC();
   }
 
   constructor(private bottomSheet: MatBottomSheet, private router: Router, private charService: CharacterService) {
@@ -34,5 +35,9 @@ export class CampaignCharListComponent {
 
   public navigateToChar(charId: string): void {
     window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');
+  }
+
+  public sortCharByABC(): void {
+    this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
   }
 }

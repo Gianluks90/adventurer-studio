@@ -25,12 +25,14 @@
     <div class="info-label">Password</div>
     <div class="info-value">{{campaignData.password}}</div>
 </div>
-<div class="subtitle">Avvia Campagna (prossimamente)</div>
+<div class="subtitle">Avvia Campagna</div>
 <div class="description-text">
-    "Avviare" una Campagna impedisce ad altri giocatori di unirsi. Lo stato della Campagna passa a "In corso" abilitando così tutti i tab e permettendo ai giocatori di visualizzarne il contenuto.
+    Fai sapere ai tuoi giocatori che la campagna è ufficialmente iniziata. Questa azione cambia lo stato della campagna
+    da "Nuova" o "In preparazione" a "In corso", ciò non preclude ad altri giocatori di unirsi successivamente ma li
+    avvisa che la Campagna potrebbe già essere iniziata.
 </div>
 <div class="buttons-container">
-    <button mat-raised-button color="accent" disabled>
+    <button mat-raised-button color="accent" (click)="startCampaign()" [disabled]="campaignData.status.statusCode > 1">
         <mat-icon>play_arrow</mat-icon> Avvia
     </button>
 </div>
