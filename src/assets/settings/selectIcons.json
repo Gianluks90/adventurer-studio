@@ -344,6 +344,10 @@
         "link": "./assets/selectIcons/materiale_12.svg"
     },
     {
+        "name": "Materiale 13",
+        "link": "./assets/selectIcons/materiale_13.svg"
+    },
+    {
         "name": "Munizioni 1",
         "link": "./assets/selectIcons/munizioni_1.svg"
     },
@@ -542,6 +546,34 @@
     {
         "name": "Tenda",
         "link": "./assets/selectIcons/tenda.svg"
+    },
+    {
+        "name": "Tesoro 1",
+        "link": "./assets/selectIcons/tesoro_1.svg"
+    },
+    {
+        "name": "Tesoro 2",
+        "link": "./assets/selectIcons/tesoro_2.svg"
+    },
+    {
+        "name": "Tesoro 3",
+        "link": "./assets/selectIcons/tesoro_3.svg"
+    },
+    {
+        "name": "Tesoro 4",
+        "link": "./assets/selectIcons/tesoro_4.svg"
+    },
+    {
+        "name": "Tesoro 5",
+        "link": "./assets/selectIcons/tesoro_5.svg"
+    },
+    {
+        "name": "Tesoro 6",
+        "link": "./assets/selectIcons/tesoro_6.svg"
+    },
+    {
+        "name": "Tesoro 7",
+        "link": "./assets/selectIcons/tesoro_7.svg"
     },
     {
         "name": "Torcia",

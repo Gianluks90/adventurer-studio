@@ -136,6 +136,14 @@
         "link": "./assets/selectIconsSpells/natura_2.svg"
     },
     {
+        "name": "Natura 3",
+        "link": "./assets/selectIconsSpells/natura_3.svg"
+    },
+    {
+        "name": "Natura 4",
+        "link": "./assets/selectIconsSpells/natura_4.svg"
+    },
+    {
         "name": "Raggio 1",
         "link": "./assets/selectIconsSpells/raggio_1.svg"
     },

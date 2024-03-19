@@ -136,9 +136,9 @@ export class CharacterViewStatusComponent {
     const intelligenza = Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2);
     const saggezza = Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2);
 
-    this.indagarePassiva = 10 + intelligenza;
-    this.percezionePassiva = 10 + saggezza;
-    this.intuizionePassiva = 10 + saggezza;
+    this.indagarePassiva = 10 + intelligenza + (this.characterData.competenzaAbilita.indagare ? this.characterData.tiriSalvezza.bonusCompetenza : 0);
+    this.percezionePassiva = 10 + saggezza + (this.characterData.competenzaAbilita.percezione ? this.characterData.tiriSalvezza.bonusCompetenza : 0);
+    this.intuizionePassiva = 10 + saggezza + (this.characterData.competenzaAbilita.intuizione ? this.characterData.tiriSalvezza.bonusCompetenza : 0);
   }
 
   // public openHPDialog() {
