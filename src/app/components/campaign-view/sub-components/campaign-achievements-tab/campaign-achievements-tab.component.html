@@ -1,5 +1,8 @@
 <div class="section-title">Riconoscimenti</div>
 <div class="button-container">
+    <button mat-mini-fab color="accent" class="add-button" (click)="collapseAll()">
+        <mat-icon>unfold_less</mat-icon>
+    </button>
     <button mat-mini-fab color="accent" class="add-button" (click)="openAchievementDialog()" *ngIf="isOwnerData">
         <mat-icon>add</mat-icon>
     </button>

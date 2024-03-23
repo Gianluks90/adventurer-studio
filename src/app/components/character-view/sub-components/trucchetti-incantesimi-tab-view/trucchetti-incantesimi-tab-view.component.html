@@ -22,7 +22,8 @@
 <div class="section-title">Elenco</div>
 <div class="search-container">
     <mat-form-field appearance="outline" class="search-input" color="accent">
-        <mat-label>Cerca</mat-label>
+        <!-- <mat-label>Cerca</mat-label> -->
+        <mat-icon matPrefix>search</mat-icon>
         <input matInput type="text" (keyup)="filterSearch($event)">
     </mat-form-field>
     <button mat-icon-button color="primary" class="add-button" (click)="openAddSpellDialog()"

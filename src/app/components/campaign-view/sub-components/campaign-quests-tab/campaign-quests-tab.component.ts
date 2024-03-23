@@ -63,4 +63,11 @@ export class CampaignQuestsTabComponent {
       return list;
     }
   }
+
+  public collapseAll() {
+    const details = document.querySelectorAll('details');
+    details.forEach((detail: any) => {
+      detail.open = false;
+    });
+  }
 }

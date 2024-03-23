@@ -15,7 +15,7 @@
                 <!-- <div class="armor-class-label">CA</div>
                 <div class="armor-class-value">{{char.CA}}</div> -->
                 <div class="level-value">LV {{char.informazioniBase.livello}}°</div>
-                <div class="health-points-value">PF {{char.parametriVitali.puntiFeritaAttuali}} / {{char.parametriVitali.massimoPuntiFerita}}</div>
+                <div class="health-points-value">PF {{char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita}} <span *ngIf="char.parametriVitali.massimoPuntiFeritaTemporanei > 0">+{{char.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{char.parametriVitali.massimoPuntiFeritaTemporanei}}</span></div>
             </div>
         </div>
     </div>

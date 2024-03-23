@@ -2,6 +2,9 @@
 <!-- <div class="description">{{descriptionData}}</div> -->
 <div class="subtitle">Scoperte</div>
 <div class="button-container">
+    <button mat-mini-fab color="accent" class="add-button" (click)="collapseAll()">
+        <mat-icon>unfold_less</mat-icon>
+    </button>
     <button mat-mini-fab color="accent" class="add-button" (click)="openQuestDialog()" *ngIf="isOwnerData">
         <mat-icon>add</mat-icon>
     </button>

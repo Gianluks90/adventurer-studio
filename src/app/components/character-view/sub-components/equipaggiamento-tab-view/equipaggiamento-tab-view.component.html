@@ -1,8 +1,41 @@
 <div class="main-container">
-  <div class="money-container">
-    <div class="section-title">Denaro</div>
-    <div class="description-text">Tocca qualsiasi moneta per aggiornare il borsello.</div>
-    <div class="coins-viewer" (click)="openMoneyDialog()">
+  <div class="money-container" (click)="openMoneyDialog()">
+    <div class="money-title">Denaro</div>
+    <div class="moneys">
+      <div class="single-coins-viewer">
+        <img src="../assets/coins/copper.svg" alt="">
+        <div>
+          {{denaroData.MR}}
+        </div>
+      </div>
+      <div class="single-coins-viewer">
+        <img src="../assets/coins/silver.svg" alt="">
+        <div>
+          {{denaroData.MA}}
+        </div>
+      </div>
+      <div class="single-coins-viewer">
+        <img src="../assets/coins/electrum.svg" alt="">
+        <div>
+          {{denaroData.ME}}
+        </div>
+      </div>
+      <div class="single-coins-viewer">
+        <img src="../assets/coins/gold.svg" alt="">
+        <div>
+          {{denaroData.MO}}
+        </div>
+      </div>
+      <div class="single-coins-viewer">
+        <img src="../assets/coins/platinum.svg" alt="">
+        <div>
+          {{denaroData.MP}}
+        </div>
+      </div>
+    </div>
+    <!-- <div class="section-title">Denaro</div> -->
+    <!-- <div class="description-text">Tocca qualsiasi moneta per aggiornare il borsello.</div> -->
+    <!-- <div class="coins-viewer" (click)="openMoneyDialog()">
       <div class="single-coins-viewer">
         <img src="../assets/coins/copper.svg" alt="">
         <div>
@@ -33,16 +66,10 @@
           {{denaroData.MP}} MP
         </div>
       </div>
-      <!-- <div class="single-coins-viewer desktop">
-        <button class="money-button" mat-icon-button color="accent" matTooltip="Aggiorna il Denaro"
-          matTooltipPosition="above" (click)="openMoneyDialog()">
-          <mat-icon>toll</mat-icon>
-        </button>
-      </div> -->
-    </div>
-    <div class="section-title">Equipaggiamento</div>
+    </div> -->
     <!-- <div class="equips">{{equipaggiamentoData}}</div> -->
   </div>
+  <div class="section-title">Equipaggiamento</div>
   <div class="inventory-container">
     <app-inventory [inventory]="equipaggiamentoData"></app-inventory>
   </div>

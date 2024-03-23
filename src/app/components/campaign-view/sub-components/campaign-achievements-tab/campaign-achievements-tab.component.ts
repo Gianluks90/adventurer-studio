@@ -64,4 +64,11 @@ export class CampaignAchievementsTabComponent {
   private sortRuleAlphabetical(list: any[]) {
     return list.sort((a, b) => a.title.localeCompare(b.title));
   }
+
+  public collapseAll() {
+    const details = document.querySelectorAll('details');
+    details.forEach((detail: any) => {
+      detail.open = false;
+    });
+  }
 }
