@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M0 0h512v512H0z"/><path fill="#fff" d="M20.72 19.34v39.72L151.6 132.9l94.9-45.12L151 19.34H20.72zm196.98.1L313 76.78C226.5 118 135.1 161.4 57.53 198.3l161.57 86.1 59.6-39.2-39.4-34.9c82.3-40.6 168.3-83.5 241.8-119.93l-93.6-70.93H217.7zM361.9 170.5l-76.5 37.9 44.9 25.3c-54.2 35.6-111.8 73.6-160.6 105.7l325.2 154.8L307.5 347c57.6-32.3 117.5-65.9 168.8-94.6l-114.4-81.9zm13.2 160.1l-33.9 18.9 139.3 74.3c-35.1-31.1-70.3-62.2-105.4-93.2z"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect x="0" y="0" width="512" height="512" style="fill-rule:nonzero;"/>
+    <path d="M217.7,19.44L313,76.78C226.5,118 135.1,161.4 57.53,198.3L219.1,284.4L278.7,245.2L239.3,210.3C321.6,169.7 407.6,126.8 481.1,90.37L387.5,19.44L217.7,19.44ZM375.1,330.6L341.2,349.5L480.5,423.8C445.4,392.7 410.2,361.6 375.1,330.6Z" style="fill:rgb(255,242,0);fill-rule:nonzero;"/>
+    <path d="M20.72,19.34L151,19.34L246.5,87.78L151.6,132.9L20.72,59.06L20.72,19.34ZM361.9,170.5L476.3,252.4C425,281.1 365.1,314.7 307.5,347L494.9,494.2L169.7,339.4C218.5,307.3 276.1,269.3 330.3,233.7L285.4,208.4L361.9,170.5Z" style="fill:rgb(255,189,0);"/>
+</svg>
