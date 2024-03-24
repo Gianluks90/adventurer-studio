@@ -15,6 +15,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class CharacterViewStatusComponent {
 
   public characterData: any;
+  public editModeData: boolean = false;
 
   public modForza: string = '';
   public modDestrezza: string = '';
@@ -65,6 +66,10 @@ export class CharacterViewStatusComponent {
       valoreAttuale: 1,
       valoreMassimo: 1,
     })
+  }
+
+  @Input() set editMode(editMode: boolean) {
+    this.editModeData = editMode;
   }
 
   ngOnInit(): void {

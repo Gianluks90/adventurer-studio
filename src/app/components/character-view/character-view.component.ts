@@ -6,6 +6,8 @@ import { MenuService } from 'src/app/services/menu.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { DiceComponent } from '../utilities/dice/dice.component';
 import { DddiceService } from 'src/app/services/dddice.service';
+import { getAuth } from 'firebase/auth';
+import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
   selector: 'app-character-view',
@@ -20,6 +22,7 @@ export class CharacterViewComponent {
   public trucchettiIncantesimi: any;
   public charId: string = '';
   public inCampaign: boolean = false;
+  public editMode: boolean = false;
 
   // public menuIcon = 'menu';
 
@@ -29,7 +32,8 @@ export class CharacterViewComponent {
     private sidenavService: SidenavService,
     private formService: FormService,
     private diceSelector: MatBottomSheet,
-    public diceService: DddiceService) {
+    public diceService: DddiceService,
+    private campaignService: CampaignService) {
       if (window.location.href.includes('campaign-view/')) {
         this.inCampaign = true;
       }  
@@ -41,6 +45,7 @@ export class CharacterViewComponent {
     }
     this.characterService.getCharacterById(this.charId).then((character) => {
       this.character = character;
+      this.verifyEditMode();
       this.competenzeAbilita = {
         abilita: this.character.competenzaAbilita,
         bonusCompetenza: this.character.tiriSalvezza.bonusCompetenza,
@@ -83,5 +88,21 @@ export class CharacterViewComponent {
   onPictureEmitted(event: any) {
     this.character.informazioniBase.urlImmaginePersonaggio = event.urlImmaginePersonaggio;
     this.character.informazioniBase.nomeImmaginePersonaggio = event.nomeImmaginePersonaggio;
+  }
+
+  private verifyEditMode() {
+    const userId = getAuth().currentUser.uid;
+    if (userId) {
+      if (userId === this.character.status.userId) {
+        this.editMode = true;
+      }
+      if (this.character.campaignId && this.character.campaignId !== '') {
+        this.campaignService.getCampaignById(this.character.campaignId).then((campaign) => {
+          if (campaign.ownerId === userId) {
+            this.editMode = true;
+          }
+        });
+      }
+    }
   }
 }

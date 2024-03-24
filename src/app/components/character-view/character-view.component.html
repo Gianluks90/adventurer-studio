@@ -14,7 +14,7 @@
     </div>
     <div class="view-tabs">
         <div class="status-container" [ngStyle]="{'background-color': character.status.sheetColor || '#FFFFFF40'}">
-            <app-character-view-status [character]="character"></app-character-view-status>
+            <app-character-view-status [character]="character" [editMode]="editMode"></app-character-view-status>
         </div>
         <mat-tab-group color="accent">
             <mat-tab>

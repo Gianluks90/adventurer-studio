@@ -13,7 +13,7 @@
         <progress *ngIf="parametriVitaliData.pftMax > 0" class="pf-temp-progress" max="{{parametriVitaliData.pftMax}}"
             value="{{parametriVitaliData.pft}}"></progress>
     </div>
-    <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button color="accent" (click)="openHPDialog()">
+    <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button color="accent" (click)="openHPDialog()" [disabled]="!editModeData">
         <img src="./assets/icons/heart-check.svg">
     </button>
 </div>

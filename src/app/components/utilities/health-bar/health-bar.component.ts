@@ -26,6 +26,10 @@ export class HealthBarComponent {
     this.idData = id;
   }
 
+  @Input() set editMode(editMode: boolean) {
+    this.editModeData = editMode;
+  }
+
   constructor(private dialog: MatDialog, private platform: Platform, private charService: CharacterService, private notification: NotificationService) {
 
   }
@@ -38,6 +42,7 @@ export class HealthBarComponent {
   }
 
   public idData: string = '';
+  public editModeData: boolean = false;
 
   public openHPDialog() {
     // const characterId = window.location.href.split('/').pop();

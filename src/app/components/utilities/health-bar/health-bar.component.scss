@@ -62,6 +62,10 @@
     box-shadow: 0 0 4px #212121;
 }
 
+.heart-button[disabled] {
+    opacity: 0.5;
+}
+
 .pft-icon {
     color: orange;
     overflow: unset;
