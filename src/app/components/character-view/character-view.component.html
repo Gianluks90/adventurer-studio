@@ -1,11 +1,18 @@
 <div class="view-container" *ngIf="character">
     <div class="view-header">
-        <img class="character-image" [src]="character.informazioniBase.urlImmaginePersonaggio !== ''? character.informazioniBase.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
+        <img class="character-image"
+            [src]="character.informazioniBase.urlImmaginePersonaggio !== ''? character.informazioniBase.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
         <div class="character-info-container">
             <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
             <!--Quando c'è Breakpoint Observer implementare header dinamico, mostrare alcuni dati in desktop e meno in mobile-->
             <!-- <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}} <span *ngIf="character.informazioniBase.dettaglioBackground !== ''"> ({{character.informazioniBase.dettaglioBackground}})</span>, {{character.informazioniBase.allineamento}}</span> -->
-            <span>{{character.informazioniBase.razza}} ({{character.informazioniBase.genere !== '' ? character.informazioniBase.genere : ''}} {{character.informazioniBase.pronomi !== '' ? character.informazioniBase.pronomi : ''}}), {{character.informazioniBase.allineamento}}</span>
+            <span>{{character.informazioniBase.razza}}<span
+                    *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">
+                    (</span>{{character.informazioniBase.genere !== '' ? character.informazioniBase.genere : ''}}<span
+                    *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">
+                </span>{{character.informazioniBase.pronomi !== '' ? character.informazioniBase.pronomi : ''}}<span
+                    *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">)</span>,
+                {{character.informazioniBase.allineamento}}</span>
             <div *ngFor="let cl of character.informazioniBase.classi">
                 <!-- <div class="character-class">{{cl.nome}} {{cl.livello}}° LV<span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div> -->
                 <div class="character-class">{{cl.nome}} {{cl.livello}}° LV</div>
@@ -18,60 +25,77 @@
         </div>
         <mat-tab-group color="accent">
             <mat-tab>
-                <ng-template mat-tab-label >
-                    <img src="./assets/tabs-icons/skills.svg" class="label-icon" matTooltipPosition="below" matTooltip="Abilità">
+                <ng-template mat-tab-label>
+                    <img src="./assets/tabs-icons/skills.svg" class="label-icon" matTooltipPosition="below"
+                        matTooltip="Abilità">
                 </ng-template>
-                <app-abilita-tab-view [abilita]="competenzeAbilita" [linguaggiCompetenze]="linguaggiCompetenze"></app-abilita-tab-view>
+                <app-abilita-tab-view [abilita]="competenzeAbilita"
+                    [linguaggiCompetenze]="linguaggiCompetenze"></app-abilita-tab-view>
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/talents.svg" class="label-icon" matTooltipPosition="below" matTooltip="Privilegi, Tratti e Talenti">
+                    <img src="./assets/tabs-icons/talents.svg" class="label-icon" matTooltipPosition="below"
+                        matTooltip="Privilegi, Tratti e Talenti">
                 </ng-template>
-                <app-privilegi-tratti-tab-view
-                    [privilegiTratti]="character.privilegiTratti" [informazioniBase]="{razza: character.informazioniBase.razza, sottorazza: character.informazioniBase.sottorazza, classi: character.informazioniBase.classi}"></app-privilegi-tratti-tab-view>
+                <app-privilegi-tratti-tab-view [privilegiTratti]="character.privilegiTratti"
+                    [informazioniBase]="{razza: character.informazioniBase.razza, sottorazza: character.informazioniBase.sottorazza, classi: character.informazioniBase.classi}"></app-privilegi-tratti-tab-view>
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/inventory.svg" class="label-icon" matTooltipPosition="below" matTooltip="Inventario">
+                    <img src="./assets/tabs-icons/inventory.svg" class="label-icon" matTooltipPosition="below"
+                        matTooltip="Inventario">
                 </ng-template>
-                <app-equipaggiamento-tab-view [characterId]="character.id" [equipaggiamento]="character.equipaggiamento" [denaro]="character.denaro"></app-equipaggiamento-tab-view>
-                    <!-- <app-inventory [inventory]="[]"></app-inventory> -->
+                <app-equipaggiamento-tab-view [characterId]="character.id" [equipaggiamento]="character.equipaggiamento"
+                    [denaro]="character.denaro"></app-equipaggiamento-tab-view>
+                <!-- <app-inventory [inventory]="[]"></app-inventory> -->
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/tied-scroll.svg" class="label-icon" matTooltipPosition="below" matTooltip="Descrizione e background">
+                    <img src="./assets/tabs-icons/tied-scroll.svg" class="label-icon" matTooltipPosition="below"
+                        matTooltip="Descrizione e background">
                 </ng-template>
-                <app-descrizione-background-tab-view [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"  [background]="character.trattiBackground" [storia]="character.storiaPersonaggio" [caratteristicheFisiche]="character.caratteristicheFisiche" [immaginePersonaggio]="{url: character.informazioniBase.urlImmaginePersonaggio, nome: character.informazioniBase.nomeImmaginePersonaggio}" (pictureEmitter)="onPictureEmitted($event)"></app-descrizione-background-tab-view>
+                <app-descrizione-background-tab-view
+                    [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"
+                    [background]="character.trattiBackground" [storia]="character.storiaPersonaggio"
+                    [caratteristicheFisiche]="character.caratteristicheFisiche"
+                    [immaginePersonaggio]="{url: character.informazioniBase.urlImmaginePersonaggio, nome: character.informazioniBase.nomeImmaginePersonaggio}"
+                    (pictureEmitter)="onPictureEmitted($event)"></app-descrizione-background-tab-view>
             </mat-tab>
 
             <mat-tab disabled>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below" matTooltip="Companions">
+                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below"
+                        matTooltip="Companions">
                 </ng-template>
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/magic.svg" class="label-icon" matTooltipPosition="below" matTooltip="Trucchetti e Incantesimi">
+                    <img src="./assets/tabs-icons/magic.svg" class="label-icon" matTooltipPosition="below"
+                        matTooltip="Trucchetti e Incantesimi">
                 </ng-template>
-                <app-trucchetti-incantesimi-tab-view [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
+                <app-trucchetti-incantesimi-tab-view
+                    [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/attacks.svg" class="label-icon" matTooltipPosition="below" matTooltip="Attacchi">
+                    <img src="./assets/tabs-icons/attacks.svg" class="label-icon" matTooltipPosition="below"
+                        matTooltip="Attacchi">
                 </ng-template>
                 <app-attacchi-tab-view [attacchi]="character.attacchi"></app-attacchi-tab-view>
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below" matTooltip="Impostazioni">
+                    <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below"
+                        matTooltip="Impostazioni">
                 </ng-template>
-                <app-settings-tab-view [campaignId]="character.campaignId || ''" [sheetColor]="character.status.sheetColor"></app-settings-tab-view>
+                <app-settings-tab-view [campaignId]="character.campaignId || ''"
+                    [sheetColor]="character.status.sheetColor"></app-settings-tab-view>
             </mat-tab>
         </mat-tab-group>
     </div>
@@ -84,7 +108,8 @@
 </div>
 
 <div class="dice-buttons" id="dice-button" *ngIf="!inCampaign">
-    <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi" matTooltipPosition="right" [disabled]="!diceService.roomConnected">
+    <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi"
+        matTooltipPosition="right" [disabled]="!diceService.roomConnected">
         <img src="./assets/dice/dice-d20-white.svg" alt="">
     </button>
 </div>
