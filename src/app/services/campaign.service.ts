@@ -154,26 +154,15 @@ export class CampaignService {
   }
 
   public async subscribeToCampaign(campId: string, userId: string, heroId: string): Promise<any> {
-    let character;
     const heroRef = doc(this.firebaseService.database, 'characters', heroId);
     const heroSnap = await getDoc(heroRef).then(async char => {
-      // character = {
-      //   id: char.id,
-      //   basicInfo: char.data()['informazioniBase'],
-      //   money: char.data()['denaro'],
-      //   inspiration: char.data()['ispirazione'],
-      //   healthParameter: char.data()['parametriVitali'],
-      //   status: char.data()['status'],
-      // }
-
       await setDoc(heroRef, {
         campaignId: campId
       }, { merge: true });
 
       const docRef = doc(this.firebaseService.database, 'campaigns', campId);
       return await setDoc(docRef, {
-        // characters: arrayUnion(character),
-        characters: arrayUnion(char.id),
+        characters: arrayUnion({id: char.id, url: char.data()['informazioniBase'].urlImmaginePersonaggio}),
         partecipants: arrayUnion(userId),
         lastUpdate: new Date(),
         status: {

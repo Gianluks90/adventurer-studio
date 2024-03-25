@@ -92,7 +92,19 @@
 }
 
 .health-points-value {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.CA-container {
+    display: flex;
+    align-items: center;
     flex-grow: 1;
+
+    & mat-icon {
+        margin-right: 4px;
+    }
 }
 
 .passive-container {
@@ -105,4 +117,8 @@
     font-size: medium;
     height: fit-content;
     width: fit-content;
+}
+
+.dead-hero {
+    filter: grayscale(100%);
 }

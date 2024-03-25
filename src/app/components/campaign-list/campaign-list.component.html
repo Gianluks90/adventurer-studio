@@ -21,7 +21,7 @@
         <div class="campaign-dm">DM | {{c.dmName}}</div>
         <div class="character-list">
           <!-- <div class="character"> -->
-            <img  *ngFor="let char of c.characters" src="{{char.basicInfo.urlImmaginePersonaggio !== '' ? char.basicInfo.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'}}" class="character-image" matTooltip="{{char.basicInfo.nomePersonaggio}}" matTooltipPosition="below">
+            <img  *ngFor="let char of c.characters" src="{{char.url !== '' ? char.url : './assets/images/hero-placeholder.png'}}" class="character-image">
           <!-- </div> -->
         </div>
         <div class="campaign-description">{{c.description}}</div>
