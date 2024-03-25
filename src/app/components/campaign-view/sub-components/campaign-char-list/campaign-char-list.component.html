@@ -15,7 +15,16 @@
                 <!-- <div class="armor-class-label">CA</div>
                 <div class="armor-class-value">{{char.CA}}</div> -->
                 <div class="level-value">LV {{char.informazioniBase.livello}}°</div>
-                <div class="health-points-value">PF {{char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita}} <span *ngIf="char.parametriVitali.massimoPuntiFeritaTemporanei > 0">+{{char.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{char.parametriVitali.massimoPuntiFeritaTemporanei}}</span></div>
+                <div class="health-points-value">PF
+                    {{char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita}}
+                    <span
+                        *ngIf="char.parametriVitali.massimoPuntiFeritaTemporanei > 0">+{{char.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{char.parametriVitali.massimoPuntiFeritaTemporanei}}</span>
+                </div>
+                <div class="passive-container">
+                    <mat-icon class="passive-icon" matTooltip="Percezione">visibility</mat-icon> {{char.percezionePassiva}}
+                    <mat-icon class="passive-icon material-symbols-outlined" matTooltip="Intuizione">neurology</mat-icon> {{char.intuizionePassiva}}
+                    <mat-icon class="passive-icon" matTooltip="Indagare">search</mat-icon> {{char.indagarePassiva}}
+                </div>
             </div>
         </div>
     </div>

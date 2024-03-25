@@ -16,6 +16,7 @@ export class CampaignCharListComponent {
 
   @Input() set characters(characters: any[]) {
     this.charData = characters;
+    this.calcPassiveSkills();
     this.sortCharByABC();
   }
 
@@ -23,7 +24,7 @@ export class CampaignCharListComponent {
     // effect(() => {
     //   this.charData = this.charService.campaignCharacters().filter((char: any) => this.charIdsData.includes(char.id));
     // });
-   }
+  }
 
   public openCharBottomSheet(charId: string): void {
     this.bottomSheet.open(CharacterBottomSheetComponent, {
@@ -36,6 +37,36 @@ export class CampaignCharListComponent {
   public navigateToChar(charId: string): void {
     window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');
   }
+
+  public calcPassiveSkills(): void {
+    console.log('calcPassiveSkills', this.charData);
+
+    this.charData.forEach(char => {
+      const intelligenza = Math.floor((char.caratteristiche.intelligenza - 10) / 2);
+      const saggezza = Math.floor((char.caratteristiche.saggezza - 10) / 2);
+
+      char.percezionePassiva = 10 + saggezza + (char.competenzaAbilita.percezione ? char.tiriSalvezza.bonusCompetenza : 0);
+      char.intuizionePassiva = 10 + saggezza + (char.competenzaAbilita.intuizione ? char.tiriSalvezza.bonusCompetenza : 0);
+      char.indagarePassiva = 10 + intelligenza + (char.competenzaAbilita.indagare ? char.tiriSalvezza.bonusCompetenza : 0);
+
+      char.percezionePassiva += char.competenzaAbilita.maestriaPercezione ? char.tiriSalvezza.bonusCompetenza : 0;
+      char.intuizionePassiva += char.competenzaAbilita.maestriaIntuizione ? char.tiriSalvezza.bonusCompetenza : 0;
+      char.indagarePassiva += char.competenzaAbilita.maestriaIndagare ? char.tiriSalvezza.bonusCompetenza : 0;
+    });
+  }
+
+  // public initProvePassive(): void {
+  //   const intelligenza = Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2);
+  //   const saggezza = Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2);
+
+  //   this.indagarePassiva = 10 + intelligenza + (this.characterData.competenzaAbilita.indagare ? this.characterData.tiriSalvezza.bonusCompetenza : 0);
+  //   this.percezionePassiva = 10 + saggezza + (this.characterData.competenzaAbilita.percezione ? this.characterData.tiriSalvezza.bonusCompetenza : 0);
+  //   this.intuizionePassiva = 10 + saggezza + (this.characterData.competenzaAbilita.intuizione ? this.characterData.tiriSalvezza.bonusCompetenza : 0);
+
+  //   this.indagarePassiva += this.characterData.competenzaAbilita.maestriaIndagare ? this.characterData.tiriSalvezza.bonusCompetenza : 0;
+  //   this.percezionePassiva += this.characterData.competenzaAbilita.maestriaPercezione ? this.characterData.tiriSalvezza.bonusCompetenza : 0;
+  //   this.intuizionePassiva += this.characterData.competenzaAbilita.maestriaIntuizione ? this.characterData.tiriSalvezza.bonusCompetenza : 0;
+  // }
 
   public sortCharByABC(): void {
     this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));

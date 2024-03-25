@@ -1,3 +1,13 @@
+
+.material-symbols-outlined {
+    font-size: medium;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
 .char-container {
     display: flex;
     flex-direction: column;
@@ -68,6 +78,8 @@
 
 .character-parameters-container {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 4px 12px;
     gap: 8px;
 }
@@ -77,4 +89,20 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.health-points-value {
+    flex-grow: 1;
+}
+
+.passive-container {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.passive-icon {
+    font-size: medium;
+    height: fit-content;
+    width: fit-content;
 }
