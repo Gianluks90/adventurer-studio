@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LayoutModule } from '@angular/cdk/layout';
 
 // Material
 import { MatIconModule } from '@angular/material/icon';
@@ -44,7 +45,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatButtonToggleModule,
     MatSlideToggleModule,
     MatBottomSheetModule,
-    MatBadgeModule
+    MatBadgeModule,
+    LayoutModule
   ],
   exports: [
     MatIconModule,
@@ -65,7 +67,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatButtonToggleModule,
     MatSlideToggleModule,
     MatBottomSheetModule,
-    MatBadgeModule
+    MatBadgeModule,
+    LayoutModule
   ]
 })
 export class SharedModule { }

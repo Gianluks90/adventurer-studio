@@ -8,6 +8,7 @@ import { DiceComponent } from '../utilities/dice/dice.component';
 import { DddiceService } from 'src/app/services/dddice.service';
 import { getAuth } from 'firebase/auth';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-character-view',
@@ -24,6 +25,9 @@ export class CharacterViewComponent {
   public inCampaign: boolean = false;
   public editMode: boolean = false;
 
+  // initize a breakpointObserver
+  public isMobile: boolean = false;
+
   // public menuIcon = 'menu';
 
   constructor(
@@ -33,10 +37,14 @@ export class CharacterViewComponent {
     private formService: FormService,
     private diceSelector: MatBottomSheet,
     public diceService: DddiceService,
-    private campaignService: CampaignService) {
+    private campaignService: CampaignService,
+    breakpointObserver: BreakpointObserver) {
       if (window.location.href.includes('campaign-view/')) {
         this.inCampaign = true;
       }  
+      breakpointObserver.observe('(max-width: 768px)').subscribe(result => {
+        this.isMobile = result.matches;
+      });
     }
 
   ngOnInit(): void {

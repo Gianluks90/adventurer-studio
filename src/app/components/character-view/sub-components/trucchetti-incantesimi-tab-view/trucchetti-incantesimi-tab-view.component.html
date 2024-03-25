@@ -26,9 +26,9 @@
         <mat-icon matPrefix>search</mat-icon>
         <input matInput type="text" (keyup)="filterSearch($event)">
     </mat-form-field>
-    <button mat-icon-button color="primary" class="add-button" (click)="openAddSpellDialog()"
+    <button mat-mini-fab color="accent" class="add-button" (click)="openAddSpellDialog()"
         disableRipple><mat-icon>add</mat-icon></button>
-    <button mat-icon-button color="primary" class="add-button" [matMenuTriggerFor]="menu"
+    <button mat-mini-fab color="accent" class="add-button" [matMenuTriggerFor]="menu"
         disableRipple><mat-icon>filter_list</mat-icon></button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="sortSpellsBy('nome', 'crescente')">

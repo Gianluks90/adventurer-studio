@@ -32,6 +32,11 @@ export class DescrizioneBackgroundTabViewComponent {
   public immaginePersonaggioData: any;
   public inCampaign: boolean = false;
 
+  public nomiPersonaggioData: {
+    nome: string,
+    nomeEsteso: string,
+  }
+
   constructor(private notification: NotificationService, private formService: FormService) { 
     if (window.location.href.includes('campaign-view/')) {
       this.inCampaign = true;
@@ -56,6 +61,10 @@ export class DescrizioneBackgroundTabViewComponent {
 
   @Input() set immaginePersonaggio(immaginePersonaggio: any) {
     this.immaginePersonaggioData = immaginePersonaggio;
+  }
+
+  @Input() set nomiPersonaggio(nomiPersonaggio: any) {
+    this.nomiPersonaggioData = nomiPersonaggio;
   }
 
   @Output() pictureEmitter: EventEmitter<any> = new EventEmitter<any>();

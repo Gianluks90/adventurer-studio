@@ -5,13 +5,13 @@
             <mat-icon matPrefix>search</mat-icon>
             <input matInput type="text" (keyup)="filterSearch($event)">
         </mat-form-field>
-        <button mat-icon-button color="primary" class="add-button" (click)="openAddItemDialog()" disableRipple><mat-icon>add</mat-icon></button>
+        <button mat-mini-fab color="accent" class="add-button" (click)="openAddItemDialog()" disableRipple><mat-icon>add</mat-icon></button>
     </div>
     <div class="items-container">
         <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
         <div *ngIf="inventoryData.length > 0" class="items-icon-container" >
             <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
-                <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" matTooltip="{{i.name}}" matTooltipPosition="above">
+                <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
                 <span class="quantity-value">{{i.quantity}}</span>
                 <span class="weared-label" *ngIf="i.weared">E</span>
             </div>

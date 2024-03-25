@@ -67,7 +67,7 @@ export class Item {
             name: ['', Validators.required],
             icon: ['', Validators.required],
             filtered: false,
-            quantity: [1, [Validators.required, Validators.min(1)]],
+            quantity: [1, [Validators.required, Validators.min(0)]],
             rarity: ['', Validators.required],
             category: ['', Validators.required],
             description: '',

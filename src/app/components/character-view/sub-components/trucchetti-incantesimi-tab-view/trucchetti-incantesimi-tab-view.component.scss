@@ -152,7 +152,11 @@
 .add-button {
     border-radius: 0;
     background-color: #212121;
-    box-shadow: 0 0 4px #212121;
+    box-shadow: none;
+
+    &:hover {
+        box-shadow: none;
+    }
 }
 
 details[open] {

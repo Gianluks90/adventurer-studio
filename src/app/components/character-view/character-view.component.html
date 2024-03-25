@@ -3,16 +3,21 @@
         <img class="character-image"
             [src]="character.informazioniBase.urlImmaginePersonaggio !== ''? character.informazioniBase.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
         <div class="character-info-container">
-            <div class="character-name">{{character.informazioniBase.nomePersonaggio}}</div>
+            <div class="character-name">{{!isMobile && character.informazioniBase.nomePersonaggioEsteso !== '' ? character.informazioniBase.nomePersonaggioEsteso :
+                character.informazioniBase.nomePersonaggio}}</div>
             <!--Quando c'è Breakpoint Observer implementare header dinamico, mostrare alcuni dati in desktop e meno in mobile-->
             <!-- <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}} <span *ngIf="character.informazioniBase.dettaglioBackground !== ''"> ({{character.informazioniBase.dettaglioBackground}})</span>, {{character.informazioniBase.allineamento}}</span> -->
-            <span>{{character.informazioniBase.razza}}<span
+            <span>{{character.informazioniBase.razza}} <span
+                    *ngIf="!isMobile && character.informazioniBase.sottorazza !== ''">({{character.informazioniBase.sottorazza}})</span><span
                     *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">
                     (</span>{{character.informazioniBase.genere !== '' ? character.informazioniBase.genere : ''}}<span
                     *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">
                 </span>{{character.informazioniBase.pronomi !== '' ? character.informazioniBase.pronomi : ''}}<span
                     *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">)</span>,
-                {{character.informazioniBase.allineamento}}</span>
+                {{character.informazioniBase.allineamento}}<span *ngIf="!isMobile">,
+                    {{character.informazioniBase.background}}<span
+                        *ngIf="character.informazioniBase.dettaglioBackground !== ''">
+                        ({{character.informazioniBase.dettaglioBackground}})</span></span></span>
             <div *ngFor="let cl of character.informazioniBase.classi">
                 <!-- <div class="character-class">{{cl.nome}} {{cl.livello}}° LV<span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div> -->
                 <div class="character-class">{{cl.nome}} {{cl.livello}}° LV</div>
@@ -62,6 +67,7 @@
                     [background]="character.trattiBackground" [storia]="character.storiaPersonaggio"
                     [caratteristicheFisiche]="character.caratteristicheFisiche"
                     [immaginePersonaggio]="{url: character.informazioniBase.urlImmaginePersonaggio, nome: character.informazioniBase.nomeImmaginePersonaggio}"
+                    [nomiPersonaggio]="{nome: character.informazioniBase.nomePersonaggio, nomeEsteso: character.informazioniBase.nomePersonaggioEsteso}"
                     (pictureEmitter)="onPictureEmitted($event)"></app-descrizione-background-tab-view>
             </mat-tab>
 

@@ -10,7 +10,7 @@
   <div class="line-container">
     <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
       <mat-label>Quantità</mat-label>
-      <input type="number" matInput formControlName="quantity" min="1" inputmode="numeric">
+      <input type="number" matInput formControlName="quantity" min="0" inputmode="numeric">
     </mat-form-field>
 
     <mat-form-field class="line-input" color="accent" appearance="outline">
@@ -49,6 +49,7 @@
         <mat-option value="strumento">Strumento</mat-option>
         <mat-option value="pergamena">Pergamena</mat-option>
         <mat-option value="tesoro">Tesoro</mat-option>
+        <mat-option value="munizioni">Munizioni</mat-option>
         <mat-option value="altro">Altro</mat-option>
       </mat-select>
     </mat-form-field>
@@ -56,12 +57,13 @@
     <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label>Rarità</mat-label>
       <mat-select formControlName="rarity">
-        <mat-option value="comune">Comune</mat-option>
-        <mat-option value="non_comune">Non Comune</mat-option>
-        <mat-option value="raro">Raro</mat-option>
-        <mat-option value="molto_raro">Molto Raro</mat-option>
-        <mat-option value="leggendario">Leggendario</mat-option>
-        <mat-option value="unico">Unico</mat-option>
+        <mat-option value="Comune">Comune</mat-option>
+        <mat-option value="Non comune">Non Comune</mat-option>
+        <mat-option value="Raro">Raro</mat-option>
+        <mat-option value="Molto raro">Molto Raro</mat-option>
+        <mat-option value="Leggendario">Leggendario</mat-option>
+        <mat-option value="Unico">Unico</mat-option>
+        <mat-option value="Oggetto chiave">Oggetto Chiave</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

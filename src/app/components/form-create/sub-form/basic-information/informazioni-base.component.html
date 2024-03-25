@@ -8,8 +8,19 @@
 
       <mat-form-field class="line-input" color="accent" appearance="outline">
         <mat-label class="input-field">Nome Personaggio</mat-label>
-        <input matInput formControlName="nomePersonaggio">
+        <input matInput #nomePersonaggio maxlength="24" formControlName="nomePersonaggio">
+        <mat-hint align="end">{{nomePersonaggio.value.length}}/24</mat-hint>
       </mat-form-field>
+    </div>
+    <mat-form-field class="line-input" color="accent" appearance="outline">
+      <mat-label class="input-field">Nome Personaggio (esteso)</mat-label>
+      <input matInput #nomePersonaggioEsteso maxlength="256" formControlName="nomePersonaggioEsteso">
+      <mat-hint align="end">{{nomePersonaggioEsteso.value.length}}/256</mat-hint>
+    </mat-form-field>
+    <div class="description-text">Il campo <strong>Nome Personaggio Esteso</strong> ti permette di inserire nomi più
+      lunghi rispetto a quello standard. Il nome Esteso sarà visualizzabile nella scheda personaggio alla sezione delle
+      informazioni del Personaggio mentre il nome standard sarà usato dove è necessario ridurre un po' lo spazio
+      utilizzato.
     </div>
     <div class="line-container">
       <mat-form-field class="line-input" color="accent" appearance="outline">
@@ -37,7 +48,8 @@
           matTooltipPosition="left">auto_stories</mat-icon>
       </mat-form-field> -->
 
-      <mat-form-field class="line-input" color="accent" appearance="outline"  *ngIf="groupInfo.value.razza === '' || groupInfo.value.razza !== 'Altro'">
+      <mat-form-field class="line-input" color="accent" appearance="outline"
+        *ngIf="groupInfo.value.razza === '' || groupInfo.value.razza !== 'Altro'">
         <mat-label>Razza</mat-label>
         <mat-select formControlName="razza">
           <mat-option value="Elfo">Elfo</mat-option>
@@ -65,7 +77,8 @@
       </mat-form-field>
     </div>
 
-    <button mat-raised-button color="accent" class="jump-button" (click)="resetRazza()" *ngIf="groupInfo.value.razza === 'Altro'">
+    <button mat-raised-button color="accent" class="jump-button" (click)="resetRazza()"
+      *ngIf="groupInfo.value.razza === 'Altro'">
       <mat-icon>move_down</mat-icon>
       Annulla Razza personalizzata
     </button>
@@ -103,11 +116,12 @@
     </details>
 
     <ng-container formArrayName="classi">
-      <ng-container class="classe-container" *ngFor="let c of classi.controls; let i = index;" >
+      <ng-container class="classe-container" *ngFor="let c of classi.controls; let i = index;">
         <div class="step-form" [formGroupName]="i">
           <div class="line-container">
 
-            <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="c.get('nome').value === '' || c.get('nome').value !== 'Altro'">
+            <mat-form-field class="line-input" color="accent" appearance="outline"
+              *ngIf="c.get('nome').value === '' || c.get('nome').value !== 'Altro'">
               <mat-label>Nome</mat-label>
               <mat-select formControlName="nome">
                 <mat-option value="Barbaro">Barbaro</mat-option>
@@ -126,7 +140,8 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="c.get('nome').value === 'Altro'">
+            <mat-form-field class="line-input" color="accent" appearance="outline"
+              *ngIf="c.get('nome').value === 'Altro'">
               <mat-label class="input-field">Nome personalizzato</mat-label>
               <input matInput formControlName="nomePersonalizzato">
             </mat-form-field>

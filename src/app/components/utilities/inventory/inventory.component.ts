@@ -20,7 +20,7 @@ export class InventoryComponent {
     this.sortInventory();
   }
 
-  constructor(private dialog: MatDialog, private bottomSheet: MatBottomSheet, private platform: Platform, private characterService: CharacterService) {}
+  constructor(private dialog: MatDialog, private bottomSheet: MatBottomSheet, private platform: Platform, private characterService: CharacterService) { }
 
   openAddItemDialog() {
     this.dialog.open(AddItemDialogComponent, {
@@ -67,26 +67,29 @@ export class InventoryComponent {
 
   setColor(rarity: string): string {
     switch (rarity) {
-      case 'comune':
-        return '#FFF'
+      case 'Comune':
+        return '#212121'
         break;
-      case 'non_comune':
-        return '#B2B4D1'
+      case 'Non comune':
+        return '#00ff01'
         break;
-      case 'raro':
-        return '#0313FC'
+      case 'Raro':
+        return '#6d9eeb'
         break;
-      case 'molto_raro':
-        return '#8403FC'
+      case 'Molto raro':
+        return '#9a00ff'
         break;
-      case 'leggendario':
-        return '#FFAA00'
+      case 'Leggendario':
+        return '#e29138'
         break;
-      case 'unico':
-        return '#A6926A'
+      case 'Unico':
+        return '#e06467'
+        break;
+      case 'Oggetto chiave':
+        return '#DDD605'
         break;
       default:
-        return '#FFF'
+        return '#212121'
         break;
     }
   }
