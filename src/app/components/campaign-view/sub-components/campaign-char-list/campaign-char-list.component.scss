@@ -53,7 +53,6 @@
     // align-items: center;
     background-color: rgba($color: #212121, $alpha: 0.9);
     color: white;
-    cursor: pointer;
 }
 
 .character-header-card {
@@ -74,6 +73,20 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-family: 'Cinzel', serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navigate-button {
+    border: none;
+    background-color: transparent;
+    color: whitesmoke;
+    cursor: pointer;
+    & mat-icon {
+        font-size: medium;
+    }
 }
 
 .character-parameters-container {

@@ -6,10 +6,14 @@
         </div>
     </ng-template>
     <div class="characters-line" *ngIf="charData.length > 0; else noCharacters">
-        <div class="character-item" *ngFor="let char of charData" (click)="navigateToChar(char.id)">
+        <div class="character-item" *ngFor="let char of charData">
             <div class="character-header-card">
                 <img class="character-image" [src]="char.informazioniBase.urlImmaginePersonaggio" [ngClass]="{'dead-hero': char.parametriVitali.puntiFeritaAttuali === 0}">
-                <div class="character-name">{{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ? char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}</div>
+                <div class="character-name">{{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ? char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}
+                    <button class="navigate-button" (click)="navigateToChar(char.id)" matTooltip="Apri scheda">
+                        <mat-icon>open_in_new</mat-icon>
+                    </button>
+                </div>
             </div>
             <div class="character-parameters-container">
                 <!-- <div class="armor-class-label">CA</div>
