@@ -62,7 +62,11 @@
 <ng-container *ngFor="let t of lista; let i = index;">
     <details *ngIf="t.preparato" class="t-container" [hidden]="t.filtered">
         <summary class="t-name">
-            <img class="spell-icon" [src]="t.icon"> <span>{{t.nome}}</span>
+            <div class="t-header-container">
+                <img class="spell-icon" [src]="t.icon">
+                <div class="spell-level">{{showLevel(t.livello)}} <sup *ngIf="t.livelloSuperiore">+</sup> </div>
+            </div>
+            <div>{{t.nome}}</div>
         </summary>
         <div class="spell-attributes">{{t.tipologia}}<span *ngIf="t.livello > 0"> di {{t.livello}}° Livello</span>,
             {{t.scuola === 'Altro' ? t.scuolaPersonalizzata : t.scuola}}, {{t.componenti}}, {{t.riferimento}}</div>

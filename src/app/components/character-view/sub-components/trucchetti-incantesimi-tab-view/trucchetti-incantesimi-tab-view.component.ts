@@ -35,7 +35,7 @@ export class TrucchettiIncantesimiTabViewComponent {
   useSlot(levelIndex: number, index: number): void {
     const spellLevel = this.slotIncantesimi[levelIndex];
     let message = '';
-  
+
     // Se lo slot cliccato è falso, porta a true l'elemento più verso il fondo che è false
     if (!spellLevel.used[index]) {
       const lastFalseIndex = spellLevel.used.lastIndexOf(false);
@@ -54,7 +54,7 @@ export class TrucchettiIncantesimiTabViewComponent {
     this.characterService.updateSlotIncantesimi(window.location.href.split('/').pop(), this.slotIncantesimi).then(() => {
       this.notification.openSnackBar(message, 'check', 1000, "limegreen");
     });
-  
+
     // Aggiorna il tuo HTML o fai altre azioni necessarie per riflettere il cambiamento
   }
 
@@ -124,6 +124,33 @@ export class TrucchettiIncantesimiTabViewComponent {
         return order === 'crescente' ? 1 : -1;
       }
     });
+  }
+
+  public showLevel(level: number): string {
+    switch (level) {
+      case 0:
+        return 'T';
+      case 1:
+        return 'I';
+      case 2:
+        return 'II';
+      case 3:
+        return 'III';
+      case 4:
+        return 'IV';
+      case 5:
+        return 'V';
+      case 6:
+        return 'VI';
+      case 7:
+        return 'VII';
+      case 8:
+        return 'VIII';
+      case 9:
+        return 'IX';
+      default:
+        return '';
+    }
   }
 
 }

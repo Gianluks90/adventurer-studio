@@ -132,9 +132,20 @@
     align-items: center;
 }
 
+.t-header-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .spell-icon {
     width: 24px;
     height: 24px;
+}
+
+.spell-level {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left: 8px;
 }
 
 .search-container {
@@ -180,6 +191,8 @@ details[open] > summary::after {
     content: url("/assets/icons/chevron_down.svg");
     cursor: pointer;
 }
+
+
 
 .button-container {
     display: flex;
