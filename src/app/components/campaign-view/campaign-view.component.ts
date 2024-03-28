@@ -28,7 +28,8 @@ export class CampaignViewComponent {
 
     const id = window.location.href.split('campaign-view/').pop();
     effect(() => {
-      this.campaignData = this.campaignService.campaigns().filter((campaign: any) => campaign.id === id)[0];
+      this.campaignData = this.campaignService.campaigns();
+      this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
       if (this.campaignData) {
         this.campaignData.id = id;
         this.isOwner = getAuth().currentUser?.uid === this.campaignData.ownerId;
