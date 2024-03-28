@@ -3,6 +3,7 @@ import { ThreeDDice } from 'dddice-js';
 import { BehaviorSubject } from 'rxjs';
 import { FirebaseService } from './firebase.service';
 import { NotificationService } from './notification.service';
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class DddiceService {
   private APIKEY = "isXuAObM4NsKhv5A1OEj6Vk9lQeOwpDjRWFeqn0Vfa5e044d";
 
   public dddice: ThreeDDice | undefined;
+  public dddiceCampaign: ThreeDDice | undefined;
   public authenticated: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public roomConnected: BehaviorSubject<boolean> = new BehaviorSubject(false);
   
@@ -42,6 +44,14 @@ export class DddiceService {
     return this.dddice;
   }
 
+  public async dddiceCampaignInit(token: string): Promise<ThreeDDice> {
+    const canvas = document.getElementById("dddiceCampaign") as HTMLCanvasElement;
+    this.dddiceCampaign = new ThreeDDice(canvas, token, { autoClear: 3, dice: { drawOutlines: false } });
+    this.dddiceCampaign.start();
+    this.notification.openSnackBar("DDDice Campagna: inizializzato", "check", 1000, 'limegreen');
+    return this.dddiceCampaign;
+  }
+
   public async getActivationCode(): Promise<any> {
     const response = await fetch(this.BASEURL + 'activate', {
       method: "POST",
@@ -62,11 +72,11 @@ export class DddiceService {
     return await response.json();
   }
 
-  public async createRoom(token: string): Promise<any> {
+  public async createRoom(token: string, name: string, passcode: string): Promise<any> {
     let body = {
       "is_public": true,
-      "name": "dungeonsCompanion",
-      "passcode": "*******",
+      "name": name,
+      "passcode": passcode
     };
 
     const response = await fetch(this.BASEURL + 'room', {
@@ -79,6 +89,29 @@ export class DddiceService {
       body: JSON.stringify(body),
     });
     return await response.json();
+  }
+
+  public async joinRoom(token: string, slug: string, passcode: string): Promise<any> {
+    let body = {
+      "passcode": passcode
+    };
+
+    const response = await fetch(this.BASEURL + 'room/' + slug + '/partecipant', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Bearer " + token,
+      },
+      body: JSON.stringify(body),
+    });
+    return await response.json();
+  }
+
+  public async connectPrivateRoom(token: string, slug: string): Promise<any> {
+    this.firebaseService.getUserById(getAuth().currentUser!.uid).then((user) => {
+      this.dddice.connect(user.data()['privateSlug']);
+    });
   }
 
 }

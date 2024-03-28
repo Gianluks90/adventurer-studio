@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CharacterService } from 'src/app/services/character.service';
 import { DddiceService } from 'src/app/services/dddice.service';
@@ -16,11 +17,18 @@ export class SettingsDialogComponent {
   private activationResult: any = null;
   public isAdmin: boolean = false;
 
+  public form: FormGroup = this.fb.group({
+    rollTheme: ['dungeonscompanion2023-enemy-lp882vo8', Validators.required],
+  });
+
   constructor(
     private dialogRef: MatDialogRef<SettingsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { dddiceToken: string, privateSlug: string },
     public dddice: DddiceService,
-    public firebaseService: FirebaseService, private characterService: CharacterService) { }
+    public rollService: RollDiceService,
+    public firebaseService: FirebaseService, 
+    private characterService: CharacterService,
+    private fb: FormBuilder) { }
 
     ngOnInit() {
       const user = this.firebaseService.user.value!;
@@ -49,7 +57,7 @@ export class SettingsDialogComponent {
           } else {
             clearInterval(myInterval);
             this.dddice.dddiceInit(this.activationResult.data.token).then((dddice) => {
-              this.dddice.createRoom(this.activationResult.data.token).then((room) => {
+              this.dddice.createRoom(this.activationResult.data.token, 'adventurerStudioUserRoom', "*******").then((room) => {
                 dddice.connect(room.data.slug);
                 this.firebaseService.updateUserDddice(this.activationResult.data.token, room.data.slug);
               });
@@ -78,5 +86,17 @@ export class SettingsDialogComponent {
 
     public updateUserCampaigns() {
       this.firebaseService.getThenUpdateAllUsers();
+    }
+
+    public setDiceTheme() {
+      this.characterService.setRollTheme(this.form.value.rollTheme).then(() => {
+        this.rollService.diceTheme = this.form.value.rollTheme;
+        this.rollService.testRoll();
+      });
+    }
+
+    public resetTheme() {
+      this.form.patchValue({ rollTheme: 'dungeonscompanion2023-enemy-lp882vo8' });
+      this.setDiceTheme();
     }
 }

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { DddiceService } from 'src/app/services/dddice.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-campaign-settings-tab',
@@ -8,7 +10,7 @@ import { CampaignService } from 'src/app/services/campaign.service';
 })
 export class CampaignSettingsTabComponent {
 
-  constructor(private campaignService: CampaignService) {}
+  constructor(private campaignService: CampaignService, private dddiceService: DddiceService, private firebaseService: FirebaseService) {}
   
   public campaignData: any;
   public isOwnerData: boolean = false;
@@ -23,6 +25,14 @@ export class CampaignSettingsTabComponent {
 
   public startCampaign(): void {
     this.campaignService.startCampaign(this.campaignData.id);
+  }
+
+  public createCampaignRoom(): void {
+    this.firebaseService.getUserDDDiceToken().then(token => {
+      this.dddiceService.createRoom(token, this.campaignData.id, this.campaignData.password).then((room) => {
+        this.campaignService.setDDDiceRoomSlug(this.campaignData.id, room.data.slug);
+      });
+    });
   }
 
 }

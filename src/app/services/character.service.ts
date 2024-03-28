@@ -298,4 +298,23 @@ export class CharacterService {
       });
     });
   }
+
+  public async getRollTheme(): Promise<string> {
+    const userId = getAuth().currentUser.uid;
+    const docRef = doc(this.firebaseService.database, 'users', userId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists() && docSnap.data()['rollTheme']) {
+      return docSnap.data()['rollTheme'];
+    } else {
+      return 'dungeonscompanion2023-enemy-lp882vo8';
+    }
+  }
+
+  public async setRollTheme(theme: string): Promise<any> {
+    const userId = getAuth().currentUser.uid;
+    const docRef = doc(this.firebaseService.database, 'users', userId);
+    return await setDoc(docRef, {
+      rollTheme: theme
+    }, { merge: true });
+  }
 }

@@ -27,9 +27,28 @@
     </span>
   </div>
 
-  <div class="subtitle">Gestione stanza e dadi (Prossimamente)</div>
-  <div class="description">Qui <strong>potrai presto</strong> gestire la tua stanza dddice e scegliere il tema per i
-    tuoi dadi.</div>
+  <div class="subtitle">Tema dei dadi</div>
+  <div class="description">Inserisci il tema dei dadi che preferisci e usali nell'app. Puoi trovare i temi esplorado
+    l'apposita sezione alla <a href="https://dddice.com/dice">pagina</a> su dddice.com. Trovi l'ID del tema in fondo
+    all'URL della pagina visualizzata.</div>
+  <form [formGroup]="form">
+    <div class="form-container">
+      <mat-form-field class="form-field" color="accent" appearance="outline">
+        <mat-label>Tema dadi</mat-label>
+        <input matInput formControlName="rollTheme">
+      </mat-form-field>
+      <div class="buttons-container">
+        <button mat-raised-button class="save-roll-button" color="accent" (click)="resetTheme()"
+          [disabled]="!form.valid || !dddice.authenticated.value">
+          <mat-icon>restart_alt</mat-icon> Reset
+        </button>
+        <button mat-raised-button class="save-roll-button" color="accent" (click)="setDiceTheme()"
+          [disabled]="!form.valid || !dddice.authenticated.value">
+          <mat-icon>save</mat-icon> Applica
+        </button>
+      </div>
+    </div>
+  </form>
 
   <div class="admin-container" *ngIf="isAdmin">
     <div class="subtitle">Admin Panel</div>

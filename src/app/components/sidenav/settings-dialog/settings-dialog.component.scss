@@ -61,3 +61,37 @@ mat-spinner {
     width: 24px !important;
     height: 24px !important;
 }
+
+.admin-container {
+    margin-top: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.form-field {
+    width: 100%;
+    margin: 12px 0;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 8px;
+}
+
+.save-roll-button {
+    border-radius: 0;
+}
+
+@media screen and (max-width: 500px) {
+    .buttons-container {
+        flex-direction: column;
+    }
+
+    .buttons-container button {
+        width: 100%;
+    }
+}

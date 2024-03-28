@@ -54,9 +54,9 @@
     </button>
 </div>
 
-<div class="dice-buttons" id="dice-button">
+<div class="dice-buttons" id="dice-button" *ngIf="campaignData && campaignData.dddiceSlug !== undefined">
     <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi"
-        matTooltipPosition="right" disabled>
+        matTooltipPosition="right" [disabled]="campaignData.dddiceSlug === ''">
         <img src="./assets/dice/dice-d20-white.svg" alt="">
     </button>
 </div>

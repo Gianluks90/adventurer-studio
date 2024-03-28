@@ -7,7 +7,7 @@ import { CharacterService } from './character.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RollDiceService {
+export class RollDiceCampaignService {
 
   // public diceTheme: string = "dddice-black";
   public diceTheme: string = "dungeonscompanion2023-enemy-lp882vo8";
@@ -21,7 +21,7 @@ export class RollDiceService {
   }
 
   public async testRoll(): Promise<any> {
-    const DDDICE = this.dddice.dddice;
+    const DDDICE = this.dddice.dddiceCampaign;
     if (DDDICE) {
       this.notification.openDiceSnackBar("Tiro...", "casino", 10000);
       DDDICE.roll(
@@ -39,7 +39,7 @@ export class RollDiceService {
   }
 
   public async rollDice(dices: string[], diceFormula: string, modifier?: number): Promise<any> {
-    const DDDICE = this.dddice.dddice;
+    const DDDICE = this.dddice.dddiceCampaign;
     if (DDDICE) {
       this.notification.openDiceSnackBar("Tiro...", "casino", 10000);
       DDDICE.roll(
@@ -60,7 +60,7 @@ export class RollDiceService {
   }
 
   public async rollFromCharView(dice: string, message: string, modifier?: number, dadiVita?: boolean): Promise<any> {
-    const DDDICE = this.dddice.dddice;
+    const DDDICE = this.dddice.dddiceCampaign;
     if (DDDICE) {
       this.notification.openSnackBar("Tiro...", "casino");
       DDDICE.roll(
@@ -93,7 +93,7 @@ export class RollDiceService {
   }
 
   public async rollD100(modifier?: number): Promise<any> {
-    const DDDICE = this.dddice.dddice;
+    const DDDICE = this.dddice.dddiceCampaign;
     if (DDDICE) {
       this.notification.openDiceSnackBar("Tiro...", "casino", 10000);
       DDDICE.roll(
@@ -116,7 +116,7 @@ export class RollDiceService {
   }
 
   public async rollAdvantageDisadvantage(rollType: string, modifier?: number): Promise<any> {
-    const DDDICE = this.dddice.dddice;
+    const DDDICE = this.dddice.dddiceCampaign;
     if (DDDICE) {
       let message = rollType === "adv" ? "Tiro con vantaggio..." : "Tiro con svantaggio...";
       this.notification.openDiceSnackBar(message, "casino", 10000);
@@ -181,7 +181,7 @@ export class RollDiceService {
     const dices = parsedFormula.diceArray;
     const modifier = parsedFormula.modifier;
 
-    const DDDICE = this.dddice.dddice;
+    const DDDICE = this.dddice.dddiceCampaign;
     if (DDDICE) {
       this.notification.openDiceSnackBar("Tiro...", "casino", 10000);
       DDDICE.roll(

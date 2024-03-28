@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { getAuth } from 'firebase/auth';
+import { CampaignService } from 'src/app/services/campaign.service';
+import { DddiceService } from 'src/app/services/dddice.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { RollDiceCampaignService } from 'src/app/services/roll-campaign-dice.service';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
 
 @Component({
@@ -11,7 +16,8 @@ export class DiceComponent {
 
   constructor(
     private _diceSelector: MatBottomSheetRef<DiceComponent>,
-    private dddiceRollService: RollDiceService
+    private dddiceRollService: RollDiceService,
+    private dddiceRollCampaignService: RollDiceCampaignService,
   ) { }
 
   public open: boolean = false;
@@ -98,6 +104,24 @@ export class DiceComponent {
   public modifiersLabel: string = "";
   private modTotal: number = 0;
 
+  // ngOnInit() {
+  //   this.firebaseService.getUserById(getAuth().currentUser.uid).then((user) => {
+  //     this.privateSlug = user.data()['privateSlug'];
+  //     const campaignId = window.location.href.split('campaign-view/').pop() || '';
+  //     if (campaignId) {
+  //       this.campaignService.getCampaignById(campaignId).then((campaign) => {
+  //         this.campaignSlug = campaign.dddiceSlug || '';
+  //         this.dddiceService.joinRoom(user.data()['dddiceToken'], this.campaignSlug, campaign.password).then(() => {
+  //           this.isCampaignSlug = true;
+  //         });
+  //       });
+  //     } else {
+  //       this.dddiceService.joinRoom(user.data()['dddiceToken'], this.privateSlug, '').then(() => {
+  //         this.isCampaignSlug = false;
+  //       });
+  //     }
+  //   });
+  // }
 
   public addDiceToRoll(diceValue: string,) {
     if (diceValue === "d10x") {
@@ -145,18 +169,19 @@ export class DiceComponent {
 
   public rollDice(event: any) {
     this.closeDiceSheet(event);
+    const service = window.location.href.includes('campaign-view') ? this.dddiceRollCampaignService : this.dddiceRollService;
     switch (this.rollType) {
       case "adv":
-        this.dddiceRollService.rollAdvantageDisadvantage(this.rollType, this.modTotal);
+        service.rollAdvantageDisadvantage(this.rollType, this.modTotal);
         break;
       case "dis":
-        this.dddiceRollService.rollAdvantageDisadvantage(this.rollType, this.modTotal);
+        service.rollAdvantageDisadvantage(this.rollType, this.modTotal);
         break;
       case "d10x":
-        this.dddiceRollService.rollD100(this.modTotal);
+        service.rollD100(this.modTotal);
         break;
       default:
-        this.dddiceRollService.rollDice(this.dicesSelected, (this.selectedDices + this.modifiersLabel), this.modTotal);
+        service.rollDice(this.dicesSelected, (this.selectedDices + this.modifiersLabel), this.modTotal);
         break;
     }
 

@@ -252,4 +252,12 @@ export class CampaignService {
       lastUpdate: new Date()
     }, { merge: true });
   }
+
+  public async setDDDiceRoomSlug(campId: string, slug: string): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      dddiceSlug: slug,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
 }

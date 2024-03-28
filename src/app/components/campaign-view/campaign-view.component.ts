@@ -7,6 +7,9 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { TicketCampaignDialogComponent } from '../campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
 import { getAuth } from 'firebase/auth';
 import { CharacterService } from 'src/app/services/character.service';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { DiceComponent } from '../utilities/dice/dice.component';
+import { DddiceService } from 'src/app/services/dddice.service';
 
 @Component({
   selector: 'app-campaign-view',
@@ -20,11 +23,13 @@ export class CampaignViewComponent {
 
   constructor(
     private firebaseService: FirebaseService, 
+    private diceSelector: MatBottomSheet,
     private campaignService: CampaignService, 
     private sidenavService: SidenavService, 
     private matDialog: MatDialog, 
     private platform: Platform, 
-    private charService: CharacterService) {
+    private charService: CharacterService,
+    private dddiceService: DddiceService) {
 
     const id = window.location.href.split('campaign-view/').pop();
     effect(() => {
@@ -32,6 +37,14 @@ export class CampaignViewComponent {
       this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
       if (this.campaignData) {
         this.campaignData.id = id;
+        if (this.campaignData.dddiceSlug && this.campaignData.dddiceSlug !== '') {
+          this.firebaseService.getUserById(getAuth().currentUser.uid).then((user) => {
+            this.dddiceService.dddiceCampaignInit(user.data()['dddiceToken']).then((dddice) => {
+              dddice.connect(this.campaignData.dddiceSlug);
+            });
+          });
+        }
+        
         this.isOwner = getAuth().currentUser?.uid === this.campaignData.ownerId;
         if (!this.isOwner) {
           const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === getAuth().currentUser?.uid);
@@ -59,5 +72,11 @@ export class CampaignViewComponent {
     this.sidenavService.toggle();
   }
 
-  public openDiceSelector(): void { }
+  public openDiceSelector(): void {
+    // this.firebaseService.getUserById(this.campaignData.ownerId).then((user) => {
+    //   this.dddiceService.connectPrivateRoom(user.data()['dddiceToken'], user.data()['privateSlug']);
+    // });
+    // this.dddiceService.dddice.connect(this.campaignData.dddiceSlug);
+    this.diceSelector.open(DiceComponent);
+  }
 }

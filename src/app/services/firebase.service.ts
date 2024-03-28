@@ -63,6 +63,12 @@ export class FirebaseService {
     return docSnap;
   }
 
+  public async getUserById(id: string) {
+    const q = doc(this.database, 'users', id);
+    const docSnap = await getDoc(q);
+    return docSnap;
+  }
+
   public async getThenUpdateAllUsers(): Promise<any> {
     const q = collection(this.database, 'users');
     const docs = await getDocs(q);
@@ -88,6 +94,17 @@ export class FirebaseService {
       dddiceToken: token,
       privateSlug: slug
     }, { merge: true })
+  }
+
+  public async getUserDDDiceToken(): Promise<string> {
+    const user = getAuth().currentUser!;
+    const q = doc(this.database, 'users', user.uid);
+    const docSnap = await getDoc(q);
+    if (docSnap.exists() && docSnap.data()['dddiceToken']){
+      return docSnap.data()['dddiceToken'];
+    } else {
+      return "";
+    }
   }
 }
 
