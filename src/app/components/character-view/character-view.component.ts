@@ -27,6 +27,8 @@ export class CharacterViewComponent {
 
   // initize a breakpointObserver
   public isMobile: boolean = false;
+  public canvas = document.getElementById("dddiceCampaign") as HTMLCanvasElement;
+
 
   // public menuIcon = 'menu';
 
@@ -48,6 +50,7 @@ export class CharacterViewComponent {
     }
 
   ngOnInit(): void {
+    this.canvas.style.display = 'none';
     if (this.charId === '' && !window.location.href.includes('campaign-view')) {
       this.charId = window.location.href.split('/').pop();
     }

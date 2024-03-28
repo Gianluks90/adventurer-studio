@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { getAuth } from 'firebase/auth';
-import { CampaignService } from 'src/app/services/campaign.service';
-import { DddiceService } from 'src/app/services/dddice.service';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { RollDiceCampaignService } from 'src/app/services/roll-campaign-dice.service';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
 

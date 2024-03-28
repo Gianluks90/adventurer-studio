@@ -10,7 +10,10 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class CampaignSettingsTabComponent {
 
-  constructor(private campaignService: CampaignService, private dddiceService: DddiceService, private firebaseService: FirebaseService) {}
+  constructor(
+    private campaignService: CampaignService, 
+    private dddiceService: DddiceService, 
+    private firebaseService: FirebaseService) {}
   
   public campaignData: any;
   public isOwnerData: boolean = false;

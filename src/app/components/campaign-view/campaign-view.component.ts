@@ -20,17 +20,19 @@ export class CampaignViewComponent {
   public campaignData: any;
   public charData: any[] = [];
   public isOwner: boolean = false;
+  public canvas = document.getElementById("dddice") as HTMLCanvasElement;
 
   constructor(
-    private firebaseService: FirebaseService, 
+    private firebaseService: FirebaseService,
     private diceSelector: MatBottomSheet,
-    private campaignService: CampaignService, 
-    private sidenavService: SidenavService, 
-    private matDialog: MatDialog, 
-    private platform: Platform, 
+    private campaignService: CampaignService,
+    private sidenavService: SidenavService,
+    private matDialog: MatDialog,
+    private platform: Platform,
     private charService: CharacterService,
     private dddiceService: DddiceService) {
 
+    this.canvas.style.display = 'none';
     const id = window.location.href.split('campaign-view/').pop();
     effect(() => {
       this.campaignData = this.campaignService.campaigns();
@@ -44,7 +46,7 @@ export class CampaignViewComponent {
             });
           });
         }
-        
+
         this.isOwner = getAuth().currentUser?.uid === this.campaignData.ownerId;
         if (!this.isOwner) {
           const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === getAuth().currentUser?.uid);
