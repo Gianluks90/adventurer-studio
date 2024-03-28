@@ -53,6 +53,7 @@ export class TrucchettiIncantesimiLevelUpComponent {
       tipologia: ['trucchetto', Validators.required],
       nome: ['', Validators.required],
       scuola: ['', Validators.required],
+      scuolaPersonalizzata: '',
       livello: [0, [Validators.required, Validators.min(0), Validators.max(9)]],
       tempoLancio: ['', Validators.required],
       gittata: ['', Validators.required],
@@ -61,10 +62,30 @@ export class TrucchettiIncantesimiLevelUpComponent {
       durata: ['', Validators.required],
       descrizione: ['', Validators.required],
       livelloSuperiore: '',
-      riferimento: ''
+      riferimento: '',
+      icon: '',
     });
+
+    trucchettoIncantesimo.get('scuola')?.valueChanges.subscribe((value) => {
+      if (value === 'Altro') {
+        trucchettoIncantesimo.get('scuolaPersonalizzata')?.setValidators(Validators.required);
+        trucchettoIncantesimo.updateValueAndValidity();
+      } else {
+        trucchettoIncantesimo.get('scuolaPersonalizzata')?.clearValidators();
+        trucchettoIncantesimo.updateValueAndValidity();
+      }
+    });
+
     this.trucchettiIncantesimi.push(trucchettoIncantesimo);
   }
+
+  public resetScuola(form: any) {
+    form.patchValue({
+      scuola: '',
+      scuolaPersonalizzata: '',
+    });
+  }
+
 
   deleteTrucchettoIncantesimo(index: number) {
     this.trucchettiIncantesimi.removeAt(index);

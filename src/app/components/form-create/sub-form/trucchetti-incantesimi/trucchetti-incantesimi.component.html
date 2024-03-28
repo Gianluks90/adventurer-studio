@@ -194,7 +194,8 @@
                                 <mat-option value="incantesimo">Incantesimo</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <mat-form-field class="line-input" color="accent" appearance="outline">
+                        <mat-form-field class="line-input" color="accent" appearance="outline"
+                            *ngIf="trucchettoIncantesimoForm.value.scuola === '' || trucchettoIncantesimoForm.value.scuola !== 'Altro'">
                             <mat-label>Scuola</mat-label>
                             <mat-select formControlName="scuola">
                                 <mat-option value="Abiurazione">Abiurazione</mat-option>
@@ -205,12 +206,26 @@
                                 <mat-option value="Invocazione">Invocazione</mat-option>
                                 <mat-option value="Necromanzia">Necromanzia</mat-option>
                                 <mat-option value="Trasmutazione">Trasmutazione</mat-option>
+                                <mat-option value="Altro">Altro (specificare)</mat-option>
                             </mat-select>
                         </mat-form-field>
+
+                        <mat-form-field class="line-input" color="accent" appearance="outline"
+                            *ngIf="trucchettoIncantesimoForm.value.scuola === 'Altro'">
+                            <mat-label>Scuola personalizzata</mat-label>
+                            <input matInput formControlName="scuolaPersonalizzata">
+                        </mat-form-field>
+
                         <mat-form-field class="line-input" color="accent" appearance="outline">
                             <mat-label>Livello</mat-label>
                             <input matInput type="number" formControlName="livello" min="0" max="9" inputmode="numeric">
                         </mat-form-field>
+
+                        <button mat-raised-button color="accent" class="jump-button" (click)="resetScuola(trucchettoIncantesimoForm)"
+                            *ngIf="trucchettoIncantesimoForm.value.scuola === 'Altro'">
+                            <mat-icon>move_down</mat-icon>
+                            Annulla Scuola personalizzata
+                        </button>
                     </div>
                     <div class="line-container">
                         <mat-form-field class="line-input" color="accent" appearance="outline">
@@ -242,7 +257,7 @@
                                     <div class="option-line">
                                         <img class="icon-image" [src]="icon.link" alt="">
                                         <div>{{icon.name}}</div>
-                                      </div>
+                                    </div>
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>

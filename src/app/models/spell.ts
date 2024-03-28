@@ -4,6 +4,7 @@ export class Spell {
     tipologia: string;
     nome: string;
     scuola: string;
+    scuolaPersonalizzata: string;
     livello: number;
     tempoLancio: string;
     gittata: string;
@@ -17,10 +18,11 @@ export class Spell {
     icon: string;
     filtered: boolean;
 
-    constructor(tipologia: string, nome: string, scuola: string, livello: number, tempoLancio: string, gittata: string, componenti: string, formula: string, durata: string, descrizione: string, livelloSuperiore: string, riferimento: string, preparato: boolean, icon: string, filtered: boolean) {
+    constructor(tipologia: string, nome: string, scuola: string, scuolaPersonalizzata: string, livello: number, tempoLancio: string, gittata: string, componenti: string, formula: string, durata: string, descrizione: string, livelloSuperiore: string, riferimento: string, preparato: boolean, icon: string, filtered: boolean) {
         this.tipologia = tipologia;
         this.nome = nome;
         this.scuola = scuola;
+        this.scuolaPersonalizzata = scuolaPersonalizzata;
         this.livello = livello;
         this.tempoLancio = tempoLancio;
         this.gittata = gittata;
@@ -40,6 +42,7 @@ export class Spell {
             tipologia: ['trucchetto', Validators.required],
             nome: ['', Validators.required],
             scuola: ['', Validators.required],
+            scuolaPersonalizzata: '',
             livello: [0, [Validators.required, Validators.min(0), Validators.max(9)]],
             tempoLancio: ['', Validators.required],
             gittata: ['', Validators.required],

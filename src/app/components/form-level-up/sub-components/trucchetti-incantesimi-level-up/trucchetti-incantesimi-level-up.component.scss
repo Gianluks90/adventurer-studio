@@ -1,73 +1,88 @@
 .step-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-field {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.delete-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+  font-size: medium;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+}
+
+.description-text {
+  font-size: small;
+  opacity: 0.5;
+  font-style: italic;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.line-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.line-input {
+  flex-grow: 1;
+}
+
+button {
+  border-radius: 0;
+}
+
+.slot-button {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.option-line {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.icon-image {
+  height: 40px;
+}
+
+@media screen and (max-width: 500px) {
+  .delete-button>button {
     width: 100%;
   }
-  
-  .input-field {
+
+  .button-container>button {
     width: 100%;
   }
-  
-  .delete-button {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 12px;
-  }
-  
-  .section-title {
-    margin-bottom: 20px;
-    font-size: medium;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
-  }
-  
-  .description-text {
-    font-size: small;
-    opacity: 0.5;
-    font-style: italic;
-    margin-bottom: 20px;
-    text-align: justify;
-  }
-  
-  .line-container {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .line-input {
-    flex-grow: 1;
-  }
+}
 
-  button {
-    border-radius: 0;
-  }
+.jump-button {
+  margin-bottom: 20px;
+  width: 100%;
+}
 
-  .slot-button {
-    width: 100%;
-    margin-bottom: 20px;
-  }
+mat-form-field {
+  // width: 100% !important;
+  margin-bottom: 12px;
+}
 
-  .option-line {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  
-  .icon-image {
-    height: 40px;
-  }
-  
-  @media screen and (max-width: 500px) {
-    .delete-button > button {
-        width: 100%;
-    }
-  
-    .button-container > button {
-        width: 100%;
-    }
-  }
+::ng-deep.mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
+  display: none !important;
+}

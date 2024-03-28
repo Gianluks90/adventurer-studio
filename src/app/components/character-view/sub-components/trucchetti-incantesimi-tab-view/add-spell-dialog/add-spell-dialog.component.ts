@@ -42,6 +42,13 @@ export class AddSpellDialogComponent {
     }    
   }
 
+  public resetScuola() {
+    this.form.patchValue({
+      scuola: '',
+      scuolaPersonalizzata: ''
+    });
+  }
+
   delete() {
     if (this.data.spell) {
       this.dialogRef.close({
