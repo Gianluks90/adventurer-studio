@@ -45,7 +45,8 @@ export class CampaignViewComponent {
         //   });
         // }
 
-        this.isOwner = getAuth().currentUser?.uid === this.campaignData.ownerId;
+        const userId = getAuth().currentUser?.uid;
+        this.isOwner = userId === this.campaignData.ownerId;
         if (!this.isOwner) {
           const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === getAuth().currentUser?.uid);
           if (!alreadyJoined) {
@@ -65,6 +66,7 @@ export class CampaignViewComponent {
     effect(() => {
       this.charData = this.charService.campaignCharacters();
       this.charData = this.charData.filter((char: any) => char.campaignId === id);
+      this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
     });
   }
 

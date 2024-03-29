@@ -5,11 +5,15 @@
             <div class="empty-text">Non ci sono personaggi iscritti a questa campagna</div>
         </div>
     </ng-template>
-    <div class="characters-line" *ngIf="charData.length > 0; else noCharacters">
-        <div class="character-item" *ngFor="let char of charData">
+    @if (charData && charData.length > 0) {
+    <div class="characters-line" *ngIf="charData && charData.length > 0; else noCharacters">
+        <div class="character-item" [ngClass]="{'partecipant-char' : char.status.userId === partecipantId }"
+            *ngFor="let char of charData">
             <div class="character-header-card">
-                <img class="character-image" [src]="char.informazioniBase.urlImmaginePersonaggio" [ngClass]="{'dead-hero': char.parametriVitali.puntiFeritaAttuali === 0}">
-                <div class="character-name">{{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ? char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}
+                <img class="character-image" [src]="char.informazioniBase.urlImmaginePersonaggio"
+                    [ngClass]="{'dead-hero': char.parametriVitali.puntiFeritaAttuali === 0}">
+                <div class="character-name">{{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ?
+                    char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}
                     <button class="navigate-button" (click)="navigateToChar(char.id)" matTooltip="Apri scheda">
                         <mat-icon>open_in_new</mat-icon>
                     </button>
@@ -17,21 +21,69 @@
             </div>
             <div class="character-parameters-container">
                 <!-- <div class="armor-class-label">CA</div>
-                <div class="armor-class-value">{{char.CA}}</div> -->
-                <div class="level-value">LV {{char.informazioniBase.livello}}°</div>
-                <div class="health-points-value"><mat-icon class="passive-icon" matTooltip="Punti ferita">favorite</mat-icon> {{char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita}}
+                    <div class="armor-class-value">{{char.CA}}</div> -->
+                <div class="level-value">{{char.informazioniBase.livello}}° LV</div>
+                <div class="health-points-value"><mat-icon class="passive-icon"
+                        matTooltip="Punti ferita">favorite</mat-icon>
+                    {{char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita}}
                     <span
                         *ngIf="char.parametriVitali.massimoPuntiFeritaTemporanei > 0">+{{char.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{char.parametriVitali.massimoPuntiFeritaTemporanei}}</span>
                 </div>
                 <div class="CA-container">
-                    <mat-icon matTooltip="CA" class="passive-icon">shield</mat-icon>{{char.CA}}<span *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span>
+                    <mat-icon matTooltip="CA" class="passive-icon">shield</mat-icon>{{char.CA}}<span
+                        *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span> <span
+                        *ngIf="!char.ispirazione" class="inspiration" matTooltip="Ispirazione">•</span>
                 </div>
                 <div class="passive-container">
-                    <mat-icon class="passive-icon" matTooltip="Percezione passiva">visibility</mat-icon> {{char.percezionePassiva}}
-                    <mat-icon class="passive-icon material-symbols-outlined" matTooltip="Intuizione passiva">neurology</mat-icon> {{char.intuizionePassiva}}
-                    <mat-icon class="passive-icon" matTooltip="Indagare passiva">search</mat-icon> {{char.indagarePassiva}}
+                    <mat-icon class="passive-icon" matTooltip="Percezione passiva">visibility</mat-icon>
+                    {{char.percezionePassiva}}
+                    <mat-icon class="passive-icon material-symbols-outlined"
+                        matTooltip="Intuizione passiva">neurology</mat-icon> {{char.intuizionePassiva}}
+                    <mat-icon class="passive-icon" matTooltip="Indagare passiva">search</mat-icon>
+                    {{char.indagarePassiva}}
                 </div>
             </div>
         </div>
     </div>
+    <div class="section-title">Risorse di gruppo</div>
+    <div class="resource-container">
+        <div class="money-title">Denaro</div>
+        <div class="moneys">
+            <div class="single-coins-viewer">
+                <img src="../assets/coins/copper.svg" alt="">
+                <div>
+                    {{denaroParty.rame}}
+                </div>
+            </div>
+            <div class="single-coins-viewer">
+                <img src="../assets/coins/silver.svg" alt="">
+                <div>
+                    {{denaroParty.argento}}
+                </div>
+            </div>
+            <div class="single-coins-viewer">
+                <img src="../assets/coins/electrum.svg" alt="">
+                <div>
+                    {{denaroParty.electrum}}
+                </div>
+            </div>
+            <div class="single-coins-viewer">
+                <img src="../assets/coins/gold.svg" alt="">
+                <div>
+                    {{denaroParty.oro}}
+                </div>
+            </div>
+            <div class="single-coins-viewer">
+                <img src="../assets/coins/platinum.svg" alt="">
+                <div>
+                    {{denaroParty.platino}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="resource-container" *ngIf="charData">
+        <div class="money-title">Ispirazione <span class="inspiration">•</span></div>
+        <div class="ispirazione-value">{{ispirazioneParty}} / {{charData.length}}</div>
+    </div>
+    }
 </div>

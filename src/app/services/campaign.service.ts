@@ -162,7 +162,7 @@ export class CampaignService {
 
       const docRef = doc(this.firebaseService.database, 'campaigns', campId);
       return await setDoc(docRef, {
-        characters: arrayUnion({id: char.id, url: char.data()['informazioniBase'].urlImmaginePersonaggio}),
+        characters: arrayUnion({id: char.id, url: char.data()['informazioniBase'].urlImmaginePersonaggio, userId: char.data()['status'].userId}),
         partecipants: arrayUnion(userId),
         lastUpdate: new Date(),
         status: {
