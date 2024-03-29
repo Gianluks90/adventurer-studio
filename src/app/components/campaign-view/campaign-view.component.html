@@ -3,6 +3,10 @@
         <div class="header-title">
             {{campaignData.title}}
         </div>
+        <div class="header-info">
+            <div>Stato: {{campaignData.status.statusMessage}}</div>
+            <div>Sessioni: {{campaignData.story.length+1}}</div>
+        </div>
     </div>
     <div class="view-tabs">
         <div class="status-container">
@@ -15,11 +19,22 @@
                 </ng-template>
                 <app-campaign-story-tab [description]="campaignData.description" [story]="campaignData.story" [isOwner]="isOwner"></app-campaign-story-tab>
             </mat-tab>
+            <!-- <mat-tab disabled *ngIf="charData.length > 0 && partecipantIndex === -1">
+                <ng-template mat-tab-label>
+                    <img class="player-tab" [src]="charData[0].informazioniBase.urlImmaginePersonaggio" matTooltipPosition="below" [matTooltip]="charData[0].informazioniBase.nomePersonaggioEsteso !== '' || charData[0].informazioniBase.nomePersonaggio">
+                </ng-template>
+            </mat-tab> -->
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/campaign-tabs-icon/quests.svg" class="label-icon" matTooltipPosition="below" matTooltip="Missioni">
                 </ng-template>
                 <app-campaign-quests-tab [quests]="campaignData.quests" [isOwner]="isOwner"></app-campaign-quests-tab>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <img src="./assets/campaign-tabs-icon/rules.svg" class="label-icon" matTooltipPosition="below" matTooltip="Annotazioni">
+                </ng-template>
+                <app-campaign-entries-tab [entries]="campaignData.entries" [isOwner]="isOwner"></app-campaign-entries-tab>
             </mat-tab>
             <mat-tab disabled>
                 <ng-template mat-tab-label>
@@ -31,12 +46,6 @@
                     <img src="./assets/campaign-tabs-icon/achievements.svg" class="label-icon" matTooltipPosition="below" matTooltip="Ricompense">
                 </ng-template>
                 <app-campaign-achievements-tab [achievements]="campaignData.achievements" [isOwner]="isOwner" [characters]="charData"></app-campaign-achievements-tab>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <img src="./assets/campaign-tabs-icon/rules.svg" class="label-icon" matTooltipPosition="below" matTooltip="Regole aggiuntive">
-                </ng-template>
-                <app-campaign-rules-tab [rules]="campaignData.rules" [isOwner]="isOwner"></app-campaign-rules-tab>
             </mat-tab>
             <mat-tab *ngIf="isOwner">
                 <ng-template mat-tab-label >

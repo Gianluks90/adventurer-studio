@@ -20,6 +20,7 @@ export class CampaignViewComponent {
   public campaignData: any;
   public charData: any[] = [];
   public isOwner: boolean = false;
+  public partecipantIndex: number = -1;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -67,6 +68,7 @@ export class CampaignViewComponent {
       this.charData = this.charService.campaignCharacters();
       this.charData = this.charData.filter((char: any) => char.campaignId === id);
       this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
+      this.partecipantIndex = this.charData.findIndex((char: any) => char.status.userId === getAuth().currentUser?.uid);
     });
   }
 

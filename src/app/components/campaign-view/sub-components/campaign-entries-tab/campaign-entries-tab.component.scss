@@ -64,40 +64,30 @@
     cursor: pointer;
 }
 
-.rule-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
+.tag-label {
+    font-weight: bold;
+    text-transform: capitalize;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+    margin-bottom: 8px;
 }
 
-.rule-content {
-    font-style: italic;
-    opacity: 0.6;
-    padding: 4px 8px;
+.entry-details {
+    margin-bottom: 4px;
 }
 
-.rule-container {
-    margin: 8px 0;
-}
-
-.rule-title {
+.entry-title {
     background-color: #212121;
     color: white;
     padding: 8px;
     display: flex;
-    justify-content: flex-start;
-    gap: 8px;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 4px;
 }
 
-.rule-title-label {
-    flex-grow: 1;
-}
-
-.rule-description {
-    padding: 8px;
+.entry-content {
+    padding: 0 4px;
+    white-space: pre-wrap;
 }
 
 details[open] {

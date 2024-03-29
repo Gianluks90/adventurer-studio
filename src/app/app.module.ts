@@ -71,8 +71,8 @@ import { CampaignSettingsTabComponent } from './components/campaign-view/sub-com
 import { CampaignQuestsTabComponent } from './components/campaign-view/sub-components/campaign-quests-tab/campaign-quests-tab.component';
 import { AddQuestDialogComponent } from './components/campaign-view/sub-components/campaign-quests-tab/add-quest-dialog/add-quest-dialog.component';
 import { CharacterBottomSheetComponent } from "./components/campaign-view/sub-components/character-bottom-sheet/character-bottom-sheet.component";
-import { CampaignRulesTabComponent } from './components/campaign-view/sub-components/campaign-rules-tab/campaign-rules-tab.component';
-import { AddRuleDialogComponent } from './components/campaign-view/sub-components/campaign-rules-tab/add-rule-dialog/add-rule-dialog.component';
+import { CampaignEntriesTabComponent } from './components/campaign-view/sub-components/campaign-entries-tab/campaign-entries-tab.component';
+import { AddEntryDialogComponent } from './components/campaign-view/sub-components/campaign-entries-tab/add-entry-dialog/add-entry-dialog.component';
 import { CampaignAchievementsTabComponent } from './components/campaign-view/sub-components/campaign-achievements-tab/campaign-achievements-tab.component';
 import { AddAchievementDialogComponent } from './components/campaign-view/sub-components/campaign-achievements-tab/add-achievement-dialog/add-achievement-dialog.component';
 
@@ -161,8 +161,8 @@ import { AddAchievementDialogComponent } from './components/campaign-view/sub-co
     CharacterBottomSheetComponent,
     CampaignQuestsTabComponent,
     AddQuestDialogComponent,
-    CampaignRulesTabComponent,
-    AddRuleDialogComponent,
+    CampaignEntriesTabComponent,
+    AddEntryDialogComponent,
     CampaignAchievementsTabComponent,
     AddAchievementDialogComponent,
 

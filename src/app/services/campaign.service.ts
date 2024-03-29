@@ -33,6 +33,7 @@ export class CampaignService {
       quests: [],
       npcs: [],
       rules: [],
+      entries: [],
       achievements: [],
       status: {
         statusCode: 0,
@@ -233,6 +234,22 @@ export class CampaignService {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
     return await setDoc(docRef, {
       rules: rules,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async addEntry(campId: string, entry: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      entries: arrayUnion(entry),
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async updateCampaignEntries(campId: string, entries: any[]): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      entries: entries,
       lastUpdate: new Date()
     }, { merge: true });
   }

@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AddRuleDialogComponent } from '../../campaign-rules-tab/add-rule-dialog/add-rule-dialog.component';
 
 @Component({
   selector: 'app-add-achievement-dialog',

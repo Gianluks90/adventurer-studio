@@ -1,0 +1,27 @@
+<div class="section-title">Annotazioni</div>
+<div class="description-text">
+    Questo è un diario personale, usalo per raccogliere i tuoi pensieri e le tue riflessioni sulla campagna. Le annotazioni sono visibili solo a te.
+</div>
+<div class="button-container">
+    <button mat-mini-fab color="accent" class="add-button" (click)="openEntryDialog()" *ngIf="isOwnerData">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div class="rule-container">
+    @for(tag of tags; track $index) {
+        <div class="tag-label">{{tag}}</div>
+        @for(entry of entriesData; track idx; let idx = $index) {
+            @if(entry.tag.toLowerCase() === tag) {
+                <details class="entry-details" *ngIf="entry.userId === userId">
+                    <summary class="entry-title">{{entry.title}}</summary>
+                    <div class="entry-content">{{entry.content}}</div>
+                    <div class="button-container">
+                        <button color="accent" class="edit-button" (click)="openEntryDialog(entry, idx)">
+                            Modifica
+                        </button>
+                    </div>
+                </details>
+            }
+        }
+    }
+</div>
