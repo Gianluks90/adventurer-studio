@@ -35,6 +35,7 @@ export class SettingsDialogComponent {
       if (user.id === "1v1WaSUh7LP68D9a4VqCGGmXmDZ2" || user.id === "TghUf9a989N9iMWKTGb0tsAv0L12" || user.id === "n9PxwrkTgUR4yR4sGcfJCpAgIRe2") {
         this.isAdmin = true;
       }
+      this.getTheme();
       // if(this.data.dddiceToken) {
       //   this.dddice.dddiceInit(this.data.dddiceToken).then((dddice) => {
       //     this.dddice.authenticated.next(true);
@@ -88,9 +89,17 @@ export class SettingsDialogComponent {
       this.firebaseService.getThenUpdateAllUsers();
     }
 
+    public getTheme() {
+      this.characterService.getRollTheme().then((theme) => {
+        this.form.patchValue({ rollTheme: theme });
+      });
+    }
+
     public setDiceTheme() {
-      this.characterService.setRollTheme(this.form.value.rollTheme).then(() => {
-        this.rollService.diceTheme = this.form.value.rollTheme;
+      const diceTheme = this.form.value.rollTheme.split('/').pop();
+      this.form.patchValue({ rollTheme: diceTheme });
+      this.characterService.setRollTheme(diceTheme).then(() => {
+        this.rollService.diceTheme = diceTheme;
         this.rollService.testRoll();
       });
     }
