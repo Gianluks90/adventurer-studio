@@ -20,7 +20,6 @@ export class CampaignViewComponent {
   public campaignData: any;
   public charData: any[] = [];
   public isOwner: boolean = false;
-  public canvas = document.getElementById("dddice") as HTMLCanvasElement;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -32,20 +31,19 @@ export class CampaignViewComponent {
     private charService: CharacterService,
     private dddiceService: DddiceService) {
 
-    this.canvas.style.display = 'none';
     const id = window.location.href.split('campaign-view/').pop();
     effect(() => {
       this.campaignData = this.campaignService.campaigns();
       this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
       if (this.campaignData) {
         this.campaignData.id = id;
-        if (this.campaignData.dddiceSlug && this.campaignData.dddiceSlug !== '') {
-          this.firebaseService.getUserById(getAuth().currentUser.uid).then((user) => {
-            this.dddiceService.dddiceCampaignInit(user.data()['dddiceToken']).then((dddice) => {
-              dddice.connect(this.campaignData.dddiceSlug);
-            });
-          });
-        }
+        // if (this.campaignData.dddiceSlug && this.campaignData.dddiceSlug !== '') {
+        //   this.firebaseService.getUserById(getAuth().currentUser.uid).then((user) => {
+        //     this.dddiceService.dddiceCampaignInit(user.data()['dddiceToken']).then((dddice) => {
+        //       dddice.connect(this.campaignData.dddiceSlug);
+        //     });
+        //   });
+        // }
 
         this.isOwner = getAuth().currentUser?.uid === this.campaignData.ownerId;
         if (!this.isOwner) {

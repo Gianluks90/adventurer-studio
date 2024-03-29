@@ -45,7 +45,6 @@ export class CampaignCharListComponent {
   }
 
   private calcPassiveSkills(): void {
-    console.log('calcPassiveSkills', this.charData);
     this.charData.forEach(char => {
       const intelligenza = Math.floor((char.caratteristiche.intelligenza - 10) / 2);
       const saggezza = Math.floor((char.caratteristiche.saggezza - 10) / 2);

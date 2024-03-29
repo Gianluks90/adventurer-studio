@@ -165,7 +165,8 @@ export class DiceComponent {
 
   public rollDice(event: any) {
     this.closeDiceSheet(event);
-    const service = window.location.href.includes('campaign-view') ? this.dddiceRollCampaignService : this.dddiceRollService;
+    // const service = window.location.href.includes('campaign-view') ? this.dddiceRollCampaignService : this.dddiceRollService;
+    const service = this.dddiceRollService;
     switch (this.rollType) {
       case "adv":
         service.rollAdvantageDisadvantage(this.rollType, this.modTotal);

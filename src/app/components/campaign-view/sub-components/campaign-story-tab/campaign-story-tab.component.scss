@@ -82,3 +82,10 @@
     border-bottom: 1px dotted rgba($color: #212121, $alpha: 0.3);
     width: 100%;
 }
+
+iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+    border-radius: 4px;
+}
