@@ -42,12 +42,22 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
 }
 
 .add-button {
     width: 30px;
     height: 30px;
+}
+
+.archive-button {
+    width: 30px;
+    height: 30px;
+}
+
+.archive-button mat-icon {
+    font-size: medium;
+    margin-top: 6px;
 }
 
 .edit-button {
@@ -111,3 +121,4 @@ details[open] > summary::after {
     content: url("/assets/icons/chevron_down.svg");
     cursor: pointer;
 }
+

@@ -75,6 +75,10 @@ import { CampaignEntriesTabComponent } from './components/campaign-view/sub-comp
 import { AddEntryDialogComponent } from './components/campaign-view/sub-components/campaign-entries-tab/add-entry-dialog/add-entry-dialog.component';
 import { CampaignAchievementsTabComponent } from './components/campaign-view/sub-components/campaign-achievements-tab/campaign-achievements-tab.component';
 import { AddAchievementDialogComponent } from './components/campaign-view/sub-components/campaign-achievements-tab/add-achievement-dialog/add-achievement-dialog.component';
+import { NewChapterDialogComponent } from './components/campaign-view/sub-components/campaign-settings-tab/new-chapter-dialog/new-chapter-dialog.component';
+import { ArchiveStoryDialogComponent } from './components/campaign-view/sub-components/campaign-story-tab/archive-story-dialog/archive-story-dialog.component';
+import { ArchiveQuestDialogComponent } from './components/campaign-view/sub-components/campaign-quests-tab/archive-quest-dialog/archive-quest-dialog.component';
+import { ArchiveAchievementDialogComponent } from './components/campaign-view/sub-components/campaign-achievements-tab/archive-achievement-dialog/archive-achievement-dialog.component';
 
 @NgModule({
   declarations: [
@@ -165,6 +169,10 @@ import { AddAchievementDialogComponent } from './components/campaign-view/sub-co
     AddEntryDialogComponent,
     CampaignAchievementsTabComponent,
     AddAchievementDialogComponent,
+    NewChapterDialogComponent,
+    ArchiveStoryDialogComponent,
+    ArchiveQuestDialogComponent,
+    ArchiveAchievementDialogComponent,
 
   ],
   imports: [

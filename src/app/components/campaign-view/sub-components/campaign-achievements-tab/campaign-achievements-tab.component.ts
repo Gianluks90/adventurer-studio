@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { AddAchievementDialogComponent } from './add-achievement-dialog/add-achievement-dialog.component';
+import { ArchiveAchievementDialogComponent } from './archive-achievement-dialog/archive-achievement-dialog.component';
 
 @Component({
   selector: 'app-campaign-achievements-tab',
@@ -12,13 +13,15 @@ import { AddAchievementDialogComponent } from './add-achievement-dialog/add-achi
 export class CampaignAchievementsTabComponent {
 
   public achievementsData: any[];
+  public archiveData: any[] = [];
   public isOwnerData: boolean = false;
   public charactersData: any[];
 
   constructor(private dialog: MatDialog, private platform: Platform, private campaignService: CampaignService) {}
 
-  @Input() set achievements(achievements: any) {
-    this.achievementsData = achievements;
+  @Input() set campaign(campaign: any) {
+    this.achievementsData = campaign.achievements;
+    this.archiveData = campaign.archive;
   }
 
   @Input() set isOwner(isOwner: boolean) {
@@ -70,5 +73,13 @@ export class CampaignAchievementsTabComponent {
     details.forEach((detail: any) => {
       detail.open = false;
     });
+  }
+
+  public openArchiveAchievementDialog(): void {
+    this.dialog.open(ArchiveAchievementDialogComponent, {
+      width: window.innerWidth < 600 ? '80%' : '50%',
+      autoFocus: false,
+      data: { archive: this.archiveData }
+    })
   }
 }

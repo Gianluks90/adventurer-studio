@@ -26,11 +26,22 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 8px;
 }
 
 .add-button {
     width: 30px;
     height: 30px;
+}
+
+.archive-button {
+    width: 30px;
+    height: 30px;
+}
+
+.archive-button mat-icon {
+    font-size: medium;
+    margin-top: 6px;
 }
 
 .edit-button {
@@ -81,11 +92,4 @@
 .story-divider {
     border-bottom: 1px dotted rgba($color: #212121, $alpha: 0.3);
     width: 100%;
-}
-
-iframe {
-    width: 100%;
-    height: 400px;
-    border: none;
-    border-radius: 4px;
 }

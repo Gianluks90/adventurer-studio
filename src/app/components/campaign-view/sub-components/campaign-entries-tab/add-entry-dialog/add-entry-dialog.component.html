@@ -15,7 +15,15 @@
         <mat-label>Tag</mat-label>
         <input matInput formControlName="tag">
     </mat-form-field>
-    <div class="description">Usa il <em>tag</em> per creare delle collezioni di annotazioni. Queste verranno raggruppate nell'omonima sezione sulla Vista della Campagna.</div>
+    <div class="description-text">Usa il <em>tag</em> per creare delle collezioni di annotazioni. Queste verranno raggruppate nell'omonima sezione sulla Vista della Campagna.</div>
+    <mat-form-field class="custom-form-field" appearance="outline">
+        <mat-label>Colore sfondo</mat-label>
+        <input matInput type="color" class="color-picker" formControlName="backgroundColor">
+    </mat-form-field>
+    <mat-form-field class="custom-form-field" appearance="outline">
+        <mat-label>Colore testo</mat-label>
+        <input matInput type="color" class="color-picker" formControlName="contrastColor">
+    </mat-form-field>
     <!-- <mat-checkbox color="accent" formControlName="visible">Visibile</mat-checkbox> -->
 </div>
 <div mat-dialog-actions align="end">

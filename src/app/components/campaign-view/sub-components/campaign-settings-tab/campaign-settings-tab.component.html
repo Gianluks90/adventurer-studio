@@ -33,16 +33,30 @@
 </div>
 <div class="buttons-container">
     <button mat-raised-button color="accent" (click)="startCampaign()" [disabled]="campaignData.status.statusCode > 1">
-        <mat-icon>{{campaignData.status.statusCode > 1 ? 'check' : 'play_arrow'}}</mat-icon> {{campaignData.status.statusCode > 1 ? 'Campagna avviata' : 'Avvia campagna'}}
+        <mat-icon>{{campaignData.status.statusCode > 1 ? 'check' : 'play_arrow'}}</mat-icon>
+        {{campaignData.status.statusCode > 1 ? 'Campagna avviata' : 'Avvia campagna'}}
+    </button>
+</div>
+<div class="subtitle">Prossimo capitolo</div>
+<div class="description-text">
+    Questa funzione è pensata per quando la tua campagna raggiunge un punto di svolta o un momento particolare. Potrai
+    scegliere un nuovo titolo e tutto il contenuto delle sezioni: storia, missioni, npc e ricompense saranno archiviati
+    nelle rispettive sezioni per lasciar spazio a dei nuovi elementi. Questa funzione non cancella alcun dato.
+</div>
+<div class="buttons-container">
+    <button mat-raised-button color="accent" (click)="openNewChapterDialog()" [disabled]="campaignData.status.statusMessage !== 'In corso'">
+        <mat-icon>grade</mat-icon> Nuovo capitolo
     </button>
 </div>
 <div class="subtitle">Stanza dddice {{campaignData.dddiceSlug !== '' ? '(' + campaignData.dddiceSlug + ')' : ''}}</div>
 <div class="description-text">
-    Abilita la Campagna al lancio di dadi nella stessa "stanza", in questo modo tutti vedranno i risultati dei loro tiri, te compreso.
+    Abilita la Campagna al lancio di dadi nella stessa "stanza", in questo modo tutti vedranno i risultati dei loro
+    tiri, te compreso.
 </div>
 <div class="buttons-container">
     <button mat-raised-button color="accent" (click)="createCampaignRoom()" [disabled]="campaignData.dddiceSlug !== ''">
-        <mat-icon>{{campaignData.dddiceSlug !== '' ? 'check' : 'add'}}</mat-icon> {{campaignData.dddiceSlug !== '' ? 'Stanza creata' : 'Crea stanza'}}
+        <mat-icon>{{campaignData.dddiceSlug !== '' ? 'check' : 'add'}}</mat-icon> {{campaignData.dddiceSlug !== '' ?
+        'Stanza creata' : 'Crea stanza'}}
     </button>
 </div>
 <div class="subtitle">Gestione personaggi iscritti (prossimamente)</div>

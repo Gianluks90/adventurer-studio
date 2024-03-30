@@ -17,7 +17,9 @@ export class AddEntryDialogComponent {
     content: ['', Validators.required],
     tag: ['', Validators.required],
     lastUpdate: new Date(),
-    userId: getAuth().currentUser.uid
+    userId: getAuth().currentUser.uid,
+    backgroundColor: ['#212121'],
+    contrastColor: ['#efefef']
   });
 
   ngOnInit() {

@@ -1,0 +1,115 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
+  .dialog-content {
+    width: 100%;
+    font-size: small;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .description {
+    margin-bottom: 8px;
+    text-align: justify;
+    font-style: italic;
+    font-size: small;
+  }
+  
+  .custom-form-field {
+    width: 100%;
+  }
+  
+  button {
+    border-radius: 0;
+  }
+  
+  .summary-name {
+    background-color: #212121;
+    color: white;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  
+  details[open] {
+    border: 1px solid #212121;
+    margin-bottom: 4px;
+  }
+  
+  details>summary {
+    list-style: none;
+  }
+  
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  summary::after {
+    content: url("/assets/icons/chevron_right.svg");
+    cursor: pointer;
+  }
+  
+  details[open]>summary::after {
+    content: url("/assets/icons/chevron_down.svg");
+    cursor: pointer;
+  }
+  
+  .story-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 6px;
+  }
+  
+  .story-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #212121;
+  }
+  
+  .story-content {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    font-style: italic;
+    opacity: 0.6;
+  }
+  
+  .story-number-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  
+  .story-number {
+    font-size: large;
+    font-weight: bold;
+    color: rgba($color: #212121, $alpha: 0.6);
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .story-divider {
+    border-bottom: 1px dotted rgba($color: #212121, $alpha: 0.3);
+    width: 100%;
+  }
+
+  .empty-message {
+    font-style: italic;
+    opacity: 0.7;
+    padding: 4px;
+  }
+
+  .quest-details {
+    padding: 8px;
+  }
+
+  .divider {
+    border-bottom: 1px dotted rgba($color: #212121, $alpha: 0.3);
+  }

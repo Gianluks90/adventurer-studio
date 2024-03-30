@@ -1,0 +1,27 @@
+<div mat-dialog-title class="dialog-title">Archivio Storia</div>
+<div mat-dialog-content class="dialog-content">
+    <div class="description">
+        Nei gruppi sottostanti troverai la storia archiaviata per Capitolo.
+    </div>
+    @for(story of data.archive; track i; let i = $index) {
+        <details>
+            <summary class="summary-name">Capitolo {{i + 1}} - {{story.title}}</summary>
+            @for (s of story.story; track idx; let idx = $index) {
+                <div class="story-container" [ngClass]="{'divider': !$last}">
+                    <!-- <div class="story-number-container">
+                        <div class="story-divider"></div>
+                        <div class="story-number">{{idx + 1}}</div>
+                        <div class="story-divider"></div>
+                    </div> -->
+                    <div class="story-title">{{s.title}}</div>
+                    <div class="story-content">{{s.content}}</div>
+                </div>
+            }
+        </details>
+    }
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="accent">
+        <mat-icon>close</mat-icon> Chiudi
+    </button>
+</div>

@@ -1,0 +1,27 @@
+<div mat-dialog-title class="dialog-title">Archivio Trofei</div>
+<div mat-dialog-content class="dialog-content">
+    <div class="description">
+        Nei gruppi sottostanti troverai le Missioni scoperte e completate durante la tua Campagna.
+    </div>
+    @for(a of data.archive; track i; let i = $index) {
+    <details>
+        <summary class="summary-name">Capitolo {{i + 1}} - {{a.title}}</summary>
+        @if(a.achievements.length === 0) {
+        <div class="empty-message">Nessun trofeo presente in questo Capitolo.</div>
+        }
+        @for (t of a.achievements; track idx; let idx = $index) {
+        <div class="story-container" [ngClass]="{'divider': !$last}">
+            <div class="achievement-line">
+                <mat-icon>{{t.reclamedBy ? 'check' : 'close'}}</mat-icon> 
+                <div><span class="story-title">{{t.title}}</span> {{t.content}}</div>
+            </div>
+        </div>
+        }
+    </details>
+    }
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="accent">
+        <mat-icon>close</mat-icon> Chiudi
+    </button>
+</div>

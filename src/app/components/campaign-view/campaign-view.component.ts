@@ -21,6 +21,7 @@ export class CampaignViewComponent {
   public charData: any[] = [];
   public isOwner: boolean = false;
   public partecipantIndex: number = -1;
+  public sessionNumber: number = 1;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -38,6 +39,7 @@ export class CampaignViewComponent {
       this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
       if (this.campaignData) {
         this.campaignData.id = id;
+        this.calcSessionNumber();
         // if (this.campaignData.dddiceSlug && this.campaignData.dddiceSlug !== '') {
         //   this.firebaseService.getUserById(getAuth().currentUser.uid).then((user) => {
         //     this.dddiceService.dddiceCampaignInit(user.data()['dddiceToken']).then((dddice) => {
@@ -82,5 +84,13 @@ export class CampaignViewComponent {
     // });
     // this.dddiceService.dddice.connect(this.campaignData.dddiceSlug);
     this.diceSelector.open(DiceComponent);
+  }
+
+  private calcSessionNumber() {
+    let result = this.campaignData.story.length;
+    this.campaignData.archive.forEach((element: any) => {
+      result += element.story.length;
+    });
+    this.sessionNumber = result;
   }
 }

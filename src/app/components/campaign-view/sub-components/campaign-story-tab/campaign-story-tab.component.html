@@ -1,7 +1,10 @@
-<div class="section-title">Descrizione</div>
+<div class="section-title">Introduzione</div>
 <div class="description">{{descriptionData}}</div>
-<div class="section-title">Resoconto</div>
+<div class="section-title">Resoconto sessioni</div>
 <div class="button-container">
+    <button mat-mini-fab color="accent" class="archive-button" (click)="openArchiveStoryDialog()" [disabled]="archiveData.length === 0">
+        <mat-icon>inventory_2</mat-icon>
+    </button>
     <button mat-mini-fab color="accent" class="add-button" (click)="openStoryDialog()" *ngIf="isOwnerData">
         <mat-icon>add</mat-icon>
     </button>
@@ -11,7 +14,7 @@
         <ng-container *ngIf="story.visible">
             <div class="story-number-container">
                 <div class="story-divider"></div>
-                <div class="story-number">{{storyData.length - i}}</div>
+                <div class="story-number">{{sessionNumberData - i}}</div>
                 <div class="story-divider"></div>
             </div>
             <div class="story-title">{{story.title}}</div>

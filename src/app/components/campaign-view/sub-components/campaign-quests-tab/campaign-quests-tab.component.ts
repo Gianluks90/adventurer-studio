@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddQuestDialogComponent } from './add-quest-dialog/add-quest-dialog.component';
 import { Platform } from '@angular/cdk/platform';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { ArchiveQuestDialogComponent } from './archive-quest-dialog/archive-quest-dialog.component';
 
 @Component({
   selector: 'app-campaign-quests-tab',
@@ -12,10 +13,12 @@ import { CampaignService } from 'src/app/services/campaign.service';
 export class CampaignQuestsTabComponent {
 
   public questsData: any[] = [];
+  public archiveData: any[] = [];
   public isOwnerData: boolean = false;
 
-  @Input() set quests(value: any[]) {
-    this.questsData = value;
+  @Input() set campaign(value: any) {
+    this.questsData = value.quests;
+    this.archiveData = value.archive;
     this.questsData = this.sortQuestByLastUpdate(this.questsData);
   }
 
@@ -69,5 +72,13 @@ export class CampaignQuestsTabComponent {
     details.forEach((detail: any) => {
       detail.open = false;
     });
+  }
+
+  public openArchiveQuestsDialog(): void {
+    this.dialog.open(ArchiveQuestDialogComponent, {
+      width: window.innerWidth < 600 ? '80%' : '50%',
+      autoFocus: false,
+      data: { archive: this.archiveData }
+    })
   }
 }

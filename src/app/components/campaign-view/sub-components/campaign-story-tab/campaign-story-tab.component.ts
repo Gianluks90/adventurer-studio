@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddStoryDialogComponent } from './add-story-dialog/add-story-dialog.component';
 import { Platform } from '@angular/cdk/platform';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { ArchiveStoryDialogComponent } from './archive-story-dialog/archive-story-dialog.component';
 
 @Component({
   selector: 'app-campaign-story-tab',
@@ -13,6 +14,8 @@ export class CampaignStoryTabComponent {
 
   public descriptionData: string = '';
   public storyData: any[] = [];
+  public archiveData: any[] = [];
+  public sessionNumberData: number = 1;
   public isOwnerData: boolean = false;
 
   constructor(private dialog: MatDialog, private platform: Platform, private campaignService: CampaignService) {}
@@ -21,9 +24,14 @@ export class CampaignStoryTabComponent {
     this.descriptionData = value;
   }
 
-  @Input() set story(value: any[]) {
-    this.storyData = value;
+  @Input() set campaign(campaign: any) {
+    this.storyData = campaign.story;
+    this.archiveData = campaign.archive;
     this.storyData = this.sortStoryByLastUpdate(this.storyData);
+  }
+
+  @Input() set sessionNumber(value: number) {
+    this.sessionNumberData = value;
   }
 
   @Input() set isOwner(value: boolean) {
@@ -67,5 +75,13 @@ export class CampaignStoryTabComponent {
     } else {
       return list;
     }
+  }
+
+  public openArchiveStoryDialog(): void {
+    this.dialog.open(ArchiveStoryDialogComponent, {
+      width: window.innerWidth < 600 ? '80%' : '50%',
+      autoFocus: false,
+      data: { archive: this.archiveData }
+    })
   }
 }

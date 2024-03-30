@@ -1,0 +1,31 @@
+<div mat-dialog-title class="dialog-title">Archivio Missioni</div>
+<div mat-dialog-content class="dialog-content">
+    <div class="description">
+        Nei gruppi sottostanti troverai le Missioni scoperte e completate durante la tua Campagna.
+    </div>
+    @for(a of data.archive; track i; let i = $index) {
+    <details>
+        <summary class="summary-name">Capitolo {{i + 1}} - {{a.title}}</summary>
+        @if(a.quests.length === 0) {
+        <div class="empty-message">Nessuna missione presente in questo Capitolo.</div>
+        }
+        @for (q of a.quests; track idx; let idx = $index) {
+        @if(q.visible) {
+        <div class="story-container" [ngClass]="{'divider': !$last}">
+            <div><span class="story-title">{{q.title}}</span>: <span>{{q.description}}</span></div>
+            @if(q.completed) {
+            <div><strong>Completata</strong>: {{q.result}}</div>
+            } @else {
+                <div>Non completata.</div>
+            }
+        </div>
+        }
+        }
+    </details>
+    }
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="accent">
+        <mat-icon>close</mat-icon> Chiudi
+    </button>
+</div>

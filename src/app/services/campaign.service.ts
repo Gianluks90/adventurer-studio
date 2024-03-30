@@ -14,6 +14,41 @@ export class CampaignService {
     this.getSignalCampaigns();
   }
 
+  // old
+  // public async addCampaign(infoCampaign: any): Promise<any> {
+  //   const user = this.firebaseService.user.value!;
+  //   const newCampaignId = user.id + '-C-' + (user.campaignProgressive + 1);
+  //   const docRef = doc(this.firebaseService.database, 'campaigns', newCampaignId);
+  //   return await setDoc(docRef, {
+  //     title: infoCampaign.title,
+  //     password: infoCampaign.password,
+  //     ownerId: user.id,
+  //     dmName: infoCampaign.dmName,
+  //     partecipants: [],
+  //     characters: [],
+  //     imgUrl: '',
+  //     description: infoCampaign.description || '',
+  //     createdAt: new Date(),
+  //     lastUpdate: new Date(),
+  //     story: [],
+  //     quests: [],
+  //     npcs: [],
+  //     rules: [],
+  //     entries: [],
+  //     achievements: [],
+  //     status: {
+  //       statusCode: 0,
+  //       statusMessage: 'Nuova'
+  //     }
+  //   }).then(() => {
+  //     const userRef = doc(this.firebaseService.database, 'users', user.id);
+  //     setDoc(userRef, {
+  //       createdCampaigns: arrayUnion(newCampaignId),
+  //       campaignProgressive: user.campaignProgressive + 1
+  //     }, { merge: true });
+  //   });
+  // }
+
   public async addCampaign(infoCampaign: any): Promise<any> {
     const user = this.firebaseService.user.value!;
     const newCampaignId = user.id + '-C-' + (user.campaignProgressive + 1);
@@ -35,6 +70,7 @@ export class CampaignService {
       rules: [],
       entries: [],
       achievements: [],
+      archive: [],
       status: {
         statusCode: 0,
         statusMessage: 'Nuova'
@@ -179,9 +215,9 @@ export class CampaignService {
     });
   }
 
-  public startCampaign(campId: string): void {
+  public async startCampaign(campId: string): Promise<void> {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
-    setDoc(docRef, {
+    return await setDoc(docRef, {
       status: {
         statusCode: 2,
         statusMessage: 'In corso'
@@ -274,6 +310,30 @@ export class CampaignService {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
     return await setDoc(docRef, {
       dddiceSlug: slug,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async newChapter(campId: string, campaignData: any, newTitle: string, newDescription: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    const archive = {
+      title: campaignData.title,
+      description: campaignData.description,
+      story: campaignData.story,
+      quests: campaignData.quests,
+      npcs: campaignData.npcs,
+      rules: campaignData.rules,
+      achievements: campaignData.achievements,
+    }
+    return await setDoc(docRef, {
+      title: newTitle,
+      description: newDescription,
+      archive: arrayUnion(archive),
+      story: [],
+      quests: [],
+      npcs: [],
+      rules: [],
+      achievements: [],
       lastUpdate: new Date()
     }, { merge: true });
   }
