@@ -20,7 +20,7 @@
                         ({{character.informazioniBase.dettaglioBackground}})</span></span></span>
             <div *ngFor="let cl of character.informazioniBase.classi">
                 <!-- <div class="character-class">{{cl.nome}} {{cl.livello}}° LV<span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div> -->
-                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV</div>
+                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV {{cl.sottoclasse !== '' && !isMobile ? cl.sottoclasse : ''}}</div>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
                     [informazioniBase]="{razza: character.informazioniBase.razza, sottorazza: character.informazioniBase.sottorazza, classi: character.informazioniBase.classi}"></app-privilegi-tratti-tab-view>
             </mat-tab>
 
-            <mat-tab>
+            <mat-tab [disabled]="!editMode">
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/inventory.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Inventario">
@@ -63,6 +63,7 @@
                         matTooltip="Descrizione e background">
                 </ng-template>
                 <app-descrizione-background-tab-view
+                    [editMode]="editMode"
                     [backgroundInfo]="{name: character.informazioniBase.background, detail: character.informazioniBase.dettaglioBackground}"
                     [background]="character.trattiBackground" [storia]="character.storiaPersonaggio"
                     [caratteristicheFisiche]="character.caratteristicheFisiche"
@@ -78,7 +79,7 @@
                 </ng-template>
             </mat-tab>
 
-            <mat-tab>
+            <mat-tab [disabled]="!editMode">
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/magic.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Trucchetti e Incantesimi">
@@ -87,7 +88,7 @@
                     [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
             </mat-tab>
 
-            <mat-tab>
+            <mat-tab [disabled]="!editMode">
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/attacks.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Attacchi">
@@ -95,7 +96,7 @@
                 <app-attacchi-tab-view [attacchi]="character.attacchi"></app-attacchi-tab-view>
             </mat-tab>
 
-            <mat-tab>
+            <mat-tab [disabled]="!editMode">
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Impostazioni">

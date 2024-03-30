@@ -9,6 +9,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class DescrizioneBackgroundTabViewComponent {
 
+  public editModeData: boolean = false;
   public backgroundInfoData: any;
 
   public backgroundData: {
@@ -41,6 +42,10 @@ export class DescrizioneBackgroundTabViewComponent {
     if (window.location.href.includes('campaign-view/')) {
       this.inCampaign = true;
     }
+  }
+
+  @Input() set editMode(editMode: boolean) {
+    this.editModeData = editMode;
   }
 
   @Input() set backgroundInfo(backgroundInfo: any) {

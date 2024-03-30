@@ -1,60 +1,65 @@
 <!-- <div class="main-descrizione-background-container"> -->
-    <div class="character-name-container">
-        {{nomiPersonaggioData.nomeEsteso !== '' ? nomiPersonaggioData.nomeEsteso : nomiPersonaggioData.nome}}
+<div class="character-name-container">
+    {{nomiPersonaggioData.nomeEsteso !== '' ? nomiPersonaggioData.nomeEsteso : nomiPersonaggioData.nome}}
+</div>
+<div class="section-title">Caratteristiche fisiche</div>
+<div class="background-main-container">
+    <div class="bg-line">
+        <div class="bg-info"><strong>Età</strong> {{caratteristicheFisicheData.eta}} anni</div>
+        <div class="bg-info"><strong>Altezza</strong> {{caratteristicheFisicheData.altezza}} cm</div>
+        <div class="bg-info"><strong>Peso</strong> {{caratteristicheFisicheData.peso}} Kg</div>
     </div>
-    <div class="section-title">Caratteristiche fisiche</div>
-    <div class="background-main-container">
-        <div class="bg-line">
-            <div class="bg-info"><strong>Età</strong> {{caratteristicheFisicheData.eta}} anni</div>
-            <div class="bg-info"><strong>Altezza</strong> {{caratteristicheFisicheData.altezza}} cm</div>
-            <div class="bg-info"><strong>Peso</strong> {{caratteristicheFisicheData.peso}} Kg</div>
-        </div>
-        <div class="bg-line">
-            <div class="bg-info"><strong>Occhi</strong> {{caratteristicheFisicheData.occhi}}</div>
-            <div class="bg-info"><strong>Carnagione</strong> {{caratteristicheFisicheData.carnagione}}</div>
-            <div class="bg-info last-info"><strong>Capelli</strong> {{caratteristicheFisicheData.capelli}}</div>
-        </div>
+    <div class="bg-line">
+        <div class="bg-info"><strong>Occhi</strong> {{caratteristicheFisicheData.occhi}}</div>
+        <div class="bg-info"><strong>Carnagione</strong> {{caratteristicheFisicheData.carnagione}}</div>
+        <div class="bg-info last-info"><strong>Capelli</strong> {{caratteristicheFisicheData.capelli}}</div>
+    </div>
 
+</div>
+<div class="section-title">Background: {{backgroundInfoData.name}} <span *ngIf="backgroundInfoData.detail !== ''">
+        ({{backgroundInfoData.detail}})</span></div>
+<details>
+    <summary class="bg-name">Tratti caratteriali</summary>
+    <div class="bg-description">
+        {{backgroundData.trattiCaratteriali}}
     </div>
-    <div class="section-title">Background: {{backgroundInfoData.name}} <span *ngIf="backgroundInfoData.detail !== ''">
-            ({{backgroundInfoData.detail}})</span></div>
-    <details>
-        <summary class="bg-name">Tratti caratteriali</summary>
-        <div class="bg-description">
-            {{backgroundData.trattiCaratteriali}}
-        </div>
-    </details>
-    <details>
-        <summary class="bg-name">Ideali</summary>
-        <div class="bg-description">
-            {{backgroundData.ideali}}
-        </div>
-    </details>
-    <details>
-        <summary class="bg-name">Legami</summary>
-        <div class="bg-description">
-            {{backgroundData.legami}}
-        </div>
-    </details>
-    <details>
-        <summary class="bg-name">Difetti</summary>
-        <div class="bg-description">
-            {{backgroundData.difetti}}
-        </div>
-    </details>
-    <div class="section-title">Ritratto personaggio</div>
-    <div class="picture-container">
-        <img [src]="immaginePersonaggioData.url" referrerpolicy="no-referrer">
-        <div class="action-buttons-container">
-            <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url !== '' || inCampaign"
-                (click)="file.click()"><mat-icon>add_photo_alternate</mat-icon> Carica Immagine</button>
-            <input #file id="file" hidden class="" type="file" accept="image" (change)="onPicSelected($event)">
-            <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url === '' || inCampaign"
-                (click)="deletePic(immaginePersonaggioData.nome)"><mat-icon>delete</mat-icon>Elimina Immagine</button>
-        </div>
+</details>
+<details>
+    <summary class="bg-name">Ideali</summary>
+    <div class="bg-description">
+        {{backgroundData.ideali}}
     </div>
-    <div class="section-title">Storia</div>
-    <div class="character-history-container">
-        {{storiaData}}
+</details>
+<details>
+    <summary class="bg-name">Legami</summary>
+    <div class="bg-description">
+        {{backgroundData.legami}}
     </div>
+</details>
+<details>
+    <summary class="bg-name">Difetti</summary>
+    <div class="bg-description">
+        {{backgroundData.difetti}}
+    </div>
+</details>
+<div class="section-title">Ritratto personaggio</div>
+<div class="picture-container">
+    <img [src]="immaginePersonaggioData.url" referrerpolicy="no-referrer">
+    <div class="action-buttons-container">
+        <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url !== '' || inCampaign"
+            (click)="file.click()"><mat-icon>add_photo_alternate</mat-icon> Carica</button>
+        <input #file id="file" hidden class="" type="file" accept="image" (change)="onPicSelected($event)">
+        <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url === '' || inCampaign"
+            (click)="deletePic(immaginePersonaggioData.nome)"><mat-icon>delete</mat-icon>Elimina</button>
+    </div>
+</div>
+<div class="section-title">Storia</div>
+@if (editModeData) {
+<div class="character-history-container">
+    {{storiaData}}
+</div>
+} @else {
+<div class="description">Questa storia è visibile solo al proprietario della scheda personaggio e al DM della Campagna
+    in cui esso è inserito, se presente.</div>
+}
 <!-- </div> -->

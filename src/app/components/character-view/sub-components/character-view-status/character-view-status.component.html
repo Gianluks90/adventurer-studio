@@ -124,7 +124,8 @@
                 color="accent" (click)="openHPDialog()">
                 <img src="./assets/icons/heart-check.svg">
             </button> -->
-        <app-health-bar class="health-bar-component" [characterId]="characterData.id" [parametriVitali]="characterData.parametriVitali" [editMode]="editModeData"></app-health-bar>
+        <app-health-bar class="health-bar-component" [characterId]="characterData.id"
+            [parametriVitali]="characterData.parametriVitali" [editMode]="editModeData"></app-health-bar>
     </div>
     <div class="pf-group">
         <div class="pf-title"><span>CA</span> {{CA}} {{CAShield}}</div>
@@ -134,7 +135,7 @@
         <div class="pf-title"><span>Velocità</span> {{characterData.velocita}} m</div>
     </div>
 </div>
-
+@if(editModeData) {
 <div class="section-title">Dadi vita</div>
 <div class="dice-container">
     <!-- <div *ngFor="let d of dadiVitaData; let i = index;">
@@ -146,6 +147,7 @@
             class="dice-icon" [ngClass]="{'active': !used, 'used': used}" (click)="usaDadoVita(i, j)">
     </div>
 </div>
+
 <ng-container *ngIf="risorseAggiuntiveData.length > 0">
     <div class="section-title">Risorse aggiuntive</div>
     <div class="risorse-container-line">
@@ -158,7 +160,7 @@
         </div>
     </div>
 </ng-container>
-
+}
 
 <div class="section-title">Prove passive</div>
 <div class="pf-group">
