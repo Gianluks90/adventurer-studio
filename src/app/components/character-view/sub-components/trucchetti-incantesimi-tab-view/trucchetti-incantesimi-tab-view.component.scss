@@ -104,6 +104,10 @@
     /* Standard syntax */
 }
 
+.slot-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .active {
     color: #8b82f2;
     font-size: 3rem;
@@ -164,6 +168,8 @@
     border-radius: 0;
     background-color: #212121;
     box-shadow: none;
+    height: 30px;
+    width: 30px;
 
     &:hover {
         box-shadow: none;
@@ -217,6 +223,8 @@ details[open] > summary::after {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 30px;
+    width: 30px;
 }
 
 .sort-button>img {

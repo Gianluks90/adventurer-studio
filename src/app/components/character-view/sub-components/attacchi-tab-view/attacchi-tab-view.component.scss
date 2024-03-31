@@ -20,9 +20,15 @@
 }
 
 .add-button {
-    border-radius: 0;
     background-color: #212121;
-    box-shadow: 0 0 4px #212121;
+    color: whitesmoke;
+    box-shadow: none;
+    height: 30px;
+    width: 30px;
+
+    &:hover {
+        box-shadow: none;
+    }
 }
 
 .subtitle {
