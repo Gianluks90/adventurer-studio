@@ -32,6 +32,14 @@
         "link": "./assets/selectIconsSpells/buff_4.svg"
     },
     {
+        "name": "Buff 5",
+        "link": "./assets/selectIconsSpells/buff_5.svg"
+    },
+    {
+        "name": "Buff 6",
+        "link": "./assets/selectIconsSpells/buff_6.svg"
+    },
+    {
         "name": "Condizione 1",
         "link": "./assets/selectIconsSpells/condizione_1.svg"
     },
@@ -50,6 +58,10 @@
     {
         "name": "Debuff 3",
         "link": "./assets/selectIconsSpells/debuff_3.svg"
+    },
+    {
+        "name": "Debuff 4",
+        "link": "./assets/selectIconsSpells/debuff_4.svg"
     },
     {
         "name": "Evoca 1",
@@ -128,6 +140,10 @@
         "link": "./assets/selectIconsSpells/maledizione_4.svg"
     },
     {
+        "name": "Meteo 1",
+        "link": "./assets/selectIconsSpells/meteo_1.svg"
+    },
+    {
         "name": "Natura 1",
         "link": "./assets/selectIconsSpells/natura_1.svg"
     },
@@ -142,6 +158,14 @@
     {
         "name": "Natura 4",
         "link": "./assets/selectIconsSpells/natura_4.svg"
+    },
+    {
+        "name": "Natura 5",
+        "link": "./assets/selectIconsSpells/natura_5.svg"
+    },
+    {
+        "name": "Natura 6",
+        "link": "./assets/selectIconsSpells/natura_6.svg"
     },
     {
         "name": "Raggio 1",
@@ -216,6 +240,14 @@
         "link": "./assets/selectIconsSpells/speciale_11.svg"
     },
     {
+        "name": "Speciale 12",
+        "link": "./assets/selectIconsSpells/speciale_12.svg"
+    },
+    {
+        "name": "Speciale 13",
+        "link": "./assets/selectIconsSpells/speciale_13.svg"
+    },
+    {
         "name": "Tempo",
         "link": "./assets/selectIconsSpells/tempo_1.svg"
     },
@@ -262,6 +294,10 @@
     {
         "name": "Utilità 7",
         "link": "./assets/selectIconsSpells/utilita_7.svg"
+    },
+    {
+        "name": "Utilità 8",
+        "link": "./assets/selectIconsSpells/utilita_8.svg"
     },
     {
         "name": "Veleno 1",
