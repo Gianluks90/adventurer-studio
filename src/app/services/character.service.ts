@@ -170,9 +170,7 @@ export class CharacterService {
   public async adminCharUpdate(id: string): Promise<any> {
     const ref = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(ref, {
-      status: {
-        statusCode: 1
-      },
+      addons: []
     }, { merge: true })
   }
 
@@ -255,6 +253,59 @@ export class CharacterService {
       }
     }, { merge: true });
   }
+
+  // public async updateAttacks(id: string, attacks: any[]): Promise<any> {
+  //   const docRef = doc(this.firebaseService.database, 'characters', id);
+  //   return await setDoc(docRef, {
+  //     attacchi: attacks
+  //   }, { merge: true });
+  // }
+
+  // ALLIES AND ORGANIZATIONS
+
+  public async addAlly(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      allies: arrayUnion(form)
+    }, { merge: true });
+  }
+
+  public async updateAllies(id: string, allies: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      allies: allies
+    }, { merge: true });
+  }
+
+  public async addAddon(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      addons: arrayUnion(form)
+    }, { merge: true });
+  }
+
+  public async updateAddons(id: string, addons: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      addons: addons
+    }, { merge: true });
+  }
+
+  public async addOrganization(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      organizations: arrayUnion(form)
+    }, { merge: true });
+  }
+
+  public async updateOrganizations(id: string, organizations: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      organizations: organizations
+    }, { merge: true });
+  }
+
+  // ROOM DDDICE
 
   public async setRoom(slug: string) {
     const docRef = doc(this.firebaseService.database, 'users', getAuth().currentUser.uid);

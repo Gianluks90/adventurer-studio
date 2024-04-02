@@ -79,6 +79,11 @@ import { NewChapterDialogComponent } from './components/campaign-view/sub-compon
 import { ArchiveStoryDialogComponent } from './components/campaign-view/sub-components/campaign-story-tab/archive-story-dialog/archive-story-dialog.component';
 import { ArchiveQuestDialogComponent } from './components/campaign-view/sub-components/campaign-quests-tab/archive-quest-dialog/archive-quest-dialog.component';
 import { ArchiveAchievementDialogComponent } from './components/campaign-view/sub-components/campaign-achievements-tab/archive-achievement-dialog/archive-achievement-dialog.component';
+import { NpcsComponent } from './components/utilities/npcs/npcs.component';
+import { AddNpcDialogComponent } from './components/utilities/npcs/add-npc-dialog/add-npc-dialog.component';
+import { AddOrganizationDialogComponent } from './components/utilities/npcs/add-organization-dialog/add-organization-dialog.component';
+import { CompanionTabViewComponent } from './components/character-view/sub-components/companion-tab-view/companion-tab-view.component';
+import { CampaignNpcTabComponent } from './components/campaign-view/sub-components/campaign-npc-tab/campaign-npc-tab.component';
 
 @NgModule({
   declarations: [
@@ -173,6 +178,11 @@ import { ArchiveAchievementDialogComponent } from './components/campaign-view/su
     ArchiveStoryDialogComponent,
     ArchiveQuestDialogComponent,
     ArchiveAchievementDialogComponent,
+    NpcsComponent,
+    AddNpcDialogComponent,
+    AddOrganizationDialogComponent,
+    CompanionTabViewComponent,
+    CampaignNpcTabComponent,
 
   ],
   imports: [

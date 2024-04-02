@@ -1,0 +1,231 @@
+<div class="main-container">
+    <div class="search-container">
+        @if(isTab) {
+        <mat-form-field appearance="outline" class="search-input" color="accent">
+            <!-- <mat-label>Cerca</mat-label> -->
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput type="text" (keyup)="filterSearch($event)">
+        </mat-form-field>
+
+        <!-- Only +NPC -->
+        <button mat-mini-fab color="accent" class="add-button" (click)="openAddonDialog()"
+            disableRipple><mat-icon>add</mat-icon></button>
+        } @else {
+        <button mat-mini-fab color="accent" class="add-button" [matMenuTriggerFor]="menu"
+            disableRipple><mat-icon>add</mat-icon></button>
+        <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
+            <button mat-menu-item (click)="openAddNpcDialog()">
+                Alleato
+            </button>
+            <button mat-menu-item (click)="openAddOrganizationDialog()">
+                Organizzazione
+            </button>
+        </mat-menu>
+        }
+    </div>
+    @if (!isTab) {
+    <div class="competenze-label">Alleati</div>
+    @if (npcsData.length > 0) {
+    @for (npc of npcsData; track i; let i = $index) {
+    @if (npc.category === 'Alleato') {
+    <div class="org-line">
+        @if (npc.imgUrl !== '') {
+        <img [src]="npc.imgUrl" referrerpolicy="no-referrer">
+        }
+        <div class="org-title-container">
+            <div class="org-title">{{npc.name}}</div>
+            <div class="org-place">{{npc.lastPlace}}<span *ngIf="npc.relationship">, {{npc.relationship}}</span></div>
+        </div>
+        <button mat-mini-fab color="accent" class="edit-button" (click)="openAddNpcDialog(npc, i, isTab)">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
+        <div>{{npc.notes}}</div>
+        @if (npc.isDealer || npc.isMerchant) {
+        <div class="npc-footer">
+            @if (npc.isDealer) {
+            <img src="./assets/npcs/ricettatore.svg" matTooltip="Ricettatore">
+            }
+            @if (npc.isMerchant) {
+            <img src="./assets/npcs/mercante.svg" matTooltip="Mercante">
+            }
+        </div>
+        }
+    </div>
+    }
+
+    }
+    } @else {
+    <div class="empty-list">Nessun alleato presente.</div>
+    }
+    <div class="competenze-label">Organizzazioni</div>
+    @if (organizationsData.length > 0) {
+    @for (org of organizationsData; track i; let i = $index) {
+    <div class="org-line">
+        @if (org.imgUrl !== '') {
+        <img [src]="org.imgUrl" referrerpolicy="no-referrer">
+        }
+        <div class="org-title-container">
+            <div class="org-title">{{org.name}}</div>
+            <div class="org-place">{{org.lastPlace}}<span *ngIf="org.relationship">, {{org.relationship}}</span></div>
+        </div>
+        <button mat-mini-fab color="accent" class="edit-button" (click)="openAddOrganizationDialog(org, i)">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <div class="org-description">{{org.notes}}</div>
+    }
+    } @else {
+    <div class="empty-list">Nessuna organizzazione presente.</div>
+    }
+    } @else {
+    @if (adddonsData.length > 0) {
+    @for (addon of adddonsData; track i; let i = $index) {
+    @if (!addon.filtered) {
+    <div class="org-line">
+        @if (addon.imgUrl !== '') {
+        <img [ngClass]="{'zero-hp': addon.HP === 0}" [src]="addon.imgUrl" referrerpolicy="no-referrer">
+        }
+        <div class="org-title-container">
+            <div class="org-title">{{addon.name}}</div>
+            <div class="org-place">{{addon.race}}<span *ngIf="addon.relationship">, {{addon.relationship}}</span></div>
+        </div>
+        <button mat-mini-fab color="accent" class="edit-button" (click)="openAddonDialog(addon, i)">
+            <mat-icon>edit</mat-icon>
+        </button>
+    </div>
+    <details class="main-details">
+        <summary class="addon-name">Statistiche</summary>
+        <div class="hp-container">
+            <div class="hp-value">{{addon.HP}} / {{addon.HPmax}}</div>
+            <div class="hp-button" (click)="updateNpcHP('sub', i)">
+                <mat-icon>remove</mat-icon>
+            </div>
+            <progress [max]="addon.HPmax" [value]="addon.HP" class="hp-bar"></progress>
+            <div class="hp-button" (click)="updateNpcHP('add', i)">
+                <mat-icon>add</mat-icon>
+            </div>
+        </div>
+        <div class="caratteristiche-main-container">
+            <div class="caratteristiche-line">
+                <div class="caratteristiche-container">
+                    <div class="caratteristica-label">FOR</div>
+                    <div class="caratteristica-value">{{addon.strength}}</div>
+                    <div class="caratteristica-mod">{{addon.strengthMod > 0 ? '+' : ''}}{{addon.strengthMod}}</div>
+                </div>
+                <div class="caratteristiche-container">
+                    <div class="caratteristica-label">DES</div>
+                    <div class="caratteristica-value">{{addon.dexterity}}</div>
+                    <div class="caratteristica-mod">{{addon.dexterityMod > 0 ? '+' : ''}}{{addon.dexterityMod}}</div>
+                </div>
+                <div class="caratteristiche-container">
+                    <div class="caratteristica-label">COS</div>
+                    <div class="caratteristica-value">{{addon.constitution}}</div>
+                    <div class="caratteristica-mod">{{addon.constitutionMod > 0 ? '+' : ''}}{{addon.constitutionMod}}</div>
+                </div>
+            </div>
+            <div class="caratteristiche-line">
+                <div class="caratteristiche-container">
+                    <div class="caratteristica-label">INT</div>
+                    <div class="caratteristica-value">{{addon.intelligence}}</div>
+                    <div class="caratteristica-mod">{{addon.intelligenceMod > 0 ? '+' : ''}}{{addon.intelligenceMod}}</div>
+                </div>
+                <div class="caratteristiche-container">
+                    <div class="caratteristica-label">SAG</div>
+                    <div class="caratteristica-value">{{addon.wisdom}}</div>
+                    <div class="caratteristica-mod">{{addon.wisdomMod > 0 ? '+' : ''}}{{addon.wisdomMod}}</div>
+                </div>
+                <div class="caratteristiche-container">
+                    <div class="caratteristica-label">CAR</div>
+                    <div class="caratteristica-value">{{addon.charisma}}</div>
+                    <div class="caratteristica-mod">{{addon.charismaMod > 0 ? '+' : ''}}{{addon.charismaMod}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="info-container">
+            <div class="info-line" *ngIf="addon.CA">
+                <div class="info-label">CA</div>
+                <div class="info-value">{{addon.CA}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.speed !== ''">
+                <div class="info-label">Velocità</div>
+                <div class="info-value">{{addon.speed}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.saveThrows !== ''">
+                <div class="info-label">Tiri Salvezza</div>
+                <div class="info-value">{{addon.saveThrows}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.skills !== ''">
+                <div class="info-label">Velocità</div>
+                <div class="info-value">{{addon.skills}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.vulnerabilities !== ''">
+                <div class="info-label">Vulnerabilità</div>
+                <div class="info-value">{{addon.vulnerabilities}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.resistances !== ''">
+                <div class="info-label">Resistenze</div>
+                <div class="info-value">{{addon.resistances}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.immunities !== ''">
+                <div class="info-label">Immunità</div>
+                <div class="info-value">{{addon.immunities}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.senses !== ''">
+                <div class="info-label">Sensi</div>
+                <div class="info-value">{{addon.senses}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.languages !== ''">
+                <div class="info-label">Linguaggi</div>
+                <div class="info-value">{{addon.languages}}</div>
+            </div>
+            <div class="info-line" *ngIf="addon.challenge !== ''">
+                <div class="info-label">Sfida</div>
+                <div class="info-value">{{addon.challenge}}</div>
+            </div>
+        </div>
+        @if (addon.traits.length > 0) {
+            <details class="inner-details">
+                <summary class="addon-name sub-summary">Tratti</summary>
+                @for (trait of addon.traits; track $index) {
+                    <div class="inner-line">
+                        <div class="inner-label">{{trait.title}}</div>
+                        <div class="inner-value">{{trait.description}}</div>
+                    </div>
+                }
+            </details>
+        } 
+        @if (addon.actions.length > 0) {
+            <details class="inner-details">
+                <summary class="addon-name sub-summary">Azioni</summary>
+                @for (action of addon.actions; track $index) {
+                    <div class="inner-line">
+                        <div class="inner-label">{{action.title}}</div>
+                        <div class="inner-value">{{action.description}}</div>
+                    </div>
+                }
+            </details>
+        }
+    </details>
+    <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
+        <div>{{addon.notes}}</div>
+        @if (addon.isDealer || addon.isMerchant) {
+        <div class="npc-footer">
+            @if (addon.isDealer) {
+            <img src="./assets/npcs/ricettatore.svg" matTooltip="Ricettatore">
+            }
+            @if (addon.isMerchant) {
+            <img src="./assets/npcs/mercante.svg" matTooltip="Mercante">
+            }
+        </div>
+        }
+    </div>
+    }
+    }
+    } @else {
+    <div class="empty-list">Nessun Evocazione/Trasformazione/Altro presente.</div>
+    }
+    }
+
+</div>

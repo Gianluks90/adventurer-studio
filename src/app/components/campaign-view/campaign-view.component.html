@@ -37,10 +37,11 @@
                 </ng-template>
                 <app-campaign-entries-tab [entries]="campaignData.entries" [isOwner]="isOwner"></app-campaign-entries-tab>
             </mat-tab>
-            <mat-tab disabled>
+            <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/campaign-tabs-icon/npcs.svg" class="label-icon" matTooltipPosition="below" matTooltip="Personaggi">
+                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below" matTooltip="PNG">
                 </ng-template>
+                <app-campaign-npc-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-npc-tab>
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>

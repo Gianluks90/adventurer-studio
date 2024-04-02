@@ -2,6 +2,7 @@ import { Injectable, WritableSignal, signal } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { addDoc, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -303,6 +304,20 @@ export class CampaignService {
     return await setDoc(docRef, {
       achievements: achievements,
       lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async addAddon(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      addons: arrayUnion(form)
+    }, { merge: true });
+  }
+
+  public async updateAddons(id: string, addons: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      addons: addons
     }, { merge: true });
   }
 

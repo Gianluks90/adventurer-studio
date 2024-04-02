@@ -1,65 +1,74 @@
 <!-- <div class="main-descrizione-background-container"> -->
 <div class="character-name-container">
-    {{nomiPersonaggioData.nomeEsteso !== '' ? nomiPersonaggioData.nomeEsteso : nomiPersonaggioData.nome}}
+    {{charData.informazioniBase.nomePersonaggioEsteso !== '' ? charData.informazioniBase.nomePersonaggioEsteso :
+    charData.informazioniBase.nomePersonaggio}}
 </div>
 <div class="section-title">Caratteristiche fisiche</div>
 <div class="background-main-container">
     <div class="bg-line">
-        <div class="bg-info"><strong>Età</strong> {{caratteristicheFisicheData.eta}} anni</div>
-        <div class="bg-info"><strong>Altezza</strong> {{caratteristicheFisicheData.altezza}} cm</div>
-        <div class="bg-info"><strong>Peso</strong> {{caratteristicheFisicheData.peso}} Kg</div>
+        <div class="bg-info"><strong>Età</strong> {{charData.caratteristicheFisiche.eta}} anni</div>
+        <div class="bg-info"><strong>Altezza</strong> {{charData.caratteristicheFisiche.altezza}} cm</div>
+        <div class="bg-info"><strong>Peso</strong> {{charData.caratteristicheFisiche.peso}} Kg</div>
     </div>
     <div class="bg-line">
-        <div class="bg-info"><strong>Occhi</strong> {{caratteristicheFisicheData.occhi}}</div>
-        <div class="bg-info"><strong>Carnagione</strong> {{caratteristicheFisicheData.carnagione}}</div>
-        <div class="bg-info last-info"><strong>Capelli</strong> {{caratteristicheFisicheData.capelli}}</div>
+        <div class="bg-info"><strong>Occhi</strong> {{charData.caratteristicheFisiche.occhi}}</div>
+        <div class="bg-info"><strong>Carnagione</strong> {{charData.caratteristicheFisiche.carnagione}}</div>
+        <div class="bg-info last-info"><strong>Capelli</strong> {{charData.caratteristicheFisiche.capelli}}</div>
     </div>
 
 </div>
-<div class="section-title">Background: {{backgroundInfoData.name}} <span *ngIf="backgroundInfoData.detail !== ''">
-        ({{backgroundInfoData.detail}})</span></div>
+<div class="section-title">Background: {{charData.informazioniBase.background}} <span
+        *ngIf="charData.informazioniBase.dettaglioBackground !== ''">
+        ({{charData.informazioniBase.dettaglioBackground}})</span></div>
 <details>
     <summary class="bg-name">Tratti caratteriali</summary>
     <div class="bg-description">
-        {{backgroundData.trattiCaratteriali}}
+        {{charData.trattiBackground.trattiCaratteriali}}
     </div>
 </details>
 <details>
     <summary class="bg-name">Ideali</summary>
     <div class="bg-description">
-        {{backgroundData.ideali}}
+        {{charData.trattiBackground.ideali}}
     </div>
 </details>
 <details>
     <summary class="bg-name">Legami</summary>
     <div class="bg-description">
-        {{backgroundData.legami}}
+        {{charData.trattiBackground.legami}}
     </div>
 </details>
 <details>
     <summary class="bg-name">Difetti</summary>
     <div class="bg-description">
-        {{backgroundData.difetti}}
+        {{charData.trattiBackground.difetti}}
     </div>
 </details>
 <div class="section-title">Ritratto personaggio</div>
 <div class="picture-container">
-    <img [src]="immaginePersonaggioData.url" referrerpolicy="no-referrer">
+    <img [src]="charData.informazioniBase.urlImmaginePersonaggio" referrerpolicy="no-referrer">
     <div class="action-buttons-container">
-        <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url !== '' || inCampaign"
+        <button mat-raised-button color="accent"
+            [disabled]="charData.informazioniBase.urlImmaginePersonaggio !== '' || inCampaign"
             (click)="file.click()"><mat-icon>add_photo_alternate</mat-icon> Carica</button>
         <input #file id="file" hidden class="" type="file" accept="image" (change)="onPicSelected($event)">
-        <button mat-raised-button color="accent" [disabled]="immaginePersonaggioData.url === '' || inCampaign"
-            (click)="deletePic(immaginePersonaggioData.nome)"><mat-icon>delete</mat-icon>Elimina</button>
+        <button mat-raised-button color="accent"
+            [disabled]="charData.informazioniBase.urlImmaginePersonaggio === '' || inCampaign"
+            (click)="deletePic(charData.informazioniBase.nomeImmaginePersonaggio)"><mat-icon>delete</mat-icon>Elimina</button>
     </div>
 </div>
 <div class="section-title">Storia</div>
 @if (editModeData) {
 <div class="character-history-container">
-    {{storiaData}}
+    {{charData.storiaPersonaggio}}
 </div>
 } @else {
 <div class="description">Questa storia è visibile solo al proprietario della scheda personaggio e al DM della Campagna
     in cui esso è inserito, se presente.</div>
 }
+<div class="section-title">Alleati e Organizzazioni</div>
+<div class="description">Puoi inserire qui sotto Alleati e Organizzazioni legate al tuo background o incontrati durante
+    le tue avventure. Alleati evocabili, compagni animali, ecc... vanno inseriti nel tab dedicato (icona bandiera).
+</div>
+<app-npcs [npcs]="charData.allies" [organizations]="charData.organizations" [tab]="false"></app-npcs>
 <!-- </div> -->

@@ -1,0 +1,212 @@
+<div mat-dialog-title class="dialog-title">{{data.npc ? 'Modifica' : 'Aggiungi'}} Alleato</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div class="step-form" [formGroup]="form">
+        <div class="competenze-label">Informazioni base</div>
+        <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Razza/Creatura/Altro</mat-label>
+                <input matInput formControlName="race">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Allineamento</mat-label>
+                <mat-select formControlName="alignment">
+                    <mat-option value="Legale buono">Legale buono (LB)</mat-option>
+                    <mat-option value="Neutrale buono">Neutrale buono (NB)</mat-option>
+                    <mat-option value="Caotico buono">Caotico buono (CB)</mat-option>
+                    <mat-option value="Legale neutrale">Legale neutrale (LN)</mat-option>
+                    <mat-option value="Neutrale">Neutrale (N)</mat-option>
+                    <mat-option value="Caotico neutrale">Caotico neutrale (CN)</mat-option>
+                    <mat-option value="Legale malvagio">Legale malvagio (LM)</mat-option>
+                    <mat-option value="Neutrale malvagio">Neutrale malvagio (NM)</mat-option>
+                    <mat-option value="Caotico malvagio">Caotico malvagio (CM)</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label>Note</mat-label>
+            <textarea matInput formControlName="notes" rows="5"></textarea>
+        </mat-form-field>
+        <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Luogo di incontro</mat-label>
+                <input matInput formControlName="lastPlace">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Relazione</mat-label>
+                <mat-select formControlName="relationship">
+                    @for (relation of relationships; track $index) {
+                    <mat-option [value]="relation">{{relation}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+        
+        <div class="line-container img-upload">
+            @if (form.value.imgUrl !== '' || form.value.imgName !== '') {
+                <img [src]="form.value.imgUrl" referrerpolicy="no-referrer">
+                <div class="divider"></div>
+            }
+            <input hidden [disabled]="form.value.name === ''" #orgFile id="file" class="" type="file" accept="image"
+                (change)="onPicSelected($event)">
+            <button mat-raised-button color="accent" [disabled]="form.value.imgUrl !== '' || !form.valid"
+                (click)="orgFile.click()"><mat-icon>add_photo_alternate</mat-icon> Carica
+            </button>
+            <button mat-raised-button color="accent" [disabled]="form.value.imgUrl === '' && form.value.imgName === ''"
+                (click)="deletePic(form.value.imgName)">
+                <mat-icon>delete</mat-icon> Elimina
+            </button>
+        </div>
+        <mat-checkbox formControlName="parameterRequired">Avanzate (caratteristiche, azioni, resistenze, vulnerabilità,
+            ecc...)</mat-checkbox>
+        @if (form.value.parameterRequired) {
+        <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>CA</mat-label>
+                <input matInput formControlName="CA" inputmode="numeric">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Velocità (m)</mat-label>
+                <input matInput formControlName="speed" inputmode="numeric">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Punti Ferita Massimi</mat-label>
+                <input matInput formControlName="HPmax" inputmode="numeric">
+            </mat-form-field>
+        </div>
+        <div class="competenze-label">Caratteristiche</div>
+        <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Forza</mat-label>
+                <input matInput formControlName="strength" inputmode="numeric">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Destrezza</mat-label>
+                <input matInput formControlName="dexterity" inputmode="numeric">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Costituzione</mat-label>
+                <input matInput formControlName="constitution" inputmode="numeric">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Intelligenza</mat-label>
+                <input matInput formControlName="intelligence" inputmode="numeric">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Saggezza</mat-label>
+                <input matInput formControlName="wisdom" inputmode="numeric">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Carisma</mat-label>
+                <input matInput formControlName="charisma" inputmode="numeric">
+            </mat-form-field>
+        </div>
+        <div class="competenze-label">Dettagli</div>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Tiri salvezza</mat-label>
+            <input matInput formControlName="saveThrows">
+        </mat-form-field>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Vulnerabilità</mat-label>
+            <input matInput formControlName="vulnerabilities">
+        </mat-form-field>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Resistenze</mat-label>
+            <input matInput formControlName="resistances">
+        </mat-form-field>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Immunità</mat-label>
+            <input matInput formControlName="immunities">
+        </mat-form-field>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Sensi</mat-label>
+            <input matInput formControlName="senses">
+        </mat-form-field>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Abilità</mat-label>
+            <input matInput formControlName="skills">
+        </mat-form-field>
+        <div class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Linguaggi</mat-label>
+                <input matInput formControlName="languages">
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Sfida</mat-label>
+                <input matInput formControlName="challenge">
+            </mat-form-field>
+        </div>
+        <div class="competenze-label">Tratti</div>
+        <ng-container formArrayName="traits">
+            <ng-container class="action-container" *ngFor="let a of traits.controls; let i = index">
+                <div [formGroupName]="i" class="action-container">
+                    <mat-form-field class="line-input" color="accent" appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="title">
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Descrizione</mat-label>
+                        <textarea matInput formControlName="description" rows="5"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="delete-button">
+                    <button mat-raised-button color="accent" (click)="deleteTrait(i)">
+                        <mat-icon>delete</mat-icon> Rimuovi
+                    </button>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <div class="button-container">
+            <button mat-raised-button color="accent" (click)="addTrait()">
+                <mat-icon>add</mat-icon>
+                Aggiungi nuovo
+            </button>
+        </div>
+
+        <div class="competenze-label">Azioni</div>
+        <ng-container formArrayName="actions">
+            <ng-container class="action-container" *ngFor="let a of actions.controls; let i = index">
+                <div [formGroupName]="i" class="action-container">
+                    <mat-form-field class="line-input" color="accent" appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="title">
+                    </mat-form-field>
+                    <mat-form-field color="accent" appearance="outline">
+                        <mat-label>Descrizione</mat-label>
+                        <textarea matInput formControlName="description" rows="5"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="delete-button">
+                    <button mat-raised-button color="accent" (click)="deleteAction(i)">
+                        <mat-icon>delete</mat-icon> Rimuovi
+                    </button>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <div class="button-container">
+            <button mat-raised-button color="accent" (click)="addAction()">
+                <mat-icon>add</mat-icon>
+                Aggiungi nuova
+            </button>
+        </div>
+
+
+        }
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button *ngIf="data.npc" mat-raised-button mat-dialog-close color="warn" (click)="delete()">
+        <mat-icon>delete</mat-icon> Elimina
+    </button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>{{data.npc ? 'check' : 'add'}}</mat-icon> {{data.npc ? 'Modifica' : 'Aggiungi'}}
+    </button>
+</div>

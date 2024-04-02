@@ -97,6 +97,28 @@ export class FormService {
     });
   }
 
+  public async uploadNPCImage(event: any, name: string): Promise<any> {
+    const file: File = event.target.files[0];
+    const fileName = name.replace(' ', '_');
+    const imageRef = ref(this.firebaseService.storage, 'characterImages/' + getAuth().currentUser?.uid + '/' + fileName);
+    return await uploadBytes(imageRef, file).then(async () => {
+      return await getDownloadURL(imageRef).then((url) => {
+        return {
+          url: url,
+          name: fileName
+        };
+      }).catch((error) => {
+        console.log(error);
+        alert('Errore nel caricamento dell\'immagine');
+        return 'error';
+      });
+    }).catch((error) => {
+      console.log(error);
+      alert('Errore nel caricamento dell\'immagine');
+      return 'error';
+    });
+  }
+
   public async deleteImage(nomeImmagine: string): Promise<string> {
     // NOTA: Il nome immagine corrisponde anche all'id del personaggio
     const imageRef = ref(this.firebaseService.storage, 'characterImages/' + getAuth().currentUser?.uid + '/' + nomeImmagine);

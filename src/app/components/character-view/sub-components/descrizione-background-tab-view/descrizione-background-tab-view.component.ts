@@ -10,6 +10,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class DescrizioneBackgroundTabViewComponent {
 
   public editModeData: boolean = false;
+  public charData: any;
+  public infoBaseData: any;
   public backgroundInfoData: any;
 
   public backgroundData: {
@@ -48,28 +50,10 @@ export class DescrizioneBackgroundTabViewComponent {
     this.editModeData = editMode;
   }
 
-  @Input() set backgroundInfo(backgroundInfo: any) {
-    this.backgroundInfoData = backgroundInfo;
-  }
-
-  @Input() set background(background: any) {
-    this.backgroundData = background;
-  }
-
-  @Input() set storia(storia: string) {
-    this.storiaData = storia;
-  }
-
-  @Input() set caratteristicheFisiche(caratteristicheFisiche: any) {
-    this.caratteristicheFisicheData = caratteristicheFisiche;
-  }
-
-  @Input() set immaginePersonaggio(immaginePersonaggio: any) {
-    this.immaginePersonaggioData = immaginePersonaggio;
-  }
-
-  @Input() set nomiPersonaggio(nomiPersonaggio: any) {
-    this.nomiPersonaggioData = nomiPersonaggio;
+  @Input() set character(character: any) {
+    this.charData = character;
+    console.log(this.charData);
+    
   }
 
   @Output() pictureEmitter: EventEmitter<any> = new EventEmitter<any>();
