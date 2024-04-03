@@ -170,7 +170,7 @@ export class CharacterService {
   public async adminCharUpdate(id: string): Promise<any> {
     const ref = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(ref, {
-      addons: []
+      // campaignId: ''
     }, { merge: true })
   }
 

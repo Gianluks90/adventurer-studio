@@ -1,9 +1,9 @@
-<div class="blurred-background" *ngIf="authGuardService.authStatus">
+<div class="blurred-background">
 </div>
 
 <mat-drawer-container class="main" >
   <mat-drawer #drawer class="drawer-container" mode="over" autoFocus="false">
-    <app-sidenav *ngIf="authGuardService.authStatus"></app-sidenav>
+    <app-sidenav></app-sidenav>
   </mat-drawer>
   <mat-drawer-content class="drawer-inner-container">
       <router-outlet></router-outlet>

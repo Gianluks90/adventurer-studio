@@ -43,9 +43,12 @@ export class FirebaseService {
    }
 
   public async checkUser(user: User): Promise<boolean> {
+    // console.log('check', user);
+    
     return await this.getUser(user).then(userSnap => {
       if (userSnap.exists()) {
         const userResult = UserData.parseUser(user, userSnap.data());
+        // console.log('user res', userResult);
         this.user.next(userResult);
         this.isAuth.next(true);
         return true;

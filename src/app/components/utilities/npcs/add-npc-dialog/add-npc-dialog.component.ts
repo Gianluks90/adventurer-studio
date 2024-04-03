@@ -68,7 +68,7 @@ export class AddNpcDialogComponent {
     if (this.data.npc) {
       this.dialogRef.close({
         status: 'deleted',
-        spell: this.form.value
+        npc: this.form.value
       })
     }
   }

@@ -307,6 +307,34 @@ export class CampaignService {
     }, { merge: true });
   }
 
+  public async addAlly(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      allies: arrayUnion(form)
+    }, { merge: true });
+  }
+
+  public async updateAllies(id: string, allies: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      allies: allies
+    }, { merge: true });
+  }
+
+  public async addOrganization(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      organizations: arrayUnion(form)
+    }, { merge: true });
+  }
+
+  public async updateOrganizations(id: string, organizations: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      organizations: organizations
+    }, { merge: true });
+  }
+
   public async addAddon(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {

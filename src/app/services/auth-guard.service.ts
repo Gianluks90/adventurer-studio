@@ -6,16 +6,17 @@ import { getAuth } from 'firebase/auth';
   providedIn: 'root'
 })
 export class AuthGuardService {
-  authStatus: boolean = false;
-
   constructor(private router: Router) {}
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     return new Promise((resolve, reject) => {
+      // console.log('auth');
+      
       getAuth().onAuthStateChanged(user => {
+        // console.log('user', user);
+        
         if (user) {
           resolve(true);
-          this.authStatus = true;
         } else {
           this.router.navigate(['/login']);
           resolve(false);

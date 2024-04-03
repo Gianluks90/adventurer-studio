@@ -28,11 +28,9 @@ export class AuthComponent {
         this.checkUser(user.uid).then((doc) => {
           if (doc.exists()) {
             // localStorage.setItem('dndCS-2023-logged', 'true');
-            this.authGuardService.authStatus = true;
             this.router.navigate(['/home']);
 
           } else{
-            this.authGuardService.authStatus = false;
             this.router.navigate(['/login']);
           }
         })

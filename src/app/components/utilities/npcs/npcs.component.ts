@@ -17,6 +17,7 @@ export class NpcsComponent {
   public adddonsData: any[] = [];
   public organizationsData: any[] = [];
   public isTab: boolean = false;
+  public isOwner: boolean = false;
   public isCampaign: boolean = false;
   public addonTimer: any = null;
 
@@ -29,8 +30,10 @@ export class NpcsComponent {
 
   @Input() set npcs(npcs: any[]) {
     npcs.forEach((npc: any) => {
-      this.npcsData.push(NPC.fromData(npc));
+      this.npcsData.push(npc);
     });
+    console.log('npcs', this.npcsData);
+    
     this.sortNpcs();
   }
 
@@ -49,6 +52,10 @@ export class NpcsComponent {
     this.isTab = tab;
   }
 
+  @Input() set isCampaignOwner(isOwner: boolean) {
+    this.isOwner = isOwner;
+  }
+
   public openAddNpcDialog(npc?: any, index?: number, isTab?: boolean) {
     this.dialog.open(AddNpcDialogComponent, {
       width: window.innerWidth < 600 ? '90%' : '60%',
@@ -58,19 +65,36 @@ export class NpcsComponent {
     }).afterClosed().subscribe((result: any) => {
       switch (result.status) {
         case 'success':
-          this.charService.addAlly(window.location.href.split('/').pop(), result.npc).then(() => {
-            this.npcsData.push(NPC.fromData(result.npc));
-            this.sortNpcs();
-          });
+          if (!this.isCampaign) {
+            this.charService.addAlly(window.location.href.split('/').pop(), result.npc).then(() => {
+              this.npcsData.push(NPC.fromData(result.npc));
+              this.sortNpcs();
+            });
+          } else {
+            this.campaignService.addAlly(window.location.href.split('/').pop(), result.npc).then(() => {
+              // this.npcsData.push(NPC.fromData(result.npc));
+              this.sortNpcs();
+            });
+          }
           break;
         case 'edited':
           this.calcModifiers(result.npc);
           this.npcsData[index] = result.npc;
-          this.charService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
+          if (!this.isCampaign) {
+            this.charService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
+          } else {
+            this.campaignService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
+          }
+          // this.charService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
           break;
         case 'deleted':
           this.npcsData.splice(index, 1);
-          this.charService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
+          if (!this.isCampaign) {
+            this.charService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
+          } else {
+            this.campaignService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
+          }
+          // this.charService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
           break;
       }
     });
@@ -101,8 +125,8 @@ export class NpcsComponent {
           break;
         case 'edited':
           this.calcModifiers(result.npc);
-          this.adddonsData[index] = result.npc;
           if (!this.isCampaign) {
+            this.adddonsData[index] = result.npc;
             this.charService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
           } else {
             this.campaignService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
@@ -110,8 +134,8 @@ export class NpcsComponent {
           // this.charService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
           break;
         case 'deleted':
-          this.adddonsData.splice(index, 1);
           if (!this.isCampaign) {
+            this.adddonsData.splice(index, 1);
             this.charService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
           } else {
             this.campaignService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
@@ -131,17 +155,36 @@ export class NpcsComponent {
     }).afterClosed().subscribe((result: any) => {
       switch (result.status) {
         case 'success':
-          this.charService.addOrganization(window.location.href.split('/').pop(), result.organization).then(() => {
-            this.organizationsData.push(result.organization);
-          });
+          if (!this.isCampaign) {
+            this.charService.addOrganization(window.location.href.split('/').pop(), result.organization).then(() => {
+              this.organizationsData.push(result.organization);
+            });
+          } else {
+            this.campaignService.addOrganization(window.location.href.split('/').pop(), result.organization).then(() => {
+              // this.organizationsData.push(result.organization);
+            });
+          }
+          // this.charService.addOrganization(window.location.href.split('/').pop(), result.organization).then(() => {
+          //   this.organizationsData.push(result.organization);
+          // });
           break;
         case 'edited':
           this.organizationsData[index] = result.organization;
-          this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
+          if (!this.isCampaign) {
+            this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
+          } else {
+            this.campaignService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
+          }
+          // this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
           break;
         case 'deleted':
           this.organizationsData.splice(index, 1);
-          this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
+          if (!this.isCampaign) {
+            this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
+          } else {
+            this.campaignService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
+          }
+          // this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
           break;
       }
     });

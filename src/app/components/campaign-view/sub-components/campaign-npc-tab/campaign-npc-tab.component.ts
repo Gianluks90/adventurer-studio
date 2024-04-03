@@ -12,6 +12,7 @@ export class CampaignNpcTabComponent {
 
   @Input() set campaign(data: any) {
     this.campaignData = data;
+    
   }
 
   @Input() set isOwner(isOwner: boolean) {
