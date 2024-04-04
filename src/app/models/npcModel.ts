@@ -43,6 +43,7 @@ export class NPC {
     lastPlace: string = '';
     addable: boolean = false;
     filtered: boolean = false;
+    visible: boolean = true;
 
     constructor() {}
 
@@ -89,7 +90,7 @@ export class NPC {
             notes: '',
             lastPlace: '',
             addable: false,
-            visibile: false,
+            visible: true,
             filtered: false
         }
     }
@@ -98,12 +99,13 @@ export class NPC {
         return {
             name: ['', Validators.required],
             category: NPCCategory.ALLY,
-            relationship: NPCRelationship.NEUTRAL,
+            relationship: NPCRelationship.INDIFFERENT,
             imgUrl: '',
             imgName: '',
             notes: ['', Validators.required],
             lastPlace: '',
-            filtered: false
+            filtered: false,
+            visible: true
         }
     }
 
@@ -122,6 +124,7 @@ export class NPC {
 export enum NPCRelationship {
     FRIEND = 'Amichevole',
     NEUTRAL = 'Neutrale',
+    INDIFFERENT = 'Indifferente',
     OSTILE = 'Ostile'
 }
 

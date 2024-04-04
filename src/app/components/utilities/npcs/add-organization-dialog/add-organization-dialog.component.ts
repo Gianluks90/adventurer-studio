@@ -13,7 +13,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class AddOrganizationDialogComponent {
 
   public form: FormGroup = this.fb.group(NPC.createOrganization(this.fb));
-  public relationships = [NPCRelationship.FRIEND, NPCRelationship.NEUTRAL, NPCRelationship.OSTILE];
+  public relationships = [NPCRelationship.FRIEND, NPCRelationship.NEUTRAL, NPCRelationship.INDIFFERENT, NPCRelationship.OSTILE];
+  public isCampaign: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { organizations: any[], organization?: any },
@@ -27,6 +28,7 @@ export class AddOrganizationDialogComponent {
         this.form.patchValue(this.data.organization);
       }
       this.form.get('category').setValue(NPCCategory.ORGANIZATION);
+      this.isCampaign = window.location.pathname.includes('campaign-view') || false;
     }
 
     confirm() {

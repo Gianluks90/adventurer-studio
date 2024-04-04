@@ -19,28 +19,26 @@ export class NpcsComponent {
   public isTab: boolean = false;
   public isOwner: boolean = false;
   public isCampaign: boolean = false;
+  public isCharacterPage: boolean = false;
   public addonTimer: any = null;
 
   constructor(
     private dialog: MatDialog,
     private charService: CharacterService,
     private campaignService: CampaignService) {
-    this.isCampaign = window.location.href.includes('campaign-view');
+    this.isCampaign = window.location.href.includes('campaign-view') || false;
+    this.isCharacterPage = window.location.href.includes('character-view') || false;
   }
 
   @Input() set npcs(npcs: any[]) {
-    npcs.forEach((npc: any) => {
-      this.npcsData.push(npc);
-    });
+    this.npcsData = npcs;
     console.log('npcs', this.npcsData);
     
     this.sortNpcs();
   }
 
   @Input() set addons(addons: any[]) {
-    addons.forEach((addon: any) => {
-      this.adddonsData.push(addon);
-    });
+    this.adddonsData = addons;
     this.sortAddons();
   }
 
@@ -101,8 +99,6 @@ export class NpcsComponent {
   }
 
   public openAddonDialog(addon?: any, index?: number) {
-    console.log('aggiungo addon');
-    
     this.dialog.open(AddNpcDialogComponent, {
       width: window.innerWidth < 600 ? '90%' : '60%',
       autoFocus: false,
@@ -125,8 +121,8 @@ export class NpcsComponent {
           break;
         case 'edited':
           this.calcModifiers(result.npc);
+          this.adddonsData[index] = result.npc;
           if (!this.isCampaign) {
-            this.adddonsData[index] = result.npc;
             this.charService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
           } else {
             this.campaignService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
@@ -134,8 +130,8 @@ export class NpcsComponent {
           // this.charService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
           break;
         case 'deleted':
+          this.adddonsData.splice(index, 1);
           if (!this.isCampaign) {
-            this.adddonsData.splice(index, 1);
             this.charService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
           } else {
             this.campaignService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);

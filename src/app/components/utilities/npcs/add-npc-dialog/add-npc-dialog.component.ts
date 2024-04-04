@@ -16,6 +16,7 @@ export class AddNpcDialogComponent {
   public relationships = [NPCRelationship.FRIEND, NPCRelationship.NEUTRAL, NPCRelationship.OSTILE];
   public traits: FormArray;
   public actions: FormArray;
+  public isCampaign: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { npcs: any[], npc?: any, isTab?: boolean},
@@ -27,6 +28,8 @@ export class AddNpcDialogComponent {
     this.traits = this.form.controls['traits'] as FormArray;
     this.actions = this.fb.array([]);
     this.actions = this.form.controls['actions'] as FormArray;
+    this.isCampaign = window.location.pathname.includes('campaign-view') || false;
+    this.form.get('visible').setValue(false);
   }
 
   ngOnInit() {

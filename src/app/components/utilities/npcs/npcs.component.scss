@@ -70,6 +70,14 @@
 .org-title {
     font-family: 'Cinzel', serif;
     font-size: large;
+    display: flex;
+    align-items: center;
+}
+
+.org-visibility>mat-icon {
+    font-size: medium !important;
+    display: inline !important;
+    margin-right: 8px;
 }
 
 .edit-button {
