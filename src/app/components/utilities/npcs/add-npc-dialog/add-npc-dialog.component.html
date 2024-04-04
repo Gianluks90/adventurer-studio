@@ -1,4 +1,4 @@
-<div mat-dialog-title class="dialog-title">{{data.npc ? 'Modifica' : 'Aggiungi'}} Alleato</div>
+<div mat-dialog-title class="dialog-title">{{data.npc ? 'Modifica' : 'Aggiungi'}}</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
     <div class="step-form" [formGroup]="form">
         <div class="competenze-label">Informazioni base</div>
@@ -14,6 +14,7 @@
             <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>Allineamento</mat-label>
                 <mat-select formControlName="alignment">
+                    <mat-option value="Legale buono">Senza allineamento</mat-option>
                     <mat-option value="Legale buono">Legale buono (LB)</mat-option>
                     <mat-option value="Neutrale buono">Neutrale buono (NB)</mat-option>
                     <mat-option value="Caotico buono">Caotico buono (CB)</mat-option>
@@ -44,11 +45,11 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        
+
         <div class="line-container img-upload">
             @if (form.value.imgUrl !== '' || form.value.imgName !== '') {
-                <img [src]="form.value.imgUrl" referrerpolicy="no-referrer">
-                <div class="divider"></div>
+            <img [src]="form.value.imgUrl" referrerpolicy="no-referrer">
+            <div class="divider"></div>
             }
             <input hidden [disabled]="form.value.name === ''" #orgFile id="file" class="" type="file" accept="image"
                 (change)="onPicSelected($event)">
@@ -60,7 +61,11 @@
                 <mat-icon>delete</mat-icon> Elimina
             </button>
         </div>
-        <mat-checkbox formControlName="visible">Visibile?</mat-checkbox>
+        <div class="checkbox-container">
+            <mat-checkbox formControlName="visible" *ngIf="isCampaign">Visibile ai giocatori</mat-checkbox>
+            <mat-checkbox formControlName="isDealer" *ngIf="isCampaign">Ricettatore</mat-checkbox>
+            <mat-checkbox formControlName="isMerchant" *ngIf="isCampaign">Mercante</mat-checkbox>
+        </div>
         <mat-checkbox formControlName="parameterRequired">Avanzate (caratteristiche, azioni, resistenze, vulnerabilità,
             ecc...)</mat-checkbox>
         @if (form.value.parameterRequired) {

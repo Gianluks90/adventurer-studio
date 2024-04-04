@@ -125,13 +125,13 @@
                             <summary class="addon-name">Statistiche</summary>
                             <div class="hp-container">
                                 <div class="hp-value">{{addon.HP}} / {{addon.HPmax}}</div>
-                                <div class="hp-button" (click)="updateNpcHP('sub', i)">
+                                <button class="hp-button" mat-mini-fab color="accent" (click)="updateNpcHP('sub', i)">
                                     <mat-icon>remove</mat-icon>
-                                </div>
+                                </button>
                                 <progress [max]="addon.HPmax" [value]="addon.HP" class="hp-bar"></progress>
-                                <div class="hp-button" (click)="updateNpcHP('add', i)">
+                                <button class="hp-button" mat-mini-fab color="accent" (click)="updateNpcHP('add', i)">
                                     <mat-icon>add</mat-icon>
-                                </div>
+                                </button>
                             </div>
                             <div class="caratteristiche-main-container">
                                 <div class="caratteristiche-line">
@@ -267,10 +267,9 @@
 
                     }
                     <div class="org-title-container">
-                        
                         <div class="org-title">
-                        <span class="org-visibility">
-                            <mat-icon>{{npc.visible ? '' : 'visibility_off'}}</mat-icon>
+                        <span class="org-visibility" *ngIf="!npc.visible">
+                            <mat-icon>visibility_off</mat-icon>
                         </span> {{npc.name}}</div>
                         <div class="org-place">{{npc.lastPlace}}<span *ngIf="npc.relationship">, {{npc.relationship}}</span></div>
                     </div>
@@ -306,8 +305,8 @@
                     }
                     <div class="org-title-container">
                         <div class="org-title">
-                            <span class="org-visibility">
-                                <mat-icon>{{org.visible ? '' : 'visibility_off'}}</mat-icon>
+                            <span class="org-visibility" *ngIf="!org.visible">
+                                <mat-icon>visibility_off</mat-icon>
                             </span> {{org.name}}</div>
                         <div class="org-place">{{org.lastPlace}}<span *ngIf="org.relationship">, {{org.relationship}}</span></div>
                     </div>
@@ -330,8 +329,8 @@
                     }
                     <div class="org-title-container">
                         <div class="org-title">
-                            <span class="org-visibility">
-                                <mat-icon>{{addon.visible ? '' : 'visibility_off'}}</mat-icon>
+                            <span class="org-visibility" *ngIf="!addon.visible">
+                                <mat-icon>visibility_off</mat-icon>
                             </span> {{addon.name}}</div>
                         <div class="org-place">{{addon.race}}<span *ngIf="addon.relationship">, {{addon.relationship}}</span></div>
                     </div>
@@ -342,14 +341,14 @@
                 <details class="main-details">
                     <summary class="addon-name">Statistiche</summary>
                     <div class="hp-container">
-                        <div class="hp-value">{{addon.HP}} / {{addon.HPmax}}</div>
-                        <div class="hp-button" (click)="updateNpcHP('sub', i)">
+                        <div class="hp-value"><span *ngIf="!isCampaign">{{addon.HP}} /</span> {{addon.HPmax}}</div>
+                        <button class="hp-button" mat-mini-fab color="accent" (click)="updateNpcHP('sub', i)" *ngIf="!isCampaign">
                             <mat-icon>remove</mat-icon>
-                        </div>
+                        </button>
                         <progress [max]="addon.HPmax" [value]="addon.HP" class="hp-bar"></progress>
-                        <div class="hp-button" (click)="updateNpcHP('add', i)">
+                        <button class="hp-button" mat-mini-fab color="accent" (click)="updateNpcHP('add', i)" *ngIf="!isCampaign">
                             <mat-icon>add</mat-icon>
-                        </div>
+                        </button>
                     </div>
                     <div class="caratteristiche-main-container">
                         <div class="caratteristiche-line">

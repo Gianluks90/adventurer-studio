@@ -13,7 +13,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class AddNpcDialogComponent {
 
   public form: FormGroup = this.fb.group(NPC.create(this.fb));
-  public relationships = [NPCRelationship.FRIEND, NPCRelationship.NEUTRAL, NPCRelationship.OSTILE];
+  public relationships = [NPCRelationship.FRIEND, NPCRelationship.NEUTRAL, NPCRelationship.INDIFFERENT, NPCRelationship.OSTILE];
   public traits: FormArray;
   public actions: FormArray;
   public isCampaign: boolean = false;
@@ -28,8 +28,8 @@ export class AddNpcDialogComponent {
     this.traits = this.form.controls['traits'] as FormArray;
     this.actions = this.fb.array([]);
     this.actions = this.form.controls['actions'] as FormArray;
-    this.isCampaign = window.location.pathname.includes('campaign-view') || false;
     this.form.get('visible').setValue(false);
+    this.isCampaign = window.location.href.includes('campaign-view') || false;
   }
 
   ngOnInit() {
@@ -51,6 +51,7 @@ export class AddNpcDialogComponent {
     this.form.get('HPmax').valueChanges.subscribe((value: number) => {
       this.form.get('HP').setValue(value);
     });
+
   }
 
   confirm() {

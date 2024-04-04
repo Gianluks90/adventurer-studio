@@ -273,22 +273,24 @@ details[open]>summary::after {
 }
 
 .hp-button {
-    cursor: pointer;
-    padding: 6px;
-    font-size: x-large;
-    font-weight: bold;
-    background: rgba($color: #212121, $alpha: 0.9);
-    color: whitesmoke;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 25px;
+    width: 25px;
+    // cursor: pointer;
+    // padding: 6px;
+    // font-size: x-large;
+    // font-weight: bold;
+    // background: rgba($color: #212121, $alpha: 0.9);
+    // color: whitesmoke;
+    // width: 15px;
+    // height: 15px;
+    // border-radius: 50%;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
 
-    &:hover {
-        opacity: 0.6;
-    }
+    // &:hover {
+    //     opacity: 0.6;
+    // }
 }
 
 .hp-button>mat-icon {
