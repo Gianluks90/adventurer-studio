@@ -1,7 +1,9 @@
 <div mat-dialog-title class="dialog-title">{{data.quest ? 'Modifica' : 'Nuova'}} missione</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
     <div class="description">
-        Testo descrittivo
+        Indica un <strong>titolo</strong> e una <strong>descrizione</strong> per la missione da svolgere. Se visibile i giocatori potranno vedere queste
+        informazioni, mentre il campo "Note del DM" è solo per te. Quando "Completata" compila anche la sezione
+        aggiuntiva.
     </div>
     <mat-form-field color="accent" class="custom-form-field" appearance="outline">
         <mat-label>Titolo</mat-label>

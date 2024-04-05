@@ -3,6 +3,11 @@
   letter-spacing: 2px;
 }
 
+.description {
+  opacity: 0.8;
+  font-size: small;
+}
+
 .dialog-content {
   width: 100%;
 }
@@ -23,4 +28,9 @@
 
 button {
   border-radius: 0;
+}
+
+mat-form-field {
+  // width: 100% !important;
+  margin-bottom: 12px;
 }

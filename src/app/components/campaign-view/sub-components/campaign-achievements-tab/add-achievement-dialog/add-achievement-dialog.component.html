@@ -19,6 +19,7 @@
         <textarea matInput formControlName="dmNotes" rows="5"></textarea>
     </mat-form-field>
     <mat-form-field color="accent" class="custom-form-field" appearance="outline" *ngIf="data.characters.length > 0">
+        <mat-label>Reclamato da</mat-label>
         <mat-select formControlName="reclamedBy" multiple [compareWith]="compareFn">
             <mat-option *ngFor="let character of data.characters" [value]="{id: character.id, url: character.informazioniBase.urlImmaginePersonaggio}">
                 {{character.informazioniBase.nomePersonaggio}}

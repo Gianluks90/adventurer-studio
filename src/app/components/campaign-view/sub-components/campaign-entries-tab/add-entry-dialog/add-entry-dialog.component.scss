@@ -1,33 +1,38 @@
 .dialog-title {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  
-  .dialog-content {
-    width: 100%;
-  }
-  
-  .input-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .description {
-    margin-bottom: 8px;
-    text-align: justify;
-  }
-  
-  .custom-form-field {
-    width: 100%;
-  }
-  
-  button {
-    border-radius: 0;
-  }
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 
-  .description-text {
-    text-align: justify;
-    opacity: 0.7;
-    font-size: small;
-    margin-bottom: 20px;
-  }
+.dialog-content {
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  margin-bottom: 8px;
+  text-align: justify;
+}
+
+.custom-form-field {
+  width: 100%;
+}
+
+button {
+  border-radius: 0;
+}
+
+.description-text {
+  text-align: justify;
+  opacity: 0.7;
+  font-size: small;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  // width: 100% !important;
+  margin-bottom: 12px;
+}
