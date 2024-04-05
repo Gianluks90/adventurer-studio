@@ -39,7 +39,7 @@
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below" matTooltip="PNG">
+                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below" matTooltip="Personaggi, Organizzazioni e Schede">
                 </ng-template>
                 <app-campaign-npc-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-npc-tab>
             </mat-tab>
@@ -48,6 +48,12 @@
                     <img src="./assets/campaign-tabs-icon/trophy.svg" class="label-icon" matTooltipPosition="below" matTooltip="Trofei">
                 </ng-template>
                 <app-campaign-achievements-tab [campaign]="campaignData" [isOwner]="isOwner" [characters]="charData"></app-campaign-achievements-tab>
+            </mat-tab>
+            <mat-tab *ngIf="isOwner">
+                <ng-template mat-tab-label >
+                    <img src="./assets/campaign-tabs-icon/dmScreen.svg" class="label-icon" matTooltipPosition="below" matTooltip="Schermo del master">
+                </ng-template>
+                <app-master-screen-tab></app-master-screen-tab>
             </mat-tab>
             <mat-tab *ngIf="isOwner">
                 <ng-template mat-tab-label >

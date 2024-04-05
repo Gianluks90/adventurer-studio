@@ -1,0 +1,143 @@
+[
+    {
+        "title": "Azioni in combattimento",
+        "description": "Quando un personaggio effettua la sua azione nel suo turno, può effettuare una delle azioni presentate di seguito, un'azione fornitagli dalla sua classe o da un privilegio speciale, oppure un'azione di sua improvvisazione. Molti mostri dispongono di opzioni personali, descritte nelle loro schede delle statistiche. Quando un giocatore descrive un'azione che non è definita da alcuna regola, il DM gli comunica se quell'azione è possibile e che tipo di tiro deve effettuare per determinare il superamento o il fallimento della stessa.",
+        "orderedList": false,
+        "list": [
+            {
+                "name": "Aiuto",
+                "description": "Un personaggio può aiutare un'altra creatura a portare a termine un compito. Quando un personaggio effettua l'azione di Aiuto, la creatura aiutata ottiene vantaggio alla successiva prova di caratteristica che effettua per eseguire il compito per cui ha ricevuto aiuto, purché effettui la prova prima dell'inizio del turno successivo del personaggio. In alternativa, un personaggio può aiutare una creatura amica ad attaccare una creatura situata entro 1,5 metri da sé. Il personaggio esegue una finta, distrae il bersaglio o collabora con il suo alleato in altro modo al fine di rendere l'attacco di quest'ultimo più efficace. Se l'alleato attacca il bersaglio prima del turno successivo del personaggio, il primo tiro per colpire che effettua dispone di vantaggio."
+            },
+            {
+                "name": "Attacco",
+                "description": "L'azione più comune in combattimento è quella di Attacco, che si tratti di menare un fendente di spada, scoccare una freccia con un arco o sferrare pugni a mani nude. Con quest'azione un personaggio effettua un attacco in mischia o a distanza. Certi privilegi, come il privilegio Attacco Extra del guerriero, consentono a un personaggio di effettuare più di un attacco con quest'azione."
+            },
+            {
+                "name": "Cercare",
+                "description": "Quando un personaggio effettua l'azione di Cercare, concentra la sua attenzione su qualcosa che deve essere trovato. In base alla natura della sua ricerca, il DM potrebbe chiedergli di effettuare una prova di Saggezza (Percezione) o una prova di Intelligenza (Indagare)."
+            },
+            {
+                "name": "Disimpegno",
+                "description": "Se un personaggio effettua un'azione di Disimpegno, il suo movimento non provoca attacchi di opportunità per il resto del turno."
+            },
+            {
+                "name": "Lanciare un incantesimo",
+                "description": "Gli incantatori come i maghi e i chierici, nonché numerosi mostri, possono accedere a vari incantesimi e usarli in combattimento con grande efficacia. Ogni incantesimo ha un suo tempo di lancio, che specifica se l'incantatore deve usare un'azione, una reazione, alcuni minuti o addirittura ore per lanciarlo. Lanciare un incantesimo, quindi, non equivale necessariamente a un'azione. La maggior parte degli incantesimi ha un tempo di lancio di 1 azione, quindi un incantatore spesso usa la sua azione in combattimento per lanciare"
+            },
+            {
+                "name": "Nascondersi",
+                "description": "Quando un personaggio effettua l'azione di Nascondersi, deve effettuare una prova di Destrezza (Furtività) nel tentativo di nascondersi, come previsto dalle regole. Se la supera ottiene determinati benefici."
+            },
+            {
+                "name": "Prepararsi",
+                "description": "A volte un personaggio vuole battere un avversario sul tempo o aspettare che si verifichi una data circostanza prima di agire. A tale scopo, nel suo turno, può effettuare l'azione di Prepararsi, che gli consente di agire usando la sua reazione prima dell'inizio del suo turno successivo. Per prima cosa, il giocatore deve decidere quale circostanza percettibile innescherà la reazione del personaggio. Poi deve scegliere quale azione effettuare in risposta a quell'innesco, oppure può decidere di muoversi al massimo della sua velocità. Alcuni esempi includono: 'Se il cultista passa sopra la botola, tiro la leva che la apre' e 'Se il goblin si avvicina a me, mi muovo per allontanarmi'. Quando l'innesco si verifica, il personaggio può scegliere se eseguire la sua reazione non appena l'innesco si è concluso o se ignorarlo. È bene ricordare che un personaggio può effettuare soltanto una reazione per round. Quando un personaggio prepara un incantesimo, lo lancia normalmente ma trattiene la sua energia, liberandola con la sua reazione quando l'innesco si verifica. Al fine di poter essere preparato, un incantesimo deve avere un tempo di lancio di 1 azione, e trattenere la magia dell'incantesimo richiede concentrazione. Se la concentrazione viene meno, l'incantesimo si dissipa senza avere effetto. Per esempio, se un personaggio si concentra sull'incantesimo ragnatela e prepara dardo incantato, il suo incantesimo ragnatela termina e se il personaggio subisce danni prima di liberare dardo incantato con la sua reazione, la sua concentrazione potrebbe interrompersi."
+            },
+            {
+                "name": "Scatto",
+                "description": "Quando effettui l'azione di Scatto, ottieni del movimento extra per il turno attuale. Questo incremento è pari alla sua velocità, dopo avere applicato gli eventuali modificatori. Per esempio, se un personaggio ha una velocità di 9 metri, nel suo turno può muoversi di 18 metri se scatta. Ogni aumento o riduzione della velocità del personaggio cambia questo movimento aggiuntivo dello stesso valore. Per esempio, se un personaggio ha una velocità di 9 metri, nel suo turno può muoversi di 18 metri se scatta."
+            },
+            {
+                "name": "Schivata",
+                "description": "Quando un personaggio effettua l'azione di Schivata, pensa esclusivamente a evitare gli attacchi. Fino all'inizio del suo turno successivo, ogni tiro per colpire effettuato contro di lui subisce svantaggio se il personaggio è in grado di vedere l'attaccante, e ogni suo tiro salvezza su Destrezza dispone di vantaggio. Il personaggio perde questo beneficio se è incapacitato (come spiegato nell'appendice A del Manuale del Giocatore) o se la sua velocità scende a 0."
+            },
+            {
+                "name": "Usare un oggetto",
+                "description": "Di norma un personaggio interagisce con un oggetto mentre fa qualcos'altro, come per esempio quando sfodera una spada come parte di un attacco. Quando l'utilizzo di un oggetto richiede un'azione, il personaggio effettua l'azione Usare un Oggetto. Questa azione è utile anche quando il personaggio ha bisogno di interagire con più di un oggetto nel suo turno."
+            },
+            {
+                "name": "Usare un'abilità speciale",
+                "description": "Si usa un privilegio di classe o un'altra abilità speciale il cui uso richiede un azione."
+            }
+        ]
+    },
+    {
+        "title": "Movimento",
+        "description": "Attraversare a nuoto un fiume impetuoso, avanzare di soppiatto lungo il corridoio di un dungeon, scalare una pericolosa parete rocciosa di montagna: tutte queste forme di movimento svolgono un ruolo essenziale nelle avventure fantasy. Il DM può riassumere il movimento degli avventurieri senza calcolare le distanze o i tempi di viaggio in modo esatto: 'Attraversate la foresta e giungete all'ingresso del dungeon a tarda sera del terzo giorno'. Anche all'interno di un dungeon, specialmente se si tratta di un dungeon molto grande o di un complesso di caverne, il DM può riassumere i movimenti tra un incontro e l'altro: 'Dopo avere ucciso il guardiano all'ingresso dell'antica roccaforte nanica, consultate la vostra mappa, che vi conduce attraverso chilometri e chilometri di corridoi deserti fino a un vasto baratro attraversato da un'esile arcata di pietra'. Tuttavia, a volte è importante sapere quanto tempo passa per spostarsi da un punto all'altro, che la risposta sia in giorni, ore o minuti. Le regole per determinare i tempi di viaggio dipendono da due fattori: la velocità e il passo di viaggio delle creature che si muovono, e il terreno su cui si muovono.",
+        "orderedList": false,
+        "list": [
+            {
+                "name": "Terreno difficile",
+                "description": "Un personaggio può muoversi a metà velocità su un terreno difficile: muoversi di 1,5 metri su un terreno difficile costa 3 metri di velocità, quindi è possibile coprire soltanto metà della normale distanza che si percorrerebbe in un minuto, un'ora o un giorno."
+            },
+            {
+                "name": "Nuotare, scalare e strisciare",
+                "description": "Quando un personaggio nuota o scala, ogni 30 cm di movimento costano 30 cm extra (60 cm extra in caso di terreno difficile), a meno che una creatura non sia dotata di una velocità di nuotare o scalare. A discrezione del DM, per scalare una superficie verticale scivolosa o una che offra pochi appigli potrebbe essere necessario superare una prova di Forza (Atletica). Analogamente, per coprire una certa distanza in acque agitate potrebbe essere necessario superare una prova di Forza (Atletica)."
+            },
+            {
+                "name": "Salto in lungo",
+                "description": "Quando un personaggio effettua un salto in lungo, copre una distanza pari al suo punteggio di Forza moltiplicato per 30 cm, purché si sia mosso di almeno 3 metri a piedi immediatamente prima di saltare. Se compie un salto in lungo da fermo, copre solo metà di quella distanza. In entrambi i casi, ogni 30 cm percorsi con il salto costano 30 cm di movimento. Questa regola presume che l'altezza del salto sia irrilevante, come per esempio nel caso di un salto oltre un corso d'acqua o un baratro. A discrezione del DM, un personaggio potrebbe dover superare una prova di Forza (Atletica) con CD 10 per superare un ostacolo basso (che non superi in altezza un quarto della distanza coperta dal salto), come una siepe o un muretto. Se fallisce, il personaggio colpisce l'ostacolo. Se il personaggio atterra su terreno difficile deve superare una prova di Destrezza (Acrobazia) con CD 10 per atterrare in piedi, altrimenti atterra prono."
+            },
+            {
+                "name": "Salto in alto",
+                "description": "Quando un personaggio compie un salto in alto, si solleva in aria di un'altezza pari a 3 + il suo modificatore di Forza moltiplicato per 30 cm, purché si sia mosso di almeno 3 metri a piedi immediatamente prima di saltare. Se compie un salto in alto da fermo, raggiunge solo metà di quell'altezza. In entrambi i casi, ogni 30 cm percorsi con il salto costano 30 cm di movimento. In alcune circostanze il DM può consentire al personaggio di effettuare una prova di Forza (Atletica) per saltare più in alto del normale. Il personaggio può allungare le braccia fino a metà della propria altezza durante il salto, al fine di raggiungere una distanza pari all'altezza del salto più 1,5 volte la propria altezza."
+            }
+        ]
+    },
+    {
+        "title": "Condizioni",
+        "description": "",
+        "orderedList": true,
+        "list": [
+            {
+                "name": "Accecato",
+                "description": "Una creatura accecata non è in grado di vedere e fallisce automaticamente qualsiasi prova di caratteristica che richieda l'uso della vista. I tiri per colpire contro la creatura dispongono di vantaggio, mentre i tiri per colpire della creatura subiscono svantaggio."
+            },
+            {
+                "name": "Affascinato",
+                "description": "Una creatura affascinata non può attaccare chi l'ha affascinata né bersagliarlo con capacità o effetti magici dannosi. Chi ha affascinato la creatura dispone di vantaggio a qualsiasi prova di caratteristica effettuata per interagire socialmente con essa."
+            },
+            {
+                "name": "Afferrato",
+                "description": "La velocità di una creatura afferrata diventa 0 e la creatura non può beneficiare di alcun bonus alla velocità.La condizione termina se chi ha afferrato la creatura è incapacitato (vedi la relativa condizione). La condizione termina anche se un effetto rimuove la creatura afferrata dalla portata di chi l'ha afferrata o dell'effetto afferrante, come per esempio se viene scagliata lontano dall'incantesimo onda tonante."
+            },
+            {
+                "name": "Assordato",
+                "description": "Una creatura assordata non è in grado di sentire e fallisce automaticamente qualsiasi prova di caratteristica che richieda l'uso dell'udito."
+            },
+            {
+                "name": "Avvelenato",
+                "description": "Una creatura avvelenata subisce svantaggio ai tiri per colpire e alle prove di caratteristica."
+            },
+            {
+                "name": "Incapacitato",
+                "description": "Una creatura incapacitata non può effettuare azioni o reazioni."
+            },
+            {
+                "name": "Invisibile",
+                "description": "Una creatura invisibile è impossibile da vedere senza l'aiuto della magia o di sensi speciali. Agli effetti del nascondersi, è considerata pesantemente oscurata. La sua ubicazione può essere intuita dai rumori che emette o dalle tracce che lascia. I tiri per colpire contro la creatura subiscono svantaggio, mentre i tiri per colpire della creatura ottengono vantaggio."
+            },
+            {
+                "name": "Paralizzato",
+                "description": "Una creatura paralizzata è incapacitata (vedi la relativa condizione) e non può muoversi o parlare. La creatura fallisce automaticamente i tiri salvezza su Forza e Destrezza. I tiri per colpire contro la creatura ottengono vantaggio. Ogni attacco che colpisce la creatura è un colpo critico se l'attaccante è situato entro 1,5 metri dalla creatura."
+            },
+            {
+                "name": "Pietrificato",
+                "description": "Una creatura pietrificata viene trasformata, assieme a ogni oggetto non magico che trasporta o indossa, in una sostanza solida inanimata (solitamente pietra). La creatura cessa di invecchiare e il suo peso viene decuplicato. La creatura è incapacitata (vedi condizione), non può muoversi o parlare, né è consapevole di ciò che le accade attorno. I tiri per colpire contro la creatura ottengono vantaggio. La creatura fallisce automaticamente i tiri salvezza su Forza e Destrezza. La creatura è dotata di resistenza a tutti i danni. La creatura è immune a veleni e malattie, ma eventuali veleni o malattie già presenti nel suo"
+            },
+            {
+                "name": "Privo di sensi",
+                "description": "Una creatura priva di sensi è incapacitata (vedi la relativa condizione), non è in grado di muoversi o parlare ed è inconsapevole di ciò che le accade attorno. La creatura lascia cadere tutto ciò che impugna e cade a terra prona. La creatura fallisce automaticamente i tiri salvezza su Forza e Destrezza. I tiri per colpire contro la creatura ottengono vantaggio. Ogni attacco che colpisce la creatura è un colpo critico se l'attaccante è situato entro 1,5 metri dalla creatura."
+            },
+            {
+                "name": "Prono",
+                "description": "L'unica opzione di movimento di una creatura prona è strisciare, a meno che non si rialzi ponendo fine alla condizione. La creatura subisce svantaggio ai tiri per colpire. Un tiro per colpire contro la creatura ottiene vantaggio se l'attaccante è entro 1,5 metri dalla creatura. Altrimenti, il tiro per colpire subisce svantaggio."
+            },
+            {
+                "name": "Sorpreso",
+                "description": "Chi è sorpreso non può muoversi o effettuare un'azione nel suo primo turno di combattimento e non può effettuare una reazione finché quel turno non termina. Un membro di un gruppo può essere sorpreso anche se gli altri membri del suo gruppo non lo sono."
+            },
+            {
+                "name": "Spaventato",
+                "description": "Una creatura spaventata subisce svantaggio a prove di carattertistica e tiri per colpire finchè la fonte della sua paura è nel suo campo visivo. La creatura non può avvicinarsi volontariamente alla fonte della sua paura."
+            },
+            {
+                "name": "Stordito",
+                "description": "Una creatura stordita è incapacitata (vedi condizione), non può muoversi e può parlare solo a fatica. La creatura fallisce automaticamente i tiri salvezza su Forza e Destrezza. I tiri per colpire la creatura ottengono vantaggio."
+            },
+            {
+                "name": "Trattenuto",
+                "description": "La velocità di una creatura trattenuta diventa 0 ed essa non può beneficiare di alcun bonus alla velocità. I tiri per colpire contro la creatura dispongono di vantaggio e i suoi tiri per colpire subiscono svantaggio. La creatura subisce svantaggio ai tiri salvezza su Destrezza."
+            }
+        ]
+    }
+]

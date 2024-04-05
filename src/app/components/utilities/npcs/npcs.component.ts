@@ -32,8 +32,6 @@ export class NpcsComponent {
 
   @Input() set npcs(npcs: any[]) {
     this.npcsData = npcs;
-    console.log('npcs', this.npcsData);
-    
     this.sortNpcs();
   }
 

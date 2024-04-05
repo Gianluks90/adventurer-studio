@@ -1,0 +1,51 @@
+<div class="section-title">Schermo del Master</div>
+<div class="description-text">In questa sezione puoi trovare alcune informazioni riassunte e alcune tabelle per
+    facilitare le tue sessioni come DM.</div>
+<div class="button-container">
+    <button mat-mini-fab color="accent" class="add-button" (click)="collapseAll()">
+        <mat-icon>unfold_less</mat-icon>
+    </button>
+</div>
+<div class="sc-container">
+    @for (sc of screenContent; track $index) {
+    <div class="sc-item">
+        <details class="sc-details">
+            <summary class="sc-title">
+                <div class="sc-title-label">{{sc.title}}</div>
+            </summary>
+            @if (sc.description !== "") {
+            <div class="sc-description">{{sc.description}}</div>
+            }
+            @if (sc.title === 'Azioni in combattimento' || sc.title === 'Movimento') {
+            @for (item of sc.list; track $index) {
+            <div class="sc-item-line">
+                <div class="sc-item-label">{{item.name}}</div>
+                <div class="sc-item-value">{{item.description}}</div>
+            </div>
+            }
+            }
+            @if (sc.title === 'Condizioni') {
+            @for (item of sc.list; track $index) {
+            <div class="sc-item-line">
+                <div class="sc-item-label">{{item.name}}</div>
+                @for (desc of item.description; track $index) {
+                <ul class="sc-item-ul sc-item-value">
+                    <li>{{desc}}</li>
+                </ul>
+                }
+            </div>
+            }
+            }
+        </details>
+    </div>
+    }
+</div>
+<div class="subtitle small-subtitle">Note legali</div>
+<div class="attribution">
+    Questo lavoro include materiale del System Reference Document 5.1 (“SRD 5.1”) di Wizards of the Coast LLC
+    disponibile al sito <a href="https://dnd.wizards.com/it/resources/systems-reference-document"
+        target="_blank">https://dnd.wizards.com/it/resources/systems-reference-document</a>. L’SRD 5.1 è concesso in
+    licenza sotto l’Attribuzione 4.0 Internazionale di Creative Commons disponibile al sito
+    <a href="https://creativecommons.org/licenses/by/4.0/legalcode.it"
+        target="_blank">https://creativecommons.org/licenses/by/4.0/legalcode.it</a>.
+</div>

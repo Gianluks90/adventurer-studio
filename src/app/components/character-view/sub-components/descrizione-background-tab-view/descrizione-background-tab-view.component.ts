@@ -52,8 +52,6 @@ export class DescrizioneBackgroundTabViewComponent {
 
   @Input() set character(character: any) {
     this.charData = character;
-    console.log(this.charData);
-    
   }
 
   @Output() pictureEmitter: EventEmitter<any> = new EventEmitter<any>();

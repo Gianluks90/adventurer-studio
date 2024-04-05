@@ -84,6 +84,7 @@ import { AddNpcDialogComponent } from './components/utilities/npcs/add-npc-dialo
 import { AddOrganizationDialogComponent } from './components/utilities/npcs/add-organization-dialog/add-organization-dialog.component';
 import { CompanionTabViewComponent } from './components/character-view/sub-components/companion-tab-view/companion-tab-view.component';
 import { CampaignNpcTabComponent } from './components/campaign-view/sub-components/campaign-npc-tab/campaign-npc-tab.component';
+import { MasterScreenTabComponent } from './components/campaign-view/sub-components/master-screen-tab/master-screen-tab.component';
 
 @NgModule({
   declarations: [
@@ -183,6 +184,7 @@ import { CampaignNpcTabComponent } from './components/campaign-view/sub-componen
     AddOrganizationDialogComponent,
     CompanionTabViewComponent,
     CampaignNpcTabComponent,
+    MasterScreenTabComponent,
 
   ],
   imports: [

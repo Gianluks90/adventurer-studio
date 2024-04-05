@@ -42,8 +42,7 @@ export class AddNpcDialogComponent {
         this.actions.push(this.fb.group(action));
       });
     }
-    console.log('tab', this.data.isTab);
-    
+
     this.form.get('category').setValue(this.data.isTab ? NPCCategory.ADDON : NPCCategory.ALLY);
     this.form.get('parameterRequired').valueChanges.subscribe((value: boolean) => {
       this.setValidators(value);

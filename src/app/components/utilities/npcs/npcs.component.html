@@ -1,4 +1,7 @@
 <div class="main-container">
+    @if (isCampaign) {
+        <div class="section-title">Personaggi, Organizzazioni e Schede</div>
+    }
     <div class="search-container">
         <!-- SONO NELLA CHAR VIEW NEL TAB COMPANIONS -->
         @if(isTab && !isCampaign) {
@@ -27,11 +30,10 @@
         }
         <!-- SONO NELLA CAMPAIGN VIEW -->
         @if (isCampaign) {
-            <mat-form-field appearance="outline" class="search-input" color="accent">
-                <!-- <mat-label>Cerca</mat-label> -->
+            <!-- <mat-form-field appearance="outline" class="search-input" color="accent">
                 <mat-icon matPrefix>search</mat-icon>
                 <input matInput type="text" (keyup)="filterSearch($event)">
-            </mat-form-field>
+            </mat-form-field> -->
             <button mat-mini-fab color="accent" class="add-button" [matMenuTriggerFor]="menu"
             disableRipple *ngIf="isOwner"><mat-icon>add</mat-icon></button>
         <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
