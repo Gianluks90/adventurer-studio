@@ -227,7 +227,8 @@ export class CharacterViewStatusComponent {
     const dadoVita = this.dadiVitaData[dadoVitaIndex];
 
     if (!dadoVita.used[index]) {
-      this.rollService.rollFromCharView(dadoVita.tipologia, 'Dado vita, resupero punti ferita', null, true);
+      const modCostituzione = Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2);
+      this.rollService.rollFromCharView(dadoVita.tipologia, 'Dado vita, resupero punti ferita', modCostituzione, true);
       const lastFalseIndex = dadoVita.used.lastIndexOf(false);
       if (lastFalseIndex !== -1) {
         dadoVita.used[lastFalseIndex] = true;
@@ -239,7 +240,7 @@ export class CharacterViewStatusComponent {
       }
     }
     this.charService.updateDadiVita(this.characterData.id, this.dadiVitaData).then(() => {
-      this.notification.openSnackBar('Dado vita aggiornato.', 'check', 1000, 'limegreen');
+      // this.notification.openSnackBar('Dado vita aggiornato.', 'check', 1000, 'limegreen');
     });
   }
 
