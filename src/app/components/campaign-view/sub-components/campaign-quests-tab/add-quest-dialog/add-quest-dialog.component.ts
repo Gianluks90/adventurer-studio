@@ -13,27 +13,27 @@ export class AddQuestDialogComponent {
     description: ['', Validators.required],
     dmNotes: '',
     lastUpdate: new Date(),
-    // steps: this.fb.array([]),
+    steps: this.fb.array([]),
     visible: false,
     completed: false,
     result: ''
   });
 
+  public steps: FormArray;
+
   // public steps: FormArray = new FormArray([]);
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddQuestDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { quest: any }) { }
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddQuestDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { quest: any }) {
+    this.steps = this.fb.array([]);
+    this.steps = this.form.controls['steps'] as FormArray;
+   }
 
   ngOnInit() {
     if (this.data.quest) {
       this.form.patchValue(this.data.quest);
-      // this.data.quest.steps.forEach((step: any) => {
-      //   const stepForm = this.fb.group({
-      //     text: [step.text, Validators.required],
-      //     visible: step.visible
-      //   });
-      //   this.steps.push(stepForm);
-      // });
-      
+      this.data.quest.steps.forEach((step: any) => {
+        this.steps.push(this.fb.group(step));
+      });
     }
   }
 
@@ -51,6 +51,17 @@ export class AddQuestDialogComponent {
     }
   }
 
+  public addStep() {
+    const step = this.fb.group({
+      text: ['', Validators.required]
+    });
+    this.steps.push(step);
+  }
+
+  public removeStep(index: number) {
+    this.steps.removeAt(index);
+  }
+
   // public addStep() {
   //   const step = this.fb.group({
   //     text: ['', Validators.required],
@@ -61,7 +72,5 @@ export class AddQuestDialogComponent {
 
   // }
 
-  // public removeStep(index: number) {
-  //   this.form.get('steps').removeAt(index);
-  // }
+
 }

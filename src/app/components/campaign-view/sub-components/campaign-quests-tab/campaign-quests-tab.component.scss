@@ -117,8 +117,28 @@ summary::after {
     cursor: pointer;
 }
 
-details[open] > summary::after {
+details[open]>summary::after {
     content: url("/assets/icons/chevron_down.svg");
     cursor: pointer;
 }
 
+.progress-title {
+    margin-left: 8px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.sc-item-line {
+    text-align: justify;
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+.sc-item-ul {
+    margin: 4px !important;
+    padding-left: 16px;
+}
+
+.sc-item-ul>li {
+    opacity: 0.8;
+}
