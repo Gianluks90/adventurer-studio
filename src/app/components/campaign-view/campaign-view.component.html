@@ -13,7 +13,7 @@
         <div class="status-container">
             <app-campaign-char-list [characters]="charData"></app-campaign-char-list>
         </div>
-        <mat-tab-group color="accent">
+        <mat-tab-group color="accent" selectedIndex="6">
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/campaign-tabs-icon/story.svg" class="label-icon" matTooltipPosition="below" matTooltip="Storia">
@@ -59,7 +59,7 @@
                 <ng-template mat-tab-label >
                     <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below" matTooltip="Impostazioni">
                 </ng-template>
-                <app-campaign-settings-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-settings-tab>
+                <app-campaign-settings-tab [campaign]="campaignData" [characters]="charData" [isOwner]="isOwner"></app-campaign-settings-tab>
             </mat-tab>
         </mat-tab-group>
     </div>

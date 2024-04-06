@@ -380,4 +380,25 @@ export class CampaignService {
       lastUpdate: new Date()
     }, { merge: true });
   }
+
+  public removeChar(campId: string, char: any): Promise<any> {
+    // 1. Rimuove dal Character il CampaignId
+    const charRef = doc(this.firebaseService.database, 'characters', char.id);
+    return setDoc(charRef, {
+      campaignId: ''
+    }, { merge: true }).then(() => {
+      // 2. Rimuove dallo User il CampaignId nell'array campaignAsPartecipant
+      const userRef = doc(this.firebaseService.database, 'users', char.userId);
+      return setDoc(userRef, {
+        campaignsAsPartecipant: arrayRemove(campId)
+      }, { merge: true }).then(() => {
+        // 3. Rimuove il Character dall'array characters della Campagna
+        const campRef = doc(this.firebaseService.database, 'campaigns', campId);
+        return setDoc(campRef, {
+          characters: arrayRemove(char),
+          partecipants: arrayRemove(char.userId),
+        }, { merge: true });
+      });
+    });
+  }
 }

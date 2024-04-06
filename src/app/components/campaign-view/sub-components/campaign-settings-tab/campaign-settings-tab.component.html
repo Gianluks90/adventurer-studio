@@ -44,7 +44,8 @@
     nelle rispettive sezioni per lasciar spazio a dei nuovi elementi. Questa funzione non cancella alcun dato.
 </div>
 <div class="buttons-container">
-    <button mat-raised-button color="accent" (click)="openNewChapterDialog()" [disabled]="campaignData.status.statusMessage !== 'In corso'">
+    <button mat-raised-button color="accent" (click)="openNewChapterDialog()"
+        [disabled]="campaignData.status.statusMessage !== 'In corso'">
         <mat-icon>grade</mat-icon> Nuovo capitolo
     </button>
 </div>
@@ -59,11 +60,23 @@
         'Stanza creata' : 'Crea stanza'}}
     </button>
 </div>
-<div class="subtitle">Gestione personaggi iscritti (prossimamente)</div>
+<div class="subtitle">Gestione personaggi iscritti</div>
 <div class="description-text">
-    Seleziona dall'elenco uno dei personaggi che, per qualsiasi motivo, deve essere rimosso dalla Campagna. Per
-    confermare la rimozione premi infine il tasto "Rimuovi". <strong>Attenzione</strong>: l'azione è irreversibile e il
-    personaggio non potrà unirsi nuovamente se le "iscrizioni sono chiuse".
+    Seleziona dall'elenco uno dei personaggi che, per qualsiasi motivo, deve essere rimosso dalla Campagna. Premi il
+    tasto con il "cestino" dopodichè "Conferma" per concludere l'operazione. <strong>Attenzione</strong>: l'azione è
+    irreversibile.
+</div>
+<div class="characters-container">
+    @for (char of charData; track i; let i = $index) {
+    <div class="char-line" [ngStyle]="{'background-color': $even ? 'whitesmoke' : 'white'}">
+        <img class="char-image" [src]="char.informazioniBase.urlImmaginePersonaggio" alt="">
+        <div class="char-name">{{char.informazioniBase.nomePersonaggio}}</div>
+        <button class="delete-button" mat-mini-fab color="accent" (click)="openRemoveCharDialog(i)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+    }
+
 </div>
 <div class="subtitle">Archivia/Elimina campagna (prossimamente)</div>
 <div class="description-text">

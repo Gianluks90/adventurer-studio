@@ -56,6 +56,39 @@
     flex-grow: 1;
 }
 
+.characters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.char-line {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.char-image {
+    height: 30px;
+    width: 30px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.char-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    font-size: medium;
+    flex-grow: 1;
+}
+
+.delete-button {
+    height: 30px;
+    width: 30px;
+}
+
 @media (max-width: 500px) {
     .buttons-container {
         flex-wrap: wrap;

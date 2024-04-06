@@ -1,0 +1,14 @@
+<div mat-dialog-title class="dialog-title">Rimuovi personaggio</div>
+<div mat-dialog-content class="dialog-content">
+    <div class="description">
+        Stai per rimuovere uno dei personaggi presenti in questa campagna, ogni traccia delle attività di quel Personaggio su questa campagna sarà rimossa. Procedere?
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="warn" (click)="confirm()">
+        <mat-icon>check</mat-icon> Rimuovi
+    </button>
+</div>
