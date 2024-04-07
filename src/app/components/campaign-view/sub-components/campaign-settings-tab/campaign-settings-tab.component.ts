@@ -5,7 +5,7 @@ import { DddiceService } from 'src/app/services/dddice.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { NewChapterDialogComponent } from './new-chapter-dialog/new-chapter-dialog.component';
 import { RemoveCharDialogComponent } from './remove-char-dialog/remove-char-dialog.component';
-import { getAuth } from 'firebase/auth';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-campaign-settings-tab',
@@ -15,23 +15,31 @@ import { getAuth } from 'firebase/auth';
 export class CampaignSettingsTabComponent {
 
   constructor(
-    private campaignService: CampaignService, 
-    private dddiceService: DddiceService, 
+    private campaignService: CampaignService,
+    private dddiceService: DddiceService,
     private firebaseService: FirebaseService,
-    private matDialog: MatDialog) {}
-  
+    private matDialog: MatDialog,
+    private fb: FormBuilder) { 
+      this.form = this.fb.group({
+        title: ['', Validators.required],
+        description: ['', Validators.required]
+      })
+    }
+
   public campaignData: any;
   public charData: any;
   public isOwnerData: boolean = false;
 
+  public form: FormGroup;
+
   @Input() set campaign(data: any) {
     this.campaignData = data;
+    this.form.get('title').setValue(data.title);
+    this.form.get('description').setValue(data.description);
   }
 
   @Input() set characters(data: any) {
     this.charData = data;
-    console.log(data);
-    
   }
 
   @Input() set isOwner(isOwner: boolean) {
@@ -76,6 +84,10 @@ export class CampaignSettingsTabComponent {
         console.log('Char removed');
       });
     });
+  }
+
+  public editTitleDescription(): void {
+    this.campaignService.editTitleDescription(this.campaignData.id, this.form.value).then(() => { });
   }
 
 }

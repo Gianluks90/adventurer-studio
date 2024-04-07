@@ -94,3 +94,13 @@
         flex-wrap: wrap;
     }
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.custom-form-field {
+    width: 100%;
+}

@@ -67,10 +67,12 @@ export class CampaignService {
       lastUpdate: new Date(),
       story: [],
       quests: [],
-      npcs: [],
       rules: [],
       entries: [],
       achievements: [],
+      allies: [],
+      organizations: [],
+      addons: [],
       archive: [],
       status: {
         statusCode: 0,
@@ -214,6 +216,15 @@ export class CampaignService {
         }, { merge: true });
       });;
     });
+  }
+
+  public async editTitleDescription(campId: string, form: any): Promise<void> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      title: form.title,
+      description: form.description,
+      lastUpdate: new Date()
+    }, { merge: true });
   }
 
   public async startCampaign(campId: string): Promise<void> {

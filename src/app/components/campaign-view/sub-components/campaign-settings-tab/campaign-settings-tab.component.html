@@ -25,6 +25,26 @@
     <div class="info-label">Password</div>
     <div class="info-value">{{campaignData.password}}</div>
 </div>
+<div class="subtitle">Titolo e Descrizione</div>
+<div class="description-text">
+    Vuoi cambiare il titolo o la descrizione della tua Campagna? Puoi farlo qui.
+</div>
+<form class="form-container" [formGroup]="form">
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Titolo</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Descrizione</mat-label>
+        <textarea matInput formControlName="description" rows="5"></textarea>
+    </mat-form-field>
+    <div class="buttons-container">
+        <button mat-raised-button color="accent" (click)="editTitleDescription()" [disabled]="!form.valid">
+            <mat-icon>edit</mat-icon> Modifica
+        </button>
+    </div>
+</form>
+
 <div class="subtitle">Avvia Campagna</div>
 <div class="description-text">
     Fai sapere ai tuoi giocatori che la campagna è ufficialmente iniziata. Questa azione cambia lo stato della campagna
