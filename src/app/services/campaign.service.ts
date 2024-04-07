@@ -73,6 +73,7 @@ export class CampaignService {
       allies: [],
       organizations: [],
       addons: [],
+      inventory: [],
       archive: [],
       status: {
         statusCode: 0,

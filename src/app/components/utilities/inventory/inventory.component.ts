@@ -20,7 +20,20 @@ export class InventoryComponent {
     this.sortInventory();
   }
 
-  constructor(private dialog: MatDialog, private bottomSheet: MatBottomSheet, private platform: Platform, private characterService: CharacterService) { }
+  @Input() set entity(entity: any) {
+    // this.inventoryData = entity.inventory;
+    // this.sortInventory();
+  }
+
+  public isCampaign: boolean = false;
+
+  constructor(
+    private dialog: MatDialog,
+    private bottomSheet: MatBottomSheet,
+    private platform: Platform,
+    private characterService: CharacterService) {
+    this.isCampaign = window.location.href.includes('campaigns');
+  }
 
   openAddItemDialog() {
     this.dialog.open(AddItemDialogComponent, {
@@ -30,10 +43,15 @@ export class InventoryComponent {
       data: { inventory: this.inventoryData }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
-        this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item).then(() => {
-          this.inventoryData.push(result.item);
-          this.sortInventory();
-        });
+        if (!this.isCampaign) {
+          this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item).then(() => {
+            this.inventoryData.push(result.item);
+          });
+        } else {
+          // TODO add item to campaign inventory
+        }
+        
+        this.sortInventory();
       }
     })
   }
