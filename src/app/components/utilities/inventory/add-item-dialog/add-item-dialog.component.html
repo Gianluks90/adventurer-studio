@@ -84,6 +84,10 @@
       <input type="number" matInput formControlName="weight" min="0" inputmode="decimal" step="any">
     </mat-form-field>
   </div>
+
+  @if (isCampaign) {
+    <mat-checkbox formControlName="visible">Visibile</mat-checkbox>
+  }
   
   <div class="section-title">Caratteristiche avanzate</div>
   <div>

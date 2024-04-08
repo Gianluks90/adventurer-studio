@@ -52,8 +52,7 @@
                     <img src="./assets/tabs-icons/inventory.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Inventario">
                 </ng-template>
-                <app-equipaggiamento-tab-view [characterId]="character.id" [equipaggiamento]="character.equipaggiamento"
-                    [denaro]="character.denaro"></app-equipaggiamento-tab-view>
+                <app-equipaggiamento-tab-view [character]="character"></app-equipaggiamento-tab-view>
                 <!-- <app-inventory [inventory]="[]"></app-inventory> -->
             </mat-tab>
 

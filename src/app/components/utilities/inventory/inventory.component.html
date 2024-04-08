@@ -1,11 +1,13 @@
 <div class="main-container">
     <div class="search-container">
-        <mat-form-field appearance="outline" class="search-input" color="accent">
-            <!-- <mat-label>Cerca</mat-label> -->
-            <mat-icon matPrefix>search</mat-icon>
-            <input matInput type="text" (keyup)="filterSearch($event)">
-        </mat-form-field>
-        <button mat-mini-fab color="accent" class="add-button" (click)="openAddItemDialog()" disableRipple><mat-icon>add</mat-icon></button>
+        @if (isOwnerData || !isCampaign) {
+            <mat-form-field appearance="outline" class="search-input" color="accent">
+                <!-- <mat-label>Cerca</mat-label> -->
+                <mat-icon matPrefix>search</mat-icon>
+                <input matInput type="text" (keyup)="filterSearch($event)">
+            </mat-form-field>
+            <button mat-mini-fab color="accent" class="add-button" (click)="openAddItemDialog()" disableRipple><mat-icon>add</mat-icon></button>
+        }
     </div>
     <div class="items-container">
         <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>

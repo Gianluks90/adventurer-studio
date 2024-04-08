@@ -33,15 +33,21 @@
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/campaign-tabs-icon/rules.svg" class="label-icon" matTooltipPosition="below" matTooltip="Annotazioni">
-                </ng-template>
-                <app-campaign-entries-tab [entries]="campaignData.entries" [isOwner]="isOwner"></app-campaign-entries-tab>
-            </mat-tab>
-            <mat-tab>
-                <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below" matTooltip="Personaggi, Organizzazioni e Schede">
                 </ng-template>
                 <app-campaign-npc-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-npc-tab>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <img src="./assets/tabs-icons/inventory.svg" class="label-icon" matTooltipPosition="below" matTooltip="Inventario">
+                </ng-template>
+                <app-campaign-inventory-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-inventory-tab>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <img src="./assets/campaign-tabs-icon/rules.svg" class="label-icon" matTooltipPosition="below" matTooltip="Annotazioni">
+                </ng-template>
+                <app-campaign-entries-tab [entries]="campaignData.entries" [isOwner]="isOwner"></app-campaign-entries-tab>
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>

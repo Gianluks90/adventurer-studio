@@ -23,17 +23,23 @@ export class EquipaggiamentoTabViewComponent {
 
   constructor(private dialog: MatDialog, private platform: Platform, private notification: NotificationService, private formService: FormService, private charService: CharacterService) { }
 
-  @Input() set equipaggiamento(value: Item[]) {
-    this.equipaggiamentoData = value;
+  @Input() set character(character: any) {
+    this.equipaggiamentoData = character.equipaggiamento;
+    this.denaroData = character.denaro;
+    this.idData = character.id;
   }
 
-  @Input() set denaro(value: any) {
-    this.denaroData = value;
-  }
+  // @Input() set equipaggiamento(value: Item[]) {
+  //   this.equipaggiamentoData = value;
+  // }
 
-  @Input() set characterId(id: string) {
-    this.idData = id;
-  }
+  // @Input() set denaro(value: any) {
+  //   this.denaroData = value;
+  // }
+
+  // @Input() set characterId(id: string) {
+  //   this.idData = id;
+  // }
 
   ngOnInit(): void {
     this.formService.formSubject.subscribe((form: any) => {

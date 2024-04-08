@@ -17,10 +17,12 @@ export class AddItemDialogComponent {
   public type: string = '';
   public traits: FormArray;
   public artifactProperties: FormArray;
+  public isCampaign: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {inventory: Item[], item?: Item}, private dialogRef: MatDialogRef<AddItemDialogComponent>, private fb: FormBuilder, private httpClient: HttpClient){
     this.traits = this.fb.array([]);
     this.artifactProperties = this.fb.array([]);
+    this.isCampaign = window.location.href.includes('campaign-view');
   }
 
   ngOnInit(){

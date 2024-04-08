@@ -322,42 +322,64 @@ export class CampaignService {
   public async addAlly(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {
-      allies: arrayUnion(form)
+      allies: arrayUnion(form),
+      lastUpdate: new Date()
     }, { merge: true });
   }
 
   public async updateAllies(id: string, allies: any[]): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {
-      allies: allies
+      allies: allies,
+      lastUpdate: new Date()
     }, { merge: true });
   }
 
   public async addOrganization(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {
-      organizations: arrayUnion(form)
+      organizations: arrayUnion(form),
+      lastUpdate: new Date()
     }, { merge: true });
   }
 
   public async updateOrganizations(id: string, organizations: any[]): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {
-      organizations: organizations
+      organizations: organizations,
+      lastUpdate: new Date()
     }, { merge: true });
   }
 
   public async addAddon(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {
-      addons: arrayUnion(form)
+      addons: arrayUnion(form),
+      lastUpdate: new Date()
     }, { merge: true });
   }
 
   public async updateAddons(id: string, addons: any): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {
-      addons: addons
+      addons: addons,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async addItemInventory(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      inventory: arrayUnion(form),
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async updateInventory(id: string, inventory: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      inventory: inventory,
+      lastUpdate: new Date()
     }, { merge: true });
   }
 

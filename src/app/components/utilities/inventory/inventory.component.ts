@@ -6,6 +6,7 @@ import { Platform } from '@angular/cdk/platform';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ItemInfoSheetComponent } from './item-info-sheet/item-info-sheet.component';
+import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
   selector: 'app-inventory',
@@ -20,9 +21,9 @@ export class InventoryComponent {
     this.sortInventory();
   }
 
-  @Input() set entity(entity: any) {
-    // this.inventoryData = entity.inventory;
-    // this.sortInventory();
+  public isOwnerData: boolean = false;
+  @Input() set isCampaignOwner(isCampaignOwner: boolean) {
+    this.isOwnerData = isCampaignOwner;
   }
 
   public isCampaign: boolean = false;
@@ -31,13 +32,14 @@ export class InventoryComponent {
     private dialog: MatDialog,
     private bottomSheet: MatBottomSheet,
     private platform: Platform,
-    private characterService: CharacterService) {
-    this.isCampaign = window.location.href.includes('campaigns');
+    private characterService: CharacterService,
+    private campaignService: CampaignService) {
+    this.isCampaign = window.location.href.includes('campaign-view');
   }
 
   openAddItemDialog() {
     this.dialog.open(AddItemDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
+      width: window.innerWidth < 500 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
       data: { inventory: this.inventoryData }
@@ -48,9 +50,8 @@ export class InventoryComponent {
             this.inventoryData.push(result.item);
           });
         } else {
-          // TODO add item to campaign inventory
+          this.campaignService.addItemInventory(window.location.href.split('/').pop(), result.item);
         }
-        
         this.sortInventory();
       }
     })
@@ -74,11 +75,19 @@ export class InventoryComponent {
     }).afterDismissed().subscribe((result: any) => {
       if (result && result.status === 'edited') {
         this.inventoryData[index] = result.item;
-        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        if (!this.isCampaign) {
+          this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        } else {
+          this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        }
       }
       if (result && result.status === 'deleted') {
         this.inventoryData.splice(index, 1);
-        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        if (!this.isCampaign) {
+          this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        } else {
+          this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        }
       }
     });
   }
@@ -121,5 +130,4 @@ export class InventoryComponent {
       }
     });
   }
-
 }

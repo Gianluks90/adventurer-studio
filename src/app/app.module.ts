@@ -86,6 +86,7 @@ import { CompanionTabViewComponent } from './components/character-view/sub-compo
 import { CampaignNpcTabComponent } from './components/campaign-view/sub-components/campaign-npc-tab/campaign-npc-tab.component';
 import { MasterScreenTabComponent } from './components/campaign-view/sub-components/master-screen-tab/master-screen-tab.component';
 import { RemoveCharDialogComponent } from './components/campaign-view/sub-components/campaign-settings-tab/remove-char-dialog/remove-char-dialog.component';
+import { CampaignInventoryTabComponent } from './components/campaign-view/sub-components/campaign-inventory-tab/campaign-inventory-tab.component';
 
 @NgModule({
   declarations: [
@@ -187,6 +188,7 @@ import { RemoveCharDialogComponent } from './components/campaign-view/sub-compon
     CampaignNpcTabComponent,
     MasterScreenTabComponent,
     RemoveCharDialogComponent,
+    CampaignInventoryTabComponent,
 
   ],
   imports: [

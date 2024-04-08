@@ -1,0 +1,28 @@
+.main-container{
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+.description-text {
+    font-size: small;
+    opacity: 0.5;
+    font-style: italic;
+    text-align: justify;
+}
+
+.section-title {
+    margin-bottom: 16px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+}
+
+.inventory-container {
+    height: 100%;
+    max-height: 100%;
+    overflow-y: hidden;
+  }
