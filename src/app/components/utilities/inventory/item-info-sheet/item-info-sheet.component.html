@@ -14,10 +14,10 @@
         <div class="property-label">{{prop.name}}</div>
         <div class="property-description">{{prop.description}}</div>
     </div>
-    @if (isCampaign) {
+    @if (isCampaign && !data.isOwner) {
         <div class="reclame-container">
-            <button *ngIf="data.item.quantity > 1" mat-raised-button color="accent" (click)="reclameItem(data.item, 1)">Reclama 1</button>
-            <button mat-raised-button color="accent" (click)="reclameItem(data.item, data.item.quantity)">Reclama tutto</button>
+            <button *ngIf="data.item.quantity > 1" mat-raised-button color="accent" (click)="reclameItem(data.item, 1)" autofocus="false">Reclama 1</button>
+            <button mat-raised-button color="accent" (click)="reclameItem(data.item, data.item.quantity)" autofocus="false">Reclama tutto</button>
         </div>
     }
     <div class="sheet-footer">

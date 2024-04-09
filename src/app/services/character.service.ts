@@ -174,7 +174,7 @@ export class CharacterService {
     }, { merge: true })
   }
 
-  public async addItemInventory(id: string, form: FormGroup): Promise<any> {
+  public async addItemInventory(id: string, form: any): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {
       equipaggiamento: arrayUnion(form)

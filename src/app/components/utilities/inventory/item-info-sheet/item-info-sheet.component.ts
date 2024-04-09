@@ -17,6 +17,8 @@ export class ItemInfoSheetComponent {
     private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>, 
     private dialog: MatDialog) {
     this.isCampaign = window.location.href.includes('campaign-view');
+    console.log('OGGETTO', data.item);
+    
   }
 
   public isCampaign: boolean = false;
@@ -38,9 +40,6 @@ export class ItemInfoSheetComponent {
   }
 
   public reclameItem(item: Item, quantity: number) {
-    const quantityToReclame = quantity;
-    this.data.item.quantity -= quantityToReclame;
-    this.data.item.visible = this.data.item.quantity > 0;
-    this.sheetRef.dismiss({ status: 'reclamed', item: item, quantity: quantityToReclame });
+    this.sheetRef.dismiss({ status: 'reclamed', item: item, quantity: quantity });
   } 
 }

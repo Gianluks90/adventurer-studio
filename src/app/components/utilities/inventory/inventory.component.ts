@@ -26,9 +26,11 @@ export class InventoryComponent {
     this.isOwnerData = isCampaignOwner;
   }
 
-  public selectedCharData: string = '';
+  public selectedCharData: any;
   @Input() set selectedChar(selectedChar: string) {
     this.selectedCharData = selectedChar;
+    console.log(selectedChar);
+
   }
 
   public isCampaign: boolean = false;
@@ -93,9 +95,14 @@ export class InventoryComponent {
           this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         }
       }
-      if (result && result.status === 'reclamed' && this.selectedCharData !== '') {
-        result.item.quantity = result.quantity;
-        this.characterService.addItemInventory(this.selectedCharData, result.item);
+      if (result && result.status === 'reclamed' && this.selectedCharData) {
+        const resultItem = { ...result.item };
+        resultItem.quantity = result.quantity;
+        this.characterService.addItemInventory(this.selectedCharData.id, resultItem).then(() => {
+          this.inventoryData[index].quantity -= result.quantity;
+          this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
+          this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        });
       }
     });
   }
