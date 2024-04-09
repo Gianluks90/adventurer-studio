@@ -255,4 +255,9 @@ export class NpcsComponent {
     }, 3000);
   }
 
+  public fullRestore(index: number) {
+    this.adddonsData[index].HP = this.adddonsData[index].HPmax;
+    this.charService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
+  }
+
 }

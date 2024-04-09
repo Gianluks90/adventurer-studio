@@ -139,6 +139,9 @@
                                     <button class="hp-button" mat-mini-fab color="accent" (click)="updateNpcHP('add', i)">
                                         <mat-icon>add</mat-icon>
                                     </button>
+                                    <button class="hp-button" mat-mini-fab color="accent" (click)="fullRestore(i)" [disabled]="addon.HP === addon.HPmax">
+                                        <mat-icon>restart_alt</mat-icon>
+                                    </button>
                                 </div>
                                 <div class="caratteristiche-main-container">
                                     <div class="caratteristiche-line">

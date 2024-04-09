@@ -34,6 +34,7 @@ export class FormModel {
       allies: builder.array([]),
       addons: builder.array([]),
       organizations: builder.array([]),
+      campaignId: '',
       status: {
         statusCode: null,
         author: '',
