@@ -20,6 +20,10 @@
         "link": "./assets/selectIcons/amuleto_5.svg"
     },
     {
+        "name": "Amuleto 6",
+        "link": "./assets/selectIcons/amuleto_6.svg"
+    },
+    {
         "name": "Anello 1",
         "link": "./assets/selectIcons/anello_1.svg"
     },
@@ -180,6 +184,10 @@
         "link": "./assets/selectIcons/armatura_11.svg"
     },
     {
+        "name": "Armatura 12",
+        "link": "./assets/selectIcons/armatura_12.svg"
+    },
+    {
         "name": "Camuffamento",
         "link": "./assets/selectIcons/camuffamento.svg"
     },
@@ -285,6 +293,14 @@
     },
     {
         "name": "Gemma 2",
+        "link": "./assets/selectIcons/gemma_2.svg"
+    },
+    {
+        "name": "Gemma 3",
+        "link": "./assets/selectIcons/gemma_1.svg"
+    },
+    {
+        "name": "Gemma 4",
         "link": "./assets/selectIcons/gemma_2.svg"
     },
     {
@@ -552,6 +568,10 @@
         "link": "./assets/selectIcons/strumento_19.svg"
     },
     {
+        "name": "Strumento 20",
+        "link": "./assets/selectIcons/strumento_20.svg"
+    },
+    {
         "name": "Tenda",
         "link": "./assets/selectIcons/tenda.svg"
     },
@@ -584,8 +604,20 @@
         "link": "./assets/selectIcons/tesoro_7.svg"
     },
     {
-        "name": "Torcia",
+        "name": "Tesoro 8",
+        "link": "./assets/selectIcons/tesoro_8.svg"
+    },
+    {
+        "name": "Tesoro 9",
+        "link": "./assets/selectIcons/tesoro_9.svg"
+    },
+    {
+        "name": "Torcia 1",
         "link": "./assets/selectIcons/torcia.svg"
+    },
+    {
+        "name": "Torcia 2",
+        "link": "./assets/selectIcons/torcia_2.svg"
     },
     {
         "name": "Varie 1",
