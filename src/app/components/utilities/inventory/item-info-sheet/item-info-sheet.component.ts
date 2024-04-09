@@ -17,8 +17,6 @@ export class ItemInfoSheetComponent {
     private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>, 
     private dialog: MatDialog) {
     this.isCampaign = window.location.href.includes('campaign-view');
-    console.log('OGGETTO', data.item);
-    
   }
 
   public isCampaign: boolean = false;

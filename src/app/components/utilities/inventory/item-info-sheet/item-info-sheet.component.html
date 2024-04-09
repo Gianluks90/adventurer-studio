@@ -11,14 +11,14 @@
     <div class="item-description">
         {{data.item.description}}
     </div>
-    @if (data.item.weaponProperties.length > 0) {
+    @if (data.item.weaponProperties && data.item.weaponProperties.length > 0) {
     <div class="category-label">Proprietà arma</div>
     @for (prop of data.item.weaponProperties; track $index) {
         <div class="property-label">{{prop.name}}</div>
         <div class="property-description">{{prop.description}}</div>
     }
     }
-    @if (data.item.traits.length > 0) {
+    @if (data.item.traits && data.item.traits.length > 0) {
         <div class="category-label">Tratti</div>
         <ul class="unordered-list">
             @for (trait of data.item.traits; track $index) {
