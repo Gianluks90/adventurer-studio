@@ -21,6 +21,7 @@ export class CampaignAchievementsTabComponent {
 
   @Input() set campaign(campaign: any) {
     this.achievementsData = campaign.achievements;
+    this.achievementsData = this.sortRuleAlphabetical(this.achievementsData);
     this.archiveData = campaign.archive;
   }
 
@@ -47,7 +48,7 @@ export class CampaignAchievementsTabComponent {
       switch (result.status) {
         case 'success':
           this.campaignService.addAchievement(window.location.href.split('/').pop(), result.achievement).then(() => {
-            this.achievementsData = this.sortRuleAlphabetical(this.achievementsData);
+            // this.achievementsData = this.sortRuleAlphabetical(this.achievementsData);
           });
         break;
         case 'edited':
@@ -61,6 +62,7 @@ export class CampaignAchievementsTabComponent {
         default:
         break;
       }
+      this.achievementsData = this.sortRuleAlphabetical(this.achievementsData);
     });
   }
 

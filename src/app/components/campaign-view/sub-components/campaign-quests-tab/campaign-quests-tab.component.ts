@@ -37,9 +37,7 @@ export class CampaignQuestsTabComponent {
     }).afterClosed().subscribe((result: any) => {
       switch (result.status) {
         case 'success':
-          this.campaignService.addQuest(window.location.href.split('/').pop(), result.quest).then(() => {
-            this.questsData = this.sortQuestByLastUpdate(this.questsData);
-          });
+          this.campaignService.addQuest(window.location.href.split('/').pop(), result.quest);
           break;
         case 'edited':
           this.questsData[index] = result.quest;
@@ -48,6 +46,7 @@ export class CampaignQuestsTabComponent {
         default:
           break;
       }
+      this.questsData = this.sortQuestByLastUpdate(this.questsData);
     });
   }
 
