@@ -12,9 +12,9 @@
 .items-container {
     // height: 100%;
     overflow-y: auto;
-  height: calc(100% - 60px);
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+    height: calc(100% - 60px);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .search-container {
@@ -55,7 +55,7 @@
     align-items: flex-start;
 }
 
-.items-icon-container>div{
+.items-icon-container>div {
     position: relative;
     max-width: calc(100% / 6 - 10px);
     max-height: calc(100% / 6 - 10px);
@@ -90,7 +90,8 @@
     text-align: center;
     opacity: 0;
     animation: fadeIn 0.5s forwards;
-    display: none; /* Nasconde inizialmente l'elemento quantity-value */
+    display: none;
+    /* Nasconde inizialmente l'elemento quantity-value */
     border: 3px solid whitesmoke;
 }
 
@@ -98,6 +99,7 @@
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
         display: block;
@@ -123,7 +125,8 @@
     text-align: center;
     opacity: 0;
     animation: fadeIn 0.5s forwards;
-    display: none; /* Nasconde inizialmente l'elemento quantity-value */
+    display: none;
+    /* Nasconde inizialmente l'elemento quantity-value */
 }
 
 .items-icon-container>div:hover .weared-label {
@@ -135,7 +138,7 @@
 }
 
 @media screen and (max-width: 500px) {
-    .items-icon-container>div{
+    .items-icon-container>div {
         // max-width: calc(100% / 2 - 6px);
         // max-height: calc(100% / 2 - 6px);
         max-width: calc(100% / 3 - 10px);
@@ -155,4 +158,11 @@
 
 .item-info-sheet {
     background-color: red;
+}
+
+.visibility-icon {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    color: whitesmoke;
 }

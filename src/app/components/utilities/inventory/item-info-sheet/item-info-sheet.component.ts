@@ -12,11 +12,18 @@ import { AddItemDialogComponent } from '../add-item-dialog/add-item-dialog.compo
 })
 export class ItemInfoSheetComponent {
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item }, private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>, private dialog: MatDialog, private platform: Platform) {}
+  constructor(
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean }, 
+    private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>, 
+    private dialog: MatDialog) {
+    this.isCampaign = window.location.href.includes('campaign-view');
+  }
+
+  public isCampaign: boolean = false;
 
   openEditDialog(item: Item) {
     this.dialog.open(AddItemDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
+      width: window.innerWidth < 500 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
       data: { inventory: [], item: item }
@@ -29,4 +36,11 @@ export class ItemInfoSheetComponent {
       }
     })
   }
+
+  public reclameItem(item: Item, quantity: number) {
+    const quantityToReclame = quantity;
+    this.data.item.quantity -= quantityToReclame;
+    this.data.item.visible = this.data.item.quantity > 0;
+    this.sheetRef.dismiss({ status: 'reclamed', item: item, quantity: quantityToReclame });
+  } 
 }

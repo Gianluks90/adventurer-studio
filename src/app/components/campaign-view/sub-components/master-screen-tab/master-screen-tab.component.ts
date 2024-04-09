@@ -25,8 +25,6 @@ export class MasterScreenTabComponent {
       }
     });
     this.screenContent = data;
-    console.log('screenContent: ', this.screenContent);
-    
   }
 
   private splitDescriptionIntoSentences(description) {

@@ -106,3 +106,15 @@
         margin-bottom: 20px;
     }
 }
+
+.reclame-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.reclame-container>button {
+    flex-grow: 1;
+    width: 40%;
+}

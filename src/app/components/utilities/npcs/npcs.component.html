@@ -70,7 +70,9 @@
                         </button>
                     </div>
                     <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
-                        <div>{{npc.notes}}</div>
+                        @if(npc.notes !== '') {
+                            <div>{{npc.notes}}</div>
+                        }
                         @if (npc.isDealer || npc.isMerchant) {
                         <div class="npc-footer">
                             @if (npc.isDealer) {
@@ -239,7 +241,9 @@
                             }
                         </details>
                         <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
-                            <div>{{addon.notes}}</div>
+                            @if (addon.notes !== '') {
+                                <div>{{addon.notes}}</div>
+                            }
                             @if (addon.isDealer || addon.isMerchant) {
                             <div class="npc-footer">
                                 @if (addon.isDealer) {
@@ -280,7 +284,9 @@
                     </button>
                 </div>
                 <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
-                    <div>{{npc.notes}}</div>
+                    @if (npc.notes !== '') {
+                        <div>{{npc.notes}}</div>
+                    }
                     @if (npc.isDealer || npc.isMerchant) {
                     <div class="npc-footer">
                         @if (npc.isDealer) {
@@ -458,7 +464,9 @@
                         }
                     </details>
                     <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
-                        <div>{{addon.notes}}</div>
+                        @if (addon.notes !== '') {
+                            <div>{{addon.notes}}</div>
+                        }
                         @if (addon.isDealer || addon.isMerchant) {
                         <div class="npc-footer">
                             @if (addon.isDealer) {
@@ -477,6 +485,4 @@
             <div class="empty-list">Nessuna scheda presente.</div>
         }
     }
-
-
 </div>

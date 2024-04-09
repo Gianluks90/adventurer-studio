@@ -14,6 +14,12 @@
         <div class="property-label">{{prop.name}}</div>
         <div class="property-description">{{prop.description}}</div>
     </div>
+    @if (isCampaign) {
+        <div class="reclame-container">
+            <button *ngIf="data.item.quantity > 1" mat-raised-button color="accent" (click)="reclameItem(data.item, 1)">Reclama 1</button>
+            <button mat-raised-button color="accent" (click)="reclameItem(data.item, data.item.quantity)">Reclama tutto</button>
+        </div>
+    }
     <div class="sheet-footer">
         <div *ngIf="data.item.weight" class="footer-element"><img src="./assets/icons/weight.svg"> {{data.item.weight * data.item.quantity}}</div>
         <div class="footer-element"><img src="./assets/tabs-icons/inventory.svg"> {{data.item.quantity}}</div>
@@ -22,6 +28,8 @@
     </div>
 </div>
 
-<button mat-mini-fab class="edit-button" (click)="openEditDialog(data.item)">
-    <mat-icon>edit</mat-icon>
-</button>
+@if (data.isOwner || !isCampaign) {
+    <button mat-mini-fab class="edit-button" (click)="openEditDialog(data.item)">
+        <mat-icon>edit</mat-icon>
+    </button>
+}

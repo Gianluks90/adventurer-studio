@@ -10,13 +10,57 @@
         }
     </div>
     <div class="items-container">
-        <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
-        <div *ngIf="inventoryData.length > 0" class="items-icon-container" >
-            <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
-                <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
-                <span class="quantity-value">{{i.quantity}}</span>
-                <span class="weared-label" *ngIf="i.weared">E</span>
+        @if (inventoryData.length > 0) {
+            <div class="items-icon-container" >
+                <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
+                    @if (isCampaign) {
+                        <!-- SONO NELLA CAMPAIGN VIEW -->
+                        @if (i.visible || isOwnerData) {
+                            <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
+                            @if (!i.visible) {
+                                <mat-icon class="visibility-icon">visibility_off</mat-icon>
+                            }
+                        }
+                    } @else {
+                        <!-- SONO NELLA CHAR VIEW -->
+                        <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
+                        <span class="quantity-value">{{i.quantity}}</span>
+                        <span class="weared-label" *ngIf="i.weared">E</span>
+                    }
+                </div>
             </div>
-        </div>
+        } @else {
+            <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
+        }
     </div>
 </div>
+
+<!-- <div class="items-container">
+    @if (inventoryData.length > 0) {
+        @for (i of inventoryData; track j; let j = $index) {
+            @if (isCampaign) {
+                @if (i.visible || isOwnerData) {
+                    <div [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
+                        @if (!i.visible) {
+                            <mat-icon class="visibility-icon">visibility_off</mat-icon>
+                        }
+                        <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
+                        <span class="quantity-value">{{i.quantity}}</span>
+                        <span class="weared-label" *ngIf="i.weared">E</span>
+                    </div>
+                }
+            } @else {
+                <div class="items-icon-container" >
+                    <div [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
+                        <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
+                        <span class="quantity-value">{{i.quantity}}</span>
+                        <span class="weared-label" *ngIf="i.weared">E</span>
+                    </div>
+                </div>
+            }
+        }
+    } @else {
+        <div *ngIf="inventoryData.length === 0">Nessun oggetto nell'inventario</div>
+    }
+    
+</div> -->

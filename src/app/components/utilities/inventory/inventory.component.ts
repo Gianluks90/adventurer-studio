@@ -26,12 +26,16 @@ export class InventoryComponent {
     this.isOwnerData = isCampaignOwner;
   }
 
+  public selectedCharData: string = '';
+  @Input() set selectedChar(selectedChar: string) {
+    this.selectedCharData = selectedChar;
+  }
+
   public isCampaign: boolean = false;
 
   constructor(
     private dialog: MatDialog,
     private bottomSheet: MatBottomSheet,
-    private platform: Platform,
     private characterService: CharacterService,
     private campaignService: CampaignService) {
     this.isCampaign = window.location.href.includes('campaign-view');
@@ -42,7 +46,7 @@ export class InventoryComponent {
       width: window.innerWidth < 500 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
-      data: { inventory: this.inventoryData }
+      data: { inventory: this.inventoryData, isOwner: this.isOwnerData }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         if (!this.isCampaign) {
@@ -71,7 +75,7 @@ export class InventoryComponent {
       // disableClose: true,
       panelClass: 'item-info-sheet',
       autoFocus: false,
-      data: { item }
+      data: { item: item, isOwner: this.isOwnerData }
     }).afterDismissed().subscribe((result: any) => {
       if (result && result.status === 'edited') {
         this.inventoryData[index] = result.item;
@@ -88,6 +92,10 @@ export class InventoryComponent {
         } else {
           this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         }
+      }
+      if (result && result.status === 'reclamed' && this.selectedCharData !== '') {
+        result.item.quantity = result.quantity;
+        this.characterService.addItemInventory(this.selectedCharData, result.item);
       }
     });
   }
