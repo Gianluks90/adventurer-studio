@@ -106,6 +106,7 @@ export class CharacterService {
     const docRef = doc(this.firebaseService.database, 'characters', newCharacterId);
     return await setDoc(docRef, {
       ...form.value,
+      campaignId: '',
       id: newCharacterId,
       status: {
         creationDate: new Date(),

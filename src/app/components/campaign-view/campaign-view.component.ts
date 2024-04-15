@@ -10,6 +10,7 @@ import { CharacterService } from 'src/app/services/character.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DiceComponent } from '../utilities/dice/dice.component';
 import { DddiceService } from 'src/app/services/dddice.service';
+import { NextSessionDialogComponent } from './next-session-dialog/next-session-dialog.component';
 
 @Component({
   selector: 'app-campaign-view',
@@ -22,6 +23,7 @@ export class CampaignViewComponent {
   public isOwner: boolean = false;
   public partecipantIndex: number = -1;
   public sessionNumber: number = 1;
+  public today = new Date();
 
   constructor(
     private firebaseService: FirebaseService,
@@ -93,5 +95,12 @@ export class CampaignViewComponent {
       result += element.story.length;
     });
     this.sessionNumber = result;
+  }
+
+  public openNextSessionDialog() {
+    this.matDialog.open(NextSessionDialogComponent, {
+      width: window.innerWidth < 600 ? '80%' : '30%',
+      autoFocus: false,
+    });
   }
 }

@@ -87,6 +87,8 @@ import { CampaignNpcTabComponent } from './components/campaign-view/sub-componen
 import { MasterScreenTabComponent } from './components/campaign-view/sub-components/master-screen-tab/master-screen-tab.component';
 import { RemoveCharDialogComponent } from './components/campaign-view/sub-components/campaign-settings-tab/remove-char-dialog/remove-char-dialog.component';
 import { CampaignInventoryTabComponent } from './components/campaign-view/sub-components/campaign-inventory-tab/campaign-inventory-tab.component';
+import { NextSessionDialogComponent } from './components/campaign-view/next-session-dialog/next-session-dialog.component';
+import { MAT_DATE_LOCALE } from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -189,6 +191,7 @@ import { CampaignInventoryTabComponent } from './components/campaign-view/sub-co
     MasterScreenTabComponent,
     RemoveCharDialogComponent,
     CampaignInventoryTabComponent,
+    NextSessionDialogComponent,
 
   ],
   imports: [
@@ -206,7 +209,7 @@ import { CampaignInventoryTabComponent } from './components/campaign-view/sub-co
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [SidenavService],
+  providers: [SidenavService, { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

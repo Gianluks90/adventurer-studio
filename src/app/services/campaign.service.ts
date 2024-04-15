@@ -76,6 +76,7 @@ export class CampaignService {
       addons: [],
       inventory: [],
       archive: [],
+      nextSession: '',
       status: {
         statusCode: 0,
         statusMessage: 'Nuova'
@@ -396,6 +397,14 @@ export class CampaignService {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {
       inventory: inventory,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
+  public async updateNextSession(id: string, nextSession: Date): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', id);
+    return await setDoc(docRef, {
+      nextSession: nextSession,
       lastUpdate: new Date()
     }, { merge: true });
   }

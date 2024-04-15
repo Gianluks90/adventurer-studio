@@ -1,0 +1,21 @@
+<div mat-dialog-title class="dialog-title">Prossima sessione</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div class="description">
+        Scegli una data per la prossima sessione di gioco, questa sarà visibile ai giocatori per ricordare loro quando
+        tenersi liberi e pronti a ruolare.
+    </div>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Data prossima sessione</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="nextDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>check</mat-icon> Conferma
+    </button>
+</div>

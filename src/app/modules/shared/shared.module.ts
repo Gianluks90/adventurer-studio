@@ -22,6 +22,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [],
@@ -46,7 +49,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSlideToggleModule,
     MatBottomSheetModule,
     MatBadgeModule,
-    LayoutModule
+    LayoutModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   exports: [
     MatIconModule,
@@ -68,7 +73,9 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatSlideToggleModule,
     MatBottomSheetModule,
     MatBadgeModule,
-    LayoutModule
+    LayoutModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ]
 })
 export class SharedModule { }
