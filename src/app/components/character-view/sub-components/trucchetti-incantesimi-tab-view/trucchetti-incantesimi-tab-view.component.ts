@@ -21,13 +21,27 @@ export class TrucchettiIncantesimiTabViewComponent {
   public slotIncantesimi: any;
 
   @Input() set trucchettiIncantesimi(data: any) {
-    this.lista = data.lista;
+    // this.lista = data.lista;
+    // this.sortSpells();
+    // this.classeIncantatore = data.classeIncantatore;
+    // this.caratteristicaIncantatore = data.caratteristicaIncantatore;
+    // this.bonusAttaccoIncantesimi = data.bonusAttaccoIncantesimi;
+    // this.CDTiroSalvezza = data.CD;
+    // this.slotIncantesimi = data.slotIncantesimi;
+  }
+
+  @Input() set character(character: any) {
+    if (!character) return;
+    console.log(character);
+    this.lista = character.magia.trucchettiIncantesimi;
     this.sortSpells();
-    this.classeIncantatore = data.classeIncantatore;
-    this.caratteristicaIncantatore = data.caratteristicaIncantatore;
-    this.bonusAttaccoIncantesimi = data.bonusAttaccoIncantesimi;
-    this.CDTiroSalvezza = data.CD;
-    this.slotIncantesimi = data.slotIncantesimi;
+    this.classeIncantatore = character.magia.classeIncantatore;
+    this.caratteristicaIncantatore = character.magia.caratteristicaIncantatore;
+    this.bonusAttaccoIncantesimi = character.magia.bonusAttaccoIncantesimi;
+    this.CDTiroSalvezza = character.magia.CDTiroSalvezza;
+    this.slotIncantesimi = character.magia.slotIncantesimi;
+    
+    // this.lista = character.
   }
 
   constructor(private platform: Platform, private characterService: CharacterService, private dialog: MatDialog, private notification: NotificationService) { }

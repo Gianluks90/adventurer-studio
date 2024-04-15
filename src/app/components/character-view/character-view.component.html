@@ -34,8 +34,7 @@
                     <img src="./assets/tabs-icons/skills.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Abilità">
                 </ng-template>
-                <app-abilita-tab-view [abilita]="competenzeAbilita"
-                    [linguaggiCompetenze]="linguaggiCompetenze"></app-abilita-tab-view>
+                <app-abilita-tab-view [character]="character"></app-abilita-tab-view>
             </mat-tab>
 
             <mat-tab>
@@ -81,7 +80,7 @@
                         matTooltip="Trucchetti e Incantesimi">
                 </ng-template>
                 <app-trucchetti-incantesimi-tab-view
-                    [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
+                    [character]="character" [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
             </mat-tab>
 
             <mat-tab [disabled]="!editMode">

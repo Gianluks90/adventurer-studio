@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, effect } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
@@ -44,40 +44,103 @@ export class CharacterViewComponent {
       breakpointObserver.observe('(max-width: 768px)').subscribe(result => {
         this.isMobile = result.matches;
       });
+
+      if (this.charId === '' && !window.location.href.includes('campaign-view')) {
+        this.charId = window.location.href.split('/').pop();
+      }
+      this.characterService.getCharacterSignalById(this.charId);
+      effect(() => {
+        this.character = this.characterService.character();
+        this.verifyEditMode();
+      //   this.competenzeAbilita = {
+      //     abilita: this.character.competenzaAbilita,
+      //     bonusCompetenza: this.character.tiriSalvezza.bonusCompetenza,
+      //     caratteristiche: this.character.caratteristiche
+      //   };
+  
+      //   this.linguaggiCompetenze = {
+      //     linguaggi: this.character.altreCompetenze.linguaggi || [],
+      //     armi: this.character.altreCompetenze.armi || [],
+      //     armature: this.character.altreCompetenze.armature || [],
+      //     strumenti: this.character.altreCompetenze.strumenti || [],
+      //     altro: this.character.altreCompetenze.altro || []
+      //   };
+  
+      //   this.trucchettiIncantesimi = {
+      //     lista: this.character.magia.trucchettiIncantesimi,
+      //     classeIncantatore: this.character.magia.classeIncantatore,
+      //     caratteristicaIncantatore: this.character.magia.caratteristicaIncantatore,
+      //     bonusAttaccoIncantesimi: this.character.magia.bonusAttaccoIncantesimi,
+      //     CD: this.character.magia.CDTiroSalvezza,
+      //     slotIncantesimi: this.character.magia.slotIncantesimi
+      //   }
+  
+      //   this.formService.initForm(this.charId); // Un po raffazzonato, va sistemato usando solo il formSubject
+      // });
+      });
     }
 
   ngOnInit(): void {
-    if (this.charId === '' && !window.location.href.includes('campaign-view')) {
-      this.charId = window.location.href.split('/').pop();
-    }
-    this.characterService.getCharacterById(this.charId).then((character) => {
-      this.character = character;
-      this.verifyEditMode();
-      this.competenzeAbilita = {
-        abilita: this.character.competenzaAbilita,
-        bonusCompetenza: this.character.tiriSalvezza.bonusCompetenza,
-        caratteristiche: this.character.caratteristiche
-      };
+    // if (this.charId === '' && !window.location.href.includes('campaign-view')) {
+    //   this.charId = window.location.href.split('/').pop();
+    // }
+    // this.characterService.getCharacterSignalById(this.charId);
+    // effect(() => {
+    //   this.character = this.characterService.character();
+    //   this.verifyEditMode();
+    //   this.competenzeAbilita = {
+    //     abilita: this.character.competenzaAbilita,
+    //     bonusCompetenza: this.character.tiriSalvezza.bonusCompetenza,
+    //     caratteristiche: this.character.caratteristiche
+    //   };
 
-      this.linguaggiCompetenze = {
-        linguaggi: this.character.altreCompetenze.linguaggi || [],
-        armi: this.character.altreCompetenze.armi || [],
-        armature: this.character.altreCompetenze.armature || [],
-        strumenti: this.character.altreCompetenze.strumenti || [],
-        altro: this.character.altreCompetenze.altro || []
-      };
+    //   this.linguaggiCompetenze = {
+    //     linguaggi: this.character.altreCompetenze.linguaggi || [],
+    //     armi: this.character.altreCompetenze.armi || [],
+    //     armature: this.character.altreCompetenze.armature || [],
+    //     strumenti: this.character.altreCompetenze.strumenti || [],
+    //     altro: this.character.altreCompetenze.altro || []
+    //   };
 
-      this.trucchettiIncantesimi = {
-        lista: this.character.magia.trucchettiIncantesimi,
-        classeIncantatore: this.character.magia.classeIncantatore,
-        caratteristicaIncantatore: this.character.magia.caratteristicaIncantatore,
-        bonusAttaccoIncantesimi: this.character.magia.bonusAttaccoIncantesimi,
-        CD: this.character.magia.CDTiroSalvezza,
-        slotIncantesimi: this.character.magia.slotIncantesimi
-      }
+    //   this.trucchettiIncantesimi = {
+    //     lista: this.character.magia.trucchettiIncantesimi,
+    //     classeIncantatore: this.character.magia.classeIncantatore,
+    //     caratteristicaIncantatore: this.character.magia.caratteristicaIncantatore,
+    //     bonusAttaccoIncantesimi: this.character.magia.bonusAttaccoIncantesimi,
+    //     CD: this.character.magia.CDTiroSalvezza,
+    //     slotIncantesimi: this.character.magia.slotIncantesimi
+    //   }
 
-      this.formService.initForm(this.charId); // Un po raffazzonato, va sistemato usando solo il formSubject
-    });
+    //   this.formService.initForm(this.charId); // Un po raffazzonato, va sistemato usando solo il formSubject
+    // });
+    // this.characterService.getCharacterById(this.charId).then((character) => {
+    //   this.character = character;
+    //   this.verifyEditMode();
+    //   this.competenzeAbilita = {
+    //     abilita: this.character.competenzaAbilita,
+    //     bonusCompetenza: this.character.tiriSalvezza.bonusCompetenza,
+    //     caratteristiche: this.character.caratteristiche
+    //   };
+
+    //   this.linguaggiCompetenze = {
+    //     linguaggi: this.character.altreCompetenze.linguaggi || [],
+    //     armi: this.character.altreCompetenze.armi || [],
+    //     armature: this.character.altreCompetenze.armature || [],
+    //     strumenti: this.character.altreCompetenze.strumenti || [],
+    //     altro: this.character.altreCompetenze.altro || []
+    //   };
+
+    //   this.trucchettiIncantesimi = {
+    //     lista: this.character.magia.trucchettiIncantesimi,
+    //     classeIncantatore: this.character.magia.classeIncantatore,
+    //     caratteristicaIncantatore: this.character.magia.caratteristicaIncantatore,
+    //     bonusAttaccoIncantesimi: this.character.magia.bonusAttaccoIncantesimi,
+    //     CD: this.character.magia.CDTiroSalvezza,
+    //     slotIncantesimi: this.character.magia.slotIncantesimi
+    //   }
+
+    //   this.formService.initForm(this.charId); // Un po raffazzonato, va sistemato usando solo il formSubject
+    // });
   }
 
   @Input() public set characterId(id: string) {
@@ -98,6 +161,9 @@ export class CharacterViewComponent {
   }
 
   private verifyEditMode() {
+    if (!this.character) {
+      return;
+    }
     const userId = getAuth().currentUser.uid;
     if (userId) {
       if (userId === this.character.status.userId) {

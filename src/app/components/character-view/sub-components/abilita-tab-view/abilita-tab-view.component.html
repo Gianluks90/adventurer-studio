@@ -11,12 +11,14 @@
     </div>
     <div *ngIf="competenzeData">
         <div class="section-title">Linguaggi e altre competenze</div>
-        <div *ngIf="competenzeData.linguaggi.length > 0" class="competenze-label">Linguaggi</div>
-        <div *ngIf="competenzeData.linguaggi.length > 0" class="competenze-container">
-            <div *ngFor="let l of competenzeData.linguaggi">
-                <div class="competenza">{{l}}</div>
+        @if(competenzeData.linguaggi.length > 0)  {
+            <div class="competenze-label">Linguaggi</div>
+            <div class="competenze-container">
+                <div *ngFor="let l of competenzeData.linguaggi">
+                    <div class="competenza">{{l}}</div>
+                </div>
             </div>
-        </div>
+        }
         <div *ngIf="competenzeData.armi.length > 0" class="competenze-label">Armi</div>
         <div *ngIf="competenzeData.armi.length > 0" class="competenze-container">
             <div *ngFor="let a of competenzeData.armi">

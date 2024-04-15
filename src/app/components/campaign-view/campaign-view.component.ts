@@ -34,6 +34,7 @@ export class CampaignViewComponent {
     private dddiceService: DddiceService) {
 
     const id = window.location.href.split('campaign-view/').pop();
+    this.campaignService.getSignalSingleCampaing(id);
     effect(() => {
       this.campaignData = this.campaignService.campaigns();
       this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);

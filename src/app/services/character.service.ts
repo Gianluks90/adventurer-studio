@@ -17,6 +17,7 @@ export class CharacterService {
   }
 
   public campaignCharacters: WritableSignal<any[]> = signal([]);
+  public character: WritableSignal<any> = signal(null);
 
   public async getCharacterById(id: string): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
@@ -26,6 +27,16 @@ export class CharacterService {
     } else {
       return null;
     }
+  }
+
+  public getCharacterSignalById(id: string): void {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    const unsub = onSnapshot(docRef, (snapshot) => {
+      this.character.set({
+        id: snapshot.id,
+        ...snapshot.data()
+      });
+    });
   }
 
   public async getCharacters(): Promise<any[]> {

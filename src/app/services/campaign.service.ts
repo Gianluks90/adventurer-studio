@@ -12,7 +12,8 @@ export class CampaignService {
   public campaigns: WritableSignal<any[]> = signal([]);
 
   constructor(private firebaseService: FirebaseService) {
-    this.getSignalCampaigns();
+    // const ownerId = getAuth().currentUser!.uid;
+    // this.getSignalCampaigns(ownerId);
   }
 
   // old
@@ -148,18 +149,34 @@ export class CampaignService {
     }
   }
 
-  public getSignalCampaigns(): void {
-    const docRef = collection(this.firebaseService.database, 'campaigns');
-    const unsub = onSnapshot(docRef, (snapshot) => {
-      const result: any[] = [];
-      snapshot.forEach(doc => {
+  // public getSignalCampaigns(campId: string): void {
+  //   const ref = collection(this.firebaseService.database, 'campaigns');
+  //   const q = query(ref, where('ownerId', '==', campId));
+  //   const unsub = onSnapshot(q, (snapshot) => {
+  //     const result: any[] = [];
+  //     snapshot.forEach(doc => {
+  //       const campaign = {
+  //         id: doc.id,
+  //         ...doc.data()
+  //       }
+  //       result.push(campaign);
+  //     });
+  //     this.campaigns.set(result);
+  //     console.log('Campaigns', result);
+      
+  //   });
+  // }
+
+  public getSignalSingleCampaing(campId: string): void {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    const unsub = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
         const campaign = {
           id: doc.id,
           ...doc.data()
         }
-        result.push(campaign);
-      });
-      this.campaigns.set(result);
+        this.campaigns.set([campaign]);
+      }
     });
   }
 

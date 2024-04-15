@@ -20,27 +20,20 @@ export class AbilitaTabViewComponent {
   public bonusCompetenzaData: number = 0;
   public caratteristicheData: any = {};
 
-  @Input() set abilita(abilita: any) {
-    this.initMaestrieArray(abilita.abilita);
+  @Input() set character(character: any) {
+    if (!character) return;
 
-    this.bonusCompetenzaData = abilita.bonusCompetenza;
-    this.caratteristicheData = abilita.caratteristiche;
-
+    this.initMaestrieArray(character.competenzaAbilita);
+    this.bonusCompetenzaData = character.tiriSalvezza.bonusCompetenza;
+    this.caratteristicheData = character.caratteristiche;
     this.initMod(this.abilitaData, this.maestrieData, this.bonusCompetenzaData);
-
-    this.abilitaData.sort((a, b) => {
-      if (a.name < b.name) { return -1; }
-      if (a.name > b.name) { return 1; }
-
-      return 0;
-    });
-  }
-
-  @Input() set linguaggiCompetenze(linguaggiCompetenze: any) {
-    this.competenzeData = linguaggiCompetenze;
+    this.abilitaData.sort((a, b) => a.name.localeCompare(b.name));
+    this.competenzeData = character.altreCompetenze;
   }
 
   private initMaestrieArray(abilita: any) {
+    this.maestrieData = [];
+    this.abilitaData = [];
     Object.keys(abilita).forEach((key) => {
       if (key.includes('maestria')) {
         this.maestrieData.push({ name: key.slice(8, 30), value: abilita[key] });
