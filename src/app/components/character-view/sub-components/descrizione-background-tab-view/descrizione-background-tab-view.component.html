@@ -62,6 +62,9 @@
 <div class="character-history-container">
     {{charData.storiaPersonaggio}}
 </div>
+<div class="button-container">
+    <button mat-raised-button color="accent" (click)="openEditStoryDialog()"><mat-icon>edit</mat-icon> Modifica</button>
+</div>
 } @else {
 <div class="description">Questa storia è visibile solo al proprietario della scheda personaggio e al DM della Campagna
     in cui esso è inserito, se presente.</div>

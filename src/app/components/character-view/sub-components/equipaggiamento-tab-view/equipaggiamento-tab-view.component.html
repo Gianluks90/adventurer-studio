@@ -70,6 +70,9 @@
     <!-- <div class="equips">{{equipaggiamentoData}}</div> -->
   </div>
   <div class="section-title">Equipaggiamento</div>
+  <div class="weight-container" *ngIf="characterData.status.useWeightRule">
+    <div>{{ingombroTotale}} / {{pesoTrasportabile}}</div> <img src="./assets/icons/weight.svg" matTooltip="ingombro / trasportabile" matTooltipPosition="above"> <img *ngIf="messaggioIngombro !== ''" src="./assets/icons/warning.svg" [matTooltip]="messaggioIngombro" matTooltipPosition="above">
+  </div>
   <div class="inventory-container">
     <app-inventory [inventory]="equipaggiamentoData"></app-inventory>
   </div>

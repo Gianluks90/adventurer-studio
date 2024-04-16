@@ -1,13 +1,23 @@
 <!-- <div class="main-abilita-container"> -->
     <div class="section-title">Competenze Abilità</div>
+    <div class="section-header">
+        <mat-slide-toggle class="last-toggle" color="accent" (change)="showSkillInfo($event)">
+            <div class="toggle-label">Info abilità</div>
+        </mat-slide-toggle>
+    </div>
     <div *ngFor="let a of abilitaData; let last = last" [ngClass]="{'last-item': last, 'dice-rolls': diceService.roomConnected}" class="a-container" (click)="rollDice(a.name, a.mod)">
-        <div class="a-name">
-            {{a.name}} ({{a.short}})
-            <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
-            <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span>
+        <div class="a-inner-container">
+            <div class="a-name">
+                {{a.name}} ({{a.short}})
+                <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
+                <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span>
+            </div>
+            <!-- <div class="a-divider"></div> -->
+            <div class="a-value">{{a.mod}}</div>
         </div>
-        <!-- <div class="a-divider"></div> -->
-        <div class="a-value">{{a.mod}}</div>
+        <div class="a-description" *ngIf="showInfo">
+            {{skillInfo[a.name].description}}
+        </div>
     </div>
     <div *ngIf="competenzeData">
         <div class="section-title">Linguaggi e altre competenze</div>
@@ -37,11 +47,11 @@
                 <div class="competenza">{{s}}</div>
             </div>
         </div>
-        <div *ngIf="competenzeData.altro.length > 0" class="competenze-label">Altro</div>
+        <!-- <div *ngIf="competenzeData.altro.length > 0" class="competenze-label">Altro</div>
         <div *ngIf="competenzeData.altro.length > 0" class="competenze-container">
             <div *ngFor="let a of competenzeData.altro">
                 <div class="competenza">{{a}}</div>
             </div>
-        </div>
+        </div> -->
     </div>
 <!-- </div> -->

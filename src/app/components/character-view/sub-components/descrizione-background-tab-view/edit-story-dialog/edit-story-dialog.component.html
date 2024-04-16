@@ -1,0 +1,19 @@
+<div mat-dialog-title class="dialog-title">Modifica storia</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div class="description">
+        Usa questo strumento per correggere errori o incongruenze della storia del tuo personaggio. Confrontati sempre
+        con il DM in caso di modifiche importanti al tuo background.
+    </div>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Storia Personaggio</mat-label>
+        <textarea matInput formControlName="story" rows="5"></textarea>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>check</mat-icon> Conferma
+    </button>
+</div>

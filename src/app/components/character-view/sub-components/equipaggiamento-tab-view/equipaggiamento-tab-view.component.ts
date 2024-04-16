@@ -15,7 +15,11 @@ import { Item } from 'src/app/models/item';
 })
 export class EquipaggiamentoTabViewComponent {
 
+  public characterData: any;
   public equipaggiamentoData: Item[] = [];
+  public pesoTrasportabile = 0;
+  public ingombroTotale = 0;
+  public messaggioIngombro = '';
   public denaroData: any = {};
   public idData: string = '';
 
@@ -24,7 +28,11 @@ export class EquipaggiamentoTabViewComponent {
   constructor(private dialog: MatDialog, private platform: Platform, private notification: NotificationService, private formService: FormService, private charService: CharacterService) { }
 
   @Input() set character(character: any) {
+    this.characterData = character;
     this.equipaggiamentoData = character.equipaggiamento;
+    this.pesoTrasportabile = character.caratteristiche.forza * 7.5;
+    this.setPeso();
+    // this.messaggioIngombro = (this.ingombroTotale > (character.caratteristiche.forza * 2.5)) && (this.ingombroTotale < (character.caratteristiche.forza * 5))  ? 'Ingombrato (-3m velocità)' : this.ingombroTotale > (character.caratteristiche.forza * 5) ? 'Pesantemente ingombrato (-6m velocità, svantaggio alle prove di caratteristica, tiri per colpire usando Forza, Destrezza o Costituzione)' : '';
     this.denaroData = character.denaro;
     this.idData = character.id;
   }
@@ -64,6 +72,15 @@ export class EquipaggiamentoTabViewComponent {
         this.charService.updateMoney(this.idData, this.denaroData).then(() => {
           this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, 'limegreen');
         });
+      }
+    });
+  }
+
+  public setPeso() {
+    this.ingombroTotale = 0;
+    this.equipaggiamentoData.forEach((item: Item) => {
+      if (item.weight > 0 && !item.weared) {
+        this.ingombroTotale += (item.weight * item.quantity);
       }
     });
   }

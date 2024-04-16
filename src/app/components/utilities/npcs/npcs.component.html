@@ -1,6 +1,6 @@
 <div class="main-container">
     @if (isCampaign) {
-        <div class="section-title">Personaggi, Organizzazioni e Schede</div>
+        <div class="section-title">PNG, Organizzazioni e Schede</div>
     }
     <div class="search-container">
         <!-- SONO NELLA CHAR VIEW NEL TAB COMPANIONS -->
@@ -38,7 +38,7 @@
             disableRipple *ngIf="isOwner"><mat-icon>add</mat-icon></button>
         <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
             <button mat-menu-item (click)="openAddNpcDialog()">
-                Personaggio
+                PNG
             </button>
             <button mat-menu-item (click)="openAddOrganizationDialog()">
                 Organizzazione
@@ -272,7 +272,7 @@
             }
         } @else {
         <!-- SONO NELLA CAMPAIGN VIEW -->
-        <div class="competenze-label">Personaggi</div>
+        <div class="competenze-label">Personaggi non giocanti</div>
         @if (npcsData.length > 0) {
             @for (npc of npcsData; track i; let i = $index) {
                 @if (npc.visible || isOwner) {
@@ -286,7 +286,7 @@
                         <span class="org-visibility" *ngIf="!npc.visible">
                             <mat-icon>visibility_off</mat-icon>
                         </span> {{npc.name}}</div>
-                        <div class="org-place">{{npc.lastPlace}}<span *ngIf="npc.relationship">, {{npc.relationship}}</span></div>
+                        <div class="org-place">{{npc.lastPlace}}</div>
                     </div>
                     <button mat-mini-fab color="accent" class="edit-button" (click)="openAddNpcDialog(npc, i)" *ngIf="isOwner">
                         <mat-icon>edit</mat-icon>
@@ -297,13 +297,29 @@
                         @if (npc.notes !== '') {
                             <div>{{npc.notes}}</div>
                         }
-                        @if (npc.isDealer || npc.isMerchant) {
+                        @if (npc.relationship || npc.isDealer || npc.isMerchant) {
                         <div class="npc-footer">
                             @if (npc.isDealer) {
                             <img src="./assets/npcs/ricettatore.svg" matTooltip="Ricettatore">
                             }
                             @if (npc.isMerchant) {
                             <img src="./assets/npcs/mercante.svg" matTooltip="Mercante">
+                            }
+                            @if (npc.relationship) {
+                                @switch(npc.relationship) {
+                                    @case ('Amichevole') {
+                                        <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                                    }
+                                    @case ('Neutrale') {
+                                        <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                                    }
+                                    @case ('Indifferente') {
+                                        <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                                    }
+                                    @case ('Ostile') {
+                                        <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                                    }
+                                }
                             }
                         </div>
                         }
@@ -312,7 +328,7 @@
                 }
             }
         } @else {
-            <div class="empty-list">Nessun personaggio presente.</div>
+            <div class="empty-list">Nessun PNG presente.</div>
         }
         <div class="competenze-label">Organizazzioni</div>
         @if (organizationsData.length > 0) {
@@ -327,13 +343,36 @@
                             <span class="org-visibility" *ngIf="!org.visible">
                                 <mat-icon>visibility_off</mat-icon>
                             </span> {{org.name}}</div>
-                        <div class="org-place">{{org.lastPlace}}<span *ngIf="org.relationship">, {{org.relationship}}</span></div>
+                        <div class="org-place">{{org.lastPlace}}</div>
                     </div>
                     <button mat-mini-fab color="accent" class="edit-button" (click)="openAddOrganizationDialog(org, i)" *ngIf="isOwner">
                         <mat-icon>edit</mat-icon>
                     </button>
                 </div>
-                <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">{{org.notes}}</div>
+                <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
+                    <div>{{org.notes}}</div>
+                    @if (org.relationship) {
+                        <div class="npc-footer">
+                            @if (org.relationship) {
+                                @switch(org.relationship) {
+                                    @case ('Amichevole') {
+                                        <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                                    }
+                                    @case ('Neutrale') {
+                                        <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                                    }
+                                    @case ('Indifferente') {
+                                        <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                                    }
+                                    @case ('Ostile') {
+                                        <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                                    }
+                                }
+                            }
+                        </div>
+                        }
+                </div>
+
                 }   
             }
         } @else {

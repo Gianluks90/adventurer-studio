@@ -320,3 +320,22 @@ span {
 .dice-rolls {
     cursor: pointer;
 }
+
+.speed-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.speed-icon {
+    height: 20px;
+}
+
+.speed-icon>img {
+    height: 20px;
+    width: 20px;
+}
+
+.meter-value {
+    font-weight: 400;
+}

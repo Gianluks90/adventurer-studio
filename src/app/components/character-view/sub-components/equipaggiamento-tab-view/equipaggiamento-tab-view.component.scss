@@ -99,3 +99,18 @@
   }
 
 }
+
+.weight-container {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.weight-container>div {
+  opacity: 0.7;
+}
+
+.weight-container>img {
+  height: 20px;
+}

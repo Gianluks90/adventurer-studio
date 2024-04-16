@@ -25,9 +25,6 @@
         <mat-icon>refresh</mat-icon> Predefinito
     </button>
 </div>
-<div class="description-text"><strong>Attenzione</strong>: una volta premuto uno dei tasti 'Applica' o 'Predefinito' la
-    pagina verrà
-    ricaricata ed ogni modifica non salvata sarà persa. Assicurati di salvare prima di effettuare questa modifica.</div>
 <div class="subtitle">Esportazione</div>
 <div class="export-container">
     <a class="export-button" href="" target="_blank" id="export-button">
@@ -44,11 +41,27 @@
     sezione Personaggi. Il file <strong>PDF</strong> (funzione disponibile prossimamente) è invece la scheda personaggio
     ufficiale in formato .pdf pre-compilata con le informazioni inserite finora.</div>
 
-<div class="subtitle">Mostra/Nascondi esperienza (prossimamente)</div>
+<div class="subtitle">Regole aggiuntive</div>
+<mat-slide-toggle class="slide-toggle" color="accent" [(ngModel)]="charData.status.useWeightRule" (change)="toggleWeightRule($event)">
+    <div class="toggle-label">Usa le regole dell'<em>Ingombro</em> (visualizza il peso nell'inventario, calcola
+        gli ingombri e ti avvisa se il PG è appesantito e quali sono gli svantaggi, vedi PHB 176).</div>
+</mat-slide-toggle>
+<mat-slide-toggle class="slide-toggle" color="accent" disabled checked="true">
+    <div class="toggle-label">Rendi segreta la scheda personaggio (quando è attiva, questa funzione nasconde la scheda a
+        chiunque non sia tu oppure il tuo DM, se il PG è unito ad una campagna. Disattivare l'opzione consente anche la
+        modifica della scheda stessa).</div>
+</mat-slide-toggle>
+<mat-slide-toggle class="last-toggle" color="accent" disabled>
+    <div class="toggle-label">Usa la regola dei <em>punti esperienza</em> (visualizza una barra in cui accumulare i punti
+        esperienza, serve che il personaggio sia in una campagna attiva affinchè questi punti vengano assegnati, vedi PHB
+        15).</div>
+</mat-slide-toggle>
+
+<!-- <div class="subtitle">Mostra/Nascondi esperienza (prossimamente)</div>
 <div class="description-text">L'esperienza accumulata dal personaggio non viene mostrata di defaul agevolando il metodo
     delle milestone per il progresso del personaggio, se invece con il tuo gruppo stai utilizzando l'accumulo di
     esperienza attivane il visualizzatore con il bottone qui sotto (puoi accendere e spegnere questa visualizzazione
     ogni volta che vuoi). </div>
 <div class="description-text"><strong>Attenzione</strong>: una volta modificata questa impostazione la
     pagina verrà
-    ricaricata ed ogni modifica non salvata sarà persa. Assicurati di salvare prima di effettuare questa modifica.</div>
+    ricaricata ed ogni modifica non salvata sarà persa. Assicurati di salvare prima di effettuare questa modifica.</div> -->

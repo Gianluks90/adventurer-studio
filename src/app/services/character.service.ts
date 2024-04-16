@@ -266,6 +266,15 @@ export class CharacterService {
     }, { merge: true });
   }
 
+  public async updateWeightRule(id: string, rule: boolean): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      status: {
+        useWeightRule: rule
+      }
+    }, { merge: true });
+  }
+
   // public async updateAttacks(id: string, attacks: any[]): Promise<any> {
   //   const docRef = doc(this.firebaseService.database, 'characters', id);
   //   return await setDoc(docRef, {
@@ -314,6 +323,13 @@ export class CharacterService {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {
       organizations: organizations
+    }, { merge: true });
+  }
+
+  public async updateStory(id: string, story: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      storiaPersonaggio: story
     }, { merge: true });
   }
 

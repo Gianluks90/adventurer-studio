@@ -54,7 +54,7 @@ export class CharacterViewStatusComponent {
     this.characterData = character;
     this.initCaratteristiche();
     this.initTiriSalvezza();
-    this.initCA();
+    // this.initCA();
     this.initProvePassive();
 
     this.dadiVitaData = character.parametriVitali.dadiVita;

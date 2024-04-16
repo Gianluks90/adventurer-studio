@@ -29,8 +29,6 @@ export class InventoryComponent {
   public selectedCharData: any;
   @Input() set selectedChar(selectedChar: string) {
     this.selectedCharData = selectedChar;
-    console.log(selectedChar);
-
   }
 
   public isCampaign: boolean = false;
@@ -103,6 +101,33 @@ export class InventoryComponent {
           this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
           this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         });
+      }
+      if (result && result.status === 'consumed') {
+        this.inventoryData[index].quantity--;
+        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+      }
+      if (result && result.status === 'equipped') {
+        // Se è uno scudo
+        if (this.inventoryData[index].shield) {
+          this.inventoryData.forEach((item) => {
+            if (item.shield && item.name !== this.inventoryData[index].name) {
+              item.weared = false;
+            }
+          });
+        this.inventoryData[index].weared = !this.inventoryData[index].weared;
+        }
+
+        // Se è un'armatura
+        if (this.inventoryData[index].category.includes('Armatura')) {
+          this.inventoryData.forEach((item) => {
+            if (item.name !== this.inventoryData[index].name && item.category.includes('Armatura')) {
+              item.weared = false;
+            }
+          });
+          this.inventoryData[index].weared = !this.inventoryData[index].weared;
+        }
+
+        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
     });
   }

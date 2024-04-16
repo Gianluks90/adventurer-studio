@@ -89,6 +89,7 @@ import { RemoveCharDialogComponent } from './components/campaign-view/sub-compon
 import { CampaignInventoryTabComponent } from './components/campaign-view/sub-components/campaign-inventory-tab/campaign-inventory-tab.component';
 import { NextSessionDialogComponent } from './components/campaign-view/next-session-dialog/next-session-dialog.component';
 import { MAT_DATE_LOCALE } from "@angular/material/core";
+import { EditStoryDialogComponent } from './components/character-view/sub-components/descrizione-background-tab-view/edit-story-dialog/edit-story-dialog.component';
 
 @NgModule({
   declarations: [
@@ -192,6 +193,7 @@ import { MAT_DATE_LOCALE } from "@angular/material/core";
     RemoveCharDialogComponent,
     CampaignInventoryTabComponent,
     NextSessionDialogComponent,
+    EditStoryDialogComponent,
 
   ],
   imports: [

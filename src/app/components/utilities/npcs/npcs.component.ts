@@ -17,6 +17,7 @@ export class NpcsComponent {
   public adddonsData: any[] = [];
   public organizationsData: any[] = [];
   public isTab: boolean = false;
+  public isDM: boolean = false;
   public isOwner: boolean = false;
   public isCampaign: boolean = false;
   public isCharacterPage: boolean = false;

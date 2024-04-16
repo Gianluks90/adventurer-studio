@@ -62,8 +62,7 @@
                 </ng-template>
                 <app-descrizione-background-tab-view
                     [editMode]="editMode"
-                    [character]="character"
-                    (pictureEmitter)="onPictureEmitted($event)"></app-descrizione-background-tab-view>
+                    [character]="character"></app-descrizione-background-tab-view>
             </mat-tab>
 
             <mat-tab>
@@ -96,8 +95,7 @@
                     <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Impostazioni">
                 </ng-template>
-                <app-settings-tab-view [campaignId]="character.campaignId || ''"
-                    [sheetColor]="character.status.sheetColor"></app-settings-tab-view>
+                <app-settings-tab-view [character]="character"></app-settings-tab-view>
             </mat-tab>
         </mat-tab-group>
     </div>

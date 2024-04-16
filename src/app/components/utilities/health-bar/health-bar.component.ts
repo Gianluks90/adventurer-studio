@@ -56,7 +56,7 @@ export class HealthBarComponent {
       if (result.status === 'success') {
         this.parametriVitaliData = result.newValue;
         this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData).then(() => {
-          this.notification.openSnackBar('Punti Ferita Aggiornati.', 'check', 3000, 'limegreen');
+          this.notification.openSnackBar('Punti Ferita Aggiornati.', 'check', 3000, '');
         });
       }
     });

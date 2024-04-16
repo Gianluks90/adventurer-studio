@@ -12,11 +12,16 @@ import { AddItemDialogComponent } from '../add-item-dialog/add-item-dialog.compo
 })
 export class ItemInfoSheetComponent {
 
+  public maxMinDamage: string;
+
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean }, 
     private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>, 
     private dialog: MatDialog) {
     this.isCampaign = window.location.href.includes('campaign-view');
+    if (data.item.damageFormula !== '') {
+      this.maxMinDamage = this.calcolaMinMax(data.item.damageFormula).minimo + ' - ' + this.calcolaMinMax(data.item.damageFormula).massimo;
+    }
   }
 
   public isCampaign: boolean = false;
@@ -40,4 +45,38 @@ export class ItemInfoSheetComponent {
   public reclameItem(item: Item, quantity: number) {
     this.sheetRef.dismiss({ status: 'reclamed', item: item, quantity: quantity });
   } 
+
+  public consumeSingleItem() {
+    this.sheetRef.dismiss({ status: 'consumed', quantity: 1 });
+  }
+
+  public equipItemToggle() {
+    this.sheetRef.dismiss({ status: 'equipped' });
+  }
+
+  public calcolaMinMax(formula) {
+    // Rimuovi gli spazi bianchi e separa la formula in termini
+    const termini = formula.replace(/\s/g, '').split('+');
+    
+    let minimo = 0;
+    let massimo = 0;
+
+    // Calcola il minimo e il massimo per ogni termine
+    termini.forEach(termine => {
+        if (termine.includes('d')) {
+            // Se il termine contiene 'd', è un termine dei dadi
+            const [numDadi, numFacce] = termine.split('d').map(Number);
+            minimo += numDadi;
+            massimo += numDadi * numFacce;
+        } else {
+            // Altrimenti, è un termine costante
+            const costante = parseInt(termine);
+            minimo += costante;
+            massimo += costante;
+        }
+    });
+
+    return { minimo, massimo };
+}
+
 }

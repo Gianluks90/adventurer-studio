@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { DddiceService } from 'src/app/services/dddice.service';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
@@ -11,7 +12,8 @@ export class AbilitaTabViewComponent {
 
   constructor(
     private rollService: RollDiceService, 
-    public diceService: DddiceService
+    public diceService: DddiceService,
+    private http: HttpClient
   ){}
 
   public abilitaData: any[] = [];
@@ -19,6 +21,15 @@ export class AbilitaTabViewComponent {
   public competenzeData: any = {};
   public bonusCompetenzaData: number = 0;
   public caratteristicheData: any = {};
+
+  public skillInfo: any[] = [];
+  public showInfo: boolean = false;
+
+  ngOnInit(): void {
+    this.http.get('./assets/settings/skillDescription.json').subscribe((data: any) => {
+      this.skillInfo = data;
+    });
+  }
 
   @Input() set character(character: any) {
     if (!character) return;
@@ -111,5 +122,9 @@ export class AbilitaTabViewComponent {
   public rollDice(name: string, modifier?: string): void {
     const message = "Prova di " + name;
     this.rollService.rollFromCharView('d20', message, Number(modifier));
+  }
+
+  public showSkillInfo(event: any): void {
+    this.showInfo = !this.showInfo;
   }
 }

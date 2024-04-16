@@ -80,10 +80,56 @@
     max-height: 18px;
 }
 
+// .edit-button {
+//     position: absolute;
+//     top: 4px;
+//     right: 4px;
+// }
+
 .edit-button {
     position: absolute;
-    top: 4px;
     right: 4px;
+    top: 4px;
+    border-radius: 50%;
+    background-color: #212121;
+    box-shadow: none;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        box-shadow: none !important;
+    }
+}
+
+// .edit-button>mat-icon {
+//     font-size: medium;
+//     align-self: flex-end;
+// }
+
+.single-use-button {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 50%;
+    background-color: #212121;
+    box-shadow: none;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        box-shadow: none !important;
+    }
+}
+
+.single-use-button>img {
+    height: 20px;
+    width: 20px;
 }
 
 .property-label {
@@ -100,7 +146,7 @@
 
 @media screen and (max-width: 500px) {
     .sheet-footer {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 }
 
@@ -133,6 +179,24 @@
 }
 
 .trait-description {
+    font-size: small;
+    opacity: 0.7;
+}
+
+.damage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.damage-formula {
+    font-size: large;
+    font-weight: bold;
+}
+
+.damage-type {
     font-size: small;
     opacity: 0.7;
 }

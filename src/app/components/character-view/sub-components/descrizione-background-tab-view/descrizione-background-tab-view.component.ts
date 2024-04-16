@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { EditStoryDialogComponent } from './edit-story-dialog/edit-story-dialog.component';
+import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-descrizione-background-tab-view',
@@ -40,7 +43,7 @@ export class DescrizioneBackgroundTabViewComponent {
     nomeEsteso: string,
   }
 
-  constructor(private notification: NotificationService, private formService: FormService) { 
+  constructor(private notification: NotificationService, private formService: FormService, private matDialog: MatDialog, private charService: CharacterService) { 
     if (window.location.href.includes('campaign-view/')) {
       this.inCampaign = true;
     }
@@ -95,6 +98,18 @@ export class DescrizioneBackgroundTabViewComponent {
         this.formService.updatePicCharacter(window.location.href.split('/').pop(), '', '').then(() => {
           this.notification.openSnackBar('Immagine eliminata con successo', 'check');
         });
+      }
+    });
+  }
+
+  public openEditStoryDialog() {
+    this.matDialog.open(EditStoryDialogComponent, {
+      width: window.innerWidth < 768 ? '80%' : '60%',
+      autoFocus: false,
+      data: { story: this.charData.storiaPersonaggio }
+    }).afterClosed().subscribe((result) => {
+      if (result && result.status === 'success') {
+        this.charService.updateStory(this.charData.id, result.story);
       }
     });
   }

@@ -86,17 +86,17 @@
   </div>
 
   @if (isCampaign) {
-    <mat-checkbox formControlName="visible">Visibile</mat-checkbox>
+  <mat-checkbox formControlName="visible">Visibile</mat-checkbox>
   }
-  
+
   <div class="section-title">Caratteristiche avanzate</div>
   <div>
     <mat-button-toggle-group class="toggle-group" (change)="setType($event)">
       <mat-button-toggle class="toggle-button" value="armatura">Armatura</mat-button-toggle>
       <mat-button-toggle class="toggle-button" value="arma">Arma</mat-button-toggle>
     </mat-button-toggle-group>
-  
-    <div [ngSwitch]="type" >
+
+    <div [ngSwitch]="type">
 
       <!-- ARMATURA -->
       <div *ngSwitchCase="'armatura'" class="switch-container">
@@ -105,13 +105,13 @@
             <mat-label>CA</mat-label>
             <input type="number" matInput formControlName="CA" min="0" inputmode="numeric">
           </mat-form-field>
-      
+
           <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
             <mat-label>Forza Minima</mat-label>
             <input type="number" matInput formControlName="minStrength" min="0" inputmode="numeric">
           </mat-form-field>
         </div>
-        
+
         <div class="checkbox-container">
           <mat-checkbox formControlName="plusDexterity">
             + modificatore Destrezza
@@ -132,7 +132,7 @@
             <mat-label>Formula Danni (senza spazi)</mat-label>
             <input type="text" matInput formControlName="damageFormula" placeholder="Es. 1d6+1">
           </mat-form-field>
-      
+
           <!-- <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
             <mat-label>Tipologia Danni</mat-label>
             <input type="text" matInput formControlName="damageType">
@@ -165,7 +165,29 @@
               <div class="option-label">{{prop.name}}</div>
             </mat-option>
           </mat-select>
+          <!-- @if (weaponProperties.includes('lancio')) {
+          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>Gittata</mat-label>
+            <input type="text" matInput formControlName="range">
+          </mat-form-field>
+        }
+        @if (weaponProperties.includes('versatile')) {
+          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>Danno se versatile</mat-label>
+            <input type="text" matInput formControlName="versatileDice">
+          </mat-form-field>
+        } -->
         </mat-form-field>
+        <div class="line-container">
+          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>Gittata</mat-label>
+            <input type="text" matInput formControlName="range">
+          </mat-form-field>
+          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+            <mat-label>Formula danni (senza spazi) se versatile</mat-label>
+            <input type="text" matInput formControlName="versatileDice">
+          </mat-form-field>
+        </div>
       </div>
     </div>
   </div>
@@ -199,7 +221,7 @@
       Richiede Sintonia
     </mat-checkbox>
 
-   
+
   </div>
 
   <mat-form-field *ngIf="form.value.cursed" color="accent" appearance="outline" class="text-area-input">
@@ -216,7 +238,7 @@
             <mat-label>Titolo</mat-label>
             <input matInput formControlName="title">
           </mat-form-field>
-          
+
           <mat-form-field color="accent" appearance="outline">
             <mat-label>Descrizione</mat-label>
             <textarea matInput formControlName="description" rows="3"></textarea>
@@ -248,7 +270,7 @@
             <mat-label>Titolo</mat-label>
             <input matInput formControlName="title">
           </mat-form-field>
-          
+
           <mat-form-field color="accent" appearance="outline">
             <mat-label>Descrizione</mat-label>
             <textarea matInput formControlName="description" rows="3"></textarea>
@@ -282,5 +304,6 @@
   <button *ngIf="data.item" mat-raised-button mat-dialog-close color="warn" (click)="delete()">
     <mat-icon>delete</mat-icon> Elimina
   </button>
-  <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">{{data.item ? 'Modifica' : 'Aggiungi'}}</button>
+  <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">{{data.item ? 'Modifica' :
+    'Aggiungi'}}</button>
 </div>

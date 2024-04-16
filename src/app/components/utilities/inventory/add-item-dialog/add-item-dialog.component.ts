@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Item, Trait } from 'src/app/models/item';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -45,6 +45,25 @@ export class AddItemDialogComponent {
         this.artifactProperties.push(this.fb.group(prop));
       });
     }
+
+    this.form.get('weaponProperties').valueChanges.subscribe((value: any) => {
+      let rangeValidator: ValidatorFn | null;
+      let versatileDiceValidator: ValidatorFn | null;
+
+      value.forEach((prop: any) => {
+        if (prop.name === 'lancio' || prop.name === 'gittata') {
+          rangeValidator = Validators.required;
+        }
+        if (prop.name === 'versatile') {
+          versatileDiceValidator = Validators.required;
+        }
+
+        this.form.get('range').setValidators(rangeValidator);
+        this.form.get('versatileDice').setValidators(versatileDiceValidator);
+        this.form.get('range').updateValueAndValidity();
+        this.form.get('versatileDice').updateValueAndValidity();
+      });
+    });
   }
 
   confirm() {

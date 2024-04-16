@@ -32,7 +32,6 @@ export class TrucchettiIncantesimiTabViewComponent {
 
   @Input() set character(character: any) {
     if (!character) return;
-    console.log(character);
     this.lista = character.magia.trucchettiIncantesimi;
     this.sortSpells();
     this.classeIncantatore = character.magia.classeIncantatore;
