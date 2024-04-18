@@ -1,0 +1,43 @@
+<div mat-dialog-title class="dialog-title">Modifica Privilegio/Tratto/Talento</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div class="description">
+        Descrizione
+    </div>
+    <div class="line-container">
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+          </mat-form-field>
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Tipologia</mat-label>
+            <mat-select formControlName="tipologia">
+              <mat-option value="tratto">Tratto</mat-option>
+              <mat-option value="privilegio">Privilegio</mat-option>
+              <mat-option value="talento">Talento</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="line-container">
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Tag</mat-label>
+            <input matInput formControlName="tag">
+          </mat-form-field>
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Pagina riferimento</mat-label>
+            <input matInput formControlName="riferimento">
+          </mat-form-field>
+    </div>
+    <mat-form-field class="custom-form-field" color="accent" appearance="outline">
+        <mat-label>Descrizione</mat-label>
+        <textarea matInput formControlName="descrizione" rows="5"></textarea>
+    </mat-form-field>
+    
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>check</mat-icon> Conferma
+    </button>
+</div>

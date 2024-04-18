@@ -1,26 +1,28 @@
 <div class="main-container">
     <div class="search-container">
         @if (isOwnerData || !isCampaign) {
-            <mat-form-field appearance="outline" class="search-input" color="accent">
-                <!-- <mat-label>Cerca</mat-label> -->
-                <mat-icon matPrefix>search</mat-icon>
-                <input matInput type="text" (keyup)="filterSearch($event)">
-            </mat-form-field>
+            @if (isOwnerData && isCampaign) {
+                <mat-form-field appearance="outline" class="search-input" color="accent">
+                    <!-- <mat-label>Cerca</mat-label> -->
+                    <mat-icon matPrefix>search</mat-icon>
+                    <input matInput type="text" (keyup)="filterSearch($event)">
+                </mat-form-field>
+            }
             <button mat-mini-fab color="accent" class="add-button" (click)="openAddItemDialog()" disableRipple><mat-icon>add</mat-icon></button>
         }
     </div>
     <div class="items-container">
         @if (inventoryData.length > 0) {
             <div class="items-icon-container" >
-                <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered" (click)="openInfoSheet(i, j)">
+                <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered" [ngClass]="{ 'not-visible': isCampaign && !i.visible && !isOwnerData }" (click)="openInfoSheet(i, j)">
                     @if (isCampaign) {
                         <!-- SONO NELLA CAMPAIGN VIEW -->
-                        @if (i.visible || isOwnerData) {
+                        <!-- @if (i.visible || isOwnerData) { -->
                             <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
                             @if (!i.visible) {
                                 <mat-icon class="visibility-icon">visibility_off</mat-icon>
                             }
-                        }
+                        <!-- } -->
                     } @else {
                         <!-- SONO NELLA CHAR VIEW -->
                         <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">

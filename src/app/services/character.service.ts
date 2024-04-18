@@ -186,6 +186,13 @@ export class CharacterService {
     }, { merge: true })
   }
 
+  public async updatePrivilegiTratti(id: string, privilegiTratti: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      privilegiTratti: privilegiTratti
+    }, { merge: true });
+  }
+
   public async addItemInventory(id: string, form: any): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {

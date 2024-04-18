@@ -29,24 +29,42 @@
                 </div>
             </div>
         }
-        <div *ngIf="competenzeData.armi.length > 0" class="competenze-label">Armi</div>
+        @if (competenzeData.armi && competenzeData.armi.length > 0) {
+            <div class="competenze-label">Armi</div>
+            <div class="competenze-container">
+                <div *ngFor="let a of competenzeData.armi">
+                    <div class="competenza">{{a}}</div>
+                </div>
+            </div>
+        }
+        <!-- <div *ngIf="competenzeData.armi && competenzeData.armi.length > 0" class="competenze-label">Armi</div>
         <div *ngIf="competenzeData.armi.length > 0" class="competenze-container">
             <div *ngFor="let a of competenzeData.armi">
                 <div class="competenza">{{a}}</div>
             </div>
-        </div>
-        <div *ngIf="competenzeData.armature.length > 0" class="competenze-label">Armature</div>
+        </div> -->
+        @if (competenzeData.armature && competenzeData.armature.length > 0) {
+            <div class="competenze-label">Armature</div>
+            <div class="competenze-container">
+                <div *ngFor="let a of competenzeData.armature">
+                    <div class="competenza">{{a}}</div>
+                </div>
+            </div>
+        }
+        <!-- <div *ngIf="competenzeData.armature && competenzeData.armature.length > 0" class="competenze-label">Armature</div>
         <div *ngIf="competenzeData.armature.length > 0" class="competenze-container">
             <div *ngFor="let a of competenzeData.armature">
                 <div class="competenza">{{a}}</div>
             </div>
-        </div>
-        <div *ngIf="competenzeData.strumenti.length > 0" class="competenze-label">Strumenti</div>
-        <div *ngIf="competenzeData.strumenti.length > 0" class="competenze-container">
-            <div *ngFor="let s of competenzeData.strumenti">
-                <div class="competenza">{{s}}</div>
+        </div> -->
+        @if (competenzeData.strumenti && competenzeData.strumenti.length > 0) {
+            <div class="competenze-label">Strumenti</div>
+            <div class="competenze-container">
+                <div *ngFor="let s of competenzeData.strumenti">
+                    <div class="competenza">{{s}}</div>
+                </div>
             </div>
-        </div>
+        }
         <!-- <div *ngIf="competenzeData.altro.length > 0" class="competenze-label">Altro</div>
         <div *ngIf="competenzeData.altro.length > 0" class="competenze-container">
             <div *ngFor="let a of competenzeData.altro">

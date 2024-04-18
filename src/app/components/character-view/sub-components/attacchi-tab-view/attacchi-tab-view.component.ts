@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddAttackDialogComponent } from './add-attack-dialog/add-attack-dialog.component';
-import { Platform } from '@angular/cdk/platform';
 import { Attack } from 'src/app/models/attack';
 import { CharacterService } from 'src/app/services/character.service';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
@@ -23,7 +22,6 @@ export class AttacchiTabViewComponent {
 
   constructor(
     private dialog: MatDialog,
-    private platform: Platform,
     private charService: CharacterService,
     private rollService: RollDiceService,
     public diceService: DddiceService) { }
@@ -39,7 +37,7 @@ export class AttacchiTabViewComponent {
 
   public openAddAttackDialog(attack?: Attack, insex?: number): void {
     this.dialog.open(AddAttackDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
+      width: window.innerWidth < 600 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
       data: { attacks: this.attacchiData, attack: attack }

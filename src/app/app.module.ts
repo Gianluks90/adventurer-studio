@@ -90,6 +90,7 @@ import { CampaignInventoryTabComponent } from './components/campaign-view/sub-co
 import { NextSessionDialogComponent } from './components/campaign-view/next-session-dialog/next-session-dialog.component';
 import { MAT_DATE_LOCALE } from "@angular/material/core";
 import { EditStoryDialogComponent } from './components/character-view/sub-components/descrizione-background-tab-view/edit-story-dialog/edit-story-dialog.component';
+import { EditPrivilegioTrattoDialogComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/edit-privilegio-tratto-dialog/edit-privilegio-tratto-dialog.component';
 
 @NgModule({
   declarations: [
@@ -194,6 +195,7 @@ import { EditStoryDialogComponent } from './components/character-view/sub-compon
     CampaignInventoryTabComponent,
     NextSessionDialogComponent,
     EditStoryDialogComponent,
+    EditPrivilegioTrattoDialogComponent,
 
   ],
   imports: [

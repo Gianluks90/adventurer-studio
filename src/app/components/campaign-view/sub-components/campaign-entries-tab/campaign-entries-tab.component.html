@@ -13,7 +13,7 @@
             <div class="tag-label">{{tag}}</div>
             @for(entry of entriesData; track idx; let idx = $index) {
                 @if(entry.tag.toLowerCase() === tag) {
-                    <details class="entry-details" *ngIf="entry.userId === userId">
+                    <details class="entry-details">
                         <summary class="entry-title" [ngStyle]="{'backgroundColor': entry.backgroundColor, 'color': entry.contrastColor}">{{entry.title}}</summary>
                         <div class="entry-content">{{entry.content}}</div>
                         <div class="button-container">

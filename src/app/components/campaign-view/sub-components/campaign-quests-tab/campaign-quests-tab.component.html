@@ -55,6 +55,16 @@
                 <div class="quest-title-label">{{quest.title}}</div>
             </summary>
             <div class="quest-description">{{quest.description}}</div>
+            @if (quest.steps.length > 0) {
+                <div class="progress-title">Progresso missione</div>
+                <div class="sc-item-line">
+                    <ul class="sc-item-ul">
+                        @for (step of quest.steps; track $index) {
+                        <li>{{step.text}}</li>
+                        }
+                    </ul>
+                </div>
+                }
             <div class="quest-description" *ngIf="quest.result"><strong>Completata</strong>: {{quest.result}}</div>
             <div class="button-container">
                 <button color="accent" class="edit-button" (click)="openQuestDialog(quest, i)" *ngIf="isOwnerData">

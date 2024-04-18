@@ -19,6 +19,7 @@
 
 .search-container {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
     gap: 8px;
     margin: 4px 0 12px 0;
@@ -171,4 +172,8 @@
     top: 4px;
     right: 4px;
     color: whitesmoke;
+}
+
+.not-visible {
+    display: none;
 }

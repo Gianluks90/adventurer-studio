@@ -42,8 +42,7 @@
                     <img src="./assets/tabs-icons/talents.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Privilegi, Tratti e Talenti">
                 </ng-template>
-                <app-privilegi-tratti-tab-view [privilegiTratti]="character.privilegiTratti"
-                    [informazioniBase]="{razza: character.informazioniBase.razza, sottorazza: character.informazioniBase.sottorazza, classi: character.informazioniBase.classi}"></app-privilegi-tratti-tab-view>
+                <app-privilegi-tratti-tab-view [character]="character"></app-privilegi-tratti-tab-view>
             </mat-tab>
 
             <mat-tab [disabled]="!editMode">

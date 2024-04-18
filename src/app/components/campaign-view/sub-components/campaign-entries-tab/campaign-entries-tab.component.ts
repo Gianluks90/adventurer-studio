@@ -18,7 +18,7 @@ export class CampaignEntriesTabComponent {
   public userId: string = getAuth().currentUser.uid;
 
   @Input() set entries(entries: any[]) {
-    this.entriesData = entries;
+    this.entriesData = entries.filter((entry: any) => entry.userId === this.userId);
     this.tags = [...new Set(this.entriesData.map((entry: any) => entry.tag.toLowerCase()))];
     this.tags = this.tags.filter((tag: string) => tag !== '').sort();
     // this.entriesData = this.sortRuleAlphabetical(this.entriesData);

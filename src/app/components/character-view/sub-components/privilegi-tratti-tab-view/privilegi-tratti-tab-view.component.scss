@@ -128,3 +128,18 @@ details[open] > summary::after {
 .privilegi-label::first-letter {
     text-transform: uppercase;
 }
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-button {
+    background-color: #212121;
+    color: whitesmoke;
+    border: none;
+    padding: 4px 16px;
+    font-size: small;
+    margin: 4px;
+    border-radius: 4px;
+}

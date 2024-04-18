@@ -47,15 +47,17 @@
 <div class="section-title">Ritratto personaggio</div>
 <div class="picture-container">
     <img [src]="charData.informazioniBase.urlImmaginePersonaggio" referrerpolicy="no-referrer">
-    <div class="action-buttons-container">
-        <button mat-raised-button color="accent"
-            [disabled]="charData.informazioniBase.urlImmaginePersonaggio !== '' || inCampaign"
-            (click)="file.click()"><mat-icon>add_photo_alternate</mat-icon> Carica</button>
-        <input #file id="file" hidden class="" type="file" accept="image" (change)="onPicSelected($event)">
-        <button mat-raised-button color="accent"
-            [disabled]="charData.informazioniBase.urlImmaginePersonaggio === '' || inCampaign"
-            (click)="deletePic(charData.informazioniBase.nomeImmaginePersonaggio)"><mat-icon>delete</mat-icon>Elimina</button>
-    </div>
+    @if (editModeData) {
+        <div class="action-buttons-container">
+            <button mat-raised-button color="accent"
+                [disabled]="charData.informazioniBase.urlImmaginePersonaggio !== '' || inCampaign"
+                (click)="file.click()"><mat-icon>add_photo_alternate</mat-icon> Carica</button>
+            <input #file id="file" hidden class="" type="file" accept="image" (change)="onPicSelected($event)">
+            <button mat-raised-button color="accent"
+                [disabled]="charData.informazioniBase.urlImmaginePersonaggio === '' || inCampaign"
+                (click)="deletePic(charData.informazioniBase.nomeImmaginePersonaggio)"><mat-icon>delete</mat-icon>Elimina</button>
+        </div>
+    }
 </div>
 <div class="section-title">Storia</div>
 @if (editModeData) {
