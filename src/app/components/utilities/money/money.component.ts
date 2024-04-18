@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
 import { NotificationService } from 'src/app/services/notification.service';
 
@@ -32,10 +33,27 @@ export class MoneyComponent {
     MR: 1,
   };
 
-  constructor(public formService: FormService, private notificationService: NotificationService, private fb: FormBuilder) { }
+  constructor(public formService: FormService, private notificationService: NotificationService, private fb: FormBuilder, private charService: CharacterService) {
+    this.group = this.fb.group({
+      MP: [0, Validators.min(0)],
+      MO: [0, Validators.min(0)],
+      ME: [0, Validators.min(0)],
+      MA: [0, Validators.min(0)],
+      MR: [0, Validators.min(0)]
+    });
+   }
 
-  @Input() public set denaro(denaro: FormGroup) {
-      this.group = denaro;
+  @Input() public set denaro(denaro: any) {
+      this.group.get('MP').setValue(denaro.MP);
+      this.group.get('MO').setValue(denaro.MO);
+      this.group.get('ME').setValue(denaro.ME);
+      this.group.get('MA').setValue(denaro.MA);
+      this.group.get('MR').setValue(denaro.MR);
+  }
+
+  public charId: string = '';
+  @Input() public set id(id: string) {
+    this.charId = id;
   }
 
   public converti(valore: number, da: string, a: string): number {
@@ -85,7 +103,8 @@ export class MoneyComponent {
     }
     this.addToPreviousBag(return_dict);
     this.form.reset();
-    return return_dict;
+    this.charService.updateMoney(this.charId, this.group.value);
+    // return return_dict;
   }
 
   public addToPreviousBag(bagToAdd: any) {

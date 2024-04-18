@@ -32,7 +32,7 @@ export class EquipaggiamentoTabViewComponent {
     this.equipaggiamentoData = character.equipaggiamento;
     this.pesoTrasportabile = character.caratteristiche.forza * 7.5;
     this.setPeso();
-    // this.messaggioIngombro = (this.ingombroTotale > (character.caratteristiche.forza * 2.5)) && (this.ingombroTotale < (character.caratteristiche.forza * 5))  ? 'Ingombrato (-3m velocità)' : this.ingombroTotale > (character.caratteristiche.forza * 5) ? 'Pesantemente ingombrato (-6m velocità, svantaggio alle prove di caratteristica, tiri per colpire usando Forza, Destrezza o Costituzione)' : '';
+    this.messaggioIngombro = (this.ingombroTotale > (character.caratteristiche.forza * 2.5)) && (this.ingombroTotale < (character.caratteristiche.forza * 5))  ? 'Ingombrato (-3m velocità)' : this.ingombroTotale > (character.caratteristiche.forza * 5) ? 'Pesantemente ingombrato (-6m velocità, svantaggio alle prove di caratteristica, tiri per colpire usando Forza, Destrezza o Costituzione)' : '';
     this.denaroData = character.denaro;
     this.idData = character.id;
   }
@@ -49,13 +49,17 @@ export class EquipaggiamentoTabViewComponent {
   //   this.idData = id;
   // }
 
-  ngOnInit(): void {
-    this.formService.formSubject.subscribe((form: any) => {
-      if (form) {
-        this.denaroForm = form.get('denaro') as FormGroup;
-      }
-    });
-  }
+  // ngOnInit(): void {
+  //   this.formService.formSubject.subscribe((form: any) => {
+  //     console.log('FORM', form);
+      
+  //     if (form) {
+  //       console.log('FORM', form);
+        
+  //       this.denaroForm = form.get('denaro') as FormGroup;
+  //     }
+  //   });
+  // }
 
   public openMoneyDialog() {
     // const characterId = window.location.href.split('/').pop();
@@ -64,14 +68,15 @@ export class EquipaggiamentoTabViewComponent {
       disableClose: true,
       autoFocus: false,
       data: {
-        group: this.denaroForm,
+        char: this.characterData,
       }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
-        this.denaroData = result.newValue.value;
-        this.charService.updateMoney(this.idData, this.denaroData).then(() => {
-          this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, 'limegreen');
-        });
+        // console.log('RESULT', result);
+        // this.denaroData = result.newValue;
+        // this.charService.updateMoney(this.idData, this.denaroData).then(() => {
+          this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, '');
+        // });
       }
     });
   }
