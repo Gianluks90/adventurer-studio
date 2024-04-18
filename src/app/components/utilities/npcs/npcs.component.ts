@@ -53,6 +53,10 @@ export class NpcsComponent {
     this.isOwner = isOwner;
   }
 
+  @Input() set dm(isDM: boolean) {
+    this.isDM = isDM;
+  }
+
   public openAddNpcDialog(npc?: any, index?: number, isTab?: boolean) {
     this.dialog.open(AddNpcDialogComponent, {
       width: window.innerWidth < 600 ? '90%' : '60%',

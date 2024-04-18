@@ -105,6 +105,9 @@
 
 .achievement-title-label {
     flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .achievement-description {
@@ -153,4 +156,8 @@ details[open] > summary::after {
     .buttons-container {
         flex-wrap: wrap;
     }
+}
+
+.reclamed-by-you {
+    color: lightgreen;
 }

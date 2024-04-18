@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-master-screen-tab',
@@ -9,6 +9,18 @@ import { Component } from '@angular/core';
 export class MasterScreenTabComponent {
 
   public screenContent: any;
+  public campaignData: any;
+  public isOwnerData: boolean = false;
+
+  @Input() set campaign(data: any) {
+    this.campaignData = data;
+    console.log(data);
+    
+  }
+
+  @Input() set isOwner(isOwner: boolean) {
+    this.isOwnerData = isOwner;
+  }
 
   constructor(private http: HttpClient) {
     this.http.get('./assets/settings/screenMaster.json').subscribe(data => {

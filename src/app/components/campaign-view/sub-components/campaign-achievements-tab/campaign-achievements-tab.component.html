@@ -1,4 +1,4 @@
-<div class="section-title">Trofei</div>
+<div class="section-title">Trofei {{achievementReclamedBy}}/{{achievementsData.length}}</div>
 <div class="description-text">
     Esplorando, combattendo, effettuando azioni particolari o adottando un certo comportamento, il DM potrebbe assegnare dei Trofei ai personaggi.
 </div>
@@ -16,7 +16,7 @@
 <div class="achievement-container">
     <div class="achievement-item" *ngFor="let achievement of achievementsData; let i = index;">
         <details class="achievement-details" [hidden]="!achievement.visible && !isOwnerData">
-            <summary class="achievement-title"><mat-icon *ngIf="!achievement.visible && isOwnerData">visibility_off</mat-icon> <div class="achievement-title-label">{{achievement.title}}</div></summary>
+            <summary class="achievement-title"><mat-icon *ngIf="!achievement.visible && isOwnerData">visibility_off</mat-icon> <div class="achievement-title-label">{{achievement.title}} <span *ngIf="reclamedByYou(achievement)"><mat-icon class="reclamed-by-you">check</mat-icon></span></div></summary>
             <div class="achievement-description">{{achievement.content}}</div>
             <div class="reclamedby-container">
                 <img *ngFor="let char of achievement.reclamedBy" [src]="char.url" class="reclamedby-image" />

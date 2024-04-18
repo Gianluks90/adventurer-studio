@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { AddAchievementDialogComponent } from './add-achievement-dialog/add-achievement-dialog.component';
 import { ArchiveAchievementDialogComponent } from './archive-achievement-dialog/archive-achievement-dialog.component';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-campaign-achievements-tab',
@@ -12,7 +13,9 @@ import { ArchiveAchievementDialogComponent } from './archive-achievement-dialog/
 })
 export class CampaignAchievementsTabComponent {
 
+  public charSelectedId: string = '';
   public achievementsData: any[];
+  public achievementReclamedBy: number = 0;
   public archiveData: any[] = [];
   public isOwnerData: boolean = false;
   public charactersData: any[];
@@ -22,6 +25,7 @@ export class CampaignAchievementsTabComponent {
   @Input() set campaign(campaign: any) {
     this.achievementsData = campaign.achievements;
     this.achievementsData = this.sortRuleAlphabetical(this.achievementsData);
+    this.achievementReclamedBy = this.achievementsData.filter((achievement: any) => achievement.reclamedBy && achievement.reclamedBy.length > 0).length;
     this.archiveData = campaign.archive;
   }
 
@@ -31,6 +35,13 @@ export class CampaignAchievementsTabComponent {
 
   @Input() set characters(characters: any) {
     this.charactersData = characters;
+    const userId = getAuth().currentUser?.uid;
+    this.charactersData.find((character: any) => {
+      if (character.status.userId === userId) {
+        this.charSelectedId = character.id;
+      }
+    });
+    
     this.achievementsData.map((achievement: any) => {
       if (achievement.reclamedBy && achievement.reclamedBy.length > 0 && this.charactersData) {
         achievement.urls = this.charactersData.filter((character: any) => achievement.reclamedBy.includes(character.id)).map((character: any) => character.informazioniBase.urlImmaginePersonaggio);
@@ -83,5 +94,12 @@ export class CampaignAchievementsTabComponent {
       autoFocus: false,
       data: { archive: this.archiveData }
     })
+  }
+
+  public reclamedByYou(achievement: any): boolean {
+    if (!achievement || !achievement.reclamedBy) {
+      return false; // Se achievement o reclamedBy sono nulli o undefined, restituisci false
+    }
+    return achievement.reclamedBy.some(item => item.id === this.charSelectedId);
   }
 }

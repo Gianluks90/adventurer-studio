@@ -58,13 +58,13 @@ export class CampaignCharListComponent {
     });
   }
 
-  public openCharBottomSheet(charId: string): void {
-    this.bottomSheet.open(CharacterBottomSheetComponent, {
-      autoFocus: false,
-      disableClose: true,
-      data: { id: charId }
-    })
-  }
+  // public openCharBottomSheet(charId: string): void {
+  //   this.bottomSheet.open(CharacterBottomSheetComponent, {
+  //     autoFocus: false,
+  //     disableClose: true,
+  //     data: { id: charId }
+  //   })
+  // }
 
   public navigateToChar(charId: string): void {
     window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');

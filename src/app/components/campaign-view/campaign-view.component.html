@@ -92,7 +92,7 @@
                     <img src="./assets/campaign-tabs-icon/dmScreen.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Schermo del master">
                 </ng-template>
-                <app-master-screen-tab></app-master-screen-tab>
+                <app-master-screen-tab [campaign]="campaignData" [isOwner]="isOwner"></app-master-screen-tab>
             </mat-tab>
             <mat-tab *ngIf="isOwner">
                 <ng-template mat-tab-label>
