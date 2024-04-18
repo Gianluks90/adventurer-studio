@@ -39,6 +39,11 @@ export class CampaignCharListComponent {
     this.calcInspiration();
   }
 
+  public isOwnerData: boolean = false;
+  @Input() set isOwner(isOwner: boolean) {
+    this.isOwnerData = isOwner;
+  }
+
   // @Input() set partecipantId(partecipantId: string) {
   //   this.partecipantIdData = partecipantId;
   //   this.yourCharAtFirstIndex();

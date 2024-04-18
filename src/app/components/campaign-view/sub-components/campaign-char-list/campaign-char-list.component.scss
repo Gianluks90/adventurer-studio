@@ -159,7 +159,17 @@
     margin-bottom: 4px;
     cursor: default;
   }
+
+  .money-section-title {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
   
+  .money-setting-icon {
+    cursor: pointer;
+  }
+
   .money-title {
     text-transform: uppercase;
     display: flex;
