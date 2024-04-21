@@ -30,14 +30,17 @@ export class TrucchettiIncantesimiTabViewComponent {
     // this.slotIncantesimi = data.slotIncantesimi;
   }
 
+  public charData: any;
   @Input() set character(character: any) {
     if (!character) return;
+    this.charData = character;
     this.lista = character.magia.trucchettiIncantesimi;
     this.sortSpells();
     this.classeIncantatore = character.magia.classeIncantatore;
     this.caratteristicaIncantatore = character.magia.caratteristicaIncantatore;
-    this.bonusAttaccoIncantesimi = character.magia.bonusAttaccoIncantesimi;
-    this.CDTiroSalvezza = character.magia.CDTiroSalvezza;
+
+    this.bonusAttaccoIncantesimi = character.tiriSalvezza.bonusCompetenza + Math.floor((character.caratteristiche[character.magia.caratteristicaIncantatore.toLowerCase()] -10) / 2);
+    this.CDTiroSalvezza = 8 + character.tiriSalvezza.bonusCompetenza + Math.floor((character.caratteristiche[character.magia.caratteristicaIncantatore.toLowerCase()] -10) / 2);
     this.slotIncantesimi = character.magia.slotIncantesimi;
     
     // this.lista = character.

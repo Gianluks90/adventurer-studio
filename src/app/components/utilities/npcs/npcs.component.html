@@ -282,9 +282,12 @@
                 @for (npc of npcsData; track i; let i = $index) {
                     @if (npc.visible || isOwner) {
                     <div class="org-line">
-                        @if (npc.imgUrl !== '') {
-                        <img [src]="npc.imgUrl" referrerpolicy="no-referrer">
-    
+                        @if (npc.reveled) {
+                        <img src="./assets/images/unknown.png">
+                        } @else {
+                            @if (npc.imgUrl !== '') {
+                            <img [src]="npc.imgUrl" referrerpolicy="no-referrer">
+                            }
                         }
                         <div class="org-title-container">
                             <div class="org-title">

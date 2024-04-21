@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Item, Trait } from 'src/app/models/item';
-import { FormArray, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -23,6 +23,8 @@ export class AddItemDialogComponent {
     this.traits = this.fb.array([]);
     this.artifactProperties = this.fb.array([]);
     this.isCampaign = window.location.href.includes('campaign-view');
+    console.log(this.form);
+    
   }
 
   ngOnInit(){
@@ -113,5 +115,9 @@ export class AddItemDialogComponent {
 
   compareFn(prop1: any, prop2: any): boolean {
     return prop1 && prop2 ? prop1.name === prop2.name : prop1 === prop2;
+  }
+
+  public getFormControl(name: string) {
+    return this.form.controls[name] as FormControl;
   }
 }

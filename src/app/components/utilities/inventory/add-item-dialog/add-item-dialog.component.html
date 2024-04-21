@@ -1,18 +1,23 @@
-<div mat-dialog-title class="dialog-title">Aggiungi oggetto</div>
+<div mat-dialog-title class="dialog-title">{{data.item ? 'Modifica' : 'Aggiungi'}} Oggetto</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
   <div class="section-title">Informazioni basilari</div>
 
-  <mat-form-field color="accent" class="custom-form-field" appearance="outline">
-    <mat-label>Nome</mat-label>
-    <input matInput formControlName="name">
-  </mat-form-field>
+  <div class="line-container">
+    <mat-form-field color="accent" class="line-input" appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+    <mat-form-field color="accent" class="line-input" appearance="outline">
+      <mat-label>Riferimento (sigla manuale/pagina)</mat-label>
+      <input matInput formControlName="reference" placeholder="Es. PHB 123">
+    </mat-form-field>
+  </div>
 
   <div class="line-container">
-    <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+    <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label>Quantità</mat-label>
       <input type="number" matInput formControlName="quantity" min="0" inputmode="numeric">
     </mat-form-field>
-
     <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label>Icona</mat-label>
       <mat-select formControlName="icon">
@@ -27,7 +32,7 @@
   </div>
 
   <div class="line-container">
-    <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+    <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label>Categoria</mat-label>
       <mat-select formControlName="category">
         <mat-option value="Arma da mischia semplice">Arma da mischia semplice</mat-option>
@@ -63,7 +68,7 @@
         <mat-option value="Molto raro">Molto Raro</mat-option>
         <mat-option value="Leggendario">Leggendario</mat-option>
         <mat-option value="Unico">Unico</mat-option>
-        <mat-option value="Oggetto chiave">Oggetto Chiave</mat-option>
+        <mat-option *ngIf="isCampaign" value="Oggetto chiave">Oggetto Chiave</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -74,39 +79,77 @@
   </mat-form-field>
 
   <div class="line-container">
-    <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+    <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label>Valore [MO]</mat-label>
-      <input type="number" matInput formControlName="value" min="0" inputmode="numeric">
+      <input type="number" matInput formControlName="value" min="0" inputmode="numeric" >
     </mat-form-field>
 
-    <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+    <mat-form-field class="line-input" color="accent" appearance="outline">
       <mat-label>Peso [Kg]</mat-label>
       <input type="number" matInput formControlName="weight" min="0" inputmode="decimal" step="any">
     </mat-form-field>
   </div>
 
   @if (isCampaign) {
-  <mat-checkbox formControlName="visible">Visibile</mat-checkbox>
+  <div class="checkbox-container">
+    <mat-checkbox formControlName="visible">Visibile</mat-checkbox>
+    <!-- <mat-checkbox formControlName="notEditable">Non modificabile da un giocatore</mat-checkbox> -->
+  </div>
   }
 
+  <mat-checkbox formControlName="advanced">Avanzate (uso singolo, indossato, proprietà,
+    ecc...)</mat-checkbox>
+
+  @if (form.value.advanced) {
   <div class="section-title">Caratteristiche avanzate</div>
+  <div class="checkbox-container">
+    <mat-checkbox formControlName="consumable">
+      Uso singolo
+    </mat-checkbox>
+
+    <mat-checkbox formControlName="weared"
+      matTooltip="Attualmente questa funzione ha effetto sulle Armature e sugli Scudi e permette di calcolare la CA in base ai parametri indicati"
+      matTooltipPosition="above">
+      Indossato
+    </mat-checkbox>
+
+    <mat-checkbox formControlName="focus">
+      Focus da incantatore
+    </mat-checkbox>
+
+    <mat-checkbox formControlName="cursed">
+      Maledetto
+    </mat-checkbox>
+
+    <mat-checkbox formControlName="magicItem">
+      Oggetto Magico
+    </mat-checkbox>
+    
+    <mat-checkbox formControlName="artifact">
+      Artefatto
+    </mat-checkbox>
+    
+    <mat-checkbox formControlName="attunementRequired" *ngIf="this.form.value.magicItem || this.form.value.artifact">
+      Richiede Sintonia
+    </mat-checkbox>
+  </div>
   <div>
-    <mat-button-toggle-group class="toggle-group" (change)="setType($event)">
+    <mat-button-toggle-group class="toggle-group" [formControl]="getFormControl('type')">
       <mat-button-toggle class="toggle-button" value="armatura">Armatura</mat-button-toggle>
       <mat-button-toggle class="toggle-button" value="arma">Arma</mat-button-toggle>
     </mat-button-toggle-group>
 
-    <div [ngSwitch]="type">
+    <div [ngSwitch]="form.value.type">
 
       <!-- ARMATURA -->
       <div *ngSwitchCase="'armatura'" class="switch-container">
         <div class="line-container">
-          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
             <mat-label>CA</mat-label>
             <input type="number" matInput formControlName="CA" min="0" inputmode="numeric">
           </mat-form-field>
 
-          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
             <mat-label>Forza Minima</mat-label>
             <input type="number" matInput formControlName="minStrength" min="0" inputmode="numeric">
           </mat-form-field>
@@ -128,15 +171,15 @@
       <!-- ARMA -->
       <div *ngSwitchCase="'arma'" class="switch-container">
         <div class="line-container">
-          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
             <mat-label>Formula Danni (senza spazi)</mat-label>
             <input type="text" matInput formControlName="damageFormula" placeholder="Es. 1d6+1">
           </mat-form-field>
 
           <!-- <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
-            <mat-label>Tipologia Danni</mat-label>
-            <input type="text" matInput formControlName="damageType">
-          </mat-form-field> -->
+                <mat-label>Tipologia Danni</mat-label>
+                <input type="text" matInput formControlName="damageType">
+              </mat-form-field> -->
 
           <mat-form-field class="line-input" color="accent" appearance="outline">
             <mat-label>Tipo di danno</mat-label>
@@ -165,69 +208,28 @@
               <div class="option-label">{{prop.name}}</div>
             </mat-option>
           </mat-select>
-          <!-- @if (weaponProperties.includes('lancio')) {
-          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
-            <mat-label>Gittata</mat-label>
-            <input type="text" matInput formControlName="range">
-          </mat-form-field>
-        }
-        @if (weaponProperties.includes('versatile')) {
-          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
-            <mat-label>Danno se versatile</mat-label>
-            <input type="text" matInput formControlName="versatileDice">
-          </mat-form-field>
-        } -->
         </mat-form-field>
         <div class="line-container">
-          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
             <mat-label>Gittata</mat-label>
             <input type="text" matInput formControlName="range">
           </mat-form-field>
-          <mat-form-field class="line-input" color="accent" class="custom-form-field" appearance="outline">
-            <mat-label>Formula danni (senza spazi) se versatile</mat-label>
-            <input type="text" matInput formControlName="versatileDice">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Danni Versatile</mat-label>
+            <input type="text" matInput formControlName="versatileDice" placeholder="Formula danni (senza spazi)">
           </mat-form-field>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="checkbox-container">
-    <mat-checkbox formControlName="consumable">
-      Uso singolo
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="weared">
-      Equipaggiato
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="focus">
-      È un Focus da incantatore
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="cursed">
-      Maledetto
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="magicItem">
-      Oggetto Magico
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="artifact">
-      Artefatto
-    </mat-checkbox>
-
-    <mat-checkbox formControlName="attunementRequired" *ngIf="this.form.value.magicItem || this.form.value.artifact">
-      Richiede Sintonia
-    </mat-checkbox>
-
-
-  </div>
-
-  <mat-form-field *ngIf="form.value.cursed" color="accent" appearance="outline" class="text-area-input">
-    <mat-label>Descrizione Maledizione</mat-label>
-    <textarea matInput formControlName="cursedDescription" rows="3"></textarea>
-  </mat-form-field>
+  @if (form.value.cursed) {
+    <div class="section-title">Maledizione</div>
+    <mat-form-field color="accent" appearance="outline" class="text-area-input">
+      <mat-label>Descrizione Maledizione</mat-label>
+      <textarea matInput formControlName="cursedDescription" rows="3"></textarea>
+    </mat-form-field>
+  }
 
   <div class="magic-item-container" *ngIf="form.value.magicItem">
     <div class="section-title">Proprietà Magiche</div>
@@ -292,11 +294,7 @@
       </button>
     </div>
   </div>
-
-  <mat-form-field color="accent" class="custom-form-field" appearance="outline">
-    <mat-label>Riferimento (sigla manuale/pagina)</mat-label>
-    <input matInput formControlName="reference" placeholder="Es. PHB 123">
-  </mat-form-field>
+  }
 
 </div>
 <div mat-dialog-actions align="end">

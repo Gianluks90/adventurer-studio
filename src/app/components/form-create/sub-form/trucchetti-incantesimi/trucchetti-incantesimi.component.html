@@ -1,19 +1,5 @@
 <ng-container *ngIf="form">
     <div class="step-form" [formGroup]="form">
-        <details>
-            <summary>Suggerimenti di compilazione</summary>
-            <div class="description-text">La <strong>CD</strong> (classe difficoltà) per resistere a un incantesimo è
-                pari a
-                8 + il modificatore di caratteristica da incantatore + il bonus di competenza dell'incantatore, a cui si
-                sommano eventuali modificatori speciali. Mentre il <strong>bonus di attacco</strong> dell'incantatore
-                per un
-                attacco
-                con un incantesimo equivale al suo modificatore di caratteristica da incantatore + il suo bonus di
-                competenza. Se vuoi puoi indicare anche il numero di <strong>Incantesimi preparabili</strong> per questo
-                personaggio (solitamente è pari al modificatore della caratteristica da incantatore più il livello della
-                classe da incantatore).
-            </div>
-        </details>
         <div class="line-container">
             <!-- <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>Classe incantatore</mat-label>
@@ -55,14 +41,14 @@
                     <mat-option value="Carisma">Carisma</mat-option>
                 </mat-select>
             </mat-form-field>
-            <mat-form-field class="line-input" color="accent" appearance="outline">
+            <!-- <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>CD tiro salvezza incantesimi</mat-label>
                 <input matInput formControlName="CDTiroSalvezza">
             </mat-form-field>
             <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>Bonus di attacco incantesimi</mat-label>
                 <input matInput formControlName="bonusAttaccoIncantesimi">
-            </mat-form-field>
+            </mat-form-field> -->
         </div>
 
         <details>
@@ -84,6 +70,25 @@
                 In ogni caso, il numero di incantesimi che un
                 incantatore ha sempre impressi nella mente dipende
                 dal livello del personaggio.
+            </div>
+        </details>
+        <details>
+            <summary>Suggerimenti di compilazione</summary>
+            <div class="description-text">
+                <!-- La <strong>CD</strong> (classe difficoltà) per resistere a un incantesimo è
+                pari a
+                8 + il modificatore di caratteristica da incantatore + il bonus di competenza dell'incantatore, a cui si
+                sommano eventuali modificatori speciali. Mentre il <strong>bonus di attacco</strong> dell'incantatore
+                per un
+                attacco
+                con un incantesimo equivale al suo modificatore di caratteristica da incantatore + il suo bonus di
+                competenza. Se vuoi puoi indicare anche il numero di <strong>Incantesimi preparabili</strong> per questo
+                personaggio (solitamente è pari al modificatore della caratteristica da incantatore più il livello della
+                classe da incantatore). -->
+                Verifica sul manuale del giocatore come sono calcolati gli Incantesimi Preparabili del tuo personaggio.
+                Questo valore solitamente è pari al modificatore della caratteristica da incantatore più il livello
+                della
+                classe da incantatore.
             </div>
         </details>
         <mat-form-field class="line-input" color="accent" appearance="outline">
@@ -221,7 +226,8 @@
                             <input matInput type="number" formControlName="livello" min="0" max="9" inputmode="numeric">
                         </mat-form-field>
 
-                        <button mat-raised-button color="accent" class="jump-button" (click)="resetScuola(trucchettoIncantesimoForm)"
+                        <button mat-raised-button color="accent" class="jump-button"
+                            (click)="resetScuola(trucchettoIncantesimoForm)"
                             *ngIf="trucchettoIncantesimoForm.value.scuola === 'Altro'">
                             <mat-icon>move_down</mat-icon>
                             Annulla Scuola personalizzata

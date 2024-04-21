@@ -63,6 +63,7 @@
         </div>
         <div class="checkbox-container">
             <mat-checkbox formControlName="visible" *ngIf="isCampaign">Visibile ai giocatori</mat-checkbox>
+            <mat-checkbox formControlName="reveled" *ngIf="isCampaign" matTooltip="Cela l'identità del PNG dietro un'immagine segnaposto che nasconde quella caricata, se presente." matTooltipPosition="above">Identità non rivelata</mat-checkbox>
             <mat-checkbox formControlName="isDealer" *ngIf="isCampaign">Ricettatore</mat-checkbox>
             <mat-checkbox formControlName="isMerchant" *ngIf="isCampaign">Mercante</mat-checkbox>
         </div>

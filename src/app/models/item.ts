@@ -1,73 +1,43 @@
 import { FormBuilder, Validators } from "@angular/forms";
 
 export class Item {
-    name: string;
-    icon: string;
-    filtered: boolean;
-    quantity: number;
-    rarity: string;
-    category: string;
-    description?: string;
-    value?: number;
-    weight?: number;
-    cursed?: boolean;
-    cursedDescription?: string;
-    magicItem?: boolean;
-    artifact?: boolean;
-    weared?: boolean;
-    CA?: number;
-    plusDexterity?: boolean;
-    minStrength?: number;
-    shield?: boolean;
-    stealthDisadvantage?: boolean;
-    damageFormula?: string;
-    damageType?: string;
-    weaponProperties?: any[];
-    range?: string;
-    versatileDice?: string;
-    traits?: Trait[];
-    focus?: boolean;
-    attunementRequired?: boolean;
-    attuned?: boolean;
-    artifactProperties?: Trait[];
-    reference?: string;
-    consumable?: boolean;
-    visible?: boolean;
+    name: string = '';
+    icon: string = '';
+    filtered: boolean = false;
+    quantity: number = 0;
+    rarity: string = '';
+    category: string = '';
+    description: string = '';
+    value: number = 0;
+    weight: number = 0;
+    advanced: boolean = false;
+    type: ItemCategory = ItemCategory.NULL;
+    cursed: boolean = false;
+    cursedDescription: string = '';
+    magicItem: boolean = false;
+    artifact: boolean = false;
+    weared: boolean = false;
+    CA: number = 0;
+    plusDexterity: boolean = false;
+    minStrength: number = 0;
+    shield: boolean = false;
+    stealthDisadvantage: boolean = false;
+    damageFormula: string = '';
+    damageType: string = '';
+    weaponProperties: any[] = [];
+    range: string = '';
+    versatileDice: string = '';
+    traits: Trait[] = [];
+    focus: boolean = false;
+    attunementRequired: boolean = false;
+    attuned: boolean = false;
+    artifactProperties: Trait[] = [];
+    reference: string = '';
+    consumable: boolean = false;
+    visible: boolean = false;
+    notEditable: boolean = false;
 
-    constructor(name: string, icon: string, filtered: boolean, quantity: number, rarity: string, category: string, description?: string, value?: number, weight?: number, cursed?: boolean, cursedDescription?: string, traits?: Trait[], focus?: boolean, attunementRequired?: boolean, attuned?: boolean, artifactProperties?: Trait[], reference?: string, magicItem?: boolean, artifact?: boolean, weared?: boolean, CA?: number, plusDexterity?: boolean,  minStrength?: number, shield?: boolean, stealthDisadvantage?: boolean, damageFormula?: string, damageType?: string, weaponProperties?: string[], range?: string, versatileDice?: string, consumable?: boolean, visible?: boolean) {
-        this.name = name;
-        this.icon = icon;
-        this.filtered = filtered;
-        this.quantity = quantity;
-        this.rarity = rarity;
-        this.category = category;
-        this.description = description;
-        this.value = value;
-        this.weight = weight;
-        this.cursed = cursed;
-        this.cursedDescription = cursedDescription;
-        this.traits = traits;
-        this.focus = focus;
-        this.attunementRequired = attunementRequired;
-        this.attuned = attuned;
-        this.artifactProperties = artifactProperties;
-        this.reference = reference;
-        this.magicItem = magicItem;
-        this.artifact = artifact;
-        this.weared = weared;
-        this.CA = CA;
-        this.plusDexterity = plusDexterity;
-        this.minStrength = minStrength;
-        this.shield = shield;
-        this.stealthDisadvantage = stealthDisadvantage;
-        this.damageFormula = damageFormula;
-        this.damageType = damageType;
-        this.weaponProperties = weaponProperties;
-        this.range = range;
-        this.versatileDice = versatileDice;
-        this.consumable = consumable;
-        this.visible = visible;
-    }
+    constructor() {}
 
     static create(builder: FormBuilder) {
         return {
@@ -77,9 +47,11 @@ export class Item {
             quantity: [1, [Validators.required, Validators.min(0)]],
             rarity: ['', Validators.required],
             category: ['', Validators.required],
-            description: '',
+            description: ['', Validators.required],
             value: 0,
             weight: 0,
+            advanced: false,
+            type: ItemCategory.NULL,
             cursed: false,
             cursedDescription: '',
             traits: builder.array([]),
@@ -103,9 +75,9 @@ export class Item {
             versatileDice: '',
             consumable: false,
             visible: false,
+            notEditable: false,
         }
     }
-
 }
 
 export class Trait {
@@ -119,6 +91,12 @@ export class Trait {
         }
 
     }
+}
+
+export enum ItemCategory {
+    ARMOR = "armatura",
+    WEAPON = "arma",
+    NULL = "null"
 }
 
 // export class Armor extends Item {

@@ -36,3 +36,15 @@ mat-form-field {
   // width: 100% !important;
   margin-bottom: 12px;
 }
+
+.line-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.line-input {
+  flex-grow: 1;
+  min-width: 30%;
+}

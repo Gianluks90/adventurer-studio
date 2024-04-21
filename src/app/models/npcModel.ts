@@ -42,6 +42,7 @@ export class NPC {
     notes: string = '';
     lastPlace: string = '';
     addable: boolean = false;
+    reveled: boolean = false;
     filtered: boolean = false;
     visible: boolean = true;
 
@@ -90,6 +91,7 @@ export class NPC {
             notes: '',
             lastPlace: '',
             addable: false,
+            reveled: false,
             visible: true,
             filtered: false
         }

@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit{
     private sidenavService: SidenavService) {}
 
     public menuIcon = 'menu';
+    public showDisclaimer = false;
 
   ngOnInit(): void {
     // this.menuService.hiddenButton = ['bozza','pubblica','indietro']
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit{
     if (this.sidenavService.isOpen()) {
       this.menuIcon = 'close';
     }
+    localStorage.getItem('disclaimer') === 'true' ? this.showDisclaimer = true : this.showDisclaimer = false;
   }
 
   public openSidenav() {
@@ -30,5 +32,10 @@ export class HomeComponent implements OnInit{
       this.menuIcon = 'menu';
     }
     this.sidenavService.toggle();
+  }
+
+  public toggleDisclaimer() {
+    this.showDisclaimer = !this.showDisclaimer;
+    localStorage.setItem('disclaimer', this.showDisclaimer.toString());
   }
 }

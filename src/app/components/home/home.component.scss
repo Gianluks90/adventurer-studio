@@ -100,19 +100,19 @@
 .button-character {
     opacity: 0;
     animation: appearAfterSeconds 2s ease-in-out 1.5s forwards;
-    animation-delay: 1.5s;
+    // animation-delay: 1.5s;
 }
 
 .button-campaign {
     opacity: 0;
     animation: appearAfterSeconds 2s ease-in-out 1.5s forwards;
-    animation-delay: 2s;
+    // animation-delay: 2s;
 }
 
 .button-collection {
     opacity: 0;
     animation: appearAfterSeconds 2s ease-in-out 1.5s forwards;
-    animation-delay: 2.5s;
+    // animation-delay: 2.5s;
 }
 
 .disclaimer-footer {
@@ -131,7 +131,7 @@
     justify-content: center;
     opacity: 0;
     animation: appearAfterSeconds 2s ease-in-out 1.5s forwards;
-    animation-delay: 4s;
+    // animation-delay: 4s;
 }
 
 .disclaimer {
@@ -141,6 +141,12 @@
 .disclaimer > a {
     color: white;
     font-weight: bold;
+}
+
+.info-button {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
 }
 
 @media screen and (max-width: 850px) {
