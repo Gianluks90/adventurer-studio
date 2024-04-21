@@ -19,8 +19,12 @@ export class ItemInfoSheetComponent {
     private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>, 
     private dialog: MatDialog) {
     this.isCampaign = window.location.href.includes('campaign-view');
-    if (data.item.damageFormula !== '') {
-      this.maxMinDamage = this.calcolaMinMax(data.item.damageFormula).minimo + ' - ' + this.calcolaMinMax(data.item.damageFormula).massimo;
+    console.log(data.item);
+  }
+
+  ngOnInit() {
+    if (this.data.item.damageFormula && this.data.item.damageFormula !== '') {
+      this.maxMinDamage = this.calcolaMinMax(this.data.item.damageFormula).minimo + ' - ' + this.calcolaMinMax(this.data.item.damageFormula).massimo;
     }
   }
 
@@ -55,6 +59,9 @@ export class ItemInfoSheetComponent {
   }
 
   public calcolaMinMax(formula) {
+    if (!formula) {
+      return { minimo: 'error', massimo: 'error' };
+    }
     // Rimuovi gli spazi bianchi e separa la formula in termini
     const termini = formula.replace(/\s/g, '').split('+');
     
