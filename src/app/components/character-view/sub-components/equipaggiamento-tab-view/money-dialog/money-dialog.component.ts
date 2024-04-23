@@ -13,8 +13,4 @@ export class MoneyDialogComponent {
   constructor(
     private formService: FormService, @Inject(MAT_DIALOG_DATA) public data: { char: any },
     private dialogRef: MatDialogRef<MoneyDialogComponent>) { }
-
-  public close() {;
-    this.dialogRef.close({ status: 'success' });
-  }
 }

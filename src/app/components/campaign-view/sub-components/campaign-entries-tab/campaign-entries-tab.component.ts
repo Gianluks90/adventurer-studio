@@ -12,12 +12,14 @@ import { getAuth } from 'firebase/auth';
 })
 export class CampaignEntriesTabComponent {
 
+  private allEntries: any[] = [];
   public entriesData: any[] = [];
   public isOwnerData: boolean;
   public tags: string[] = [];
   public userId: string = getAuth().currentUser.uid;
 
   @Input() set entries(entries: any[]) {
+    this.allEntries = entries;
     this.entriesData = entries.filter((entry: any) => entry.userId === this.userId);
     this.tags = [...new Set(this.entriesData.map((entry: any) => entry.tag.toLowerCase()))];
     this.tags = this.tags.filter((tag: string) => tag !== '').sort();
@@ -45,11 +47,20 @@ export class CampaignEntriesTabComponent {
         break;
         case 'edited':
           this.entriesData[index] = result.entry;
-          this.campaignService.updateCampaignEntries(window.location.href.split('/').pop(), this.entriesData);
+          this.allEntries.forEach((entry: any, i: number) => {
+            if (entry.userId === this.userId && entry.title === result.entry.title) {
+              this.allEntries[i] = result.entry;
+            }
+          });
+          this.campaignService.updateCampaignEntries(window.location.href.split('/').pop(), this.allEntries);
         break;
         case 'deleted':
-          this.entriesData.splice(index, 1);
-          this.campaignService.updateCampaignEntries(window.location.href.split('/').pop(), this.entriesData);
+          this.allEntries.forEach((entry: any, i: number) => {
+            if (entry.userId === this.userId && entry.title === result.entry.title) {
+              this.allEntries.splice(i, 1);
+            }
+          });
+          this.campaignService.updateCampaignEntries(window.location.href.split('/').pop(), this.allEntries);
         break;
         default:
         break;

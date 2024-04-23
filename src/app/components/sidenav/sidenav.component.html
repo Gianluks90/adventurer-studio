@@ -8,41 +8,55 @@
       <div class="user-name">
         {{firebaseService.user.value.displayName}}
       </div>
-      <div class="characters-count">
-        <mat-icon matTooltip="Schede create" matTooltipPosition="below">description</mat-icon> {{firebaseService.user.value.characters.length}} / 3
-      </div>
     </div>
   </div>
 
-  <button mat-raised-button color="accent" [routerLink]="['/home']" (click)="close()">
-    <mat-icon>home</mat-icon>
-    Inizio
-  </button>
+  <div class="main-actions-container">
+    <div class="actions-container">
+      <button mat-raised-button color="accent" [routerLink]="['/home']" (click)="close()">
+        <mat-icon>home</mat-icon>
+        Inizio
+      </button>
+    
+      <button mat-raised-button color="accent" [routerLink]="['/characters']" (click)="close()">
+        <mat-icon>description</mat-icon>
+        I tuoi personaggi
+      </button>
+    
+      <button mat-raised-button color="accent" [routerLink]="['/campaigns']" (click)="close()">
+        <mat-icon>group</mat-icon>
+        Campagne
+      </button>
+    
+      <button mat-raised-button color="accent" disabled>
+        <mat-icon>inventory_2</mat-icon>
+        Creazioni
+      </button>
 
-  <button mat-raised-button color="accent" [routerLink]="['/characters']" (click)="close()">
-    <mat-icon>description</mat-icon>
-    I tuoi personaggi
-  </button>
-
-  <button mat-raised-button color="accent" [routerLink]="['/campaigns']" (click)="close()">
-    <mat-icon>group</mat-icon>
-    Campagne
-  </button>
-
-  <button mat-raised-button color="accent" disabled>
-    <mat-icon>inventory_2</mat-icon>
-    Creazioni
-  </button>
-
-  <button mat-raised-button color="accent" (click)="openSettingsDialog()" [disabled]="disableSettings">
-    <mat-icon>settings</mat-icon>
-    Impostazioni
-  </button>
-
-  <button mat-raised-button color="accent" (click)="logout()">
-    <mat-icon>exit_to_app</mat-icon>
-    Disconnettiti
-  </button>
+      <div class="subtitle">Personaggio preferito</div>
+      @if(favChar) {
+        <div class="fav-char-container" (click)="navigateToChar(favChar.id)">
+          <img [src]="favChar.informazioniBase.urlImmaginePersonaggio" class="fav-char-image">
+            <div class="fav-char-name">{{favChar.informazioniBase.nomePersonaggioEsteso !== '' ? favChar.informazioniBase.nomePersonaggioEsteso : favChar.informazioniBase.nomePersonaggio}}</div>
+          <mat-icon class="nav-arrow">star</mat-icon>
+        </div>
+      } @else {
+        Nessun personaggio preferito.
+      }
+    </div>
+  
+    <div class="actions-container">
+      <button mat-raised-button color="accent" (click)="openSettingsDialog()" [disabled]="disableSettings">
+        <mat-icon>settings</mat-icon>
+        Impostazioni
+      </button>
+    
+      <button mat-raised-button color="accent" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        Disconnettiti
+      </button>
+    </div>
+  </div>
 
   <!-- <div class="toggle-container">
     <div class="toggle-label">Abilita tiri</div>

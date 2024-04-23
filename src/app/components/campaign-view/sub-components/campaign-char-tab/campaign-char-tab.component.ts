@@ -11,8 +11,6 @@ export class CampaignCharTabComponent {
   @Input() set character(character: any) {
     if (!character) return;
     this.charData = character;
-    console.log('abilitaData', this.charData);
-
     this.initMaestrieArray(character.competenzaAbilita);
     this.initMod(this.abilitaData, this.maestrieData, this.charData.tiriSalvezza.bonusCompetenza);
     this.abilitaData.sort((a, b) => a.name.localeCompare(b.name));

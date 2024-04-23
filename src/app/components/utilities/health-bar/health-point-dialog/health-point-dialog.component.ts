@@ -70,6 +70,13 @@ export class HealthPointDialogComponent {
   //   this.hpForm.reset();
   // }
 
+  public restore() {
+    this.data.parametriVitali.pf = this.data.parametriVitali.pfMax;
+    this.data.parametriVitali.pft = 0;
+    this.data.parametriVitali.pftMax = 0;
+    this.hpForm.reset();
+  }
+
   public close() {
     this.dialogRef.close({ status: 'success', newValue: this.data.parametriVitali });
   }

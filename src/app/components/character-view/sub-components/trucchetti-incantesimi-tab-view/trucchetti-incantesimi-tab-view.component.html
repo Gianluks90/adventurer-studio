@@ -58,7 +58,7 @@
     </mat-menu>
 
 </div>
-<div class="subtitle">Preparati</div>
+<div class="subtitle">Preparati <span [ngClass]="{'warn-prepared-spells': checkPreparedSpell() > charData.magia.incantesimiPreparabili}">({{checkPreparedSpell()}}/{{charData.magia.incantesimiPreparabili}})</span></div>
 <ng-container *ngFor="let t of lista; let i = index;">
     <details *ngIf="t.preparato" class="t-container" [hidden]="t.filtered">
         <summary class="t-name">
@@ -79,6 +79,7 @@
                 superiori</span> {{t.livelloSuperiore}}
         </div>
         <div class="button-container">
+            <button class="edit-spell-button" (click)="prepareToggle(t)">Non preparato</button>
             <button class="edit-spell-button" (click)="openAddSpellDialog(t, i)">Modifica</button>
         </div>
     </details>
@@ -104,6 +105,7 @@
                 superiori</span> {{t.livelloSuperiore}}
         </div>
         <div class="button-container">
+            <button class="edit-spell-button" (click)="prepareToggle(t)">Prepara</button>
             <button class="edit-spell-button" (click)="openAddSpellDialog(t, i)">Modifica</button>
         </div>
     </details>

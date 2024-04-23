@@ -1,4 +1,4 @@
-.main-trucchetti-incantesimi-container{
+.main-trucchetti-incantesimi-container {
     height: 100%;
     overflow-y: auto;
     padding: 8px;
@@ -193,7 +193,7 @@ summary::after {
     cursor: pointer;
 }
 
-details[open] > summary::after {
+details[open]>summary::after {
     content: url("/assets/icons/chevron_down.svg");
     cursor: pointer;
 }
@@ -243,4 +243,8 @@ details[open] > summary::after {
         width: 100%;
         box-sizing: border-box;
     }
+}
+
+.warn-prepared-spells {
+    color: crimson;
 }

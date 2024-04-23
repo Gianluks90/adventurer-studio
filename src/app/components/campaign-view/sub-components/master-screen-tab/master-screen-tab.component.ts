@@ -14,8 +14,6 @@ export class MasterScreenTabComponent {
 
   @Input() set campaign(data: any) {
     this.campaignData = data;
-    console.log(data);
-    
   }
 
   @Input() set isOwner(isOwner: boolean) {

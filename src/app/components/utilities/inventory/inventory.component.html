@@ -14,7 +14,7 @@
     <div class="items-container">
         @if (inventoryData.length > 0) {
             <div class="items-icon-container" [ngClass]="{'campaign-columns': isCampaign}">
-                <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered" [ngClass]="{ 'not-visible': isCampaign && !i.visible && !isOwnerData }" (click)="openInfoSheet(i, j)">
+                <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered || (selectedCharData && selectedCharData.status.useOpacityInventoryRule && i.quantity <= 0)" [ngClass]="{ 'not-visible': isCampaign && !i.visible && !isOwnerData }" (click)="openInfoSheet(i, j)">
                     @if (isCampaign) {
                         <!-- SONO NELLA CAMPAIGN VIEW -->
                         <!-- @if (i.visible || isOwnerData) { -->

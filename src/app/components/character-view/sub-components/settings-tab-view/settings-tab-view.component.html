@@ -40,11 +40,23 @@
 <div class="description-text">Il file <strong>JSON</strong> permette di creare una copia di questo personaggio dalla
     sezione Personaggi. Il file <strong>PDF</strong> (funzione disponibile prossimamente) è invece la scheda personaggio
     ufficiale in formato .pdf pre-compilata con le informazioni inserite finora.</div>
-
+<div class="subtitle">Personaggio Preferito</div>
+<div class="description-text">Rendere <strong>Preferito</strong> un personaggio lo mosterà sempre nel menù laterale di
+    sinistra e potrà essere raggiunto da ogni pagina in cui questo menù è presente.</div>
+    <div class="export-container">
+        <button class="export-button" mat-raised-button color="accent" (click)="setFavoriteChar()" [disabled]="isFavorite">
+            <mat-icon>star</mat-icon> Imposta come preferito
+        </button>
+    </div>
 <div class="subtitle">Regole aggiuntive</div>
-<mat-slide-toggle class="slide-toggle" color="accent" [(ngModel)]="charData.status.useWeightRule" (change)="toggleWeightRule($event)">
+<mat-slide-toggle class="slide-toggle" color="accent" [(ngModel)]="charData.status.useWeightRule"
+    (change)="toggleWeightRule($event)">
     <div class="toggle-label">Usa le regole dell'<em>Ingombro</em> (visualizza il peso nell'inventario, calcola
         gli ingombri e ti avvisa se il PG è appesantito e quali sono gli svantaggi, vedi PHB 176).</div>
+</mat-slide-toggle>
+<mat-slide-toggle class="slide-toggle" color="accent" [(ngModel)]="charData.status.useOpacityInventoryRule"
+    (change)="toggleOpacityInventoryRule($event)">
+    <div class="toggle-label">Nascondi gli oggetti nell'inventario la cui quantità è 0 anzichè mostrarli opachi.</div>
 </mat-slide-toggle>
 <mat-slide-toggle class="slide-toggle" color="accent" disabled checked="true">
     <div class="toggle-label">Rendi segreta la scheda personaggio (quando è attiva, questa funzione nasconde la scheda a
@@ -52,8 +64,10 @@
         modifica della scheda stessa).</div>
 </mat-slide-toggle>
 <mat-slide-toggle class="last-toggle" color="accent" disabled>
-    <div class="toggle-label">Usa la regola dei <em>punti esperienza</em> (visualizza una barra in cui accumulare i punti
-        esperienza, serve che il personaggio sia in una campagna attiva affinchè questi punti vengano assegnati, vedi PHB
+    <div class="toggle-label">Usa la regola dei <em>punti esperienza</em> (visualizza una barra in cui accumulare i
+        punti
+        esperienza, serve che il personaggio sia in una campagna attiva affinchè questi punti vengano assegnati, vedi
+        PHB
         15).</div>
 </mat-slide-toggle>
 

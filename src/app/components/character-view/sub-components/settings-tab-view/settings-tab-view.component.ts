@@ -15,6 +15,7 @@ export class SettingsTabViewComponent {
   public sheetColorData: string = '';
   public campaignIdData: string = '';
   public campaignData: any;
+  public isFavorite: boolean = false;
 
   constructor(private charService: CharacterService, private formService: FormService, private campaignService: CampaignService, private router: Router) { }
   
@@ -31,6 +32,9 @@ export class SettingsTabViewComponent {
         this.campaignData = data;
       });
     }
+    this.charService.checkFavoriteCharacter(character.id).then((data) => {
+      this.isFavorite = data;
+    });
   }
 
   public updateSheetColor(event: any) {
@@ -48,6 +52,17 @@ export class SettingsTabViewComponent {
 
   public toggleWeightRule(event: any) {
     this.charService.updateWeightRule(window.location.href.split('/').pop()!, event.checked);
+  }
+
+  public toggleOpacityInventoryRule(event: any) {
+    this.charService.updateOpacityInventoryRule(window.location.href.split('/').pop()!, event.checked);
+  } 
+
+  public setFavoriteChar() {
+    this.charService.setFavoriteCharacter(this.charData.id);
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   }
 
   public parseExport() {

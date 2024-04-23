@@ -28,6 +28,7 @@ export class InventoryComponent {
 
   public selectedCharData: any;
   @Input() set selectedChar(selectedChar: string) {
+    if (!selectedChar) return;
     this.selectedCharData = selectedChar;
   }
 

@@ -23,8 +23,6 @@ export class AddItemDialogComponent {
     this.traits = this.fb.array([]);
     this.artifactProperties = this.fb.array([]);
     this.isCampaign = window.location.href.includes('campaign-view');
-    console.log(this.form);
-    
   }
 
   ngOnInit(){

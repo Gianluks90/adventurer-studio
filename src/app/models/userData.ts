@@ -1,39 +1,32 @@
 import { User } from "firebase/auth";
 
 export class UserData {
-    id: string;
-    displayName: string;
-    photoURL: string;
-    progressive: number;
-    campaignProgressive: number;
-    dddiceToken: string;
-    privateSlug: string;
-    characters: string[];
-    role: string
+    id: string = '';
+    displayName: string = '';
+    photoURL: string = '';
+    progressive: number = 0;
+    campaignProgressive: number = 0;
+    dddiceToken: string = '';
+    privateSlug: string = '';
+    characters: string[] = [];
+    role: string = '';
+    favoriteCharacter: string = '';
 
-    constructor(id: string, displayName: string, photoURL: string, progressive: number, campaignProgressive: number, dddiceToken: string, privateSlug: string, characters: string[], role: string) {
-        this.id = id;
-        this.displayName = displayName;
-        this.photoURL = photoURL;
-        this.progressive = progressive;
-        this.campaignProgressive = campaignProgressive;
-        this.dddiceToken = dddiceToken;
-        this.privateSlug = privateSlug;
-        this.characters = characters;
-        this.role = role
-    }
+
+    constructor() {}
 
     static parseUser(user: User, userData: any): UserData {
-        return new UserData(
-            user.uid,
-            user.displayName || "",
-            user.photoURL || "",
-            userData.progressive || 0,
-            userData.campaignProgressive || 0,
-            userData.dddiceToken || "",
-            userData.privateSlug || "",
-            userData.characters || [],
-            userData.role || ''
-        );
+        const data = new UserData();
+        data.id = user.uid;
+        data.displayName = user.displayName!;
+        data.photoURL = user.photoURL!;
+        data.progressive = userData.progressive;
+        data.campaignProgressive = userData.campaignProgressive;
+        data.dddiceToken = userData.dddiceToken;
+        data.privateSlug = userData.privateSlug;
+        data.characters = userData.characters;
+        data.role = userData.role;
+        data.favoriteCharacter = userData.favoriteCharacter;
+        return data;
     }
 }

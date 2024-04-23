@@ -282,6 +282,15 @@ export class CharacterService {
     }, { merge: true });
   }
 
+  public async updateOpacityInventoryRule(id: string, rule: boolean): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      status: {
+        useOpacityInventoryRule: rule
+      }
+    }, { merge: true });
+  }
+
   // public async updateAttacks(id: string, attacks: any[]): Promise<any> {
   //   const docRef = doc(this.firebaseService.database, 'characters', id);
   //   return await setDoc(docRef, {
@@ -403,4 +412,24 @@ export class CharacterService {
       rollTheme: theme
     }, { merge: true });
   }
+
+  public async setFavoriteCharacter(id: string): Promise<any> {
+    const userId = getAuth().currentUser.uid;
+    const docRef = doc(this.firebaseService.database, 'users', userId);
+    return await setDoc(docRef, {
+      favoriteCharacter: id
+    }, { merge: true });
+  }
+
+  public async checkFavoriteCharacter(id: string): Promise<boolean> {
+    const userId = getAuth().currentUser.uid;
+    const docRef = doc(this.firebaseService.database, 'users', userId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists() && docSnap.data()['favoriteCharacter'] === id) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
