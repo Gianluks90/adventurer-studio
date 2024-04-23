@@ -59,6 +59,10 @@
     // align-items: flex-start;
 }
 
+.campaign-columns {
+    grid-template-columns: repeat(8, 1fr);
+}
+
 .items-icon-container>div {
     position: relative;
     // max-width: calc(100% / 6 - 10px);

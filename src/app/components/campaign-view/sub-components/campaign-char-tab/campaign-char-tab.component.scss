@@ -1,0 +1,173 @@
+.section-title {
+    margin-bottom: 10px;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+}
+
+.description-text {
+  font-size: small;
+  opacity: 0.5;
+  font-style: italic;
+  text-align: justify;
+}
+
+.char-classes-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.c-container {
+  background-color: rgba($color: #212121, $alpha: 0.9);
+  color: whitesmoke;
+  border-radius: 16px;
+  padding: 6px 12px;
+}
+
+.subtitle {
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+    margin: 8px 0;
+}
+
+.skill-container {
+    // border: 2px solid rgba($color: #212121, $alpha: 0.9);
+    background-color: whitesmoke;
+    color: #212121;
+    // padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .skill-line {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    gap: 4px;
+  }
+
+  .skill {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba($color: #212121, $alpha: 0.9);
+    width: 100%;
+    text-align: center;
+  }
+
+  .proficent-skill {
+    border-bottom: 6px solid #212121;
+  }
+
+  .skill-title {
+    background-color: rgba($color: #212121, $alpha: 0.9);
+    color: whitesmoke;
+    font-weight: bold;
+    padding: 8px 0;
+    font-size: large;
+  }
+
+  .skill-value {
+    color: #212121;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+  }
+
+  .proficiency-container {
+    padding: 8px;
+    background-color: rgba($color: #212121, $alpha: 0.9);
+    display: flex;
+    justify-content: space-between;
+    color: whitesmoke;
+    margin-bottom: 8px;
+  }
+
+  .prof-label {
+    text-transform: uppercase;
+    font-size: medium;
+  }
+
+  .a-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .a-line {
+    text-transform: capitalize;
+    padding: 4px;
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+  }
+
+  .even-a {
+    background-color: rgba($color: lightgray, $alpha: 0.5)
+  }
+
+  .a-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .proficiency-identifier {
+    font-size: large;
+  }
+
+  .a-value {
+    font-weight: bold
+  }
+
+  .p-name {
+    background-color: #212121;
+    color: white;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+details[open] {
+    border: 1px solid #212121;
+    margin-bottom: 4px;
+}
+
+details>summary {
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: url("/assets/icons/chevron_right.svg");
+    cursor: pointer;
+}
+
+details[open] > summary::after {
+    content: url("/assets/icons/chevron_down.svg");
+    cursor: pointer;
+}
+
+.p-description {
+  padding: 0 4px;
+  white-space: pre-wrap;
+}
+
+.sheet-button-container {
+  margin: 16px 0 20px 0;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -94,13 +94,23 @@ export class InventoryComponent {
         }
       }
       if (result && result.status === 'reclamed' && this.selectedCharData) {
-        const resultItem = { ...result.item };
-        resultItem.quantity = result.quantity;
-        this.characterService.addItemInventory(this.selectedCharData.id, resultItem).then(() => {
-          this.inventoryData[index].quantity -= result.quantity;
-          this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
-          this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
-        });
+        const itemExists = this.selectedCharData.inventory.find((item) => item.name === result.item.name);
+        if (itemExists) {
+          this.selectedCharData.inventory.find((item) => item.name === result.item.name).quantity += result.quantity;
+          this.characterService.updateInventory(this.selectedCharData.id, this.selectedCharData.inventory).then(() => {
+            this.inventoryData[index].quantity -= result.quantity;
+            this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
+            this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+          });
+        } else {
+          const resultItem = { ...result.item };
+          resultItem.quantity = result.quantity;
+          this.characterService.addItemInventory(this.selectedCharData.id, resultItem).then(() => {
+            this.inventoryData[index].quantity -= result.quantity;
+            this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
+            this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+          });
+        }
       }
       if (result && result.status === 'consumed') {
         this.inventoryData[index].quantity--;

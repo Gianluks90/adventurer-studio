@@ -7,7 +7,7 @@
     </ng-template>
     @if (charData && charData.length > 0) {
     <div class="characters-line" *ngIf="charData && charData.length > 0; else noCharacters">
-        <div class="character-item" [ngClass]="{'partecipant-char' : char.status.userId === partecipantId }"
+        <div class="character-item"
             *ngFor="let char of charData">
             <div class="character-header-card">
                 <img class="character-image" [src]="char.informazioniBase.urlImmaginePersonaggio"
@@ -45,6 +45,48 @@
                     <mat-icon class="passive-icon" matTooltip="Indagare passiva"
                         matTooltipPosition="above">search</mat-icon>
                     {{char.indagarePassiva}}
+                </div>
+            </div>
+            <div class="character-skill-container" *ngIf="char.status.userId === partecipantId">
+                <div class="skill-line">
+                    <!-- FORZA -->
+                    <div class="skill">
+                        <div class="skill-title">FOR</div>
+                        <div class="skill-value">{{char.caratteristiche.forza}}</div>
+                        <div class="skill-title">{{calcModifier(char.caratteristiche.forza)}}</div>
+                    </div>
+                    <!-- DESTREZZA -->
+                    <div class="skill">
+                        <div class="skill-title">DES</div>
+                        <div class="skill-value">{{char.caratteristiche.destrezza}}</div>
+                        <div class="skill-title">{{calcModifier(char.caratteristiche.destrezza)}}</div>
+                    </div>
+                    <!-- COSTITUZIONE -->
+                    <div class="skill">
+                        <div class="skill-title">COS</div>
+                        <div class="skill-value">{{char.caratteristiche.costituzione}}</div>
+                        <div class="skill-title">{{calcModifier(char.caratteristiche.costituzione)}}</div>
+                    </div>
+                </div>
+                <div class="skill-line">
+                    <!-- INTELLIGENZA -->
+                    <div class="skill">
+                        <div class="skill-title">INT</div>
+                        <div class="skill-value">{{char.caratteristiche.intelligenza}}</div>
+                        <div class="skill-title">{{calcModifier(char.caratteristiche.intelligenza)}}</div>
+                    </div>
+                    <!-- SAGGEZZA -->
+                    <div class="skill">
+                        <div class="skill-title">SAG</div>
+                        <div class="skill-value">{{char.caratteristiche.saggezza}}</div>
+                        <div class="skill-title">{{calcModifier(char.caratteristiche.saggezza)}}</div>
+                    </div>
+                    <!-- CARISMA -->
+                    <div class="skill">
+                        <div class="skill-title">CAR</div>
+                        <div class="skill-value">{{char.caratteristiche.carisma}}</div>
+                        <div class="skill-title">{{calcModifier(char.caratteristiche.carisma)}}</div>
+                    </div>
                 </div>
             </div>
         </div>

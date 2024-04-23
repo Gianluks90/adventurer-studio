@@ -38,17 +38,18 @@
                 <app-campaign-story-tab [description]="campaignData.description" [campaign]="campaignData"
                     [sessionNumber]="sessionNumber" [isOwner]="isOwner"></app-campaign-story-tab>
             </mat-tab>
-            <!-- <mat-tab disabled *ngIf="charData.length > 0 && partecipantIndex === -1">
-                <ng-template mat-tab-label>
-                    <img class="player-tab" [src]="charData[0].informazioniBase.urlImmaginePersonaggio" matTooltipPosition="below" [matTooltip]="charData[0].informazioniBase.nomePersonaggioEsteso !== '' || charData[0].informazioniBase.nomePersonaggio">
-                </ng-template>
-            </mat-tab> -->
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/campaign-tabs-icon/quests.svg" class="label-icon" matTooltipPosition="below"
                         matTooltip="Missioni">
                 </ng-template>
                 <app-campaign-quests-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-quests-tab>
+            </mat-tab>
+            <mat-tab *ngIf="charData.length > 0 && !isOwner" >
+                <ng-template mat-tab-label>
+                    <img class="player-tab" [src]="charData[partecipantIndex].informazioniBase.urlImmaginePersonaggio" matTooltipPosition="below" [matTooltip]="charData[partecipantIndex].informazioniBase.nomePersonaggioEsteso !== '' || charData[partecipantIndex].informazioniBase.nomePersonaggio">
+                </ng-template>
+                <app-campaign-char-tab [character]="charData[partecipantIndex]"></app-campaign-char-tab>
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>

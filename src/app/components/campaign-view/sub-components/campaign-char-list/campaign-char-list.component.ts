@@ -128,4 +128,8 @@ export class CampaignCharListComponent {
         this.charData.unshift(elemento);
     }
   }
+
+  public calcModifier(value: number): string {
+    return Math.floor((value - 10) / 2) >= 0 ? '+' + Math.floor((value - 10) / 2) : Math.floor((value - 10) / 2).toString();
+  }
 }

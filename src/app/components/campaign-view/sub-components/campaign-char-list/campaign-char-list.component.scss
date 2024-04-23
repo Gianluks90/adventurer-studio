@@ -63,7 +63,7 @@
 }
 
 .character-image {
-    width: 50px;
+    min-width: 50px;
     height: 50px;
     object-fit: cover;
 }
@@ -136,11 +136,11 @@
     filter: grayscale(100%);
 }
 
-.partecipant-char {
-    border-bottom: 5px solid whitesmoke;
-    box-sizing: border-box;
-    margin-bottom: 8px;
-}
+// .partecipant-char {
+//     border-bottom: 5px solid whitesmoke;
+//     box-sizing: border-box;
+//     margin-bottom: 8px;
+// }
 
 .inspiration {
     font-size: xx-large;
@@ -190,4 +190,43 @@
   
   .single-coins-viewer>img {
     height: 12px;
+  }
+
+  .character-skill-container {
+    border: 2px solid rgba($color: #212121, $alpha: 0.9);
+    background-color: whitesmoke;
+    color: #212121;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .skill-line {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    gap: 4px;
+  }
+
+  .skill {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba($color: #212121, $alpha: 0.9);
+    width: 100%;
+    text-align: center;
+  }
+
+  .skill-title {
+    background-color: rgba($color: #212121, $alpha: 0.9);
+    color: whitesmoke;
+    font-weight: bold;
+    padding: 4px 0;
+    font-size: medium;
+  }
+
+  .skill-value {
+    color: #212121;
   }
