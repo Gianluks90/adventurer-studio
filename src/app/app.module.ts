@@ -92,6 +92,7 @@ import { MAT_DATE_LOCALE } from "@angular/material/core";
 import { EditStoryDialogComponent } from './components/character-view/sub-components/descrizione-background-tab-view/edit-story-dialog/edit-story-dialog.component';
 import { EditPrivilegioTrattoDialogComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/edit-privilegio-tratto-dialog/edit-privilegio-tratto-dialog.component';
 import { CampaignCharTabComponent } from './components/campaign-view/sub-components/campaign-char-tab/campaign-char-tab.component';
+import { RemoveCampaignDialogComponent } from './components/campaign-view/sub-components/campaign-settings-tab/remove-campaign-dialog/remove-campaign-dialog.component';
 
 @NgModule({
   declarations: [
@@ -198,6 +199,7 @@ import { CampaignCharTabComponent } from './components/campaign-view/sub-compone
     EditStoryDialogComponent,
     EditPrivilegioTrattoDialogComponent,
     CampaignCharTabComponent,
+    RemoveCampaignDialogComponent,
 
   ],
   imports: [
