@@ -1,0 +1,15 @@
+<div mat-dialog-title class="dialog-title">Elimina Campagna</div>
+<div mat-dialog-content class="dialog-content">
+    <div class="description">
+        Stai per rimuovere dalla tua collezione questa Campagna. L'eliminazione andrà anche ad eliminare ogni traccia di
+        essa dai personaggi che erano già iscritti (se presenti). L'azione è irreversibile. Procedere?
+    </div>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="warn" (click)="confirm()">
+        <mat-icon>check</mat-icon> Rimuovi
+    </button>
+</div>

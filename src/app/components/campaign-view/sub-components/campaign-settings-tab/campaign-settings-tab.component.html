@@ -98,18 +98,17 @@
     }
 
 </div>
-<div class="subtitle">Archivia/Elimina campagna (prossimamente)</div>
+<div class="subtitle">Elimina campagna</div>
 <div class="description-text">
-    Utilizza "Archivia" per chiudere la Campagna, se questa è conclusa o interrotta. Utilizza invece "Elimina" per
-    eliminare ogni traccia della Campagna dal tuo utente e dai nostri sistemi. <strong>Attenzione</strong>: entrambe
-    le azioni sono irreversibili. Una Campagna Archiviata non permette più di aggiornare le sue informazioni e sezioni
-    ma potrà solamente essere visualizzata.
+    Una volta confermata la cancellazione perderai ogni dato relativo alla Campagna. I personaggi iscritti, se presenti,
+    perderanno traccia di questa campagna e potranno unirsi ad un'altra. I Personaggi iscritti non verranno eliminati.
+    L'azione è irreversibile.
 </div>
 <div class="buttons-container">
-    <button mat-raised-button color="accent" disabled>
+    <!-- <button mat-raised-button color="accent" disabled>
         <mat-icon>archive</mat-icon> Archivia
-    </button>
-    <button mat-raised-button color="warn" disabled>
+    </button> -->
+    <button mat-raised-button color="warn" (click)="openRemoveCampaignDialog()">
         <mat-icon>delete</mat-icon> Elimina
     </button>
 </div>

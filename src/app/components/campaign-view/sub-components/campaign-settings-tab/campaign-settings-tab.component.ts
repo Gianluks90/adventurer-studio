@@ -6,6 +6,8 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { NewChapterDialogComponent } from './new-chapter-dialog/new-chapter-dialog.component';
 import { RemoveCharDialogComponent } from './remove-char-dialog/remove-char-dialog.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RemoveCampaignDialogComponent } from './remove-campaign-dialog/remove-campaign-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-campaign-settings-tab',
@@ -19,12 +21,13 @@ export class CampaignSettingsTabComponent {
     private dddiceService: DddiceService,
     private firebaseService: FirebaseService,
     private matDialog: MatDialog,
-    private fb: FormBuilder) { 
-      this.form = this.fb.group({
-        title: ['', Validators.required],
-        description: ['', Validators.required]
-      })
-    }
+    private fb: FormBuilder,
+    private router: Router) {
+    this.form = this.fb.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required]
+    })
+  }
 
   public campaignData: any;
   public charData: any;
@@ -62,7 +65,7 @@ export class CampaignSettingsTabComponent {
 
   public openNewChapterDialog(): void {
     this.matDialog.open(NewChapterDialogComponent, {
-      width: window.innerWidth < 600 ? '80%' : '50%',
+      width: window.innerWidth < 768 ? '80%' : '50%',
       autoFocus: false,
       disableClose: true
     }).afterClosed().subscribe((result: any) => {
@@ -73,7 +76,7 @@ export class CampaignSettingsTabComponent {
 
   public openRemoveCharDialog(index: number): void {
     this.matDialog.open(RemoveCharDialogComponent, {
-      width: window.innerWidth < 600 ? '80%' : '50%',
+      width: window.innerWidth < 768 ? '80%' : '50%',
       autoFocus: false,
       disableClose: true
     }).afterClosed().subscribe((result: any) => {
@@ -86,8 +89,26 @@ export class CampaignSettingsTabComponent {
     });
   }
 
+  public openRemoveCampaignDialog(): void {
+    this.matDialog.open(RemoveCampaignDialogComponent, {
+      width: window.innerWidth < 768 ? '80%' : '50%',
+      autoFocus: false,
+      disableClose: true
+    }).afterClosed().subscribe((result: any) => {
+      if (result !== 'success') return;
+      const requests = this.campaignData.characters.map((char: any) => {
+        return this.campaignService.removeChar(this.campaignData.id, char);
+      });
+      Promise.all(requests).then(() => {
+        this.campaignService.deleteCampaignById(this.campaignData.id).then(() => {
+          this.router.navigate(['/campaigns']);
+        });
+      });
+    });
+  }
+
   public editTitleDescription(): void {
-    this.campaignService.editTitleDescription(this.campaignData.id, this.form.value).then(() => { });
+    this.campaignService.editTitleDescription(this.campaignData.id, this.form.value);
   }
 
 }
