@@ -66,13 +66,13 @@ export class SettingsTabViewComponent {
   }
 
   public parseExport() {
-    const formValue = this.formService.formSubject.value.value;
-    formValue.informazioniBase.urlImmaginePersonaggio = '';
-    formValue.informazioniBase.nomeImmaginePersonaggio = '';
-    const jsonFile = JSON.stringify(this.formService.formSubject.value.value);
+    // const formValue = this.charData;
+    // formValue.informazioniBase.urlImmaginePersonaggio = '';
+    // formValue.informazioniBase.nomeImmaginePersonaggio = '';
+    const jsonFile = JSON.stringify(this.charData);
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonFile);
     const exportButton = document.getElementById('export-button');
-    const characterName = this.formService.formSubject.value.value.informazioniBase.nomePersonaggio.split(' ')[0];
+    const characterName = this.charData.informazioniBase.nomePersonaggioEsteso !== '' ? this.charData.informazioniBase.nomePersonaggioEsteso.split(' ')[0] : this.charData.informazioniBase.nomePersonaggio.split(' ')[0];
     const fileName = characterName + '_' + (new Date().getTime().toString()) + '.json';
     exportButton.setAttribute("href", dataStr );
     exportButton.setAttribute("download", fileName);
