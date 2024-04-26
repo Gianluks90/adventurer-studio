@@ -1,0 +1,36 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dialog-content {
+    width: 100%;
+}
+
+.description-text {
+    margin-bottom: 12px;
+    font-size: small;
+    opacity: 0.7;
+}
+
+.advanced-description-text {
+    margin-top: 12px;
+}
+
+.form-container {
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+
+    &>mat-form-field {
+        flex-grow: 1;
+    }
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+}

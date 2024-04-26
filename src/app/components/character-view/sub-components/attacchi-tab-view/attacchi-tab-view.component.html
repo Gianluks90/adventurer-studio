@@ -1,4 +1,4 @@
-<div class="section-title">Attacchi</div>
+<div as-section-title>Attacchi</div>
 <div class="search-container">
     <mat-form-field appearance="outline" class="search-input" color="accent">
         <!-- <mat-label>Cerca</mat-label> -->
@@ -10,8 +10,8 @@
 </div>
 <div class="subtitle">Elenco</div>
 <div *ngFor="let a of attacchiData; let i = index;" [hidden]="a.filtered">
-    <details class="a-container" >
-        <summary class="a-name">
+    <details as-details>
+        <summary as-summary as-summary-with-icon>
             <img class="attack-icon" [src]="a.icon"> <span>{{a.name}}</span>
         </summary>
         <div class="attack-info">

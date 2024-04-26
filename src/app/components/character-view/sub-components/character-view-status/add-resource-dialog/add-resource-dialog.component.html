@@ -1,0 +1,26 @@
+<div mat-dialog-title class="dialog-title">Nuova risorsa aggiuntiva</div>
+<div mat-dialog-content class="dialog-content">
+    <form [formGroup]="form" class="form-container">
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="nome">
+        </mat-form-field>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Valore massimo</mat-label>
+            <input #valoreRisorsa type="number" matInput formControlName="valoreMassimo" min="1"
+                (change)="setValoreAttuale(valoreRisorsa.value)">
+        </mat-form-field>
+        <mat-form-field color="accent" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput type="color" formControlName="color">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close>
+        <mat-icon>close</mat-icon> Annulla
+    </button>
+    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <mat-icon>check</mat-icon> Conferma
+    </button>
+</div>

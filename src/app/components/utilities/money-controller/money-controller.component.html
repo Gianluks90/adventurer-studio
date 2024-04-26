@@ -1,5 +1,4 @@
-<div class="main-container">
-  <div class="money-container" (click)="openMoneyDialog()">
+<div class="money-container" (click)="openEditMoneyDialog()">
     <div class="money-title">Denaro</div>
     <div class="moneys">
       <div class="single-coins-viewer">
@@ -34,12 +33,3 @@
       </div>
     </div>
   </div>
-  <!-- <app-money-controller [char]="characterData"></app-money-controller> -->
-  <div as-section-title>Equipaggiamento</div>
-  <div class="weight-container" *ngIf="characterData.status.useWeightRule">
-    <div>{{ingombroTotale}} / {{pesoTrasportabile}}</div> <img src="./assets/icons/weight.svg" matTooltip="ingombro / trasportabile" matTooltipPosition="above"> <img *ngIf="messaggioIngombro !== ''" src="./assets/icons/warning.svg" [matTooltip]="messaggioIngombro" matTooltipPosition="above">
-  </div>
-  <div class="inventory-container">
-    <app-inventory [inventory]="equipaggiamentoData" [selectedChar]="characterData"></app-inventory>
-  </div>
-</div>

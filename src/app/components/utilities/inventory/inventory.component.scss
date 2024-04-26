@@ -1,3 +1,11 @@
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
+
 .main-container {
     // box-sizing: border-box;
     display: flex;
@@ -155,7 +163,7 @@
     .items-icon-container {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .quantity-value {
         opacity: 1;
         display: block;
@@ -180,4 +188,11 @@
 
 .not-visible {
     display: none;
+}
+
+.example-tooltip-uppercase {
+    width: 400px;
+    height: 200px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

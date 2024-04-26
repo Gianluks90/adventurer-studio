@@ -1,6 +1,6 @@
 <div class="main-container">
     @if (isCampaign) {
-        <div class="section-title">{{!isDM ? 'PNG, Organizzazioni e Schede' : 'Schede'}}</div>
+        <div as-section-title>{{!isDM ? 'PNG, Organizzazioni e Schede' : 'Schede'}}</div>
     }
     <div class="search-container">
         <!-- SONO NELLA CHAR VIEW NEL TAB COMPANIONS -->
@@ -12,13 +12,11 @@
         </mat-form-field>
 
         <!-- Only +NPC -->
-        <button mat-mini-fab color="accent" class="add-button" (click)="openAddonDialog()"
-            disableRipple><mat-icon>add</mat-icon></button>
+            <button as-mini-circle-btn (click)="openAddonDialog()"><div class="material-symbols-outlined">add</div></button>
         } 
         <!-- SONO NELLA CHAR VIEW NEL TAB DESCRIZIONE E BACKGROUND  -->
         @if (!isTab && !isCampaign) {
-        <button mat-mini-fab color="accent" class="add-button" [matMenuTriggerFor]="menu"
-            disableRipple><mat-icon>add</mat-icon></button>
+        <button as-mini-circle-btn [matMenuTriggerFor]="menu"><div class="material-symbols-outlined">add</div></button>
         <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
             <button mat-menu-item (click)="openAddNpcDialog()">
                 Alleato
@@ -34,8 +32,9 @@
                 <mat-icon matPrefix>search</mat-icon>
                 <input matInput type="text" (keyup)="filterSearch($event)">
             </mat-form-field> -->
-            <button mat-mini-fab color="accent" class="add-button" [matMenuTriggerFor]="menu"
-            disableRipple *ngIf="isOwner"><mat-icon>add</mat-icon></button>
+            <!-- <button mat-mini-fab color="accent" class="add-button" [matMenuTriggerFor]="menu"
+            disableRipple *ngIf="isOwner"><mat-icon>add</mat-icon></button> -->
+            <button as-mini-circle-btn [matMenuTriggerFor]="menu" *ngIf="isOwner"><div class="material-symbols-outlined">add</div></button>
         <mat-menu #menu="matMenu" yPosition="above" xPosition="before">
             <button mat-menu-item (click)="openAddNpcDialog()">
                 PNG
@@ -49,8 +48,9 @@
         </mat-menu>
         }
         @if (isCampaign && isDM) {
-            <button mat-mini-fab color="accent" class="add-button" (click)="openAddonDialog()"
-            disableRipple><mat-icon>add</mat-icon></button>
+            <!-- <button mat-mini-fab color="accent" class="add-button" (click)="openAddonDialog()"
+            disableRipple><mat-icon>add</mat-icon></button> -->
+            <button as-mini-circle-btn (click)="openAddonDialog()"><div class="material-symbols-outlined">add</div></button>
         }
     </div>
     <!-- SONO NELLA CHAR VIEW -->

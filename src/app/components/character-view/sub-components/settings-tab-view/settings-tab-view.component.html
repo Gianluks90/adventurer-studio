@@ -1,6 +1,5 @@
-<div class="section-title">Campagna e Impostazioni</div>
-
-<div class="subtitle">Campagna attiva</div>
+<div as-section-title>Campagna e Impostazioni</div>
+<div as-subtitle>Campagna attiva</div>
 <div class="description-text" *ngIf="campaignIdData === ''">Questo personaggio non è in alcuna Campagna attiva.</div>
 <ng-container *ngIf="campaignData">
     <div class="campaign-header">
@@ -14,8 +13,9 @@
     <div class="campaign-status">{{campaignData.status.statusMessage}}</div> -->
 </ng-container>
 
-<div class="subtitle">Colore scheda</div>
-<div class="input-container">
+<div as-subtitle>Colore scheda</div>
+<div as-description-text>Usa i comandi sottostanti per modificare colore di sfondo e dei titoli della colonna di sinistra, qui, sulla Scheda Personaggio.</div>
+<!-- <div class="input-container">
     <input type="color" class="color-picker" [value]="sheetColorData" #picker>
     <div class="divider"></div>
     <button mat-raised-button color="accent" (click)="updateSheetColor(picker.value)">
@@ -24,31 +24,48 @@
     <button mat-raised-button color="accent" (click)="resetColor()">
         <mat-icon>refresh</mat-icon> Predefinito
     </button>
+</div> -->
+<div [formGroup]="formColor" class="form-container">
+    <mat-form-field  appearance="outline" color="accent">
+        <mat-label>Colore Scheda</mat-label>
+        <input matInput type="color" formControlName="sheetColor">
+    </mat-form-field>
+    <mat-form-field  appearance="outline" color="accent">
+        <mat-label>Colore Titoli</mat-label>
+        <input matInput type="color" formControlName="sheetTitleColor">
+    </mat-form-field>
 </div>
-<div class="subtitle">Esportazione</div>
-<div class="export-container">
-    <a class="export-button" href="" target="_blank" id="export-button">
+<div class="buttons-container">
+    <button mat-raised-button color="accent" (click)="updateSheetColors()">
+        <mat-icon>check</mat-icon> Applica
+    </button>
+    <button mat-raised-button color="accent" (click)="resetColors()">
+        <mat-icon>refresh</mat-icon> Predefinito
+    </button>
+</div>
+<div as-subtitle>Esportazione</div>
+<div as-description-text>Il file <strong>JSON</strong> permette di creare una copia di questo personaggio dalla
+    sezione Personaggi. Il file <strong>PDF</strong> (funzione disponibile prossimamente) è invece la scheda personaggio
+    ufficiale in formato .pdf pre-compilata con le informazioni inserite finora.</div>
+<div class="buttons-container">
+    <a href="" target="_blank" id="export-button">
         <button mat-raised-button color="accent" (click)="parseExport()">
             <mat-icon>download</mat-icon> Esporta JSON
         </button>
     </a>
-
-    <button class="export-button" mat-raised-button color="accent" (click)="exportPDF()" disabled>
+    <button mat-raised-button color="accent" (click)="exportPDF()" disabled>
         <mat-icon>picture_as_pdf</mat-icon> Esporta PDF
     </button>
 </div>
-<div class="description-text">Il file <strong>JSON</strong> permette di creare una copia di questo personaggio dalla
-    sezione Personaggi. Il file <strong>PDF</strong> (funzione disponibile prossimamente) è invece la scheda personaggio
-    ufficiale in formato .pdf pre-compilata con le informazioni inserite finora.</div>
-<div class="subtitle">Personaggio Preferito</div>
-<div class="description-text">Rendere <strong>Preferito</strong> un personaggio lo mosterà sempre nel menù laterale di
+<div as-subtitle>Personaggio Preferito</div>
+<div as-description-text>Rendere <strong>Preferito</strong> un personaggio lo mosterà sempre nel menù laterale di
     sinistra e potrà essere raggiunto da ogni pagina in cui questo menù è presente.</div>
-    <div class="export-container">
-        <button class="export-button" mat-raised-button color="accent" (click)="setFavoriteChar()" [disabled]="isFavorite">
+    <div class="buttons-container">
+        <button mat-raised-button color="accent" (click)="setFavoriteChar()" [disabled]="isFavorite">
             <mat-icon>star</mat-icon> Imposta come preferito
         </button>
     </div>
-<div class="subtitle">Regole aggiuntive</div>
+<div as-subtitle>Regole aggiuntive</div>
 <mat-slide-toggle class="slide-toggle" color="accent" [(ngModel)]="charData.status.useWeightRule"
     (change)="toggleWeightRule($event)">
     <div class="toggle-label">Usa le regole dell'<em>Ingombro</em> (visualizza il peso nell'inventario, calcola

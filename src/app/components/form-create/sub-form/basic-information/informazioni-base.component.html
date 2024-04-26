@@ -34,7 +34,7 @@
       </mat-form-field>
     </div>
 
-    <div class="section-title">Razza</div>
+    <div as-section-title>Razza</div>
     <div class="description-text">Non tutte le Razze possiedono il tratto <strong>Sottorazza</strong> pertanto è
       probabile che lascerai questo campo vuoto. Puoi usare questo campo anche per indicare una Discendenza Draconica,
       un'Etnia umana, ecc... per tutti quei Personaggi che di fatto non prevedono Sottorazze.
@@ -83,7 +83,7 @@
       Annulla Razza personalizzata
     </button>
 
-    <div class="section-title">Classe/i</div>
+    <div as-section-title>Classe/i</div>
     <div class="description-text">Solo alcune Classi hanno una <strong>Sottoclasse</strong> al 1° Livello quindi è
       probabile che lascerai questo campo vuoto al momento.</div>
 
@@ -175,7 +175,7 @@
       </button>
     </div>
 
-    <div class="section-title">Risorse aggiuntive</div>
+    <div as-section-title>Risorse aggiuntive</div>
 
     <div class="description-text">Alcune Classi possono assegnare (solitamente a livelli superiori al 1°) delle
       <strong>Risorse Aggiuntive</strong>, come punti o dadi, da spendere per utilizzare delle capacità speciali. È
@@ -198,17 +198,7 @@
             </mat-form-field>
             <mat-form-field class="line-input" color="accent" appearance="outline">
               <mat-label>Colore</mat-label>
-              <mat-select formControlName="color">
-                <mat-option value="red"><span style="color: red;"> Rosso</span></mat-option>
-                <mat-option value="blue"> <span style="color: blue;">Blu</span></mat-option>
-                <mat-option value="lightblue"> <span style="color: lightblue;">Azzurro</span></mat-option>
-                <mat-option value="green"> <span style="color: green;">Verde</span></mat-option>
-                <mat-option value="limegreen"> <span style="color: limegreen;">Lime</span></mat-option>
-                <mat-option value="orange"> <span style="color: orange;">Arancione</span></mat-option>
-                <mat-option value="purple"> <span style="color: purple;">Viola</span></mat-option>
-                <mat-option value="palevioletred"> <span style="color: palevioletred;">Rosa</span></mat-option>
-                <mat-option value="brown"> <span style="color: brown;">Marrone</span></mat-option>
-              </mat-select>
+              <input matInput type="color" formControlName="color">
             </mat-form-field>
           </div>
 
@@ -228,7 +218,7 @@
       </button>
     </div>
 
-    <!-- <div class="section-title">Background</div>
+    <!-- <div as-section-title>Background</div>
 
     <mat-form-field color="accent" appearance="outline">
       <mat-label class="input-field">Background</mat-label>
@@ -255,7 +245,7 @@
       Vai alla sezione Background
     </button> -->
 
-    <div class="section-title">Allineamento</div>
+    <div as-section-title>Allineamento</div>
     <div class="description-text">Tipicamente, le creature del gioco aderiscono a un
       allineamento che descrive a grandi linee la loro
       visione morale e personale. L'allineamento è una
@@ -334,7 +324,7 @@
     </mat-form-field>
   </div>
 
-  <div class="section-title">Caratteristiche fisiche</div>
+  <div as-section-title>Caratteristiche fisiche</div>
   <div class="step-form" [formGroup]="groupCaratteristiche">
     <div class="line-container">
       <mat-form-field class="line-input" color="accent" appearance="outline">
@@ -370,7 +360,7 @@
     </div>
   </div>
 
-  <div class="section-title">Immagine Personaggio</div>
+  <div as-section-title>Immagine Personaggio</div>
 
   <div class="step-form step-form-buttons" [formGroup]="groupInfo">
     <img *ngIf="groupInfo.value.urlImmaginePersonaggio !== ''" class="image-preview"

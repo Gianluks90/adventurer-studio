@@ -1,6 +1,6 @@
 <div mat-dialog-title class="dialog-title">{{data.item ? 'Modifica' : 'Aggiungi'}} Oggetto</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
-  <div class="section-title">Informazioni basilari</div>
+  <div as-section-title>Informazioni basilari</div>
 
   <div class="line-container">
     <mat-form-field color="accent" class="line-input" appearance="outline">
@@ -101,7 +101,7 @@
     ecc...)</mat-checkbox>
 
   @if (form.value.advanced) {
-  <div class="section-title">Caratteristiche avanzate</div>
+  <div as-section-title>Caratteristiche avanzate</div>
   <div class="checkbox-container">
     <mat-checkbox formControlName="consumable">
       Uso singolo
@@ -224,7 +224,7 @@
   </div>
 
   @if (form.value.cursed) {
-    <div class="section-title">Maledizione</div>
+    <div as-section-title>Maledizione</div>
     <mat-form-field color="accent" appearance="outline" class="text-area-input">
       <mat-label>Descrizione Maledizione</mat-label>
       <textarea matInput formControlName="cursedDescription" rows="3"></textarea>
@@ -232,7 +232,7 @@
   }
 
   <div class="magic-item-container" *ngIf="form.value.magicItem">
-    <div class="section-title">Proprietà Magiche</div>
+    <div as-section-title>Proprietà Magiche</div>
     <ng-container class="" formArrayName="traits">
       <ng-container *ngFor="let traitForm of traits.controls; let i = index;">
         <div class="step-form" [formGroupName]="i">
@@ -264,7 +264,7 @@
   </div>
 
   <div class="magic-item-container" *ngIf="form.value.artifact">
-    <div class="section-title">Proprietà Artefatto</div>
+    <div as-section-title>Proprietà Artefatto</div>
     <ng-container class="" formArrayName="artifactProperties">
       <ng-container *ngFor="let propForm of artifactProperties.controls; let i = index;">
         <div class="step-form" [formGroupName]="i">

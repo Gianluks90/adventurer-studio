@@ -1,5 +1,5 @@
 <!-- <div class="main-trucchetti-incantesimi-container"> -->
-<div class="section-title">Trucchetti e Incantesimi</div>
+<div as-section-title>Trucchetti e Incantesimi</div>
 <div class="ti-container">
     <div class="ti-element"> <span class="ti-label">Classe Incantatore</span> {{classeIncantatore}}</div>
     <div class="ti-element"> <span class="ti-label">Caratteristica</span> {{caratteristicaIncantatore}}</div>
@@ -8,28 +8,26 @@
     <div class="ti-element"> <span class="ti-label">CD Tiro salvezza</span> {{CDTiroSalvezza}}</div>
     <div class="ti-element"> <span class="ti-label">Bonus attacco</span> +{{bonusAttaccoIncantesimi}}</div>
 </div>
-<div class="section-title">Slot Incantesimi</div>
+<div as-section-title>Slot Incantesimi</div>
 <div class="slot-container-line">
     <div *ngFor="let slot of slotIncantesimi; let i = index;">
         <div class="slot-container" *ngIf="slot.used.length > 0">
             <div class="slot-title">{{showLevel(i+1)}}</div>
-            <div *ngFor="let used of slot.used; let j = index" [ngClass]="{'active': !used, 'used': used}"
+            <div *ngFor="let used of slot.used; let j = index" [ngClass]="{'active': !used, 'used': used}" class="slot-element"
                 (click)="useSlot(i, j)">•</div>
         </div>
     </div>
 </div>
 
-<div class="section-title">Elenco</div>
+<div as-section-title>Elenco</div>
 <div class="search-container">
     <mat-form-field appearance="outline" class="search-input" color="accent">
         <!-- <mat-label>Cerca</mat-label> -->
         <mat-icon matPrefix>search</mat-icon>
         <input matInput type="text" (keyup)="filterSearch($event)">
     </mat-form-field>
-    <button mat-mini-fab color="accent" class="add-button" (click)="openAddSpellDialog()"
-        disableRipple><mat-icon>add</mat-icon></button>
-    <button mat-mini-fab color="accent" class="add-button" [matMenuTriggerFor]="menu"
-        disableRipple><mat-icon>filter_list</mat-icon></button>
+        <button as-mini-circle-btn (click)="openAddSpellDialog()"><div class="material-symbols-outlined">add</div></button>
+        <!-- <button as-mini-circle-btn [matMenuTriggerFor]="menu"><div class="material-symbols-outlined">filter_list</div></button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="sortSpellsBy('nome', 'crescente')">
             <div class="sort-button">
@@ -55,13 +53,13 @@
                 <div>Livello incantesimo inverso</div>
             </div>
         </button>
-    </mat-menu>
+    </mat-menu> -->
 
 </div>
 <div class="subtitle">Preparati <span [ngClass]="{'warn-prepared-spells': checkPreparedSpell() > charData.magia.incantesimiPreparabili}">({{checkPreparedSpell()}}/{{charData.magia.incantesimiPreparabili}})</span></div>
 <ng-container *ngFor="let t of lista; let i = index;">
-    <details *ngIf="t.preparato" class="t-container" [hidden]="t.filtered">
-        <summary class="t-name">
+    <details *ngIf="t.preparato" as-details [hidden]="t.filtered">
+        <summary as-summary as-summary-with-icon>
             <div class="t-header-container">
                 <img class="spell-icon" [src]="t.icon">
                 <div class="spell-level">{{showLevel(t.livello)}} <sup *ngIf="t.livelloSuperiore">+</sup> </div>
@@ -86,8 +84,8 @@
 </ng-container>
 <div class="subtitle">Conosciuti (non preparati)</div>
 <ng-container *ngFor="let t of lista; let i = index;">
-    <details *ngIf="!t.preparato" class="t-container" [hidden]="t.filtered">
-        <summary class="t-name">
+    <details *ngIf="!t.preparato" as-details [hidden]="t.filtered">
+        <summary as-summary as-summary-with-icon>
             <div class="t-header-container">
                 <img class="spell-icon" [src]="t.icon">
                 <div class="spell-level">{{showLevel(t.livello)}} <sup *ngIf="t.livelloSuperiore">+</sup> </div>

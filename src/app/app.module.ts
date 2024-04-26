@@ -93,6 +93,9 @@ import { EditStoryDialogComponent } from './components/character-view/sub-compon
 import { EditPrivilegioTrattoDialogComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/edit-privilegio-tratto-dialog/edit-privilegio-tratto-dialog.component';
 import { CampaignCharTabComponent } from './components/campaign-view/sub-components/campaign-char-tab/campaign-char-tab.component';
 import { RemoveCampaignDialogComponent } from './components/campaign-view/sub-components/campaign-settings-tab/remove-campaign-dialog/remove-campaign-dialog.component';
+import { MoneyControllerComponent } from './components/utilities/money-controller/money-controller.component';
+import { EditMoneyControllerDialogComponent } from './components/utilities/money-controller/edit-money-controller-dialog/edit-money-controller-dialog.component';
+import { AddResourceDialogComponent } from './components/character-view/sub-components/character-view-status/add-resource-dialog/add-resource-dialog.component';
 
 @NgModule({
   declarations: [
@@ -200,6 +203,9 @@ import { RemoveCampaignDialogComponent } from './components/campaign-view/sub-co
     EditPrivilegioTrattoDialogComponent,
     CampaignCharTabComponent,
     RemoveCampaignDialogComponent,
+    MoneyControllerComponent,
+    EditMoneyControllerDialogComponent,
+    AddResourceDialogComponent,
 
   ],
   imports: [

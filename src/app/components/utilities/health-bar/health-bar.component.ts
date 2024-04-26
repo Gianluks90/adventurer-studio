@@ -13,26 +13,26 @@ import { NotificationService } from 'src/app/services/notification.service';
 
 export class HealthBarComponent {
 
-  @Input() set parametriVitali(parametriVitali: any) {
-    if (parametriVitali) {
-      this.parametriVitaliData.pfMax = parametriVitali.massimoPuntiFerita;
-      this.parametriVitaliData.pf = parametriVitali.puntiFeritaAttuali;
-      this.parametriVitaliData.pftMax = parametriVitali.massimoPuntiFeritaTemporanei;
-      this.parametriVitaliData.pft = parametriVitali.puntiFeritaTemporaneiAttuali;
-    }
-  }
+  public sheetTitleColor: string = '';
 
-  @Input() set characterId(id: string) {
-    this.idData = id;
+  @Input() set char(character: any) {
+    this.idData = character.id;
+    this.parametriVitaliData.pfMax = character.parametriVitali.massimoPuntiFerita;
+    this.parametriVitaliData.pf = character.parametriVitali.puntiFeritaAttuali;
+    this.parametriVitaliData.pftMax = character.parametriVitali.massimoPuntiFeritaTemporanei;
+    this.parametriVitaliData.pft = character.parametriVitali.puntiFeritaTemporaneiAttuali;
+    this.sheetTitleColor = character.status.sheetTitleColor || '#212121';
   }
 
   @Input() set editMode(editMode: boolean) {
     this.editModeData = editMode;
   }
 
-  constructor(private dialog: MatDialog, private platform: Platform, private charService: CharacterService, private notification: NotificationService) {
-
-  }
+  constructor(
+    private dialog: MatDialog, 
+    private platform: Platform, 
+    private charService: CharacterService, 
+    private notification: NotificationService) {}
 
   public parametriVitaliData: any = {
     pf: 0,

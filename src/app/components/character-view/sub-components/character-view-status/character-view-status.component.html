@@ -1,43 +1,43 @@
-<!-- <div class="main-character-container"> -->
-<div class="section-title">Caratteristiche</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Caratteristiche</div>
 <div class="caratteristiche-main-container">
     <div class="caratteristiche-line">
         <div class="caratteristiche-container">
             <div class="caratteristica-label">FOR</div>
             <div class="caratteristica-value">{{characterData.caratteristiche.forza}}</div>
-            <div class="caratteristica-mod">{{modForza}}</div>
+            <div class="caratteristica-mod">{{initModCaratteristica('forza')}}</div>
         </div>
         <div class="caratteristiche-container">
             <div class="caratteristica-label">DES</div>
             <div class="caratteristica-value">{{characterData.caratteristiche.destrezza}}</div>
-            <div class="caratteristica-mod">{{modDestrezza}}</div>
+            <div class="caratteristica-mod">{{initModCaratteristica('destrezza')}}</div>
+
         </div>
         <div class="caratteristiche-container">
             <div class="caratteristica-label">COS</div>
             <div class="caratteristica-value">{{characterData.caratteristiche.costituzione}}</div>
-            <div class="caratteristica-mod">{{modCostituzione}}</div>
+            <div class="caratteristica-mod">{{initModCaratteristica('costituzione')}}</div>
         </div>
     </div>
     <div class="caratteristiche-line">
         <div class="caratteristiche-container">
             <div class="caratteristica-label">INT</div>
             <div class="caratteristica-value">{{characterData.caratteristiche.intelligenza}}</div>
-            <div class="caratteristica-mod">{{modIntelligenza}}</div>
+            <div class="caratteristica-mod">{{initModCaratteristica('intelligenza')}}</div>
         </div>
         <div class="caratteristiche-container">
             <div class="caratteristica-label">SAG</div>
             <div class="caratteristica-value">{{characterData.caratteristiche.saggezza}}</div>
-            <div class="caratteristica-mod">{{modSaggezza}}</div>
+            <div class="caratteristica-mod">{{initModCaratteristica('saggezza')}}</div>
         </div>
         <div class="caratteristiche-container">
             <div class="caratteristica-label">CAR</div>
             <div class="caratteristica-value">{{characterData.caratteristiche.carisma}}</div>
-            <div class="caratteristica-mod">{{modCarisma}}</div>
+            <div class="caratteristica-mod">{{initModCaratteristica('carisma')}}</div>
         </div>
     </div>
 </div>
 
-<div class="section-title">Tiri salvezza</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Tiri salvezza</div>
 <div class="bonus-competenza">
     <div>Bonus Competenza</div>
     <div class="bonus-value">+ {{characterData.tiriSalvezza.bonusCompetenza}}</div>
@@ -45,106 +45,86 @@
 <div class="caratteristiche-main-container">
     <div class="caratteristiche-line">
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Forza', TSForza)">
+            (click)="rollDice('Tiro Salvezza su Forza', initTiroSalvezza('forza'))">
             <div class="ts-label">
                 FOR
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.forza}"
                 [matTooltip]="characterData.tiriSalvezza.forza ? 'Competenza' : ''" matTooltipPosition="below">
-                {{TSForza}}</div>
+                {{initTiroSalvezza('forza')}}</div>
         </div>
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Destrezza', TSDestrezza)">
+            (click)="rollDice('Tiro Salvezza su Destrezza', initTiroSalvezza('destrezza'))">
             <div class="ts-label">
                 DES
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.destrezza}"
                 [matTooltip]="characterData.tiriSalvezza.destrezza ? 'Competenza' : ''" matTooltipPosition="below">
-                {{TSDestrezza}}</div>
+                {{initTiroSalvezza('destrezza')}}</div>
         </div>
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Costituzione', TSCostituzione)">
+            (click)="rollDice('Tiro Salvezza su Costituzione', initTiroSalvezza('costituzione'))">
             <div class="ts-label">
                 COS
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.costituzione}"
                 [matTooltip]="characterData.tiriSalvezza.costituzione ? 'Competenza' : ''" matTooltipPosition="below">
-                {{TSCostituzione}}</div>
+                {{initTiroSalvezza('costituzione')}}</div>
         </div>
     </div>
     <div class="caratteristiche-line">
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Intelligenza', TSIntelligenza)">
+            (click)="rollDice('Tiro Salvezza su Intelligenza', initTiroSalvezza('intelligenza'))">
             <div class="ts-label">
                 INT
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.intelligenza}"
                 [matTooltip]="characterData.tiriSalvezza.intelligenza ? 'Competenza' : ''" matTooltipPosition="below">
-                {{TSIntelligenza}}</div>
+                {{initTiroSalvezza('intelligenza')}}</div>
         </div>
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Saggezza', TSSaggezza)">
+            (click)="rollDice('Tiro Salvezza su Saggezza', initTiroSalvezza('saggezza'))">
             <div class="ts-label">
                 SAG
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.saggezza}"
                 [matTooltip]="characterData.tiriSalvezza.saggezza ? 'Competenza' : ''" matTooltipPosition="below">
-                {{TSSaggezza}}</div>
+                {{initTiroSalvezza('saggezza')}}</div>
         </div>
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Carisma', TSCarisma)">
+            (click)="rollDice('Tiro Salvezza su Carisma', initTiroSalvezza('carisma'))">
             <div class="ts-label">
                 CAR
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.carisma}"
                 [matTooltip]="characterData.tiriSalvezza.carisma ? 'Competenza' : ''" matTooltipPosition="below">
-                {{TSCarisma}}</div>
+                {{initTiroSalvezza('carisma')}}</div>
         </div>
     </div>
 </div>
 
-<div class="section-title">Parametri vitali</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Parametri vitali</div>
 <div class="punti-ferita-container">
     <div class="pf-line">
-        <!-- <span
-                class="PF">{{characterData.parametriVitali.puntiFeritaAttuali}}/{{characterData.parametriVitali.massimoPuntiFerita}}</span>
-            <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi"
-                matTooltipPosition="above">favorite</mat-icon>
-            <progress blueProgress class="pf-progress" max="{{characterData.parametriVitali.massimoPuntiFerita}}"
-                value="{{characterData.parametriVitali.puntiFeritaAttuali}}"></progress>
-            <span *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0"
-                class="PF">{{characterData.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{characterData.parametriVitali.massimoPuntiFeritaTemporanei}}</span>
-            <mat-icon *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0" class="pft-icon"
-                matTooltip="Punti Ferita Temporanei Attuali / Massimi"
-                matTooltipPosition="above">hourglass_empty</mat-icon>
-            <progress *ngIf="characterData.parametriVitali.massimoPuntiFeritaTemporanei > 0" class="pf-temp-progress"
-                max="{{characterData.parametriVitali.massimoPuntiFeritaTemporanei}}"
-                value="{{characterData.parametriVitali.puntiFeritaTemporaneiAttuali}}"></progress>
-            <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button
-                color="accent" (click)="openHPDialog()">
-                <img src="./assets/icons/heart-check.svg">
-            </button> -->
-        <app-health-bar class="health-bar-component" [characterId]="characterData.id"
-            [parametriVitali]="characterData.parametriVitali" [editMode]="editModeData"></app-health-bar>
+        <app-health-bar class="health-bar-component" [char]="characterData" [editMode]="editModeData"></app-health-bar>
     </div>
-    <div class="pf-group">
-        <div class="pf-title"><span>CA</span> {{characterData.CA}} {{characterData.CAShield}}</div>
-        <div class="pf-title" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+    <div class="parameter-grid">
+        <div class="grid-item"><span>CA</span> {{characterData.CA}} {{characterData.CAShield}}</div>
+        <!-- <div class="grid-item"><span>Danni (arma)</span> 2-8</div> -->
+        <div class="grid-item" [ngClass]="{'dice-rolls': diceService.roomConnected}"
             (click)="rollDice('Tiro di Iniziativa', characterData.iniziativa)"><span>Iniziativa</span>
             {{characterData.iniziativa > 0 ? '+' + characterData.iniziativa : characterData.iniziativa}}</div>
-        <!-- <div class="pf-title"><span>Velocità</span> {{characterData.velocita}} m ({{characterData.velocita/1.5}} <span class="speed-icon"><img src="./assets/icons/speed.svg"></span>)</div> -->
-        <div class="pf-title speed-title">
-            <span>Velocità</span> {{characterData.velocita/1.5}} <span class="speed-icon" matTooltip="Spazi" matTooltipPosition="above"><img src="./assets/icons/speed.svg"></span> <span class="meter-value">({{characterData.velocita}} m)</span>
+        <div class="grid-item speed-title">
+            <span>Velocità (spazi)</span> <div class="speed-container">
+                {{characterData.velocita/1.5}}<span
+                class="meter-value">({{characterData.velocita}}m)</span>
+            </div>
         </div>
     </div>
 </div>
 @if(editModeData) {
-<div class="section-title">Dadi vita</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Dadi vita</div>
 <div class="dice-container">
-    <!-- <div *ngFor="let d of dadiVitaData; let i = index;">
-        <img class="dice-icon" [ngClass]="{'dice-used' : d.usato}" [src]="d.icon"
-            (click)="updateDadiVita(i, d.tipologia)">
-    </div> -->
     <div *ngFor="let d of dadiVitaData; let i = index;">
         <img *ngFor="let used of d.used; let j = index;" src="{{'./assets/dice/dice-' + d.tipologia + '.svg'}}"
             class="dice-icon" [ngClass]="{'active': !used, 'used': used}" (click)="usaDadoVita(i, j)">
@@ -152,23 +132,45 @@
 </div>
 
 <ng-container *ngIf="risorseAggiuntiveData.length > 0">
-    <div class="section-title">Risorse aggiuntive</div>
+    <div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Risorse aggiuntive</div>
     <div class="risorse-container-line">
         <div *ngFor="let risorsa of risorseAggiuntiveData; let i = index;">
+            @if (risorsa.valoreMassimo > 10) {
+            <div class="risorsa-container">
+                <div class="risorsa-title">{{risorsa.nome}}</div>
+                <div class="risorsa-quantity">{{risorsa.valoreAttuale}}</div>
+                <span class="resource-circle"
+                    [ngClass]="{'active-static': risorsa.valoreAttuale > 0, 'not-active-static': risorsa.valoreAttuale <= 0}"
+                    [style.color]="risorsa.color">•</span>
+
+                <div class="material-symbols-outlined icon-button" (click)="increaseResource(i)">add</div>
+                <div class="material-symbols-outlined icon-button" (click)="reduceResource(i)">remove</div>
+
+            </div>
+            } @else {
             <div class="risorsa-container">
                 <div class="risorsa-title">{{risorsa.nome}}</div>
                 <div *ngFor="let used of risorsa.used; let j = index" [style.color]="risorsa.color"
-                    [ngClass]="{'active': !used, 'used': used}" (click)="useRisorsa(i, j)">•</div>
+                    class="resource-circle" [ngClass]="{'active': !used, 'used': used}" (click)="useRisorsa(i, j)">•
+                </div>
             </div>
+            }
         </div>
+        <div class="risorsa-container">
+            <div class="risorsa-title">{{ispirazione.nome}}</div>
+            <div *ngFor="let used of ispirazione.used; let j = index" [style.color]="ispirazione.color" class="resource-circle"
+                [ngClass]="{'active': !used, 'used': used}" (click)="usaIspirazione()">•</div>
+        </div>
+        <button as-mini-circle-btn (click)="newAdditionalResource()">
+            <div class="material-symbols-outlined">add</div>
+        </button>
     </div>
 </ng-container>
 }
 
-<div class="section-title">Prove passive</div>
-<div class="pf-group">
-    <div class="pf-title"><span>Percezione</span> {{percezionePassiva}}</div>
-    <div class="pf-title"><span>Intuizione</span> {{intuizionePassiva}}</div>
-    <div class="pf-title"><span>Indagare</span> {{indagarePassiva}}</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Prove passive</div>
+<div class="passive-grid">
+    <div class="grid-item"><span>Percezione</span> {{percezionePassiva}}</div>
+    <div class="grid-item"><span>Intuizione</span> {{intuizionePassiva}}</div>
+    <div class="grid-item"><span>Indagare</span> {{indagarePassiva}}</div>
 </div>
-<!-- </div> -->

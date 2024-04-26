@@ -1,75 +1,56 @@
-<!-- <div class="main-abilita-container"> -->
-    <div class="section-title">Competenze Abilità</div>
-    <div class="section-header">
-        <mat-slide-toggle class="last-toggle" color="accent" (change)="showSkillInfo($event)">
-            <div class="toggle-label">Info abilità</div>
-        </mat-slide-toggle>
-    </div>
-    <div *ngFor="let a of abilitaData; let last = last" [ngClass]="{'last-item': last, 'dice-rolls': diceService.roomConnected}" class="a-container" (click)="rollDice(a.name, a.mod)">
-        <div class="a-inner-container">
-            <div class="a-name">
-                {{a.name}} ({{a.short}})
-                <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
-                <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span>
-            </div>
-            <!-- <div class="a-divider"></div> -->
-            <div class="a-value">{{a.mod}}</div>
+<div as-section-title>Competenze Abilità</div>
+<div class="section-header">
+    <mat-slide-toggle class="last-toggle" color="accent" (change)="showSkillInfo($event)">
+        <div class="toggle-label">Info abilità</div>
+    </mat-slide-toggle>
+</div>
+<div *ngFor="let a of abilitaData; let last = last"
+    [ngClass]="{'last-item': last, 'dice-rolls': diceService.roomConnected}" class="a-container"
+    (click)="rollDice(a.name, a.mod)">
+    <div class="a-inner-container">
+        <div class="a-name">
+            {{a.name}} ({{a.short}})
+            <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
+            <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span>
         </div>
-        <div class="a-description" *ngIf="showInfo">
-            {{skillInfo[a.name].description}}
+        <div class="a-value">{{a.mod}}</div>
+    </div>
+    <div class="a-description" *ngIf="showInfo">
+        {{skillInfo[a.name].description}}
+    </div>
+</div>
+<div *ngIf="competenzeData">
+    <div as-section-title>Linguaggi e altre competenze</div>
+    @if(competenzeData.linguaggi.length > 0) {
+    <div as-subtitle>Linguaggi</div>
+    <div class="competenze-container">
+        <div *ngFor="let l of competenzeData.linguaggi">
+            <div as-pill>{{l}}</div>
         </div>
     </div>
-    <div *ngIf="competenzeData">
-        <div class="section-title">Linguaggi e altre competenze</div>
-        @if(competenzeData.linguaggi.length > 0)  {
-            <div class="competenze-label">Linguaggi</div>
-            <div class="competenze-container">
-                <div *ngFor="let l of competenzeData.linguaggi">
-                    <div class="competenza">{{l}}</div>
-                </div>
-            </div>
+    }
+    @if (competenzeData.armi && competenzeData.armi.length > 0) {
+    <div as-subtitle>Armi</div>
+    <div class="competenze-container">
+        @for(a of competenzeData.armi; track $index) {
+        <div as-pill>{{a}}</div>
         }
-        @if (competenzeData.armi && competenzeData.armi.length > 0) {
-            <div class="competenze-label">Armi</div>
-            <div class="competenze-container">
-                <div *ngFor="let a of competenzeData.armi">
-                    <div class="competenza">{{a}}</div>
-                </div>
-            </div>
-        }
-        <!-- <div *ngIf="competenzeData.armi && competenzeData.armi.length > 0" class="competenze-label">Armi</div>
-        <div *ngIf="competenzeData.armi.length > 0" class="competenze-container">
-            <div *ngFor="let a of competenzeData.armi">
-                <div class="competenza">{{a}}</div>
-            </div>
-        </div> -->
-        @if (competenzeData.armature && competenzeData.armature.length > 0) {
-            <div class="competenze-label">Armature</div>
-            <div class="competenze-container">
-                <div *ngFor="let a of competenzeData.armature">
-                    <div class="competenza">{{a}}</div>
-                </div>
-            </div>
-        }
-        <!-- <div *ngIf="competenzeData.armature && competenzeData.armature.length > 0" class="competenze-label">Armature</div>
-        <div *ngIf="competenzeData.armature.length > 0" class="competenze-container">
-            <div *ngFor="let a of competenzeData.armature">
-                <div class="competenza">{{a}}</div>
-            </div>
-        </div> -->
-        @if (competenzeData.strumenti && competenzeData.strumenti.length > 0) {
-            <div class="competenze-label">Strumenti</div>
-            <div class="competenze-container">
-                <div *ngFor="let s of competenzeData.strumenti">
-                    <div class="competenza">{{s}}</div>
-                </div>
-            </div>
-        }
-        <!-- <div *ngIf="competenzeData.altro.length > 0" class="competenze-label">Altro</div>
-        <div *ngIf="competenzeData.altro.length > 0" class="competenze-container">
-            <div *ngFor="let a of competenzeData.altro">
-                <div class="competenza">{{a}}</div>
-            </div>
-        </div> -->
     </div>
-<!-- </div> -->
+    }
+    @if (competenzeData.armature && competenzeData.armature.length > 0) {
+    <div as-subtitle>Armature</div>
+    <div class="competenze-container">
+        @for(a of competenzeData.armature; track $index) {
+        <div as-pill>{{a}}</div>
+        }
+    </div>
+    }
+    @if (competenzeData.strumenti && competenzeData.strumenti.length > 0) {
+    <div as-subtitle>Strumenti</div>
+    <div class="competenze-container">
+        @for(s of competenzeData.strumenti; track $index) {
+        <div as-pill>{{s}}</div>
+        }
+    </div>
+    }
+</div>

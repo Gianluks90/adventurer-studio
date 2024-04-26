@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { CharacterService } from 'src/app/services/character.service';
@@ -13,11 +14,19 @@ export class SettingsTabViewComponent {
 
   public charData: any;
   public sheetColorData: string = '';
+  public sheetColorTitleData: string = '';
   public campaignIdData: string = '';
   public campaignData: any;
   public isFavorite: boolean = false;
 
-  constructor(private charService: CharacterService, private formService: FormService, private campaignService: CampaignService, private router: Router) { }
+  public formColor: FormGroup;
+
+  constructor(private charService: CharacterService, private formService: FormService, private campaignService: CampaignService, private router: Router, private fb: FormBuilder) {
+    this.formColor = this.fb.group({
+      sheetColor: '#FFFFFF40',
+      sheetTitleColor: '#212121'
+    });
+   }
   
   // @Input() set sheetColor(sheetColor: string) {
   //   this.sheetColorData = sheetColor.split('40')[0];
@@ -25,7 +34,12 @@ export class SettingsTabViewComponent {
 
   @Input() set character(character: any) {
     this.charData = character;
-    this.sheetColorData = character.status.sheetColor.split('40')[0];
+    this.formColor.patchValue({
+      sheetColor: character.status.sheetColor.split('40')[0],
+      sheetTitleColor: character.status.sheetTitleColor || '#212121'
+    });
+    // this.sheetColorData = character.status.sheetColor.split('40')[0];
+    // this.sheetColorTitleData = character.status.sheetColor || '#212121';
     this.campaignIdData = character.campaignId;
     if (this.campaignIdData !== '') {
       this.campaignService.getCampaignById(this.campaignIdData).then((data) => {
@@ -37,19 +51,30 @@ export class SettingsTabViewComponent {
     });
   }
 
-  public updateSheetColor(event: any) {
-    const newColor = event + '40';
-    this.charService.updateCharacterSheetColorById(window.location.href.split('/').pop()!, newColor).then(() => {
-      // window.location.reload();
-    });
+  // public updateSheetColor(event: any) {
+  //   const newColor = event + '40';
+  //   this.charService.updateCharacterSheetColorById(window.location.href.split('/').pop()!, newColor).then(() => {
+  //     // window.location.reload();
+  //   });
+  // }
+
+  // public resetColor() {
+  //   this.charService.updateCharacterSheetColorById(window.location.href.split('/').pop()!, '#FFFFFF40').then(() => {
+  //     // window.location.reload();
+  //   });
+  // }
+
+  public updateSheetColors() {
+    const newSheetColor = this.formColor.value.sheetColor + '40';
+    const newSheetTitleColor = this.formColor.value.sheetTitleColor;
+    this.charService.updateCharacterSheetColorById(this.charData.id, newSheetColor, newSheetTitleColor);
   }
 
-  public resetColor() {
-    this.charService.updateCharacterSheetColorById(window.location.href.split('/').pop()!, '#FFFFFF40').then(() => {
-      // window.location.reload();
-    });
+  public resetColors() {
+    const newSheetColor = '#FFFFFF40';
+    const newSheetTitleColor = '#212121';
+    this.charService.updateCharacterSheetColorById(this.charData.id, newSheetColor, newSheetTitleColor);
   }
-
   public toggleWeightRule(event: any) {
     this.charService.updateWeightRule(window.location.href.split('/').pop()!, event.checked);
   }

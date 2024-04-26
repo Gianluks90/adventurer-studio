@@ -8,7 +8,8 @@
                     <input matInput type="text" (keyup)="filterSearch($event)">
                 </mat-form-field>
             }
-            <button mat-mini-fab color="accent" class="add-button" (click)="openAddItemDialog()" disableRipple><mat-icon>add</mat-icon></button>
+            <!-- <button mat-mini-fab color="accent" class="add-button" (click)="openAddItemDialog()" disableRipple><mat-icon>add</mat-icon></button> -->
+            <button as-mini-circle-btn (click)="openAddItemDialog()"><div class="material-symbols-outlined">add</div></button>
         }
     </div>
     <div class="items-container">

@@ -1,0 +1,82 @@
+<div mat-dialog-title class="dialog-title">Aggiorna il Denaro</div>
+<mat-dialog-content class="dialog-content">
+    <div class="description-text">
+        Attualmente possiedi: {{data.denaro.MR}} rame, {{data.denaro.MA}} argento, {{data.denaro.ME}} electrum,
+        {{data.denaro.MO}} oro, {{data.denaro.MP}} platino.
+    </div>
+    <form [formGroup]="form" class="form-container">
+        <div class="money-line">
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Rame</mat-label>
+                <input matInput type="number" formControlName="MR" min="0">
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Argento</mat-label>
+                <input matInput type="number" formControlName="MA" min="0">
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Electrum</mat-label>
+                <input matInput type="number" formControlName="ME" min="0">
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Oro</mat-label>
+                <input matInput type="number" formControlName="MO" min="0">
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline">
+                <mat-label>Platino</mat-label>
+                <input matInput type="number" formControlName="MP" min="0">
+            </mat-form-field>
+        </div>
+        <div class="buttons-container">
+            <button mat-raised-button color="accent" (click)="addMoney()" [disabled]="!form.dirty">
+                <mat-icon>add</mat-icon> Somma
+            </button>
+            <button mat-raised-button color="accent" (click)="subtractMoney()" [disabled]="!form.dirty">
+                <mat-icon>remove</mat-icon> Sottrai
+            </button>
+            <button mat-raised-button color="accent" (click)="resetForm()" [disabled]="!form.dirty">
+                <mat-icon>sync</mat-icon> Azzera
+            </button>
+        </div>
+
+        <mat-checkbox formControlName="advancedForm" color="accent">Avanzate (converti, riorganizza,
+            ecc...)</mat-checkbox>
+    </form>
+    
+    @if(form.value.advancedForm) {
+    <div class="description-text advanced-description-text">
+        Utilizza le funzioni sottostanti per convertire il denaro taglio per taglio, oppure per convertire il denaro per
+        intero con riferimento al taglio maggiore (Platino).
+    </div>
+    <form [formGroup]="convertForm">
+        <div class="money-line">
+            <mat-form-field appearance="outline" color="accent" class="custom-form-field">
+                <mat-label>Da</mat-label>
+                <mat-select formControlName="from">
+                    <mat-option *ngFor="let money of moneyTypes" [value]="money.value">{{money.label}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-icon-button color="accent" [disabled]="!convertForm.valid" (click)="invert()">
+                <mat-icon>swap_horiz</mat-icon>
+            </button>
+            <mat-form-field appearance="outline" color="accent" class="custom-form-field">
+                <mat-label>A</mat-label>
+                <mat-select formControlName="to">
+                    <mat-option *ngFor="let money of moneyTypes" [value]="money.value">{{money.label}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+    <div class="buttons-container advanced-buttons-container">
+        <button mat-raised-button color="accent" [disabled]="!convertForm.valid" (click)="convertMoney()">
+            <mat-icon>toll</mat-icon> Converti
+        </button>
+        <button mat-raised-button color="accent" disabled>
+            <mat-icon>toll</mat-icon> Converti tutto
+        </button>
+    </div>
+    }
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="accent" mat-dialog-close>Chiudi</button>
+</div>

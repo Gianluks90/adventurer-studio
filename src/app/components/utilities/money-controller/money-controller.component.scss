@@ -1,0 +1,34 @@
+.money-container {
+    background-color: rgba($color: #212121, $alpha: 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: whitesmoke;
+    padding: 12px;
+    margin-bottom: 8px;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+}
+
+.money-title {
+    text-transform: uppercase;
+}
+
+.moneys {
+    display: flex;
+    gap: 4px;
+}
+
+.single-coins-viewer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.single-coins-viewer>img {
+    height: 12px;
+}

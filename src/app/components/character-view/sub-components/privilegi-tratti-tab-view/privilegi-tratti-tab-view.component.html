@@ -1,37 +1,36 @@
-<!-- <div class="main-privilegi-tratti-container"> -->
-    <div class="section-title">Razza: {{razzaData}} <span *ngIf="sottorazzaData !==''">({{sottorazzaData}})</span></div>
-    <!-- <div class="classe-label">Classi</div> -->
-    <div class="classi-container">
-        <div *ngFor="let c of classiData">
-            <div class="classe">{{c.nome}} <span *ngIf="c.sottoclasse !== ''">({{c.sottoclasse}})</span> di
-                {{c.livello}}° livello</div>
-        </div>
+<div as-section-title>Razza: {{razzaData}} <span *ngIf="sottorazzaData !==''">({{sottorazzaData}})</span></div>
+<div class="classi-container">
+    <div *ngFor="let c of classiData">
+        <div as-pill>{{c.nome}} <span *ngIf="c.sottoclasse !== ''">({{c.sottoclasse}})</span> di
+            {{c.livello}}° livello</div>
     </div>
-    <div class="section-title">Privilegi, Tratti e Talenti</div>
-    <div *ngFor="let pt of privilegiTrattiData; let i = index">
-        <details *ngIf="pt.tag === ''" class="pt-container">
-            <summary class="pt-name">{{pt.nome}}</summary>
+</div>
+<div as-section-title>Privilegi, Tratti e Talenti</div>
+<div *ngFor="let pt of privilegiTrattiData; let i = index">
+    <details *ngIf="pt.tag === ''" as-details>
+        <summary as-summary>{{pt.nome}}</summary>
+        <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
+                {{pt.riferimento}}</span></div>
+        <div class="pt-description">{{pt.descrizione}}</div>
+        <div class="button-container">
+            <button class="edit-button" (click)="openEditDialog(i)">Modifica</button>
+        </div>
+    </details>
+
+</div>
+<div *ngFor="let t of tags" class="pt-main-container">
+    <div class="privilegi-label">{{t}}</div>
+    <div *ngFor="let pt of privilegiTrattiData; let j = index">
+        <details *ngIf="pt.tag.toLowerCase() === t" as-details>
+            <summary as-summary>{{pt.nome}}</summary>
             <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
                     {{pt.riferimento}}</span></div>
             <div class="pt-description">{{pt.descrizione}}</div>
             <div class="button-container">
-                <button class="edit-button" (click)="openEditDialog(i)">Modifica</button>
+                <button class="edit-button" (click)="openEditDialog(j)">Modifica</button>
             </div>
+
         </details>
     </div>
-    <div *ngFor="let t of tags" class="pt-main-container">
-        <div class="privilegi-label">{{t}}</div>
-        <div *ngFor="let pt of privilegiTrattiData; let j = index">
-            <details *ngIf="pt.tag.toLowerCase() === t" class="pt-container">
-                <summary class="pt-name">{{pt.nome}}</summary>
-                <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
-                        {{pt.riferimento}}</span></div>
-                <div class="pt-description">{{pt.descrizione}}</div>
-                <div class="button-container">
-                    <button class="edit-button" (click)="openEditDialog(j)">Modifica</button>
-                </div>
-
-            </details>
-        </div>
-    </div>
+</div>
 <!-- </div> -->

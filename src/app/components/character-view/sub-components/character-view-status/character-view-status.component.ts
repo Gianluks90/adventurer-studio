@@ -6,6 +6,8 @@ import { RollDiceService } from 'src/app/services/roll-dice.service';
 import { DddiceService } from 'src/app/services/dddice.service';
 import { CharacterService } from 'src/app/services/character.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddResourceDialogComponent } from './add-resource-dialog/add-resource-dialog.component';
 
 @Component({
   selector: 'app-character-view-status',
@@ -17,20 +19,6 @@ export class CharacterViewStatusComponent {
   public characterData: any;
   public editModeData: boolean = false;
 
-  public modForza: string = '';
-  public modDestrezza: string = '';
-  public modCostituzione: string = '';
-  public modIntelligenza: string = '';
-  public modSaggezza: string = '';
-  public modCarisma: string = '';
-
-  public TSForza: string = '';
-  public TSDestrezza: string = '';
-  public TSCostituzione: string = '';
-  public TSIntelligenza: string = '';
-  public TSSaggezza: string = '';
-  public TSCarisma: string = '';
-
   public CA: string = '';
   public CAShield: string = '';
 
@@ -41,6 +29,7 @@ export class CharacterViewStatusComponent {
   public parametriVitaliForm: FormGroup | null = null;
 
   public dadiVitaData: any[] = [];
+  public ispirazione: any;
   public risorseAggiuntiveData: any[] = [];
 
   constructor(
@@ -48,73 +37,39 @@ export class CharacterViewStatusComponent {
     private rollService: RollDiceService,
     public diceService: DddiceService,
     private charService: CharacterService,
-    private notification: NotificationService) { }
+    private notification: NotificationService,
+    private matDialog: MatDialog) { }
 
   @Input() set character(character: any) {
-    this.characterData = character;
-    this.initCaratteristiche();
-    this.initTiriSalvezza();
-    // this.initCA();
-    this.initProvePassive();
+    if (!character) return;
 
+    this.characterData = character;
     this.dadiVitaData = character.parametriVitali.dadiVita;
     this.risorseAggiuntiveData = character.informazioniBase.risorseAggiuntive;
-    this.risorseAggiuntiveData.push({
+    this.ispirazione = {
       color: 'yellow',
       nome: 'Ispirazione',
       used: [character.ispirazione],
       valoreAttuale: 1,
       valoreMassimo: 1,
-    })
+    }
+    this.initProvePassive();
   }
 
   @Input() set editMode(editMode: boolean) {
     this.editModeData = editMode;
   }
 
-  ngOnInit(): void {
-    this.formService.formSubject.subscribe((form: any) => {
-      if (form) {
-        this.parametriVitaliForm = form.get('parametriVitali') as FormGroup;
-      }
-    });
+  public initModCaratteristica(c: string): string {
+    const mod = Math.floor((this.characterData.caratteristiche[c] - 10) / 2);
+    return mod > 0 ? '+' + mod : mod + '';
   }
 
-  public initCaratteristiche(): void {
-    this.modForza = Math.floor((this.characterData.caratteristiche.forza - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.forza - 10) / 2) : Math.floor((this.characterData.caratteristiche.forza - 10) / 2) + '';
-    this.modDestrezza = Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) : Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2) + '';
-    this.modCostituzione = Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) : Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2) + '';
-    this.modIntelligenza = Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) : Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2) + '';
-    this.modSaggezza = Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) : Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2) + '';
-    this.modCarisma = Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) > 0 ? '+' + Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) : Math.floor((this.characterData.caratteristiche.carisma - 10) / 2) + '';
-  }
-
-  public initTiriSalvezza(): void {
+  public initTiroSalvezza(c: string): string {
     const bonusCompetenza = this.characterData.tiriSalvezza.bonusCompetenza;
-
-    const forza = Math.floor((this.characterData.caratteristiche.forza - 10) / 2);
-    this.TSForza = this.characterData.tiriSalvezza.forza ? (forza + bonusCompetenza) : forza;
-    this.TSForza = parseInt(this.TSForza) > 0 ? '+' + this.TSForza : this.TSForza;
-
-    const destrezza = Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2);
-    this.TSDestrezza = this.characterData.tiriSalvezza.destrezza ? (destrezza + bonusCompetenza) : destrezza;
-    this.TSDestrezza = parseInt(this.TSDestrezza) > 0 ? '+' + this.TSDestrezza : this.TSDestrezza;
-
-    const costituzione = Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2);
-    this.TSCostituzione = this.characterData.tiriSalvezza.costituzione ? (costituzione + bonusCompetenza) : costituzione;
-    this.TSCostituzione = parseInt(this.TSCostituzione) > 0 ? '+' + this.TSCostituzione : this.TSCostituzione;
-
-    const intelligenza = Math.floor((this.characterData.caratteristiche.intelligenza - 10) / 2);
-    this.TSIntelligenza = this.characterData.tiriSalvezza.intelligenza ? (intelligenza + bonusCompetenza) : intelligenza;
-    this.TSIntelligenza = parseInt(this.TSIntelligenza) > 0 ? '+' + this.TSIntelligenza : this.TSIntelligenza;
-
-    const saggezza = Math.floor((this.characterData.caratteristiche.saggezza - 10) / 2);
-    this.TSSaggezza = this.characterData.tiriSalvezza.saggezza ? (saggezza + bonusCompetenza) : saggezza;
-    this.TSSaggezza = parseInt(this.TSSaggezza) > 0 ? '+' + this.TSSaggezza : this.TSSaggezza;
-
-    const carisma = Math.floor((this.characterData.caratteristiche.carisma - 10) / 2);
-    this.TSCarisma = this.characterData.tiriSalvezza.carisma ? (carisma + bonusCompetenza) : carisma;
-    this.TSCarisma = parseInt(this.TSCarisma) > 0 ? '+' + this.TSCarisma : this.TSCarisma;
+    const mod = Math.floor((this.characterData.caratteristiche[c] - 10) / 2);
+    const tiroSalvezza = this.characterData.tiriSalvezza[c] ? (mod + bonusCompetenza) : mod;
+    return parseInt(tiroSalvezza) > 0 ? '+' + tiroSalvezza : tiroSalvezza + '';
   }
 
   public initCA(): void {
@@ -134,7 +89,6 @@ export class CharacterViewStatusComponent {
     if (this.CA === '') {
       this.CA = this.characterData.CA
     }
-
   }
 
   public initProvePassive(): void {
@@ -149,52 +103,6 @@ export class CharacterViewStatusComponent {
     this.percezionePassiva += this.characterData.competenzaAbilita.maestriaPercezione ? this.characterData.tiriSalvezza.bonusCompetenza : 0;
     this.intuizionePassiva += this.characterData.competenzaAbilita.maestriaIntuizione ? this.characterData.tiriSalvezza.bonusCompetenza : 0;
   }
-
-  // public openHPDialog() {
-  //   const characterId = window.location.href.split('/').pop();
-  //   this.dialog.open(HealthPointDialogComponent, {
-  //     width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
-  //     data: {
-  //       group: this.parametriVitaliForm,
-  //     }
-  //   }).afterClosed().subscribe((result: any) => {
-  //     if (result.status === 'success') {
-  //       this.characterData.parametriVitali = result.newValue.value;
-  //       this.charService.updateCharacterPFById(characterId!, this.parametriVitaliForm).then(() => {
-  //         this.notification.openSnackBar('Punti Ferita Aggiornati.', 'check', 3000, 'limegreen');
-  //       });
-  //     }
-  //   });
-  // }
-
-  // public initDadiVita(): void {
-  //   this.characterData.parametriVitali.dadiVita.forEach((dado: any) => {
-  //     const dadiUsati = dado.usati;
-  //     for (let i = 0; i < dado.quantita; i++) {
-  //       this.dadiVitaData.push({
-  //         tipologia: dado.tipologia,
-  //         usato: dado.usati > i ? true : false,
-  //         icon: './assets/dice/dice-' + dado.tipologia + '.svg'
-  //       });
-  //     }
-  //   });
-  // }
-
-  // public updateDadiVita(index: number, type: string) {
-  //   this.dadiVitaData.at(index).usato = !this.dadiVitaData.at(index).usato;
-  //   const dadiVita = this.characterData.parametriVitali.dadiVita;
-  //   dadiVita.forEach((dado: any) => {
-  //     if (dado.tipologia === type) {
-  //       dado.usati = this.dadiVitaData.at(index).usato ? dado.usati + 1 : dado.usati - 1;
-  //     }
-  //   });
-
-  //   this.parametriVitaliForm.get('dadiVita').patchValue(dadiVita);
-  //   const characterId = window.location.href.split('/').pop();
-  //   this.charService.updateCharacterDadiVitaById(characterId, this.parametriVitaliForm).then(() => {
-  //     this.notification.openSnackBar('Dadi Vita Aggiornati.', 'check', 3000, 'limegreen');
-  //   });
-  // }
 
   useRisorsa(risorsaIndex: number, index: number): void {
     const resource = this.risorseAggiuntiveData[risorsaIndex];
@@ -211,16 +119,55 @@ export class CharacterViewStatusComponent {
       }
       this.risorseAggiuntiveData
     }
-    if (resource.nome === 'Ispirazione') {
-      this.charService.updateInspiration(this.characterData.id, resource.used[0]).then(() => {
-        this.notification.openSnackBar('Ispirazione aggiornata.', 'check', 1000, 'limegreen');
-      });
+    // if (resource.nome === 'Ispirazione') {
+    //   this.charService.updateInspiration(this.characterData.id, resource.used[0]).then(() => {
+    //     this.notification.openSnackBar('Ispirazione aggiornata.', 'check', 1000, 'limegreen');
+    //   });
+    // } else {
+    // const risorse = this.risorseAggiuntiveData.filter((risorsa: any) => risorsa.nome !== 'Ispirazione');
+    this.charService.updateAdditionalResources(this.characterData.id, this.risorseAggiuntiveData).then(() => {
+      this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
+    });
+    // }
+  }
+
+  public usaIspirazione(): void {
+    const resource = this.ispirazione;
+    if (!resource.used[0]) {
+      resource.used[0] = true;
     } else {
-      const risorse = this.risorseAggiuntiveData.filter((risorsa: any) => risorsa.nome !== 'Ispirazione');
-      this.charService.updateAdditionalResources(this.characterData.id, risorse).then(() => {
+      resource.used[0] = false;
+    }
+    this.charService.updateInspiration(this.characterData.id, resource.used[0]).then(() => {
+      this.notification.openSnackBar('Ispirazione aggiornata.', 'check', 1000, 'limegreen');
+    });
+  }
+
+  public reduceResource(risorsaIndex: number): void {
+    const resource = this.risorseAggiuntiveData[risorsaIndex];
+    if (resource.valoreAttuale > 0) {
+      resource.valoreAttuale--;
+      this.charService.updateAdditionalResources(this.characterData.id, this.risorseAggiuntiveData).then(() => {
         this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
       });
     }
+  }
+
+  public increaseResource(risorsaIndex: number): void {
+    const resource = this.risorseAggiuntiveData[risorsaIndex];
+    if (resource.valoreAttuale < resource.valoreMassimo) {
+      resource.valoreAttuale++;
+      this.charService.updateAdditionalResources(this.characterData.id, this.risorseAggiuntiveData).then(() => {
+        this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
+      });
+    }
+  }
+
+  public getResourceQuantity(risorsaIndex: number): string {
+    const resource = this.risorseAggiuntiveData[risorsaIndex];
+    const result = resource.used.filter((value: boolean) => value === false).length;
+    return result.toString();
+
   }
 
   usaDadoVita(dadoVitaIndex: number, index: number): void {
@@ -244,8 +191,18 @@ export class CharacterViewStatusComponent {
     });
   }
 
-    public rollDice(message: string, modifier?: string): void {
-      this.rollService.rollFromCharView('d20', message, Number(modifier));
-    }
+  public rollDice(message: string, modifier?: string): void {
+    this.rollService.rollFromCharView('d20', message, Number(modifier));
+  }
 
+  public newAdditionalResource(): void {
+    this.matDialog.open(AddResourceDialogComponent, {
+      width: innerWidth < 768 ? '90%' : '50%',
+      autoFocus: false,
+      disableClose: true,
+      data: {
+        charId: this.characterData.id
+      }
+    })
+  }
 }

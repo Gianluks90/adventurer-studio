@@ -1,12 +1,12 @@
 <ng-container *ngIf=" denaroGroup">
   <div class="step-form" [formGroup]="denaroGroup">
-    <div class="section-title">Denaro</div>
+    <div as-section-title>Denaro</div>
 
     <app-money [denaro]="denaroGroup"></app-money>
   </div>
 </ng-container>
 
-<div class="section-title">Equipaggiamento</div>
+<div as-section-title>Equipaggiamento</div>
 
 <div class="description-text">Inserisci uno a uno gli oggetti del tuo inventario, puoi farlo anche successivamente dopo aver completato il tuo personaggio.</div>
 

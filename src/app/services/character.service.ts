@@ -140,11 +140,12 @@ export class CharacterService {
     return await setDoc(docRef, form.value, { merge: true });
   }
 
-  public async updateCharacterSheetColorById(id: string, color: string): Promise<any> {
+  public async updateCharacterSheetColorById(id: string, sheetColor: string, sheetTitleColor: string): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {
       status: {
-        sheetColor: color
+        sheetColor: sheetColor,
+        sheetTitleColor: sheetTitleColor
       }
     }, { merge: true });
   }
@@ -236,6 +237,15 @@ export class CharacterService {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {
       attacchi: attacks
+    }, { merge: true });
+  }
+
+  public async addResource(id: string, form: FormGroup): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      informazioniBase: {
+        risorseAggiuntive: arrayUnion(form)
+      }
     }, { merge: true });
   }
 

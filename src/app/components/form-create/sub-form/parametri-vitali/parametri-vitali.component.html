@@ -108,7 +108,7 @@
     </mat-form-field>
   </div>
 
-  <div class="section-title">Punti Ferita</div>
+  <div as-section-title>Punti Ferita</div>
 
   <div class="step-form" [formGroup]="groupVita">
     <mat-form-field color="accent" appearance="outline">
@@ -116,7 +116,7 @@
       <input class="" type="number" matInput formControlName="massimoPuntiFerita" min="1">
     </mat-form-field>
 
-    <div class="section-title">Dadi Vita</div>
+    <div as-section-title>Dadi Vita</div>
 
     <ng-container class="" formArrayName="dadiVita">
       <ng-container *ngFor="let d of dadiVita.controls; let i = index;">

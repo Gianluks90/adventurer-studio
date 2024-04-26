@@ -1,50 +1,50 @@
-<!-- <div class="main-descrizione-background-container"> -->
+
 <div class="character-name-container">
     {{charData.informazioniBase.nomePersonaggioEsteso !== '' ? charData.informazioniBase.nomePersonaggioEsteso :
     charData.informazioniBase.nomePersonaggio}}
 </div>
-<div class="section-title">Caratteristiche fisiche</div>
+<div as-section-title>Caratteristiche fisiche</div>
 <div class="background-main-container">
-    <div class="bg-line">
+    <!-- <div class="bg-line"> -->
         <div class="bg-info"><strong>Età</strong> {{charData.caratteristicheFisiche.eta}} anni</div>
         <div class="bg-info"><strong>Altezza</strong> {{charData.caratteristicheFisiche.altezza}} cm</div>
         <div class="bg-info"><strong>Peso</strong> {{charData.caratteristicheFisiche.peso}} Kg</div>
-    </div>
-    <div class="bg-line">
+    <!-- </div>
+    <div class="bg-line"> -->
         <div class="bg-info"><strong>Occhi</strong> {{charData.caratteristicheFisiche.occhi}}</div>
         <div class="bg-info"><strong>Carnagione</strong> {{charData.caratteristicheFisiche.carnagione}}</div>
         <div class="bg-info last-info"><strong>Capelli</strong> {{charData.caratteristicheFisiche.capelli}}</div>
-    </div>
+    <!-- </div> -->
 
 </div>
-<div class="section-title">Background: {{charData.informazioniBase.background}} <span
+<div as-section-title>Background: {{charData.informazioniBase.background}} <span
         *ngIf="charData.informazioniBase.dettaglioBackground !== ''">
         ({{charData.informazioniBase.dettaglioBackground}})</span></div>
-<details>
-    <summary class="bg-name">Tratti caratteriali</summary>
+<details as-details>
+    <summary as-summary>Tratti caratteriali</summary>
     <div class="bg-description">
         {{charData.trattiBackground.trattiCaratteriali}}
     </div>
 </details>
-<details>
-    <summary class="bg-name">Ideali</summary>
+<details as-details>
+    <summary as-summary>Ideali</summary>
     <div class="bg-description">
         {{charData.trattiBackground.ideali}}
     </div>
 </details>
-<details>
-    <summary class="bg-name">Legami</summary>
+<details as-details>
+    <summary as-summary>Legami</summary>
     <div class="bg-description">
         {{charData.trattiBackground.legami}}
     </div>
 </details>
-<details>
-    <summary class="bg-name">Difetti</summary>
+<details as-details>
+    <summary as-summary>Difetti</summary>
     <div class="bg-description">
         {{charData.trattiBackground.difetti}}
     </div>
 </details>
-<div class="section-title">Ritratto personaggio</div>
+<div as-section-title>Ritratto personaggio</div>
 <div class="picture-container">
     <img [src]="charData.informazioniBase.urlImmaginePersonaggio" referrerpolicy="no-referrer">
     @if (editModeData) {
@@ -59,7 +59,7 @@
         </div>
     }
 </div>
-<div class="section-title">Storia</div>
+<div as-section-title>Storia</div>
 @if (editModeData) {
 <div class="character-history-container">
     {{charData.storiaPersonaggio}}
@@ -71,7 +71,7 @@
 <div class="description">Questa storia è visibile solo al proprietario della scheda personaggio e al DM della Campagna
     in cui esso è inserito, se presente.</div>
 }
-<div class="section-title">Alleati e Organizzazioni</div>
+<div as-section-title>Alleati e Organizzazioni</div>
 <div class="description">Puoi inserire qui sotto Alleati e Organizzazioni legate al tuo background o incontrati durante
     le tue avventure. Alleati evocabili, compagni animali, ecc... vanno inseriti nel tab dedicato (icona bandiera).
 </div>

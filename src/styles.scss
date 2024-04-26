@@ -104,73 +104,31 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif !important;
-  // font-size: calc(8px + (16 - 8) * ((100vw - 300px) / (1600 - 300))) !important;
   box-sizing: border-box;
-  // scrollbar-width: thin;
-  // overflow-y: auto;
 }
-
-//Chrome
-// ::-webkit-scrollbar,
-// ::-webkit-scrollbar-thumb,
-// ::-webkit-scrollbar-track {
-//     width: 8px;
-//     border: none;
-//     background: transparent;
-// }
-
-// ::-webkit-scrollbar-button,
-// ::-webkit-scrollbar-track-piece,
-// ::-webkit-scrollbar-corner,
-// ::-webkit-resizer {
-//     display: none;
-// }
-
-// ::-webkit-scrollbar-thumb {
-//     border-radius: 6px;
-// }
-
-// ::-webkit-scrollbar-track {
-//     background-repeat: repeat-y;
-//     background-size: contain;
-// }
-
-
-
-
-
-// ::-webkit-scrollbar-track {
-//   // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-//   // background-color: #F5F5F5;
-// }
 
 ::-webkit-scrollbar {
   width: 0px !important;
-  // background-color: #F5F5F5 !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  // background-color: #212121;
   border: none;
 }
 
 //Firefox
 * {
   scrollbar-width: none;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .custom-snackbar,
 .mdc-snackbar__surface {
   color: white !important;
-  // border-radius: 8px;
   text-align: center;
 }
 
 app-character-list {
   display: flex;
-  // width: 100% !important;
 }
 
 app-campaign-list {
@@ -195,7 +153,7 @@ app-character-view {
 }
 
 .background-red {
-  background-color: red !important;
+  background-color: crimson !important;
 }
 
 .background-green {
@@ -208,17 +166,134 @@ app-character-view {
 
 progress {
   border: none;
-  background: red;
+  background: crimson;
 }
 
 progress::-moz-progress-bar {
-  background: red;
+  background: crimson;
 }
 
 progress::-webkit-progress-value {
-  background: red;
+  background: crimson;
 }
 
 .item-info-sheet {
   max-width: 450px !important;
+}
+
+// CUSTOM ATTRIBUTES =========================
+
+// MAT ICONS
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    font-size: 1.2rem;
+}
+
+// Piccolo bottone rotondo, occupa pochissimo spazio. Da usare con una mat-icon come font.
+button[as-mini-circle-btn] {
+  border: none;
+  box-shadow: none;
+
+  background-color: #212121;
+  color: whitesmoke;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// Versione disabled
+button[as-mini-circle-btn][disabled] {
+  opacity: 0.5;
+}
+
+// Dettaglio espandibile con icona personalizzata e contenuto ristretto.
+details[open] {
+  border: 1px solid #212121;
+  margin-bottom: 4px;
+}
+
+details[as-details] {
+  margin-bottom: 4px;
+}
+
+details[as-details]>summary {
+  list-style: none;
+}
+
+details[as-details] summary::-webkit-details-marker {
+  display: none;
+}
+
+summary[as-summary]::after {
+  content: url("/assets/icons/chevron_right.svg");
+  cursor: pointer;
+}
+
+details[open]>summary[as-summary]::after {
+  content: url("/assets/icons/chevron_down.svg");
+  cursor: pointer;
+}
+
+summary[as-summary] {
+  background-color: #212121;
+  color: white;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+// temporaneo finchè non cambiamo lo sfondo alle icone da black a #212121
+summary[as-summary-with-icon] {
+  background-color: black;
+}
+
+// Pillola per mostrare una serie di informazioni di una, massimo due parole, senza interazione.
+div[as-pill] {
+  display: block;
+  background-color: #212121;
+  color: whitesmoke;
+  padding: 6px 24px;
+  text-align: center;
+  border-radius: 12px;
+}
+
+// Titolo di sezione, con bordo inferiore.
+div[as-section-title] {
+  margin: 8px 0;
+  font-size: medium;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+}
+
+// Sottotitolo di sezione, con bordo inferiore e leggero rientro a sinistra.
+div[as-subtitle] {
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+  margin: 0 0 8px 8px;
+}
+
+div[as-description-text] {
+  font-size: small;
+  opacity: 0.7;
+  margin: 12px 0;
+  text-align: justify;
 }
