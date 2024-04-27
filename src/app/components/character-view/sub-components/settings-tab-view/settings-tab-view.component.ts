@@ -76,11 +76,11 @@ export class SettingsTabViewComponent {
     this.charService.updateCharacterSheetColorById(this.charData.id, newSheetColor, newSheetTitleColor);
   }
   public toggleWeightRule(event: any) {
-    this.charService.updateWeightRule(window.location.href.split('/').pop()!, event.checked);
+    this.charService.updateWeightRule(window.location.href.split('/').pop()!, event.target.checked);
   }
 
   public toggleOpacityInventoryRule(event: any) {
-    this.charService.updateOpacityInventoryRule(window.location.href.split('/').pop()!, event.checked);
+    this.charService.updateOpacityInventoryRule(window.location.href.split('/').pop()!, event.target.checked);
   } 
 
   public setFavoriteChar() {

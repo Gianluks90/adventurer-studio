@@ -163,11 +163,17 @@ export class CharacterViewStatusComponent {
     }
   }
 
+  public removeResource(risorsaIndex: number): void {
+    this.risorseAggiuntiveData.splice(risorsaIndex, 1);
+    this.charService.updateAdditionalResources(this.characterData.id, this.risorseAggiuntiveData).then(() => {
+      this.notification.openSnackBar('Risorsa rimossa.', 'check', 1000, 'limegreen');
+    });
+  }
+
   public getResourceQuantity(risorsaIndex: number): string {
     const resource = this.risorseAggiuntiveData[risorsaIndex];
     const result = resource.used.filter((value: boolean) => value === false).length;
     return result.toString();
-
   }
 
   usaDadoVita(dadoVitaIndex: number, index: number): void {

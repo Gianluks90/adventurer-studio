@@ -1,6 +1,6 @@
 <div class="view-container" *ngIf="character">
     <div class="view-header">
-        <img class="character-image"
+        <img class="character-image" *ngIf="character.informazioniBase"
             [src]="character.informazioniBase.urlImmaginePersonaggio !== ''? character.informazioniBase.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
         <div class="character-info-container">
             <div class="character-name">{{!isMobile && character.informazioniBase.nomePersonaggioEsteso !== '' ? character.informazioniBase.nomePersonaggioEsteso :
@@ -67,7 +67,7 @@
             <mat-tab>
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Companions">
+                        matTooltip="Gregari, Evocazioni, ecc...">
                 </ng-template>
                 <app-companion-tab-view [character]="character"></app-companion-tab-view>
             </mat-tab>

@@ -14,7 +14,8 @@
 </ng-container>
 
 <div as-subtitle>Colore scheda</div>
-<div as-description-text>Usa i comandi sottostanti per modificare colore di sfondo e dei titoli della colonna di sinistra, qui, sulla Scheda Personaggio.</div>
+<div as-description-text>Usa i comandi sottostanti per modificare colore di sfondo e dei titoli della colonna di
+    sinistra, qui, sulla Scheda Personaggio.</div>
 <!-- <div class="input-container">
     <input type="color" class="color-picker" [value]="sheetColorData" #picker>
     <div class="divider"></div>
@@ -26,21 +27,21 @@
     </button>
 </div> -->
 <div [formGroup]="formColor" class="form-container">
-    <mat-form-field  appearance="outline" color="accent">
+    <mat-form-field appearance="outline" color="accent">
         <mat-label>Colore Scheda</mat-label>
         <input matInput type="color" formControlName="sheetColor">
     </mat-form-field>
-    <mat-form-field  appearance="outline" color="accent">
+    <mat-form-field appearance="outline" color="accent">
         <mat-label>Colore Titoli</mat-label>
         <input matInput type="color" formControlName="sheetTitleColor">
     </mat-form-field>
 </div>
 <div class="buttons-container">
-    <button mat-raised-button color="accent" (click)="updateSheetColors()">
-        <mat-icon>check</mat-icon> Applica
+    <button as-btn (click)="updateSheetColors()">
+        <div class="material-symbols-outlined">check</div> <div>Applica</div>
     </button>
-    <button mat-raised-button color="accent" (click)="resetColors()">
-        <mat-icon>refresh</mat-icon> Predefinito
+    <button as-btn (click)="resetColors()">
+        <div class="material-symbols-outlined">refresh</div> <div>Predefinito</div>
     </button>
 </div>
 <div as-subtitle>Esportazione</div>
@@ -49,46 +50,73 @@
     ufficiale in formato .pdf pre-compilata con le informazioni inserite finora.</div>
 <div class="buttons-container">
     <a href="" target="_blank" id="export-button">
-        <button mat-raised-button color="accent" (click)="parseExport()">
-            <mat-icon>download</mat-icon> Esporta JSON
+        <button as-btn (click)="parseExport()">
+            <div class="material-symbols-outlined">download</div> <div>Esporta JSON</div>
         </button>
     </a>
-    <button mat-raised-button color="accent" (click)="exportPDF()" disabled>
-        <mat-icon>picture_as_pdf</mat-icon> Esporta PDF
+    <button as-btn disabled>
+        <div class="material-symbols-outlined">picture_as_pdf</div> <div>Esporta PDF</div>
     </button>
 </div>
 <div as-subtitle>Personaggio Preferito</div>
 <div as-description-text>Rendere <strong>Preferito</strong> un personaggio lo mosterà sempre nel menù laterale di
     sinistra e potrà essere raggiunto da ogni pagina in cui questo menù è presente.</div>
-    <div class="buttons-container">
-        <button mat-raised-button color="accent" (click)="setFavoriteChar()" [disabled]="isFavorite">
-            <mat-icon>star</mat-icon> Imposta come preferito
-        </button>
-    </div>
+<div class="buttons-container">
+    <button as-btn (click)="setFavoriteChar()" [disabled]="isFavorite">
+        <div class="material-symbols-outlined">star</div> <div>Imposta come preferito</div>
+    </button>
+</div>
 <div as-subtitle>Regole aggiuntive</div>
-<mat-slide-toggle class="slide-toggle" color="accent" [(ngModel)]="charData.status.useWeightRule"
-    (change)="toggleWeightRule($event)">
-    <div class="toggle-label">Usa le regole dell'<em>Ingombro</em> (visualizza il peso nell'inventario, calcola
-        gli ingombri e ti avvisa se il PG è appesantito e quali sono gli svantaggi, vedi PHB 176).</div>
-</mat-slide-toggle>
-<mat-slide-toggle class="slide-toggle" color="accent" [(ngModel)]="charData.status.useOpacityInventoryRule"
-    (change)="toggleOpacityInventoryRule($event)">
-    <div class="toggle-label">Nascondi gli oggetti nell'inventario la cui quantità è 0 anzichè mostrarli opachi.</div>
-</mat-slide-toggle>
-<mat-slide-toggle class="slide-toggle" color="accent" disabled checked="true">
-    <div class="toggle-label">Rendi segreta la scheda personaggio (quando è attiva, questa funzione nasconde la scheda a
-        chiunque non sia tu oppure il tuo DM, se il PG è unito ad una campagna. Disattivare l'opzione consente anche la
-        modifica della scheda stessa).</div>
-</mat-slide-toggle>
-<mat-slide-toggle class="last-toggle" color="accent" disabled>
+
+<div as-description-text> Usa le regole dell'<em>Ingombro</em> (visualizza il peso nell'inventario, calcola
+    gli ingombri e ti avvisa se il PG è appesantito e quali sono gli svantaggi, vedi PHB 176).</div>
+<div class="toggle-container">
+    <label as-toggle-button>
+        <input type="checkbox" [(ngModel)]="charData.status.useWeightRule" (change)="toggleWeightRule($event)">
+        <span as-slider></span>
+    </label> Ingombro: {{charData.status.useWeightRule ? 'Attivata' : 'Disattivata'}}
+</div>
+
+<div as-description-text> Nascondi gli oggetti nell'inventario la cui quantità è 0 anzichè mostrarli opachi.</div>
+<div class="toggle-container">
+    <label as-toggle-button>
+        <input type="checkbox" [(ngModel)]="charData.status.useOpacityInventoryRule"
+            (change)="toggleOpacityInventoryRule($event)">
+        <span as-slider></span>
+    </label> Opacità oggetti: {{charData.status.useOpacityInventoryRule ? 'Attivata' : 'Disattivata'}}
+</div>
+
+<div as-description-text> Rendi segreta la scheda personaggio (quando è attiva, questa funzione nasconde la scheda a
+    chiunque non sia tu oppure il tuo DM, se il PG è unito ad una campagna. Disattivare l'opzione consente anche la
+    modifica della scheda stessa).</div>
+<div class="toggle-container">
+    <label as-toggle-button>
+        <input type="checkbox" disabled checked="true">
+        <span as-slider></span>
+    <!-- </label> Scheda segreta: {{charData.status.isSecret ? 'Attivata' : 'Disattivata'}} -->
+    </label> Scheda segreta: Attivata
+</div>
+
+<div as-description-text> Usa la regola dei <em>punti esperienza</em> (visualizza una barra in cui accumulare i
+    punti esperienza, serve che il personaggio sia in una campagna attiva affinchè questi punti vengano assegnati,
+    vedi PHB 15).</div>
+<div class="toggle-container last-toggle">
+    <label as-toggle-button>
+        <input type="checkbox" disabled>
+        <span as-slider></span>
+    <!-- </label> Punti Esperienza: {{charData.status.useExpRule ? 'Attivata' : 'Disattivata'}} -->
+    </label> Punti Esperienza: Disattivata
+</div>
+
+    <!-- <mat-slide-toggle class="last-toggle" color="accent" disabled>
     <div class="toggle-label">Usa la regola dei <em>punti esperienza</em> (visualizza una barra in cui accumulare i
         punti
         esperienza, serve che il personaggio sia in una campagna attiva affinchè questi punti vengano assegnati, vedi
         PHB
         15).</div>
-</mat-slide-toggle>
+</mat-slide-toggle> -->
 
-<!-- <div class="subtitle">Mostra/Nascondi esperienza (prossimamente)</div>
+    <!-- <div class="subtitle">Mostra/Nascondi esperienza (prossimamente)</div>
 <div class="description-text">L'esperienza accumulata dal personaggio non viene mostrata di defaul agevolando il metodo
     delle milestone per il progresso del personaggio, se invece con il tuo gruppo stai utilizzando l'accumulo di
     esperienza attivane il visualizzatore con il bottone qui sotto (puoi accendere e spegnere questa visualizzazione

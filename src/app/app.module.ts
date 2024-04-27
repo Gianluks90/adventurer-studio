@@ -96,6 +96,7 @@ import { RemoveCampaignDialogComponent } from './components/campaign-view/sub-co
 import { MoneyControllerComponent } from './components/utilities/money-controller/money-controller.component';
 import { EditMoneyControllerDialogComponent } from './components/utilities/money-controller/edit-money-controller-dialog/edit-money-controller-dialog.component';
 import { AddResourceDialogComponent } from './components/character-view/sub-components/character-view-status/add-resource-dialog/add-resource-dialog.component';
+import { ItemTooltipComponent } from './components/utilities/item-tooltip/item-tooltip.component';
 
 @NgModule({
   declarations: [
@@ -206,6 +207,7 @@ import { AddResourceDialogComponent } from './components/character-view/sub-comp
     MoneyControllerComponent,
     EditMoneyControllerDialogComponent,
     AddResourceDialogComponent,
+    ItemTooltipComponent,
 
   ],
   imports: [

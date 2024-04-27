@@ -1,0 +1,128 @@
+// .tooltip {
+//     position: fixed;
+//     background-color: #fff;
+//     // border: 1px solid #ccc;
+//     // padding: 12px;
+//     z-index: 4000;
+//     transform: translate(-50%, -50%);
+//     box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+//     width: 280px;
+//     opacity: 0;
+//     transform: translate(-50%, -50%) scale(0.8);
+//     animation: slideIn 0.3s forwards;
+//     // box-sizing: border-box;
+// }
+
+// @keyframes slideIn {
+//     0% {
+//         opacity: 0;
+//         // transform: translate(-50%, -50%) scale(0.8);
+//     }
+
+//     100% {
+//         opacity: 1;
+//         transform: translate(-50%, -50%) scale(1);
+//     }
+// }
+
+.tooltip-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: rgba(#212121, 0.9);
+    color: whitesmoke;
+    min-height: 32px;
+    // box-shadow: inset 0 0 15px 5px rgba(255, 0, 0, 0.5);
+
+    &>img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.tooltip-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+
+    &::first-letter {
+        font-size: 1.3rem;
+    }
+}
+
+.tooltip-content {
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    color: #212121;
+    font-size: 0.8rem;
+    border-left: 1px solid #212121;
+    border-right: 1px solid #212121;
+    border-bottom: 1px solid #212121;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tooltip-item-info {
+    opacity: 0.7;
+    font-size: 0.7rem;
+
+    &::first-letter {
+        text-transform: uppercase;
+    }
+}
+
+.tooltip-weared {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #db931f;
+}
+
+.tooltip-single-use {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.tooltip-description {
+    font-size: 0.9rem;
+    font-style: italic;
+    text-align: justify;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.short-description {
+    max-height: calc(1.2rem * 4);
+    line-height: 1.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.short-more-info {
+    margin-top: -4px;
+    font-weight: 600;
+}
+
+.stealth-disadvantage {
+    color: crimson;
+    font-weight: bold;
+}
+
+.tooltip-traits-label {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.tooltip-footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 0.7rem;
+    background-color: rgba(#212121, 0.9);
+    color: whitesmoke;
+}

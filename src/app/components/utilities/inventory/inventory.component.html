@@ -15,21 +15,25 @@
     <div class="items-container">
         @if (inventoryData.length > 0) {
             <div class="items-icon-container" [ngClass]="{'campaign-columns': isCampaign}">
-                <div *ngFor="let i of inventoryData; let j = index;" [hidden]="i.filtered || (selectedCharData && selectedCharData.status.useOpacityInventoryRule && i.quantity <= 0)" [ngClass]="{ 'not-visible': isCampaign && !i.visible && !isOwnerData }" (click)="openInfoSheet(i, j)">
+                <div class="item-card" 
+                *ngFor="let i of inventoryData; let j = index;" 
+                [hidden]="i.filtered || (selectedCharData && selectedCharData.status.useOpacityInventoryRule && i.quantity <= 0)" 
+                [ngClass]="{ 'not-visible': isCampaign && !i.visible && !isOwnerData }" (click)="openInfoSheet(i, j)"
+                (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
                     @if (isCampaign) {
                         <!-- SONO NELLA CAMPAIGN VIEW -->
                         <!-- @if (i.visible || isOwnerData) { -->
-                            <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
+                            <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}">
                             @if (!i.visible) {
                                 <mat-icon class="visibility-icon">visibility_off</mat-icon>
                             }
                         <!-- } -->
                     } @else {
                         <!-- SONO NELLA CHAR VIEW -->
-                        <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}" matTooltip="{{i.name}}" matTooltipPosition="above">
-                        <span class="quantity-value">{{i.quantity}}</span>
-                        <span class="weared-label" *ngIf="i.weared">E</span>
+                        <img class="image-icon" [src]="i.icon" alt="" [ngStyle]="{'border-color': setColor(i.rarity)}" [ngClass]="{'emptyStack': i.quantity <= 0}">
                     }
+                    <!-- Tooltip -->
+                    <app-item-tooltip id="item-tooltip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem" class="tooltip" [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
                 </div>
             </div>
         } @else {

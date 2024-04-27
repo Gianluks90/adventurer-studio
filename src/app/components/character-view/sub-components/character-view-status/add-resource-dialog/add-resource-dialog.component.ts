@@ -22,6 +22,7 @@ export class AddResourceDialogComponent {
       valoreAttuale: 0,
       used: [],
       color: ['#b3b3b3', Validators.required],
+      isTemporary: false
     });
   }
 

@@ -28,25 +28,26 @@
             </mat-form-field>
         </div>
         <div class="buttons-container">
-            <button mat-raised-button color="accent" (click)="addMoney()" [disabled]="!form.dirty">
-                <mat-icon>add</mat-icon> Somma
+            <button as-btn (click)="addMoney()" [disabled]="!form.dirty">
+                <div class="material-symbols-outlined">add</div> <div>Aggiungi</div>
             </button>
-            <button mat-raised-button color="accent" (click)="subtractMoney()" [disabled]="!form.dirty">
-                <mat-icon>remove</mat-icon> Sottrai
+            <button as-btn (click)="subtractMoney()" [disabled]="!form.dirty">
+                <div class="material-symbols-outlined">remove</div> <div>Sottrai</div>
+
             </button>
-            <button mat-raised-button color="accent" (click)="resetForm()" [disabled]="!form.dirty">
-                <mat-icon>sync</mat-icon> Azzera
+            <button as-btn (click)="resetForm()" [disabled]="!form.dirty">
+                <div class="material-symbols-outlined">sync</div> <div>Reset</div>
             </button>
         </div>
-
+        <div class="warning-text" as-description-text *ngIf="warningMessage" >Non hai abbastanza monete per effettuare questa operazione.</div>
         <mat-checkbox formControlName="advancedForm" color="accent">Avanzate (converti, riorganizza,
             ecc...)</mat-checkbox>
     </form>
     
     @if(form.value.advancedForm) {
-    <div class="description-text advanced-description-text">
+    <div as-description-text class="advanced-description-text">
         Utilizza le funzioni sottostanti per convertire il denaro taglio per taglio, oppure per convertire il denaro per
-        intero con riferimento al taglio maggiore (Platino).
+        intero con riferimento al taglio principale (Oro).
     </div>
     <form [formGroup]="convertForm">
         <div class="money-line">
@@ -68,15 +69,18 @@
         </div>
     </form>
     <div class="buttons-container advanced-buttons-container">
-        <button mat-raised-button color="accent" [disabled]="!convertForm.valid" (click)="convertMoney()">
+        <!-- <button mat-raised-button color="accent" [disabled]="!convertForm.valid" (click)="convertMoney()">
             <mat-icon>toll</mat-icon> Converti
+        </button> -->
+        <button as-btn (click)="convertMoney()" [disabled]="!convertForm.valid">
+            <div class="material-symbols-outlined">toll</div> <div>Converti</div>
         </button>
-        <button mat-raised-button color="accent" disabled>
-            <mat-icon>toll</mat-icon> Converti tutto
+        <button as-btn (click)="convertAllToGold()">
+            <div class="material-symbols-outlined">toll</div> <div>Reset</div>
         </button>
     </div>
     }
 </mat-dialog-content>
 <div mat-dialog-actions align="end">
-    <button mat-raised-button color="accent" mat-dialog-close>Chiudi</button>
+    <button as-btn mat-dialog-close>Chiudi</button>
 </div>

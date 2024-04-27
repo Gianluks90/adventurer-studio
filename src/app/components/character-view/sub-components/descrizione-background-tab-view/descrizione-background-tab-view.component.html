@@ -49,13 +49,13 @@
     <img [src]="charData.informazioniBase.urlImmaginePersonaggio" referrerpolicy="no-referrer">
     @if (editModeData) {
         <div class="action-buttons-container">
-            <button mat-raised-button color="accent"
-                [disabled]="charData.informazioniBase.urlImmaginePersonaggio !== '' || inCampaign"
-                (click)="file.click()"><mat-icon>add_photo_alternate</mat-icon> Carica</button>
+            <button as-btn (click)="file.click()" [disabled]="charData.informazioniBase.urlImmaginePersonaggio !== '' || inCampaign">
+                <div class="material-symbols-outlined">add_photo_alternate</div> <div>Carica</div>
+            </button>
             <input #file id="file" hidden class="" type="file" accept="image" (change)="onPicSelected($event)">
-            <button mat-raised-button color="accent"
-                [disabled]="charData.informazioniBase.urlImmaginePersonaggio === '' || inCampaign"
-                (click)="deletePic(charData.informazioniBase.nomeImmaginePersonaggio)"><mat-icon>delete</mat-icon>Elimina</button>
+            <button as-btn (click)="deletePic(charData.informazioniBase.nomeImmaginePersonaggio)" [disabled]="charData.informazioniBase.urlImmaginePersonaggio === '' || inCampaign">
+                <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
+            </button>
         </div>
     }
 </div>
@@ -65,7 +65,10 @@
     {{charData.storiaPersonaggio}}
 </div>
 <div class="button-container">
-    <button mat-raised-button color="accent" (click)="openEditStoryDialog()"><mat-icon>edit</mat-icon> Modifica</button>
+    <!-- <button mat-raised-button color="accent" (click)="openEditStoryDialog()"><mat-icon>edit</mat-icon> Modifica</button> -->
+    <button as-btn (click)="openEditStoryDialog()">
+        <div class="material-symbols-outlined">edit</div> <div>Modifica</div>
+    </button>
 </div>
 } @else {
 <div class="description">Questa storia è visibile solo al proprietario della scheda personaggio e al DM della Campagna

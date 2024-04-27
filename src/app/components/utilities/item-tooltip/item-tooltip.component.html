@@ -1,0 +1,32 @@
+<div class="tooltip-header" [ngStyle]="{'box-shadow': 'inset 0 0 7px 4px' + setColor(itemData.rarity) + '70 '}">
+    <div class="tooltip-title">{{itemData.name}}</div>
+</div>
+<div class="tooltip-content">
+    <div class="tooltip-item-info">{{itemData.category}}, {{itemData.rarity}}<span *ngIf="itemData.magicItem">, Oggetto
+            magico</span><span *ngIf="itemData.cursed">, Maledetto</span></div>
+    <div class="tooltip-weared" *ngIf="itemData.weared">Equipaggiato</div>
+    @if (itemData.CA > 0 || itemData.shield || itemData.damageFormula !== '' || itemData.versatileDice !== '') {
+    <div class="weapons-armors-container">
+        <div *ngIf="itemData.CA > 0 && !itemData.shield">CA {{itemData.CA}} <span *ngIf="itemData.plusDexterity">+
+                DES</span></div>
+        <div *ngIf="itemData.stealthDisadvantage" class="stealth-disadvantage"> Svantaggio Furtività</div>
+        <div *ngIf="itemData.shield">+{{itemData.CA}} CA</div>
+        <div *ngIf="itemData.damageFormula !== ''">{{getDamagesString(itemData, itemData.damageFormula)}}</div>
+        <div *ngIf="itemData.versatileDice && itemData.versatileDice !== ''">Versatile {{getDamagesString(itemData,
+            itemData.versatileDice)}}</div>
+    </div>
+    }
+    <div class="tooltip-single-use" *ngIf="itemData.consumable">Uso singolo</div>
+    <div class="tooltip-single-use" *ngIf="itemData.focus">Focus Arcano</div>
+    <div class="tooltip-description" [ngClass]="{'short-description': itemData.description.length > 300}">
+        {{itemData.description}}</div>
+    <span class="tooltip-description short-more-info" *ngIf="itemData.description.length > 300">... continua
+        (click).</span>
+    <div class="tooltip-traits-label"
+        *ngIf="(itemData.weaponProperties && itemData.weaponProperties.length > 0) || itemData.traits.length > 0 || itemData.artifactProperties.length > 0">
+        {{getPropsString(itemData)}}</div>
+</div>
+<div class="tooltip-footer">
+    <div class="tooltip-quantity">Quantità: {{itemData.quantity}}</div>
+    <div class="tooltip-weight">Peso: {{itemData.weight}} kg</div>
+</div>

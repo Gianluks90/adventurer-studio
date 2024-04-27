@@ -2,6 +2,9 @@
     @if (isCampaign) {
         <div as-section-title>{{!isDM ? 'PNG, Organizzazioni e Schede' : 'Schede'}}</div>
     }
+    @if (!isCampaign && isTab) {
+        <div as-section-title>Gregari, Evocazioni, Trasformazioni, ecc...</div>
+    }
     <div class="search-container">
         <!-- SONO NELLA CHAR VIEW NEL TAB COMPANIONS -->
         @if(isTab && !isCampaign) {
@@ -132,19 +135,25 @@
                             </button>
                         </div>
                         @if (addon.parameterRequired) {
-                            <details class="main-details">
-                                <summary class="addon-name">Statistiche</summary>
+                            <details as-details as-npc-details>
+                                <summary as-summary as-npc-details>Statistiche</summary>
                                 <div class="hp-container">
                                     <div class="hp-value">{{addon.HP}} / {{addon.HPmax}}</div>
-                                    <button class="hp-button" mat-mini-fab color="accent" (click)="updateNpcHP('sub', i)">
-                                        <mat-icon>remove</mat-icon>
+                                    <button as-mini-circle-btn (click)="updateNpcHP('sub', i)">
+                                        <div class="material-symbols-outlined">remove</div>
                                     </button>
                                     <progress [max]="addon.HPmax" [value]="addon.HP" class="hp-bar"></progress>
-                                    <button class="hp-button" mat-mini-fab color="accent" (click)="updateNpcHP('add', i)">
-                                        <mat-icon>add</mat-icon>
+                                    <button as-mini-circle-btn (click)="updateNpcHP('add', i)">
+                                        <div class="material-symbols-outlined">add</div>
                                     </button>
-                                    <button class="hp-button" mat-mini-fab color="accent" (click)="fullRestore(i)" [disabled]="addon.HP === addon.HPmax">
+                                    <!-- <button class="hp-button" mat-mini-fab color="accent" (click)="updateNpcHP('add', i)">
+                                        <mat-icon>add</mat-icon>
+                                    </button> -->
+                                    <!-- <button class="hp-button" mat-mini-fab color="accent" (click)="fullRestore(i)" [disabled]="addon.HP === addon.HPmax">
                                         <mat-icon>restart_alt</mat-icon>
+                                    </button> -->
+                                    <button as-mini-circle-btn (click)="fullRestore(i)" [disabled]="addon.HP === addon.HPmax">
+                                        <div class="material-symbols-outlined">restart_alt</div>
                                     </button>
                                 </div>
                                 <div class="caratteristiche-main-container">
@@ -228,8 +237,8 @@
                                     </div>
                                 </div>
                                 @if (addon.traits.length > 0) {
-                                <details class="inner-details">
-                                    <summary class="addon-name sub-summary">Tratti</summary>
+                                <details as-inner-details>
+                                    <summary as-summary>Tratti</summary>
                                     @for (trait of addon.traits; track $index) {
                                     <div class="inner-line">
                                         <div class="inner-label">{{trait.title}}</div>
@@ -239,8 +248,8 @@
                                 </details>
                                 }
                                 @if (addon.actions.length > 0) {
-                                <details class="inner-details">
-                                    <summary class="addon-name sub-summary">Azioni</summary>
+                                <details as-inner-details>
+                                    <summary as-summary>Azioni</summary>
                                     @for (action of addon.actions; track $index) {
                                     <div class="inner-line">
                                         <div class="inner-label">{{action.title}}</div>

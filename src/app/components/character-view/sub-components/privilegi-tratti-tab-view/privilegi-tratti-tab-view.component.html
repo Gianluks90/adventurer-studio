@@ -7,15 +7,17 @@
 </div>
 <div as-section-title>Privilegi, Tratti e Talenti</div>
 <div *ngFor="let pt of privilegiTrattiData; let i = index">
-    <details *ngIf="pt.tag === ''" as-details>
-        <summary as-summary>{{pt.nome}}</summary>
-        <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
-                {{pt.riferimento}}</span></div>
-        <div class="pt-description">{{pt.descrizione}}</div>
-        <div class="button-container">
-            <button class="edit-button" (click)="openEditDialog(i)">Modifica</button>
-        </div>
-    </details>
+    @if (pt.tag === '') {
+        <details as-details>
+            <summary as-summary>{{pt.nome}}</summary>
+            <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
+                    {{pt.riferimento}}</span></div>
+            <div class="pt-description">{{pt.descrizione}}</div>
+            <div class="button-container">
+                <button class="edit-button" (click)="openEditDialog(i)">Modifica</button>
+            </div>
+        </details>
+    }
 
 </div>
 <div *ngFor="let t of tags" class="pt-main-container">

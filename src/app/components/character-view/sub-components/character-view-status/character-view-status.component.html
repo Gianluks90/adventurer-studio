@@ -145,7 +145,7 @@
 
                 <div class="material-symbols-outlined icon-button" (click)="increaseResource(i)">add</div>
                 <div class="material-symbols-outlined icon-button" (click)="reduceResource(i)">remove</div>
-
+                <div *ngIf="risorsa.isTemporary" class="material-symbols-outlined icon-button" (click)="removeResource(i)" matTooltip="Elimina risorsa" matTooltipPosition="above">close</div>
             </div>
             } @else {
             <div class="risorsa-container">
@@ -153,6 +153,7 @@
                 <div *ngFor="let used of risorsa.used; let j = index" [style.color]="risorsa.color"
                     class="resource-circle" [ngClass]="{'active': !used, 'used': used}" (click)="useRisorsa(i, j)">•
                 </div>
+                <div *ngIf="risorsa.isTemporary" class="material-symbols-outlined icon-button" (click)="removeResource(i)" matTooltip="Elimina risorsa" matTooltipPosition="above">close</div>
             </div>
             }
         </div>

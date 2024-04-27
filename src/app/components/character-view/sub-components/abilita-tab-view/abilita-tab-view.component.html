@@ -1,8 +1,12 @@
 <div as-section-title>Competenze Abilità</div>
 <div class="section-header">
-    <mat-slide-toggle class="last-toggle" color="accent" (change)="showSkillInfo($event)">
+    <!-- <mat-slide-toggle class="last-toggle" color="accent" (change)="showSkillInfo($event)">
         <div class="toggle-label">Info abilità</div>
-    </mat-slide-toggle>
+    </mat-slide-toggle> -->
+    <label as-toggle-button>
+        <input type="checkbox" (change)="showSkillInfo($event)">
+        <span as-slider></span>
+    </label> Info abilità
 </div>
 <div *ngFor="let a of abilitaData; let last = last"
     [ngClass]="{'last-item': last, 'dice-rolls': diceService.roomConnected}" class="a-container"

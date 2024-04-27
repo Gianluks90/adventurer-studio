@@ -118,7 +118,7 @@ body {
 //Firefox
 * {
   scrollbar-width: none;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .custom-snackbar,
@@ -190,7 +190,7 @@ progress::-webkit-progress-value {
     'wght' 400,
     'GRAD' 0,
     'opsz' 24;
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 // Piccolo bottone rotondo, occupa pochissimo spazio. Da usare con una mat-icon come font.
@@ -215,19 +215,61 @@ button[as-mini-circle-btn] {
   }
 }
 
-// Versione disabled
 button[as-mini-circle-btn][disabled] {
+  cursor: default;
   opacity: 0.5;
+}
+
+// Bottone pensato per prevedere una mat icon e un testo all'interno di due div (funziona anche con solo testo).
+button[as-btn] {
+  border: none;
+  box-shadow: none;
+
+  background-color: #212121;
+  color: whitesmoke;
+
+  min-width: 120px;
+  min-height: 32px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.6);
+  }
+}
+
+button[as-btn][disabled] {
+  cursor: default;
+  opacity: 0.5;
+
+  &:hover {
+    box-shadow: none;
+  }
 }
 
 // Dettaglio espandibile con icona personalizzata e contenuto ristretto.
 details[open] {
   border: 1px solid #212121;
-  margin-bottom: 4px;
 }
 
 details[as-details] {
   margin-bottom: 4px;
+}
+
+details[as-npc-details] {
+  margin-bottom: 0;
+}
+
+details[as-inner-details] {
+  margin: 4px;
 }
 
 details[as-details]>summary {
@@ -256,6 +298,10 @@ summary[as-summary] {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4px;
+}
+
+summary[as-npc-details] {
+  margin-bottom: 0;
 }
 
 // temporaneo finchè non cambiamo lo sfondo alle icone da black a #212121
@@ -291,9 +337,73 @@ div[as-subtitle] {
   margin: 0 0 8px 8px;
 }
 
+// Descrizione di qualcosa, con testo giustificato e leggermente trasparente.
 div[as-description-text] {
   font-size: small;
   opacity: 0.7;
   margin: 12px 0;
   text-align: justify;
+}
+
+// Slider toggle button, diventa verde quando attivo.
+label[as-toggle-button] {
+  --secondary-container: #3a4b39;
+  --primary: #84da89;
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 1.2em;
+}
+
+label[as-toggle-button] input {
+  display: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+span[as-slider] {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #313033;
+  transition: .2s;
+  border-radius: 30px;
+}
+
+span[as-slider]:before {
+  position: absolute;
+  content: "";
+  height: 1em;
+  width: 1em;
+  border-radius: 20px;
+  left: 0.1em;
+  bottom: 0.1em;
+  background-color: #b3b3b3;
+  transition: .4s;
+}
+
+input:checked+span[as-slider]::before {
+  background-color: var(--primary);
+}
+
+input:checked+span[as-slider] {
+  background-color: var(--secondary-container);
+}
+
+input:focus+span[as-slider] {
+  box-shadow: 0 0 1px var(--secondary-container);
+}
+
+input:checked+span[as-slider]:before {
+  transform: translateX(0.8em);
+}
+
+input[disabled]+span[as-slider] {
+  opacity: 0.5;
+  cursor: default;
 }

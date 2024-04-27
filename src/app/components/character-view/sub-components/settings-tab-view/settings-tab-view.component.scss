@@ -1,57 +1,18 @@
-// .description-text {
-//   font-size: small;
-//   opacity: 0.5;
-//   font-style: italic;
-//   margin: 12px 0;
-//   text-align: justify;
-// }
-
-// .section-title {
-//   margin-bottom: 16px;
-//   font-size: medium;
-//   font-weight: bold;
-//   text-transform: uppercase;
-//   letter-spacing: 1px;
-//   border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
-// }
-
-// .subtitle {
-//   font-weight: bold;
-//   letter-spacing: 1px;
-//   // border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
-//   margin: 8px 0;
-// }
-
-// .input-container {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 100%;
-//   gap: 8px;
-//   height: 36px;
-//   cursor: pointer;
-// }
-
-// .divider {
-//   flex-grow: 1;
-//   border-bottom: 1px dotted lightgray;
-// }
-
-// .color-picker {
-//   width: 36px;
-//   border-radius: 0;
-//   box-shadow: none;
-//   border: none;
-// }
-
 .form-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
 
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
 .buttons-container {
-  margin-top: 12px;
+  margin: 12px 0;
   display: flex;
   justify-content: flex-end;
   gap: 8px;

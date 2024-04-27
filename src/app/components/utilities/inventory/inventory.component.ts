@@ -51,9 +51,7 @@ export class InventoryComponent {
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         if (!this.isCampaign) {
-          this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item).then(() => {
-            this.inventoryData.push(result.item);
-          });
+          this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item);
         } else {
           this.campaignService.addItemInventory(window.location.href.split('/').pop(), result.item);
         }
@@ -180,5 +178,78 @@ export class InventoryComponent {
         return 1;
       }
     });
+  }
+
+  public currentTooltipItem: any;
+  public showItemTooltip: boolean = false;
+  public tooltipPosition: { top: number | string, left: number | string } = { top: 0, left: 0 };
+
+  public showTooltip(event: MouseEvent, item: any) {
+    this.currentTooltipItem = item;
+    this.showItemTooltip = true;
+    setTimeout(() => {
+      const tooltip = document.getElementById('item-tooltip') as HTMLElement;
+      if (!tooltip) return;
+      const rect = tooltip.getBoundingClientRect();
+      if (event.clientY + rect.height > window.innerHeight) {
+        // this.tooltipPosition.top = window.innerHeight - rect.height - 10;
+        this.tooltipPosition = { top: window.innerHeight+50 - rect.height, left: event.clientX - 175 };
+      } else {
+        this.tooltipPosition = { top: event.clientY, left: event.clientX - 175 };
+      }
+    }, 100);
+    // this.tooltipPosition = { top: event.clientY, left: event.clientX-175};
+  }
+
+  public hideTooltip() {
+    this.showItemTooltip = false;
+  }
+
+  public getDamagesString(item: Item, formula: string): string {
+    if (!formula || formula === '') return '';
+    const termini = formula.replace(/\s/g, '').split('+');
+    
+    let minimo = 0;
+    let massimo = 0;
+    termini.forEach(termine => {
+        if (termine.includes('d')) {
+            const [numDadi, numFacce] = termine.split('d').map(Number);
+            minimo += numDadi;
+            massimo += numDadi * numFacce;
+        } else {
+            const costante = parseInt(termine);
+            minimo += costante;
+            massimo += costante;
+        }
+    });
+
+    if (minimo === massimo) return `${minimo} danno/i (${item.damageType})`;
+    return `${minimo}-${massimo}` + ' danni (' + item.damageType + ')'; 
+  }
+
+  public getPropsString(item: Item): string {
+    const result: string[] = [];
+    if (item.weaponProperties) {
+      const weaponProperties: string[] = item.weaponProperties.map((prop) => {
+        if (prop.name === 'lancio' || prop.name === 'gittata') return (prop.name[0].toUpperCase() + prop.name.slice(1)) + ' (' + item.range + ')';
+        if (prop.name === 'versatile') return (prop.name[0].toUpperCase() + prop.name.slice(1)) + ' (' + item.versatileDice + ')';
+        return prop.name[0].toUpperCase() + prop.name.slice(1);
+      });
+      result.push(...weaponProperties);
+    }
+    if (item.traits) {
+      const magicTraits: string[] = item.traits.map((trait) => {
+        return trait.title[0].toUpperCase() + trait.title.slice(1);
+      });
+      result.push(...magicTraits);
+    }
+    if (item.artifactProperties) {
+      const artifactProperties: string[] = item.artifactProperties.map((prop) => {
+        return prop.title[0].toUpperCase() + prop.title.slice(1);
+      });
+      result.push(...artifactProperties);
+    }
+    return result.join(', ');
+    // return [...weaponProperties, ...magicTraits, ...artifactProperties].join(', ');
   }
 }

@@ -16,23 +16,28 @@ export class EditMoneyControllerDialogComponent {
   public moneyTypes: any[] = [
     {
       label: 'Rame',
-      value: 'MR'
+      value: 'MR',
+      next: 'MA'
     },
     {
       label: 'Argento',
-      value: 'MA'
+      value: 'MA',
+      next: 'ME'
     },
     {
       label: 'Electrum',
-      value: 'ME'
+      value: 'ME',
+      next: 'MO'
     },
     {
       label: 'Oro',
-      value: 'MO'
+      value: 'MO',
+      next: 'MP'
     },
     {
       label: 'Platino',
-      value: 'MP'
+      value: 'MP',
+      next: null
     }
   ];
 
@@ -76,58 +81,124 @@ export class EditMoneyControllerDialogComponent {
     });
   }
 
+  public startingMoney: any = { ...this.data.denaro };
+  public warningMessage: boolean = false;
+  // public subtractMoney(): void {
+  //   const operations = this.getOperationsFromForm();
+  //   // const startingMoney = { ...this.data.denaro };
+  //   console.log(operations);
+
+  //   let i = 0;
+  //   while(operations.length > 0) {
+  //     this.warningMessage = false;
+  //     if (operations[i].type === 'MP' && operations[i].amount > this.data.denaro.MP) {
+  //       this.warningMessage = true;
+  //       this.data.denaro = { ...this.startingMoney };
+  //       break;
+  //     }
+  //     if (operations[i].amount <= this.data.denaro[operations[i].type]) {
+  //       this.data.denaro[operations[i].type] -= operations[i].amount;
+  //       operations.splice(i, 1);
+  //     } else {
+  //       const currentType = operations[i].type;
+  //       const nextType = this.moneyTypes.find(moneyType => moneyType.value === currentType).next;
+  //       this.recursiveOneUnitConversion(nextType, currentType);
+  //       console.log(currentType, nextType);
+        
+  //       // operations.splice(i, 1);
+  //     }
+  //   }
+  //   // FINE
+  //   this.resetForm();
+  // }
+
   public subtractMoney(): void {
-    const denominations = ['MP', 'MO', 'ME', 'MA', 'MR']; // Ordine dei tagli di monete da Platino a Rame
-
-    let remainingAmount = 0;
-    const amount: { [key: string]: number } = {};
-
-    // Calcoliamo il valore totale richiesto
-    for (const denomination of denominations) {
-        amount[denomination] = this.form.get(denomination).value;
-        remainingAmount += amount[denomination] * this.converter_dict[denomination];
-    }
-
+    const operations = this.getOperationsFromForm();
+    const startingMoney = { ...this.data.denaro };
+    // console.log(operations);
+  
     let i = 0;
-
-    while (remainingAmount > 0 && i < denominations.length) {
-        const currentDenomination = denominations[i];
-
-        // Calcoliamo il valore attuale del taglio
-        const currentValue = amount[currentDenomination] * this.converter_dict[currentDenomination];
-
-        // Se ci sono monete da sottrarre
-        if (currentValue > 0) {
-            // Calcoliamo l'importo massimo che possiamo sottrarre da questo taglio senza eccedere il valore rimanente
-            const coinsToSubtract = Math.min(Math.floor(remainingAmount / this.converter_dict[currentDenomination]), amount[currentDenomination]);
-
-            // Sottrai le monete
-            amount[currentDenomination] -= coinsToSubtract;
-            remainingAmount -= coinsToSubtract * this.converter_dict[currentDenomination];
-        }
-
-        // Se il valore rimanente è ancora positivo, andiamo al taglio successivo
-        if (remainingAmount > 0) {
-            i++;
-        }
+    while (operations.length > 0 && !this.warningMessage) {
+      this.warningMessage = false;
+      if (operations[i].type === 'MP' && operations[i].amount > this.data.denaro.MP) {
+        this.warningMessage = true;
+        this.data.denaro = { ...startingMoney };
+        break;
+      }
+      if (operations[i].amount <= this.data.denaro[operations[i].type]) {
+        this.data.denaro[operations[i].type] -= operations[i].amount;
+        operations.splice(i, 1);
+      } else {
+        const currentType = operations[i].type;
+        const nextType = this.moneyTypes.find(moneyType => moneyType.value === currentType).next;
+        this.recursiveOneUnitConversion(nextType, currentType);
+        // console.log(currentType, nextType);
+        // Verifica nuovamente se il flag di avvertimento è stato impostato
+        // if (this.warningMessage) {
+        //   operations.splice(i, 1);
+        // }
+      }
     }
+    // FINE
+    this.charService.updateMoney(this.data.charId, this.data.denaro);
+    this.resetForm();
+  }
+  
 
-    // Se alla fine il valore rimanente è ancora positivo, significa che non ci sono abbastanza monete nel borsello
-    if (remainingAmount > 0) {
-        console.log("Non ci sono abbastanza monete nel borsello.");
+  private getOperationsFromForm(): { type: string, amount: number }[] {
+    const operations: { type: string, amount: number }[] = [];
+  
+    for (const moneyType of this.moneyTypes) {
+      const value = this.form.get(moneyType.value)?.value;
+      if (value > 0) {
+        operations.push({ type: moneyType.value, amount: value });
+      }
+    }
+    return operations;
+  }
+  
+
+  private recursiveOneUnitConversion(next: string, current: string): void {
+    if (this.data.denaro[next] >= 1) {
+      this.data.denaro[next] -= 1;
+      this.data.denaro[current] += this.conversionRates[next][current];
     } else {
-        // Aggiorniamo i valori nel FormGroup
-        for (const denomination of denominations) {
-            this.form.get(denomination).setValue(amount[denomination]);
-        }
+      const nextType = this.moneyTypes.find(moneyType => moneyType.value === next).next;
+      if (nextType) {
+        this.recursiveOneUnitConversion(nextType, next);
+        this.data.denaro[next] -= 1;
+        this.data.denaro[current] += this.conversionRates[next][current];
+      } else {
+        // Non ci sono abbastanza valori disponibili nella valuta di destinazione
+        // Imposta il flag di avvertimento a true
+        this.warningMessage = true;
+        // Reimposta il denaro allo stato iniziale
+        this.data.denaro = { ...this.startingMoney };
+        this.resetForm();
+      }
     }
-}
+  }
+  
 
+  // private recursiveOneUnitConversion(next: string, current: string): void {
+  //   if (this.data.denaro[next] > 0) {
+  //     this.data.denaro[next] -= 1;
+  //     this.data.denaro[current] += this.conversionRates[next][current];
+  //   } else {
+  //     const nextType = this.moneyTypes.find(moneyType => moneyType.value === next).next;
+  //     this.recursiveOneUnitConversion(nextType, next);
+  //     this.data.denaro[next] -= 1;
+  //     this.data.denaro[current] += this.conversionRates[next][current];
+  //   }
+  // }
 
-
-
-
-
+  public conversionRates: { [from: string]: { [to: string]: number } } = {
+    "MR": { "MA": 0.1, "ME": 0.02, "MO": 0.01, "MP": 0.001 },
+    "MA": { "MR": 10, "ME": 0.5, "MO": 0.2, "MP": 0.01 },
+    "ME": { "MR": 50, "MA": 5, "MO": 0.1, "MP": 0.05 },
+    "MO": { "MR": 100, "MA": 10, "ME": 2, "MP": 0.1 },
+    "MP": { "MR": 1000, "MA": 100, "ME": 20, "MO": 10 }
+  };
 
   public invert() {
     const fromValue = this.convertForm.get('from').value;
@@ -159,6 +230,31 @@ export class EditMoneyControllerDialogComponent {
 
     this.data.denaro[this.convertForm.get('from').value] = Math.floor(remainder / rateFrom); // Aggiorniamo il valore della valuta di partenza con il resto convertito nella valuta di partenza
     this.data.denaro[this.convertForm.get('to').value] += result;
+
+    this.convertForm.reset();
+    this.charService.updateMoney(this.data.charId, this.data.denaro).then(() => {
+      this.convertForm.reset();
+    });
+  }
+
+  public convertAllToGold(): void {
+    const operations = Object.keys(this.data.denaro).map(key => {
+      return {
+        type: key,
+        amount: this.data.denaro[key]
+      };
+    });
+    console.log(operations);
+    
+    operations.forEach(operation => {
+      if (operation.amount === 0 || operation.type === 'MO') return;
+      this.convertForm.patchValue({
+        from: operation.type,
+        to: 'MO'
+      });
+      this.convertMoney();
+    });
+    // this.charService.updateMoney(this.data.charId, this.data.denaro);
   }
 
   public closeDialog(): void {
