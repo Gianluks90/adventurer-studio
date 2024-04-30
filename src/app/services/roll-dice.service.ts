@@ -10,7 +10,7 @@ import { CharacterService } from './character.service';
 export class RollDiceService {
 
   // public diceTheme: string = "dddice-black";
-  public diceTheme: string = "dungeonscompanion2023-enemy-lp882vo8";
+  public diceTheme: string = "dddice-bees";
 
   constructor(private dddice: DddiceService, private notification: NotificationService, private charService: CharacterService) {
     this.charService.getRollTheme().then((theme) => {

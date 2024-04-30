@@ -1,0 +1,89 @@
+<div mat-dialog-title class="dialog-title">Gestisci Equipaggiamento</div>
+<div mat-dialog-content class="dialog-content">
+    <div as-description-text>Seleziona l'equipaggiamento che intendi usare, una volta confermata la scelta poi verranno
+        ricalcolati i parametri di CA e Danni della tua scheda. Premi <strong>Riassegna tutto</strong> per svuotare dai
+        campi ogni scelta precedente.</div>
+    <div class="buttons-container">
+        <button as-btn color="accent" (click)="resetForm()">
+            <div class="material-symbols-outlined">restart_alt</div>
+            <div>Riassegna tutto</div>
+        </button>
+    </div>
+    <div as-section-title>Armatura e altro</div>
+    <form [formGroup]="form" class="form-container">
+        <div class="line-container">
+            <mat-form-field color="accent" appearance="outline" class="line-input">
+                <mat-label>Armatura</mat-label>
+                <mat-select formControlName="armor">
+                    <mat-option *ngFor="let a of armorsSelection" [value]="a">{{a.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field color="accent" appearance="outline" class="line-input">
+                <mat-label>Altri</mat-label>
+                <mat-select formControlName="others" multiple>
+                    <mat-option *ngFor="let o of othersSelection" [value]="o">{{o.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div as-section-title>Set di armi</div>
+        <div as-description-text [style]="'margin-top: 0px'">
+            Scegli quali <strong>armi</strong> sta impugnando il tuo Personaggio tra quelle che hai a disposizione.
+            Inoltre, puoi creare più di un <strong>set</strong> e
+            alternarli con il tasto dedicato nella scheda. Se non inserisci alcun set si suppone che il tuo Personaggio
+            combatta a mani nude (1 danno contundente).
+        </div>
+        <ng-container formArrayName="sets">
+            <ng-container class="set-container" *ngFor="let s of sets.controls; let i = index">
+                <div [formGroupName]="i" class="set-container">
+                    <div class="line-container set-line">
+                        <mat-form-field color="accent" appearance="outline" class="line-input">
+                            <mat-label>Nome set</mat-label>
+                            <input matInput type="text" formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="outline" class="line-input">
+                            <mat-label>Mano principale</mat-label>
+                            <mat-select formControlName="mainHand">
+                                <mat-option *ngFor="let m of mainHandSelection" [value]="m">{{m.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field color="accent" appearance="outline" class="line-input">
+                            <mat-label>Mano secondaria</mat-label>
+                            <mat-select formControlName="offHand">
+                                <mat-option *ngFor="let o of offHandSelection" [value]="o">{{o.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- <button as-mini-circle-btn (click)="removeSet(i)">
+                            <div class="material-symbols-outlined">close</div>
+                        </button> -->
+                    </div>
+                    <div class="checkbox-container">
+                        <mat-checkbox formControlName="dualWield" color="accent">Combattere con due armi</mat-checkbox>
+                        <mat-checkbox formControlName="versatile" color="accent">Arma versatile</mat-checkbox>
+                    </div>
+                    <div class="buttons-container">
+                        <button as-btn color="accent" (click)="removeSet(i)">
+                            <div class="material-symbols-outlined">delete</div>
+                            <div>Rimuovi</div>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+        <div class="buttons-container new-set-button">
+            <button as-btn color="accent" (click)="addSet()">
+                <div class="material-symbols-outlined">add</div>
+                <div>Nuovo set</div>
+            </button>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end" class="buttons-container">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">done</div>
+        <div>Conferma</div>
+    </button>
+</div>

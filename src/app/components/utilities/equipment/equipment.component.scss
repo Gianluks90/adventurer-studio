@@ -1,0 +1,90 @@
+.parameter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    margin-bottom: 4px;
+}
+
+.grid-item {
+    font-size: large;
+    font-weight: 500;
+    background-color: whitesmoke;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.parameter-label {
+    font-weight: 400;
+    font-size: small;
+}
+
+.speed-title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.speed-container {
+    display: flex;
+    gap: 4px;
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.equip-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.equip-card {
+    width: calc(100% - 6px);
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.tooltip {
+    position: fixed;
+    background-color: #fff;
+    // border: 1px solid #ccc;
+    // padding: 12px;
+    z-index: 4000;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+    width: 280px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    animation: slideIn 0.3s forwards;
+    // box-sizing: border-box;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        // transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.no-equip {
+    margin-bottom: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    .equip-container {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+}

@@ -93,7 +93,7 @@ export class TrucchettiIncantesimiTabViewComponent {
       switch (result.status) {
         case 'success':
           this.characterService.addSpell(window.location.href.split('/').pop(), result.spell).then(() => {
-            this.lista.push(result.spell);
+            // this.lista.push(result.spell);
             this.sortSpells();
           });
           break;

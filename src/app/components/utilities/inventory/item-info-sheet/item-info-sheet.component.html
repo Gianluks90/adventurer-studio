@@ -3,8 +3,10 @@
     <div class="item-type">{{data.item.category}}, {{data.item.rarity}}<span *ngIf="data.item.magicItem">, magico</span></div>
     @if (data.item.damageFormula !== '') {
         <div class="damage-container">
-            <div class="damage-formula">{{calcolaMinMax(data.item.damageFormula).minimo}}-{{calcolaMinMax(data.item.damageFormula).massimo}} danni ({{data.item.damageFormula}})</div>
-            <div class="damage-type">{{data.item.damageType}}</div>
+            <div class="damage-formula"></div>
+            <div class="damage-formula">{{calcolaMinMax(data.item.damageFormula, data.item.extraDamages).minimo}}-{{calcolaMinMax(data.item.damageFormula, data.item.extraDamages).massimo}} danni</div>
+            <!-- <div class="damage-formula">{{calcolaMinMax(data.item.damageFormula).minimo}}</div> -->
+            <div class="damage-type">{{getDamagesString(data.item, data.item.damageFormula)}}</div>
         </div>
     }
     <div class="arcane-focus-label" *ngIf="data.item.focus">
@@ -20,7 +22,7 @@
     <div class="category-label">Proprietà arma</div>
     @for (prop of data.item.weaponProperties; track $index) {
     <div class="property-label">{{prop.name}} <span *ngIf="prop.name === 'lancio' || prop.name === 'gittata'">
-            ({{data.item.range}})</span> <span *ngIf="prop.name === 'versatile'"> ({{calcolaMinMax(data.item.versatileDice).minimo}}-{{calcolaMinMax(data.item.versatileDice).massimo}} danni, {{data.item.versatileDice}})</span>
+            ({{data.item.range}})</span> <span *ngIf="prop.name === 'versatile'"> ({{calcolaMinMax(data.item.versatileDice).minimo}}-{{calcolaMinMax(data.item.versatileDice).massimo}} danni base, {{data.item.versatileDice}})</span>
     </div>
     <div class="property-description">{{prop.description}}</div>
     }
@@ -72,9 +74,9 @@
     <img src="./assets/icons/single-use.svg">
 </button>
 }
-@if (!isCampaign && (data.item.CA > 0 || data.item.shield)) {
+<!-- @if (!isCampaign && (data.item.CA > 0 || data.item.shield)) {
 <button mat-icon-button class="single-use-button" (click)="equipItemToggle()" matTooltip="Equipaggia"
     matTooltipPosition="above">
     <img src="./assets/icons/equip.svg">
 </button>
-}
+} -->

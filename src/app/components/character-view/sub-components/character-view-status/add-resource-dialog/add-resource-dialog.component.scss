@@ -40,3 +40,10 @@
     gap: 8px;
     width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+    .line-container {
+        flex-direction: column;
+        gap: 4px;
+    }
+}

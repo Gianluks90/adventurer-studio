@@ -255,6 +255,11 @@ button[as-btn][disabled] {
   }
 }
 
+button[as-btn-warn] {
+  background-color: crimson;
+  color: whitesmoke;
+}
+
 // Dettaglio espandibile con icona personalizzata e contenuto ristretto.
 details[open] {
   border: 1px solid #212121;
@@ -378,11 +383,11 @@ span[as-slider] {
 span[as-slider]:before {
   position: absolute;
   content: "";
-  height: 1em;
-  width: 1em;
+  height: 0.9em;
+  width: 0.9em;
   border-radius: 20px;
-  left: 0.1em;
-  bottom: 0.1em;
+  left: 0.15em;
+  bottom: 0.15em;
   background-color: #b3b3b3;
   transition: .4s;
 }
@@ -400,7 +405,7 @@ input:focus+span[as-slider] {
 }
 
 input:checked+span[as-slider]:before {
-  transform: translateX(0.8em);
+  transform: translateX(0.75em);
 }
 
 input[disabled]+span[as-slider] {

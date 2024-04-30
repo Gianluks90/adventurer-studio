@@ -108,17 +108,20 @@
     <div class="pf-line">
         <app-health-bar class="health-bar-component" [char]="characterData" [editMode]="editModeData"></app-health-bar>
     </div>
-    <div class="parameter-grid">
-        <div class="grid-item"><span>CA</span> {{characterData.CA}} {{characterData.CAShield}}</div>
-        <!-- <div class="grid-item"><span>Danni (arma)</span> 2-8</div> -->
-        <div class="grid-item" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro di Iniziativa', characterData.iniziativa)"><span>Iniziativa</span>
-            {{characterData.iniziativa > 0 ? '+' + characterData.iniziativa : characterData.iniziativa}}</div>
-        <div class="grid-item speed-title">
-            <span>Velocità (spazi)</span> <div class="speed-container">
-                {{characterData.velocita/1.5}}<span
-                class="meter-value">({{characterData.velocita}}m)</span>
-            </div>
+    <div class="equip-parameter-container">
+        <app-equipment [character]="characterData" [editMode]="editModeData"></app-equipment>
+        <div class="parameter-grid">
+            <!-- <div class="grid-item"><span>CA</span> {{characterData.CA}} {{characterData.CAShield}}</div> -->
+            <!-- <div class="grid-item"><span>Danni (arma)</span> 2-8</div> -->
+            <!-- <div class="grid-item" [ngClass]="{'dice-rolls': diceService.roomConnected}"
+                (click)="rollDice('Tiro di Iniziativa', characterData.iniziativa)"><span>Iniziativa</span>
+                {{characterData.iniziativa > 0 ? '+' + characterData.iniziativa : characterData.iniziativa}}</div> -->
+            <!-- <div class="grid-item speed-title">
+                <span>Velocità (spazi)</span> <div class="speed-container">
+                    {{characterData.velocita/1.5}}<span
+                    class="meter-value">({{characterData.velocita}}m)</span>
+                </div>
+            </div> -->
         </div>
     </div>
 </div>

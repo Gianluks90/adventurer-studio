@@ -7,7 +7,7 @@
 
   <div class="authentication-container">
     <button mat-raised-button color="accent" (click)="getActivationCode()"
-      *ngIf="firebaseService.user.value.dddiceToken === '' && activationCode === '' && !dddice.authenticated.value">
+      *ngIf="firebaseService.user.value.dddiceToken === undefined && activationCode === '' && !dddice.authenticated.value">
       <mat-icon>vpn_key</mat-icon> Ottieni codice
     </button>
     <div class="inner-container" *ngIf="activationCode !== ''">

@@ -97,6 +97,8 @@ import { MoneyControllerComponent } from './components/utilities/money-controlle
 import { EditMoneyControllerDialogComponent } from './components/utilities/money-controller/edit-money-controller-dialog/edit-money-controller-dialog.component';
 import { AddResourceDialogComponent } from './components/character-view/sub-components/character-view-status/add-resource-dialog/add-resource-dialog.component';
 import { ItemTooltipComponent } from './components/utilities/item-tooltip/item-tooltip.component';
+import { EquipmentComponent } from './components/utilities/equipment/equipment.component';
+import { ManageEquipDialogComponent } from './components/utilities/equipment/manage-equip-dialog/manage-equip-dialog.component';
 
 @NgModule({
   declarations: [
@@ -208,6 +210,8 @@ import { ItemTooltipComponent } from './components/utilities/item-tooltip/item-t
     EditMoneyControllerDialogComponent,
     AddResourceDialogComponent,
     ItemTooltipComponent,
+    EquipmentComponent,
+    ManageEquipDialogComponent,
 
   ],
   imports: [

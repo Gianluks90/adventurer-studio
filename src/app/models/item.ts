@@ -24,6 +24,7 @@ export class Item {
     stealthDisadvantage: boolean = false;
     damageFormula: string = '';
     damageType: string = '';
+    extraDamages: Damage[] = [];
     weaponProperties: any[] = [];
     range: string = '';
     versatileDice: string = '';
@@ -70,6 +71,7 @@ export class Item {
             stealthDisadvantage: false,
             damageFormula: '',
             damageType: '',
+            extraDamages: builder.array([]),
             weaponProperties: [],
             range: '',
             versatileDice: '',
@@ -90,6 +92,18 @@ export class Trait {
             description: ['', Validators.required],
         }
 
+    }
+}
+
+export class Damage {
+    formula: string;
+    type: string;
+
+    static create(builder: FormBuilder) {
+        return {
+            formula: ['', Validators.required],
+            type: ['', Validators.required],
+        }
     }
 }
 

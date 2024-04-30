@@ -27,6 +27,7 @@
         {{getPropsString(itemData)}}</div>
 </div>
 <div class="tooltip-footer">
-    <div class="tooltip-quantity">Quantità: {{itemData.quantity}}</div>
+    <div class="tooltip-quantity" *ngIf="itemData.quantity > 0">Quantità: {{itemData.quantity}}</div>
+    <div class="tooltip-quantity" *ngIf="itemData.quantity <= 0">Esaurito</div>
     <div class="tooltip-weight">Peso: {{itemData.weight}} kg</div>
 </div>

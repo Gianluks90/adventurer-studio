@@ -19,6 +19,7 @@ export class FormModel {
       denaro: FormModel.denaro(builder),
       // equipaggiamento: ['', Validators.required],
       equipaggiamento: builder.array([]),
+      sets: builder.array([]),
       privilegiTratti: builder.array([]),
       caratteristicheFisiche: FormModel.caratteristicheFisiche(builder),
       // urlImmaginePersonaggio: '',

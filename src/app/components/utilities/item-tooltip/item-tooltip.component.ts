@@ -12,7 +12,7 @@ export class ItemTooltipComponent {
   @Input() set item(item: Item) {
     this.itemData = item;
   }
-
+  
   public getDamagesString(item: Item, formula: string): string {
     if (!formula || formula === '') return '';
     const termini = formula.replace(/\s/g, '').split('+');
@@ -31,8 +31,33 @@ export class ItemTooltipComponent {
       }
     });
 
-    if (minimo === massimo) return `${minimo} danno/i (${item.damageType})`;
-    return `${minimo}-${massimo}` + ' danni (' + item.damageType + ')';
+    let extraString = '';
+    if(item.extraDamages.length > 0) {
+      item.extraDamages.forEach((extraDamage) => {
+        let extraMin = 0;
+        let extraMax = 0;
+        const extraTermini = extraDamage.formula.replace(/\s/g, '').split('+');
+        extraTermini.forEach(termine => {
+          if (termine.includes('d')) {
+            const [numDadi, numFacce] = termine.split('d').map(Number);
+            extraMin += numDadi;
+            extraMax += numDadi * numFacce;
+          } else {
+            const costante = parseInt(termine);
+            extraMin += costante;
+            extraMax += costante;
+          }
+        });
+        if (extraMin === extraMax) extraString += `${extraMin} ${extraDamage.type}, `;
+        else extraString += `${extraMin}-${extraMax} ${extraDamage.type}, `;
+      });
+    }
+    
+    extraString = extraString.slice(0, -2);
+    return `${minimo}-${massimo} ${item.damageType}` + (item.extraDamages.length > 0 ? ' + ' + extraString : '');
+
+    // if (minimo === massimo) return `${minimo} danno/i (${item.damageType})`;
+    // return `${minimo}-${massimo}` + ' danni (' + item.damageType + ')';
   }
 
   public getPropsString(item: Item): string {

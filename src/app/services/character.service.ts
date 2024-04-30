@@ -208,6 +208,13 @@ export class CharacterService {
     }, { merge: true });
   }
 
+  public async updateSets(id: string, sets: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      sets: sets
+    }, { merge: true });
+  }
+
   public async addSpell(id: string, form: FormGroup): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {

@@ -2,7 +2,7 @@ import { Platform } from '@angular/cdk/platform';
 import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
-import { Item } from 'src/app/models/item';
+import { Damage, Item } from 'src/app/models/item';
 import { AddItemDialogComponent } from '../add-item-dialog/add-item-dialog.component';
 
 @Component({
@@ -15,18 +15,18 @@ export class ItemInfoSheetComponent {
   public maxMinDamage: string;
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean }, 
-    private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>, 
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean },
+    private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>,
     private dialog: MatDialog) {
     this.isCampaign = window.location.href.includes('campaign-view');
   }
 
   ngOnInit() {
     if (this.data.item.damageFormula && this.data.item.damageFormula !== '') {
-      this.maxMinDamage = this.calcolaMinMax(this.data.item.damageFormula).minimo + ' - ' + this.calcolaMinMax(this.data.item.damageFormula).massimo;
+      this.maxMinDamage = this.calcolaMinMax(this.data.item.damageFormula, this.data.item.extraDamages.length > 0 ? this.data.item.extraDamages : []).minimo + ' - ' + this.calcolaMinMax(this.data.item.damageFormula, this.data.item.extraDamages.length > 0 ? this.data.item.extraDamages : []).massimo;
     }
     console.log(this.data.item);
-    
+
   }
 
   public isCampaign: boolean = false;
@@ -42,14 +42,14 @@ export class ItemInfoSheetComponent {
         this.sheetRef.dismiss({ status: 'edited', item: result.item });
       }
       if (result.status === 'deleted') {
-        this.sheetRef.dismiss({ status: 'deleted', item: result.item });       
+        this.sheetRef.dismiss({ status: 'deleted', item: result.item });
       }
     })
   }
 
   public reclameItem(item: Item, quantity: number) {
     this.sheetRef.dismiss({ status: 'reclamed', item: item, quantity: quantity });
-  } 
+  }
 
   public consumeSingleItem() {
     this.sheetRef.dismiss({ status: 'consumed', quantity: 1 });
@@ -59,32 +59,101 @@ export class ItemInfoSheetComponent {
     this.sheetRef.dismiss({ status: 'equipped' });
   }
 
-  public calcolaMinMax(formula) {
+  public calcolaMinMax(formula, extraDamages?: Damage[]) {
     if (!formula) {
       return { minimo: 'error', massimo: 'error' };
     }
     // Rimuovi gli spazi bianchi e separa la formula in termini
     const termini = formula.replace(/\s/g, '').split('+');
-    
+
     let minimo = 0;
     let massimo = 0;
 
     // Calcola il minimo e il massimo per ogni termine
     termini.forEach(termine => {
-        if (termine.includes('d')) {
-            // Se il termine contiene 'd', è un termine dei dadi
-            const [numDadi, numFacce] = termine.split('d').map(Number);
-            minimo += numDadi;
-            massimo += numDadi * numFacce;
-        } else {
-            // Altrimenti, è un termine costante
-            const costante = parseInt(termine);
-            minimo += costante;
-            massimo += costante;
-        }
+      if (termine.includes('d')) {
+        // Se il termine contiene 'd', è un termine dei dadi
+        const [numDadi, numFacce] = termine.split('d').map(Number);
+        minimo += numDadi;
+        massimo += numDadi * numFacce;
+      } else {
+        // Altrimenti, è un termine costante
+        const costante = parseInt(termine);
+        minimo += costante;
+        massimo += costante;
+      }
     });
 
+    // Calcola il danno aggiuntivo, se presente
+    if (extraDamages && extraDamages.length > 0) {
+      extraDamages.forEach((extraDamage) => {
+        let extraMin = 0;
+        let extraMax = 0;
+        const extraTermini = extraDamage.formula.replace(/\s/g, '').split('+');
+        extraTermini.forEach(termine => {
+          if (termine.includes('d')) {
+            const [numDadi, numFacce] = termine.split('d').map(Number);
+            extraMin += numDadi;
+            extraMax += numDadi * numFacce;
+          } else {
+            const costante = parseInt(termine);
+            extraMin += costante;
+            extraMax += costante;
+          }
+        });
+        minimo += extraMin;
+        massimo += extraMax;
+      });
+    }
+
     return { minimo, massimo };
-}
+  }
+
+  public getDamagesString(item: Item, formula: string): string {
+    if (!formula || formula === '') return '';
+    const termini = formula.replace(/\s/g, '').split('+');
+
+    let minimo = 0;
+    let massimo = 0;
+    termini.forEach(termine => {
+      if (termine.includes('d')) {
+        const [numDadi, numFacce] = termine.split('d').map(Number);
+        minimo += numDadi;
+        massimo += numDadi * numFacce;
+      } else {
+        const costante = parseInt(termine);
+        minimo += costante;
+        massimo += costante;
+      }
+    });
+
+    let extraString = '';
+    if(item.extraDamages.length > 0) {
+      item.extraDamages.forEach((extraDamage) => {
+        let extraMin = 0;
+        let extraMax = 0;
+        const extraTermini = extraDamage.formula.replace(/\s/g, '').split('+');
+        extraTermini.forEach(termine => {
+          if (termine.includes('d')) {
+            const [numDadi, numFacce] = termine.split('d').map(Number);
+            extraMin += numDadi;
+            extraMax += numDadi * numFacce;
+          } else {
+            const costante = parseInt(termine);
+            extraMin += costante;
+            extraMax += costante;
+          }
+        });
+        if (extraMin === extraMax) extraString += `${extraMin} ${extraDamage.type}, `;
+        else extraString += `${extraMin}-${extraMax} ${extraDamage.type} + `;
+      });
+    }
+    
+    extraString = extraString.slice(0, -2);
+    return `${minimo}-${massimo} ${item.damageType}` + (item.extraDamages.length > 0 ? ' + ' + extraString : '');
+
+    // if (minimo === massimo) return `${minimo} danno/i (${item.damageType})`;
+    // return `${minimo}-${massimo}` + ' danni (' + item.damageType + ')';
+  }
 
 }
