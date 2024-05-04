@@ -193,6 +193,24 @@ progress::-webkit-progress-value {
   font-size: 1.2rem;
 }
 
+div[as-buttons-container] {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  div[as-buttons-container] {
+    flex-direction: column;
+    align-items: center;
+
+    &>button {
+      width: 100%;
+    }
+  }
+}
+
 // Piccolo bottone rotondo, occupa pochissimo spazio. Da usare con una mat-icon come font.
 button[as-mini-circle-btn] {
   border: none;

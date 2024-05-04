@@ -18,7 +18,7 @@
         @for (i of wearedItems; track $index) {
             <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}"
             (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
-            <app-item-tooltip id="item-tooltip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem" class="tooltip" [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
+            <app-item-tooltip id="item-tooltip-equip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem" class="tooltip" [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
         }
     </div>
     } @else {

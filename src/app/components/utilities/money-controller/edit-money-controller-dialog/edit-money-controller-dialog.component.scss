@@ -52,3 +52,15 @@
 .gold-coin {
     width: 12px;
 }
+
+@media screen and (max-width: 768px) {
+    .money-line {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+        
+        &>mat-form-field {
+            width: 100%;
+        }
+    }
+}

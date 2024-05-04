@@ -126,7 +126,13 @@ export class EquipmentComponent {
         shieldBonus += `+${item.CA}`;
       } else {
         // Altrimenti, se è un'armatura, aggiorna il valore base della CA
-        baseCA = item.CA;
+        if (item.plusDexterity) {
+          const dexModifier = Math.floor((this.charData.caratteristiche.destrezza - 10) / 2);
+          baseCA = item.CA + dexModifier;
+        } else {
+          baseCA = item.CA;
+        }
+        // baseCA = item.CA;
       }
     });
 
@@ -276,10 +282,11 @@ export class EquipmentComponent {
   public tooltipPosition: { top: number | string, left: number | string } = { top: 0, left: 0 };
 
   public showTooltip(event: MouseEvent, item: any) {
+    if (window.innerWidth < 768) return;
     this.currentTooltipItem = item;
     this.showItemTooltip = true;
     setTimeout(() => {
-      const tooltip = document.getElementById('item-tooltip') as HTMLElement;
+      const tooltip = document.getElementById('item-tooltip-equip') as HTMLElement;
       if (!tooltip) return;
       const rect = tooltip.getBoundingClientRect();
       if (event.clientY + rect.height > window.innerHeight) {

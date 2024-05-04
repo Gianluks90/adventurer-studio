@@ -86,5 +86,9 @@
     .equip-container {
         grid-template-columns: repeat(6, 1fr);
     }
+
+    .parameter-grid {
+        grid-template-columns: 1fr;
+    }
     
 }

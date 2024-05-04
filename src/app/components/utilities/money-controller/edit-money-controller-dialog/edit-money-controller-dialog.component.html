@@ -27,7 +27,7 @@
                 <input matInput type="number" formControlName="MP" min="0">
             </mat-form-field>
         </div>
-        <div class="buttons-container">
+        <div as-buttons-container>
             <button as-btn (click)="addMoney()" [disabled]="!form.dirty">
                 <div class="material-symbols-outlined">add</div> <div>Aggiungi</div>
             </button>
@@ -68,7 +68,7 @@
             </mat-form-field>
         </div>
     </form>
-    <div class="buttons-container advanced-buttons-container">
+    <div as-buttons-container class="advanced-buttons-container">
         <!-- <button mat-raised-button color="accent" [disabled]="!convertForm.valid" (click)="convertMoney()">
             <mat-icon>toll</mat-icon> Converti
         </button> -->

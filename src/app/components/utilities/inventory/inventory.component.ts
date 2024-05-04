@@ -185,6 +185,7 @@ export class InventoryComponent {
   public tooltipPosition: { top: number | string, left: number | string } = { top: 0, left: 0 };
 
   public showTooltip(event: MouseEvent, item: any) {
+    if (window.innerWidth < 768) return;
     this.currentTooltipItem = item;
     this.showItemTooltip = true;
     setTimeout(() => {
