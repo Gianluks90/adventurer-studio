@@ -41,6 +41,15 @@
                             <input matInput type="text" formControlName="name">
                         </mat-form-field>
                         <mat-form-field color="accent" appearance="outline" class="line-input">
+                            <mat-label>Caratteristica</mat-label>
+                            <mat-select formControlName="skill">
+                                <mat-option value="forza">Forza</mat-option>
+                                <mat-option value="destrezza">Destrezza</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="line-container set-line">
+                        <mat-form-field color="accent" appearance="outline" class="line-input">
                             <mat-label>Mano principale</mat-label>
                             <mat-select formControlName="mainHand">
                                 <mat-option *ngFor="let m of mainHandSelection" [value]="m">{{m.name}}</mat-option>
@@ -57,8 +66,8 @@
                         </button> -->
                     </div>
                     <div class="checkbox-container">
-                        <!-- <mat-checkbox formControlName="dualWield" color="accent">Combattere con due armi</mat-checkbox> -->
-                        <mat-checkbox formControlName="versatile" color="accent">Arma versatile</mat-checkbox>
+                        <mat-checkbox formControlName="dualWield" color="accent">Combattere con due armi</mat-checkbox>
+                        <mat-checkbox formControlName="versatile" color="accent">Versatile (a due mani)</mat-checkbox>
                     </div>
                     <div class="buttons-container">
                         <button as-btn color="accent" (click)="removeSet(i)">

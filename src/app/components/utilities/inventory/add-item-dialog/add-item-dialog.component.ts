@@ -20,7 +20,7 @@ export class AddItemDialogComponent {
   public artifactProperties: FormArray;
   public isCampaign: boolean = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {inventory: Item[], item?: Item}, private dialogRef: MatDialogRef<AddItemDialogComponent>, private fb: FormBuilder, private httpClient: HttpClient){
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { inventory: Item[], item?: Item }, private dialogRef: MatDialogRef<AddItemDialogComponent>, private fb: FormBuilder, private httpClient: HttpClient) {
     this.traits = this.fb.array([]);
     this.extraDamages = this.fb.array([]);
     this.artifactProperties = this.fb.array([]);
@@ -29,8 +29,8 @@ export class AddItemDialogComponent {
 
   public rangeRequired: boolean = false;
   public versatileDiceRequired: boolean = false;
-  
-  ngOnInit(){
+
+  ngOnInit() {
     this.httpClient.get('./assets/settings/selectIcons.json').subscribe((data: any[]) => {
       this.selectIcons = data;
     });
@@ -58,13 +58,26 @@ export class AddItemDialogComponent {
       });
     }
 
+    this.rangeRequired = false;
+    this.versatileDiceRequired = false;
+    if (this.form.get('weaponProperties').value) {
+      this.form.get('weaponProperties').value.forEach((prop: any) => {
+        if (prop.name.toLowerCase() === 'lancio' || prop.name.toLowerCase() === 'gittata') {
+          this.rangeRequired = true;
+        }
+        if (prop.name === 'versatile') {
+          this.versatileDiceRequired = true;
+        }
+      });
+    }
+
     this.form.get('weaponProperties').valueChanges.subscribe((value: any) => {
       let rangeValidator: ValidatorFn | null = null;
       let versatileDiceValidator: ValidatorFn | null = null;
 
       this.rangeRequired = false;
       this.versatileDiceRequired = false;
-    
+
       value.forEach((prop: any) => {
         if (prop.name.toLowerCase() === 'lancio' || prop.name.toLowerCase() === 'gittata') {
           rangeValidator = Validators.required;
@@ -75,13 +88,13 @@ export class AddItemDialogComponent {
           this.versatileDiceRequired = true;
         }
       });
-    
+
       this.form.get('range').setValidators(rangeValidator);
       this.form.get('versatileDice').setValidators(versatileDiceValidator);
       this.form.get('range').updateValueAndValidity();
       this.form.get('versatileDice').updateValueAndValidity();
     });
-    
+
   }
 
   confirm() {
@@ -95,7 +108,7 @@ export class AddItemDialogComponent {
         status: 'success',
         item: this.form.value
       })
-    }    
+    }
   }
 
   public showDeleteButton: boolean = false;

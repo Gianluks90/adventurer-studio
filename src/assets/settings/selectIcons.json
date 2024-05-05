@@ -252,6 +252,10 @@
         "link": "./assets/selectIcons/cibo_12.svg"
     },
     {
+        "name": "Collezionabile",
+        "link": "./assets/selectIcons/collezionabile.svg"
+    },
+    {
         "name": "Corda",
         "link": "./assets/selectIcons/corda.svg"
     },

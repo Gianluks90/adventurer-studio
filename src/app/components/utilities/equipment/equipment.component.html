@@ -31,9 +31,9 @@
         @if (setsData[setIndex].mainHand && setsData[setIndex].mainHand.name !== '') {
         <div class="grid-item"><span class="parameter-label">Danni ({{setsData[setIndex].name}})</span> 
             {{ 
-                (setsData[setIndex].versatile ? getDamagesString(setsData[setIndex].mainHand.versatileDice, setsData[setIndex].mainHand.extraDamages) : 
-                    (setsData[setIndex].dualWield ? getDamagesString(setsData[setIndex].mainHand.damageFormula + '+' + setsData[setIndex].offHand.damageFormula) :
-                        (getDamagesString(setsData[setIndex].mainHand.damageFormula, setsData[setIndex].mainHand.extraDamages) || '1')
+                (setsData[setIndex].versatile ? getDamagesString(setsData[setIndex].mainHand.versatileDice, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) : 
+                    (setsData[setIndex].dualWield ? getDamagesString(setsData[setIndex].mainHand.damageFormula + '+' + setsData[setIndex].offHand.damageFormula, setsData[setIndex].skill) :
+                        (getDamagesString(setsData[setIndex].mainHand.damageFormula, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) || '1')
                     )
                 )
             }}            
@@ -48,7 +48,7 @@
     <div class="grid-item"><span class="parameter-label">Iniziativa</span> {{charData.iniziativa > 0 ? '+' + charData.iniziativa : charData.iniziativa}}</div>
     <div class="grid-item speed-title">
         <span class="parameter-label">Velocità (spazi)</span> <div class="speed-container">
-            {{charData.velocita/1.5}}<span class="parameter-label">({{charData.velocita}}m)</span>
+            {{charData.velocita}}m<span class="parameter-label">({{charData.velocita/1.5}})</span>
         </div>
     </div>
 </div>

@@ -170,24 +170,14 @@
 
       <!-- ARMA -->
       <div *ngSwitchCase="'arma'" class="switch-container">
-        <div class="line-container">
-          <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>Proprietà</mat-label>
-            <mat-select formControlName="weaponProperties" multiple [compareWith]="compareFn">
-              <mat-option *ngFor="let prop of weaponProperties" [value]="prop">
-                <div class="option-label">{{prop.name}}</div>
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="rangeRequired">
-            <mat-label>Gittata</mat-label>
-            <input type="text" matInput formControlName="range">
-          </mat-form-field>
-          <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="versatileDiceRequired">
-            <mat-label>Danni Versatile</mat-label>
-            <input type="text" matInput formControlName="versatileDice" placeholder="Formula danni (senza spazi)">
-          </mat-form-field>
-        </div>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+          <mat-label>Proprietà</mat-label>
+          <mat-select formControlName="weaponProperties" multiple [compareWith]="compareFn">
+            <mat-option *ngFor="let prop of weaponProperties" [value]="prop">
+              <div class="option-label">{{prop.name}}</div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
         <div class="line-container">
           <mat-form-field class="line-input" color="accent" appearance="outline">
@@ -219,6 +209,18 @@
             </mat-select>
           </mat-form-field>
         </div>
+
+        <div class="line-container">
+          <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="rangeRequired">
+            <mat-label>Gittata</mat-label>
+            <input type="text" matInput formControlName="range">
+          </mat-form-field>
+          <mat-form-field class="line-input" color="accent" appearance="outline" *ngIf="versatileDiceRequired">
+            <mat-label>Danni Versatile</mat-label>
+            <input type="text" matInput formControlName="versatileDice" placeholder="Formula danni (senza spazi)">
+          </mat-form-field>
+        </div>
+        <div as-description-text><strong>Attenzione</strong>: nelle formule dei danni NON inserire il modificatore di caratteristica usato per l'attacco (Forza o Destrezza), sarà compito dello strumento "Equipaggiamento" occuparsi di calcolare il danno <em>pulito</em> creando i Set di armi.</div>
 
         <div as-section-title>Danni extra</div>
         <div class="magic-item-container">

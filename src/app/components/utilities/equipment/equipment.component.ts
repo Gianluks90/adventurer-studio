@@ -137,15 +137,10 @@ export class EquipmentComponent {
     });
 
     // Costruisci la stringa per il bonus dello scudo solo se è diverso da zero
-    // Costruisci la stringa per il bonus dello scudo solo se è diverso da zero
     const shieldBonusString = parseInt(shieldBonus) !== 0 ? `${shieldBonus}` : '';
 
     // Aggiorna la CA con la stringa composta dal valore base e dal bonus dello scudo
     this.CA = `${baseCA}${shieldBonusString !== '' ? shieldBonusString : ''}`;
-
-
-
-
   }
 
 
@@ -176,7 +171,8 @@ export class EquipmentComponent {
   setColor(rarity: string): string {
     switch (rarity) {
       case 'Comune':
-        return '#212121'
+        // return '#212121'
+        return '000000'
         break;
       case 'Non comune':
         return '#00ff01'
@@ -202,29 +198,31 @@ export class EquipmentComponent {
     }
   }
 
-  public getDamagesStringOld(formula: string): string {
-    if (!formula || formula === '') return '';
-    const termini = formula.replace(/\s/g, '').split('+');
+  // public getDamagesStringOld(formula: string): string {
+  //   if (!formula || formula === '') return '';
+  //   const termini = formula.replace(/\s/g, '').split('+');
 
-    let minimo = 0;
-    let massimo = 0;
-    termini.forEach(termine => {
-      if (termine.includes('d')) {
-        const [numDadi, numFacce] = termine.split('d').map(Number);
-        minimo += numDadi;
-        massimo += numDadi * numFacce;
-      } else {
-        const costante = parseInt(termine);
-        minimo += costante;
-        massimo += costante;
-      }
-    });
+  //   let minimo = 0;
+  //   let massimo = 0;
+  //   termini.forEach(termine => {
+  //     if (termine.includes('d')) {
+  //       const [numDadi, numFacce] = termine.split('d').map(Number);
+  //       minimo += numDadi;
+  //       massimo += numDadi * numFacce;
+  //     } else {
+  //       const costante = parseInt(termine);
+  //       minimo += costante;
+  //       massimo += costante;
+  //     }
+  //   });
 
-    if (minimo === massimo) return `${minimo}`;
-    return `${minimo}-${massimo}`;
-  }
+  //   if (minimo === massimo) return `${minimo}`;
+  //   return `${minimo}-${massimo}`;
+  // }
 
-  public getDamagesString(formula, extraDamages?: Damage[]) {
+  public getDamagesString(formula, skill: string, extraDamages?: Damage[]) {
+    let skillMod: number = Math.floor((this.charData.caratteristiche[skill] - 10) / 2) || 0;
+
     if (!formula) {
       return { minimo: 'error', massimo: 'error' };
     }
@@ -272,7 +270,7 @@ export class EquipmentComponent {
     }
 
     if (minimo === massimo) return `${minimo}`;
-    return `${minimo}-${massimo}`;
+    return `${minimo+skillMod}-${massimo+skillMod}`;
   }
 
   // TOOLTIP

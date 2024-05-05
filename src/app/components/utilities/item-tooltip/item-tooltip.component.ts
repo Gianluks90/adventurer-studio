@@ -54,6 +54,7 @@ export class ItemTooltipComponent {
     }
     
     extraString = extraString.slice(0, -2);
+    if (minimo === massimo) return `${minimo} ${item.damageType}` + (item.extraDamages.length > 0 ? ' + ' + extraString : '');
     return `${minimo}-${massimo} ${item.damageType}` + (item.extraDamages.length > 0 ? ' + ' + extraString : '');
 
     // if (minimo === massimo) return `${minimo} danno/i (${item.damageType})`;

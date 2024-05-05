@@ -48,6 +48,7 @@ export class ManageEquipDialogComponent {
             const offHandItem = this.offHandSelection.find(item => item.name === (set.offHand ? set.offHand.name : ''));
             this.sets.push(this.fb.group({
                 name: [set.name, Validators.required],
+                skill: [set.skill, Validators.required],
                 mainHand: [mainHandItem], // Utilizza direttamente l'oggetto Item
                 offHand: [offHandItem], // Utilizza direttamente l'oggetto Item
                 dualWield: [set.dualWield] || false,
@@ -60,6 +61,7 @@ export class ManageEquipDialogComponent {
   public addSet(): void {
     const set = this.fb.group({
       name: ['', Validators.required],
+      skill: ['', Validators.required],
       mainHand: '',
       offHand: '',
       dualWield: false,
@@ -71,9 +73,6 @@ export class ManageEquipDialogComponent {
     set.get('mainHand').valueChanges.subscribe(value => {
       if (value) {
         set.get('offHand').enable();
-      } else {
-        set.get('offHand').setValue('');
-        set.get('offHand').disable();
       }
     });
   }

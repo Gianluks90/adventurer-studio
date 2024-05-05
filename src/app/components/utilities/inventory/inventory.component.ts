@@ -144,7 +144,8 @@ export class InventoryComponent {
   setColor(rarity: string): string {
     switch (rarity) {
       case 'Comune':
-        return '#212121'
+        // return '#212121' // Quando le icone saranno state modificate con lo sfondo di questo colore
+        return '000000'
         break;
       case 'Non comune':
         return '#00ff01'
