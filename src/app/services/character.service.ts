@@ -184,6 +184,12 @@ export class CharacterService {
     const ref = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(ref, {
       // campaignId: ''
+      // sets: [],
+      // status: {
+      //   useWeightRule: false,
+      //   useOpacityInventoryRule: false,
+      //   sheetTitleColor: '#212121',
+      // }
     }, { merge: true })
   }
 

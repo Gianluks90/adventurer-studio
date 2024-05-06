@@ -30,6 +30,8 @@ export class InventoryComponent {
   @Input() set selectedChar(selectedChar: string) {
     if (!selectedChar) return;
     this.selectedCharData = selectedChar;
+    console.log(this.selectedCharData);
+    
   }
 
   public isCampaign: boolean = false;

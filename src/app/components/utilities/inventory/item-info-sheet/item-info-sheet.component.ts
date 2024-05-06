@@ -25,8 +25,6 @@ export class ItemInfoSheetComponent {
     if (this.data.item.damageFormula && this.data.item.damageFormula !== '') {
       this.maxMinDamage = this.calcolaMinMax(this.data.item.damageFormula, this.data.item.extraDamages.length > 0 ? this.data.item.extraDamages : []).minimo + ' - ' + this.calcolaMinMax(this.data.item.damageFormula, this.data.item.extraDamages.length > 0 ? this.data.item.extraDamages : []).massimo;
     }
-    console.log(this.data.item);
-
   }
 
   public isCampaign: boolean = false;

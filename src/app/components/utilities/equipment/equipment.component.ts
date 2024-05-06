@@ -45,34 +45,34 @@ export class EquipmentComponent {
     this.calculateCA();
   }
 
-  public changeSetOdl(): void {
-    // Aumenta l'indice del set attuale
-    this.setIndex = this.setIndex + 1 > this.setsData.length - 1 ? 0 : this.setIndex + 1;
+  // public changeSetOdl(): void {
+  //   // Aumenta l'indice del set attuale
+  //   this.setIndex = this.setIndex + 1 > this.setsData.length - 1 ? 0 : this.setIndex + 1;
 
-    // Filtra gli oggetti del set precedente e rimuovili da wearedItems
-    const previousSet = this.setsData[(this.setIndex === 0 ? this.setsData.length - 1 : this.setIndex - 1)];
-    if (previousSet.mainHand) {
-      this.wearedItems = this.wearedItems.filter(item => item.name !== previousSet.mainHand.name);
-    }
-    if (previousSet.offHand) {
-      this.wearedItems = this.wearedItems.filter(item => item.name !== previousSet.offHand.name);
-    }
+  //   // Filtra gli oggetti del set precedente e rimuovili da wearedItems
+  //   const previousSet = this.setsData[(this.setIndex === 0 ? this.setsData.length - 1 : this.setIndex - 1)];
+  //   if (previousSet.mainHand) {
+  //     this.wearedItems = this.wearedItems.filter(item => item.name !== previousSet.mainHand.name);
+  //   }
+  //   if (previousSet.offHand) {
+  //     this.wearedItems = this.wearedItems.filter(item => item.name !== previousSet.offHand.name);
+  //   }
 
-    // Aggiungi gli oggetti del nuovo set a wearedItems
-    const newSet = this.setsData[this.setIndex];
-    if (newSet.mainHand) {
-      this.wearedItems.push(newSet.mainHand);
-    }
-    if (newSet.offHand) {
-      this.wearedItems.push(newSet.offHand);
-    }
+  //   // Aggiungi gli oggetti del nuovo set a wearedItems
+  //   const newSet = this.setsData[this.setIndex];
+  //   if (newSet.mainHand) {
+  //     this.wearedItems.push(newSet.mainHand);
+  //   }
+  //   if (newSet.offHand) {
+  //     this.wearedItems.push(newSet.offHand);
+  //   }
 
-    // Aggiorna il flag "weared" negli oggetti dell'inventario
-    this.inventoryData.forEach(item => {
-      item.weared = this.wearedItems.includes(item);
-    });
+  //   // Aggiorna il flag "weared" negli oggetti dell'inventario
+  //   this.inventoryData.forEach(item => {
+  //     item.weared = this.wearedItems.includes(item);
+  //   });
 
-  }
+  // }
 
   public changeSet(): void {
     // Aumenta l'indice del set attuale
@@ -289,7 +289,7 @@ export class EquipmentComponent {
       const rect = tooltip.getBoundingClientRect();
       if (event.clientY + rect.height > window.innerHeight) {
         // this.tooltipPosition.top = window.innerHeight - rect.height - 10;
-        this.tooltipPosition = { top: window.innerHeight + 50 - rect.height, left: event.clientX - 175 };
+        this.tooltipPosition = { top: window.innerHeight + 50 - rect.height, left: event.clientX + 175 };
       } else {
         this.tooltipPosition = { top: event.clientY, left: event.clientX + 175 };
       }

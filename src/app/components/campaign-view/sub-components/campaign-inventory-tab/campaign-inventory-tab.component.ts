@@ -22,7 +22,7 @@ export class CampaignInventoryTabComponent {
   @Input() set characters(characters: any) {
     const userId = getAuth().currentUser?.uid;
     if (characters) {
-      this.selectedChar = characters.find((char: any) => char.userId === userId) || '';
+      this.selectedChar = characters.find((char: any) => char.status.userId === userId) || '';
     }
   }
 }

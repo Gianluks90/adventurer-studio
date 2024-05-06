@@ -17,16 +17,11 @@ export class FormModel {
       trattiBackground: FormModel.trattiBackground(builder),
       altreCompetenze: FormModel.altreCompetenze(builder),
       denaro: FormModel.denaro(builder),
-      // equipaggiamento: ['', Validators.required],
       equipaggiamento: builder.array([]),
       sets: builder.array([]),
       privilegiTratti: builder.array([]),
       caratteristicheFisiche: FormModel.caratteristicheFisiche(builder),
-      // urlImmaginePersonaggio: '',
-      // urlImmagineSimbolo: '',
       storiaPersonaggio: '',
-      // alleatiOrganizzazioni: '',
-      // trattiPrivilegiAggiuntivi: '',
       tesoro: '',
       magia: FormModel.magia(builder),
       ispirazione: [true, Validators.required],
@@ -42,7 +37,10 @@ export class FormModel {
         creationDate: null,
         lastUpdateDate: null,
         userId: '',
-        sheetColor: ''
+        sheetColor: '',
+        sheetTitleColor: '',
+        useWeigthRule: false,
+        useOpacityInventoryRule: false,
       }
     }
   }
