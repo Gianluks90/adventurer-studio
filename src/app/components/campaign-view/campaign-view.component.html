@@ -47,9 +47,9 @@
             </mat-tab>
             <mat-tab *ngIf="charData.length > 0 && !isOwner" >
                 <ng-template mat-tab-label>
-                    <img class="player-tab" [src]="charData[partecipantIndex].informazioniBase.urlImmaginePersonaggio" matTooltipPosition="below" [matTooltip]="charData[partecipantIndex].informazioniBase.nomePersonaggioEsteso !== '' ? charData[partecipantIndex].informazioniBase.nomePersonaggioEsteso : charData[partecipantIndex].informazioniBase.nomePersonaggio">
+                    <img class="player-tab" [src]="selectedChar.informazioniBase.urlImmaginePersonaggio" matTooltipPosition="below" [matTooltip]="selectedChar.informazioniBase.nomePersonaggioEsteso !== '' ? selectedChar.informazioniBase.nomePersonaggioEsteso : selectedChar.informazioniBase.nomePersonaggio">
                 </ng-template>
-                <app-campaign-char-tab [character]="charData[partecipantIndex]"></app-campaign-char-tab>
+                <app-campaign-char-tab [character]="selectedChar"></app-campaign-char-tab>
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>

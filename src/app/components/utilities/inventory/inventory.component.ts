@@ -95,10 +95,10 @@ export class InventoryComponent {
         }
       }
       if (result && result.status === 'reclamed' && this.selectedCharData) {
-        const itemExists = this.selectedCharData.inventory.find((item) => item.name === result.item.name);
+        const itemExists = this.selectedCharData.equipaggiamento.find((item) => item.name === result.item.name);
         if (itemExists) {
-          this.selectedCharData.inventory.find((item) => item.name === result.item.name).quantity += result.quantity;
-          this.characterService.updateInventory(this.selectedCharData.id, this.selectedCharData.inventory).then(() => {
+          this.selectedCharData.equipaggiamento.find((item) => item.name === result.item.name).quantity += result.quantity;
+          this.characterService.updateInventory(this.selectedCharData.id, this.selectedCharData.equipaggiamento).then(() => {
             this.inventoryData[index].quantity -= result.quantity;
             this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
             this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
