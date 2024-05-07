@@ -244,8 +244,6 @@ export class EditMoneyControllerDialogComponent {
         amount: this.data.denaro[key]
       };
     });
-    console.log(operations);
-    
     operations.forEach(operation => {
       if (operation.amount === 0 || operation.type === 'MO') return;
       this.convertForm.patchValue({

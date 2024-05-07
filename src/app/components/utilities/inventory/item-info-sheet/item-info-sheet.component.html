@@ -7,7 +7,7 @@
             <!-- <div class="damage-formula">{{calcolaMinMax(data.item.damageFormula, data.item.extraDamages).minimo}}-{{calcolaMinMax(data.item.damageFormula, data.item.extraDamages).massimo}} danni</div> -->
             <!-- <div class="damage-formula">{{calcolaMinMax(data.item.damageFormula).minimo}}</div> -->
             <div class="damage-type" *ngIf="data.item.extraDamages.length > 0">{{getDamagesString(data.item, data.item.damageFormula)}}</div>
-            <div class="damage-type" *ngIf="data.item.extraDamages.length <= 0">{{data.item.damageType}}</div>
+            <!-- <div class="damage-type" *ngIf="data.item.extraDamages.length <= 0">{{data.item.damageType}}</div> -->
         </div>
     }
     <div class="arcane-focus-label" *ngIf="data.item.focus">

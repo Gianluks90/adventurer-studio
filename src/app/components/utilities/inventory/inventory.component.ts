@@ -30,8 +30,6 @@ export class InventoryComponent {
   @Input() set selectedChar(selectedChar: string) {
     if (!selectedChar) return;
     this.selectedCharData = selectedChar;
-    console.log(this.selectedCharData);
-    
   }
 
   public isCampaign: boolean = false;
@@ -81,6 +79,7 @@ export class InventoryComponent {
       if (result && result.status === 'edited') {
         this.inventoryData[index] = result.item;
         if (!this.isCampaign) {
+          this.updateCharSets(result.item, 'edited');
           this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         } else {
           this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
@@ -89,6 +88,7 @@ export class InventoryComponent {
       if (result && result.status === 'deleted') {
         this.inventoryData.splice(index, 1);
         if (!this.isCampaign) {
+          // this.updateCharSets(this.inventoryData[index], 'deleted');
           this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         } else {
           this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
@@ -125,7 +125,7 @@ export class InventoryComponent {
               item.weared = false;
             }
           });
-        this.inventoryData[index].weared = !this.inventoryData[index].weared;
+          this.inventoryData[index].weared = !this.inventoryData[index].weared;
         }
 
         // Se è un'armatura
@@ -142,6 +142,68 @@ export class InventoryComponent {
       }
     });
   }
+
+  private updateCharSets(item: Item, action: string) {
+    let sets = [...this.selectedCharData.sets]; // Copia dell'array sets
+    switch (action) {
+        case 'edited':
+            sets.forEach((set) => {
+                if (set.mainHand && set.mainHand.name === item.name) {
+                    set.mainHand = item;
+                }
+                if (set.offHand && set.offHand.name === item.name) {
+                    set.offHand = item;
+                }
+            });
+            break;
+
+        case 'deleted':
+            // Trova gli indici dei set che contengono l'oggetto nell'offHand o nel mainHand
+            const setIndexesToDelete: number[] = [];
+            sets.forEach((set, index) => {
+                if (set.mainHand && set.mainHand.name === item.name) {
+                    setIndexesToDelete.push(index);
+                }
+                if (set.offHand && set.offHand.name === item.name) {
+                    setIndexesToDelete.push(index);
+                }
+            });
+
+            // Elimina i set dagli indici trovati (in ordine inverso per evitare problemi con la rimozione degli indici)
+            setIndexesToDelete.reverse().forEach((index) => {
+                sets.splice(index, 1);
+            });
+            break;
+    }
+    this.characterService.updateSets(this.selectedCharData.id, sets);
+}
+
+
+
+
+  // private updateCharSets(item: Item, action: string) {
+  //   const sets = this.selectedCharData.sets as any[];
+  //   switch (action) {
+  //     case 'edited':
+  //       sets.forEach((set) => {
+  //         if (set.mainHand && set.mainHand.name === item.name) {
+  //           set.mainHand = item;
+  //         }
+  //         if (set.offHand && set.offHand.name === item.name) {
+  //           set.offHand = item;
+  //         }
+  //       });
+  //       break;
+        
+  //     case 'deleted':
+  //       const setIndex = sets.findIndex((set) => set.mainHand && set.mainHand.name === item.name || set.offHand && set.offHand.name === item.name);
+  //       if (setIndex > -1) {
+  //         sets.splice(setIndex, 1);
+  //       }
+  //       break;
+  //   }
+  //   this.characterService.updateSets(this.selectedCharData.id, sets);
+  // }
 
   setColor(rarity: string): string {
     switch (rarity) {
@@ -183,6 +245,8 @@ export class InventoryComponent {
     });
   }
 
+  // TOOLTIP ====================================================================================
+
   public currentTooltipItem: any;
   public showItemTooltip: boolean = false;
   public tooltipPosition: { top: number | string, left: number | string } = { top: 0, left: 0 };
@@ -197,11 +261,11 @@ export class InventoryComponent {
       const rect = tooltip.getBoundingClientRect();
       if (event.clientY + rect.height > window.innerHeight) {
         // this.tooltipPosition.top = window.innerHeight - rect.height - 10;
-        this.tooltipPosition = { top: window.innerHeight+50 - rect.height, left: event.clientX - 175 };
+        this.tooltipPosition = { top: window.innerHeight + 50 - rect.height, left: event.clientX - 175 };
       } else {
         this.tooltipPosition = { top: event.clientY, left: event.clientX - 175 };
       }
-    }, 100);
+    }, 1);
     // this.tooltipPosition = { top: event.clientY, left: event.clientX-175};
   }
 

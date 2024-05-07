@@ -19,14 +19,14 @@ export class EquipmentComponent {
   public setIndex: number = 0;
   public wearedItems: Item[] = [];
   public CA: string = '';
+  public initiative: string = '';
 
   @Input() set character(character: any) {
     this.charData = character;
-    // this.CA = (character.CA + character.CAShield).replace(' ', '');
-    this.calculateCA();
-
     this.inventoryData = character.equipaggiamento;
     this.setsData = character.sets || [];
+    // this.calculateCA();
+    this.calculateInitiative();
     this.checkWeared(this.inventoryData);
   }
 
@@ -36,7 +36,7 @@ export class EquipmentComponent {
   }
 
   public showMoreInfo(event: Event): void {
-
+    // Da implementare
   }
 
   public checkWeared(inventory: Item[]): void {
@@ -143,6 +143,10 @@ export class EquipmentComponent {
     this.CA = `${baseCA}${shieldBonusString !== '' ? shieldBonusString : ''}`;
   }
 
+  private calculateInitiative(): void {
+    const dexModifier = Math.floor((this.charData.caratteristiche.destrezza - 10) / 2);
+    this.initiative = dexModifier > 0 ? `+${dexModifier}` : `${dexModifier}`;
+  }
 
   public openManageDialog(): void {
     this.matDialog.open(ManageEquipDialogComponent, {
@@ -197,28 +201,6 @@ export class EquipmentComponent {
         break;
     }
   }
-
-  // public getDamagesStringOld(formula: string): string {
-  //   if (!formula || formula === '') return '';
-  //   const termini = formula.replace(/\s/g, '').split('+');
-
-  //   let minimo = 0;
-  //   let massimo = 0;
-  //   termini.forEach(termine => {
-  //     if (termine.includes('d')) {
-  //       const [numDadi, numFacce] = termine.split('d').map(Number);
-  //       minimo += numDadi;
-  //       massimo += numDadi * numFacce;
-  //     } else {
-  //       const costante = parseInt(termine);
-  //       minimo += costante;
-  //       massimo += costante;
-  //     }
-  //   });
-
-  //   if (minimo === massimo) return `${minimo}`;
-  //   return `${minimo}-${massimo}`;
-  // }
 
   public getDamagesString(formula, skill: string, extraDamages?: Damage[]) {
     let skillMod: number = Math.floor((this.charData.caratteristiche[skill] - 10) / 2) || 0;
@@ -293,7 +275,7 @@ export class EquipmentComponent {
       } else {
         this.tooltipPosition = { top: event.clientY, left: event.clientX + 175 };
       }
-    }, 100);
+    }, 1);
     // this.tooltipPosition = { top: event.clientY, left: event.clientX-175};
   }
 

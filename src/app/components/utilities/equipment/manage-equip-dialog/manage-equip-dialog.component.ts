@@ -16,6 +16,8 @@ export class ManageEquipDialogComponent {
   public offHandSelection: Item[] = [];
   public othersSelection: Item[] = [];
 
+  private originalOffHandSelection: Item[] = [];
+
   public sets: FormArray;
 
   constructor(
@@ -34,100 +36,57 @@ export class ManageEquipDialogComponent {
   ngOnInit(): void {
     this.armorsSelection = this.data.inventory.filter(item => item.CA > 0 && !item.shield);
     this.form.get('armor').setValue(this.armorsSelection.filter(item => item.weared)[0]);
-    
+
     this.mainHandSelection = this.data.inventory.filter(item => item.damageFormula !== '');
+    this.originalOffHandSelection = JSON.parse(JSON.stringify(this.mainHandSelection.concat(this.data.inventory.filter(item => item.CA > 0 && item.shield))));
     this.offHandSelection = this.mainHandSelection.concat(this.data.inventory.filter(item => item.CA > 0 && item.shield));
     this.othersSelection = this.data.inventory.filter(item => item.CA === 0 && item.damageFormula === '');
     this.form.get('others').patchValue(this.othersSelection.filter(item => item.weared));
-    
+
     this.sets = this.form.get('sets') as FormArray;
     if (this.data.sets.length > 0) {
-        this.data.sets.forEach(set => {
-            // Utilizza find per ottenere l'oggetto Item corrispondente ai valori di mainHand e offHand
-            const mainHandItem = this.mainHandSelection.find(item => item.name === (set.mainHand ? set.mainHand.name : ''));
-            const offHandItem = this.offHandSelection.find(item => item.name === (set.offHand ? set.offHand.name : ''));
-            this.sets.push(this.fb.group({
-                name: [set.name, Validators.required],
-                skill: [set.skill, Validators.required],
-                mainHand: [mainHandItem], // Utilizza direttamente l'oggetto Item
-                offHand: [offHandItem], // Utilizza direttamente l'oggetto Item
-                dualWield: [set.dualWield] || false,
-                versatile: [set.versatile] || false
-            }));
-        });
+      this.data.sets.forEach(set => {
+        // Utilizza find per ottenere l'oggetto Item corrispondente ai valori di mainHand e offHand
+        const mainHandItem = this.mainHandSelection.find(item => item.name === (set.mainHand ? set.mainHand.name : ''));
+        const offHandItem = this.offHandSelection.find(item => item.name === (set.offHand ? set.offHand.name : ''));
+        this.sets.push(this.fb.group({
+          name: [set.name, Validators.required],
+          skill: [set.skill, Validators.required],
+          mainHand: [mainHandItem], // Utilizza direttamente l'oggetto Item
+          offHand: [offHandItem], // Utilizza direttamente l'oggetto Item
+          dualWield: [set.dualWield] || false,
+          versatile: [set.versatile] || false
+        }));
+      });
     }
   }
 
-  // public addSet(): void {
-  //   const set = this.fb.group({
-  //     name: ['', Validators.required],
-  //     skill: ['', Validators.required],
-  //     mainHand: '',
-  //     offHand: '',
-  //     dualWield: false,
-  //     versatile: false,
-  //   });
-  //   set.get('offHand').disable();
-  //   this.sets.push(set);
-
-  //   console.log('nuovo', this.offHandSelection);
-    
-
-  //   set.get('mainHand').valueChanges.subscribe((value: any) => {
-  //     if (value) {
-  //       this.offHandSelection = this.mainHandSelection.concat(this.data.inventory.filter(item => item.CA > 0 && item.shield));
-  //       set.get('offHand').enable();
-  //       this.offHandSelection = this.offHandSelection.map(item => {
-  //         if (item.name === value.name && item.category === value.category) {
-  //           item.quantity -= 1;
-  //         }
-  //         return item;
-  //       });
-  //     }
-  //   });
-  // }
-  
   public addSet(): void {
     const set = this.fb.group({
-        name: ['', Validators.required],
-        skill: ['', Validators.required],
-        mainHand: '',
-        offHand: '',
-        dualWield: false,
-        versatile: false,
+      name: ['', Validators.required],
+      skill: ['', Validators.required],
+      mainHand: '',
+      offHand: '',
+      dualWield: false,
+      versatile: false,
     });
     set.get('offHand').disable();
     this.sets.push(set);
 
-    console.log('nuovo', this.offHandSelection);
-
-    let previousMainHandValue: any; // Memorizza il valore precedente della mano principale
-    let previousOffHandItem: any; // Memorizza l'oggetto precedente nella mano secondaria
-
     set.get('mainHand').valueChanges.subscribe((value: any) => {
-        if (value) {
-            // Ripristina la quantità dell'oggetto precedente nella mano secondaria
-            if (previousMainHandValue && previousOffHandItem) {
-                previousOffHandItem.quantity += 1;
-            }
-
-            // Memorizza il valore attuale della mano principale
-            previousMainHandValue = value;
-
-            // Riduci la quantità dell'oggetto selezionato nella mano principale
-            const mainHandItem = this.offHandSelection.find(item => item.name === value.name && item.category === value.category);
-            if (mainHandItem && mainHandItem.quantity > 0) {
-                mainHandItem.quantity -= 1;
-            }
-
-            // Memorizza l'oggetto corrispondente nell'offHand prima di modificarlo
-            previousOffHandItem = this.offHandSelection.find(item => item.name === value.name && item.category === value.category);
-
-            // Abilita il campo offHand
-            set.get('offHand').enable();
+      if (value) {
+        this.offHandSelection = this.originalOffHandSelection.slice(); // Copia profonda dell'array originale
+        const index = this.offHandSelection.findIndex((item: Item) => item.name === value.name && item.category === value.category);
+        if (index > -1) {
+          this.offHandSelection = this.offHandSelection.filter((item: Item, i: number) => i !== index);
+        } else {
+          this.offHandSelection = this.originalOffHandSelection.slice(); // Copia profonda dell'array originale
         }
+        set.get('offHand').enable();
+      }
     });
-}
+
+  }
 
 
   public removeSet(index: number): void {
