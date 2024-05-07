@@ -1,12 +1,12 @@
 @if (charData) {
-<div as-section-title>{{charData.informazioniBase.nomePersonaggioEsteso !== '' || charData.informazioniBase.nomePersonaggio}}</div>
+<div as-section-title>{{charData.informazioniBase.nomePersonaggioEsteso !== '' ? charData.informazioniBase.nomePersonaggioEsteso : charData.informazioniBase.nomePersonaggio}}</div>
 <div class="description-text">Questo è un riassunto della tua scheda personaggio, puoi visualizzare quella intera premendo il tasto infondo a questa sezione.</div>
 <div class="subtitle">Info</div>
 <div class="char-classes-container">
     <div class="c-container">{{charData.informazioniBase.razzaPersonalizzata !== '' || charData.informazioniBase.razza}}</div>
     @for(c of charData.informazioniBase.classi; track $index) {
         <div class="c-container">
-            {{c.nomePersonalizzato !== '' || c.nome}} di {{c.livello}}° livello
+            {{c.nomePersonalizzato && c.nomePersonalizzato !== '' ? c.nomePersonalizzato : c.nome}} di {{c.livello}}° livello
         </div>
     }
     <div class="c-container">{{charData.informazioniBase.allineamento}}</div>

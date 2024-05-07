@@ -12,28 +12,10 @@
     margin-top: 20px;
 }
 
-button {
-    border-radius: 0;
-}
-
-.subtitle {
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: black;
-    border-bottom: 1px solid black;
-    margin-bottom: 4px;
-}
-
 .spinner-span {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.description {
-    font-size: small;
-    color: rgba(0, 0, 0, 0.54);
 }
 
 .authentication-container {
@@ -62,13 +44,6 @@ mat-spinner {
     height: 24px !important;
 }
 
-.admin-container {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
 .form-container {
     display: flex;
     flex-direction: column;
@@ -78,23 +53,4 @@ mat-spinner {
 .form-field {
     width: 100%;
     margin: 12px 0;
-}
-
-.buttons-container {
-    display: flex;
-    gap: 8px;
-}
-
-.save-roll-button {
-    border-radius: 0;
-}
-
-@media screen and (max-width: 500px) {
-    .buttons-container {
-        flex-direction: column;
-    }
-
-    .buttons-container button {
-        width: 100%;
-    }
 }

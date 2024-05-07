@@ -58,24 +58,77 @@ export class ManageEquipDialogComponent {
     }
   }
 
+  // public addSet(): void {
+  //   const set = this.fb.group({
+  //     name: ['', Validators.required],
+  //     skill: ['', Validators.required],
+  //     mainHand: '',
+  //     offHand: '',
+  //     dualWield: false,
+  //     versatile: false,
+  //   });
+  //   set.get('offHand').disable();
+  //   this.sets.push(set);
+
+  //   console.log('nuovo', this.offHandSelection);
+    
+
+  //   set.get('mainHand').valueChanges.subscribe((value: any) => {
+  //     if (value) {
+  //       this.offHandSelection = this.mainHandSelection.concat(this.data.inventory.filter(item => item.CA > 0 && item.shield));
+  //       set.get('offHand').enable();
+  //       this.offHandSelection = this.offHandSelection.map(item => {
+  //         if (item.name === value.name && item.category === value.category) {
+  //           item.quantity -= 1;
+  //         }
+  //         return item;
+  //       });
+  //     }
+  //   });
+  // }
+  
   public addSet(): void {
     const set = this.fb.group({
-      name: ['', Validators.required],
-      skill: ['', Validators.required],
-      mainHand: '',
-      offHand: '',
-      dualWield: false,
-      versatile: false,
+        name: ['', Validators.required],
+        skill: ['', Validators.required],
+        mainHand: '',
+        offHand: '',
+        dualWield: false,
+        versatile: false,
     });
     set.get('offHand').disable();
     this.sets.push(set);
 
-    set.get('mainHand').valueChanges.subscribe(value => {
-      if (value) {
-        set.get('offHand').enable();
-      }
+    console.log('nuovo', this.offHandSelection);
+
+    let previousMainHandValue: any; // Memorizza il valore precedente della mano principale
+    let previousOffHandItem: any; // Memorizza l'oggetto precedente nella mano secondaria
+
+    set.get('mainHand').valueChanges.subscribe((value: any) => {
+        if (value) {
+            // Ripristina la quantità dell'oggetto precedente nella mano secondaria
+            if (previousMainHandValue && previousOffHandItem) {
+                previousOffHandItem.quantity += 1;
+            }
+
+            // Memorizza il valore attuale della mano principale
+            previousMainHandValue = value;
+
+            // Riduci la quantità dell'oggetto selezionato nella mano principale
+            const mainHandItem = this.offHandSelection.find(item => item.name === value.name && item.category === value.category);
+            if (mainHandItem && mainHandItem.quantity > 0) {
+                mainHandItem.quantity -= 1;
+            }
+
+            // Memorizza l'oggetto corrispondente nell'offHand prima di modificarlo
+            previousOffHandItem = this.offHandSelection.find(item => item.name === value.name && item.category === value.category);
+
+            // Abilita il campo offHand
+            set.get('offHand').enable();
+        }
     });
-  }
+}
+
 
   public removeSet(index: number): void {
     this.sets.removeAt(index);

@@ -33,14 +33,14 @@
                     <mat-icon matTooltip="CA" matTooltipPosition="above"
                         class="passive-icon">shield</mat-icon>{{char.CA}}<span
                         *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span> <span
-                        *ngIf="!char.ispirazione" class="inspiration" matTooltip="Ispirazione"
-                        matTooltipPosition="above">•</span>
+                        *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" matTooltip="Ispirazione"
+                        matTooltipPosition="above">fiber_manual_record</span>
                 </div>
                 <div class="passive-container">
                     <mat-icon class="passive-icon" matTooltip="Percezione passiva"
                         matTooltipPosition="above">visibility</mat-icon>
                     {{char.percezionePassiva}}
-                    <mat-icon class="passive-icon material-symbols-outlined" matTooltip="Intuizione passiva"
+                    <mat-icon class="passive-icon material-symbols-outlined material-no-fill" matTooltip="Intuizione passiva"
                         matTooltipPosition="above">neurology</mat-icon> {{char.intuizionePassiva}}
                     <mat-icon class="passive-icon" matTooltip="Indagare passiva"
                         matTooltipPosition="above">search</mat-icon>
@@ -132,7 +132,7 @@
         </div>
     </div>
     <div class="resource-container" *ngIf="charData">
-        <div class="money-title">Ispirazione <span class="inspiration">•</span></div>
+        <div class="money-title">Ispirazione <div class="inspiration material-symbols-outlined">fiber_manual_record</div></div>
         <div class="ispirazione-value">{{ispirazioneParty}} / {{charData.length}}</div>
     </div>
     }

@@ -4,17 +4,7 @@
   box-sizing: border-box;
   flex-direction: column;
   height: 100%;
-}
-
-.first-section {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  height: 100%;
-  width: 20%;
-  margin: 8px;
-  box-sizing: border-box;
-  // background-color: blue;
+  align-items: center;
 }
 
 .home-title {
@@ -37,25 +27,22 @@
 
 .user-box {
   background-color: white;
-  width: 100%;
-  // border-radius: 8px;
+  width: 90%;
   padding: 4px;
   box-sizing: border-box;
-  // box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  margin-top: 12px;
 }
 
 .user-identity-container {
   display: flex;
   gap: 8px;
   align-items: center;
-  width: 100%;
 }
 
 .user-image {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  // border-radius: 5px;
 }
 
 .user-name {
@@ -63,43 +50,52 @@
   flex-grow: 1;
 }
 
-.second-section {
+.main-actions-container {
   display: flex;
   flex-direction: column;
-  width: 80%;
-  margin: 8px;
-}
-
-.characters-count {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-size: smaller;
-  margin-right: 8px;
-}
-
-.toggle-container {
-  display: flex;
+  flex-grow: 1;
   justify-content: space-between;
-  padding: 12px;
+  width: 90%;
 }
 
-.toggle-label {
-  text-transform: uppercase;
+// Così su iPhone non viene coperto dalla riga di sistema.
+@media screen and (max-width: 768px) {
+  .main-actions-container {
+    margin-bottom: 32px;
+  }
 }
 
-button {
-  border-radius: 0;
+.actions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  margin-bottom: 12px;
+
+  button {
+    width: 100%;
+  }
 }
 
-@media screen and (min-width: 501px) {
-  // .home-container {
-  //     // position: fixed;
-  //     // width: 25%;
-  // }
+.socials-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  max-height: 32px;
+
+  img {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+  }
 }
 
-@media screen and (max-width: 900px) {
+.version-label {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
   .home-container {
     flex-direction: column;
     align-items: center;
@@ -114,55 +110,4 @@ button {
   button {
     width: 100%;
   }
-}
-
-.subtitle {
-  margin-top: 8px;
-  font-weight: bold;
-  border-bottom: 1px solid rgba(#212121, 0.9);
-  width: 100%;
-}
-
-.main-actions-container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: space-between;
-}
-
-.actions-container {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 4px;
-}
-
-.fav-char-container {
-  cursor: pointer;
-  background-color: #212121;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4px;
-  color: whitesmoke;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
-.fav-char-image {
-  min-width: 50px;
-  height: 50px;
-  object-fit: cover;
-}
-
-.fav-char-name {
-  font-family: 'Cinzel', serif;
-  flex-grow: 1;
-}
-
-.nav-arrow {
-  margin-right: 8px;
-  color: yellow;
 }

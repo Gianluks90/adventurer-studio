@@ -186,11 +186,17 @@ progress::-webkit-progress-value {
 // MAT ICONS
 .material-symbols-outlined {
   font-variation-settings:
-    'FILL' 0,
+    'FILL' 1,
     'wght' 400,
     'GRAD' 0,
     'opsz' 24;
   font-size: 1.2rem;
+}
+
+// Da aggiungere alle icone che vogliamo senza riempimento.
+.material-no-fill {
+  font-variation-settings:
+  'FILL' 0,
 }
 
 div[as-buttons-container] {
@@ -205,8 +211,14 @@ div[as-buttons-container] {
     flex-direction: column;
     align-items: center;
 
-    &>button {
+    &>button[as-btn] {
       width: 100%;
+    }
+    &>a[as-btn-link] {
+      width: 100%;
+      &>button[as-btn] {
+        width: 100%;
+      }
     }
   }
 }
@@ -276,6 +288,10 @@ button[as-btn][disabled] {
 button[as-btn-warn] {
   background-color: crimson;
   color: whitesmoke;
+}
+
+a[as-btn-link] {
+  text-decoration: none;
 }
 
 // Dettaglio espandibile con icona personalizzata e contenuto ristretto.
