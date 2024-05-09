@@ -132,6 +132,14 @@ import { ManageEquipDialogComponent } from './components/utilities/equipment/man
     AddItemDialogComponent,
     HealthBarComponent,
     SnackbarDiceComponent,
+    ItemTooltipComponent,
+    EquipmentComponent,
+    ManageEquipDialogComponent,
+    MoneyControllerComponent,
+    EditMoneyControllerDialogComponent,
+    NpcsComponent,
+    AddNpcDialogComponent,
+    AddOrganizationDialogComponent,
 
     // FORM CREATE COMPONENTS AND SUB-COMPONENTS
     FormCreateComponent,
@@ -193,9 +201,6 @@ import { ManageEquipDialogComponent } from './components/utilities/equipment/man
     ArchiveStoryDialogComponent,
     ArchiveQuestDialogComponent,
     ArchiveAchievementDialogComponent,
-    NpcsComponent,
-    AddNpcDialogComponent,
-    AddOrganizationDialogComponent,
     CompanionTabViewComponent,
     CampaignNpcTabComponent,
     MasterScreenTabComponent,
@@ -206,13 +211,7 @@ import { ManageEquipDialogComponent } from './components/utilities/equipment/man
     EditPrivilegioTrattoDialogComponent,
     CampaignCharTabComponent,
     RemoveCampaignDialogComponent,
-    MoneyControllerComponent,
-    EditMoneyControllerDialogComponent,
-    AddResourceDialogComponent,
-    ItemTooltipComponent,
-    EquipmentComponent,
-    ManageEquipDialogComponent,
-
+    AddResourceDialogComponent
   ],
   imports: [
     SharedModule,

@@ -25,9 +25,9 @@ export class EquipmentComponent {
     this.charData = character;
     this.inventoryData = character.equipaggiamento;
     this.setsData = character.sets || [];
-    // this.calculateCA();
+    this.calculateCA();
     this.calculateInitiative();
-    this.checkWeared(this.inventoryData);
+    this.checkWeared();
   }
 
   public editModeData: boolean = false;
@@ -39,40 +39,11 @@ export class EquipmentComponent {
     // Da implementare
   }
 
-  public checkWeared(inventory: Item[]): void {
-    this.wearedItems = inventory.filter(item => item.weared);
+  public checkWeared(): void {
+    this.wearedItems = this.inventoryData.filter(item => item.weared === true);
     this.wearedItems = this.wearedItems.sort((a, b) => a.name.localeCompare(b.name));
     this.calculateCA();
   }
-
-  // public changeSetOdl(): void {
-  //   // Aumenta l'indice del set attuale
-  //   this.setIndex = this.setIndex + 1 > this.setsData.length - 1 ? 0 : this.setIndex + 1;
-
-  //   // Filtra gli oggetti del set precedente e rimuovili da wearedItems
-  //   const previousSet = this.setsData[(this.setIndex === 0 ? this.setsData.length - 1 : this.setIndex - 1)];
-  //   if (previousSet.mainHand) {
-  //     this.wearedItems = this.wearedItems.filter(item => item.name !== previousSet.mainHand.name);
-  //   }
-  //   if (previousSet.offHand) {
-  //     this.wearedItems = this.wearedItems.filter(item => item.name !== previousSet.offHand.name);
-  //   }
-
-  //   // Aggiungi gli oggetti del nuovo set a wearedItems
-  //   const newSet = this.setsData[this.setIndex];
-  //   if (newSet.mainHand) {
-  //     this.wearedItems.push(newSet.mainHand);
-  //   }
-  //   if (newSet.offHand) {
-  //     this.wearedItems.push(newSet.offHand);
-  //   }
-
-  //   // Aggiorna il flag "weared" negli oggetti dell'inventario
-  //   this.inventoryData.forEach(item => {
-  //     item.weared = this.wearedItems.includes(item);
-  //   });
-
-  // }
 
   public changeSet(): void {
     // Aumenta l'indice del set attuale
@@ -96,13 +67,15 @@ export class EquipmentComponent {
       this.wearedItems.push(newSet.offHand);
     }
 
-    // Aggiorna il flag "weared" negli oggetti dell'inventario
     this.inventoryData.forEach(item => {
-      item.weared = this.wearedItems.includes(item);
+      item.weared = false;
+      this.wearedItems.forEach(wearedItem => {
+        if (item.name === wearedItem.name) {
+          item.weared = true;
+        }
+      });
     });
-
-    // Calcola la CA
-    this.calculateCA();
+    this.checkWeared();
   }
 
   private calculateCA(): void {
@@ -155,16 +128,25 @@ export class EquipmentComponent {
       disableClose: true,
       data: { inventory: this.inventoryData, sets: this.setsData }
     }).afterClosed().subscribe((result: any) => {
+      console.log(result);
+      
       if (result && result.status === 'success') {
         this.wearedItems = result.weared;
-        if (result.sets.length > 0) {
+        if (result.sets && result.sets.length > 0) {
           this.wearedItems.push(result.sets[0].mainHand);
           this.wearedItems.push(result.sets[0].offHand);
         }
-        this.charService.updateSets(this.charData.id, result.sets);
-        this.inventoryData.map(item => {
-          item.weared = this.wearedItems.includes(item);
+        this.charService.updateSets(this.charData.id, result.sets || []);
+
+        this.inventoryData.forEach(item => {
+          item.weared = false;
+          this.wearedItems.forEach(wearedItem => {
+            if (item.name === wearedItem.name) {
+              item.weared = true;
+            }
+          });
         });
+        this.checkWeared();
         this.charService.updateInventory(this.charData.id, this.inventoryData).then(() => {
           this.setIndex = 0;
         });
@@ -253,6 +235,17 @@ export class EquipmentComponent {
 
     if (minimo === massimo) return `${minimo}`;
     return `${minimo+skillMod}-${massimo+skillMod}`;
+  }
+
+  public getDiceFormula(formula, skill: string, extraDamages?: Damage[]): string {
+    const skillMod: number = Math.floor((this.charData.caratteristiche[skill] - 10) / 2) || 0;
+    let resultFormula = formula;
+    if (extraDamages && extraDamages.length > 0) {
+      extraDamages.forEach((extraDamage) => {
+        resultFormula += ` + ${extraDamage.formula}`;
+      });
+    }
+    return resultFormula;
   }
 
   // TOOLTIP
