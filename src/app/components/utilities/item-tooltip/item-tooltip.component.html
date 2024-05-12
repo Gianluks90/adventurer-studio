@@ -30,4 +30,8 @@
     <div class="tooltip-quantity" *ngIf="itemData.quantity > 0">Quantità: {{itemData.quantity}}</div>
     <div class="tooltip-quantity" *ngIf="itemData.quantity <= 0">Esaurito</div>
     <div class="tooltip-weight">Peso: {{itemData.weight}} kg</div>
+    <div class="tooltip-value" *ngIf="itemData.value * itemData.quantity > 0">
+        <img src="./assets/coins/gold.svg">
+        {{itemData.value * itemData.quantity}}
+    </div>
 </div>

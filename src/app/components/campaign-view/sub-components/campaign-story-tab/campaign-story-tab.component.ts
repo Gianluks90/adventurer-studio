@@ -20,13 +20,12 @@ export class CampaignStoryTabComponent {
 
   constructor(private dialog: MatDialog, private platform: Platform, private campaignService: CampaignService) {}
 
-  @Input() set description(value: string) {
-    this.descriptionData = value;
-  }
-
+  public campaignData: any;
   @Input() set campaign(campaign: any) {
+    this.campaignData = campaign;
     this.storyData = campaign.story;
     this.archiveData = campaign.archive;
+    this.descriptionData = campaign.description;
     this.storyData = this.sortStoryByLastUpdate(this.storyData);
   }
 

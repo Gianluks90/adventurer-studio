@@ -126,3 +126,14 @@
     background-color: rgba(#212121, 0.9);
     color: whitesmoke;
 }
+
+.tooltip-value {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    img {
+        width: 16px;
+        height: 16px;
+    }
+}

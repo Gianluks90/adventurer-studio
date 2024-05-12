@@ -20,6 +20,7 @@ export class EquipmentComponent {
   public wearedItems: Item[] = [];
   public CA: string = '';
   public initiative: string = '';
+  public ammo: any;
 
   @Input() set character(character: any) {
     this.charData = character;
@@ -27,6 +28,7 @@ export class EquipmentComponent {
     this.setsData = character.sets || [];
     this.calculateCA();
     this.calculateInitiative();
+    this.setAmmo();
     this.checkWeared();
   }
 
@@ -43,6 +45,7 @@ export class EquipmentComponent {
     this.wearedItems = this.inventoryData.filter(item => item.weared === true);
     this.wearedItems = this.wearedItems.sort((a, b) => a.name.localeCompare(b.name));
     this.calculateCA();
+    this.setAmmo();
   }
 
   public changeSet(): void {
@@ -121,6 +124,26 @@ export class EquipmentComponent {
     this.initiative = dexModifier > 0 ? `+${dexModifier}` : `${dexModifier}`;
   }
 
+  private setAmmo(): void {
+    const ammo = this.inventoryData.find(item => item.category.toLowerCase() === 'munizioni' && item.weared);
+    if (ammo) {
+      this.ammo = ammo;
+    }
+  }
+
+  public ammoAction(action: string): void {
+    const ammo = this.inventoryData.find(item => item.category.toLowerCase() === 'munizioni' && item.weared);
+    switch (action) {
+      case 'add':
+        ammo.quantity += 1;
+        break;
+      case 'remove':
+        ammo.quantity -= 1;
+        break;
+    }
+    this.charService.updateInventory(this.charData.id, this.inventoryData);
+  }
+
   public openManageDialog(): void {
     this.matDialog.open(ManageEquipDialogComponent, {
       width: window.innerWidth < 768 ? '90%%' : '60%',
@@ -129,7 +152,7 @@ export class EquipmentComponent {
       data: { inventory: this.inventoryData, sets: this.setsData }
     }).afterClosed().subscribe((result: any) => {
       console.log(result);
-      
+
       if (result && result.status === 'success') {
         this.wearedItems = result.weared;
         if (result.sets && result.sets.length > 0) {
@@ -234,18 +257,19 @@ export class EquipmentComponent {
     }
 
     if (minimo === massimo) return `${minimo}`;
-    return `${minimo+skillMod}-${massimo+skillMod}`;
+    return `${minimo + skillMod}-${massimo + skillMod}`;
   }
 
   public getDiceFormula(formula, skill: string, extraDamages?: Damage[]): string {
     const skillMod: number = Math.floor((this.charData.caratteristiche[skill] - 10) / 2) || 0;
     let resultFormula = formula;
+
     if (extraDamages && extraDamages.length > 0) {
       extraDamages.forEach((extraDamage) => {
         resultFormula += ` + ${extraDamage.formula}`;
       });
     }
-    return resultFormula;
+    return resultFormula + (skillMod > 0 ? `+${skillMod}` : '');
   }
 
   // TOOLTIP

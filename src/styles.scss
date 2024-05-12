@@ -245,6 +245,28 @@ button[as-mini-circle-btn] {
   }
 }
 
+// Come sopra ma senza riempimento, per sfondi bianchi.
+button[as-mini-circle-light-btn] {
+  border: none;
+  box-shadow: none;
+
+  background-color: transparent;
+  color: #212121;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(#212121, 0.2)
+  }
+}
+
 button[as-mini-circle-btn][disabled] {
   cursor: default;
   opacity: 0.5;
