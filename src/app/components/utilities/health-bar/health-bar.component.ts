@@ -4,6 +4,7 @@ import { HealthPointDialogComponent } from './health-point-dialog/health-point-d
 import { Platform } from '@angular/cdk/platform';
 import { CharacterService } from 'src/app/services/character.service';
 import { NotificationService } from 'src/app/services/notification.service';
+import { DescriptionTooltipService } from '../description-tooltip/description-tooltip.service';
 
 @Component({
   selector: 'app-health-bar',
@@ -31,8 +32,8 @@ export class HealthBarComponent {
   constructor(
     private dialog: MatDialog, 
     private platform: Platform, 
-    private charService: CharacterService, 
-    private notification: NotificationService) {}
+    private charService: CharacterService,
+    public tooltip: DescriptionTooltipService) {}
 
   public parametriVitaliData: any = {
     pf: 0,

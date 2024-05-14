@@ -50,7 +50,7 @@
                 FOR
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.forza}"
-                [matTooltip]="characterData.tiriSalvezza.forza ? 'Competenza' : ''" matTooltipPosition="below">
+            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.forza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('forza')}}</div>
         </div>
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
@@ -59,7 +59,7 @@
                 DES
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.destrezza}"
-                [matTooltip]="characterData.tiriSalvezza.destrezza ? 'Competenza' : ''" matTooltipPosition="below">
+            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.destrezza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('destrezza')}}</div>
         </div>
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
@@ -68,7 +68,7 @@
                 COS
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.costituzione}"
-                [matTooltip]="characterData.tiriSalvezza.costituzione ? 'Competenza' : ''" matTooltipPosition="below">
+            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.costituzione, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('costituzione')}}</div>
         </div>
     </div>
@@ -79,8 +79,9 @@
                 INT
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.intelligenza}"
-                [matTooltip]="characterData.tiriSalvezza.intelligenza ? 'Competenza' : ''" matTooltipPosition="below">
-                {{initTiroSalvezza('intelligenza')}}</div>
+            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.intelligenza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
+                {{initTiroSalvezza('intelligenza')}}
+            </div>
         </div>
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
             (click)="rollDice('Tiro Salvezza su Saggezza', initTiroSalvezza('saggezza'))">
@@ -88,7 +89,7 @@
                 SAG
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.saggezza}"
-                [matTooltip]="characterData.tiriSalvezza.saggezza ? 'Competenza' : ''" matTooltipPosition="below">
+            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.saggezza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('saggezza')}}</div>
         </div>
         <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
@@ -97,10 +98,11 @@
                 CAR
             </div>
             <div class="ts-value" [ngClass]="{'proficent': characterData.tiriSalvezza.carisma}"
-                [matTooltip]="characterData.tiriSalvezza.carisma ? 'Competenza' : ''" matTooltipPosition="below">
+            (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.carisma, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('carisma')}}</div>
         </div>
     </div>
+    <app-description-tooltip id="ts-tooltip" info="competenzaTS" *ngIf="tooltip.show && tooltip.id === 'ts-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
 </div>
 
 <div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Parametri vitali</div>

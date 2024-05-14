@@ -8,6 +8,7 @@ import { CharacterService } from 'src/app/services/character.service';
 import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddResourceDialogComponent } from './add-resource-dialog/add-resource-dialog.component';
+import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
 
 @Component({
   selector: 'app-character-view-status',
@@ -38,6 +39,7 @@ export class CharacterViewStatusComponent {
     public diceService: DddiceService,
     private charService: CharacterService,
     private notification: NotificationService,
+    public tooltip: DescriptionTooltipService,
     private matDialog: MatDialog) { }
 
   @Input() set character(character: any) {

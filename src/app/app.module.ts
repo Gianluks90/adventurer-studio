@@ -99,6 +99,7 @@ import { AddResourceDialogComponent } from './components/character-view/sub-comp
 import { ItemTooltipComponent } from './components/utilities/item-tooltip/item-tooltip.component';
 import { EquipmentComponent } from './components/utilities/equipment/equipment.component';
 import { ManageEquipDialogComponent } from './components/utilities/equipment/manage-equip-dialog/manage-equip-dialog.component';
+import { DescriptionTooltipComponent } from './components/utilities/description-tooltip/description-tooltip.component';
 
 @NgModule({
   declarations: [
@@ -211,7 +212,8 @@ import { ManageEquipDialogComponent } from './components/utilities/equipment/man
     EditPrivilegioTrattoDialogComponent,
     CampaignCharTabComponent,
     RemoveCampaignDialogComponent,
-    AddResourceDialogComponent
+    AddResourceDialogComponent,
+    DescriptionTooltipComponent
   ],
   imports: [
     SharedModule,

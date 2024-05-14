@@ -13,8 +13,8 @@
     <div class="pf-container">
         <span class="PF"
             [ngStyle]="{'color': sheetTitleColor}">{{parametriVitaliData.pf}}/{{parametriVitaliData.pfMax}}</span>
-        <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi"
-            matTooltipPosition="above">favorite</mat-icon>
+        <mat-icon class="pf-icon" 
+        (mouseover)="tooltip.showTooltip($event, 'center', true, 'pf-tooltip')" (mouseleave)="tooltip.hideTooltip()">favorite</mat-icon>
         <progress blueProgress class="pf-progress" max="{{parametriVitaliData.pfMax}}"
             value="{{parametriVitaliData.pf}}"></progress>
     </div>
@@ -22,7 +22,7 @@
         <span *ngIf="parametriVitaliData.pftMax > 0" class="PF"
             [ngStyle]="{'color': sheetTitleColor}">{{parametriVitaliData.pft}}/{{parametriVitaliData.pftMax}}</span>
         <mat-icon *ngIf="parametriVitaliData.pftMax > 0" class="pft-icon"
-            matTooltip="Punti Ferita Temporanei Attuali / Massimi" matTooltipPosition="above">hourglass_empty</mat-icon>
+            (mouseover)="tooltip.showTooltip($event, 'center', true, 'pft-tooltip')" (mouseleave)="tooltip.hideTooltip()">hourglass_empty</mat-icon>
         <progress *ngIf="parametriVitaliData.pftMax > 0" class="pf-temp-progress" max="{{parametriVitaliData.pftMax}}"
             value="{{parametriVitaliData.pft}}"></progress>
     </div>
@@ -31,3 +31,6 @@
         <img src="./assets/icons/heart-check.svg">
     </button> -->
 </div>
+<app-description-tooltip id="pf-tooltip" info="puntiFerita" *ngIf="tooltip.show && tooltip.id === 'pf-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="pft-tooltip" info="puntiFeritaTemp" *ngIf="tooltip.show && tooltip.id === 'pft-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+
