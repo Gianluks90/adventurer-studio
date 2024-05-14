@@ -44,6 +44,10 @@
 @media screen and (max-width: 768px) {
     .line-container {
         flex-direction: column;
-        gap: 4px;
+        gap: 12px;
+    }
+
+    .line-input {
+        width: 100%;
     }
 }

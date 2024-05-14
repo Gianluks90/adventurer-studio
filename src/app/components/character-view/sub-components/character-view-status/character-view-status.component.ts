@@ -52,7 +52,8 @@ export class CharacterViewStatusComponent {
       used: [character.ispirazione],
       valoreAttuale: 1,
       valoreMassimo: 1,
-    }
+    };
+    // this.risorseAggiuntiveData.push(this.ispirazione);
     this.initProvePassive();
   }
 

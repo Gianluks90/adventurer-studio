@@ -55,11 +55,33 @@ export class HealthBarComponent {
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
         this.parametriVitaliData = result.newValue;
-        this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData).then(() => {
-          this.notification.openSnackBar('Punti Ferita Aggiornati.', 'check', 3000, '');
-        });
+        this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData);
       }
     });
+  }
+
+  public PFAction(action: string) {
+    switch (action) {
+      case 'add':
+        this.parametriVitaliData.pf += 1;
+        this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData);
+        break;
+      case 'remove':
+        if (this.parametriVitaliData.pft > 0) {
+          this.parametriVitaliData.pft -= 1;
+          if (this.parametriVitaliData.pft <= 0) {
+            this.parametriVitaliData.pf -= Math.abs(this.parametriVitaliData.pft);
+            this.parametriVitaliData.pft = 0;
+            this.parametriVitaliData.pftMax = 0;
+          }
+        } else {
+          this.parametriVitaliData.pf -= 1;
+        }
+        this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData);
+        break;
+      default:
+        break;
+    }
   }
 
 }

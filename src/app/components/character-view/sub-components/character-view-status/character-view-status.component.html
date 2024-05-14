@@ -134,7 +134,7 @@
     </div>
 </div>
 
-<ng-container *ngIf="risorseAggiuntiveData.length > 0">
+<ng-container>
     <div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Risorse aggiuntive</div>
     <div class="risorse-container-line">
         <div *ngFor="let risorsa of risorseAggiuntiveData; let i = index;">
@@ -174,7 +174,7 @@
 
 <div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Prove passive</div>
 <div class="passive-grid">
-    <div class="grid-item"><span>Percezione</span> {{percezionePassiva}}</div>
-    <div class="grid-item"><span>Intuizione</span> {{intuizionePassiva}}</div>
-    <div class="grid-item"><span>Indagare</span> {{indagarePassiva}}</div>
+    <div class="grid-item"><div class="material-symbols-outlined">visibility</div><span>Percezione</span> {{percezionePassiva}}</div>
+    <div class="grid-item"><div class="material-symbols-outlined material-no-fill">neurology</div> <span>Intuizione</span>{{intuizionePassiva}}</div>
+    <div class="grid-item"><div class="material-symbols-outlined material-no-fill">search</div> <span>Indagare</span> {{indagarePassiva}}</div>
 </div>

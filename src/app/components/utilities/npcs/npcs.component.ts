@@ -57,6 +57,11 @@ export class NpcsComponent {
     this.isDM = isDM;
   }
 
+  public listTitleData: string = '';
+  @Input() set listTitle(title: string) {
+    this.listTitleData = title;
+  }
+
   public openAddNpcDialog(npc?: any, index?: number, isTab?: boolean) {
     this.dialog.open(AddNpcDialogComponent, {
       width: window.innerWidth < 600 ? '90%' : '60%',
@@ -265,4 +270,10 @@ export class NpcsComponent {
     this.charService.updateAddons(window.location.href.split('/').pop(), this.adddonsData);
   }
 
+  public collapseAll() {
+    const details = document.querySelectorAll('details');
+    details.forEach((detail: any) => {
+      detail.open = false;
+    });
+  }
 }

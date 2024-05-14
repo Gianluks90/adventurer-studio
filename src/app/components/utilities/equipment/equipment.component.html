@@ -58,7 +58,7 @@
     <!-- Munizioni -->
     @if (ammo) {
         <div class="grid-item speed-title">
-            <span class="parameter-label">Munizioni ({{ammo.name}})</span> 
+            <span class="parameter-label">Munizioni ({{ammo.name}}<span *ngIf="ammoCounter > 0">, usate: {{ammoCounter}}</span>)</span> 
             <div class="speed-container">
                 <button as-mini-circle-light-btn class="very-mini-btn" (click)="ammoAction('add')">
                     <div class="material-symbols-outlined">add</div>

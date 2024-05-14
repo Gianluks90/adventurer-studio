@@ -21,6 +21,7 @@ export class EquipmentComponent {
   public CA: string = '';
   public initiative: string = '';
   public ammo: any;
+  public ammoCounter: number = 0;
 
   @Input() set character(character: any) {
     this.charData = character;
@@ -42,8 +43,30 @@ export class EquipmentComponent {
   }
 
   public checkWeared(): void {
-    this.wearedItems = this.inventoryData.filter(item => item.weared === true);
-    this.wearedItems = this.wearedItems.sort((a, b) => a.name.localeCompare(b.name));
+    // this.wearedItems = this.inventoryData.filter(item => item.weared === true);
+    // this.wearedItems = this.wearedItems.sort((a, b) => a.name.localeCompare(b.name));
+
+    this.wearedItems = [];
+    const weared = this.inventoryData.filter(item => item.weared === true);
+    const actualSet = this.setsData[this.setIndex];
+
+    // console.log(weared);
+    
+    this.wearedItems.push(weared.find(item => item.CA > 0 && !item.shield));
+    this.wearedItems.push(weared.find(item => item.category.toLowerCase() === 'munizioni'));
+    if (actualSet.mainHand) {
+      this.wearedItems.push(actualSet.mainHand);
+    }
+    if (actualSet.offHand) {
+      this.wearedItems.push(actualSet.offHand);
+    }
+    weared.forEach(item => {
+      if (item.type.toLowerCase() !== 'armatura' && item.category.toLowerCase() !== 'munizioni' && item.type.toLowerCase() !== 'arma' && !item.shield) {
+        this.wearedItems.push(item);
+      }
+    });
+
+
     this.calculateCA();
     this.setAmmo();
   }
@@ -136,9 +159,11 @@ export class EquipmentComponent {
     switch (action) {
       case 'add':
         ammo.quantity += 1;
+        this.ammoCounter = 0;
         break;
       case 'remove':
         ammo.quantity -= 1;
+        this.ammoCounter += 1;
         break;
     }
     this.charService.updateInventory(this.charData.id, this.inventoryData);
@@ -151,7 +176,7 @@ export class EquipmentComponent {
       disableClose: true,
       data: { inventory: this.inventoryData, sets: this.setsData }
     }).afterClosed().subscribe((result: any) => {
-      console.log(result);
+      // console.log(result);
 
       if (result && result.status === 'success') {
         this.wearedItems = result.weared;

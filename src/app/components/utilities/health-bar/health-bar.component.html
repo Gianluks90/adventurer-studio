@@ -1,19 +1,32 @@
+<div as-buttons-container>
+    <button as-mini-circle-btn (click)="openHPDialog()" [disabled]="!editModeData">
+        <div class="material-symbols-outlined">settings</div>
+    </button>
+    <button as-mini-circle-btn (click)="PFAction('add')" [disabled]="!editModeData || (parametriVitaliData.pf === parametriVitaliData.pfMax)">
+        <div class="material-symbols-outlined">add</div>
+    </button>
+    <button as-mini-circle-btn (click)="PFAction('remove')" [disabled]="!editModeData || (parametriVitaliData.pf === 0)">
+        <div class="material-symbols-outlined">remove</div>
+    </button>
+</div>
 <div class="healthbar-container">
     <div class="pf-container">
-        <span class="PF" [ngStyle]="{'color': sheetTitleColor}">{{parametriVitaliData.pf}}/{{parametriVitaliData.pfMax}}</span>
-        <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi" matTooltipPosition="above">favorite</mat-icon>
+        <span class="PF"
+            [ngStyle]="{'color': sheetTitleColor}">{{parametriVitaliData.pf}}/{{parametriVitaliData.pfMax}}</span>
+        <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi"
+            matTooltipPosition="above">favorite</mat-icon>
         <progress blueProgress class="pf-progress" max="{{parametriVitaliData.pfMax}}"
             value="{{parametriVitaliData.pf}}"></progress>
     </div>
     <div class="pft-container">
-        <span *ngIf="parametriVitaliData.pftMax > 0"
-            class="PF" [ngStyle]="{'color': sheetTitleColor}">{{parametriVitaliData.pft}}/{{parametriVitaliData.pftMax}}</span>
+        <span *ngIf="parametriVitaliData.pftMax > 0" class="PF"
+            [ngStyle]="{'color': sheetTitleColor}">{{parametriVitaliData.pft}}/{{parametriVitaliData.pftMax}}</span>
         <mat-icon *ngIf="parametriVitaliData.pftMax > 0" class="pft-icon"
             matTooltip="Punti Ferita Temporanei Attuali / Massimi" matTooltipPosition="above">hourglass_empty</mat-icon>
         <progress *ngIf="parametriVitaliData.pftMax > 0" class="pf-temp-progress" max="{{parametriVitaliData.pftMax}}"
             value="{{parametriVitaliData.pft}}"></progress>
     </div>
-    <button as-mini-circle-btn (click)="openHPDialog()" [disabled]="!editModeData"><div class="material-symbols-outlined">edit</div></button>
+    <!-- <button as-mini-circle-btn (click)="openHPDialog()" [disabled]="!editModeData"><div class="material-symbols-outlined">edit</div></button> -->
     <!-- <button matTooltip="Aggiorna Punti Ferita" matTooltipPosition="above" class="heart-button" mat-icon-button color="accent" (click)="openHPDialog()" [disabled]="!editModeData">
         <img src="./assets/icons/heart-check.svg">
     </button> -->

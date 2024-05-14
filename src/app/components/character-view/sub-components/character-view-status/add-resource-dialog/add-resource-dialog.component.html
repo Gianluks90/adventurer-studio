@@ -2,7 +2,7 @@
 <div mat-dialog-content class="dialog-content">
     <form [formGroup]="form" class="form-container">
         <div class="line-container">
-            <mat-form-field color="accent" appearance="outline">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
                 <mat-label>Nome</mat-label>
                 <input matInput formControlName="nome">
             </mat-form-field>
@@ -11,14 +11,15 @@
                 <input #valoreRisorsa type="number" matInput formControlName="valoreMassimo" min="1"
                     (change)="setValoreAttuale(valoreRisorsa.value)">
             </mat-form-field>
-            <mat-form-field color="accent" appearance="outline">
-                <mat-label>Nome</mat-label>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+                <mat-label>Colore</mat-label>
                 <input matInput type="color" formControlName="color">
             </mat-form-field>
         </div>
-        <mat-checkbox formControlName="isTemporary" color="accent"><strong>Temporanea</strong>: questa risorsa deriva da un oggetto,
+        <mat-checkbox formControlName="isTemporary" color="accent">Temporanea</mat-checkbox>
+        <div as-description-text>Seleziona questa opzione se la risorsa deriva da un oggetto,
             un'abilità o comunque da qualcosa di temporaneo che prima o poi cesserà di esistere. Verrà mostrato un tasto
-            aggiuntivo per la rimozione rapida.</mat-checkbox>
+            aggiuntivo per la rimozione rapida.</div>
     </form>
 </div>
 <div mat-dialog-actions align="end" class="buttons-container">

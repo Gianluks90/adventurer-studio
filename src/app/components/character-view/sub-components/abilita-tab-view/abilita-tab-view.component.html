@@ -14,8 +14,11 @@
     <div class="a-inner-container">
         <div class="a-name">
             {{a.name}} ({{a.short}})
-            <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
-            <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span>
+            <!-- <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
+            <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span> -->
+            <span class="material-symbols-outlined a-master" *ngIf="a.value && !a.maestria" matTooltip="Competenza" matTooltipPosition="right">circle</span>
+            <span class="material-symbols-outlined a-master" *ngIf="a.maestria" matTooltip="Maestria" matTooltipPosition="right">star</span>
+
         </div>
         <div class="a-value">{{a.mod}}</div>
     </div>

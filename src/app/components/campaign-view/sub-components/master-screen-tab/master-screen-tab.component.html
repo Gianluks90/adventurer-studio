@@ -2,8 +2,8 @@
 <div class="description-text">In questa sezione puoi trovare alcune informazioni riassunte e alcune tabelle per
     facilitare le tue sessioni come DM.</div>
 <div class="button-container">
-    <button mat-mini-fab color="accent" class="add-button" (click)="collapseAll()">
-        <mat-icon>unfold_less</mat-icon>
+    <button as-mini-circle-btn (click)="collapseAll()">
+        <div class="material-symbols-outlined">unfold_less</div>
     </button>
 </div>
 <div class="sc-container">
@@ -49,4 +49,4 @@
     <a href="https://creativecommons.org/licenses/by/4.0/legalcode.it"
         target="_blank">https://creativecommons.org/licenses/by/4.0/legalcode.it</a>.
 </div>
-<app-npcs [npcs]="[]" [organizations]="[]" [addons]="campaignData.addons" [tab]="false" [dm]="true" [isCampaignOwner]="isOwnerData"></app-npcs>
+<app-npcs [npcs]="[]" [organizations]="[]" [addons]="campaignData.addons" [tab]="false" [dm]="true" [isCampaignOwner]="isOwnerData" listTitle="Schede"></app-npcs>

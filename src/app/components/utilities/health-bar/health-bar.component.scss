@@ -1,9 +1,10 @@
 .healthbar-container {
     display: flex;
-    gap: 8px;
+    // gap: 8px;
     align-items: center;
     width: 100%;
     justify-content: space-between;
+    padding: 12px 0;
 }
 
 .PF {
@@ -92,7 +93,7 @@
     align-items: center;
     gap: 8px;
     flex-grow: 1;
-    width: 90%;
+    width: 100%;
 }
 
 .pft-container {
