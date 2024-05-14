@@ -7,6 +7,14 @@
     padding: 12px 0;
 }
 
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 6px;
+    width: 100%;
+}
+
 .PF {
     font-weight: bold;
     font-size: x-large;

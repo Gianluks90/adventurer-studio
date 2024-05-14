@@ -201,9 +201,17 @@ progress::-webkit-progress-value {
 
 div[as-buttons-container] {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   gap: 8px;
-  width: 100%;
+  margin-bottom: 8px;
+}
+
+div[as-mini-buttons-container] {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
 @media screen and (max-width: 768px) {
