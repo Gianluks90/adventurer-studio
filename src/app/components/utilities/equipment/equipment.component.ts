@@ -55,7 +55,6 @@ export class EquipmentComponent {
       }
     });
 
-    console.log(weared);
     const armor = weared.find(item => item.CA > 0 && !item.shield);
     if (armor) {
       this.wearedItems.push(armor);
@@ -79,6 +78,10 @@ export class EquipmentComponent {
       if (item.type.toLowerCase() !== 'armatura' && item.category.toLowerCase() !== 'munizioni' && item.type.toLowerCase() !== 'arma' && !item.shield) {
         this.wearedItems.push(item);
       }
+    });
+
+    this.wearedItems.forEach(item => {
+      item.weared = true;
     });
    
     this.calculateCA();
@@ -134,7 +137,7 @@ export class EquipmentComponent {
     let baseCA = 10; // Valore base della CA
     let shieldBonus = ''; // Bonus aggiuntivo dalla presenza dello scudo
 
-    equippedItems.forEach(item => {
+    equippedItems.forEach(item => {      
       // Se l'oggetto è uno scudo, aggiungi il suo valore alla stringa shieldBonus
       if (item.shield) {
         shieldBonus += `+${item.CA}`;
