@@ -46,27 +46,41 @@ export class EquipmentComponent {
     // this.wearedItems = this.inventoryData.filter(item => item.weared === true);
     // this.wearedItems = this.wearedItems.sort((a, b) => a.name.localeCompare(b.name));
 
+    if (this.inventoryData.length < 0) return;
     this.wearedItems = [];
-    const weared = this.inventoryData.filter(item => item.weared === true);
-    const actualSet = this.setsData[this.setIndex];
+    const weared: Item[] = [];
+    this.inventoryData.forEach(item => {
+      if (item.weared) {
+        weared.push(item);
+      }
+    });
 
-    // console.log(weared);
-    
-    this.wearedItems.push(weared.find(item => item.CA > 0 && !item.shield));
-    this.wearedItems.push(weared.find(item => item.category.toLowerCase() === 'munizioni'));
-    if (actualSet.mainHand) {
-      this.wearedItems.push(actualSet.mainHand);
+    console.log(weared);
+    const armor = weared.find(item => item.CA > 0 && !item.shield);
+    if (armor) {
+      this.wearedItems.push(armor);
     }
-    if (actualSet.offHand) {
-      this.wearedItems.push(actualSet.offHand);
+    const ammo = weared.find(item => item.category.toLowerCase() === 'munizioni');
+    if (ammo) {
+      this.wearedItems.push(ammo);
     }
+
+    if (this.setsData.length > 0) {
+      let actualSet = this.setsData[this.setIndex];
+      if (actualSet.mainHand) {
+        this.wearedItems.push(actualSet.mainHand);
+      }
+      if (actualSet.offHand) {
+        this.wearedItems.push(actualSet.offHand);
+      }
+    }
+
     weared.forEach(item => {
       if (item.type.toLowerCase() !== 'armatura' && item.category.toLowerCase() !== 'munizioni' && item.type.toLowerCase() !== 'arma' && !item.shield) {
         this.wearedItems.push(item);
       }
     });
-
-
+   
     this.calculateCA();
     this.setAmmo();
   }
@@ -106,16 +120,17 @@ export class EquipmentComponent {
 
   private calculateCA(): void {
     // Trova gli oggetti indossati con CA > 0
-    const equippedItems = this.wearedItems.filter(item => item.weared && item.CA > 0) || [];
+    let equippedItems: Item[] = [];
+    if (this.wearedItems.length > 0) {
+      equippedItems = this.wearedItems.filter(item => item.weared && item.CA > 0) || [];
+    }
     // Se non ci sono oggetti indossati con CA > 0
     if (equippedItems.length === 0) {
       // Calcola la CA basata sul modificatore di destrezza
       const dexModifier = Math.floor((this.charData.caratteristiche.destrezza - 10) / 2);
       this.CA = (10 + dexModifier).toString();
-      return;
-    }
-
-    // Se ci sono oggetti indossati con CA > 0
+    } else {
+          // Se ci sono oggetti indossati con CA > 0
     let baseCA = 10; // Valore base della CA
     let shieldBonus = ''; // Bonus aggiuntivo dalla presenza dello scudo
 
@@ -140,6 +155,7 @@ export class EquipmentComponent {
 
     // Aggiorna la CA con la stringa composta dal valore base e dal bonus dello scudo
     this.CA = `${baseCA}${shieldBonusString !== '' ? shieldBonusString : ''}`;
+    }
   }
 
   private calculateInitiative(): void {
