@@ -1,13 +1,17 @@
 <div mat-dialog-title class="dialog-title">Elimina campagna</div>
 <mat-dialog-content class="mat-typography" [formGroup]="form">
-    <div class="description">Conferma per cancellare la campagna. <strong>ATTENZIONE: L'AZIONE È IRREVERSIBILE.</strong> Continuare?</div>
+    <div as-description-text>Conferma per cancellare la campagna. <strong>ATTENZIONE: L'AZIONE È IRREVERSIBILE.</strong> Continuare?</div>
     <div class="sections-container" >
         <mat-checkbox formControlName="confirm">
             Si, voglio eliminare la campagna.
           </mat-checkbox>
       </div>
 </mat-dialog-content>
-<div mat-dialog-actions align="end">
-  <button mat-raised-button mat-dialog-close>Annulla</button>
-  <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">Conferma</button>
+<div as-buttons-container mat-dialog-actions align="end">
+  <button as-btn mat-dialog-close>
+    <div class="material-symbols-outlined">close</div> <div>Annulla</div>
+  </button>
+  <button as-btn as-btn-warn [disabled]="!form.valid" (click)="confirm()">
+    <div class="material-symbols-outlined">warning</div> <div>Conferma</div>
+  </button>
 </div>

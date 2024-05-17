@@ -1,5 +1,7 @@
 <div class="auth-container">
     <div class="auth-title">Adventurer Studio</div>
     <div class="auth-description">Crea i tuoi personaggi per il gioco di ruolo più famoso del mondo!</div>
-    <button mat-raised-button color="accent" (click)="loginWithGoogle()">Accedi con Google</button>
+    <button as-btn (click)="loginWithGoogle()">
+        <div class="material-symbols-outlined">login</div> <div>Accedi con Google</div>
+    </button>
 </div>

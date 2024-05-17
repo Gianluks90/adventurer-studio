@@ -1,30 +1,30 @@
 <div as-section-title>Trofei {{achievementReclamedBy}}/{{achievementsData.length}}</div>
-<div class="description-text">
+<div as-description-text>
     Esplorando, combattendo, effettuando azioni particolari o adottando un certo comportamento, il DM potrebbe assegnare dei Trofei ai personaggi.
 </div>
-<div class="button-container">
-    <button mat-mini-fab color="accent" class="archive-button" (click)="openArchiveAchievementDialog()" [disabled]="archiveData.length === 0">
-        <mat-icon>inventory_2</mat-icon>
+<div as-mini-buttons-container>
+    <button as-mini-circle-btn (click)="openArchiveAchievementDialog()" [disabled]="archiveData.length === 0">
+        <div class="material-symbols-outlined">inventory_2</div>
     </button>
-    <button mat-mini-fab color="accent" class="add-button" (click)="collapseAll()">
-        <mat-icon>unfold_less</mat-icon>
+    <button as-mini-circle-btn (click)="collapseAll()">
+        <div class="material-symbols-outlined">unfold_less</div>
     </button>
-    <button mat-mini-fab color="accent" class="add-button" (click)="openAchievementDialog()" *ngIf="isOwnerData">
-        <mat-icon>add</mat-icon>
+    <button as-mini-circle-btn (click)="openAchievementDialog()" *ngIf="isOwnerData">
+        <div class="material-symbols-outlined">add</div>
     </button>
 </div>
 <div class="achievement-container">
     <div class="achievement-item" *ngFor="let achievement of achievementsData; let i = index;">
-        <details class="achievement-details" [hidden]="!achievement.visible && !isOwnerData">
-            <summary class="achievement-title"><mat-icon *ngIf="!achievement.visible && isOwnerData">visibility_off</mat-icon> <div class="achievement-title-label">{{achievement.title}} <span *ngIf="reclamedByYou(achievement)"><mat-icon class="reclamed-by-you">check</mat-icon></span></div></summary>
+        <details as-details [hidden]="!achievement.visible && !isOwnerData">
+            <summary as-summary><mat-icon *ngIf="!achievement.visible && isOwnerData">visibility_off</mat-icon> <div class="achievement-title-label">{{achievement.title}} <span *ngIf="reclamedByYou(achievement)"><mat-icon class="reclamed-by-you">check</mat-icon></span></div></summary>
             <div class="achievement-description">{{achievement.content}}</div>
             <div class="reclamedby-container">
                 <img *ngFor="let char of achievement.reclamedBy" [src]="char.url" class="reclamedby-image" />
             </div>
             <!-- <div class="achievement-content">Riferimento: {{achievement.reference !== '' ? achievement.reference : '-'}}</div> -->
-            <div class="button-container">
-                <button color="accent" class="edit-button" (click)="openAchievementDialog(achievement, i)" *ngIf="isOwnerData">
-                    Modifica
+            <div as-buttons-container as-buttons-container-details>
+                <button as-btn (click)="openAchievementDialog(achievement, i)" *ngIf="isOwnerData">
+                    <div class="material-symbols-outlined">edit</div> <div>Modifica</div>
                 </button>
             </div>
         </details>

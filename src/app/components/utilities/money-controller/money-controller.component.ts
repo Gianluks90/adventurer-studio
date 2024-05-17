@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { EditMoneyControllerDialogComponent } from './edit-money-controller-dialog/edit-money-controller-dialog.component';
+import { DescriptionTooltipService } from '../description-tooltip/description-tooltip.service';
 
 @Component({
   selector: 'app-money-controller',
@@ -9,7 +10,7 @@ import { EditMoneyControllerDialogComponent } from './edit-money-controller-dial
   styleUrl: './money-controller.component.scss'
 })
 export class MoneyControllerComponent {
-  constructor(private fb: FormBuilder, private matDialog: MatDialog) {}
+  constructor(private fb: FormBuilder, private matDialog: MatDialog, public tooltip: DescriptionTooltipService) {}
 
   public denaroData: any;
   public charId: string = '';

@@ -18,6 +18,7 @@ export class CampaignListComponent implements OnInit {
   public menuIcon = 'menu';
   public ownedCampaigns: any[] = [];
   public partecipantCampaigns: any[] = [];
+  public today: Date = new Date();
 
   constructor(private sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
 

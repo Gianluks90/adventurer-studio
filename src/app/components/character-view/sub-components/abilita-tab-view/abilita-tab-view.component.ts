@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
 import { DddiceService } from 'src/app/services/dddice.service';
 import { RollDiceService } from 'src/app/services/roll-dice.service';
 
@@ -13,7 +14,8 @@ export class AbilitaTabViewComponent {
   constructor(
     private rollService: RollDiceService, 
     public diceService: DddiceService,
-    private http: HttpClient
+    private http: HttpClient,
+    public tooltip: DescriptionTooltipService
   ){}
 
   public abilitaData: any[] = [];
@@ -116,6 +118,12 @@ export class AbilitaTabViewComponent {
 
       abilita.maestria ? abilita.mod += bonusCompetenza : +0;
       abilita.mod > 0 ? abilita.mod = '+' + abilita.mod : abilita.mod = abilita.mod + '';
+    });
+    this.abilitaData = this.abilitaData.map((abilita) => {
+      return {
+        ...abilita,
+        name: abilita.name.charAt(0).toUpperCase() + abilita.name.slice(1)
+      };
     });
   }
 

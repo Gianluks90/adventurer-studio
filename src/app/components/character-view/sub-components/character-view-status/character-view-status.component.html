@@ -1,4 +1,4 @@
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Caratteristiche</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Caratteristiche</div>
 <div class="caratteristiche-main-container">
     <div class="caratteristiche-line">
         <div class="caratteristiche-container">
@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Tiri salvezza</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Tiri salvezza</div>
 <div class="bonus-competenza">
     <div>Bonus Competenza</div>
     <div class="bonus-value">+ {{characterData.tiriSalvezza.bonusCompetenza}}</div>
@@ -105,7 +105,7 @@
     <app-description-tooltip id="ts-tooltip" info="competenzaTS" *ngIf="tooltip.show && tooltip.id === 'ts-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
 </div>
 
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Parametri vitali</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Parametri vitali</div>
 <div class="punti-ferita-container">
     <div class="pf-line">
         <app-health-bar class="health-bar-component" [char]="characterData" [editMode]="editModeData"></app-health-bar>
@@ -128,7 +128,7 @@
     </div>
 </div>
 @if(editModeData) {
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Dadi vita</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Dadi vita</div>
 <div class="dice-container">
     <div *ngFor="let d of dadiVitaData; let i = index;">
         <img *ngFor="let used of d.used; let j = index;" src="{{'./assets/dice/dice-' + d.tipologia + '.svg'}}"
@@ -137,7 +137,7 @@
 </div>
 
 <ng-container>
-    <div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Risorse aggiuntive</div>
+    <div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Risorse aggiuntive</div>
     <div class="risorse-container-line">
         <div *ngFor="let risorsa of risorseAggiuntiveData; let i = index;">
             @if (risorsa.valoreMassimo > 10) {
@@ -174,7 +174,7 @@
 </ng-container>
 }
 
-<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor}">Prove passive</div>
+<div as-section-title [ngStyle]="{'color': characterData.status.sheetTitleColor && !isCampaign ? characterData.status.sheetTitleColor : '#212121'}">Prove passive</div>
 <div class="passive-grid">
     <div class="grid-item"><div class="material-symbols-outlined">visibility</div><span>Percezione</span> {{percezionePassiva}}</div>
     <div class="grid-item"><div class="material-symbols-outlined material-no-fill">neurology</div> <span>Intuizione</span>{{intuizionePassiva}}</div>

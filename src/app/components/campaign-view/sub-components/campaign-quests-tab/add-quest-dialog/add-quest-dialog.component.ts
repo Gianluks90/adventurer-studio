@@ -62,15 +62,9 @@ export class AddQuestDialogComponent {
     this.steps.removeAt(index);
   }
 
-  // public addStep() {
-  //   const step = this.fb.group({
-  //     text: ['', Validators.required],
-  //     visible: false
-  //   });
-  //   this.steps.push(step);
-  //   (<FormArray>this.form.get('steps')).push(step);
-
-  // }
-
-
+  public deleteQuest() {
+    this.dialogRef.close({
+      status: 'delete'
+    });
+  }
 }

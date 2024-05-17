@@ -43,6 +43,10 @@ export class CampaignQuestsTabComponent {
           this.questsData[index] = result.quest;
           this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData);
           break;
+        case 'delete':
+          this.questsData.splice(index, 1);
+          this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData);
+          break;
         default:
           break;
       }
@@ -79,5 +83,10 @@ export class CampaignQuestsTabComponent {
       autoFocus: false,
       data: { archive: this.archiveData }
     })
+  }
+
+  public questToggleVisibility(index: number): void {
+    this.questsData[index].visible = !this.questsData[index].visible;
+    this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData);
   }
 }

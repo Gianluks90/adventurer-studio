@@ -1,23 +1,18 @@
 .dialog-title {
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  
-  .dialog-content {
-    width: 100%;
-  }
-  
-  .input-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .description {
-    margin-bottom: 8px;
-    text-align: justify;
-  }
-  
-  button {
-    border-radius: 0;
-  }
-  
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.dialog-content {
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  margin-bottom: 8px;
+  text-align: justify;
+}

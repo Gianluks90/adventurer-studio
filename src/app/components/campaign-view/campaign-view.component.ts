@@ -3,14 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { Platform } from '@angular/cdk/platform';
-import { FirebaseService } from 'src/app/services/firebase.service';
 import { TicketCampaignDialogComponent } from '../campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
 import { getAuth } from 'firebase/auth';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DiceComponent } from '../utilities/dice/dice.component';
-import { DddiceService } from 'src/app/services/dddice.service';
 import { NextSessionDialogComponent } from './next-session-dialog/next-session-dialog.component';
+import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
 
 @Component({
   selector: 'app-campaign-view',
@@ -26,14 +25,13 @@ export class CampaignViewComponent {
   public today = new Date();
 
   constructor(
-    private firebaseService: FirebaseService,
     private diceSelector: MatBottomSheet,
     private campaignService: CampaignService,
     private sidenavService: SidenavService,
     private matDialog: MatDialog,
     private platform: Platform,
     private charService: CharacterService,
-    private dddiceService: DddiceService) {
+    public tooltip: DescriptionTooltipService) {
 
     const id = window.location.href.split('campaign-view/').pop();
     this.campaignService.getSignalSingleCampaing(id);

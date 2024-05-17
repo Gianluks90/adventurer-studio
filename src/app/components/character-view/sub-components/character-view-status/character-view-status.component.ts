@@ -33,6 +33,8 @@ export class CharacterViewStatusComponent {
   public ispirazione: any;
   public risorseAggiuntiveData: any[] = [];
 
+  public isCampaign: boolean = false;
+
   constructor(
     private formService: FormService,
     private rollService: RollDiceService,
@@ -40,7 +42,9 @@ export class CharacterViewStatusComponent {
     private charService: CharacterService,
     private notification: NotificationService,
     public tooltip: DescriptionTooltipService,
-    private matDialog: MatDialog) { }
+    private matDialog: MatDialog) { 
+      this.isCampaign = window.location.href.includes('campaign');
+    }
 
   @Input() set character(character: any) {
     if (!character) return;

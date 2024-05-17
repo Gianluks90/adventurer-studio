@@ -1,4 +1,4 @@
-<div class="money-container" (click)="openEditMoneyDialog()">
+<div class="money-container" (click)="openEditMoneyDialog()" (mouseover)="tooltip.showTooltip($event, 'center', true, 'money-tooltip')" (mouseleave)="tooltip.hideTooltip()">
     <div class="money-title">Denaro</div>
     <div class="moneys">
       <div class="single-coins-viewer">
@@ -33,3 +33,4 @@
       </div>
     </div>
   </div>
+<app-description-tooltip id="money-tooltip" info="denaro" *ngIf="tooltip.show && tooltip.id === 'money-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>

@@ -17,11 +17,8 @@ export class DeleteCampaignDialogComponent {
   });
 
   constructor(
-    private characterService: CharacterService,
-    private formService: FormService,
     public dialogRef: MatDialogRef<DeleteCampaignDialogComponent>,
-    private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: {id: string},
+    private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: {id: string},
     private campaignService: CampaignService ) { }
 
     public confirm() {

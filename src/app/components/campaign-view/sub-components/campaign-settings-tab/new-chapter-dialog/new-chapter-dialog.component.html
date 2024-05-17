@@ -1,6 +1,6 @@
 <div mat-dialog-title class="dialog-title">Inizia nuovo capitolo</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
-    <div class="description">
+    <div as-description-text>
         Stai per iniziare un nuovo Capitolo nella Campagna in corso. Inserisci un <strong>Titolo</strong> e una
         <strong>Descrizione</strong> che sostituiranno i precedenti dopodichè premi 'Conferma'. Tutto ciò che è stato
         inserito finora in: storia, missioni, npc e ricompense, verrà archiviato nelle rispettive sezioni e sia tu che i
@@ -15,11 +15,11 @@
         <textarea matInput formControlName="description" rows="5"></textarea>
     </mat-form-field>
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>
-        <mat-icon>close</mat-icon> Annulla
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
     </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>check</mat-icon> Conferma
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">check</div> <div>Conferma</div>
     </button>
 </div>

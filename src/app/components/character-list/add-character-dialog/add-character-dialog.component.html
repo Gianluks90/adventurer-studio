@@ -1,6 +1,6 @@
 <div mat-dialog-title class="dialog-title">Creazione nuovo personaggio</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="charForm">
-  <div class="description">Inserisci un Nome poi Conferma per creare un Personaggio
+  <div as-description-text>Inserisci un Nome poi Conferma per creare un Personaggio
     <strong>OPPURE</strong> carica un backup (in formato JSON) che hai esportato precedentemente, questo genererà un
     Personaggio già precompilato.</div>
 
@@ -14,7 +14,11 @@
     <input type="file" accept=".json" (change)="uploadFile($event)">
   </div>
 </div>
-<div mat-dialog-actions align="end">
-  <button mat-raised-button mat-dialog-close>Annulla</button>
-  <button mat-raised-button color="accent" [disabled]="!charForm.valid" (click)="confirm()">Conferma</button>
+<div as-buttons-container mat-dialog-actions align="end">
+  <button as-btn mat-dialog-close>
+    <div class="material-symbols-outlined">close</div> <div>Annulla</div>
+  </button>
+  <button as-btn [disabled]="!charForm.valid" (click)="confirm()">
+    <div class="material-symbols-outlined">done</div> <div>Conferma</div>
+  </button>
 </div>

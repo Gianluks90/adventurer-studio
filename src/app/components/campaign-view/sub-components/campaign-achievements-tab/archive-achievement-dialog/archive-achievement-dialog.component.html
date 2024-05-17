@@ -1,6 +1,6 @@
 <div mat-dialog-title class="dialog-title">Archivio Trofei</div>
 <div mat-dialog-content class="dialog-content">
-    <div class="description">
+    <div as-description-text>
         Nei gruppi sottostanti troverai le Missioni scoperte e completate durante la tua Campagna.
     </div>
     @for(a of data.archive; track i; let i = $index) {
@@ -12,7 +12,7 @@
         @for (t of a.achievements; track idx; let idx = $index) {
         <div class="story-container" [ngClass]="{'divider': !$last}">
             <div class="achievement-line">
-                <mat-icon>{{t.reclamedBy ? 'check' : 'close'}}</mat-icon> 
+                <div class="material-symbols-outlined">{{t.reclamedBy ? 'check' : 'close'}}</div>
                 <div><span class="story-title">{{t.title}}</span> {{t.content}}</div>
             </div>
         </div>
@@ -20,8 +20,8 @@
     </details>
     }
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close color="accent">
-        <mat-icon>close</mat-icon> Chiudi
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
     </button>
 </div>

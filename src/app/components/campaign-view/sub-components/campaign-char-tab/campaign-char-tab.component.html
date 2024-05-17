@@ -1,33 +1,30 @@
 @if (charData) {
 <div as-section-title>{{charData.informazioniBase.nomePersonaggioEsteso !== '' ? charData.informazioniBase.nomePersonaggioEsteso : charData.informazioniBase.nomePersonaggio}}</div>
-<div class="description-text">Questo è un riassunto della tua scheda personaggio, puoi visualizzare quella intera premendo il tasto infondo a questa sezione.</div>
-<div class="subtitle">Info</div>
-<div class="char-classes-container">
-    <div class="c-container">{{charData.informazioniBase.razzaPersonalizzata !== '' || charData.informazioniBase.razza}}</div>
+<div as-description-text>Questo è un riassunto della tua scheda personaggio, puoi visualizzare quella intera premendo il tasto infondo a questa sezione.</div>
+<div as-subtitle>Info</div>
+<div as-pills-container>
+    <div as-pill>{{charData.informazioniBase.razzaPersonalizzata !== '' || charData.informazioniBase.razza}}</div>
     @for(c of charData.informazioniBase.classi; track $index) {
-        <div class="c-container">
+        <div as-pill>
             {{c.nomePersonalizzato && c.nomePersonalizzato !== '' ? c.nomePersonalizzato : c.nome}} di {{c.livello}}° livello
         </div>
     }
-    <div class="c-container">{{charData.informazioniBase.allineamento}}</div>
-    <div class="c-container">{{charData.informazioniBase.background}} <span *ngIf="charData.informazioniBase.dettaglioBackground !== ''"> ({{charData.informazioniBase.dettaglioBackground}})</span></div>
+    <div as-pill>{{charData.informazioniBase.allineamento}}</div>
+    <div as-pill>{{charData.informazioniBase.background}} <span *ngIf="charData.informazioniBase.dettaglioBackground !== ''"> ({{charData.informazioniBase.dettaglioBackground}})</span></div>
 </div>
-<div class="subtitle">Caratteristiche</div>
+<!-- <div as-subtitle>Caratteristiche</div>
 <div class="skill-container">
     <div class="skill-line">
-        <!-- Forza -->
         <div class="skill">
             <div class="skill-title">FOR</div>
             <div class="skill-value">{{charData.caratteristiche.forza}}</div>
             <div class="skill-title">{{calcModifier(charData.caratteristiche.forza)}}</div>
         </div>
-        <!-- Destrezza -->
         <div class="skill">
             <div class="skill-title">DES</div>
             <div class="skill-value">{{charData.caratteristiche.destrezza}}</div>
             <div class="skill-title">{{calcModifier(charData.caratteristiche.destrezza)}}</div>
         </div>
-        <!-- Costituzione -->
         <div class="skill">
             <div class="skill-title">COS</div>
             <div class="skill-value">{{charData.caratteristiche.costituzione}}</div>
@@ -35,87 +32,83 @@
         </div>
     </div>
     <div class="skill-line">
-        <!-- Intelligenza -->
         <div class="skill">
             <div class="skill-title">INT</div>
             <div class="skill-value">{{charData.caratteristiche.intelligenza}}</div>
             <div class="skill-title">{{calcModifier(charData.caratteristiche.intelligenza)}}</div>
         </div>
-        <!-- Saggezza -->
         <div class="skill">
             <div class="skill-title">SAG</div>
             <div class="skill-value">{{charData.caratteristiche.saggezza}}</div>
             <div class="skill-title">{{calcModifier(charData.caratteristiche.saggezza)}}</div>
         </div>
-        <!-- Carisma -->
         <div class="skill">
             <div class="skill-title">CAR</div>
             <div class="skill-value">{{charData.caratteristiche.carisma}}</div>
             <div class="skill-title">{{calcModifier(charData.caratteristiche.carisma)}}</div>
         </div>
     </div>
-</div>
-<div class="subtitle">Tiri salvezza</div>
+</div> -->
+<!-- <div as-subtitle>Tiri salvezza</div>
 <div class="proficiency-container">
     <div class="prof-label">Bonus Competenza</div>
     <div class="prof-label">{{charData.tiriSalvezza.bonusCompetenza > 0 ? "+ " + charData.tiriSalvezza.bonusCompetenza : charData.tiriSalvezza.bonusCompetenza}}</div>
 </div>
 <div class="skill-container">
     <div class="skill-line">
-        <!-- Forza -->
-        <div class="skill" [ngClass]="{'proficent-skill' : charData.tiriSalvezza.forza}">
+        <div class="skill" [ngStyle]="{'border-bottom' : charData.tiriSalvezza.forza ? '6px solid #212121' : ''}">
             <div class="skill-title">FOR</div>
             <div class="skill-value">{{calcSaveThrow(charData.caratteristiche.forza, 'forza')}}</div>
         </div>
-        <!-- Destrezza -->
-        <div class="skill" [ngClass]="{'proficent-skill' : charData.tiriSalvezza.destrezza}">
+        <div class="skill" [ngStyle]="{'border-bottom' : charData.tiriSalvezza.destrezza ? '6px solid #212121' : ''}">
             <div class="skill-title">DES</div>
             <div class="skill-value">{{calcSaveThrow(charData.caratteristiche.destrezza, 'destrezza')}}</div>
         </div>
-        <!-- Costituzione -->
-        <div class="skill" [ngClass]="{'proficent-skill' : charData.tiriSalvezza.costituzione}">
+        <div class="skill" [ngStyle]="{'border-bottom' : charData.tiriSalvezza.costituzione ? '6px solid #212121' : ''}">
             <div class="skill-title">COS</div>
             <div class="skill-value">{{calcSaveThrow(charData.caratteristiche.costituzione, 'costituzione')}}</div>
         </div>
     </div>
     <div class="skill-line">
-        <!-- Intelligenza -->
-        <div class="skill" [ngClass]="{'proficent-skill' : charData.tiriSalvezza.intelligenza}">
+        <div class="skill" [ngStyle]="{'border-bottom' : charData.tiriSalvezza.intelligenza ? '6px solid #212121' : ''}">
             <div class="skill-title">INT</div>
             <div class="skill-value">{{calcSaveThrow(charData.caratteristiche.intelligenza, 'intelligenza')}}</div>
         </div>
-        <!-- Saggezza -->
-        <div class="skill" [ngClass]="{'proficent-skill' : charData.tiriSalvezza.saggezza}">
+        <div class="skill" [ngStyle]="{'border-bottom' : charData.tiriSalvezza.saggezza ? '6px solid #212121' : ''}">
             <div class="skill-title">SAG</div>
             <div class="skill-value">{{calcSaveThrow(charData.caratteristiche.saggezza, 'saggezza')}}</div>
         </div>
-        <!-- Carisma -->
-        <div class="skill" [ngClass]="{'proficent-skill' : charData.tiriSalvezza.carisma}">
+        <div class="skill" [ngStyle]="{'border-bottom' : charData.tiriSalvezza.carisma ? '6px solid #212121' : ''}">
             <div class="skill-title">CAR</div>
             <div class="skill-value">{{calcSaveThrow(charData.caratteristiche.carisma, 'carisma')}}</div>
         </div>
     </div>
-</div>
-<div class="subtitle">Abilità</div>
+</div> -->
+<div as-subtitle>Abilità</div>
 <div class="a-container">
-    @for(a of abilitaData; track $index) {
-        <div class="a-line" [ngClass]="{'even-a' : $even}">
+    @for(a of abilitaData; track i; let i = $index) {
+        <div class="a-line" [ngClass]="{'even-a': getEvenLine(i)}">
             <div class="a-label">{{a.name}} ({{a.short}})<span class="proficiency-identifier" *ngIf="a.value" matTooltip="Competente" matTooltipPosition="above">•</span></div>
             <div class="a-value">{{a.mod}}</div>
         </div>
     }
 </div>
-<div class="subtitle">Privilegi, tratti e talenti</div>
+<div as-subtitle>Privilegi, tratti e talenti</div>
+<div as-buttons-container>
+    <button as-mini-circle-btn (click)="collapseAll()">
+        <div class="material-symbols-outlined">unfold_less</div>
+    </button>
+</div>
 @for (p of charData.privilegiTratti; track $index) {
-    <details>
-        <summary class="p-name">{{p.nome}}</summary>
+    <details as-details>
+        <summary as-summary>{{p.nome}}</summary>
         <div class="p-description">{{p.descrizione}}</div>
     </details>
 }
 }
 
-<div class="sheet-button-container">
-    <button mat-raised-button color="accent" (click)="navigateToChar(charData.id)">
-        <mat-icon>open_in_new</mat-icon> Apri scheda
+<div as-buttons-container>
+    <button as-btn (click)="navigateToChar(charData.id)">
+        <div class="material-symbols-outlined">open_in_new</div> <div>Apri scheda</div>
     </button>
 </div>

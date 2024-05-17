@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../../../assets/background.jpg");
+  background-image: url("../../../assets/background_summer.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,10 +34,6 @@
   font-family: 'Times New Roman', Times, serif;
   color: white;
   font-size: x-large;
-}
-
-button {
-  border-radius: 0;
 }
 
 @media screen and (max-width: 850px) {

@@ -10,6 +10,7 @@ import { CampaignService } from 'src/app/services/campaign.service';
 })
 export class NextSessionDialogComponent {
   public form: FormGroup = new FormGroup({});
+  public tomorrow = new Date(new Date().setDate(new Date().getDate() + 1));
 
   constructor(
     private fb: FormBuilder, 

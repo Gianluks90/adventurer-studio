@@ -108,4 +108,16 @@ export class CampaignCharTabComponent {
   public navigateToChar(charId: string): void {
     window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');
   }
+
+  public getEvenLine(index: number): boolean {
+    const columnsIndex: number[] = [0, 3, 4, 7, 8, 11, 12, 15, 16];
+    return columnsIndex.includes(index);
+  }
+  
+  public collapseAll() {
+    const details = document.querySelectorAll('details');
+    details.forEach((detail: any) => {
+      detail.open = false;
+    });
+  }
 }

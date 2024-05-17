@@ -37,7 +37,7 @@
   justify-content: center;
   // justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
   padding: 20px;
 }
 
@@ -56,17 +56,20 @@
   align-items: center;
   flex-grow: 1;
   gap: 8px;
-  // border-radius: 8px;
-  // padding: 12px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
   max-width: 200px;
+  border-radius: 12px;
+}
+
+.character-info-container {
+  padding: 8px;
 }
 
 .character-name {
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: bold;
-  margin: 4px 0;
+  // padding: 4px;
   width: 180px;
   white-space: nowrap;
   overflow: hidden;
@@ -78,7 +81,7 @@
 }
 
 .character-class {
-  margin: 4px 0;
+  // margin: 4px 0;
   width: 180px;
   white-space: nowrap;
   overflow: hidden;
@@ -92,12 +95,13 @@
 }
 
 .immagine-personaggio {
-  width: 100%;
+  width: 196px;
   height: 150px;
-  // border-radius: 8px;
   object-fit: cover;
   object-position: top;
   max-width: 200px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .card-body {
@@ -106,30 +110,28 @@
 
 .button-container {
   display: flex;
-  // width: 100%;
   flex-direction: column;
-  gap: 2px;
-  // align-items: space-between center;
-  // justify-content: center;
+  gap: 4px;
+  padding: 4px;
 }
 
-.button-container > button {
-  // flex-grow: 1;
-  width: 200px;
-  border-radius: 0;
-}
+// .button-container > button {
+//   // flex-grow: 1;
+//   width: 200px;
+//   border-radius: 0;
+// }
 
 .second-buttons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 2px;
+  gap: 4px;
 }
 
-.second-buttons > button {
-  width: 200px;
-  border-radius: 0;
-}
+// .second-buttons > button {
+//   width: 200px;
+//   border-radius: 0;
+// }
 
 .sidenav-buttons {
   position: fixed;
@@ -160,10 +162,6 @@
 
 .step-button:disabled {
   background-color: #e0e0e0;
-}
-
-button {
-  border-radius: 0;
 }
 
 @media screen and (max-width: 500px) {

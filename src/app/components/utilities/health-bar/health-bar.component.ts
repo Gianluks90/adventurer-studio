@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { HealthPointDialogComponent } from './health-point-dialog/health-point-dialog.component';
 import { Platform } from '@angular/cdk/platform';
 import { CharacterService } from 'src/app/services/character.service';
-import { NotificationService } from 'src/app/services/notification.service';
 import { DescriptionTooltipService } from '../description-tooltip/description-tooltip.service';
 
 @Component({
@@ -15,6 +14,7 @@ import { DescriptionTooltipService } from '../description-tooltip/description-to
 export class HealthBarComponent {
 
   public sheetTitleColor: string = '';
+  public isCampaign: boolean = false;
 
   @Input() set char(character: any) {
     this.idData = character.id;
@@ -22,9 +22,10 @@ export class HealthBarComponent {
     this.parametriVitaliData.pf = character.parametriVitali.puntiFeritaAttuali;
     this.parametriVitaliData.pftMax = character.parametriVitali.massimoPuntiFeritaTemporanei;
     this.parametriVitaliData.pft = character.parametriVitali.puntiFeritaTemporaneiAttuali;
-    this.sheetTitleColor = character.status.sheetTitleColor || '#212121';
+    this.sheetTitleColor = character.status.sheetTitleColor && !this.isCampaign ? character.status.sheetTitleColor : '#212121';
   }
 
+  public editModeData: boolean = false;
   @Input() set editMode(editMode: boolean) {
     this.editModeData = editMode;
   }
@@ -33,7 +34,9 @@ export class HealthBarComponent {
     private dialog: MatDialog, 
     private platform: Platform, 
     private charService: CharacterService,
-    public tooltip: DescriptionTooltipService) {}
+    public tooltip: DescriptionTooltipService) {
+      this.isCampaign = window.location.href.includes('campaign');
+    }
 
   public parametriVitaliData: any = {
     pf: 0,
@@ -43,7 +46,6 @@ export class HealthBarComponent {
   }
 
   public idData: string = '';
-  public editModeData: boolean = false;
 
   public openHPDialog() {
     // const characterId = window.location.href.split('/').pop();

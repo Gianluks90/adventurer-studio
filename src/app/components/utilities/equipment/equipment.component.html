@@ -1,4 +1,4 @@
-<div as-section-title [ngStyle]="{'color': charData.status.sheetTitleColor}">Equipaggiamento</div>
+<div as-section-title [ngStyle]="{'color': charData.status.sheetTitleColor && !isCampaign ? charData.status.sheetTitleColor : '#212121'}">Equipaggiamento</div>
 @if (editModeData) {
     <div class="buttons-container">
         <button as-mini-circle-btn (click)="openManageDialog()">

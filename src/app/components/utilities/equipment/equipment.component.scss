@@ -56,6 +56,8 @@
     grid-template-columns: repeat(10, 1fr);
     gap: 4px;
     margin-bottom: 8px;
+    min-height: 48px;
+    align-content: center;
 }
 
 .equip-card {
@@ -76,6 +78,7 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.8);
     animation: slideIn 0.3s forwards;
+    pointer-events: none;
     // box-sizing: border-box;
 }
 

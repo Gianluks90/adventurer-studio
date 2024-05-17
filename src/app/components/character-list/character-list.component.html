@@ -25,30 +25,22 @@
         </div>
         <div class="card-body">
           <div class="button-container">
-            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
-              *ngIf="c.status.statusCode === 0">
-              <mat-icon>star</mat-icon>
-              Crea
+            <button as-btn [routerLink]="'/create/' + c.id" *ngIf="c.status.statusCode === 0">
+              <div class="material-symbols-outlined">star</div> <div>Crea</div>
             </button>
-            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/create/' + c.id"
-              *ngIf="c.status.statusCode === 1">
-              <mat-icon>edit</mat-icon>
-              Modifica
+            <button as-btn [routerLink]="'/create/' + c.id" *ngIf="c.status.statusCode === 1">
+              <div class="material-symbols-outlined">edit</div> <div>Modifica</div>
             </button>
-            <button class="main-button" mat-raised-button color="accent" [routerLink]="'/view/' + c.id"
-              *ngIf="c.status.statusCode === 2">
-              <mat-icon>visibility</mat-icon>
-              Visualizza
+            <button as-btn [routerLink]="'/view/' + c.id" *ngIf="c.status.statusCode === 2">
+              <div class="material-symbols-outlined material-no-fill">visibility</div> <div>Visualizza</div>
             </button>
             <div class="second-buttons">
-              <button mat-raised-button color="accent" [routerLink]="'/levelup/' + c.id"
+              <button as-btn [routerLink]="'/levelup/' + c.id"
                 [disabled]="c.status.statusCode !== 2 || c.informazioniBase.livello == 20">
-                <mat-icon>arrow_upward</mat-icon>
-                LV+
+                <div class="material-symbols-outlined">trending_up</div> <div>LV+</div>
               </button>
-              <button mat-raised-button color="accent" (click)="deleteCharacter(c.id)">
-                <mat-icon>delete</mat-icon>
-                Elimina
+              <button as-btn as-btn-warn (click)="deleteCharacter(c.id)">
+                <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
               </button>
             </div>
           </div>
@@ -63,15 +55,20 @@
       personaggio</button>
   </div>
 
-  <div class="sidenav-buttons" id="menu-button">
-    <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
-      <mat-icon>menu</mat-icon>
+  <div as-bottom-buttons-container as-bottom-left id="menu-button">
+    <button as-bottom-btn (click)="openSidenav()"
+    (mouseover)="tooltip.showTooltip($event, 'up-right', true, 'menu-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+      <div class="material-symbols-outlined">menu</div>
     </button>
   </div>
-  <div class="add-buttons" id="add-button">
-    <button class="step-button" (click)="createCharacter()" mat-icon-button matTooltip="Nuovo Personaggio"
-      matTooltipPosition="left" [disabled]="characters.length >= 3">
-      <mat-icon>add</mat-icon>
+  <div as-bottom-buttons-container as-bottom-right id="add-button">
+    <button as-bottom-btn (click)="createCharacter()" [disabled]="characters.length >= 3"
+    (mouseover)="tooltip.showTooltip($event, 'up-left', true, 'add-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+      <div class="material-symbols-outlined">add</div>
     </button>
   </div>
 </div>
+
+<app-description-tooltip id="add-tooltip" info="newChar" *ngIf="tooltip.show && tooltip.id === 'add-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="menu-tooltip" info="openSidemenu" *ngIf="tooltip.show && tooltip.id === 'menu-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+

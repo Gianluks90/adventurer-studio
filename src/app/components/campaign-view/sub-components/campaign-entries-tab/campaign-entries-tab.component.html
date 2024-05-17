@@ -1,10 +1,10 @@
 <div as-section-title>Annotazioni</div>
-<div class="description-text">
+<div as-description-text>
     Questo è un diario personale, usalo per raccogliere i tuoi pensieri e le tue riflessioni sulla campagna. Le annotazioni sono visibili solo a te.
 </div>
-<div class="button-container">
-    <button mat-mini-fab color="accent" class="add-button" (click)="openEntryDialog()">
-        <mat-icon>add</mat-icon>
+<div as-buttons-container>
+    <button as-mini-circle-btn (click)="openEntryDialog()">
+        <div class="material-symbols-outlined">add</div>
     </button>
 </div>
 <div class="rule-container">
@@ -13,12 +13,12 @@
             <div class="tag-label">{{tag}}</div>
             @for(entry of entriesData; track idx; let idx = $index) {
                 @if(entry.tag.toLowerCase() === tag) {
-                    <details class="entry-details">
-                        <summary class="entry-title" [ngStyle]="{'backgroundColor': entry.backgroundColor, 'color': entry.contrastColor}">{{entry.title}}</summary>
+                    <details as-details>
+                        <summary as-summary [ngStyle]="{'backgroundColor': entry.backgroundColor, 'color': entry.contrastColor}">{{entry.title}}</summary>
                         <div class="entry-content">{{entry.content}}</div>
-                        <div class="button-container">
-                            <button color="accent" class="edit-button" (click)="openEntryDialog(entry, idx)">
-                                Modifica
+                        <div as-buttons-container as-buttons-container-details>
+                            <button as-btn (click)="openEntryDialog(entry, idx)">
+                                <div class="material-symbols-outlined">edit</div> <div>Modifica</div>
                             </button>
                         </div>
                     </details>

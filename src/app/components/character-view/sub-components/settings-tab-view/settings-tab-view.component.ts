@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
@@ -21,7 +22,7 @@ export class SettingsTabViewComponent {
 
   public formColor: FormGroup;
 
-  constructor(private charService: CharacterService, private formService: FormService, private campaignService: CampaignService, private router: Router, private fb: FormBuilder) {
+  constructor(private charService: CharacterService, private campaignService: CampaignService, private router: Router, private fb: FormBuilder, public tooltip: DescriptionTooltipService) {
     this.formColor = this.fb.group({
       sheetColor: '#FFFFFF40',
       sheetTitleColor: '#212121'

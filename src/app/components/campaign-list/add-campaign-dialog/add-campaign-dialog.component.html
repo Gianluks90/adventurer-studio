@@ -1,6 +1,9 @@
 <div mat-dialog-title class="dialog-title">Creazione nuova campagna</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="campForm">
-      <div class="description">Inserisci un Titolo e una Password poi premi il tasto 'Conferma' per creare una campagna. La Password sarà visualizzabile nel pannello informativo all'interno della Campagna quindi non la perderai se non ne prendi nota ora. La lunghezza della password deve essere compresa tra 8 e 16 caratteri, sono validi tutti i caratteri numeri e simboli.</div>
+  <div as-description-text>Inserisci un Titolo e una Password poi premi il tasto 'Conferma' per creare una campagna. La
+    Password sarà visualizzabile nel pannello informativo all'interno della Campagna quindi non la perderai se non ne
+    prendi nota ora. La lunghezza della password deve essere compresa tra 8 e 16 caratteri, sono validi tutti i
+    caratteri numeri e simboli.</div>
   <div class="input-container">
     <mat-form-field color="accent" class="custom-form-field" appearance="outline">
       <mat-label>Titolo</mat-label>
@@ -20,7 +23,11 @@
     </mat-form-field>
   </div>
 </div>
-<div mat-dialog-actions align="end">
-  <button mat-raised-button mat-dialog-close>Annulla</button>
-  <button mat-raised-button color="accent" [disabled]="!campForm.valid" (click)="confirm()">Conferma</button>
+<div as-buttons-container mat-dialog-actions align="end">
+  <button as-btn mat-dialog-close>
+    <div class="material-symbols-outlined">close</div> <div>Annulla</div>
+  </button>
+  <button as-btn [disabled]="!campForm.valid" (click)="confirm()">
+    <div class="material-symbols-outlined">done</div> <div>Conferma</div>
+  </button>
 </div>

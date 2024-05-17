@@ -2,11 +2,11 @@
 <div class="description">{{descriptionData}}</div>
 <div as-section-title>Resoconto sessioni</div>
 <div class="button-container">
-    <button mat-mini-fab color="accent" class="archive-button" (click)="openArchiveStoryDialog()" [disabled]="archiveData.length === 0">
-        <mat-icon>inventory_2</mat-icon>
+    <button as-mini-circle-btn (click)="openArchiveStoryDialog()" [disabled]="archiveData.length === 0">
+        <div class="material-symbols-outlined">inventory_2</div>
     </button>
-    <button mat-mini-fab color="accent" class="add-button" (click)="openStoryDialog()" *ngIf="isOwnerData">
-        <mat-icon>add</mat-icon>
+    <button as-mini-circle-btn (click)="openStoryDialog()" *ngIf="isOwnerData">
+        <div class="material-symbols-outlined">add</div>
     </button>
 </div>
 <div class="story-container">
@@ -21,8 +21,8 @@
             <div class="story-content">{{story.content}}</div>
         </ng-container>
         <div class="button-container">
-            <button color="accent" class="edit-button" (click)="openStoryDialog(story, i)" *ngIf="isOwnerData">
-                Modifica
+            <button as-btn (click)="openStoryDialog(story, i)" *ngIf="isOwnerData">
+                <div class="material-symbols-outlined">edit</div> <div>Modifica</div>
             </button>
         </div>
     </div>

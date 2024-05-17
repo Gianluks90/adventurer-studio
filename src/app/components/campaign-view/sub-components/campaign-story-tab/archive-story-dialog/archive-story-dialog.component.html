@@ -1,6 +1,6 @@
 <div mat-dialog-title class="dialog-title">Archivio Storia</div>
 <div mat-dialog-content class="dialog-content">
-    <div class="description">
+    <div as-description-text>
         Nei gruppi sottostanti troverai la storia archiaviata per Capitolo.
     </div>
     @for(story of data.archive; track i; let i = $index) {
@@ -21,7 +21,7 @@
     }
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close color="accent">
-        <mat-icon>close</mat-icon> Chiudi
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> <div>Chiudi</div>
     </button>
 </div>

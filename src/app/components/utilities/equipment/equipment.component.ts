@@ -11,7 +11,9 @@ import { CharacterService } from 'src/app/services/character.service';
 })
 export class EquipmentComponent {
 
-  constructor(private matDialog: MatDialog, private charService: CharacterService) { }
+  constructor(private matDialog: MatDialog, private charService: CharacterService) { 
+    this.isCampaign = window.location.href.includes('campaign');
+  }
 
   public charData: any;
   private inventoryData: Item[] = [];
@@ -22,6 +24,7 @@ export class EquipmentComponent {
   public initiative: string = '';
   public ammo: any;
   public ammoCounter: number = 0;
+  public isCampaign: boolean = false;
 
   @Input() set character(character: any) {
     this.charData = character;

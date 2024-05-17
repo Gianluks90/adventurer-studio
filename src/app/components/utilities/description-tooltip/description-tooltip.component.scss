@@ -10,6 +10,7 @@
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.8);
     animation: slideIn 0.3s forwards;
+    pointer-events: none;
     // box-sizing: border-box;
 }
 
@@ -46,6 +47,7 @@
 .tooltip-title {
     font-family: 'Cinzel', serif;
     font-size: 1rem;
+    width: 100%;
 
     &::first-letter {
         font-size: 1.3rem;

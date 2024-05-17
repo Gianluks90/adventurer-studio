@@ -2,13 +2,13 @@ import { Component, Input, effect } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 import { FormService } from 'src/app/services/form.service';
-import { MenuService } from 'src/app/services/menu.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { DiceComponent } from '../utilities/dice/dice.component';
 import { DddiceService } from 'src/app/services/dddice.service';
 import { getAuth } from 'firebase/auth';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
 
 @Component({
   selector: 'app-character-view',
@@ -33,11 +33,11 @@ export class CharacterViewComponent {
     // private menuService: MenuService,
     private characterService: CharacterService,
     private sidenavService: SidenavService,
-    private formService: FormService,
     private diceSelector: MatBottomSheet,
     public diceService: DddiceService,
     private campaignService: CampaignService,
-    breakpointObserver: BreakpointObserver) {
+    breakpointObserver: BreakpointObserver,
+    public tooltip: DescriptionTooltipService) {
     if (window.location.href.includes('campaign-view/')) {
       this.inCampaign = true;
     }

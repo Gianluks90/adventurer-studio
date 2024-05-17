@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CharacterService } from 'src/app/services/character.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { getAuth } from 'firebase/auth';
+import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
 
 @Component({
   selector: 'app-campaign-char-list',
@@ -26,6 +27,7 @@ export class CampaignCharListComponent {
     platino: 0
   }
   public ispirazioneParty: number = 0;
+  public detailsOpen: boolean = false;
 
   @Input() set characters(characters: any) {
     if (characters.length === 0) return;
@@ -44,27 +46,21 @@ export class CampaignCharListComponent {
     this.isOwnerData = isOwner;
   }
 
-  // @Input() set partecipantId(partecipantId: string) {
-  //   this.partecipantIdData = partecipantId;
-  //   this.yourCharAtFirstIndex();
-  // }
-
-  constructor(private bottomSheet: MatBottomSheet, private router: Router, private charService: CharacterService, private breakpointObserver: BreakpointObserver) {
-    // effect(() => {
-    //   this.charData = this.charService.campaignCharacters().filter((char: any) => this.charIdsData.includes(char.id));
-    // });
+  constructor(private breakpointObserver: BreakpointObserver, public tooltip: DescriptionTooltipService) {
     this.breakpointObserver.observe('(max-width: 600px)').subscribe(result => {
       this.isMobile = result.matches;
     });
   }
 
-  // public openCharBottomSheet(charId: string): void {
-  //   this.bottomSheet.open(CharacterBottomSheetComponent, {
-  //     autoFocus: false,
-  //     disableClose: true,
-  //     data: { id: charId }
-  //   })
-  // }
+  ngOnInit() {
+    const storedState = localStorage.getItem('detailsOpen');
+    this.detailsOpen = storedState === 'true';
+  }
+
+  detailsToggle(detailElement: HTMLDetailsElement) {
+    this.detailsOpen = detailElement.open;
+    localStorage.setItem('detailsOpen', this.detailsOpen.toString());
+  }
 
   public navigateToChar(charId: string): void {
     window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');
@@ -86,17 +82,17 @@ export class CampaignCharListComponent {
   }
 
   private calcCA(): void {
-  this.charData.forEach(char => {
-    char.CA = 10 + Math.floor((char.caratteristiche.destrezza - 10) / 2);
-    char.equipaggiamento.forEach(item => {
-      if (item.category.includes('Armatura') && item.weared) {
-        char.CA = item.CA + (item.plusDexterity ? Math.floor((char.caratteristiche.destrezza - 10) / 2) : 0);
-      }
-      if (item.category.includes('scudo') && item.weared) {
-        char.shieldCA = '+' + item.CA;
-      }
-    })
-  });
+    this.charData.forEach(char => {
+      char.CA = 10 + Math.floor((char.caratteristiche.destrezza - 10) / 2);
+      char.equipaggiamento.forEach(item => {
+        if (item.category.includes('Armatura') && item.weared) {
+          char.CA = item.CA + (item.plusDexterity ? Math.floor((char.caratteristiche.destrezza - 10) / 2) : 0);
+        }
+        if (item.category.includes('scudo') && item.weared) {
+          char.shieldCA = '+' + item.CA;
+        }
+      })
+    });
   }
 
   public calcMoney(): void {
@@ -124,8 +120,8 @@ export class CampaignCharListComponent {
   public userFirst(): void {
     const index = this.charData.findIndex(item => item.status.userId === this.partecipantId);
     if (index !== -1) {
-        const elemento = this.charData.splice(index, 1)[0]; 
-        this.charData.unshift(elemento);
+      const elemento = this.charData.splice(index, 1)[0];
+      this.charData.unshift(elemento);
     }
   }
 

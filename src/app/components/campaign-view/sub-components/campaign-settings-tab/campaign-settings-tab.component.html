@@ -1,5 +1,5 @@
 <div as-section-title>Impostazioni</div>
-<div class="subtitle">Informazioni Campagna</div>
+<div as-subtitle>Informazioni Campagna</div>
 <div class="info-line even">
     <div class="info-label">DM</div>
     <div class="info-value">{{campaignData.dmName}}</div>
@@ -16,7 +16,7 @@
     <div class="info-label">Stato campagna</div>
     <div class="info-value">{{campaignData.status.statusMessage}}</div>
 </div>
-<div class="subtitle">ID e Password</div>
+<div as-subtitle>ID e Password</div>
 <div class="info-line even">
     <div class="info-label">ID Campagna</div>
     <div class="info-value">{{campaignData.id}}</div>
@@ -25,8 +25,8 @@
     <div class="info-label">Password</div>
     <div class="info-value">{{campaignData.password}}</div>
 </div>
-<div class="subtitle">Titolo e Descrizione</div>
-<div class="description-text">
+<div as-subtitle>Titolo e Descrizione</div>
+<div as-description-text>
     Vuoi cambiare il titolo o la descrizione della tua Campagna? Puoi farlo qui.
 </div>
 <form class="form-container" [formGroup]="form">
@@ -38,77 +38,73 @@
         <mat-label>Descrizione</mat-label>
         <textarea matInput formControlName="description" rows="5"></textarea>
     </mat-form-field>
-    <div class="buttons-container">
-        <button mat-raised-button color="accent" (click)="editTitleDescription()" [disabled]="!form.valid">
-            <mat-icon>edit</mat-icon> Modifica
+    <div as-buttons-container>
+        <button as-btn (click)="editTitleDescription()" [disabled]="!form.dirty">
+            <mat-icon>check</mat-icon> Applica
         </button>
     </div>
 </form>
 
-<div class="subtitle">Avvia Campagna</div>
-<div class="description-text">
+<div as-subtitle>Avvia Campagna</div>
+<div as-description-text>
     Fai sapere ai tuoi giocatori che la campagna è ufficialmente iniziata. Questa azione cambia lo stato della campagna
     da "Nuova" o "In preparazione" a "In corso", ciò non preclude ad altri giocatori di unirsi successivamente ma li
     avvisa che la Campagna potrebbe già essere iniziata.
 </div>
-<div class="buttons-container">
-    <button mat-raised-button color="accent" (click)="startCampaign()" [disabled]="campaignData.status.statusCode > 1">
+<div as-buttons-container>
+    <button as-btn (click)="startCampaign()" [disabled]="campaignData.status.statusCode > 1">
         <mat-icon>{{campaignData.status.statusCode > 1 ? 'check' : 'play_arrow'}}</mat-icon>
         {{campaignData.status.statusCode > 1 ? 'Campagna avviata' : 'Avvia campagna'}}
     </button>
 </div>
-<div class="subtitle">Prossimo capitolo</div>
-<div class="description-text">
+<div as-subtitle>Prossimo capitolo</div>
+<div as-description-text>
     Questa funzione è pensata per quando la tua campagna raggiunge un punto di svolta o un momento particolare. Potrai
-    scegliere un nuovo titolo e tutto il contenuto delle sezioni: storia, missioni, npc e ricompense saranno archiviati
-    nelle rispettive sezioni per lasciar spazio a dei nuovi elementi. Questa funzione non cancella alcun dato.
+    scegliere un nuovo titolo e tutto il contenuto delle sezioni: storia, missioni, npc e trofei saranno archiviati
+    nelle rispettive sezioni per lasciar spazio a dei nuovi elementi. Questa funzione non cancella alcun dato ma rende questi dati non più modificabili. <strong>L'azione è irreversibile.</strong>
 </div>
-<div class="buttons-container">
-    <button mat-raised-button color="accent" (click)="openNewChapterDialog()"
+<div as-buttons-container>
+    <button as-btn (click)="openNewChapterDialog()"
         [disabled]="campaignData.status.statusMessage !== 'In corso'">
         <mat-icon>grade</mat-icon> Nuovo capitolo
     </button>
 </div>
-<div class="subtitle">Stanza dddice {{campaignData.dddiceSlug !== '' ? '(' + campaignData.dddiceSlug + ')' : ''}}</div>
-<div class="description-text">
+<!-- <div as-subtitle>Stanza dddice {{campaignData.dddiceSlug !== '' ? '(' + campaignData.dddiceSlug + ')' : ''}}</div>
+<div as-description-text>
     Abilita la Campagna al lancio di dadi nella stessa "stanza", in questo modo tutti vedranno i risultati dei loro
     tiri, te compreso.
 </div>
-<div class="buttons-container">
-    <button mat-raised-button color="accent" (click)="createCampaignRoom()" [disabled]="campaignData.dddiceSlug !== ''">
+<div as-buttons-container>
+    <button as-btn (click)="createCampaignRoom()" [disabled]="campaignData.dddiceSlug !== ''">
         <mat-icon>{{campaignData.dddiceSlug !== '' ? 'check' : 'add'}}</mat-icon> {{campaignData.dddiceSlug !== '' ?
         'Stanza creata' : 'Crea stanza'}}
     </button>
-</div>
-<div class="subtitle">Gestione personaggi iscritti</div>
-<div class="description-text">
+</div> -->
+<div as-subtitle>Gestione personaggi iscritti</div>
+<div as-description-text>
     Seleziona dall'elenco uno dei personaggi che, per qualsiasi motivo, deve essere rimosso dalla Campagna. Premi il
-    tasto con il "cestino" dopodichè "Conferma" per concludere l'operazione. <strong>Attenzione</strong>: l'azione è
-    irreversibile.
+    tasto con il "cestino" dopodichè "Conferma" per concludere l'operazione. <strong>L'azione è irreversibile.</strong>
 </div>
 <div class="characters-container">
     @for (char of charData; track i; let i = $index) {
     <div class="char-line" [ngStyle]="{'background-color': $even ? 'whitesmoke' : 'white'}">
         <img class="char-image" [src]="char.informazioniBase.urlImmaginePersonaggio" alt="">
         <div class="char-name">{{char.informazioniBase.nomePersonaggio}}</div>
-        <button class="delete-button" mat-mini-fab color="accent" (click)="openRemoveCharDialog(i)">
-            <mat-icon>delete</mat-icon>
+        <button as-mini-circle-btn (click)="openRemoveCharDialog(i)">
+            <div class="material-symbols-outlined">delete</div>
         </button>
     </div>
     }
 
 </div>
-<div class="subtitle">Elimina campagna</div>
-<div class="description-text">
+<div as-subtitle>Elimina campagna</div>
+<div as-description-text>
     Una volta confermata la cancellazione perderai ogni dato relativo alla Campagna. I personaggi iscritti, se presenti,
     perderanno traccia di questa campagna e potranno unirsi ad un'altra. I Personaggi iscritti non verranno eliminati.
-    L'azione è irreversibile.
+    <strong>L'azione è irreversibile.</strong>
 </div>
-<div class="buttons-container">
-    <!-- <button mat-raised-button color="accent" disabled>
-        <mat-icon>archive</mat-icon> Archivia
-    </button> -->
-    <button mat-raised-button color="warn" (click)="openRemoveCampaignDialog()">
-        <mat-icon>delete</mat-icon> Elimina
+<div as-buttons-container>
+    <button as-btn as-btn-warn (click)="openRemoveCampaignDialog()">
+        <div class="material-symbols-outlined">warning</div> Elimina
     </button>
 </div>

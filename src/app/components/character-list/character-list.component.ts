@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { getAuth } from 'firebase/auth';
 import { CharacterService } from 'src/app/services/character.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { DeleteCharacterDialogComponent } from './delete-character-dialog/delete-character-dialog.component';
-import { Platform } from '@angular/cdk/platform';
 import { AddCharacterDialogComponent } from './add-character-dialog/add-character-dialog.component';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
 
 @Component({
   selector: 'app-character-list',
@@ -22,18 +21,15 @@ export class CharacterListComponent implements OnInit {
     private characterService: CharacterService,
     private sidenavService: SidenavService,
     private dialog: MatDialog,
-    private platform: Platform) { }
+    public tooltip: DescriptionTooltipService) { }
 
   public menuIcon = 'menu';
 
   ngOnInit(): void {
-    // const userId = getAuth().currentUser?.uid;
     this.firebaseService.user.subscribe(user => {
-      // console.log('user pippo', user); 
       if (user && user.id) {
         this.characterService.getCharactersByUserId(user.id).then(result => {
           this.characters = result;
-          // console.log('result', result);
         });
       }
     });
@@ -57,7 +53,7 @@ export class CharacterListComponent implements OnInit {
 
   public deleteCharacter(id: string) {
     this.dialog.open(DeleteCharacterDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false,
       data: {
         id: id
@@ -71,14 +67,11 @@ export class CharacterListComponent implements OnInit {
 
   public createCharacter() {
     this.dialog.open(AddCharacterDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false,
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
         window.location.reload();
-        // this.router.navigate(['/create', this.firebaseService.user.value!.id + '-' + (this.firebaseService.user.value!.progressive + 1)]).then(() => {
-        // window.location.reload();
-        // });
       }
     });
   }

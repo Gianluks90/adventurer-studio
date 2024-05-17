@@ -31,24 +31,21 @@
         <mat-tab-group color="accent">
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/skills.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Abilità">
+                    <img src="./assets/tabs-icons/skills.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab1-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
                 <app-abilita-tab-view [character]="character"></app-abilita-tab-view>
             </mat-tab>
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/talents.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Privilegi, Tratti e Talenti">
+                    <img src="./assets/tabs-icons/talents.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab2-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
                 <app-privilegi-tratti-tab-view [character]="character"></app-privilegi-tratti-tab-view>
             </mat-tab>
 
             <mat-tab [disabled]="!editMode">
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/inventory.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Inventario">
+                    <img src="./assets/tabs-icons/inventory.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab3-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
                 <app-equipaggiamento-tab-view [character]="character"></app-equipaggiamento-tab-view>
                 <!-- <app-inventory [inventory]="[]"></app-inventory> -->
@@ -56,8 +53,7 @@
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/tied-scroll.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Descrizione e background">
+                    <img src="./assets/tabs-icons/tied-scroll.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab4-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
                 <app-descrizione-background-tab-view
                     [editMode]="editMode"
@@ -66,16 +62,14 @@
 
             <mat-tab>
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Gregari, Evocazioni, ecc...">
+                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab5-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
                 <app-companion-tab-view [character]="character"></app-companion-tab-view>
             </mat-tab>
 
             <mat-tab [disabled]="!editMode">
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/magic.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Trucchetti e Incantesimi">
+                    <img src="./assets/tabs-icons/magic.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab6-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
                 <app-trucchetti-incantesimi-tab-view
                     [character]="character" [trucchettiIncantesimi]="trucchettiIncantesimi"></app-trucchetti-incantesimi-tab-view>
@@ -83,16 +77,14 @@
 
             <mat-tab [disabled]="!editMode">
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/attacks.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Attacchi">
+                    <img src="./assets/tabs-icons/attacks.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab7-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
                 <app-attacchi-tab-view [attacchi]="character.attacchi"></app-attacchi-tab-view>
             </mat-tab>
 
             <mat-tab [disabled]="!editMode">
                 <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/cog.svg" class="label-icon" matTooltipPosition="below"
-                        matTooltip="Impostazioni">
+                    <img src="./assets/tabs-icons/cog.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab8-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
                 <app-settings-tab-view [character]="character"></app-settings-tab-view>
             </mat-tab>
@@ -100,15 +92,28 @@
     </div>
 </div>
 
-<div class="sidenav-buttons" id="menu-button" *ngIf="!inCampaign">
-    <button class="step-button" mat-icon-button (click)="openSidenav()" matTooltip="Menu" matTooltipPosition="right">
-        <mat-icon>menu</mat-icon>
+<div as-bottom-buttons-container as-bottom-left id="menu-button" *ngIf="!inCampaign">
+    <button as-bottom-btn (click)="openSidenav()" (mouseover)="tooltip.showTooltip($event, 'up-right', true, 'menu-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+        <div class="material-symbols-outlined">menu</div>
     </button>
 </div>
 
-<div class="dice-buttons" id="dice-button" *ngIf="!inCampaign">
-    <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi"
-        matTooltipPosition="right" [disabled]="!diceService.roomConnected">
+<div as-bottom-buttons-container as-bottom-right id="dice-button" *ngIf="!inCampaign">
+    <button as-bottom-btn (click)="openDiceSelector()" [disabled]="!diceService.roomConnected" (mouseover)="tooltip.showTooltip($event, 'up-left', true, 'dice-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
         <img src="./assets/dice/dice-d20-white.svg" alt="">
     </button>
 </div>
+
+<!-- Tooltips -->
+<app-description-tooltip id="tab1-tooltip" info="abilita" *ngIf="tooltip.show && tooltip.id === 'tab1-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="tab2-tooltip" info="privilegiTratti" *ngIf="tooltip.show && tooltip.id === 'tab2-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="tab3-tooltip" info="inventario" *ngIf="tooltip.show && tooltip.id === 'tab3-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="tab4-tooltip" info="descrizioneBackground" *ngIf="tooltip.show && tooltip.id === 'tab4-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="tab5-tooltip" info="gregari" *ngIf="tooltip.show && tooltip.id === 'tab5-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="tab6-tooltip" info="trucchettiIncantesimi" *ngIf="tooltip.show && tooltip.id === 'tab6-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="tab7-tooltip" info="attacchi" *ngIf="tooltip.show && tooltip.id === 'tab7-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>    
+<app-description-tooltip id="tab8-tooltip" info="impostazioni" *ngIf="tooltip.show && tooltip.id === 'tab8-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+
+<app-description-tooltip id="dice-tooltip" info="dice" *ngIf="tooltip.show && tooltip.id === 'dice-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="menu-tooltip" info="openSidemenu" *ngIf="tooltip.show && tooltip.id === 'menu-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+

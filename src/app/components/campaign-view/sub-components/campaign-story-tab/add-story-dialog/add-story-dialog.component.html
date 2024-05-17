@@ -1,6 +1,6 @@
 <div mat-dialog-title class="dialog-title">{{data.story ? 'Modifica' : 'Nuovo'}} resoconto</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
-    <div class="description">
+    <div as-description-text>
         Inserisci un titolo e una descrizione per il resoconto della sessione di gioco. Ricorda che non puoi decidere di
         rendere invisibile un resoconto, essi vengono sempre mostrati a tutti dal momento in cui vengono creati.
     </div>
@@ -14,10 +14,12 @@
     </mat-form-field>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>
-        <mat-icon>close</mat-icon> Annulla
-    </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>{{data.story ? 'check' : 'add'}}</mat-icon> {{data.story ? 'Modifica' : 'Aggiungi'}}
-    </button>
+    <div as-buttons-container>
+        <button as-btn mat-dialog-close>
+            <div class="material-symbols-outlined">close</div> <div>Annulla</div>
+        </button>
+        <button as-btn [disabled]="!form.valid" (click)="confirm()">
+            <div class="material-symbols-outlined">{{data.story ? 'edit' : 'add'}}</div> <div>{{data.story ? 'Modifica' : 'Aggiungi'}}</div>
+        </button>
+    </div>
 </div>

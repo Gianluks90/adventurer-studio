@@ -1,10 +1,11 @@
 <div mat-dialog-title class="dialog-title">{{data.quest ? 'Modifica' : 'Nuova'}} missione</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
-    <div class="description">
+    <div as-description-text>
         Indica un <strong>titolo</strong> e una <strong>descrizione</strong> per la missione da svolgere. Se visibile i giocatori potranno vedere queste
         informazioni, mentre il campo "Note del DM" è solo per te. Quando "Completata" compila anche la sezione
         aggiuntiva.
     </div>
+    <div as-subtitle>Generale</div>
     <mat-form-field color="accent" class="custom-form-field" appearance="outline">
         <mat-label>Titolo</mat-label>
         <input matInput formControlName="title">
@@ -19,7 +20,7 @@
     </mat-form-field>
     <mat-checkbox formControlName="visible" color="accent">Visibile</mat-checkbox>
 
-    <div class="competenze-label">Progresso</div>
+    <div as-subtitle>Progresso</div>
     @if (form.value.visible) {
         <ng-container formArrayName="steps">
             <ng-container class="action-container" *ngFor="let s of steps.controls; let i = index">
@@ -33,13 +34,13 @@
             </ng-container>
         </ng-container>
 
-        <div class="button-container">
-            <button mat-mini-fab class="add-step-button" color="accent" (click)="addStep()">
-                <mat-icon>add</mat-icon>
+        <div as-buttons-container>
+            <button as-mini-circle-btn color="accent" (click)="addStep()">
+                <div class="material-symbols-outlined">add</div>
             </button>
         </div>
     } @else {
-        <div class="description">Per poter tenere traccia dei passi effettuati dai giocatori, rendi prima la missione visibile.</div>
+        <div as-description-text>Per poter tenere traccia dei passi effettuati dai giocatori, rendi prima la missione visibile.</div>
     }
         
     <mat-checkbox formControlName="completed" color="accent">Completata</mat-checkbox>
@@ -47,24 +48,15 @@
         <mat-label>Esito</mat-label>
         <textarea matInput formControlName="result" rows="5"></textarea>
     </mat-form-field>
-    <!-- <div formArrayName="steps">
-        <div *ngFor="let step of steps.controls; let i = index" [formGroupName]="i">
-            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
-                <mat-label>Descrizione</mat-label>
-                <textarea matInput formControlName="text" rows="5"></textarea>
-            </mat-form-field>
-            <mat-checkbox formControlName="visible" color="accent">Visibile</mat-checkbox>
-        </div>
-    </div>
-    <button mat-raised-button color="accent" class="add-button" (click)="addStep()">
-        <mat-icon>add</mat-icon> Aggiungi passaggio
-    </button> -->
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>
-        <mat-icon>close</mat-icon> Annulla
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> Annulla
     </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>{{data.quest ? 'check' : 'add'}}</mat-icon> {{data.quest ? 'Modifica' : 'Aggiungi'}}
+    <button as-btn as-btn-warn *ngIf="data.quest" (click)="deleteQuest()">
+        <div class="material-symbols-outlined">delete</div> Elimina
+    </button>
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">{{data.quest ? 'check' : 'add'}}</div> {{data.quest ? 'Modifica' : 'Aggiungi'}}
     </button>
 </div>

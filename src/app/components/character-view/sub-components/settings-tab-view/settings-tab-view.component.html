@@ -4,7 +4,8 @@
 <ng-container *ngIf="campaignData">
     <div class="campaign-header">
         <div class="campaign-title">{{campaignData.title}}</div>
-        <button mat-icon-button matTooltip="Vai alla Campagna" matTooltipPosition="below"
+        <button mat-icon-button 
+        (mouseover)="tooltip.showTooltip($event, 'center', true, 'go-camp-tooltip', true)" (mouseleave)="tooltip.hideTooltip()"
             (click)="jumpToCampaign(campaignData.id)">
             <mat-icon>play_arrow</mat-icon>
         </button>
@@ -124,3 +125,5 @@
 <div class="description-text"><strong>Attenzione</strong>: una volta modificata questa impostazione la
     pagina verrà
     ricaricata ed ogni modifica non salvata sarà persa. Assicurati di salvare prima di effettuare questa modifica.</div> -->
+
+<app-description-tooltip id="go-camp-tooltip" info="vaiCampagna" *ngIf="tooltip.show && tooltip.id === 'go-camp-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>

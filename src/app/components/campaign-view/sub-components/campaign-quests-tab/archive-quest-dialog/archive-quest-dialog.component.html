@@ -1,11 +1,11 @@
 <div mat-dialog-title class="dialog-title">Archivio Missioni</div>
 <div mat-dialog-content class="dialog-content">
-    <div class="description">
+    <div as-description-text>
         Nei gruppi sottostanti troverai le Missioni scoperte e completate durante la tua Campagna.
     </div>
     @for(a of data.archive; track i; let i = $index) {
-    <details>
-        <summary class="summary-name">Capitolo {{i + 1}} - {{a.title}}</summary>
+    <details as-details>
+        <summary as-summary>Capitolo {{i + 1}} - {{a.title}}</summary>
         @if(a.quests.length === 0) {
         <div class="empty-message">Nessuna missione presente in questo Capitolo.</div>
         }
@@ -24,8 +24,8 @@
     </details>
     }
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close color="accent">
-        <mat-icon>close</mat-icon> Chiudi
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> Chiudi
     </button>
 </div>

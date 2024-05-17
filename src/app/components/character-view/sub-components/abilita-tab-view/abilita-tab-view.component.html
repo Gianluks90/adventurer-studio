@@ -16,9 +16,10 @@
             {{a.name}} ({{a.short}})
             <!-- <span matTooltip="Competenza" matTooltipPosition="right" *ngIf="a.value && !a.maestria">•</span>
             <span class="a-master" matTooltip="Maestria" matTooltipPosition="right" *ngIf="a.maestria">★</span> -->
-            <span class="material-symbols-outlined a-master" *ngIf="a.value && !a.maestria" matTooltip="Competenza" matTooltipPosition="right">circle</span>
-            <span class="material-symbols-outlined a-master" *ngIf="a.maestria" matTooltip="Maestria" matTooltipPosition="right">star</span>
-
+            <span class="material-symbols-outlined a-master" *ngIf="a.value && !a.maestria"
+            (mouseover)="tooltip.showTooltip($event, 'center', a.value && !a.maestria, 'a-tooltip')" (mouseleave)="tooltip.hideTooltip()">circle</span>
+            <span class="material-symbols-outlined a-master" *ngIf="a.maestria"
+            (mouseover)="tooltip.showTooltip($event, 'center', a.maestria, 'm-tooltip')" (mouseleave)="tooltip.hideTooltip()">star</span>      
         </div>
         <div class="a-value">{{a.mod}}</div>
     </div>
@@ -61,3 +62,5 @@
     </div>
     }
 </div>
+<app-description-tooltip id="a-tooltip" info="competenzaAbilita" *ngIf="tooltip.show && tooltip.id === 'a-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="m-tooltip" info="maestriaAbilita" *ngIf="tooltip.show && tooltip.id === 'm-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>

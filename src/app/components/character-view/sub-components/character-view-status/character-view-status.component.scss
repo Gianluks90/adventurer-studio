@@ -1,3 +1,7 @@
+* {
+    color: #212121;
+}
+
 .main-character-container {
     height: 100%;
     overflow-y: auto;
@@ -65,6 +69,7 @@
     padding: 10px 0;
     font-weight: bold;
     background-color: whitesmoke;
+    color: #212121;
     width: 100%;
     letter-spacing: 2px;
 }
@@ -86,6 +91,10 @@
     display: flex;
     justify-content: space-between;
     text-transform: uppercase;
+
+    div {
+        color: whitesmoke;
+    }
 }
 
 .bonus-value {
@@ -111,6 +120,7 @@
 .ts-value {
     font-weight: 500;
     background-color: whitesmoke;
+    color: #212121;
     font-size: medium;
     padding: 4px;
     border-bottom: 4px solid whitesmoke;
@@ -296,6 +306,10 @@ span {
     -ms-user-select: none;
     user-select: none;
     border-radius: 8px;
+}
+
+.risorsa-title {
+    color: whitesmoke;
 }
 
 .resource-circle {

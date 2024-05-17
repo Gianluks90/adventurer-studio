@@ -214,6 +214,10 @@ div[as-mini-buttons-container] {
   gap: 8px;
 }
 
+div[as-buttons-container][as-buttons-container-details] {
+  padding: 0 8px;
+}
+
 @media screen and (max-width: 768px) {
   div[as-buttons-container] {
     flex-direction: column;
@@ -250,6 +254,19 @@ button[as-mini-circle-btn] {
 
   &:hover {
     opacity: 0.8;
+  }
+
+  .material-symbols-outlined {
+    color: whitesmoke;
+  }
+}
+
+button[as-mini-circle-btn][inverted-color] {
+  background-color: whitesmoke;
+  color: #212121;
+
+  .material-symbols-outlined {
+    color: #212121;
   }
 }
 
@@ -324,6 +341,63 @@ a[as-btn-link] {
   text-decoration: none;
 }
 
+div[as-bottom-buttons-container] {
+  position: fixed;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1;
+}
+
+div[as-bottom-buttons-container][as-bottom-left] {
+  left: 16px;
+}
+
+div[as-bottom-buttons-container][as-bottom-right] {
+  right: 16px;
+}
+
+button[as-bottom-btn] {
+  border: none;
+  box-shadow: none;
+
+  background-color: #212121;
+  color: whitesmoke;
+
+  height: 48px;
+  width: 48px;
+
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  
+  cursor: pointer;
+
+  &>.material-symbols-outlined {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  div[as-bottom-buttons-container][as-bottom-left] {
+    left: 8px;
+  }
+  
+  div[as-bottom-buttons-container][as-bottom-right] {
+    right: 8px;
+  }
+}
+
+button[as-bottom-btn][disabled] {
+  cursor: default;
+  opacity: 0.5;
+}
+
+button[as-bottom-btn]:hover {
+  opacity: 0.9;
+}
+
 // Dettaglio espandibile con icona personalizzata e contenuto ristretto.
 details[open] {
   border: 1px solid #212121;
@@ -364,6 +438,7 @@ summary[as-summary] {
   color: white;
   padding: 8px;
   display: flex;
+  gap: 8px;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4px;
@@ -378,14 +453,72 @@ summary[as-summary-with-icon] {
   background-color: black;
 }
 
+// Dettaglio ma per Campagna
+
+// Dettaglio espandibile con icona personalizzata e contenuto ristretto.
+details[as-camp-details] {
+  margin-bottom: 4px;
+}
+
+details[as-camp-details]>summary {
+  list-style: none;
+}
+
+details[as-camp-details] summary::-webkit-details-marker {
+  display: none;
+}
+
+summary[as-camp-summary]::after {
+  content: url("/assets/icons/chevron_right.svg");
+  cursor: pointer;
+}
+
+details[open]>summary[as-camp-summary]::after {
+  content: url("/assets/icons/chevron_down.svg");
+  cursor: pointer;
+}
+
+summary[as-camp-summary] {
+  background-color: #212121;
+  color: white;
+  padding: 8px;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  // margin-bottom: 4px;
+}
+
+@media screen and (max-width: 768px) {
+  summary[as-camp-summary] {
+    padding: 4px 8px;
+  }
+}
+
 // Pillola per mostrare una serie di informazioni di una, massimo due parole, senza interazione.
+div[as-pills-container] {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
 div[as-pill] {
-  display: block;
+  display: flex;
+  align-items: center;
   background-color: #212121;
   color: whitesmoke;
   padding: 6px 24px;
   text-align: center;
   border-radius: 12px;
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+    margin-right: 4px;
+  }
 }
 
 // Titolo di sezione, con bordo inferiore.
@@ -403,7 +536,7 @@ div[as-subtitle] {
   font-weight: 600;
   letter-spacing: 1px;
   border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
-  margin: 0 0 8px 8px;
+  margin: 8px 0;
 }
 
 // Descrizione di qualcosa, con testo giustificato e leggermente trasparente.
