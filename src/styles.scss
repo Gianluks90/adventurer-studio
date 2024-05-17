@@ -460,6 +460,10 @@ details[as-camp-details] {
   margin-bottom: 4px;
 }
 
+details[as-camp-details][open] {
+  border: none;
+}
+
 details[as-camp-details]>summary {
   list-style: none;
 }

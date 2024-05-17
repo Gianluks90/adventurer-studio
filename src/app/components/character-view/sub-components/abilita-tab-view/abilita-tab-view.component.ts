@@ -119,12 +119,12 @@ export class AbilitaTabViewComponent {
       abilita.maestria ? abilita.mod += bonusCompetenza : +0;
       abilita.mod > 0 ? abilita.mod = '+' + abilita.mod : abilita.mod = abilita.mod + '';
     });
-    this.abilitaData = this.abilitaData.map((abilita) => {
-      return {
-        ...abilita,
-        name: abilita.name.charAt(0).toUpperCase() + abilita.name.slice(1)
-      };
-    });
+    // this.abilitaData = this.abilitaData.map((abilita) => {
+    //   return {
+    //     ...abilita,
+    //     name: abilita.name.charAt(0).toUpperCase() + abilita.name.slice(1)
+    //   };
+    // });
   }
 
   public rollDice(name: string, modifier?: string): void {
@@ -134,5 +134,9 @@ export class AbilitaTabViewComponent {
 
   public showSkillInfo(event: any): void {
     this.showInfo = !this.showInfo;
+  }
+
+  public capitalizeSkillName(name: string): string {
+    return name.charAt(0).toUpperCase() + name.slice(1);
   }
 }

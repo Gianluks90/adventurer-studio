@@ -13,6 +13,7 @@ export class AddEntryDialogComponent {
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<AddEntryDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { entry: any }) {}
 
   public form = this.fb.group({
+    id: [this.generateRandomId()],
     title: ['', Validators.required],
     content: ['', Validators.required],
     tag: ['', Validators.required],
@@ -26,6 +27,10 @@ export class AddEntryDialogComponent {
     if (this.data.entry) {
       this.form.patchValue(this.data.entry);
     }
+  }
+
+  public generateRandomId(): string {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
 
   public confirm() {

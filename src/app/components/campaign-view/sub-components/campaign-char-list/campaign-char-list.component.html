@@ -76,7 +76,7 @@
                     </div>
                 </div> -->
                 <details #detailElement [open]="detailsOpen" as-camp-details class="character-skill-container" *ngIf="char.status.userId === partecipantId" (toggle)="detailsToggle(detailElement)">
-                    <summary as-camp-summary>Scheda PG</summary>
+                    <summary as-camp-summary>Mostra info</summary>
                     <app-character-view-status class="char-sheet" [character]="char" [editMode]="true"></app-character-view-status>
                 </details>
                 

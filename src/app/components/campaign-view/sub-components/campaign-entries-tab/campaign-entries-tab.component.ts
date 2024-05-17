@@ -48,7 +48,7 @@ export class CampaignEntriesTabComponent {
         case 'edited':
           this.entriesData[index] = result.entry;
           this.allEntries.forEach((entry: any, i: number) => {
-            if (entry.userId === this.userId && entry.title === result.entry.title) {
+            if (entry.userId === this.userId && entry.id === result.entry.id) {
               this.allEntries[i] = result.entry;
             }
           });

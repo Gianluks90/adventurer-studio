@@ -48,6 +48,7 @@
     opacity: 0.8;
     font-size: x-small;
     text-align: justify;
+    margin: 8px 0;
 }
 
 .a-name {
@@ -109,7 +110,7 @@
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
     .a-name {
         font-size: small;
     }
@@ -121,4 +122,10 @@
 
 .dice-rolls {
     cursor: pointer;
+}
+
+@media screen and (min-width: 1500px) {
+    .a-description {
+        font-size: small;
+    }
 }

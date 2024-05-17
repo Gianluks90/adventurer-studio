@@ -63,12 +63,10 @@
 }
 
 .view-tabs>mat-tab-group {
-    max-width: 50%;
+    // max-width: 50%;
     flex-grow: 1;
     background-color: white;
-    // border-radius: 8px;
-    // padding-bottom: 20px;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
 }
 
 .label-icon {
@@ -76,17 +74,15 @@
 }
 
 .status-container {
-    // border-radius: 8px;
     background: rgba($color: #FFFFFF, $alpha: 0.5);
     flex-grow: 1;
     padding: 0 20px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
-    // height: 100%;
-    // padding: 0 4px;
     padding: 0 20px;
     overflow: hidden;
-    // max-width: 50%;
     box-sizing: border-box;
+    max-width: 45%;
+    min-width: 45%;
 }
 
 .dice-buttons {
@@ -150,59 +146,29 @@
     height: 100%;
 }
 
-@media screen and (min-width: 501px) {
-    .status-container {
-        max-height: 100%;
-        overflow: auto;
-        flex-grow: 1;
-        box-sizing: border-box;
-        max-width: 50%;
-    }
-
-    .view-tabs {
-        overflow: hidden;
-    }
-
-    .view-tabs>mat-tab-group {
-        max-height: 100%;
-        overflow: hidden;
-    }
-
+::ng-deep.mdc-tab {
+    min-width: 50px !important;
+    max-width: 50px !important;
 }
 
-// @media screen and (max-width: 1325px) {
+::ng-deep.mat-mdc-tab-labels {
+    justify-content: space-evenly;
+}
 
-//     .status-container {
-//         min-height: 100% !important;
-//         // overflow: hidden !important;
-//         // max-height: none;
-//     }
-
-//     .view-tabs {
-//         overflow: auto;
-//     }
-
-//     .view-tabs>mat-tab-group {
-//         min-height: 100% !important;
-//         max-width: 100% !important;
-//         overflow: hidden !important;
-//         // max-height: none;
-//     }
-// }
-
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
 
     .view-container {
         width: 90%;
     }
 
     .view-tabs>mat-tab-group {
-        max-width: 100%;
+        width: 100%;
         margin-bottom: 50px;
     }
 
     .status-container {
-        width: 100%;
+        max-width: 100%;
+        min-width: none;
         box-sizing: border-box;
     }
 
@@ -236,11 +202,14 @@
     }
 }
 
-::ng-deep.mdc-tab {
-    min-width: 50px !important;
-    max-width: 50px !important;
-}
+@media screen and (min-width: 1500px) {
 
-::ng-deep.mat-mdc-tab-labels {
-    justify-content: space-evenly;
+    .view-container {
+        max-width: 1450px;
+    }
+
+    .status-container {
+        max-width: 35%;
+        min-width: 35%;
+    }
 }
