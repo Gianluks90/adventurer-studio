@@ -83,6 +83,7 @@
     box-sizing: border-box;
     max-width: 45%;
     min-width: 45%;
+    overflow: auto;
 }
 
 .dice-buttons {
@@ -170,6 +171,7 @@
         max-width: 100%;
         min-width: none;
         box-sizing: border-box;
+        overflow: hidden;
     }
 
     .view-tabs {

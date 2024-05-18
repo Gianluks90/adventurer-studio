@@ -536,7 +536,7 @@ div[as-pill] {
 // Titolo di sezione, con bordo inferiore.
 div[as-section-title] {
   margin: 8px 0;
-  font-size: medium;
+  font-size: large;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -548,6 +548,13 @@ div[as-subtitle] {
   font-weight: 600;
   letter-spacing: 1px;
   border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+  margin: 8px 0;
+  text-transform: uppercase;
+}
+
+div[as-label] {
+  font-weight: 600;
+  font-size: small;
   margin: 8px 0;
 }
 

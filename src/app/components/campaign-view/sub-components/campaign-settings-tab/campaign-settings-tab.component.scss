@@ -104,3 +104,27 @@
 .custom-form-field {
     width: 100%;
 }
+
+.warning-zone-container {
+    color: crimson;
+    padding: 16px;
+    border-bottom: dashed 3px crimson;
+    // border-radius: 12px;
+    // text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.export-line {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.export-label {
+    font-weight: bold;
+}

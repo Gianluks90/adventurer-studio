@@ -65,11 +65,11 @@
 <div as-description-text>
     Questa funzione è pensata per quando la tua campagna raggiunge un punto di svolta o un momento particolare. Potrai
     scegliere un nuovo titolo e tutto il contenuto delle sezioni: storia, missioni, npc e trofei saranno archiviati
-    nelle rispettive sezioni per lasciar spazio a dei nuovi elementi. Questa funzione non cancella alcun dato ma rende questi dati non più modificabili. <strong>L'azione è irreversibile.</strong>
+    nelle rispettive sezioni per lasciar spazio a dei nuovi elementi. Questa funzione non cancella alcun dato ma rende
+    questi dati non più modificabili. <strong>L'azione è irreversibile.</strong>
 </div>
 <div as-buttons-container>
-    <button as-btn (click)="openNewChapterDialog()"
-        [disabled]="campaignData.status.statusMessage !== 'In corso'">
+    <button as-btn (click)="openNewChapterDialog()" [disabled]="campaignData.status.statusMessage !== 'In corso'">
         <mat-icon>grade</mat-icon> Nuovo capitolo
     </button>
 </div>
@@ -84,6 +84,111 @@
         'Stanza creata' : 'Crea stanza'}}
     </button>
 </div> -->
+<div class="warning-zone-container">
+    <div class="material-symbols-outlined material-no-fill">warning</div> <strong>Attenzione più avanti</strong>
+</div>
+<div as-subtitle>Gestione dati</div>
+<div as-description-text>
+    In questa sezione puoi esportare un backup dell'intera campagna in formato JSON oltre ad altre collezioni di dati
+    minori (schede, npc, inventario, ecc...) sempre nello stesso formato. Ad eccezione per il backup generale, gli altri
+    file possono essere usati per importare i dati in un'altra campagna (per voi stessi o per un altro DM in difficoltà). Gli
+    elementi importati non sostituiranno i precedenti venendo aggiunti a quelli già presenti, tuttavia elementi con nomi uguali a
+    quelli già presenti verranno ignorati. Il <strong>Cestino</strong> elimina dal database l'intera sezione ma non prima di aver
+    effettuato il backup della stessa.
+</div>
+<div as-description-text>
+    <strong>Importante! Non tentare di importare un file non destinato alla sezione corrispondente, il funzionamento
+        dell'intera Campagna potrebbe essere compromesso.</strong>
+</div>
+<div class="export-line">
+    <div as-label>Campagna</div>
+    <div as-mini-buttons-container>
+        <!-- <button as-mini-circle-btn disabled>
+            <div class="material-symbols-outlined">upload_file</div>
+        </button> -->
+        <a as-btn-link href="" target="_blank" id="export-all">
+            <button as-mini-circle-btn (click)="exportJSON('all')">
+                <div class="material-symbols-outlined">download</div>
+            </button>
+        </a>
+    </div>
+</div>
+<div class="export-line">
+    <div as-label>Schede</div>
+    <div as-mini-buttons-container>
+        <button as-mini-circle-btn (click)="input_addons.click()">
+            <div class="material-symbols-outlined">upload_file</div>
+        </button>
+        <input hidden #input_addons type="file" accept=".json" (change)="importJSON('addons', $event)">
+        <a as-btn-link href="" target="_blank" id="export-addons">
+            <button as-mini-circle-btn (click)="exportJSON('addons')" [disabled]="campaignData.addons.length <= 0">
+                <div class="material-symbols-outlined">download</div>
+            </button>
+        </a>
+        <a as-btn-link href="" target="_blank" id="delete-addons">
+            <button as-mini-circle-btn as-btn-warn (click)="emptySection('addons')" [disabled]="campaignData.addons.length <= 0">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </a>
+    </div>
+</div>
+<div class="export-line">
+    <div as-label>Inventario</div>
+    <div as-mini-buttons-container>
+        <button as-mini-circle-btn (click)="input_inventory.click()">
+            <div class="material-symbols-outlined">upload_file</div>
+        </button>
+        <input hidden #input_inventory type="file" accept=".json" (change)="importJSON('inventory', $event)">
+        <a as-btn-link href="" target="_blank" id="export-inventory">
+            <button as-mini-circle-btn (click)="exportJSON('inventory')" [disabled]="campaignData.inventory.length <= 0">
+                <div class="material-symbols-outlined">download</div>
+            </button>
+        </a>
+        <a as-btn-link href="" target="_blank" id="delete-inventory">
+            <button as-mini-circle-btn as-btn-warn (click)="emptySection('inventory')" [disabled]="campaignData.inventory.length <= 0">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </a>
+    </div>
+</div>
+<div class="export-line">
+    <div as-label>PNG</div>
+    <div as-mini-buttons-container>
+        <button as-mini-circle-btn (click)="input_allies.click()">
+            <div class="material-symbols-outlined">upload_file</div>
+        </button>
+        <input hidden #input_allies type="file" accept=".json" (change)="importJSON('allies', $event)">
+        <a as-btn-link href="" target="_blank" id="export-allies">
+            <button as-mini-circle-btn (click)="exportJSON('allies')" [disabled]="campaignData.allies.length <= 0">
+                <div class="material-symbols-outlined">download</div>
+            </button>
+        </a>
+        <a as-btn-link href="" target="_blank" id="delete-allies">
+            <button as-mini-circle-btn as-btn-warn (click)="emptySection('allies')" [disabled]="campaignData.allies.length <= 0">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </a>
+    </div>
+</div>
+<div class="export-line">
+    <div as-label>Organizzazioni</div>
+    <div as-mini-buttons-container>
+        <button as-mini-circle-btn (click)="input_organizations.click()">
+            <div class="material-symbols-outlined">upload_file</div>
+        </button>
+        <input hidden #input_organizations type="file" accept=".json" (change)="importJSON('organizations', $event)">
+        <a as-btn-link href="" target="_blank" id="export-organizations">
+            <button as-mini-circle-btn (click)="exportJSON('organizations')" [disabled]="campaignData.organizations.length <= 0">
+                <div class="material-symbols-outlined">download</div>
+            </button>
+        </a>
+        <a as-btn-link href="" target="_blank" id="delete-organizations">
+            <button as-mini-circle-btn as-btn-warn (click)="emptySection('organizations')" [disabled]="campaignData.organizations.length <= 0">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </a>
+    </div>
+</div>
 <div as-subtitle>Gestione personaggi iscritti</div>
 <div as-description-text>
     Seleziona dall'elenco uno dei personaggi che, per qualsiasi motivo, deve essere rimosso dalla Campagna. Premi il
@@ -94,7 +199,7 @@
     <div class="char-line" [ngStyle]="{'background-color': $even ? 'whitesmoke' : 'white'}">
         <img class="char-image" [src]="char.informazioniBase.urlImmaginePersonaggio" alt="">
         <div class="char-name">{{char.informazioniBase.nomePersonaggio}}</div>
-        <button as-mini-circle-btn (click)="openRemoveCharDialog(i)">
+        <button as-mini-circle-btn as-btn-warn (click)="openRemoveCharDialog(i)">
             <div class="material-symbols-outlined">delete</div>
         </button>
     </div>
