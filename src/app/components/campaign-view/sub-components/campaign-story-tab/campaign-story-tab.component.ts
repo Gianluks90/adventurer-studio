@@ -13,6 +13,7 @@ import { ArchiveStoryDialogComponent } from './archive-story-dialog/archive-stor
 export class CampaignStoryTabComponent {
 
   public descriptionData: string = '';
+  public chapterUrl: string = '';
   public storyData: any[] = [];
   public archiveData: any[] = [];
   public sessionNumberData: number = 1;
@@ -26,6 +27,7 @@ export class CampaignStoryTabComponent {
     this.storyData = campaign.story;
     this.archiveData = campaign.archive;
     this.descriptionData = campaign.description;
+    this.chapterUrl = campaign.chapterUrl || '';
     this.storyData = this.sortStoryByLastUpdate(this.storyData);
   }
 

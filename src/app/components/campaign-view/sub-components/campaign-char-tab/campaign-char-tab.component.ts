@@ -110,8 +110,12 @@ export class CampaignCharTabComponent {
   }
 
   public getEvenLine(index: number): boolean {
-    const columnsIndex: number[] = [0, 3, 4, 7, 8, 11, 12, 15, 16];
-    return columnsIndex.includes(index);
+    if(window.innerWidth <= 768) {
+      return index % 2 === 0;
+    } else {
+      const columnsIndex: number[] = [0, 3, 4, 7, 8, 11, 12, 15, 16];
+      return columnsIndex.includes(index);
+    }
   }
   
   public collapseAll() {

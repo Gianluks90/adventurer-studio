@@ -1,5 +1,8 @@
 <div as-section-title>Capitolo {{campaignData.archive.length +1}}</div>
-<div class="description">{{descriptionData}}</div>
+<div [ngClass]="{'chapter-container': chapterUrl !== ''}">
+    <div class="description">{{descriptionData}}</div>
+    <img *ngIf="chapterUrl !== ''" [src]="chapterUrl" class="chapter-image">
+</div>
 <div as-section-title>Resoconto sessioni</div>
 <div class="button-container">
     <button as-mini-circle-btn (click)="openArchiveStoryDialog()" [disabled]="archiveData.length === 0">
@@ -22,9 +25,9 @@
         </ng-container>
         <div class="button-container">
             <button as-btn (click)="openStoryDialog(story, i)" *ngIf="isOwnerData">
-                <div class="material-symbols-outlined">edit</div> <div>Modifica</div>
+                <div class="material-symbols-outlined">edit</div>
+                <div>Modifica</div>
             </button>
         </div>
     </div>
 </div>
-    

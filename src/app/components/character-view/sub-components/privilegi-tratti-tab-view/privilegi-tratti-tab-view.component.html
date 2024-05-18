@@ -1,3 +1,4 @@
+@if(!isCampaign) {
 <div as-section-title>Razza: {{razzaData}} <span *ngIf="sottorazzaData !==''">({{sottorazzaData}})</span></div>
 <div class="classi-container">
     <div *ngFor="let c of classiData">
@@ -5,31 +6,41 @@
             {{c.livello}}° livello</div>
     </div>
 </div>
+}
 <div as-section-title>Privilegi, Tratti e Talenti</div>
+<div as-buttons-container>
+    <button as-mini-circle-btn (click)="collapseAll()">
+        <div class="material-symbols-outlined">unfold_less</div>
+    </button>
+</div>
 <div *ngFor="let pt of privilegiTrattiData; let i = index">
     @if (pt.tag === '') {
-        <details as-details>
-            <summary as-summary>{{pt.nome}}</summary>
-            <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
-                    {{pt.riferimento}}</span></div>
-            <div class="pt-description">{{pt.descrizione}}</div>
-            <div class="button-container">
-                <button class="edit-button" (click)="openEditDialog(i)">Modifica</button>
-            </div>
-        </details>
+    <details as-details id="details-t">
+        <summary as-summary>{{pt.nome}}</summary>
+        <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
+                {{pt.riferimento}}</span></div>
+        <div class="pt-description">{{pt.descrizione}}</div>
+        <div as-buttons-container as-buttons-container-details>
+            <button as-btn (click)="openEditDialog(i)">
+                <div class="material-symbols-outlined">edit</div> Modifica
+            </button>
+        </div>
+    </details>
     }
 
 </div>
 <div *ngFor="let t of tags" class="pt-main-container">
     <div class="privilegi-label">{{t}}</div>
     <div *ngFor="let pt of privilegiTrattiData; let j = index">
-        <details *ngIf="pt.tag.toLowerCase() === t" as-details>
+        <details *ngIf="pt.tag.toLowerCase() === t" as-details id="details-t">
             <summary as-summary>{{pt.nome}}</summary>
             <div class="pt-type">{{pt.tipologia}}<span *ngIf="pt.riferimento && pt.riferimento !== ''">,
                     {{pt.riferimento}}</span></div>
             <div class="pt-description">{{pt.descrizione}}</div>
-            <div class="button-container">
-                <button class="edit-button" (click)="openEditDialog(j)">Modifica</button>
+            <div as-buttons-container as-buttons-container-details>
+                <button as-btn (click)="openEditDialog(j)">
+                    <div class="material-symbols-outlined">edit</div> Modifica
+                </button>
             </div>
 
         </details>

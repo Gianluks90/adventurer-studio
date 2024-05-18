@@ -28,6 +28,8 @@ export class EquipaggiamentoTabViewComponent {
   constructor(private dialog: MatDialog, private platform: Platform, private notification: NotificationService, private formService: FormService, private charService: CharacterService) { }
 
   @Input() set character(character: any) {
+    console.log('CHARACTER', character);
+    
     this.characterData = character;
     this.equipaggiamentoData = character.equipaggiamento;
     this.pesoTrasportabile = character.caratteristiche.forza * 7.5;

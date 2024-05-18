@@ -112,18 +112,18 @@
         </button>
     </div> -->
 </div>
-<div mat-dialog-actions align="end" *ngIf="!isMobile">
-    <button mat-raised-button mat-dialog-close>
-        <mat-icon>close</mat-icon> Annulla
+<div as-buttons-container mat-dialog-actions align="end" *ngIf="!isMobile">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
     </button>
-    <button *ngIf="data.spell" mat-raised-button mat-dialog-close color="warn" (click)="delete()">
-        <mat-icon>delete</mat-icon> Elimina
+    <button as-btn as-btn-warn *ngIf="data.spell" mat-dialog-close (click)="delete()">
+        <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
     </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>{{data.spell ? 'check' : 'add'}}</mat-icon> {{data.spell ? 'Modifica' : 'Aggiungi'}}
+    <button as-btn color="accent" [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">{{data.spell ? 'check' : 'add'}}</div> <div>{{data.spell ? 'Modifica' : 'Aggiungi'}}</div>
     </button>
 </div>
-<div mat-dialog-actions align="end" *ngIf="isMobile">
+<!-- <div mat-dialog-actions align="end" *ngIf="isMobile">
     <button mat-icon-button mat-dialog-close>
         <mat-icon>close</mat-icon>
     </button>
@@ -133,4 +133,4 @@
     <button mat-icon-button color="accent" [disabled]="!form.valid" (click)="confirm()">
         <mat-icon>{{data.spell ? 'check' : 'add'}}</mat-icon>
     </button>
-</div>
+</div> -->

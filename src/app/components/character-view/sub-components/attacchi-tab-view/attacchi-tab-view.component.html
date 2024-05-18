@@ -1,13 +1,15 @@
 <div as-section-title>Attacchi</div>
-<div class="search-container">
+<!-- <div class="search-container">
     <mat-form-field appearance="outline" class="search-input" color="accent">
-        <!-- <mat-label>Cerca</mat-label> -->
         <mat-icon matPrefix>search</mat-icon>
         <input matInput type="text" (keyup)="filterSearch($event)">
-    </mat-form-field>
-    <button mat-mini-fab color="primary" class="add-button" (click)="openAddAttackDialog()"
-        disableRipple><mat-icon>add</mat-icon></button>
-</div>
+    </mat-form-field> -->
+    <div as-buttons-container>
+        <button as-mini-circle-btn (click)="openAddAttackDialog()">
+            <div class="material-symbols-outlined">add</div>
+        </button>
+    </div>
+<!-- </div> -->
 <div class="subtitle">Elenco</div>
 <div *ngFor="let a of attacchiData; let i = index;" [hidden]="a.filtered">
     <details as-details>
@@ -21,10 +23,16 @@
             <span class="attack-label">Gittata</span> {{a.range}}
         </div>
         <div class="attack-description"> <span class="attack-label">Note</span> {{a.notes != '' ? a.notes : "-"}}</div>
-        <div class="button-container">
-            <button class="edit-attack-button" (click)="attackRoll(a)" [disabled]="!diceService.roomConnected">Tiro per colpire</button>
-            <button class="edit-attack-button" (click)="damageRoll(a)" [disabled]="!diceService.roomConnected">Tira Danno</button>
-            <button class="edit-attack-button" (click)="openAddAttackDialog(a, i)">Modifica</button>
+        <div as-buttons-container as-buttons-container-details>
+            <button as-btn (click)="attackRoll(a)" [disabled]="!diceService.roomConnected">
+                <div class="material-symbols-outlined">casino</div> <div>Tiro per colpire</div>
+            </button>
+            <button as-btn (click)="damageRoll(a)" [disabled]="!diceService.roomConnected">
+                <div class="material-symbols-outlined">casino</div> <div>Tiro danno</div>
+            </button>
+            <button as-btn (click)="openAddAttackDialog(a, i)">
+                <div class="material-symbols-outlined">edit</div> <div>Modifica</div>
+            </button>
         </div>
     </details>
 </div>

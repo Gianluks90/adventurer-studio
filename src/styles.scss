@@ -199,6 +199,10 @@ progress::-webkit-progress-value {
   'FILL' 0,
 }
 
+.material-mini {
+  font-size: 0.8rem;
+}
+
 div[as-buttons-container] {
   display: flex;
   align-items: center;
@@ -522,6 +526,10 @@ div[as-pill] {
   .material-symbols-outlined {
     font-size: 1rem;
     margin-right: 4px;
+  }
+
+  span {
+    margin-left: 4px;
   }
 }
 

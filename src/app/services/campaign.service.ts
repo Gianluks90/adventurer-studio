@@ -62,7 +62,7 @@ export class CampaignService {
       dmName: infoCampaign.dmName,
       partecipants: [],
       characters: [],
-      imgUrl: '',
+      chapterUrl: infoCampaign.chapterUrl || '',
       description: infoCampaign.description || '',
       createdAt: new Date(),
       lastUpdate: new Date(),
@@ -242,6 +242,7 @@ export class CampaignService {
     return await setDoc(docRef, {
       title: form.title,
       description: form.description,
+      chapterUrl: form.chapterUrl,
       lastUpdate: new Date()
     }, { merge: true });
   }

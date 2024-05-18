@@ -53,12 +53,12 @@
             }
             <input hidden [disabled]="form.value.name === ''" #orgFile id="file" class="" type="file" accept="image"
                 (change)="onPicSelected($event)">
-            <button mat-raised-button color="accent" [disabled]="form.value.imgUrl !== '' || !form.valid"
-                (click)="orgFile.click()"><mat-icon>add_photo_alternate</mat-icon> Carica
+            <button as-btn [disabled]="form.value.imgUrl !== '' || !form.valid" (click)="orgFile.click()">
+                <div class="material-symbols-outlined">add_photo_alternate</div> <div>Carica</div>
             </button>
-            <button mat-raised-button color="accent" [disabled]="form.value.imgUrl === '' && form.value.imgName === ''"
+            <button as-btn as-btn-warn [disabled]="form.value.imgUrl === '' && form.value.imgName === ''"
                 (click)="deletePic(form.value.imgName)">
-                <mat-icon>delete</mat-icon> Elimina
+                <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
             </button>
         </div>
         <div class="checkbox-container">
@@ -161,17 +161,16 @@
                     </mat-form-field>
                 </div>
                 <div class="delete-button">
-                    <button mat-raised-button color="accent" (click)="deleteTrait(i)">
-                        <mat-icon>delete</mat-icon> Rimuovi
+                    <button as-btn as-btn-warn (click)="deleteTrait(i)">
+                        <div class="material-symbols-outlined">delete</div> <div>Rimuovi</div>
                     </button>
                 </div>
             </ng-container>
         </ng-container>
 
         <div class="button-container">
-            <button mat-raised-button color="accent" (click)="addTrait()">
-                <mat-icon>add</mat-icon>
-                Aggiungi nuovo
+            <button as-btn (click)="addTrait()">
+                <div class="material-symbols-outlined">add</div> <div>Aggiungi nuovo</div>
             </button>
         </div>
 
@@ -189,17 +188,16 @@
                     </mat-form-field>
                 </div>
                 <div class="delete-button">
-                    <button mat-raised-button color="accent" (click)="deleteAction(i)">
-                        <mat-icon>delete</mat-icon> Rimuovi
+                    <button as-btn as-btn-warn (click)="deleteAction(i)">
+                        <div class="material-symbols-outlined">delete</div> <div>Rimuovi</div>
                     </button>
                 </div>
             </ng-container>
         </ng-container>
 
         <div class="button-container">
-            <button mat-raised-button color="accent" (click)="addAction()">
-                <mat-icon>add</mat-icon>
-                Aggiungi nuova
+            <button as-btn (click)="addAction()">
+                <div class="material-symbols-outlined">add</div> <div>Aggiungi nuova</div>
             </button>
         </div>
 
@@ -207,14 +205,14 @@
         }
     </div>
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>
-        <mat-icon>close</mat-icon> Annulla
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
     </button>
-    <button *ngIf="data.npc" mat-raised-button mat-dialog-close color="warn" (click)="delete()">
-        <mat-icon>delete</mat-icon> Elimina
+    <button *ngIf="data.npc" as-btn as-btn-warn mat-dialog-close (click)="delete()">
+        <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
     </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>{{data.npc ? 'check' : 'add'}}</mat-icon> {{data.npc ? 'Modifica' : 'Aggiungi'}}
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">{{data.npc ? 'check' : 'add'}}</div> <div>{{data.npc ? 'Modifica' : 'Aggiungi'}}</div>
     </button>
 </div>

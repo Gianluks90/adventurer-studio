@@ -170,3 +170,13 @@ details[open] > summary::after {
   display: flex;
   justify-content: flex-end;
 }
+
+@media screen and (max-width: 768px) {
+  .skill {
+    width: 100%;
+  }
+
+  .a-container {
+    grid-template-columns: 1fr;
+  }
+}

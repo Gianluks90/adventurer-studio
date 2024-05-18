@@ -94,3 +94,33 @@
     border-bottom: 1px dotted rgba($color: #212121, $alpha: 0.3);
     width: 100%;
 }
+
+.chapter-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 12px;
+
+    div {
+        max-width: 50%;
+    }
+}
+
+.chapter-image {
+    width: 100%;
+    border-radius: 12px;
+    max-height: 200px;
+    object-fit: cover;
+    object-position: top;
+}
+
+@media screen and (max-width: 1400px) {
+    .chapter-container {
+        flex-direction: column;
+        gap: 8px;
+
+        div {
+            max-width: none;
+            width: 100%;
+        }
+    }
+}

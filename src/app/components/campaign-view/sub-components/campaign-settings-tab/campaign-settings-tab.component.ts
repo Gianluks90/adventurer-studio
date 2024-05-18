@@ -25,7 +25,8 @@ export class CampaignSettingsTabComponent {
     private router: Router) {
     this.form = this.fb.group({
       title: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      chapterUrl: ['']
     })
   }
 
@@ -36,9 +37,12 @@ export class CampaignSettingsTabComponent {
   public form: FormGroup;
 
   @Input() set campaign(data: any) {
+    console.log('data', data);
+    
     this.campaignData = data;
-    this.form.get('title').setValue(data.title);
-    this.form.get('description').setValue(data.description);
+    this.form.patchValue(data);
+    // this.form.get('title').setValue(data.title);
+    // this.form.get('description').setValue(data.description);
   }
 
   @Input() set characters(data: any) {

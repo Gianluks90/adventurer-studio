@@ -1,7 +1,7 @@
 @if (charData) {
 <div as-section-title>{{charData.informazioniBase.nomePersonaggioEsteso !== '' ? charData.informazioniBase.nomePersonaggioEsteso : charData.informazioniBase.nomePersonaggio}}</div>
 <div as-description-text>Questo è un riassunto della tua scheda personaggio, puoi visualizzare quella intera premendo il tasto infondo a questa sezione.</div>
-<div as-subtitle>Info</div>
+<div as-subtitle>Informazioni</div>
 <div as-pills-container>
     <div as-pill>{{charData.informazioniBase.razzaPersonalizzata !== '' || charData.informazioniBase.razza}}</div>
     @for(c of charData.informazioniBase.classi; track $index) {
@@ -84,6 +84,8 @@
         </div>
     </div>
 </div> -->
+<app-money-controller [char]="charData"></app-money-controller>
+
 <div as-subtitle>Abilità</div>
 <div class="a-container">
     @for(a of abilitaData; track i; let i = $index) {
@@ -93,18 +95,22 @@
         </div>
     }
 </div>
-<div as-subtitle>Privilegi, tratti e talenti</div>
-<div as-buttons-container>
+<!-- <div as-subtitle>Privilegi, tratti e talenti</div> -->
+<!-- <div as-buttons-container>
     <button as-mini-circle-btn (click)="collapseAll()">
         <div class="material-symbols-outlined">unfold_less</div>
     </button>
-</div>
-@for (p of charData.privilegiTratti; track $index) {
-    <details as-details>
-        <summary as-summary>{{p.nome}}</summary>
-        <div class="p-description">{{p.descrizione}}</div>
-    </details>
+</div> -->
+<app-privilegi-tratti-tab-view [character]="charData"></app-privilegi-tratti-tab-view>
+<!-- <app-equipaggiamento-tab-view [character]="charData"></app-equipaggiamento-tab-view> -->
+@if (charData.magia.trucchettiIncantesimi.length > 0) {
+    <app-trucchetti-incantesimi-tab-view [character]="charData"></app-trucchetti-incantesimi-tab-view>
 }
+@if (charData.attacchi.length > 0) {
+    <app-attacchi-tab-view [attacchi]="charData.attacchi"></app-attacchi-tab-view>
+}
+
+
 }
 
 <div as-buttons-container>

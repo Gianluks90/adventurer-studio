@@ -16,7 +16,10 @@ export class PrivilegiTrattiTabViewComponent {
   public sottorazzaData: string = '';
   public classiData: any[] = [];
   public tags: string[] = [];
-  constructor(private matDialog: MatDialog, private charService: CharacterService) { }
+  public isCampaign: boolean = false;
+  constructor(private matDialog: MatDialog, private charService: CharacterService) { 
+    this.isCampaign = window.location.href.includes('campaign');
+  }
 
 
   @Input() set character(character: any) {
@@ -45,5 +48,13 @@ export class PrivilegiTrattiTabViewComponent {
       }
     });
   } 
+
+  public collapseAll() {
+    const details: NodeListOf<HTMLDetailsElement> = document.querySelectorAll('details');
+    details.forEach((detail: HTMLDetailsElement) => {
+      if (detail.id !== 'details-t') return;
+      detail.open = false;
+    });
+  }
 
 }

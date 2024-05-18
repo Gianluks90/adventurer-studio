@@ -20,15 +20,15 @@ export class TrucchettiIncantesimiTabViewComponent {
   public CDTiroSalvezza: number;
   public slotIncantesimi: any;
 
-  @Input() set trucchettiIncantesimi(data: any) {
-    // this.lista = data.lista;
-    // this.sortSpells();
-    // this.classeIncantatore = data.classeIncantatore;
-    // this.caratteristicaIncantatore = data.caratteristicaIncantatore;
-    // this.bonusAttaccoIncantesimi = data.bonusAttaccoIncantesimi;
-    // this.CDTiroSalvezza = data.CD;
-    // this.slotIncantesimi = data.slotIncantesimi;
-  }
+  // @Input() set trucchettiIncantesimi(data: any) {
+  //   // this.lista = data.lista;
+  //   // this.sortSpells();
+  //   // this.classeIncantatore = data.classeIncantatore;
+  //   // this.caratteristicaIncantatore = data.caratteristicaIncantatore;
+  //   // this.bonusAttaccoIncantesimi = data.bonusAttaccoIncantesimi;
+  //   // this.CDTiroSalvezza = data.CD;
+  //   // this.slotIncantesimi = data.slotIncantesimi;
+  // }
 
   public charData: any;
   @Input() set character(character: any) {
@@ -177,6 +177,14 @@ export class TrucchettiIncantesimiTabViewComponent {
   public prepareToggle(spell: Spell): void {
     spell.preparato = !spell.preparato;
     this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
+  }
+
+  public collapseAll() {
+    const details: NodeListOf<HTMLDetailsElement> = document.querySelectorAll('details');
+    details.forEach((detail: HTMLDetailsElement) => {
+      if (detail.id !== 'details-m') return;
+      detail.open = false;
+    });
   }
 
 }

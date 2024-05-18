@@ -41,7 +41,6 @@
             </mat-form-field>
         </div>
         
-        
         <mat-form-field color="accent" appearance="outline">
             <mat-label>Note</mat-label>
             <textarea matInput formControlName="notes" rows="5"></textarea>
@@ -65,25 +64,14 @@
         </div>
     </div>
 </div>
-<div mat-dialog-actions align="end" *ngIf="!isMobile">
-    <button mat-raised-button mat-dialog-close>
-        <mat-icon>close</mat-icon> Annulla
+<div as-buttons-container mat-dialog-actions align="end" *ngIf="!isMobile">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
     </button>
-    <button *ngIf="data.attack" mat-raised-button mat-dialog-close color="warn" (click)="delete()">
-        <mat-icon>delete</mat-icon> Elimina
+    <button *ngIf="data.attack" as-btn as-btn-warn mat-dialog-close (click)="delete()">
+        <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
     </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>{{data.attack ? 'check' : 'add'}}</mat-icon> {{data.attack ? 'Modifica' : 'Aggiungi'}}
-    </button>
-</div>
-<div mat-dialog-actions align="end" *ngIf="isMobile">
-    <button mat-icon-button mat-dialog-close>
-        <mat-icon>close</mat-icon>
-    </button>
-    <button *ngIf="data.attack" mat-icon-button mat-dialog-close color="warn" (click)="delete()">
-        <mat-icon>delete</mat-icon>
-    </button>
-    <button mat-icon-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>{{data.attack ? 'check' : 'add'}}</mat-icon>
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">{{data.attack ? 'check' : 'add'}}</div> <div>{{data.attack ? 'Modifica' : 'Aggiungi'}}</div>
     </button>
 </div>
