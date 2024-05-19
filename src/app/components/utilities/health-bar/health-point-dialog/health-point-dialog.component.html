@@ -2,16 +2,16 @@
 <div class="pf-container">
     <div class="pf-line">
         <span class="pf-value">{{data.parametriVitali.pf}}/{{data.parametriVitali.pfMax}}</span>
-        <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi" matTooltipPosition="above">favorite</mat-icon>
+        <mat-icon class="pf-icon" matTooltip="Punti Ferita Attuali / Massimi"
+            matTooltipPosition="above">favorite</mat-icon>
         <progress class="pf-progress" max="{{data.parametriVitali.pfMax}}"
             value="{{data.parametriVitali.pf}}"></progress>
     </div>
     <div class="pf-line" *ngIf="data.parametriVitali.pftMax > 0">
         <span class="pf-value">{{data.parametriVitali.pft}}/{{data.parametriVitali.pftMax}}</span>
-        <mat-icon class="pf-icon-temp"
-            matTooltip="Punti Ferita Temporanei" matTooltipPosition="above">hourglass_empty</mat-icon>
-        <progress class="pf-progress pf-progress-temp "
-            max="{{data.parametriVitali.pftMax}}"
+        <mat-icon class="pf-icon-temp" matTooltip="Punti Ferita Temporanei"
+            matTooltipPosition="above">hourglass_empty</mat-icon>
+        <progress class="pf-progress pf-progress-temp " max="{{data.parametriVitali.pftMax}}"
             value="{{data.parametriVitali.pft}}"></progress>
     </div>
 </div>
@@ -23,25 +23,27 @@
             <input type="number" min="0" matInput formControlName="value">
         </mat-form-field>
         <div class="health-buttons-container">
-            <button mat-icon-button class="hp-button" color="accent" (click)="add()">
-                <mat-icon>add</mat-icon>
+            <button as-bottom-btn (click)="add()" [disabled]="!hpForm.dirty">
+                <div class="material-symbols-outlined">add</div>
             </button>
-            <button mat-icon-button class="hp-button" color="accent" (click)="remove()">
-                <mat-icon>remove</mat-icon>
+            <button as-bottom-btn (click)="remove()" [disabled]="!hpForm.dirty">
+                <div class="material-symbols-outlined">remove</div>
             </button>
-            <button mat-icon-button class="hp-button" color="accent" (click)="addTemp()">
-                <mat-icon>hourglass_empty</mat-icon>
+            <button as-bottom-btn (click)="addTemp()" [disabled]="!hpForm.dirty">
+                <div class="material-symbols-outlined">hourglass_empty</div>
             </button>
-            <button mat-icon-button class="hp-button" color="accent" (click)="restore()">
-                <mat-icon>restart_alt</mat-icon>
+            <button as-bottom-btn (click)="restore()">
+                <div class="material-symbols-outlined">restart_alt</div>
             </button>
         </div>
     </div>
-    <div class="description-text">
-        Inserisci un valore poi premi la clessidra per impostare <strong>punti ferita temporanei</strong>.
+    <div as-label>Punti ferita temporanei</div>
+    <div as-description-text>
+        Per impostare dei <strong>Punti ferita temporanei</strong> inserire un valore dopodichè premere il tasto con la
+        clessidra. I Punti ferita temporanei vengono sovrascritti ogni volta che vengono impostati.
     </div>
 </div>
 
-<div mat-dialog-actions align="end">
-    <button mat-raised-button color="accent" (click)="close()">Chiudi</button>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn (click)="close()">Chiudi</button>
 </div>

@@ -31,8 +31,7 @@ export class HealthBarComponent {
   }
 
   constructor(
-    private dialog: MatDialog, 
-    private platform: Platform, 
+    private dialog: MatDialog,
     private charService: CharacterService,
     public tooltip: DescriptionTooltipService) {
       this.isCampaign = window.location.href.includes('campaign');
@@ -50,7 +49,7 @@ export class HealthBarComponent {
   public openHPDialog() {
     // const characterId = window.location.href.split('/').pop();
     this.dialog.open(HealthPointDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false,
       data: {
         parametriVitali: this.parametriVitaliData,

@@ -216,6 +216,7 @@ div[as-mini-buttons-container] {
   flex-direction: row;
   justify-content: flex-end;
   gap: 8px;
+  margin-bottom: 8px;
 }
 
 div[as-buttons-container][as-buttons-container-details] {
@@ -375,6 +376,10 @@ button[as-bottom-btn] {
   border-radius: 8px;
   font-weight: bold;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   cursor: pointer;
 
