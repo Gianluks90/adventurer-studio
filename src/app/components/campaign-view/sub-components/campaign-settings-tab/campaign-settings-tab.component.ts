@@ -116,93 +116,94 @@ export class CampaignSettingsTabComponent {
     const exportButton = document.getElementById(isDelete ? 'delete-' + section : 'export-' + section);
     const campaignTitle = this.campaignData.title.replace(/ /g, '_');
     let fileName = campaignTitle + '_' + new Date().getTime().toString();
-    
+
     switch (section) {
-        case 'all':
-            fileName = 'ALL_' + fileName;
-            result = {
-                metadata: {
-                    generatedAt: new Date().toISOString(),
-                    fileName: fileName + '.json',
-                    section: 'all'
-                },
-                data: this.campaignData
-            };
-            break;
-        default:
-            fileName = section.toUpperCase() + '_' + fileName;
-            result = {
-                metadata: {
-                    generatedAt: new Date().toISOString(),
-                    fileName: fileName + '.json',
-                    section: section
-                },
-                data: this.campaignData[section]
-            };
-            break;
+      case 'all':
+        fileName = 'ALL_' + fileName;
+        result = {
+          metadata: {
+            generatedAt: new Date().toISOString(),
+            fileName: fileName + '.json',
+            section: 'all'
+          },
+          data: this.campaignData
+        };
+        break;
+      default:
+        fileName = section.toUpperCase() + '_' + fileName;
+        result = {
+          metadata: {
+            generatedAt: new Date().toISOString(),
+            fileName: fileName + '.json',
+            section: section
+          },
+          data: this.campaignData[section]
+        };
+        break;
     }
 
     fileName += '.json';
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(result));
     exportButton.setAttribute("href", dataStr);
     exportButton.setAttribute("download", fileName);
-}
+  }
 
 
   public importJSON(section: string, file: any): void {
     const input = file.target as HTMLInputElement;
     if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                const content = e.target?.result as string;
-                const json = JSON.parse(content);
-                if (json.metadata && json.metadata.section === section) {
-                    // Il file è corretto, procedi con l'importazione
-                    this.updateDatabase(json.data, section);
-                } else {
-                    // Il file non è corretto, mostra un messaggio di errore
-                    alert('Il file caricato non è valido per questa sezione.');
-                }
-            } catch (error) {
-                // Il file non è un JSON valido, mostra un messaggio di errore
-                alert('Il file caricato non è un JSON valido.');
-            }
-        };
-        reader.readAsText(input.files[0]);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const content = e.target?.result as string;
+          const json = JSON.parse(content);
+          if (json.metadata && json.metadata.section === section) {
+            // Il file è corretto, procedi con l'importazione
+            this.updateDatabase(json.data, section);
+          } else {
+            // Il file non è corretto, mostra un messaggio di errore
+            alert('Il file caricato non è valido per questa sezione.');
+          }
+        } catch (error) {
+          // Il file non è un JSON valido, mostra un messaggio di errore
+          alert('Il file caricato non è un JSON valido.');
+        }
+      };
+      reader.readAsText(input.files[0]);
     }
-}
-
-private updateDatabase(data: any, section: string): void {
-  // Aggiorna i dati della campagna con i nuovi elementi
-  data.forEach((element: any) => {
-      if (!this.campaignData[section].find((e: any) => e.name === element.name)) {
-          this.campaignData[section].push(element);
-      }
-  });
-
-  // Aggiorna la campagna in base alla sezione
-  switch (section) {
-      case 'addons':
-          this.campaignService.updateAddons(this.campaignData.id, this.campaignData.addons);
-          break;
-      case 'inventory':
-          this.campaignService.updateInventory(this.campaignData.id, this.campaignData.inventory);
-          break;
-      case 'allies':
-          this.campaignService.updateAllies(this.campaignData.id, this.campaignData.allies);
-          break;
-      case 'organizations':
-          this.campaignService.updateOrganizations(this.campaignData.id, this.campaignData.organizations);
-          break;
   }
-}
+
+  private updateDatabase(data: any, section: string): void {
+    // Aggiorna i dati della campagna con i nuovi elementi
+    data.forEach((element: any) => {
+      element.imgUrl = './assets/images/unknown.png';
+      if (!this.campaignData[section].find((e: any) => e.name === element.name)) {
+        this.campaignData[section].push(element);
+      }
+    });
+
+    // Aggiorna la campagna in base alla sezione
+    switch (section) {
+      case 'addons':
+        this.campaignService.updateAddons(this.campaignData.id, this.campaignData.addons);
+        break;
+      case 'inventory':
+        this.campaignService.updateInventory(this.campaignData.id, this.campaignData.inventory);
+        break;
+      case 'allies':
+        this.campaignService.updateAllies(this.campaignData.id, this.campaignData.allies);
+        break;
+      case 'organizations':
+        this.campaignService.updateOrganizations(this.campaignData.id, this.campaignData.organizations);
+        break;
+    }
+  }
 
   public emptySection(section: string): void {
     if (section === 'all') return;
-    
+
     this.exportJSON(section, true);
-    
+
     setTimeout(() => {
       switch (section) {
         case 'addons':

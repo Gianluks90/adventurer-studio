@@ -43,7 +43,7 @@ export class CharacterViewStatusComponent {
     private notification: NotificationService,
     public tooltip: DescriptionTooltipService,
     private matDialog: MatDialog) { 
-      this.isCampaign = window.location.href.includes('campaign');
+      this.isCampaign = window.location.href.includes('campaign-view');
     }
 
   @Input() set character(character: any) {

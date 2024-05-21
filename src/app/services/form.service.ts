@@ -99,6 +99,11 @@ export class FormService {
 
   public async uploadNPCImage(event: any, name: string): Promise<any> {
     const file: File = event.target.files[0];
+    // se la dimensione è maggiore a 100kb
+    if (file.size > 100000) {
+      alert('Immagine troppo grande, dim. massima: 100kb.');
+      return 'error';
+    }
     const fileName = name.replace(' ', '_');
     const imageRef = ref(this.firebaseService.storage, 'characterImages/' + getAuth().currentUser?.uid + '/' + fileName);
     return await uploadBytes(imageRef, file).then(async () => {
@@ -125,7 +130,7 @@ export class FormService {
     return deleteObject(imageRef).then(() => {
       return 'success';
     }).catch((error) => {
-      console.log(error);
+      // console.log(error);
       // alert('Errore nell\'eliminazione dell\'immagine');
       return 'error';
     });

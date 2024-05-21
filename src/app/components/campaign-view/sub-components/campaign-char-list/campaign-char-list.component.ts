@@ -28,6 +28,7 @@ export class CampaignCharListComponent {
   }
   public ispirazioneParty: number = 0;
   public detailsOpen: boolean = false;
+  public totalCA: number = 0;
 
   @Input() set characters(characters: any) {
     if (characters.length === 0) return;
@@ -93,6 +94,11 @@ export class CampaignCharListComponent {
         }
       })
     });
+  }
+
+  public calcTotalCA(CA: string, shieldCA?: string): string {
+    const bonusCA = shieldCA ? parseInt(shieldCA.replace('+', '')) : 0;
+    return (parseInt(CA) + bonusCA).toString();
   }
 
   public calcMoney(): void {

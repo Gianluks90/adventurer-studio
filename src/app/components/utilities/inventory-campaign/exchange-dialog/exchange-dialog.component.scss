@@ -1,0 +1,28 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dialog-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.custom-form-field {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.line-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.line-input {
+    flex-grow: 1;
+    min-width: 30%;
+}

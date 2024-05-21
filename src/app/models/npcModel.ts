@@ -1,3 +1,4 @@
+import { A } from "@angular/cdk/keycodes";
 import { FormBuilder, Validators } from "@angular/forms";
 
 export class NPC {
@@ -107,7 +108,8 @@ export class NPC {
             notes: ['', Validators.required],
             lastPlace: '',
             filtered: false,
-            visible: true
+            visible: true,
+            addable: false
         }
     }
 

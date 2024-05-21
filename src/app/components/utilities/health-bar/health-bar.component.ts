@@ -34,7 +34,7 @@ export class HealthBarComponent {
     private dialog: MatDialog,
     private charService: CharacterService,
     public tooltip: DescriptionTooltipService) {
-      this.isCampaign = window.location.href.includes('campaign');
+      this.isCampaign = window.location.href.includes('campaign-view');
     }
 
   public parametriVitaliData: any = {

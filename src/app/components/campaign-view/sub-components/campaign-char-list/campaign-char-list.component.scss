@@ -65,15 +65,20 @@
     object-fit: cover;
 }
 
+.character-name-container {
+  display: flex;
+  justify-content: space-between;
+  // align-items: center;
+  width: 100%;
+}
+
 .character-name {
-    font-size: small;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Cinzel', serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  font-size: small;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
 }
 
 .navigate-button {

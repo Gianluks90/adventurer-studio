@@ -19,10 +19,12 @@ export class CampaignInventoryTabComponent {
   }
 
   public selectedChar: string = '';
+  public charactersData: any[] = [];
   @Input() set characters(characters: any) {
+    this.charactersData = characters;
     const userId = getAuth().currentUser?.uid;
     if (characters) {
-      this.selectedChar = characters.find((char: any) => char.status.userId === userId) || '';
+      this.selectedChar = this.charactersData.find((char: any) => char.status.userId === userId) || '';
     }
   }
 }

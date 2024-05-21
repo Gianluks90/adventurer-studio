@@ -28,8 +28,9 @@ export class AddOrganizationDialogComponent {
       this.form.patchValue(this.data.organization);
     }
     this.form.get('category').setValue(NPCCategory.ORGANIZATION);
-    this.form.get('visible').setValue(false);
     this.isCampaign = window.location.href.includes('campaign-view') || false;
+    this.form.get('visible').setValue(!this.isCampaign);
+    
   }
 
   confirm() {

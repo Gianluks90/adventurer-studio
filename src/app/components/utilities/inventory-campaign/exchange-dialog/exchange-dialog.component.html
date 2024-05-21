@@ -1,0 +1,35 @@
+<div mat-dialog-title class="dialog-title">Scambio oggetti</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div as-description-text>Utilizza questo strumento per trasferire uno o più oggetti del tuo inventario a quelli di un altro personaggio.</div>
+    <div class="line-container">
+        <mat-form-field color="accent" appearance="outline" class="line-input">
+            <mat-label>Oggetti</mat-label>
+            <mat-select formControlName="items" multiple>
+                <mat-option *ngFor="let i of validItems" [value]="i">{{i.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-icon>arrow_right</mat-icon>
+        <mat-form-field color="accent" appearance="outline" class="line-input">
+            <mat-label>Personaggio</mat-label>
+            <mat-select formControlName="receiver">
+                <mat-option *ngFor="let c of data.characters" [value]="c">{{c.informazioniBase.nomePersonaggio}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div as-buttons-container>
+        <button as-btn [disabled]="!form.dirty" (click)="resetForm()">
+            <div class="material-symbols-outlined">clear</div>
+            <div>Reset</div>
+        </button>
+        <button as-btn [disabled]="!form.valid" (click)="exchange()">
+            <div class="material-symbols-outlined">check</div>
+            <div>Invia</div>
+        </button>
+    </div>
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Chiudi</div>
+    </button>
+</div>

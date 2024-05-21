@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { AddSpellDialogComponent } from './add-spell-dialog/add-spell-dialog.component';
-import { Platform } from '@angular/cdk/platform';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Spell } from 'src/app/models/spell';
@@ -19,6 +18,7 @@ export class TrucchettiIncantesimiTabViewComponent {
   public bonusAttaccoIncantesimi: number;
   public CDTiroSalvezza: number;
   public slotIncantesimi: any;
+  public isCampaign: boolean = false;
 
   // @Input() set trucchettiIncantesimi(data: any) {
   //   // this.lista = data.lista;
@@ -46,7 +46,9 @@ export class TrucchettiIncantesimiTabViewComponent {
     // this.lista = character.
   }
 
-  constructor(private platform: Platform, private characterService: CharacterService, private dialog: MatDialog, private notification: NotificationService) { }
+  constructor(private characterService: CharacterService, private dialog: MatDialog, private notification: NotificationService) {
+    this.isCampaign = window.location.href.includes('campaign-view');
+  }
 
   useSlot(levelIndex: number, index: number): void {
     const spellLevel = this.slotIncantesimi[levelIndex];
@@ -85,7 +87,7 @@ export class TrucchettiIncantesimiTabViewComponent {
 
   openAddSpellDialog(spell?: Spell, index?: number) {
     this.dialog.open(AddSpellDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '90%' : '60%',
+      width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
       data: { spells: this.lista, spell: spell }

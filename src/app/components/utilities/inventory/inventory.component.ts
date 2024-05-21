@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Item } from 'src/app/models/item';
 import { MatDialog } from '@angular/material/dialog';
 import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
-import { Platform } from '@angular/cdk/platform';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ItemInfoSheetComponent } from './item-info-sheet/item-info-sheet.component';
@@ -50,11 +49,11 @@ export class InventoryComponent {
       data: { inventory: this.inventoryData, isOwner: this.isOwnerData }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
-        if (!this.isCampaign) {
+        // if (!this.isCampaign) {
           this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item);
-        } else {
-          this.campaignService.addItemInventory(window.location.href.split('/').pop(), result.item);
-        }
+        // } else {
+        //   this.campaignService.addItemInventory(window.location.href.split('/').pop(), result.item);
+        // }
         this.sortInventory();
       }
     })
@@ -78,68 +77,68 @@ export class InventoryComponent {
     }).afterDismissed().subscribe((result: any) => {
       if (result && result.status === 'edited') {
         this.inventoryData[index] = result.item;
-        if (!this.isCampaign) {
+        // if (!this.isCampaign) {
           this.updateCharSets(result.item, 'edited');
           this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
-        } else {
-          this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
-        }
+        // } else {
+        //   this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        // }
       }
       if (result && result.status === 'deleted') {
         this.inventoryData.splice(index, 1);
-        if (!this.isCampaign) {
+        // if (!this.isCampaign) {
           // this.updateCharSets(this.inventoryData[index], 'deleted');
           this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
-        } else {
-          this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
-        }
+        // } else {
+        //   this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        // }
       }
-      if (result && result.status === 'reclamed' && this.selectedCharData) {
-        const itemExists = this.selectedCharData.equipaggiamento.find((item) => item.name === result.item.name);
-        if (itemExists) {
-          this.selectedCharData.equipaggiamento.find((item) => item.name === result.item.name).quantity += result.quantity;
-          this.characterService.updateInventory(this.selectedCharData.id, this.selectedCharData.equipaggiamento).then(() => {
-            this.inventoryData[index].quantity -= result.quantity;
-            this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
-            this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
-          });
-        } else {
-          const resultItem = { ...result.item };
-          resultItem.quantity = result.quantity;
-          this.characterService.addItemInventory(this.selectedCharData.id, resultItem).then(() => {
-            this.inventoryData[index].quantity -= result.quantity;
-            this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
-            this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
-          });
-        }
-      }
+      // if (result && result.status === 'reclamed' && this.selectedCharData) {
+      //   const itemExists = this.selectedCharData.equipaggiamento.find((item) => item.name === result.item.name);
+      //   if (itemExists) {
+      //     this.selectedCharData.equipaggiamento.find((item) => item.name === result.item.name).quantity += result.quantity;
+      //     this.characterService.updateInventory(this.selectedCharData.id, this.selectedCharData.equipaggiamento).then(() => {
+      //       this.inventoryData[index].quantity -= result.quantity;
+      //       this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
+      //       this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+      //     });
+      //   } else {
+      //     const resultItem = { ...result.item };
+      //     resultItem.quantity = result.quantity;
+      //     this.characterService.addItemInventory(this.selectedCharData.id, resultItem).then(() => {
+      //       this.inventoryData[index].quantity -= result.quantity;
+      //       this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;
+      //       this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+      //     });
+      //   }
+      // }
       if (result && result.status === 'consumed') {
         this.inventoryData[index].quantity--;
         this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
-      if (result && result.status === 'equipped') {
-        // Se è uno scudo
-        if (this.inventoryData[index].shield) {
-          this.inventoryData.forEach((item) => {
-            if (item.shield && item.name !== this.inventoryData[index].name) {
-              item.weared = false;
-            }
-          });
-          this.inventoryData[index].weared = !this.inventoryData[index].weared;
-        }
+      // if (result && result.status === 'equipped') {
+      //   // Se è uno scudo
+      //   if (this.inventoryData[index].shield) {
+      //     this.inventoryData.forEach((item) => {
+      //       if (item.shield && item.name !== this.inventoryData[index].name) {
+      //         item.weared = false;
+      //       }
+      //     });
+      //     this.inventoryData[index].weared = !this.inventoryData[index].weared;
+      //   }
 
-        // Se è un'armatura
-        if (this.inventoryData[index].category.includes('Armatura')) {
-          this.inventoryData.forEach((item) => {
-            if (item.name !== this.inventoryData[index].name && item.category.includes('Armatura')) {
-              item.weared = false;
-            }
-          });
-          this.inventoryData[index].weared = !this.inventoryData[index].weared;
-        }
+      //   // Se è un'armatura
+      //   if (this.inventoryData[index].category.includes('Armatura')) {
+      //     this.inventoryData.forEach((item) => {
+      //       if (item.name !== this.inventoryData[index].name && item.category.includes('Armatura')) {
+      //         item.weared = false;
+      //       }
+      //     });
+      //     this.inventoryData[index].weared = !this.inventoryData[index].weared;
+      //   }
 
-        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
-      }
+      //   this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+      // }
     });
   }
 
@@ -177,33 +176,6 @@ export class InventoryComponent {
     }
     this.characterService.updateSets(this.selectedCharData.id, sets);
 }
-
-
-
-
-  // private updateCharSets(item: Item, action: string) {
-  //   const sets = this.selectedCharData.sets as any[];
-  //   switch (action) {
-  //     case 'edited':
-  //       sets.forEach((set) => {
-  //         if (set.mainHand && set.mainHand.name === item.name) {
-  //           set.mainHand = item;
-  //         }
-  //         if (set.offHand && set.offHand.name === item.name) {
-  //           set.offHand = item;
-  //         }
-  //       });
-  //       break;
-        
-  //     case 'deleted':
-  //       const setIndex = sets.findIndex((set) => set.mainHand && set.mainHand.name === item.name || set.offHand && set.offHand.name === item.name);
-  //       if (setIndex > -1) {
-  //         sets.splice(setIndex, 1);
-  //       }
-  //       break;
-  //   }
-  //   this.characterService.updateSets(this.selectedCharData.id, sets);
-  // }
 
   setColor(rarity: string): string {
     switch (rarity) {

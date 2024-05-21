@@ -295,9 +295,10 @@
             <textarea matInput formControlName="description" rows="3"></textarea>
           </mat-form-field>
 
-          <div class="delete-button">
-            <button mat-raised-button color="accent" (click)="deleteTrait(i)">
-              <mat-icon>delete</mat-icon> Rimuovi
+          <div as-buttons-container>
+            <button as-btn as-btn-warn (click)="deleteTrait(i)">
+              <div class="material-symbols-outlined">delete</div>
+              <div>Rimuovi</div>
             </button>
           </div>
         </div>
@@ -305,9 +306,9 @@
     </ng-container>
 
     <div class="button-container">
-      <button mat-raised-button color="accent" (click)="addTrait()">
-        <mat-icon>add</mat-icon>
-        Aggiungi nuovo
+      <button as-btn (click)="addTrait()">
+        <div class="material-symbols-outlined">add</div>
+        <div>Aggiungi nuova</div>
       </button>
     </div>
   </div>
@@ -327,9 +328,10 @@
             <textarea matInput formControlName="description" rows="3"></textarea>
           </mat-form-field>
 
-          <div class="delete-button">
-            <button mat-raised-button color="accent" (click)="deleteProp(i)">
-              <mat-icon>delete</mat-icon> Rimuovi
+          <div as-buttons-container>
+            <button as-btn as-btn-warn (click)="deleteProp(i)">
+              <div class="material-symbols-outlined">delete</div>
+              <div>Rimuovi</div>
             </button>
           </div>
         </div>
@@ -337,9 +339,9 @@
     </ng-container>
 
     <div class="button-container">
-      <button mat-raised-button color="accent" (click)="addProp()">
-        <mat-icon>add</mat-icon>
-        Aggiungi nuovo
+      <button as-btn (click)="addProp()">
+        <div class="material-symbols-outlined">add</div>
+        <div>Aggiungi nuova</div>
       </button>
     </div>
   </div>

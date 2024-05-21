@@ -8,14 +8,18 @@ import { Component, Input } from '@angular/core';
 export class CampaignNpcTabComponent {
 
   public campaignData: any;
-  public isOwnerData: boolean = false;
-
   @Input() set campaign(data: any) {
     this.campaignData = data;
     
   }
-
+  
+  public isOwnerData: boolean = false;
   @Input() set isOwner(isOwner: boolean) {
     this.isOwnerData = isOwner;
+  }
+
+  public charData: any;
+  @Input() set character(data: any) {
+    this.charData = data;
   }
 }

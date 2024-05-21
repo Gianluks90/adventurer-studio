@@ -12,8 +12,13 @@
             <div class="character-header-card">
                 <img class="character-image" [src]="char.informazioniBase.urlImmaginePersonaggio"
                     [ngClass]="{'dead-hero': char.parametriVitali.puntiFeritaAttuali === 0}">
-                <div class="character-name">{{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ?
-                    char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}
+                <div class="character-name-container">
+                    <div class="character-name">
+                        {{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ?
+                        char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}
+                        <span
+                            *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span>
+                    </div>
                     <button class="navigate-button" (click)="navigateToChar(char.id)" (mouseover)="tooltip.showTooltip($event, 'center', true, 'apri-scheda-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                         <mat-icon>open_in_new</mat-icon>
                     </button>
@@ -28,11 +33,20 @@
                     <span
                         *ngIf="char.parametriVitali.massimoPuntiFeritaTemporanei > 0">+{{char.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{char.parametriVitali.massimoPuntiFeritaTemporanei}}</span>
                 </div>
-                <div class="CA-container">
+                <div class="CA-container" *ngIf="!isMobile">
                     <mat-icon
                         class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ca-tooltip')" (mouseleave)="tooltip.hideTooltip()">shield</mat-icon>{{char.CA}}<span
-                        *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span> <span
-                        *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span>
+                        *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span> 
+                        <!-- <span
+                        *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span> -->
+                </div>
+                <div class="CA-container" *ngIf="isMobile">
+                    <mat-icon
+                        class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ca-tooltip')" (mouseleave)="tooltip.hideTooltip()">shield</mat-icon>{{calcTotalCA(char.CA, char.shieldCA)}}
+                        <!-- <span
+                        *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span>  -->
+                        <!-- <span
+                        *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span> -->
                 </div>
                 <div class="passive-container">
                     <mat-icon class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'pp-tooltip')" (mouseleave)="tooltip.hideTooltip()">visibility</mat-icon> {{char.percezionePassiva}}

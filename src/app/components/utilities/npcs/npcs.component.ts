@@ -73,7 +73,7 @@ export class NpcsComponent {
         case 'success':
           if (!this.isCampaign) {
             this.charService.addAlly(window.location.href.split('/').pop(), result.npc).then(() => {
-              this.npcsData.push(NPC.fromData(result.npc));
+              // this.npcsData.push(NPC.fromData(result.npc));
               this.sortNpcs();
             });
           } else {
@@ -117,7 +117,7 @@ export class NpcsComponent {
         case 'success':
           if (!this.isCampaign) {
             this.charService.addAddon(window.location.href.split('/').pop(), result.npc).then(() => {
-              this.adddonsData.push(NPC.fromData(result.npc));
+              // this.adddonsData.push(NPC.fromData(result.npc));
               this.sortAddons();
             });
           } else {
@@ -161,7 +161,7 @@ export class NpcsComponent {
         case 'success':
           if (!this.isCampaign) {
             this.charService.addOrganization(window.location.href.split('/').pop(), result.organization).then(() => {
-              this.organizationsData.push(result.organization);
+              // this.organizationsData.push(result.organization);
             });
           } else {
             this.campaignService.addOrganization(window.location.href.split('/').pop(), result.organization).then(() => {
@@ -275,5 +275,30 @@ export class NpcsComponent {
     details.forEach((detail: any) => {
       detail.open = false;
     });
+  }
+
+  public charData: any;
+  @Input() set character(character: any) {
+    this.charData = character;
+  }
+
+  public addToCharSheet(type: string, index: number) {
+    switch (type) {
+      case 'allies':
+        if (!this.charData.allies.find((ally: any) => ally.name === this.npcsData[index].name)) {
+          this.npcsData[index].imgUrl = '';
+          this.charData.allies.push(this.npcsData[index]);
+          this.charService.updateAllies(this.charData.id, this.charData.allies);
+        }
+        break;
+
+      case 'organizations':
+        if (!this.charData.organizations.find((org: any) => org.name === this.organizationsData[index].name)) {
+          this.organizationsData[index].imgUrl = '';
+          this.charData.organizations.push(this.organizationsData[index]);
+          this.charService.updateOrganizations(this.charData._id, this.charData.organizations);
+        }
+        break;
+    }
   }
 }

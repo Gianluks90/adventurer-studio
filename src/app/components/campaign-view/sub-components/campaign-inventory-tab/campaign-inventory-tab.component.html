@@ -9,6 +9,7 @@
         }
     </div>
     <div class="inventory-container">
-        <app-inventory [inventory]="campaignData.inventory" [isCampaignOwner]="isOwnerData" [selectedChar]="selectedChar"></app-inventory>
+        <!-- <app-inventory [inventory]="campaignData.inventory" [isCampaignOwner]="isOwnerData" [selectedChar]="selectedChar"></app-inventory> -->
+        <app-inventory-campaign [inventory]="campaignData.inventory" [isCampaignOwner]="isOwnerData" [selectedChar]="selectedChar" [characters]="charactersData"></app-inventory-campaign>
     </div>
 </div>

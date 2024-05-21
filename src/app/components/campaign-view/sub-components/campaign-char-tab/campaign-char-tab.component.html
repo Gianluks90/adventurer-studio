@@ -103,6 +103,8 @@
 </div> -->
 <app-privilegi-tratti-tab-view [character]="charData"></app-privilegi-tratti-tab-view>
 <!-- <app-equipaggiamento-tab-view [character]="charData"></app-equipaggiamento-tab-view> -->
+<div as-section-title>Inventario</div>
+<app-inventory [inventory]="charData.equipaggiamento" [selectedChar]="charData"></app-inventory>
 @if (charData.magia.trucchettiIncantesimi.length > 0) {
     <app-trucchetti-incantesimi-tab-view [character]="charData"></app-trucchetti-incantesimi-tab-view>
 }

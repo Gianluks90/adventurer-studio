@@ -99,6 +99,7 @@
     font-size: small;
     padding: 8px;
     border: 1px solid rgba($color: #212121, $alpha: 0.9);
+    margin-bottom: 8px;
 }
 
 .npc-footer {
@@ -340,4 +341,8 @@ details[open]>summary::after {
     .org-place {
         font-size: x-small;
     }
+}
+
+.npc-action-button {
+    margin: 0 8px;
 }

@@ -1,6 +1,9 @@
 <div class="main-container">
     @if (isCampaign) {
     <div as-section-title>{{listTitleData !== '' ? listTitleData : 'PNG e Organizzazioni'}}</div>
+    <div as-description-text *ngIf="!isOwner">Qui troverai <strong>PNG</strong> (ovvero Personaggi non giocanti) e
+        <strong>Organizzazioni</strong> relative alla Campagna in corso. Il tasto di aggiunta (+) permette di
+        trasferire, se non presenti, le info di un PNG o una Organizzazione nella Scheda del proprio Personaggio.</div>
     }
     @if (!isCampaign && isTab) {
     <div as-section-title>Gregari, Evocazioni, Trasformazioni, ecc...</div>
@@ -322,8 +325,13 @@
             </div>
             <div class="org-place">{{npc.lastPlace}}</div>
         </div>
-        <button mat-mini-fab color="accent" class="edit-button" (click)="openAddNpcDialog(npc, i)" *ngIf="isOwner">
-            <mat-icon>edit</mat-icon>
+        <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="addToCharSheet('allies', i)"
+            *ngIf="!isOwner && npc.addable">
+            <div class="material-symbols-outlined">add</div>
+        </button>
+        <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="openAddNpcDialog(npc, i)"
+            *ngIf="isOwner">
+            <div class="material-symbols-outlined">edit</div>
         </button>
     </div>
     @if (npc.notes !== '' || npc.isDealer || npc.isMerchant) {
@@ -380,9 +388,13 @@
             </div>
             <div class="org-place">{{org.lastPlace}}</div>
         </div>
-        <button mat-mini-fab color="accent" class="edit-button" (click)="openAddOrganizationDialog(org, i)"
+        <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="addToCharSheet('allies', i)"
+            *ngIf="!isOwner && org.addable">
+            <div class="material-symbols-outlined">add</div>
+        </button>
+        <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="openAddOrganizationDialog(org, i)"
             *ngIf="isOwner">
-            <mat-icon>edit</mat-icon>
+            <div class="material-symbols-outlined">edit</div>
         </button>
     </div>
     <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">

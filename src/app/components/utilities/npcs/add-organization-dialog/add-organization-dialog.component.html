@@ -23,33 +23,47 @@
             <mat-label>Note</mat-label>
             <textarea matInput formControlName="notes" rows="5"></textarea>
         </mat-form-field>
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Immagine da link esterno</mat-label>
+            <input matInput formControlName="imgUrl" placeholder="Inserisci un URL valido">
+        </mat-form-field>
         <div class="line-container img-upload">
             @if (form.value.imgUrl !== '' || form.value.imgName !== '') {
-                <img [src]="form.value.imgUrl" referrerpolicy="no-referrer">
-                <div class="divider"></div>
+            <img [src]="form.value.imgUrl" referrerpolicy="no-referrer">
+            <div class="divider"></div>
             }
             <input hidden [disabled]="form.value.name === ''" #orgFile id="file" class="" type="file" accept="image"
                 (change)="onPicSelected($event)">
-            <button mat-raised-button color="accent" [disabled]="form.value.imgUrl !== '' || !form.valid"
-                (click)="orgFile.click()"><mat-icon>add_photo_alternate</mat-icon> Carica
+            <button as-btn [disabled]="form.value.imgUrl !== '' || !form.valid" (click)="orgFile.click()">
+                <div class="material-symbols-outlined">add_photo_alternate</div>
+                <div>Carica</div>
             </button>
-            <button mat-raised-button color="accent" [disabled]="form.value.imgUrl === '' && form.value.imgName === ''"
+            <button as-btn as-btn-warn [disabled]="form.value.imgUrl === '' || form.value.imgName === ''"
                 (click)="deletePic(form.value.imgName)">
-                <mat-icon>delete</mat-icon> Elimina
+                <div class="material-symbols-outlined">delete</div>
+                <div>Elimina</div>
             </button>
         </div>
-        <mat-checkbox formControlName="visible">Visibile</mat-checkbox>
-
+        <div as-description-text><strong>Immagine</strong>: hai due opzioni per scegliere un'immagine per questa scheda.
+            Incolla un link esterno nello spazio apposito o utilizza il tasto "carica" per aggiungere un'immagine dal
+            tuo dispositivo (restrizione 100kb).</div>
+        <div class="checkbox-container" *ngIf="isCampaign">
+            <mat-checkbox formControlName="visible">Visibile ai giocatori</mat-checkbox>
+            <mat-checkbox formControlName="addable">Può essere trasferita in una scheda personaggio</mat-checkbox>
+        </div>
     </div>
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>
-        <mat-icon>close</mat-icon> Annulla
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
     </button>
-    <button *ngIf="data.organization" mat-raised-button mat-dialog-close color="warn" (click)="delete()">
-        <mat-icon>delete</mat-icon> Elimina
+    <button as-btn as-btn-warn *ngIf="data.organization" mat-dialog-close (click)="delete()">
+        <div class="material-symbols-outlined">delete</div>
+        <div>Elimina</div>
     </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>{{data.organization ? 'check' : 'add'}}</mat-icon> {{data.organization ? 'Modifica' : 'Aggiungi'}}
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">{{data.organization ? 'check' : 'add'}}</div>
+        <div>{{data.organization ? 'Modifica' : 'Aggiungi'}}</div>
     </button>
 </div>

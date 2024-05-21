@@ -100,6 +100,8 @@ import { ItemTooltipComponent } from './components/utilities/item-tooltip/item-t
 import { EquipmentComponent } from './components/utilities/equipment/equipment.component';
 import { ManageEquipDialogComponent } from './components/utilities/equipment/manage-equip-dialog/manage-equip-dialog.component';
 import { DescriptionTooltipComponent } from './components/utilities/description-tooltip/description-tooltip.component';
+import { InventoryCampaignComponent } from './components/utilities/inventory-campaign/inventory-campaign.component';
+import { ExchangeDialogComponent } from './components/utilities/inventory-campaign/exchange-dialog/exchange-dialog.component';
 
 @NgModule({
   declarations: [
@@ -213,7 +215,9 @@ import { DescriptionTooltipComponent } from './components/utilities/description-
     CampaignCharTabComponent,
     RemoveCampaignDialogComponent,
     AddResourceDialogComponent,
-    DescriptionTooltipComponent
+    DescriptionTooltipComponent,
+    InventoryCampaignComponent,
+    ExchangeDialogComponent
   ],
   imports: [
     SharedModule,

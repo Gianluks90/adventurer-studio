@@ -12,7 +12,7 @@ import { CharacterService } from 'src/app/services/character.service';
 export class EquipmentComponent {
 
   constructor(private matDialog: MatDialog, private charService: CharacterService) { 
-    this.isCampaign = window.location.href.includes('campaign');
+    this.isCampaign = window.location.href.includes('campaign-view');
   }
 
   public charData: any;

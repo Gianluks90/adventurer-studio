@@ -141,6 +141,11 @@ export class AddNpcDialogComponent {
           imgUrl: '',
           imgName: '',
         });
+      } else {
+        this.form.patchValue({
+          imgUrl: '',
+          imgName: '',
+        });
       }
     });
   }

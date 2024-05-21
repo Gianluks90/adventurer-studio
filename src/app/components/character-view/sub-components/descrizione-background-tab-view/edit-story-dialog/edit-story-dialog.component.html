@@ -1,6 +1,6 @@
 <div mat-dialog-title class="dialog-title">Modifica storia</div>
 <div mat-dialog-content class="dialog-content" [formGroup]="form">
-    <div class="description">
+    <div as-description-text>
         Usa questo strumento per correggere errori o incongruenze della storia del tuo personaggio. Confrontati sempre
         con il DM in caso di modifiche importanti al tuo background.
     </div>
@@ -9,11 +9,11 @@
         <textarea matInput formControlName="story" rows="5"></textarea>
     </mat-form-field>
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close>
-        <mat-icon>close</mat-icon> Annulla
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
     </button>
-    <button mat-raised-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>check</mat-icon> Conferma
+    <button as-btn [disabled]="!form.dirty" (click)="confirm()">
+        <div class="material-symbols-outlined">check</div> <div>Conferma</div>
     </button>
 </div>

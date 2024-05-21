@@ -46,6 +46,10 @@
             </mat-form-field>
         </div>
 
+        <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Immagine da link esterno</mat-label>
+            <input matInput formControlName="imgUrl" placeholder="Inserisci un URL valido">
+        </mat-form-field>
         <div class="line-container img-upload">
             @if (form.value.imgUrl !== '' || form.value.imgName !== '') {
             <img [src]="form.value.imgUrl" referrerpolicy="no-referrer">
@@ -54,18 +58,28 @@
             <input hidden [disabled]="form.value.name === ''" #orgFile id="file" class="" type="file" accept="image"
                 (change)="onPicSelected($event)">
             <button as-btn [disabled]="form.value.imgUrl !== '' || !form.valid" (click)="orgFile.click()">
-                <div class="material-symbols-outlined">add_photo_alternate</div> <div>Carica</div>
+                <div class="material-symbols-outlined">add_photo_alternate</div>
+                <div>Carica</div>
             </button>
-            <button as-btn as-btn-warn [disabled]="form.value.imgUrl === '' && form.value.imgName === ''"
+            <button as-btn as-btn-warn [disabled]="form.value.imgUrl === '' || form.value.imgName === ''"
                 (click)="deletePic(form.value.imgName)">
-                <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
+                <div class="material-symbols-outlined">delete</div>
+                <div>Elimina</div>
             </button>
         </div>
+        <div as-description-text><strong>Immagine</strong>: hai due opzioni per scegliere un'immagine per questa scheda.
+            Incolla un link esterno nello spazio apposito o utilizza il tasto "carica" per aggiungere un'immagine dal
+            tuo dispositivo (restrizione 100kb).</div>
         <div class="checkbox-container">
             <mat-checkbox formControlName="visible" *ngIf="isCampaign">Visibile ai giocatori</mat-checkbox>
-            <mat-checkbox formControlName="reveled" *ngIf="isCampaign" matTooltip="Cela l'identità del PNG dietro un'immagine segnaposto che nasconde quella caricata, se presente." matTooltipPosition="above">Identità non rivelata</mat-checkbox>
+            <mat-checkbox formControlName="reveled" *ngIf="isCampaign"
+                matTooltip="Cela l'identità del PNG dietro un'immagine segnaposto che nasconde quella caricata, se presente."
+                matTooltipPosition="above">Identità non rivelata</mat-checkbox>
             <mat-checkbox formControlName="isDealer" *ngIf="isCampaign">Ricettatore</mat-checkbox>
             <mat-checkbox formControlName="isMerchant" *ngIf="isCampaign">Mercante</mat-checkbox>
+            <mat-checkbox formControlName="addable" *ngIf="isCampaign">Può essere trasferito in una scheda
+                personaggio</mat-checkbox>
+
         </div>
         <mat-checkbox formControlName="parameterRequired">Avanzate (caratteristiche, azioni, resistenze, vulnerabilità,
             ecc...)</mat-checkbox>
@@ -111,7 +125,7 @@
                 <input matInput formControlName="charisma" inputmode="numeric">
             </mat-form-field>
         </div>
-        <div class="description-text">I modificatori di caratteristica vengono calcolati in autonomia.</div>
+        <div class="description-text"><strong>Modificatori di caratteristica</strong>: vengono calcolati in autonomia una volta completata la scheda e salvata.</div>
         <div class="competenze-label">Dettagli</div>
         <mat-form-field class="line-input" color="accent" appearance="outline">
             <mat-label>Tiri salvezza</mat-label>
@@ -162,7 +176,8 @@
                 </div>
                 <div class="delete-button">
                     <button as-btn as-btn-warn (click)="deleteTrait(i)">
-                        <div class="material-symbols-outlined">delete</div> <div>Rimuovi</div>
+                        <div class="material-symbols-outlined">delete</div>
+                        <div>Rimuovi</div>
                     </button>
                 </div>
             </ng-container>
@@ -170,7 +185,8 @@
 
         <div class="button-container">
             <button as-btn (click)="addTrait()">
-                <div class="material-symbols-outlined">add</div> <div>Aggiungi nuovo</div>
+                <div class="material-symbols-outlined">add</div>
+                <div>Aggiungi nuovo</div>
             </button>
         </div>
 
@@ -189,7 +205,8 @@
                 </div>
                 <div class="delete-button">
                     <button as-btn as-btn-warn (click)="deleteAction(i)">
-                        <div class="material-symbols-outlined">delete</div> <div>Rimuovi</div>
+                        <div class="material-symbols-outlined">delete</div>
+                        <div>Rimuovi</div>
                     </button>
                 </div>
             </ng-container>
@@ -197,7 +214,8 @@
 
         <div class="button-container">
             <button as-btn (click)="addAction()">
-                <div class="material-symbols-outlined">add</div> <div>Aggiungi nuova</div>
+                <div class="material-symbols-outlined">add</div>
+                <div>Aggiungi nuova</div>
             </button>
         </div>
 
@@ -207,12 +225,15 @@
 </div>
 <div as-buttons-container mat-dialog-actions align="end">
     <button as-btn mat-dialog-close>
-        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
     </button>
     <button *ngIf="data.npc" as-btn as-btn-warn mat-dialog-close (click)="delete()">
-        <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
+        <div class="material-symbols-outlined">delete</div>
+        <div>Elimina</div>
     </button>
     <button as-btn [disabled]="!form.valid" (click)="confirm()">
-        <div class="material-symbols-outlined">{{data.npc ? 'check' : 'add'}}</div> <div>{{data.npc ? 'Modifica' : 'Aggiungi'}}</div>
+        <div class="material-symbols-outlined">{{data.npc ? 'check' : 'add'}}</div>
+        <div>{{data.npc ? 'Modifica' : 'Aggiungi'}}</div>
     </button>
 </div>

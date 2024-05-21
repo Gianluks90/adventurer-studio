@@ -53,7 +53,7 @@
                 <ng-template mat-tab-label>
                     <img src="./assets/tabs-icons/ally.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab3-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                 </ng-template>
-                <app-campaign-npc-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-npc-tab>
+                <app-campaign-npc-tab [campaign]="campaignData" [isOwner]="isOwner" [character]="selectedChar"></app-campaign-npc-tab>
             </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>

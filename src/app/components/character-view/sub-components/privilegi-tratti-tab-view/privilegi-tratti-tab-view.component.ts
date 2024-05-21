@@ -18,7 +18,7 @@ export class PrivilegiTrattiTabViewComponent {
   public tags: string[] = [];
   public isCampaign: boolean = false;
   constructor(private matDialog: MatDialog, private charService: CharacterService) { 
-    this.isCampaign = window.location.href.includes('campaign');
+    this.isCampaign = window.location.href.includes('campaign-view');
   }
 
 
