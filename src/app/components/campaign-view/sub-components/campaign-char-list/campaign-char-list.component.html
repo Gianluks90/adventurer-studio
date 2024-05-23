@@ -14,10 +14,14 @@
                     [ngClass]="{'dead-hero': char.parametriVitali.puntiFeritaAttuali === 0}">
                 <div class="character-name-container">
                     <div class="character-name">
+                        @if (isOwnerData) {
+                            <span style="cursor: pointer;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()" (click)="ispirazioneToggle(char)">{{!char.ispirazione ? 'award_star' : 'brightness_empty'}}</span>
+                        } @else {
+                            <span style="cursor: default;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">{{!char.ispirazione ? 'award_star' : 'circle'}}</span>
+                        }
                         {{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ?
                         char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}
-                        <span
-                            *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span>
+                        
                     </div>
                     <button class="navigate-button" (click)="navigateToChar(char.id)" (mouseover)="tooltip.showTooltip($event, 'center', true, 'apri-scheda-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                         <mat-icon>open_in_new</mat-icon>
@@ -138,7 +142,7 @@
         </div>
     </div>
     <div class="resource-container" *ngIf="charData">
-        <div class="money-title">Ispirazione <div class="inspiration material-symbols-outlined">fiber_manual_record</div></div>
+        <div class="money-title">Ispirazione <div class="inspiration material-symbols-outlined">award_star</div></div>
         <div class="ispirazione-value">{{ispirazioneParty}} / {{charData.length}}</div>
     </div>
     }

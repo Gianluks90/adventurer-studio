@@ -1,4 +1,5 @@
 <div as-mini-buttons-container>
+    <div as-pill class="pf-counter" *ngIf="showCounter"><span *ngIf="pfCounter > 0">+</span>{{pfCounter}}</div>
     <button as-mini-circle-btn (click)="openHPDialog()" [disabled]="!editModeData">
         <div class="material-symbols-outlined">settings</div>
     </button>

@@ -47,7 +47,7 @@ export class CampaignCharListComponent {
     this.isOwnerData = isOwner;
   }
 
-  constructor(private breakpointObserver: BreakpointObserver, public tooltip: DescriptionTooltipService) {
+  constructor(private breakpointObserver: BreakpointObserver, public tooltip: DescriptionTooltipService, private charService: CharacterService) {
     this.breakpointObserver.observe('(max-width: 600px)').subscribe(result => {
       this.isMobile = result.matches;
     });
@@ -134,4 +134,20 @@ export class CampaignCharListComponent {
   public calcModifier(value: number): string {
     return Math.floor((value - 10) / 2) >= 0 ? '+' + Math.floor((value - 10) / 2) : Math.floor((value - 10) / 2).toString();
   }
+
+  public ispirazioneToggle(char: any) {
+    this.charService.updateInspiration(char.id, !char.ispirazione);
+  }
 }
+
+// public usaIspirazione(): void {
+//   const resource = this.ispirazione;
+//   if (!resource.used[0]) {
+//     resource.used[0] = true;
+//   } else {
+//     resource.used[0] = false;
+//   }
+//   this.charService.updateInspiration(this.characterData.id, resource.used[0]).then(() => {
+//     this.notification.openSnackBar('Ispirazione aggiornata.', 'check', 1000, 'limegreen');
+//   });
+// }

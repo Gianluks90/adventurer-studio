@@ -97,7 +97,7 @@
   .a-container {
     display: grid;
     // flex-direction: column;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 4px;
   }
 
@@ -105,8 +105,9 @@
     text-transform: capitalize;
     padding: 4px;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     font-size: medium;
+    gap: 8px;
   }
 
   .even-a {
@@ -114,9 +115,10 @@
   }
 
   .a-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    // display: flex;
+    // align-items: center;
+    // gap: 8px;
+    flex-grow: 1;
   }
 
   .proficiency-identifier {
@@ -175,8 +177,10 @@ details[open] > summary::after {
   .skill {
     width: 100%;
   }
+}
 
+@media screen and (min-width: 1500px) {
   .a-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }

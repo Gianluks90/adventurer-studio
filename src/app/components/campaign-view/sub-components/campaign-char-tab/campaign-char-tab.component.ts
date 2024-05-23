@@ -110,7 +110,7 @@ export class CampaignCharTabComponent {
   }
 
   public getEvenLine(index: number): boolean {
-    if(window.innerWidth <= 768) {
+    if(window.innerWidth < 1500) {
       return index % 2 === 0;
     } else {
       const columnsIndex: number[] = [0, 3, 4, 7, 8, 11, 12, 15, 16];

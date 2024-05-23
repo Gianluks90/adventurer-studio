@@ -62,7 +62,7 @@ export class HealthBarComponent {
     });
   }
 
-  public PFAction(action: string) {
+  public PFActionOld(action: string) {
     switch (action) {
       case 'add':
         this.parametriVitaliData.pf += 1;
@@ -84,6 +84,45 @@ export class HealthBarComponent {
       default:
         break;
     }
+  }
+
+  public pfTimer: any = null;
+  public pfCounter: number = 0;
+  public showCounter: boolean = false;
+  public PFAction(action: string) {
+    if (this.pfTimer) {
+      clearTimeout(this.pfTimer);
+    }
+    this.showCounter = true;
+
+    switch (action) {
+      case 'add':
+        this.pfCounter += 1;
+        this.parametriVitaliData.pf += 1;
+        break;
+      case 'remove':
+        this.pfCounter -= 1;
+        if (this.parametriVitaliData.pft > 0) {
+          this.parametriVitaliData.pft -= 1;
+          if (this.parametriVitaliData.pft <= 0) {
+            this.parametriVitaliData.pf -= Math.abs(this.parametriVitaliData.pft);
+            this.parametriVitaliData.pft = 0;
+            this.parametriVitaliData.pftMax = 0;
+          }
+        } else {
+          this.parametriVitaliData.pf -= 1;
+        }
+        break;
+      default:
+        break;
+    }
+
+    this.pfTimer = setTimeout(() => {
+      this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData);
+      this.pfTimer = null;
+      this.pfCounter = 0;
+      this.showCounter = false;
+    }, 3000);
   }
 
 }

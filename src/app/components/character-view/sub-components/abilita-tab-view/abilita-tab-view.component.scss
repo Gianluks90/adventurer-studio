@@ -29,8 +29,13 @@
     // justify-content: space-between;
 }
 
-.a-container:nth-child(even) {
+// .a-container:nth-child(even) {
+//     background-color: #f2f2f2;
+// }
+
+.even-a {
     background-color: #f2f2f2;
+
 }
 
 .a-container.last-item {
@@ -40,22 +45,24 @@
 .a-inner-container {
     display: flex;
     width: 100%;
+    gap: 8px;
     align-items: center;
     justify-content: space-between;
 }
 
 .a-description {
     opacity: 0.8;
-    font-size: x-small;
+    font-size: small;
     text-align: justify;
     margin: 8px 0;
 }
 
 .a-name {
     font-size: medium;
-    display: flex;
-    gap: 8px;
-    align-items: center;
+    // display: flex;
+    flex-grow: 1;
+    // gap: 8px;
+    // align-items: center;
 }
 
 .maestria-icon {
@@ -126,6 +133,22 @@
 
 @media screen and (min-width: 1500px) {
     .a-description {
-        font-size: small;
+        // font-size: medium;
+        padding: 8px;
+    }
+
+    // .a-container {
+    //     display: grid;
+    //     grid-template-columns: 1fr 1fr;
+    // }
+
+    .abilita-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .a-container {
+        padding: 8px;
+        box-sizing: border-box;
     }
 }

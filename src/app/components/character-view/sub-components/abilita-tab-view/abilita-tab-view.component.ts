@@ -139,4 +139,13 @@ export class AbilitaTabViewComponent {
   public capitalizeSkillName(name: string): string {
     return name.charAt(0).toUpperCase() + name.slice(1);
   }
+
+  public getEvenLine(index: number): boolean {
+    if(window.innerWidth < 1500) {
+      return index % 2 === 0;
+    } else {
+      const columnsIndex: number[] = [0, 3, 4, 7, 8, 11, 12, 15, 16];
+      return columnsIndex.includes(index);
+    }
+  }
 }
