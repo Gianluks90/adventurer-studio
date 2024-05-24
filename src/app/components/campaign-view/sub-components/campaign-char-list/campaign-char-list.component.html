@@ -17,7 +17,7 @@
                         @if (isOwnerData) {
                             <span style="cursor: pointer;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()" (click)="ispirazioneToggle(char)">{{!char.ispirazione ? 'award_star' : 'brightness_empty'}}</span>
                         } @else {
-                            <span style="cursor: default;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">{{!char.ispirazione ? 'award_star' : 'circle'}}</span>
+                            <span style="cursor: default;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">{{!char.ispirazione ? 'award_star' : 'brightness_empty'}}</span>
                         }
                         {{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ?
                         char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}

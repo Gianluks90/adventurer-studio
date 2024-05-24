@@ -172,7 +172,7 @@ export class TrucchettiIncantesimiTabViewComponent {
   }
 
   public checkPreparedSpell(): number {
-    const preparedSpells = this.lista.filter((spell) => spell.preparato && spell.livello > 0);
+    const preparedSpells = this.lista.filter((spell) => spell.preparato && spell.livello > 0 && !spell.semprePreparato);
     return preparedSpells.length;
   }
 

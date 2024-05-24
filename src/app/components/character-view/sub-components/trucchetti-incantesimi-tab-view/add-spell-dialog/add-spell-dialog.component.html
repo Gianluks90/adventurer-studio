@@ -40,8 +40,7 @@
                 <input matInput type="number" formControlName="livello" min="0" max="9" inputmode="numeric">
             </mat-form-field>
 
-            <button mat-raised-button color="accent" class="jump-button"
-                (click)="resetScuola()"
+            <button mat-raised-button color="accent" class="jump-button" (click)="resetScuola()"
                 *ngIf="form.value.scuola === 'Altro'">
                 <mat-icon>move_down</mat-icon>
                 Annulla Scuola personalizzata
@@ -91,9 +90,15 @@
             <mat-label>Ai livelli superiori</mat-label>
             <textarea matInput formControlName="livelloSuperiore" rows="5"></textarea>
         </mat-form-field>
-        <mat-checkbox formControlName="preparato">
-            Preparato
-        </mat-checkbox>
+        <div as-description-text><strong>Incantesimi preparati</strong>: alcune Classi conoscono incantesimi che sono
+            preparabile e altri che sono sempre preparati, verifica attentamente quale tipo di incantesimo stai
+            inserendo. I <strong>Trucchetti</strong> sono sempre preparati e non è necessario selezionare alcuna delle
+            due successive opzioni.</div>
+            <div class="checkbox-container">
+                <mat-checkbox formControlName="preparato">Preparabile</mat-checkbox>
+                <mat-checkbox formControlName="semprePreparato">Sempre preparato</mat-checkbox>
+            </div>
+
         <mat-form-field color="accent" appearance="outline">
             <mat-label>Riferimento (Sigla manuale / pagina)</mat-label>
             <input matInput formControlName="riferimento">
@@ -114,13 +119,16 @@
 </div>
 <div as-buttons-container mat-dialog-actions align="end" *ngIf="!isMobile">
     <button as-btn mat-dialog-close>
-        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
     </button>
     <button as-btn as-btn-warn *ngIf="data.spell" mat-dialog-close (click)="delete()">
-        <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
+        <div class="material-symbols-outlined">delete</div>
+        <div>Elimina</div>
     </button>
     <button as-btn color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <div class="material-symbols-outlined">{{data.spell ? 'check' : 'add'}}</div> <div>{{data.spell ? 'Modifica' : 'Aggiungi'}}</div>
+        <div class="material-symbols-outlined">{{data.spell ? 'check' : 'add'}}</div>
+        <div>{{data.spell ? 'Modifica' : 'Aggiungi'}}</div>
     </button>
 </div>
 <!-- <div mat-dialog-actions align="end" *ngIf="isMobile">

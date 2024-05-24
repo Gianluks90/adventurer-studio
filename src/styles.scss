@@ -181,6 +181,13 @@ progress::-webkit-progress-value {
   max-width: 450px !important;
 }
 
+mat-bottom-sheet-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+}
+
 // CUSTOM ATTRIBUTES =========================
 
 // MAT ICONS

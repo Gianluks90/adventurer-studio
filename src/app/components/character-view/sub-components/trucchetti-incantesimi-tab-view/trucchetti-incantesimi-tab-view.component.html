@@ -37,9 +37,91 @@
     </div>
 
 <!-- </div> -->
-<div as-subtitle>Preparati <span [ngClass]="{'warn-prepared-spells': checkPreparedSpell() > charData.magia.incantesimiPreparabili}">({{checkPreparedSpell()}}/{{charData.magia.incantesimiPreparabili}})</span></div>
-<ng-container *ngFor="let t of lista; let i = index;">
-    <details *ngIf="t.preparato" as-details [hidden]="t.filtered" id="details-m">
+<div as-subtitle>Trucchetti</div>
+@for (t of lista; track i; let i = $index) {
+    @if(t.livello === 0) {
+        <details as-details [hidden]="t.filtered" id="details-m">
+            <summary as-summary as-summary-with-icon>
+                <div class="t-header-container">
+                    <img class="spell-icon" [src]="t.icon">
+                    <div class="spell-level">{{showLevel(t.livello)}} <sup *ngIf="t.livelloSuperiore">
+                        <div class="material-symbols-outlined material-mini">arrow_upward</div>
+                    </sup> 
+                </div>
+                </div>
+                <div>{{t.nome}}</div>
+            </summary>
+            <div class="spell-attributes">{{t.tipologia}}<span *ngIf="t.livello > 0"> di {{t.livello}}° Livello</span>,
+                {{t.scuola === 'Altro' ? t.scuolaPersonalizzata : t.scuola}}, {{t.componenti}}, {{t.riferimento}}</div>
+            <div class="spell-info"> <span class="spell-label">Durata</span> {{t.durata}} <span class="spell-label">Tempo di
+                    lancio</span> {{t.tempoLancio}} <span class="spell-label">Gittata</span> {{t.gittata}} <span
+                    class="spell-label">Formula </span>{{t.formula !== '' ? t.formula : '-'}}
+            </div>
+            <div class="spell-description"> <span class="spell-label">Descrizione</span> {{t.descrizione}}</div>
+            <div *ngIf="t.livelloSuperiore !== ''" class="spell-description"> <span class="spell-label">Ai livelli
+                    superiori</span> {{t.livelloSuperiore}}
+            </div>
+            <!-- <div class="button-container">
+                <button class="edit-spell-button" (click)="prepareToggle(t)">Non preparato</button>
+                <button class="edit-spell-button" (click)="openAddSpellDialog(t, i)">Modifica</button>
+            </div> -->
+            <div as-buttons-container as-buttons-container-details>
+                <button as-btn (click)="prepareToggle(t)">
+                    <div class="material-symbols-outlined">{{t.prepared ? 'arrow_upward' : 'arrow_downward'}}</div> <div>{{!t.prepared ? 'Rimuovi' : 'Prepara'}}</div>
+                </button>
+                <button as-btn (click)="openAddSpellDialog(t, i)">
+                    <div class="material-symbols-outlined">edit</div> Modifica
+                </button>
+            </div>
+        </details>
+    }
+} @empty {
+    <div as-description-text>Il personaggio non possiede alcun trucchetto.</div>
+}
+<div as-subtitle>Preparati <span *ngIf="charData.magia.incantesimiPreparabili > 0" [ngClass]="{'warn-prepared-spells': checkPreparedSpell() > charData.magia.incantesimiPreparabili}">({{checkPreparedSpell()}}/{{charData.magia.incantesimiPreparabili}})</span></div>
+@for (t of lista; track i; let i = $index) {
+    @if(t.preparato && t.livello > 0) {
+        <details *ngIf="t.preparato && t.livello > 0" as-details [hidden]="t.filtered" id="details-m">
+            <summary as-summary as-summary-with-icon>
+                <div class="t-header-container">
+                    <img class="spell-icon" [src]="t.icon">
+                    <div class="spell-level">{{showLevel(t.livello)}} <sup *ngIf="t.livelloSuperiore">
+                        <div class="material-symbols-outlined material-mini">arrow_upward</div>
+                    </sup> 
+                </div>
+                </div>
+                <div>{{t.nome}}</div>
+            </summary>
+            <div class="spell-attributes">{{t.tipologia}}<span *ngIf="t.livello > 0"> di {{t.livello}}° Livello</span>,
+                {{t.scuola === 'Altro' ? t.scuolaPersonalizzata : t.scuola}}, {{t.componenti}}, {{t.riferimento}}</div>
+            <div class="spell-info"> <span class="spell-label">Durata</span> {{t.durata}} <span class="spell-label">Tempo di
+                    lancio</span> {{t.tempoLancio}} <span class="spell-label">Gittata</span> {{t.gittata}} <span
+                    class="spell-label">Formula </span>{{t.formula !== '' ? t.formula : '-'}}
+            </div>
+            <div class="spell-description"> <span class="spell-label">Descrizione</span> {{t.descrizione}}</div>
+            <div *ngIf="t.livelloSuperiore !== ''" class="spell-description"> <span class="spell-label">Ai livelli
+                    superiori</span> {{t.livelloSuperiore}}
+            </div>
+            <!-- <div class="button-container">
+                <button class="edit-spell-button" (click)="prepareToggle(t)">Non preparato</button>
+                <button class="edit-spell-button" (click)="openAddSpellDialog(t, i)">Modifica</button>
+            </div> -->
+            <div as-buttons-container as-buttons-container-details>
+                <button as-btn (click)="prepareToggle(t)">
+                    <div class="material-symbols-outlined">{{t.prepared ? 'arrow_upward' : 'arrow_downward'}}</div> <div>{{!t.prepared ? 'Rimuovi' : 'Prepara'}}</div>
+                </button>
+                <button as-btn (click)="openAddSpellDialog(t, i)">
+                    <div class="material-symbols-outlined">edit</div> Modifica
+                </button>
+            </div>
+        </details>
+    }
+} @empty {
+    <div as-description-text>Il personaggio non possiede alcun incantesimo preparato.</div>
+}
+
+<!-- <ng-container *ngFor="let t of lista; let i = index;">
+    <details *ngIf="t.preparato && t.livello > 0" as-details [hidden]="t.filtered" id="details-m">
         <summary as-summary as-summary-with-icon>
             <div class="t-header-container">
                 <img class="spell-icon" [src]="t.icon">
@@ -60,10 +142,6 @@
         <div *ngIf="t.livelloSuperiore !== ''" class="spell-description"> <span class="spell-label">Ai livelli
                 superiori</span> {{t.livelloSuperiore}}
         </div>
-        <!-- <div class="button-container">
-            <button class="edit-spell-button" (click)="prepareToggle(t)">Non preparato</button>
-            <button class="edit-spell-button" (click)="openAddSpellDialog(t, i)">Modifica</button>
-        </div> -->
         <div as-buttons-container as-buttons-container-details>
             <button as-btn (click)="prepareToggle(t)">
                 <div class="material-symbols-outlined">{{t.prepared ? 'arrow_upward' : 'arrow_downward'}}</div> <div>{{!t.prepared ? 'Rimuovi' : 'Prepara'}}</div>
@@ -73,10 +151,10 @@
             </button>
         </div>
     </details>
-</ng-container>
+</ng-container> -->
 @if(!isCampaign) {
     <div as-subtitle>Conosciuti (non preparati)</div>
-    <ng-container *ngFor="let t of lista; let i = index;">
+    @for(t of lista; track i; let i = $index) {
         <details *ngIf="!t.preparato" as-details [hidden]="t.filtered" id="details-m">
             <summary as-summary as-summary-with-icon>
                 <div class="t-header-container">
@@ -98,11 +176,6 @@
             <div *ngIf="t.livelloSuperiore !== ''" class="spell-description"> <span class="spell-label">Ai livelli
                     superiori</span> {{t.livelloSuperiore}}
             </div>
-            <!-- <div class="button-container">
-                <button class="edit-spell-button" (click)="prepareToggle(t)">Prepara</button>
-                <button class="edit-spell-button" (click)="openAddSpellDialog(t, i)">Modifica</button>
-            </div> -->
-    
             <div as-buttons-container as-buttons-container-details>
                 <button as-btn (click)="prepareToggle(t)">
                     <div class="material-symbols-outlined">{{!t.prepared ? 'arrow_upward' : 'arrow_downward'}}</div> <div>{{t.prepared ? 'Rimuovi' : 'Prepara'}}</div>
@@ -112,7 +185,9 @@
                 </button>
             </div>
         </details>
-    </ng-container>
+    } @empty {
+        <div as-description-text>Il personaggio conosce alcun incantesimo.</div>
+    }
 } @else {
     <div as-description-text>Gli Incantesimi non preparati sono visibili solamente sulla Scheda Personaggio.</div>
 }

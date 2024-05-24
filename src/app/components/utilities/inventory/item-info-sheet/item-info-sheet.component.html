@@ -1,80 +1,80 @@
 <div class="sheet-container">
-    <div class="item-name">{{data.item.name}}</div>
-    <div class="item-type">{{data.item.category}}, {{data.item.rarity}}<span *ngIf="data.item.magicItem">, magico</span></div>
+    <div class="header-container" [ngStyle]="{'box-shadow': 'inset 0 0 7px 4px' + setColor(data.item.rarity) + '70 '}">
+        <div class="header-title">{{data.item.name}}</div>
+        <div class="item-type">{{data.item.category}}, {{data.item.rarity}}<span *ngIf="data.item.magicItem">, magico</span><span *ngIf="data.item.cursed">, maledetto</span></div>
+    </div>
+    <div class="actions-container" as-mini-buttons-container>
+        @if (!isCampaign && data.item.consumable) {
+            <button as-mini-circle-btn (click)="consumeSingleItem()" [disabled]="data.item.quantity <= 0">
+                <div class="material-symbols-outlined">exposure_neg_1</div>
+            </button>
+        }
+        @if (data.isOwner || !isCampaign) {
+            <button as-mini-circle-btn (click)="openEditDialog(data.item)">
+                <div class="material-symbols-outlined">edit</div>
+            </button>
+        }
+    </div>
+
     @if (data.item.damageFormula !== '') {
-        <div class="damage-container">
+        <div class="damage-container" [ngStyle]="{'margin-bottom': data.item.damageFormula === '1' ? '8px' : '0'}">
             <div class="damage-formula">{{getDamagesString(data.item, data.item.damageFormula)}}</div>
-            <!-- <div class="damage-formula">{{calcolaMinMax(data.item.damageFormula, data.item.extraDamages).minimo}}-{{calcolaMinMax(data.item.damageFormula, data.item.extraDamages).massimo}} danni</div> -->
-            <!-- <div class="damage-formula">{{calcolaMinMax(data.item.damageFormula).minimo}}</div> -->
             <div class="damage-type" *ngIf="data.item.extraDamages.length > 0">{{getDamagesString(data.item, data.item.damageFormula)}}</div>
-            <!-- <div class="damage-type" *ngIf="data.item.extraDamages.length <= 0">{{data.item.damageType}}</div> -->
+            <div class="damage-type" *ngIf="data.item.extraDamages.length <= 0 && data.item.damageFormula !== '1'">{{data.item.damageFormula}}</div>
         </div>
     }
-    <div class="arcane-focus-label" *ngIf="data.item.focus">
-        <img src="./assets/icons/arcane-focus.svg"> Focus Arcano
-    </div>
-    <div class="consumable-label" *ngIf="data.item.consumable">
-        <img src="./assets/icons/consumable.svg"> Uso singolo
-    </div>
-    <div class="item-description">
-        {{data.item.description}}
-    </div>
-    @if (data.item.weaponProperties && data.item.weaponProperties.length > 0) {
-    <div class="category-label">Proprietà arma</div>
-    @for (prop of data.item.weaponProperties; track $index) {
-    <div class="property-label">{{prop.name}} <span *ngIf="prop.name === 'lancio' || prop.name === 'gittata'">
-            ({{data.item.range}})</span> <span *ngIf="prop.name === 'versatile'"> ({{calcolaMinMax(data.item.versatileDice).minimo}}-{{calcolaMinMax(data.item.versatileDice).massimo}} danni base, {{data.item.versatileDice}})</span>
-    </div>
-    <div class="property-description">{{prop.description}}</div>
-    }
-    }
-    @if (data.item.traits && data.item.traits.length > 0) {
-    <div class="category-label">Tratti</div>
-    <ul class="unordered-list">
-        @for (trait of data.item.traits; track $index) {
-        <!-- <div>
-                <span class="trait-name">{{trait.title}}</span>: {{trait.description}}
-            </div> -->
-        <li>
-            <span class="trait-name">{{trait.title}}</span>: <span
-                class="trait-description">{{trait.description}}</span>
-        </li>
+    <div class="content-container">
+        <div class="info-container">
+            <div class="info-label">{{getInfoString(data.item)}}</div>
+        </div>
+        <div class="item-description">
+            {{data.item.description}}
+        </div>
+        @if (data.item.weaponProperties && data.item.weaponProperties.length > 0) {
+            <div as-subtitle>Proprietà arma</div>
+            @for (prop of data.item.weaponProperties; track $index) {
+                <div class="property-label">{{prop.name}} <span *ngIf="prop.name === 'lancio' || prop.name === 'gittata'">
+                    ({{data.item.range}})</span> <span *ngIf="prop.name === 'versatile'"> ({{calcolaMinMax(data.item.versatileDice).minimo}}-{{calcolaMinMax(data.item.versatileDice).massimo}} danni base, {{data.item.versatileDice}})</span>
+                </div>
+                <div class="property-description">{{prop.description}}</div>
+            }
         }
-    </ul>
-    }
+        @if (data.item.traits && data.item.traits.length > 0) {
+        <div as-subtitle>Tratti</div>
+        <ul class="unordered-list">
+            @for (trait of data.item.traits; track $index) {
+            <li>
+                <span class="trait-name">{{trait.title}}</span>: <span
+                    class="trait-description">{{trait.description}}</span>
+            </li>
+            }
+        </ul>
+        }
 
-    @if (isCampaign && !data.isOwner) {
-    <div class="reclame-container">
-        <button *ngIf="data.item.quantity > 1" mat-raised-button color="accent" (click)="reclameItem(data.item, 1)"
-            autofocus="false">Reclama 1</button>
-        <button mat-raised-button color="accent" (click)="reclameItem(data.item, data.item.quantity)"
-            autofocus="false">Reclama tutto</button>
+        @if (isCampaign && !data.isOwner) {
+        <div class="reclame-container">
+            <button *ngIf="data.item.quantity > 1" as-btn (click)="reclameItem(data.item, 1)"
+                autofocus="false">Reclama 1</button>
+            <button as-btn (click)="reclameItem(data.item, data.item.quantity)"
+                autofocus="false">Reclama tutto</button>
+        </div>
+        }
     </div>
-    }
+
     <div class="sheet-footer">
-        <div *ngIf="data.item.weight" class="footer-element"><img src="./assets/icons/weight.svg"> {{data.item.weight *
-            data.item.quantity}}</div>
-        <div class="footer-element"><img src="./assets/tabs-icons/inventory.svg"> {{data.item.quantity}}</div>
-        <div class="footer-element"><img class="gold-icon" src="./assets/coins/gold.svg"> {{data.item.value *
-            data.item.quantity}}</div>
-        <div *ngIf="data.item.reference" class="footer-element"><img src="./assets/icons/bookmark.svg">
-            {{data.item.reference}}</div>
+        <div class="footer-info" *ngIf="data.item.quantity > 0">Quantità: {{data.item.quantity}}</div>
+        <div class="footer-info" *ngIf="data.item.quantity <= 0">Esaurito</div>
+        <div> Peso: {{data.item.weight}} kg</div>
+        <div class="item-value" *ngIf="data.item.value * data.item.quantity > 0">
+            <img src="./assets/coins/gold.svg">
+            {{data.item.value * data.item.quantity}}
+        </div>
     </div>
 </div>
 
-@if (data.isOwner || !isCampaign) {
-<button mat-mini-fab class="edit-button" (click)="openEditDialog(data.item)" matTooltip="Modifica"
-    matTooltipPosition="above">
-    <mat-icon>edit</mat-icon>
-</button>
-}
 
-@if (!isCampaign && data.item.consumable) {
-<button mat-icon-button class="single-use-button" (click)="consumeSingleItem()" matTooltip="Consuma"
-    matTooltipPosition="above">
-    <img src="./assets/icons/single-use.svg">
-</button>
-}
+
+
 <!-- @if (!isCampaign && (data.item.CA > 0 || data.item.shield)) {
 <button mat-icon-button class="single-use-button" (click)="equipItemToggle()" matTooltip="Equipaggia"
     matTooltipPosition="above">
