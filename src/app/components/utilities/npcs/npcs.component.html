@@ -20,6 +20,9 @@
         <button as-mini-circle-btn (click)="collapseAll()">
             <div class="material-symbols-outlined">unfold_less</div>
         </button>
+        <button as-mini-circle-btn (click)="openAddonResourcesDialog()">
+            <div class="material-symbols-outlined material-no-fill">create_new_folder</div>
+        </button>
         <button as-mini-circle-btn (click)="openAddonDialog()">
             <div class="material-symbols-outlined">add</div>
         </button>
@@ -28,6 +31,9 @@
         @if (!isTab && !isCampaign) {
         <button as-mini-circle-btn (click)="collapseAll()">
             <div class="material-symbols-outlined">unfold_less</div>
+        </button>
+        <button as-mini-circle-btn [matMenuTriggerFor]="resources_menu">
+            <div class="material-symbols-outlined material-no-fill">create_new_folder</div>
         </button>
         <button as-mini-circle-btn [matMenuTriggerFor]="menu">
             <div class="material-symbols-outlined">add</div>
@@ -40,6 +46,14 @@
                 Organizzazione
             </button>
         </mat-menu>
+        <mat-menu #resources_menu="matMenu" yPosition="above" xPosition="before">
+            <button mat-menu-item (click)="openAlliesResourcesDialog()">
+                Alleato
+            </button>
+            <button mat-menu-item (click)="openOrganizationsResourcesDialog()">
+                Organizzazione
+            </button>
+        </mat-menu>
         }
         <!-- SONO NELLA CAMPAIGN VIEW -->
         @if (isCampaign && !isDM) {
@@ -49,6 +63,9 @@
             </mat-form-field> -->
         <!-- <button mat-mini-fab color="accent" class="add-button" [matMenuTriggerFor]="menu"
             disableRipple *ngIf="isOwner"><mat-icon>add</mat-icon></button> -->
+        <button as-mini-circle-btn [matMenuTriggerFor]="resources_menu" *ngIf="isOwner">
+            <div class="material-symbols-outlined material-no-fill">create_new_folder</div>
+        </button>
         <button as-mini-circle-btn [matMenuTriggerFor]="menu" *ngIf="isOwner">
             <div class="material-symbols-outlined">add</div>
         </button>
@@ -59,9 +76,14 @@
             <button mat-menu-item (click)="openAddOrganizationDialog()">
                 Organizzazione
             </button>
-            <!-- <button mat-menu-item (click)="openAddonDialog()">
-                Scheda
-            </button> -->
+        </mat-menu>
+        <mat-menu #resources_menu="matMenu" yPosition="above" xPosition="before">
+            <button mat-menu-item (click)="openAlliesResourcesDialog()">
+                Alleato
+            </button>
+            <button mat-menu-item (click)="openOrganizationsResourcesDialog()">
+                Organizzazione
+            </button>
         </mat-menu>
         }
         @if (isCampaign && isDM) {
@@ -69,6 +91,9 @@
             disableRipple><mat-icon>add</mat-icon></button> -->
         <button as-mini-circle-btn (click)="collapseAll()">
             <div class="material-symbols-outlined">unfold_less</div>
+        </button>
+        <button as-mini-circle-btn (click)="openAddonResourcesDialog()">
+            <div class="material-symbols-outlined material-no-fill">create_new_folder</div>
         </button>
         <button as-mini-circle-btn (click)="openAddonDialog()">
             <div class="material-symbols-outlined">add</div>

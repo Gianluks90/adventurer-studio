@@ -1,0 +1,31 @@
+<div mat-dialog-title class="dialog-title">Importa Risorsa (Incantesimo o Trucchetto)</div>
+<div mat-dialog-content class="dialog-content">
+    <div as-description-text>Importa dalla tue <strong>Risorse personalizzate</strong> uno o più incantesimi o
+        trucchetti direttamente nella lista degli incantesimi conosciuti del tuo Personaggio. <strong>Avviso</strong>:
+        l'incantesimo/i importato/i è/sono sempre non preparato/i. Inoltre un Incantesimo o Trucchetto già presente non
+        viene importato nuovamente.</div>
+    @if (data.spells.length > 0) {
+    <form [formGroup]="form" class="form-container">
+        <div class="line-container">
+            <mat-form-field color="accent" appearance="outline" class="line-input">
+                <mat-label>Oggetto/i</mat-label>
+                <mat-select formControlName="items" multiple>
+                    <mat-option *ngFor="let s of data.spells" [value]="s">{{s.nome}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+    } @else {
+    <div as-description-text>Non hai ancora creato nessuna risorsa personalizzata di questo tipo.</div>
+    }
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+    <button as-btn [disabled]="!form.dirty" (click)="confirm()">
+        <div class="material-symbols-outlined">add</div>
+        <div>Aggiungi</div>
+    </button>
+</div>

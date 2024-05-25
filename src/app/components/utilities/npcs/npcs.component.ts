@@ -5,6 +5,11 @@ import { CharacterService } from 'src/app/services/character.service';
 import { AddNpcDialogComponent } from './add-npc-dialog/add-npc-dialog.component';
 import { AddOrganizationDialogComponent } from './add-organization-dialog/add-organization-dialog.component';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { getAuth } from 'firebase/auth';
+import { ResourcesService } from '../../resources-page/resources.service';
+import { AddAlliesResourcesDialogComponent } from './add-allies-resources-dialog/add-allies-resources-dialog.component';
+import { AddAddonsResourcesDialogComponent } from './add-addons-resources-dialog/add-addons-resources-dialog.component';
+import { AddOrganizationsResourcesDialogComponent } from './add-organizations-resources-dialog/add-organizations-resources-dialog.component';
 
 @Component({
   selector: 'app-npcs',
@@ -26,10 +31,28 @@ export class NpcsComponent {
   constructor(
     private dialog: MatDialog,
     private charService: CharacterService,
-    private campaignService: CampaignService) {
+    private campaignService: CampaignService,
+    private resService: ResourcesService) {
     this.isCampaign = window.location.href.includes('campaign-view') || false;
     this.isCharacterPage = window.location.href.includes('character-view') || false;
+
+    const userId = getAuth().currentUser.uid;
+    this.resService.getResourcesByUserId(userId).then((res) => {
+      if (res) {
+        this.isResources = true;
+        this.addonsResources = res.addons;
+        this.alliesResources = res.allies;
+        this.orgResources = res.organizations;
+      } else {
+        this.isResources = false;
+      }
+    });
   }
+
+  public isResources: boolean = false;
+  public addonsResources: NPC[] = [];
+  public alliesResources: NPC[] = [];
+  public orgResources: NPC[] = [];
 
   @Input() set npcs(npcs: any[]) {
     this.npcsData = npcs;
@@ -106,6 +129,27 @@ export class NpcsComponent {
     });
   }
 
+  openAlliesResourcesDialog() {
+    this.dialog.open(AddAlliesResourcesDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      disableClose: true,
+      data: { allies: this.alliesResources }
+    }).afterClosed().subscribe((result: any) => {
+      if (result) {
+        if (result.allies.length > 0) {
+          result.allies.forEach((ally: any) => {
+            if (!this.isCampaign) {
+              this.charService.addAlly(window.location.href.split('/').pop(), ally);
+            } else {
+              this.campaignService.addAlly(window.location.href.split('/').pop(), ally);
+            }
+          });
+        }
+      }
+    });
+  }
+
   public openAddonDialog(addon?: any, index?: number) {
     this.dialog.open(AddNpcDialogComponent, {
       width: window.innerWidth < 600 ? '90%' : '60%',
@@ -150,6 +194,27 @@ export class NpcsComponent {
     });
   }
 
+  openAddonResourcesDialog() {
+    this.dialog.open(AddAddonsResourcesDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      disableClose: true,
+      data: { addons: this.addonsResources }
+    }).afterClosed().subscribe((result: any) => {
+      if (result) {
+        if (result.addons.length > 0) {
+          result.addons.forEach((addon: any) => {
+            if (!this.isCampaign) {
+              this.charService.addAddon(window.location.href.split('/').pop(), addon);
+            } else {
+              this.campaignService.addAddon(window.location.href.split('/').pop(), addon);
+            }
+          });
+        }
+      }
+    });
+  }
+
   public openAddOrganizationDialog(organization?: any, index?: number) {
     this.dialog.open(AddOrganizationDialogComponent, {
       width: window.innerWidth < 600 ? '90%' : '60%',
@@ -190,6 +255,27 @@ export class NpcsComponent {
           }
           // this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
           break;
+      }
+    });
+  }
+
+  openOrganizationsResourcesDialog() {
+    this.dialog.open(AddOrganizationsResourcesDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      disableClose: true,
+      data: { organizations: this.orgResources }
+    }).afterClosed().subscribe((result: any) => {
+      if (result) {
+        if (result.orgs.length > 0) {
+          result.orgs.forEach((org: any) => {
+            if (!this.isCampaign) {
+              this.charService.addOrganization(window.location.href.split('/').pop(), org);
+            } else {
+              this.campaignService.addOrganization(window.location.href.split('/').pop(), org);
+            }
+          });
+        }
       }
     });
   }

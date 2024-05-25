@@ -1,3 +1,4 @@
+import { D } from '@angular/cdk/keycodes';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -163,6 +164,16 @@ export class DescriptionTooltipComponent {
     ispirazione: {
       title: 'Ispirazione',
       description: 'Il Personaggio ha un punto ispirazione che può essere utile in varia situazioni (confrontati con il DM).'
+    },
+    
+    // Resources View
+    importResources: {
+      title: 'Importazione',
+      description: 'Importa da tutti i tuoi PG e Campagne tutti gli elementi di questa categoria. Elementi con nomi uguali a quelli già presenti saranno ignorati e non importati.'
+    },
+    limit: {
+      title: 'Limite',
+      description: 'Questo è il limite di elementi che puoi creare. Una volta esaurito lo spazio dovrai eliminare elementi precedenti per poterne creare di nuovi.'
     }
   }
 }

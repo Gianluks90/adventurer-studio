@@ -20,7 +20,7 @@ export class CampaignListComponent implements OnInit {
   public partecipantCampaigns: any[] = [];
   public today: Date = new Date();
 
-  constructor(private sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
+  constructor(public sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
 
   }
 
@@ -50,14 +50,6 @@ export class CampaignListComponent implements OnInit {
         return 0;
       }
     });
-  }
-
-  public openSidenav() {
-    const menuButton = document.getElementById('menu-button');
-    if (this.sidenavService.isOpen()) {
-      this.menuIcon = 'menu';
-    }
-    this.sidenavService.toggle();
   }
 
   public createCampaigns() {

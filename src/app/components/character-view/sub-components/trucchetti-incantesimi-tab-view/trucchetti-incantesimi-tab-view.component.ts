@@ -4,6 +4,9 @@ import { CharacterService } from 'src/app/services/character.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Spell } from 'src/app/models/spell';
 import { NotificationService } from 'src/app/services/notification.service';
+import { ResourcesService } from 'src/app/components/resources-page/resources.service';
+import { getAuth } from 'firebase/auth';
+import { AddResourceSpellDialogComponent } from './add-resource-spell-dialog/add-resource-spell-dialog.component';
 
 @Component({
   selector: 'app-trucchetti-incantesimi-tab-view',
@@ -46,9 +49,26 @@ export class TrucchettiIncantesimiTabViewComponent {
     // this.lista = character.
   }
 
-  constructor(private characterService: CharacterService, private dialog: MatDialog, private notification: NotificationService) {
+  constructor(
+    private characterService: CharacterService, 
+    private dialog: MatDialog, 
+    private notification: NotificationService,
+    private resService: ResourcesService) {
     this.isCampaign = window.location.href.includes('campaign-view');
+
+    const userId = getAuth().currentUser.uid;
+    this.resService.getResourcesByUserId(userId).then((res) => {
+      if (res) {
+        this.isResources = true;
+        this.spellsResources = res.spells;
+      } else {
+        this.isResources = false;
+      }
+    });
   }
+
+  public isResources: boolean = false;
+  public spellsResources: Spell[] = [];
 
   useSlot(levelIndex: number, index: number): void {
     const spellLevel = this.slotIncantesimi[levelIndex];
@@ -108,20 +128,27 @@ export class TrucchettiIncantesimiTabViewComponent {
           this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
           break;
       }
-
-      // if (result.status === 'success') {
-      //   this.characterService.addSpell(window.location.href.split('/').pop(), result.spell).then(() => {
-      //     this.lista.push(result.spell);
-      //     this.sortSpells();
-      //   });
-      // } else if (result.status === 'edited') {
-      //   this.lista[index] = result.spell;
-      //   this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
-      // } else if (result.status === 'deleted') {
-      //   this.lista.splice(index, 1);
-      //   this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
-      // }
     })
+  }
+
+  public openResourcesDialog() {
+    this.dialog.open(AddResourceSpellDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      disableClose: true,
+      data: { spells: this.spellsResources }
+    }).afterClosed().subscribe((result: any) => {
+      if (result) {
+        if (result.spells.length > 0) {
+          result.spells.forEach((spell) => {
+            spell.preparato = false;
+            if (!this.lista.find((s) => s.nome === spell.nome)) this.lista.push(spell);
+          });
+          this.characterService.updateSpells(window.location.href.split('/').pop(), this.lista);
+          this.sortSpells();
+        }
+      }
+    });
   }
 
   private sortSpells() {

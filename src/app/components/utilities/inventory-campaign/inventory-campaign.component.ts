@@ -7,6 +7,9 @@ import { CharacterService } from 'src/app/services/character.service';
 import { AddItemDialogComponent } from '../inventory/add-item-dialog/add-item-dialog.component';
 import { ItemInfoSheetComponent } from '../inventory/item-info-sheet/item-info-sheet.component';
 import { ExchangeDialogComponent } from './exchange-dialog/exchange-dialog.component';
+import { AddResourceItemDialogComponent } from '../inventory/add-resource-item-dialog/add-resource-item-dialog.component';
+import { getAuth } from 'firebase/auth';
+import { ResourcesService } from '../../resources-page/resources.service';
 
 @Component({
   selector: 'app-inventory-campaign',
@@ -19,7 +22,21 @@ export class InventoryCampaignComponent {
     private dialog: MatDialog,
     private bottomSheet: MatBottomSheet,
     private characterService: CharacterService,
-    private campaignService: CampaignService) { }
+    private campaignService: CampaignService,
+    private resService: ResourcesService) {
+    const userId = getAuth().currentUser.uid;
+    this.resService.getResourcesByUserId(userId).then((res) => {
+      if (res) {
+        this.isResources = true;
+        this.itemResources = res.items;
+      } else {
+        this.isResources = false;
+      }
+    });
+  }
+
+  public isResources: boolean = false;
+  public itemResources: Item[] = [];
 
   public inventoryData: Item[] = [];
   @Input() set inventory(inventory: Item[]) {
@@ -104,6 +121,27 @@ export class InventoryCampaignComponent {
         this.sortInventory();
       }
     })
+  }
+
+  public openResourcesDialog() {
+    this.dialog.open(AddResourceItemDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      disableClose: true,
+      data: { items: this.itemResources }
+    }).afterClosed().subscribe((result: any) => {
+      if (result) {
+        if (result.items.length > 0) {
+          result.items.forEach((item) => {
+            item.quantity = 0;
+            item.visible = false;
+            if (!this.inventoryData.find((i) => i.name === item.name)) this.inventoryData.push(item);
+          });
+          this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+          this.sortInventory();
+        }
+      }
+    });
   }
 
   public openInfoSheet(item: Item, index: number) {

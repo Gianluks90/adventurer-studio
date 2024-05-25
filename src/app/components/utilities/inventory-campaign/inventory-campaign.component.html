@@ -10,6 +10,9 @@
             [disabled]="charsData.length < 2">
             <div class="material-symbols-outlined">compare_arrows</div>
         </button>
+        <button as-mini-circle-btn [disabled]="!isResources" (click)="openResourcesDialog()" *ngIf="isOwnerData">
+            <div class="material-symbols-outlined">create_new_folder</div>
+        </button>
         <button as-mini-circle-btn (click)="openAddItemDialog()" *ngIf="isOwnerData">
             <div class="material-symbols-outlined">add</div>
         </button>

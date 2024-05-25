@@ -1,0 +1,29 @@
+<div mat-dialog-title class="dialog-title">Importa Risorsa (Organizzazione)</div>
+<div mat-dialog-content class="dialog-content">
+    <div as-description-text>Importa dalla tue <strong>Risorse personalizzate</strong> uno o più Organizzazioni direttamente
+        nell'elenco.</div>
+    @if (data.organizations.length > 0) {
+    <form [formGroup]="form" class="form-container">
+        <div class="line-container">
+            <mat-form-field color="accent" appearance="outline" class="line-input">
+                <mat-label>Organizzazione/i</mat-label>
+                <mat-select formControlName="orgs" multiple>
+                    <mat-option *ngFor="let o of data.organizations" [value]="o">{{o.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+    } @else {
+    <div as-description-text>Non hai ancora creato nessuna risorsa personalizzata di questo tipo.</div>
+    }
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+    <button as-btn [disabled]="!form.dirty" (click)="confirm()">
+        <div class="material-symbols-outlined">add</div>
+        <div>Aggiungi</div>
+    </button>
+</div>

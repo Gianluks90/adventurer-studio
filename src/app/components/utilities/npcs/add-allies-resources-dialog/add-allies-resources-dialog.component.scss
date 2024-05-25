@@ -1,0 +1,31 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dialog-content {
+    width: 100%;
+}
+
+.form-container {
+    // margin: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &>mat-form-field {
+        flex-grow: 1;
+    }
+} 
+
+.line-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: space-between;
+
+    &>.line-input {
+        flex-grow: 1;
+    }
+}

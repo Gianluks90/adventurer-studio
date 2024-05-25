@@ -4,15 +4,21 @@
         Crea personaggi e Campagne per il gioco di ruolo più famoso al mondo!
     </h2>
     <div class="dev-label" matTooltip="Attualmente in sviluppo, i contenuti sono limitati e le funzionalità in aggiornamento possono alterare il normale funzionamento del sistema (provocando anche perdita dei propri dati).">
-        Dev 22052024
+        Dev v.22052024
     </div>
     <div class="buttons-container">
         <button as-btn routerLink="/characters">
-            <mat-icon>description</mat-icon> Personaggi</button>
-        <button as-btn routerLink="/campaigns"> <mat-icon>people</mat-icon>
-            Campagne</button>
-        <button as-btn disabled> <mat-icon>inventory_2</mat-icon>
-            Creazioni</button>
+            <div class="material-symbols-outlined">description</div> <div>Personaggi</div>
+        </button>
+        <button as-btn routerLink="/resources">
+            <div class="material-symbols-outlined">inventory_2</div> <div>Risorse</div>
+        </button>
+        <button as-btn routerLink="/campaigns">
+            <div class="material-symbols-outlined">people</div> <div>Campagne</div>
+        </button>
+        <button as-btn disabled>
+            <div class="material-symbols-outlined">map</div> <div>Avventure</div>
+        </button>
     </div>
 </div>
 @if (showDisclaimer) {

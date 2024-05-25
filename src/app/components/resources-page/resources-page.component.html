@@ -1,0 +1,196 @@
+<div class="main-container">
+    <div class="header-container">
+        <div class="header-info">
+            <div class="header-title">Risorse</div>
+            <div as-description-text>Questa è la tua raccolta di risorse personalizzate. Qui puoi crearne di nuove,
+                importare quelle che già hai generato in altre sezioni dell'app e molto altro.</div>
+        </div>
+        @if (resourcesData) {
+            @if (resourcesData.status.limit === -1) {
+                <div class="header-counter no-limit"
+                (mouseover)="tooltip.showTooltip($event, 'center', true, 'limit-tooltip', false)" (mouseleave)="tooltip.hideTooltip()">
+                    <div class="material-symbols-outlined">award_star</div> <div>Illimitato</div>
+                </div>
+            } @else {
+                <div class="header-counter"
+                (mouseover)="tooltip.showTooltip($event, 'center', true, 'limit-tooltip', false)" (mouseleave)="tooltip.hideTooltip()">
+                    {{resourcesData.items.length + resourcesData.spells.length + resourcesData.allies.length +
+                    resourcesData.organizations.length + resourcesData.addons.length}} / {{resourcesData.status.limit}}
+                </div>
+            }
+        }
+    </div>
+    @if (resourcesData) {
+    <div class="sections-container">
+        <div class="section-item">
+            <div as-section-title>Oggetti ({{resourcesData.items.length}})</div>
+            <div as-mini-buttons-container>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">upload_file</div>
+                </button>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">download</div>
+                </button>
+                <button as-mini-circle-btn (click)="import('inventory')"
+                (mouseover)="tooltip.showTooltip($event, 'center', true, 'import-tooltip', false)" (mouseleave)="tooltip.hideTooltip()">
+                    <div class="material-symbols-outlined">arrow_downward</div>
+                </button>
+                <button as-mini-circle-btn (click)="openAddItemDialog()">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+            </div>
+            @if (resourcesData.items.length > 0) {
+                <div class="list-container">
+                    @for(item of resourcesData.items; track i; let i = $index) {
+                        <div class="list-item" (click)="openEditItemDialog(item, i)">
+                            <img class="img-icon" src="{{item.icon}}">
+                        </div>
+                    }
+                </div>
+                    
+            } @else {
+                <div as-description-text>Ancora nessun oggetto.</div>
+            }
+        </div>
+        <div class="section-item">
+            <div as-section-title>Incantesimi ({{resourcesData.spells.length}})</div>
+            <div as-mini-buttons-container>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">upload_file</div>
+                </button>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">download</div>
+                </button>
+                <button as-mini-circle-btn (click)="import('spells')"
+                (mouseover)="tooltip.showTooltip($event, 'center', true, 'import-tooltip', false)" (mouseleave)="tooltip.hideTooltip()">
+                    <div class="material-symbols-outlined">arrow_downward</div>
+                </button>
+                <button as-mini-circle-btn (click)="openAddSpellDialog()">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+            </div>
+            @if (resourcesData.spells.length > 0) {
+                <div class="list-container">
+                    @for(spell of resourcesData.spells; track i; let i = $index) {
+                        <div class="list-item" (click)="openAddSpellDialog(spell, i)">
+                            <img class="img-icon" src="{{spell.icon}}">
+                        </div>
+                    }
+                </div>
+            } @else {
+                <div as-description-text>Ancora nessun incantesimo.</div>
+            }
+        </div>
+        <div class="section-item">
+            <div as-section-title>PNG ({{resourcesData.allies.length}})</div>
+            <div as-mini-buttons-container>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">upload_file</div>
+                </button>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">download</div>
+                </button>
+                <button as-mini-circle-btn (click)="import('allies')"
+                (mouseover)="tooltip.showTooltip($event, 'center', true, 'import-tooltip', false)" (mouseleave)="tooltip.hideTooltip()">
+                    <div class="material-symbols-outlined">arrow_downward</div>
+                </button>
+                <button as-mini-circle-btn (click)="openAddNpcDialog()">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+            </div>
+            @if (resourcesData.allies.length > 0) {
+                <div class="list-container">
+                    @for(ally of resourcesData.allies; track i; let i = $index) {
+                        <div class="list-item" (click)="openAddNpcDialog(ally, i)">
+                            <img class="not-icon" src="{{ally.imgUrl}}">
+                        </div>
+                    }
+                </div>
+            } @else {
+                <div as-description-text>Ancora nessun PNG.</div>
+            }
+        </div>
+        <div class="section-item">
+            <div as-section-title>Organizzazioni ({{resourcesData.organizations.length}})</div>
+            <div as-mini-buttons-container>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">upload_file</div>
+                </button>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">download</div>
+                </button>
+                <button as-mini-circle-btn (click)="import('organizations')"
+                (mouseover)="tooltip.showTooltip($event, 'center', true, 'import-tooltip', false)" (mouseleave)="tooltip.hideTooltip()">
+                    <div class="material-symbols-outlined">arrow_downward</div>
+                </button>
+                <button as-mini-circle-btn (click)="openAddOrganizationDialog()">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+            </div>
+            @if (resourcesData.organizations.length > 0) {
+                <div class="list-container">
+                    @for(organization of resourcesData.organizations; track i; let i = $index) {
+                        <div class="list-item" (click)="openAddOrganizationDialog(organization, i)">
+                            <img class="not-icon" src="{{organization.imgUrl}}">
+                        </div>
+                    }
+                </div>
+            } @else {
+                <div as-description-text>Ancora nessuna organizzazione.</div>
+            }
+        </div>
+        <div class="section-item last-container">
+            <div as-section-title>Schede ({{resourcesData.addons.length}})</div>
+            <div as-mini-buttons-container>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">upload_file</div>
+                </button>
+                <button as-mini-circle-btn disabled>
+                    <div class="material-symbols-outlined">download</div>
+                </button>
+                <button as-mini-circle-btn (click)="import('addons')"
+                (mouseover)="tooltip.showTooltip($event, 'center', true, 'import-tooltip', false)" (mouseleave)="tooltip.hideTooltip()">
+                    <div class="material-symbols-outlined">arrow_downward</div>
+                </button>
+                <button as-mini-circle-btn (click)="openAddonDialog()">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+            </div>
+            @if (resourcesData.addons.length > 0) {
+                <div class="list-container">
+                    @for(addon of resourcesData.addons; track i; let i = $index) {
+                        <div class="list-item" (click)="openAddonDialog(addon, i)">
+                            <img class="not-icon" src="{{addon.imgUrl}}">
+                        </div>
+                    }
+                </div>
+            } @else {
+                <div as-description-text>Ancora nessuna scheda.</div>
+            }
+        </div>
+    </div>
+    } @else {
+    <div class="init-container">
+        <div class="init-message">Se vedi questo messaggio è la prima volta che arrivi qui. Premi il tasto qui sotto per
+            inizializzare i contenitori delle tue Risorse.</div>
+        <button as-btn (click)="resourcesInit()">
+            <div class="material-symbols-outlined">database</div>
+            <div>Inizializza Risorse</div>
+        </button>
+    </div>
+    }
+</div>
+
+<div as-bottom-buttons-container as-bottom-left>
+    <button as-bottom-btn (click)="sidenavService.toggle()">
+        <div class="material-symbols-outlined">menu</div>
+    </button>
+</div>
+<div as-bottom-buttons-container as-bottom-right>
+    <button as-bottom-btn >
+      <div class="material-symbols-outlined">settings</div>
+    </button>
+</div>
+
+<app-description-tooltip id="import-tooltip" info="importResources" *ngIf="tooltip.show && tooltip.id === 'import-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
+<app-description-tooltip id="limit-tooltip" info="limit" *ngIf="tooltip.show && tooltip.id === 'limit-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>

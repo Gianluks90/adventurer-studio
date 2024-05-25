@@ -6,6 +6,9 @@ import { CharacterService } from 'src/app/services/character.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ItemInfoSheetComponent } from './item-info-sheet/item-info-sheet.component';
 import { CampaignService } from 'src/app/services/campaign.service';
+import { ResourcesService } from '../../resources-page/resources.service';
+import { getAuth } from 'firebase/auth';
+import { AddResourceItemDialogComponent } from './add-resource-item-dialog/add-resource-item-dialog.component';
 
 @Component({
   selector: 'app-inventory',
@@ -32,31 +35,60 @@ export class InventoryComponent {
   }
 
   public isCampaign: boolean = false;
+  public isResources: boolean = false;
+  public itemResources: any[] = [];
 
   constructor(
     private dialog: MatDialog,
     private bottomSheet: MatBottomSheet,
     private characterService: CharacterService,
-    private campaignService: CampaignService) {
+    private campaignService: CampaignService,
+    private resService: ResourcesService) {
     this.isCampaign = window.location.href.includes('campaign-view');
+
+    const userId = getAuth().currentUser.uid;
+    this.resService.getResourcesByUserId(userId).then((res) => {
+      if (res) {
+        this.isResources = true;
+        this.itemResources = res.items;
+      } else {
+        this.isResources = false;
+      }
+    });
   }
 
-  openAddItemDialog() {
+  public openAddItemDialog() {
     this.dialog.open(AddItemDialogComponent, {
-      width: window.innerWidth < 500 ? '90%' : '60%',
+      width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
       data: { inventory: this.inventoryData, isOwner: this.isOwnerData }
     }).afterClosed().subscribe((result: any) => {
       if (result.status === 'success') {
-        // if (!this.isCampaign) {
-          this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item);
-        // } else {
-        //   this.campaignService.addItemInventory(window.location.href.split('/').pop(), result.item);
-        // }
+        this.characterService.addItemInventory(window.location.href.split('/').pop(), result.item);
         this.sortInventory();
       }
     })
+  }
+
+  public openResourcesDialog() {
+    this.dialog.open(AddResourceItemDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      disableClose: true,
+      data: { items: this.itemResources }
+    }).afterClosed().subscribe((result: any) => {
+      if (result) {
+        if (result.items.length > 0) {
+          result.items.forEach((item) => {
+            item.quantity = 1;
+            if (!this.inventoryData.find((i) => i.name === item.name)) this.inventoryData.push(item);
+          });
+          this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+          this.sortInventory();
+        }
+      }
+    });
   }
 
   filterSearch(event: any) {
@@ -78,8 +110,8 @@ export class InventoryComponent {
       if (result && result.status === 'edited') {
         this.inventoryData[index] = result.item;
         // if (!this.isCampaign) {
-          this.updateCharSets(result.item, 'edited');
-          this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        this.updateCharSets(result.item, 'edited');
+        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         // } else {
         //   this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         // }
@@ -87,8 +119,8 @@ export class InventoryComponent {
       if (result && result.status === 'deleted') {
         this.inventoryData.splice(index, 1);
         // if (!this.isCampaign) {
-          // this.updateCharSets(this.inventoryData[index], 'deleted');
-          this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
+        // this.updateCharSets(this.inventoryData[index], 'deleted');
+        this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         // } else {
         //   this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
         // }
@@ -145,37 +177,37 @@ export class InventoryComponent {
   private updateCharSets(item: Item, action: string) {
     let sets = [...this.selectedCharData.sets]; // Copia dell'array sets
     switch (action) {
-        case 'edited':
-            sets.forEach((set) => {
-                if (set.mainHand && set.mainHand.name === item.name) {
-                    set.mainHand = item;
-                }
-                if (set.offHand && set.offHand.name === item.name) {
-                    set.offHand = item;
-                }
-            });
-            break;
+      case 'edited':
+        sets.forEach((set) => {
+          if (set.mainHand && set.mainHand.name === item.name) {
+            set.mainHand = item;
+          }
+          if (set.offHand && set.offHand.name === item.name) {
+            set.offHand = item;
+          }
+        });
+        break;
 
-        case 'deleted':
-            // Trova gli indici dei set che contengono l'oggetto nell'offHand o nel mainHand
-            const setIndexesToDelete: number[] = [];
-            sets.forEach((set, index) => {
-                if (set.mainHand && set.mainHand.name === item.name) {
-                    setIndexesToDelete.push(index);
-                }
-                if (set.offHand && set.offHand.name === item.name) {
-                    setIndexesToDelete.push(index);
-                }
-            });
+      case 'deleted':
+        // Trova gli indici dei set che contengono l'oggetto nell'offHand o nel mainHand
+        const setIndexesToDelete: number[] = [];
+        sets.forEach((set, index) => {
+          if (set.mainHand && set.mainHand.name === item.name) {
+            setIndexesToDelete.push(index);
+          }
+          if (set.offHand && set.offHand.name === item.name) {
+            setIndexesToDelete.push(index);
+          }
+        });
 
-            // Elimina i set dagli indici trovati (in ordine inverso per evitare problemi con la rimozione degli indici)
-            setIndexesToDelete.reverse().forEach((index) => {
-                sets.splice(index, 1);
-            });
-            break;
+        // Elimina i set dagli indici trovati (in ordine inverso per evitare problemi con la rimozione degli indici)
+        setIndexesToDelete.reverse().forEach((index) => {
+          sets.splice(index, 1);
+        });
+        break;
     }
     this.characterService.updateSets(this.selectedCharData.id, sets);
-}
+  }
 
   setColor(rarity: string): string {
     switch (rarity) {

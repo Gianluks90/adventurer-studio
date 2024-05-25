@@ -4,7 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { Item } from '../models/item';
-import { FormModel } from '../models/formModel';
 import { Spell } from '../models/spell';
 
 @Injectable({

@@ -1,0 +1,29 @@
+<div mat-dialog-title class="dialog-title">Importa Risorsa (Scheda)</div>
+<div mat-dialog-content class="dialog-content">
+    <div as-description-text>Importa dalla tue <strong>Risorse personalizzate</strong> uno o più Schede direttamente
+        nell'elenco.</div>
+    @if (data.addons.length > 0) {
+    <form [formGroup]="form" class="form-container">
+        <div class="line-container">
+            <mat-form-field color="accent" appearance="outline" class="line-input">
+                <mat-label>Scheda/e</mat-label>
+                <mat-select formControlName="addons" multiple>
+                    <mat-option *ngFor="let a of data.addons" [value]="a">{{a.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </form>
+    } @else {
+    <div as-description-text>Non hai ancora creato nessuna risorsa personalizzata di questo tipo.</div>
+    }
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+    <button as-btn [disabled]="!form.dirty" (click)="confirm()">
+        <div class="material-symbols-outlined">add</div>
+        <div>Aggiungi</div>
+    </button>
+</div>

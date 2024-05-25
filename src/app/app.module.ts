@@ -6,6 +6,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from "./app.component";
 import { AuthComponent } from "./components/auth/auth.component";
+import { HomePageComponent } from './components/home-page/home-page.component';
 import { CharacterListComponent } from "./components/character-list/character-list.component";
 import { DeleteCharacterDialogComponent } from "./components/character-list/delete-character-dialog/delete-character-dialog.component";
 import { CharacterViewComponent } from "./components/character-view/character-view.component";
@@ -23,7 +24,6 @@ import { StoriaComponent } from "./components/form-create/sub-form/storia/storia
 import { TiriSalvezzaComponent } from "./components/form-create/sub-form/tiri-salvezza/tiri-salvezza.component";
 import { TrucchettiIncantesimiComponent } from "./components/form-create/sub-form/trucchetti-incantesimi/trucchetti-incantesimi.component";
 import { FormLevelUpComponent } from "./components/form-level-up/form-level-up.component";
-import { HomeComponent } from "./components/home/home.component";
 import { AddCharacterDialogComponent } from "./components/character-list/add-character-dialog/add-character-dialog.component";
 import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { SnackbarComponent } from "./components/utilities/snackbar/snackbar.component";
@@ -102,13 +102,19 @@ import { ManageEquipDialogComponent } from './components/utilities/equipment/man
 import { DescriptionTooltipComponent } from './components/utilities/description-tooltip/description-tooltip.component';
 import { InventoryCampaignComponent } from './components/utilities/inventory-campaign/inventory-campaign.component';
 import { ExchangeDialogComponent } from './components/utilities/inventory-campaign/exchange-dialog/exchange-dialog.component';
+import { ResourcesPageComponent } from './components/resources-page/resources-page.component';
+import { AddResourceItemDialogComponent } from './components/utilities/inventory/add-resource-item-dialog/add-resource-item-dialog.component';
+import { AddResourceSpellDialogComponent } from './components/character-view/sub-components/trucchetti-incantesimi-tab-view/add-resource-spell-dialog/add-resource-spell-dialog.component';
+import { AddAlliesResourcesDialogComponent } from './components/utilities/npcs/add-allies-resources-dialog/add-allies-resources-dialog.component';
+import { AddAddonsResourcesDialogComponent } from './components/utilities/npcs/add-addons-resources-dialog/add-addons-resources-dialog.component';
+import { AddOrganizationsResourcesDialogComponent } from './components/utilities/npcs/add-organizations-resources-dialog/add-organizations-resources-dialog.component';
 
 @NgModule({
   declarations: [
     // MAIN COMPONENTS
     AppComponent,
-    HomeComponent,
     AuthComponent,
+    HomePageComponent,
 
     // VIEWS COMPONENTS
     SidenavComponent,
@@ -217,7 +223,13 @@ import { ExchangeDialogComponent } from './components/utilities/inventory-campai
     AddResourceDialogComponent,
     DescriptionTooltipComponent,
     InventoryCampaignComponent,
-    ExchangeDialogComponent
+    ExchangeDialogComponent,
+    ResourcesPageComponent,
+    AddResourceItemDialogComponent,
+    AddResourceSpellDialogComponent,
+    AddAlliesResourcesDialogComponent,
+    AddAddonsResourcesDialogComponent,
+    AddOrganizationsResourcesDialogComponent,
   ],
   imports: [
     SharedModule,
