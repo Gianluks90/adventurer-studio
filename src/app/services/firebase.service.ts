@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, WritableSignal, effect, signal } from '@angular/core';
 import { initializeApp } from "firebase/app";
-import { Firestore, collection, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore';
+import { Firestore, collection, doc, getDoc, getDocs, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
 import { FirebaseStorage, getStorage } from 'firebase/storage';
 import { BehaviorSubject } from 'rxjs';
 import { UserData } from '../models/userData';
-import { getAuth, User } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+import { AdventurerUser } from '../models/adventurerUser';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBRWnovU0y_fyAfb2v1VnIlznd7OF9vL-0",
@@ -23,9 +24,10 @@ export class FirebaseService {
   public database: Firestore;
   public storage: FirebaseStorage;
 
-  public user = new BehaviorSubject<UserData | null>(null);
-  public isAuth = new BehaviorSubject<boolean>(false);
-
+  // public user = new BehaviorSubject<UserData | null>(null);
+  public userSignal: WritableSignal<AdventurerUser> = signal(null);
+  public userData: any;
+  
   constructor() {
     const app = initializeApp(firebaseConfig);
     this.database = getFirestore(app);
@@ -33,37 +35,27 @@ export class FirebaseService {
 
     getAuth().onAuthStateChanged(async user => {
       if (user) {
-        this.checkUser(user);
-        // localStorage.setItem('dndCS-2023-logged', 'true');
-      } else {
-        // localStorage.setItem('dndCS-2023-logged', 'false');
-        this.isAuth.next(false);
-      }
-    });
-   }
-
-  public async checkUser(user: User): Promise<boolean> {
-    // console.log('check', user);
-    
-    return await this.getUser(user).then(userSnap => {
-      if (userSnap.exists()) {
-        const userResult = UserData.parseUser(user, userSnap.data());
-        // console.log('user res', userResult);
-        this.user.next(userResult);
-        this.isAuth.next(true);
-        return true;
+        this.getSignalUser();
       } else {
         getAuth().signOut();
-        this.isAuth.next(false);
-        return false;
       }
-    })
+    });
+
+    effect(() => {
+      this.userData = this.userSignal();
+    });
   }
 
-  public async getUser(user: User) {
-    const q = doc(this.database, 'users', user.uid);
-    const docSnap = await getDoc(q);
-    return docSnap;
+  public async getSignalUser() {
+    const authUser = getAuth().currentUser!;
+    const docRef = doc(this.database, 'users', authUser.uid);
+    const unsub = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        const user: AdventurerUser = AdventurerUser.parseUser(doc.id, doc.data());
+        user.photoURL = authUser.photoURL;
+        this.userSignal.set(user);
+      }
+    })
   }
 
   public async getUserById(id: string) {
@@ -91,7 +83,7 @@ export class FirebaseService {
     }, { merge: true })
   }
 
-  public async updateUserDddice(token:string, slug: string) {
+  public async updateUserDddice(token: string, slug: string) {
     const userRef = doc(this.database, 'users', getAuth().currentUser.uid);
     return await setDoc(userRef, {
       dddiceToken: token,
@@ -103,7 +95,7 @@ export class FirebaseService {
     const user = getAuth().currentUser!;
     const q = doc(this.database, 'users', user.uid);
     const docSnap = await getDoc(q);
-    if (docSnap.exists() && docSnap.data()['dddiceToken']){
+    if (docSnap.exists() && docSnap.data()['dddiceToken']) {
       return docSnap.data()['dddiceToken'];
     } else {
       return "";

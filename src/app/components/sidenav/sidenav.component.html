@@ -2,14 +2,21 @@
   <div class="home-title">
     Adventurer Studio
   </div>
-  <div class="user-box" *ngIf="firebaseService.user.value">
-    <div class="user-identity-container">
-      <img class="user-image" src="{{firebaseService.user.value.photoURL}}" referrerpolicy="no-referrer">
-      <div class="user-name">
-        {{firebaseService.user.value.displayName}}
+  @if (user) {
+    <div class="user-box">
+      <div class="user-identity-container">
+        <img class="user-image" src="{{user.photoURL}}" referrerpolicy="no-referrer">
+        <div class="infos">
+          <div class="user-name">
+            {{user.displayName}}
+          </div>
+          <div class="char-length">
+            <span class="material-symbols-outlined">description</span> {{user.characters.length}}/{{user.charactersLimit}} Personaggi
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  }
 
   <div class="main-actions-container">
     <div class="actions-container">
@@ -46,7 +53,7 @@
         </a>
       </div>
       <div class="version-label">vers. 26052024.1</div>
-      <button as-btn (click)="openSettingsDialog()" [disabled]="disableSettings">
+      <button as-btn (click)="openSettingsDialog()" [disabled]="!user">
         <mat-icon>settings</mat-icon>
         Impostazioni
       </button>

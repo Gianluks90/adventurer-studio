@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CharacterService } from 'src/app/services/character.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
@@ -6,14 +6,16 @@ import { DeleteCharacterDialogComponent } from './delete-character-dialog/delete
 import { AddCharacterDialogComponent } from './add-character-dialog/add-character-dialog.component';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
+import { AdventurerUser } from 'src/app/models/adventurerUser';
 
 @Component({
   selector: 'app-character-list',
   templateUrl: './character-list.component.html',
   styleUrls: ['./character-list.component.scss']
 })
-export class CharacterListComponent implements OnInit {
+export class CharacterListComponent {
 
+  public user: AdventurerUser | null;
   public characters: any[] = [];
 
   constructor(
@@ -21,27 +23,18 @@ export class CharacterListComponent implements OnInit {
     private characterService: CharacterService,
     private sidenavService: SidenavService,
     private dialog: MatDialog,
-    public tooltip: DescriptionTooltipService) { }
-
-  public menuIcon = 'menu';
-
-  ngOnInit(): void {
-    this.firebaseService.user.subscribe(user => {
-      if (user && user.id) {
-        this.characterService.getCharactersByUserId(user.id).then(result => {
+    public tooltip: DescriptionTooltipService) {
+    effect(() => {
+      this.user = this.firebaseService.userSignal();
+      if (this.user) {
+        this.characterService.getCharactersByUserId(this.user.id).then(result => {
           this.characters = result;
         });
       }
     });
-    // if (userId) {
-    //   this.characterService.getCharactersByUserId(userId).then(result => {
-    //     this.characters = result;
-    //   })
-    //   // this.characterService.getCharacters().then(result => {
-    //   //   this.characters = result;
-    //   // });
-    // }
   }
+
+  public menuIcon = 'menu';
 
   public openSidenav() {
     const menuButton = document.getElementById('menu-button');
@@ -60,7 +53,7 @@ export class CharacterListComponent implements OnInit {
       }
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
-        window.location.reload();
+        // window.location.reload();
       }
     });
   }
@@ -71,8 +64,12 @@ export class CharacterListComponent implements OnInit {
       autoFocus: false,
     }).afterClosed().subscribe((result: string) => {
       if (result === 'confirm') {
-        window.location.reload();
+        // window.location.reload();
       }
     });
+  }
+
+  public reload() {
+    window.location.reload();
   }
 }

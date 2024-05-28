@@ -1,11 +1,14 @@
+@defer (when user) {
 <div mat-dialog-title class="dialog-title">Unisciti ad una Campagna</div>
 <div mat-dialog-content class="dialog-content">
     <div as-description-text>Chiedi al tuo Dungeon Master di fornirti l'<strong>ID</strong> della campagna e la
         <strong>Password</strong>, una volta
         inseriti questi due dati verificali con il tasto "Controlla" dopodichè seleziona il personaggio con cui vuoi
         partecipare e poi premi "Unisciti". <u>Attenzione</u>: se non hai ancora creato alcun personaggio ti conviene
-        prima farlo o non potrai proseguire, <u>inoltre</u> se sei il creatore della campagna non potrai anche partecipare
-        come personaggio.</div>
+        prima farlo o non potrai proseguire, <u>inoltre</u> se sei il creatore della campagna non potrai anche
+        partecipare
+        come personaggio.
+    </div>
     <div class="input-container" [formGroup]="campForm">
         <mat-form-field color="accent" class="custom-form-field" appearance="outline">
             <mat-label>ID Campagna</mat-label>
@@ -29,12 +32,23 @@
 
 <div as-buttons-container mat-dialog-actions align="end">
     <button as-btn (click)="cancel()">
-        <div class="material-symbols-outlined">close</div> <div>Annulla</div>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
     </button>
     <button as-btn [disabled]="!campForm.valid || checked" (click)="checkForm()">
-        <div class="material-symbols-outlined">check</div> <div>Controlla</div>
+        <div class="material-symbols-outlined">check</div>
+        <div>Controlla</div>
     </button>
     <button as-btn [disabled]="!charForm.valid" (click)="confirm()">
-        <div class="material-symbols-outlined">done</div> <div>Unisciti</div>
+        <div class="material-symbols-outlined">done</div>
+        <div>Unisciti</div>
     </button>
 </div>
+} @error {
+<div mat-dialog-content class="dialog-content">
+    <div class="error-container">
+        <mat-icon>error</mat-icon>
+        <div class="error-message">Errore.</div>
+    </div>
+</div>
+}

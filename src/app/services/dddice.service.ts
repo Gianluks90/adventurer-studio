@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, effect } from '@angular/core';
 import { ThreeDDice } from 'dddice-js';
 import { BehaviorSubject } from 'rxjs';
 import { FirebaseService } from './firebase.service';
@@ -24,16 +24,27 @@ export class DddiceService {
   public roomConnected: BehaviorSubject<boolean> = new BehaviorSubject(false);
   
   constructor(private firebaseService: FirebaseService, private notification: NotificationService) {
-    this.firebaseService.user.subscribe(user => {
-      if (user && user['dddiceToken']){
+    effect(() => {
+      const user = this.firebaseService.userSignal();
+      if (user) {
         this.dddiceInit(user.dddiceToken).then((dddice) => {
           this.authenticated.next(true);
           if (user.privateSlug) {
             dddice.connect(user.privateSlug);
           }
-        }).catch((error) => { this.authenticated.next(false); })
+        }).catch((error) => { this.authenticated.next(false)})
       }
     });
+    // this.firebaseService.user.subscribe(user => {
+    //   if (user && user['dddiceToken']){
+    //     this.dddiceInit(user.dddiceToken).then((dddice) => {
+    //       this.authenticated.next(true);
+    //       if (user.privateSlug) {
+    //         dddice.connect(user.privateSlug);
+    //       }
+    //     }).catch((error) => { this.authenticated.next(false)})
+    //   }
+    // });
   }
 
   public async dddiceInit(token: string): Promise<ThreeDDice> {

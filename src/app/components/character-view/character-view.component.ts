@@ -1,7 +1,6 @@
 import { Component, Input, effect } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
-import { FormService } from 'src/app/services/form.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { DiceComponent } from '../utilities/dice/dice.component';
 import { DddiceService } from 'src/app/services/dddice.service';
@@ -9,6 +8,8 @@ import { getAuth } from 'firebase/auth';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
+import { AdventurerUser } from 'src/app/models/adventurerUser';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-character-view',
@@ -16,6 +17,8 @@ import { DescriptionTooltipService } from '../utilities/description-tooltip/desc
   styleUrls: ['./character-view.component.scss']
 })
 export class CharacterViewComponent {
+
+  public user: AdventurerUser | null;
 
   public character: any;
   public competenzeAbilita: any;
@@ -31,6 +34,7 @@ export class CharacterViewComponent {
 
   constructor(
     // private menuService: MenuService,
+    private firebaseService: FirebaseService,
     private characterService: CharacterService,
     private sidenavService: SidenavService,
     private diceSelector: MatBottomSheet,
@@ -38,6 +42,11 @@ export class CharacterViewComponent {
     private campaignService: CampaignService,
     breakpointObserver: BreakpointObserver,
     public tooltip: DescriptionTooltipService) {
+
+    effect(() => {
+      this.user = this.firebaseService.userSignal();
+    });
+
     if (window.location.href.includes('campaign-view/')) {
       this.inCampaign = true;
     }
@@ -74,14 +83,14 @@ export class CharacterViewComponent {
     if (!this.character) {
       return;
     }
-    const userId = getAuth().currentUser.uid;
-    if (userId) {
-      if (userId === this.character.status.userId) {
+    // const userId = getAuth().currentUser.uid;
+    if (this.user) {
+      if (this.user.id === this.character.status.userId) {
         this.editMode = true;
       }
       if (this.character.campaignId && this.character.campaignId !== '') {
         this.campaignService.getCampaignById(this.character.campaignId).then((campaign) => {
-          if (campaign.ownerId === userId) {
+          if (campaign.ownerId === this.user.id) {
             this.editMode = true;
           }
         });
@@ -106,20 +115,3 @@ export class CharacterViewComponent {
     });
   }
 }
-
-
-// equip.forEach((item: Item) => {
-//   if (item.CA > 0 && !item.shield && item.weared) {
-//     if (item.plusDexterity) {
-//       this.CA = (item.CA + Math.floor((this.characterData.caratteristiche.destrezza - 10) / 2)).toString();
-//     } else {
-//       this.CA = item.CA.toString();
-//     }
-//   }
-//   if (item.CA > 0 && item.shield && item.weared) {
-//     this.CAShield = '+ ' + item.CA;
-//   }
-// });
-// if (this.CA === '') {
-//   this.CA = this.characterData.CA
-// }
