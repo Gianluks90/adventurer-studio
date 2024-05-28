@@ -106,6 +106,7 @@ export class CampaignService {
   }
 
   public async getUserCampaigns(): Promise<any> {
+    // this.user = this.firebaseService.userSignal();
     const asOwner = await this.getCampaignsByOwnerID(this.user.id);
     const asPartecipant = await this.getCampaignsByPartecipantID(this.user.id);
     return {

@@ -1,80 +1,89 @@
-<div class="main-container">
-  <div class="card-container" *ngIf="ownedCampaigns.length > 0">
-    <div class="cart-title">Le tue campagne</div>
-    <div class="card-details" *ngFor="let c of ownedCampaigns">
-      <div class="card-info-container">
-        <div class="campaign-title">{{c.title}}</div>
-        <div as-description-text>{{c.description}}</div>
-        <div as-pills-container>
-          <div as-pill>{{c.status.statusMessage}}</div>
-          <div as-pill>
-            <div class="material-symbols-outlined">person</div> {{c.characters.length}}
+@defer (when user) {
+  <div class="main-container">
+    @if (ownedCampaigns && ownedCampaigns.length > 0) {
+      <div class="card-container">
+        <div class="cart-title">Le tue campagne</div>
+        @for (c of ownedCampaigns; track $index) {
+          <div class="card-details">
+            <div class="card-info-container">
+              <div class="campaign-title">{{c.title}}</div>
+              <div as-description-text>{{c.description}}</div>
+              <div as-pills-container>
+                <div as-pill>{{c.status.statusMessage}}</div>
+                <div as-pill>
+                  <div class="material-symbols-outlined">person</div> {{c.characters.length}}
+                </div>
+                <div as-pill>Capitolo {{c.archive.length +1}}</div>
+                <div as-pill *ngIf="c.nextSession && c.nextSession < today">Prossima sessione {{c.nextSession.toDate() | date: 'dd/MM'}}</div>
+              </div>
+              <div as-buttons-container>
+                <button as-btn [routerLink]="'/campaign-view/' + c.id">
+                  <div class="material-symbols-outlined">{{c.status.statusMessage === 'In corso' ? 'play_arrow' : 'settings'}}</div> <div>{{c.status.statusMessage === 'In corso' ? 'Gioca' : 'Prepara'}}</div>
+                </button>
+              </div>
+            </div>
+            <!-- <button class="play-button" mat-icon-button [routerLink]="'/campaign-view/' + c.id">
+              <mat-icon>play_arrow</mat-icon>
+            </button> -->
           </div>
-          <div as-pill>Capitolo {{c.archive.length +1}}</div>
-          <div as-pill *ngIf="c.nextSession && c.nextSession < today">Prossima sessione {{c.nextSession.toDate() | date: 'dd/MM'}}</div>
-        </div>
-        <div as-buttons-container>
-          <button as-btn [routerLink]="'/campaign-view/' + c.id">
-            <div class="material-symbols-outlined">{{c.status.statusMessage === 'In corso' ? 'play_arrow' : 'settings'}}</div> <div>{{c.status.statusMessage === 'In corso' ? 'Gioca' : 'Prepara'}}</div>
-          </button>
-        </div>
-      </div>
-      <!-- <button class="play-button" mat-icon-button [routerLink]="'/campaign-view/' + c.id">
-        <mat-icon>play_arrow</mat-icon>
-      </button> -->
-    </div>
-  </div>
-
-  <div class="card-container" *ngIf="partecipantCampaigns.length > 0">
-    <div class="cart-title">Iscrizioni</div>
-    @for (c of partecipantCampaigns; track $index) {
-      <div class="card-details" [ngStyle]="{'margin-bottom': $last ? '80px' : '0'}">
-        <div class="card-info-container">
-          <div class="campaign-title">{{c.title}}</div>
-          <div class="campaign-dm">DM | {{c.dmName}}</div>
-          <div class="character-list">
-              <img  *ngFor="let char of c.characters" src="{{char.url !== '' ? char.url : './assets/images/hero-placeholder.png'}}" class="character-image">
-          </div>
-          <div as-description-text>{{c.description}}</div>
-          <div as-pills-container>
-            <div as-pill>{{c.status.statusMessage}}</div>
-          </div>
-          <div as-buttons-container>
-            <button as-btn [routerLink]="'/campaign-view/' + c.id">
-              <div class="material-symbols-outlined">play_arrow</div> <div>Gioca</div>
-            </button>
-          </div>
-        </div>
-        <!-- <button class="play-button" mat-icon-button [routerLink]="'/campaign-view/' + c.id">
-          <mat-icon>play_arrow</mat-icon>
-        </button> -->
+        }
       </div>
     }
-  </div>
-
-
-  <div class="empty-card-container" *ngIf="ownedCampaigns.length <= 0 && partecipantCampaigns.length <= 0">
-    <div class="empty-message">Qui puoi creare le tue Campagne oppure unirti ad una di esse: premi uno dei tasti qui sotto per cominciare!</div>
-    <button as-btn (click)="createCampaigns()">
-      <div class="material-symbols-outlined">add</div> <div>Crea una Campagna</div>
-    </button>
-    <button as-btn (click)="ticketCampaign()">
-      <div class="material-symbols-outlined">confirmation_number</div> <div>Unisciti ad una Campagna</div>
-    </button>
-  </div>
-  <div as-bottom-buttons-container as-bottom-left id="menu-button">
-    <button as-bottom-btn (click)="sidenavService.toggle()">
-      <div class="material-symbols-outlined">menu</div>
-    </button>
-  </div>
-  <div as-bottom-buttons-container as-bottom-right id="add-button" *ngIf="ownedCampaigns.length > 0 || partecipantCampaigns.length > 0">
-    <button as-bottom-btn (click)="createCampaigns()" [disabled]="ownedCampaigns.length >= 3">
-      <div class="material-symbols-outlined">add</div>
-    </button>
-    <button as-bottom-btn (click)="ticketCampaign()">
-      <div class="material-symbols-outlined">confirmation_number</div>
-    </button>
-  </div>
+  
+    @if (partecipantCampaigns && partecipantCampaigns.length > 0) {
+      <div class="card-container">
+        <div class="cart-title">Iscrizioni</div>
+        @for (c of partecipantCampaigns; track $index) {
+          <div class="card-details" [ngStyle]="{'margin-bottom': $last ? '80px' : '0'}">
+            <div class="card-info-container">
+              <div class="campaign-title">{{c.title}}</div>
+              <div class="campaign-dm">DM | {{c.dmName}}</div>
+              <div class="character-list">
+                  <img  *ngFor="let char of c.characters" src="{{char.url !== '' ? char.url : './assets/images/hero-placeholder.png'}}" class="character-image">
+              </div>
+              <div as-description-text>{{c.description}}</div>
+              <div as-pills-container>
+                <div as-pill>{{c.status.statusMessage}}</div>
+              </div>
+              <div as-buttons-container>
+                <button as-btn [routerLink]="'/campaign-view/' + c.id">
+                  <div class="material-symbols-outlined">play_arrow</div> <div>Gioca</div>
+                </button>
+              </div>
+            </div>
+            <!-- <button class="play-button" mat-icon-button [routerLink]="'/campaign-view/' + c.id">
+              <mat-icon>play_arrow</mat-icon>
+            </button> -->
+          </div>
+        }
+      </div>
+    }
+  
+  @if (ownedCampaigns && partecipantCampaigns) {
+    <div class="empty-card-container" *ngIf="ownedCampaigns.length <= 0 && partecipantCampaigns.length <= 0">
+      <div class="empty-message">Qui puoi creare le tue Campagne oppure unirti ad una di esse: premi uno dei tasti qui sotto per cominciare!</div>
+      <button as-btn (click)="createCampaigns()">
+        <div class="material-symbols-outlined">add</div> <div>Crea una Campagna</div>
+      </button>
+      <button as-btn (click)="ticketCampaign()">
+        <div class="material-symbols-outlined">confirmation_number</div> <div>Unisciti ad una Campagna</div>
+      </button>
+    </div>
+  }
 </div>
+}
 
+<div as-bottom-buttons-container as-bottom-left id="menu-button">
+  <button as-bottom-btn (click)="sidenavService.toggle()">
+    <div class="material-symbols-outlined">menu</div>
+  </button>
+</div>
+<div as-bottom-buttons-container as-bottom-right id="add-button" *ngIf="ownedCampaigns && ownedCampaigns.length > 0 || partecipantCampaigns && partecipantCampaigns.length > 0">
+  <button as-bottom-btn (click)="createCampaigns()" [disabled]="ownedCampaigns && ownedCampaigns.length >= 3">
+    <div class="material-symbols-outlined">add</div>
+  </button>
+  <button as-bottom-btn (click)="ticketCampaign()">
+    <div class="material-symbols-outlined">confirmation_number</div>
+  </button>
+</div>
 
