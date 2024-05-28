@@ -103,21 +103,9 @@
             <mat-label>Riferimento (Sigla manuale / pagina)</mat-label>
             <input matInput formControlName="riferimento">
         </mat-form-field>
-        <!-- <div class="delete-button">
-                    <button mat-raised-button color="accent" (click)="deleteTrucchettoIncantesimo(i)">
-                        <mat-icon>delete</mat-icon> Rimuovi
-                    </button>
-                </div> -->
     </div>
-
-    <!-- <div class="button-container">
-        <button mat-raised-button color="accent" (click)="addTrucchettoIncantesimo()">
-            <mat-icon>add</mat-icon>
-            Aggiungi nuovo
-        </button>
-    </div> -->
 </div>
-<div as-buttons-container mat-dialog-actions align="end" *ngIf="!isMobile">
+<div as-buttons-container mat-dialog-actions align="end">
     <button as-btn mat-dialog-close>
         <div class="material-symbols-outlined">close</div>
         <div>Annulla</div>
@@ -131,14 +119,3 @@
         <div>{{data.spell ? 'Modifica' : 'Aggiungi'}}</div>
     </button>
 </div>
-<!-- <div mat-dialog-actions align="end" *ngIf="isMobile">
-    <button mat-icon-button mat-dialog-close>
-        <mat-icon>close</mat-icon>
-    </button>
-    <button *ngIf="data.spell" mat-icon-button mat-dialog-close color="warn" (click)="delete()">
-        <mat-icon>delete</mat-icon>
-    </button>
-    <button mat-icon-button color="accent" [disabled]="!form.valid" (click)="confirm()">
-        <mat-icon>{{data.spell ? 'check' : 'add'}}</mat-icon>
-    </button>
-</div> -->
