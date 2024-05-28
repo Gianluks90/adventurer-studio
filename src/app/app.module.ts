@@ -38,7 +38,7 @@ import { ParametriVitaliLevelUpComponent } from './components/form-level-up/sub-
 import { CompetenzeLinguaggiLevelUpComponent } from './components/form-level-up/sub-components/competenze-linguaggi-level-up/competenze-linguaggi-level-up.component';
 import { PrivilegiTrattiLevelUpComponent } from './components/form-level-up/sub-components/privilegi-tratti-level-up/privilegi-tratti-level-up.component';
 import { TrucchettiIncantesimiLevelUpComponent } from './components/form-level-up/sub-components/trucchetti-incantesimi-level-up/trucchetti-incantesimi-level-up.component';
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { CharacterViewStatusComponent } from "./components/character-view/sub-components/character-view-status/character-view-status.component";
 import { PrivilegiTrattiTabViewComponent } from './components/character-view/sub-components/privilegi-tratti-tab-view/privilegi-tratti-tab-view.component';
 import { EquipaggiamentoTabViewComponent } from './components/character-view/sub-components/equipaggiamento-tab-view/equipaggiamento-tab-view.component';
@@ -109,144 +109,130 @@ import { AddAlliesResourcesDialogComponent } from './components/utilities/npcs/a
 import { AddAddonsResourcesDialogComponent } from './components/utilities/npcs/add-addons-resources-dialog/add-addons-resources-dialog.component';
 import { AddOrganizationsResourcesDialogComponent } from './components/utilities/npcs/add-organizations-resources-dialog/add-organizations-resources-dialog.component';
 
-@NgModule({
-  declarations: [
-    // MAIN COMPONENTS
-    AppComponent,
-    AuthComponent,
-    HomePageComponent,
-
-    // VIEWS COMPONENTS
-    SidenavComponent,
-    SettingsDialogComponent,
-
-    // DIALOG COMPONENTS
-    DeleteCharacterDialogComponent,
-    CompleteCharacterDialogComponent,
-    AddCharacterDialogComponent,
-    CharacterListComponent,
-    CompleteLevelUpDialogComponent,
-    AddCampaignDialogComponent,
-    DeleteCampaignDialogComponent,
-    AddSpellDialogComponent,
-    TicketCampaignDialogComponent,
-
-    // UTILITIES COMPONENTS
-    MoneyComponent,
-    SnackbarComponent,
-    DiceComponent,
-    HealthPointDialogComponent,
-    MoneyDialogComponent,
-    InventoryComponent,
-    AddItemDialogComponent,
-    HealthBarComponent,
-    SnackbarDiceComponent,
-    ItemTooltipComponent,
-    EquipmentComponent,
-    ManageEquipDialogComponent,
-    MoneyControllerComponent,
-    EditMoneyControllerDialogComponent,
-    NpcsComponent,
-    AddNpcDialogComponent,
-    AddOrganizationDialogComponent,
-
-    // FORM CREATE COMPONENTS AND SUB-COMPONENTS
-    FormCreateComponent,
-    // sub-components
-    InformazioniBaseComponent,
-    AbilitaComponent,
-    CaratteristicheComponent,
-    EquipaggiamentoComponent,
-    LinguaggiCompetenzeComponent,
-    ParametriVitaliComponent,
-    PrivilegiTrattiComponent,
-    TiriSalvezzaComponent,
-    BackgroundComponent,
-    StoriaComponent,
-    TrucchettiIncantesimiComponent,
-
-    // FORM LEVEL UP COMPONENTS AND SUB-COMPONENTS
-    FormLevelUpComponent,
-    // sub-components
-    InformazioniBaseLevelUpComponent,
-    CaratteristicheLevelUpComponent,
-    TiriSalvezzaLevelUpComponent,
-    CompetenzeAbilitaLevelUpComponent,
-    ParametriVitaliLevelUpComponent,
-    CompetenzeLinguaggiLevelUpComponent,
-    PrivilegiTrattiLevelUpComponent,
-    TrucchettiIncantesimiLevelUpComponent,
-
-    // CHARACTER VIEW COMPONENT AND SUB-COMPONENTS
-    CharacterViewComponent,
-    // sub-components
-    CharacterViewStatusComponent,
-    PrivilegiTrattiTabViewComponent,
-    EquipaggiamentoTabViewComponent,
-    AbilitaTabViewComponent,
-    DescrizioneBackgroundTabViewComponent,
-    TrucchettiIncantesimiTabViewComponent,
-    SettingsTabViewComponent,
-    ItemInfoSheetComponent,
-    AttacchiTabViewComponent,
-    AddAttackDialogComponent,
-
-    // CAMPAIGN COMPONENTS AND SUB-COMPONENTS
-    CampaignListComponent,
-    CampaignViewComponent,
-    // sub-components
-    CampaignCharListComponent,
-    CampaignStoryTabComponent,
-    AddStoryDialogComponent,
-    CampaignSettingsTabComponent,
-    CharacterBottomSheetComponent,
-    CampaignQuestsTabComponent,
-    AddQuestDialogComponent,
-    CampaignEntriesTabComponent,
-    AddEntryDialogComponent,
-    CampaignAchievementsTabComponent,
-    AddAchievementDialogComponent,
-    NewChapterDialogComponent,
-    ArchiveStoryDialogComponent,
-    ArchiveQuestDialogComponent,
-    ArchiveAchievementDialogComponent,
-    CompanionTabViewComponent,
-    CampaignNpcTabComponent,
-    MasterScreenTabComponent,
-    RemoveCharDialogComponent,
-    CampaignInventoryTabComponent,
-    NextSessionDialogComponent,
-    EditStoryDialogComponent,
-    EditPrivilegioTrattoDialogComponent,
-    CampaignCharTabComponent,
-    RemoveCampaignDialogComponent,
-    AddResourceDialogComponent,
-    DescriptionTooltipComponent,
-    InventoryCampaignComponent,
-    ExchangeDialogComponent,
-    ResourcesPageComponent,
-    AddResourceItemDialogComponent,
-    AddResourceSpellDialogComponent,
-    AddAlliesResourcesDialogComponent,
-    AddAddonsResourcesDialogComponent,
-    AddOrganizationsResourcesDialogComponent,
-  ],
-  imports: [
-    SharedModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
-  ],
-  providers: [SidenavService, { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        // MAIN COMPONENTS
+        AppComponent,
+        AuthComponent,
+        HomePageComponent,
+        // VIEWS COMPONENTS
+        SidenavComponent,
+        SettingsDialogComponent,
+        // DIALOG COMPONENTS
+        DeleteCharacterDialogComponent,
+        CompleteCharacterDialogComponent,
+        AddCharacterDialogComponent,
+        CharacterListComponent,
+        CompleteLevelUpDialogComponent,
+        AddCampaignDialogComponent,
+        DeleteCampaignDialogComponent,
+        AddSpellDialogComponent,
+        TicketCampaignDialogComponent,
+        // UTILITIES COMPONENTS
+        MoneyComponent,
+        SnackbarComponent,
+        DiceComponent,
+        HealthPointDialogComponent,
+        MoneyDialogComponent,
+        InventoryComponent,
+        AddItemDialogComponent,
+        HealthBarComponent,
+        SnackbarDiceComponent,
+        ItemTooltipComponent,
+        EquipmentComponent,
+        ManageEquipDialogComponent,
+        MoneyControllerComponent,
+        EditMoneyControllerDialogComponent,
+        NpcsComponent,
+        AddNpcDialogComponent,
+        AddOrganizationDialogComponent,
+        // FORM CREATE COMPONENTS AND SUB-COMPONENTS
+        FormCreateComponent,
+        // sub-components
+        InformazioniBaseComponent,
+        AbilitaComponent,
+        CaratteristicheComponent,
+        EquipaggiamentoComponent,
+        LinguaggiCompetenzeComponent,
+        ParametriVitaliComponent,
+        PrivilegiTrattiComponent,
+        TiriSalvezzaComponent,
+        BackgroundComponent,
+        StoriaComponent,
+        TrucchettiIncantesimiComponent,
+        // FORM LEVEL UP COMPONENTS AND SUB-COMPONENTS
+        FormLevelUpComponent,
+        // sub-components
+        InformazioniBaseLevelUpComponent,
+        CaratteristicheLevelUpComponent,
+        TiriSalvezzaLevelUpComponent,
+        CompetenzeAbilitaLevelUpComponent,
+        ParametriVitaliLevelUpComponent,
+        CompetenzeLinguaggiLevelUpComponent,
+        PrivilegiTrattiLevelUpComponent,
+        TrucchettiIncantesimiLevelUpComponent,
+        // CHARACTER VIEW COMPONENT AND SUB-COMPONENTS
+        CharacterViewComponent,
+        // sub-components
+        CharacterViewStatusComponent,
+        PrivilegiTrattiTabViewComponent,
+        EquipaggiamentoTabViewComponent,
+        AbilitaTabViewComponent,
+        DescrizioneBackgroundTabViewComponent,
+        TrucchettiIncantesimiTabViewComponent,
+        SettingsTabViewComponent,
+        ItemInfoSheetComponent,
+        AttacchiTabViewComponent,
+        AddAttackDialogComponent,
+        // CAMPAIGN COMPONENTS AND SUB-COMPONENTS
+        CampaignListComponent,
+        CampaignViewComponent,
+        // sub-components
+        CampaignCharListComponent,
+        CampaignStoryTabComponent,
+        AddStoryDialogComponent,
+        CampaignSettingsTabComponent,
+        CharacterBottomSheetComponent,
+        CampaignQuestsTabComponent,
+        AddQuestDialogComponent,
+        CampaignEntriesTabComponent,
+        AddEntryDialogComponent,
+        CampaignAchievementsTabComponent,
+        AddAchievementDialogComponent,
+        NewChapterDialogComponent,
+        ArchiveStoryDialogComponent,
+        ArchiveQuestDialogComponent,
+        ArchiveAchievementDialogComponent,
+        CompanionTabViewComponent,
+        CampaignNpcTabComponent,
+        MasterScreenTabComponent,
+        RemoveCharDialogComponent,
+        CampaignInventoryTabComponent,
+        NextSessionDialogComponent,
+        EditStoryDialogComponent,
+        EditPrivilegioTrattoDialogComponent,
+        CampaignCharTabComponent,
+        RemoveCampaignDialogComponent,
+        AddResourceDialogComponent,
+        DescriptionTooltipComponent,
+        InventoryCampaignComponent,
+        ExchangeDialogComponent,
+        ResourcesPageComponent,
+        AddResourceItemDialogComponent,
+        AddResourceSpellDialogComponent,
+        AddAlliesResourcesDialogComponent,
+        AddAddonsResourcesDialogComponent,
+        AddOrganizationsResourcesDialogComponent,
+    ],
+    bootstrap: [AppComponent], imports: [SharedModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        })], providers: [SidenavService, { provide: MAT_DATE_LOCALE, useValue: 'it-IT' }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
