@@ -1,7 +1,7 @@
 {
   "hosting": {
     "site": "adventurer-studio",
-    "public": "dist/dnd-character-sheet",
+    "public": "dist/dnd-character-sheet/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
