@@ -37,7 +37,7 @@ export class AuthGuardService {
   constructor(private router: Router) { }
 
   public async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    console.log('auth');
+    // console.log('auth');
     
     const auth = getAuth();
     const user = await this.getCurrentUser(auth);

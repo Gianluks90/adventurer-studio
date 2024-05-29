@@ -1,4 +1,4 @@
-@defer (when user && campaignData) {
+@if (user && campaignData && charData) {
     <div class="home-container">
         <div class="header-container">
             <div class="header-info">
@@ -44,12 +44,23 @@
                     </ng-template>
                     <app-campaign-quests-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-quests-tab>
                 </mat-tab>
-                <mat-tab *ngIf="charData.length > 0 && !isOwner" >
-                    <ng-template mat-tab-label>
-                        <img class="player-tab" [src]="selectedChar.informazioniBase.urlImmaginePersonaggio">
-                    </ng-template>
-                    <app-campaign-char-tab [character]="selectedChar"></app-campaign-char-tab>
-                </mat-tab>
+                @if(!isOwner) {
+                    @defer (when charData) {
+                        <mat-tab *ngIf="selectedChar">
+                            <ng-template mat-tab-label>
+                                <img class="player-tab" [src]="selectedChar.informazioniBase.urlImmaginePersonaggio">
+                            </ng-template>
+                            <app-campaign-char-tab [character]="selectedChar"></app-campaign-char-tab>
+                        </mat-tab>
+                    } @loading (minimum 1s) {
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <mat-spinner class="accent" diameter="30"></mat-spinner>
+                            </ng-template>
+                        </mat-tab>
+                    }
+                }
+                
                 <mat-tab>
                     <ng-template mat-tab-label>
                         <img src="./assets/tabs-icons/ally.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab3-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">

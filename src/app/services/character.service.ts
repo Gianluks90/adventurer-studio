@@ -15,7 +15,7 @@ export class CharacterService {
   public user: AdventurerUser | null;
 
   constructor(private firebaseService: FirebaseService) { 
-    this.getSignalCharacters();
+    // this.getSignalCharacters();
     effect(() => {
       this.user = this.firebaseService.userSignal();
     });

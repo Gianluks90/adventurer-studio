@@ -1,152 +1,158 @@
-<div class="char-container">
-    <div as-section-title>Personaggi</div>
-    <ng-template #noCharacters>
-        <div class="no-characters">
-            <div class="empty-text">Non ci sono personaggi iscritti a questa campagna</div>
-        </div>
-    </ng-template>
-    @if (charData && charData.length > 0) {
-    <div class="characters-line" *ngIf="charData && charData.length > 0; else noCharacters">
-        <div class="character-item"
-            *ngFor="let char of charData">
-            <div class="character-header-card">
-                <img class="character-image" [src]="char.informazioniBase.urlImmaginePersonaggio"
-                    [ngClass]="{'dead-hero': char.parametriVitali.puntiFeritaAttuali === 0}">
-                <div class="character-name-container">
-                    <div class="character-name">
-                        @if (isOwnerData) {
-                            <span style="cursor: pointer;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()" (click)="ispirazioneToggle(char)">{{!char.ispirazione ? 'award_star' : 'brightness_empty'}}</span>
-                        } @else {
-                            <span style="cursor: default;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">{{!char.ispirazione ? 'award_star' : 'brightness_empty'}}</span>
-                        }
-                        {{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ?
-                        char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}
-                        
+@defer (when charData) {
+    <div class="char-container">
+        <div as-section-title>Personaggi</div>
+        <ng-template #noCharacters>
+            <div class="no-characters">
+                <div class="empty-text">Non ci sono personaggi iscritti a questa campagna</div>
+            </div>
+        </ng-template>
+        @if (charData && charData.length > 0) {
+        <div class="characters-line" *ngIf="charData && charData.length > 0; else noCharacters">
+            <div class="character-item"
+                *ngFor="let char of charData">
+                <div class="character-header-card">
+                    <img class="character-image" [src]="char.informazioniBase.urlImmaginePersonaggio"
+                        [ngClass]="{'dead-hero': char.parametriVitali.puntiFeritaAttuali === 0}">
+                    <div class="character-name-container">
+                        <div class="character-name">
+                            @if (isOwnerData) {
+                                <span style="cursor: pointer;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()" (click)="ispirazioneToggle(char)">{{!char.ispirazione ? 'award_star' : 'brightness_empty'}}</span>
+                            } @else {
+                                <span style="cursor: default;" [ngClass]="{'inspiration': !char.ispirazione, 'material-no-fill': char.ispirazione}" class="material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">{{!char.ispirazione ? 'award_star' : 'brightness_empty'}}</span>
+                            }
+                            {{char.informazioniBase.nomePersonaggioEsteso !== '' && !isMobile ?
+                            char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio}}
+                            
+                        </div>
+                        <button class="navigate-button" (click)="navigateToChar(char.id)" (mouseover)="tooltip.showTooltip($event, 'center', true, 'apri-scheda-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                            <mat-icon>open_in_new</mat-icon>
+                        </button>
                     </div>
-                    <button class="navigate-button" (click)="navigateToChar(char.id)" (mouseover)="tooltip.showTooltip($event, 'center', true, 'apri-scheda-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                        <mat-icon>open_in_new</mat-icon>
-                    </button>
+                </div>
+                <div class="character-parameters-container">
+                    <!-- <div class="armor-class-label">CA</div>
+                        <div class="armor-class-value">{{char.CA}}</div> -->
+                    <div class="level-value">{{char.informazioniBase.livello}}° LV</div>
+                    <div class="health-points-value"><mat-icon class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'pf-tooltip')" (mouseleave)="tooltip.hideTooltip()">favorite</mat-icon>
+                        {{char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita}}
+                        <span
+                            *ngIf="char.parametriVitali.massimoPuntiFeritaTemporanei > 0">+{{char.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{char.parametriVitali.massimoPuntiFeritaTemporanei}}</span>
+                    </div>
+                    <div class="CA-container" *ngIf="!isMobile">
+                        <mat-icon
+                            class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ca-tooltip')" (mouseleave)="tooltip.hideTooltip()">shield</mat-icon>{{char.CA}}<span
+                            *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span> 
+                            <!-- <span
+                            *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span> -->
+                    </div>
+                    <div class="CA-container" *ngIf="isMobile">
+                        <mat-icon
+                            class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ca-tooltip')" (mouseleave)="tooltip.hideTooltip()">shield</mat-icon>{{calcTotalCA(char.CA, char.shieldCA)}}
+                            <!-- <span
+                            *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span>  -->
+                            <!-- <span
+                            *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span> -->
+                    </div>
+                    <div class="passive-container">
+                        <mat-icon class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'pp-tooltip')" (mouseleave)="tooltip.hideTooltip()">visibility</mat-icon> {{char.percezionePassiva}}
+                        <mat-icon class="passive-icon material-symbols-outlined material-no-fill" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ip-tooltip')" (mouseleave)="tooltip.hideTooltip()">neurology</mat-icon> {{char.intuizionePassiva}}
+                        <mat-icon class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'id-tooltip')" (mouseleave)="tooltip.hideTooltip()">search</mat-icon> {{char.indagarePassiva}}
+                    </div>
+                </div>
+                <!-- <div class="character-skill-container" *ngIf="char.status.userId === partecipantId"> -->
+                    <!-- <div class="skill-line">
+                        <div class="skill">
+                            <div class="skill-title">FOR</div>
+                            <div class="skill-value">{{char.caratteristiche.forza}}</div>
+                            <div class="skill-title">{{calcModifier(char.caratteristiche.forza)}}</div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-title">DES</div>
+                            <div class="skill-value">{{char.caratteristiche.destrezza}}</div>
+                            <div class="skill-title">{{calcModifier(char.caratteristiche.destrezza)}}</div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-title">COS</div>
+                            <div class="skill-value">{{char.caratteristiche.costituzione}}</div>
+                            <div class="skill-title">{{calcModifier(char.caratteristiche.costituzione)}}</div>
+                        </div>
+                    </div>
+                    <div class="skill-line">
+                        <div class="skill">
+                            <div class="skill-title">INT</div>
+                            <div class="skill-value">{{char.caratteristiche.intelligenza}}</div>
+                            <div class="skill-title">{{calcModifier(char.caratteristiche.intelligenza)}}</div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-title">SAG</div>
+                            <div class="skill-value">{{char.caratteristiche.saggezza}}</div>
+                            <div class="skill-title">{{calcModifier(char.caratteristiche.saggezza)}}</div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-title">CAR</div>
+                            <div class="skill-value">{{char.caratteristiche.carisma}}</div>
+                            <div class="skill-title">{{calcModifier(char.caratteristiche.carisma)}}</div>
+                        </div>
+                    </div> -->
+                    <details #detailElement [open]="detailsOpen" as-camp-details class="character-skill-container" *ngIf="char.status.userId === partecipantId" (toggle)="detailsToggle(detailElement)">
+                        <summary as-camp-summary>Mostra info</summary>
+                        <app-character-view-status class="char-sheet" [character]="char" [editMode]="true"></app-character-view-status>
+                    </details>
+                    
+                <!-- </div> -->
+            </div>
+        </div>
+        <div as-section-title>Risorse di gruppo</div>
+        <div class="resource-container">
+            <div class="money-section-title">
+                <div class="money-title">Denaro</div>
+                <!-- <mat-icon *ngIf="isOwnerData" class="passive-icon money-setting-icon material-symbols-outlined"
+                    matTooltip="Assegna denaro" matTooltipPosition="above">settings</mat-icon> -->
+            </div>
+            <div class="moneys">
+                <div class="single-coins-viewer">
+                    <img src="../assets/coins/copper.svg" alt="">
+                    <div>
+                        {{denaroParty.rame}}
+                    </div>
+                </div>
+                <div class="single-coins-viewer">
+                    <img src="../assets/coins/silver.svg" alt="">
+                    <div>
+                        {{denaroParty.argento}}
+                    </div>
+                </div>
+                <div class="single-coins-viewer">
+                    <img src="../assets/coins/electrum.svg" alt="">
+                    <div>
+                        {{denaroParty.electrum}}
+                    </div>
+                </div>
+                <div class="single-coins-viewer">
+                    <img src="../assets/coins/gold.svg" alt="">
+                    <div>
+                        {{denaroParty.oro}}
+                    </div>
+                </div>
+                <div class="single-coins-viewer">
+                    <img src="../assets/coins/platinum.svg" alt="">
+                    <div>
+                        {{denaroParty.platino}}
+                    </div>
                 </div>
             </div>
-            <div class="character-parameters-container">
-                <!-- <div class="armor-class-label">CA</div>
-                    <div class="armor-class-value">{{char.CA}}</div> -->
-                <div class="level-value">{{char.informazioniBase.livello}}° LV</div>
-                <div class="health-points-value"><mat-icon class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'pf-tooltip')" (mouseleave)="tooltip.hideTooltip()">favorite</mat-icon>
-                    {{char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita}}
-                    <span
-                        *ngIf="char.parametriVitali.massimoPuntiFeritaTemporanei > 0">+{{char.parametriVitali.puntiFeritaTemporaneiAttuali}}/{{char.parametriVitali.massimoPuntiFeritaTemporanei}}</span>
-                </div>
-                <div class="CA-container" *ngIf="!isMobile">
-                    <mat-icon
-                        class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ca-tooltip')" (mouseleave)="tooltip.hideTooltip()">shield</mat-icon>{{char.CA}}<span
-                        *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span> 
-                        <!-- <span
-                        *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span> -->
-                </div>
-                <div class="CA-container" *ngIf="isMobile">
-                    <mat-icon
-                        class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ca-tooltip')" (mouseleave)="tooltip.hideTooltip()">shield</mat-icon>{{calcTotalCA(char.CA, char.shieldCA)}}
-                        <!-- <span
-                        *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span>  -->
-                        <!-- <span
-                        *ngIf="!char.ispirazione" class="inspiration material-symbols-outlined" (mouseover)="tooltip.showTooltip($event, 'center', true, 'is-tooltip')" (mouseleave)="tooltip.hideTooltip()">fiber_manual_record</span> -->
-                </div>
-                <div class="passive-container">
-                    <mat-icon class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'pp-tooltip')" (mouseleave)="tooltip.hideTooltip()">visibility</mat-icon> {{char.percezionePassiva}}
-                    <mat-icon class="passive-icon material-symbols-outlined material-no-fill" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ip-tooltip')" (mouseleave)="tooltip.hideTooltip()">neurology</mat-icon> {{char.intuizionePassiva}}
-                    <mat-icon class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'id-tooltip')" (mouseleave)="tooltip.hideTooltip()">search</mat-icon> {{char.indagarePassiva}}
-                </div>
-            </div>
-            <!-- <div class="character-skill-container" *ngIf="char.status.userId === partecipantId"> -->
-                <!-- <div class="skill-line">
-                    <div class="skill">
-                        <div class="skill-title">FOR</div>
-                        <div class="skill-value">{{char.caratteristiche.forza}}</div>
-                        <div class="skill-title">{{calcModifier(char.caratteristiche.forza)}}</div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-title">DES</div>
-                        <div class="skill-value">{{char.caratteristiche.destrezza}}</div>
-                        <div class="skill-title">{{calcModifier(char.caratteristiche.destrezza)}}</div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-title">COS</div>
-                        <div class="skill-value">{{char.caratteristiche.costituzione}}</div>
-                        <div class="skill-title">{{calcModifier(char.caratteristiche.costituzione)}}</div>
-                    </div>
-                </div>
-                <div class="skill-line">
-                    <div class="skill">
-                        <div class="skill-title">INT</div>
-                        <div class="skill-value">{{char.caratteristiche.intelligenza}}</div>
-                        <div class="skill-title">{{calcModifier(char.caratteristiche.intelligenza)}}</div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-title">SAG</div>
-                        <div class="skill-value">{{char.caratteristiche.saggezza}}</div>
-                        <div class="skill-title">{{calcModifier(char.caratteristiche.saggezza)}}</div>
-                    </div>
-                    <div class="skill">
-                        <div class="skill-title">CAR</div>
-                        <div class="skill-value">{{char.caratteristiche.carisma}}</div>
-                        <div class="skill-title">{{calcModifier(char.caratteristiche.carisma)}}</div>
-                    </div>
-                </div> -->
-                <details #detailElement [open]="detailsOpen" as-camp-details class="character-skill-container" *ngIf="char.status.userId === partecipantId" (toggle)="detailsToggle(detailElement)">
-                    <summary as-camp-summary>Mostra info</summary>
-                    <app-character-view-status class="char-sheet" [character]="char" [editMode]="true"></app-character-view-status>
-                </details>
-                
-            <!-- </div> -->
         </div>
+        <div class="resource-container" *ngIf="charData">
+            <div class="money-title">Ispirazione <div class="inspiration material-symbols-outlined">award_star</div></div>
+            <div class="ispirazione-value">{{ispirazioneParty}} / {{charData.length}}</div>
+        </div>
+        }
     </div>
-    <div as-section-title>Risorse di gruppo</div>
-    <div class="resource-container">
-        <div class="money-section-title">
-            <div class="money-title">Denaro</div>
-            <!-- <mat-icon *ngIf="isOwnerData" class="passive-icon money-setting-icon material-symbols-outlined"
-                matTooltip="Assegna denaro" matTooltipPosition="above">settings</mat-icon> -->
-        </div>
-        <div class="moneys">
-            <div class="single-coins-viewer">
-                <img src="../assets/coins/copper.svg" alt="">
-                <div>
-                    {{denaroParty.rame}}
-                </div>
-            </div>
-            <div class="single-coins-viewer">
-                <img src="../assets/coins/silver.svg" alt="">
-                <div>
-                    {{denaroParty.argento}}
-                </div>
-            </div>
-            <div class="single-coins-viewer">
-                <img src="../assets/coins/electrum.svg" alt="">
-                <div>
-                    {{denaroParty.electrum}}
-                </div>
-            </div>
-            <div class="single-coins-viewer">
-                <img src="../assets/coins/gold.svg" alt="">
-                <div>
-                    {{denaroParty.oro}}
-                </div>
-            </div>
-            <div class="single-coins-viewer">
-                <img src="../assets/coins/platinum.svg" alt="">
-                <div>
-                    {{denaroParty.platino}}
-                </div>
-            </div>
-        </div>
+} @loading (minimum 1s) {
+    <div class="loading-container">
+        <mat-spinner diameter="30" color="accent"></mat-spinner> Caricamento...
     </div>
-    <div class="resource-container" *ngIf="charData">
-        <div class="money-title">Ispirazione <div class="inspiration material-symbols-outlined">award_star</div></div>
-        <div class="ispirazione-value">{{ispirazioneParty}} / {{charData.length}}</div>
-    </div>
-    }
-</div>
+}
 
 <app-description-tooltip id="pf-tooltip" info="puntiFerita" *ngIf="tooltip.show && tooltip.id === 'pf-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>
 <app-description-tooltip id="ca-tooltip" info="CA" *ngIf="tooltip.show && tooltip.id === 'ca-tooltip'" [ngStyle]="{'top.px': tooltip.tooltipPosition.top, 'left.px': tooltip.tooltipPosition.left}"></app-description-tooltip>

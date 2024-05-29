@@ -4,7 +4,6 @@ import { CharacterService } from 'src/app/services/character.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { DiceComponent } from '../utilities/dice/dice.component';
 import { DddiceService } from 'src/app/services/dddice.service';
-import { getAuth } from 'firebase/auth';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
@@ -45,6 +44,15 @@ export class CharacterViewComponent {
 
     effect(() => {
       this.user = this.firebaseService.userSignal();
+      if (!this.user) return;
+      this.characterService.getCharacterSignalById(this.charId);
+    });
+
+    effect(() => {
+      this.character = this.characterService.character();
+      if (!this.character) return;
+      this.verifyEditMode();
+      this.calcCA();
     });
 
     if (window.location.href.includes('campaign-view/')) {
@@ -57,14 +65,6 @@ export class CharacterViewComponent {
     if (this.charId === '' && !window.location.href.includes('campaign-view')) {
       this.charId = window.location.href.split('/').pop();
     }
-    this.characterService.getCharacterSignalById(this.charId);
-    effect(() => {
-      this.character = this.characterService.character();
-      if (this.character) {
-        this.verifyEditMode();
-        this.calcCA();
-      }
-    });
   }
 
   @Input() public set characterId(id: string) {
@@ -80,10 +80,6 @@ export class CharacterViewComponent {
   }
 
   private verifyEditMode() {
-    if (!this.character) {
-      return;
-    }
-    // const userId = getAuth().currentUser.uid;
     if (this.user) {
       if (this.user.id === this.character.status.userId) {
         this.editMode = true;

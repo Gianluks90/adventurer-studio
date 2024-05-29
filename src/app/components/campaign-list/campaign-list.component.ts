@@ -17,7 +17,6 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 export class CampaignListComponent {
 
   public user: AdventurerUser | null;
-  public menuIcon = 'menu';
   public ownedCampaigns: any[] | null;
   public partecipantCampaigns: any[] | null;
   public today: Date = new Date();
@@ -26,27 +25,15 @@ export class CampaignListComponent {
     effect(() => {
       this.user = this.firebaseService.userSignal();
       if (this.user) {
-        console.log('User logged in: ', this.user);
-        
         if (!this.ownedCampaigns || !this.partecipantCampaigns) {
           const requests = [this.campaignService.getCampaignsByOwnerID(this.user.id), this.campaignService.getCampaignsByPartecipantID(this.user.id)];
           Promise.all(requests).then((results) => {
-            console.log('User campaigns: ', results);
-            
             this.ownedCampaigns = results[0] || [];
             this.partecipantCampaigns = results[1] || [];
             this.sortCampaignsByLastUpdate(this.ownedCampaigns);
             this.sortCampaignsByLastUpdate(this.partecipantCampaigns);
           });
         }
-        // this.campaignService.getUserCampaigns().then((result) => {
-        //   console.log('User campaigns: ', result);
-          
-        //   this.ownedCampaigns = result.asOwner;
-        //   this.partecipantCampaigns = result.asPartecipant;
-        //   this.sortCampaignsByLastUpdate(this.ownedCampaigns);
-        //   this.sortCampaignsByLastUpdate(this.partecipantCampaigns);
-        // });
       }
     });
   }

@@ -242,3 +242,10 @@
       flex-wrap: wrap;
     }
   }
+
+  .loading-container {
+    display: flex;
+    font-size: medium;
+    gap: 8px;
+    align-items: center;
+  }

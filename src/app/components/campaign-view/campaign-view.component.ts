@@ -20,6 +20,7 @@ import { AdventurerUser } from 'src/app/models/adventurerUser';
 })
 export class CampaignViewComponent {
   public user: AdventurerUser | null;
+
   public campaignData: any;
   public charData: any[] = [];
   public isOwner: boolean = false;
@@ -36,54 +37,103 @@ export class CampaignViewComponent {
     private charService: CharacterService,
     public tooltip: DescriptionTooltipService) {
 
-    const id = window.location.href.split('campaign-view/').pop();
-    this.campaignService.getSignalSingleCampaing(id);
     effect(() => {
       this.user = this.firebaseService.userSignal();
-      if (this.user) {
-        this.campaignData = this.campaignService.campaigns();
-        this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
-        if (this.campaignData) {
-          this.campaignData.id = id;
-          this.calcSessionNumber();
-          this.isOwner = this.user.id === this.campaignData.ownerId;
-          if (!this.isOwner) {
-            const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === this.user.id);
-            if (!alreadyJoined) {
-              this.matDialog.open(TicketCampaignDialogComponent, {
-                width: window.innerWidth < 768 ? '90%' : '60%',
-                autoFocus: false,
-                disableClose: true,
-              }).afterClosed().subscribe((result) => {
-                if (result && result.status === 'success') {
-                  window.location.reload();
-                }
-              });
+      if (!this.user) return;
+      this.charService.getSignalCharacters();
+    });
+
+    effect(() => {
+      this.charData = this.charService.campaignCharacters();
+      if (!this.charData && !this.user) return;
+
+      const id = window.location.href.split('campaign-view/').pop();
+      this.charData = this.charData.filter((char: any) => char.campaignId === id);
+      this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
+      this.charData.forEach((char) => {
+        if (char.status.userId === this.user.id) {
+          this.selectedChar = char;
+        }
+      });
+
+      this.campaignService.getSignalSingleCampaing(id);
+    });
+
+    effect(() => {
+      const campaigns = this.campaignService.campaigns();
+      if (campaigns.length <= 0) return;
+
+      const id = window.location.href.split('campaign-view/').pop();
+      this.campaignData = campaigns.find((campaign: any) => campaign.id === id);
+      if (!this.campaignData) return;
+      this.campaignData.id = id;
+      this.calcSessionNumber();
+      this.isOwner = this.user.id === this.campaignData.ownerId;
+      if (!this.isOwner) {
+        const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === this.user.id);
+        if (!alreadyJoined) {
+          this.matDialog.open(TicketCampaignDialogComponent, {
+            width: window.innerWidth < 768 ? '90%' : '60%',
+            autoFocus: false,
+            disableClose: true,
+          }).afterClosed().subscribe((result) => {
+            if (result && result.status === 'success') {
+              window.location.reload();
             }
-          }
+          });
         }
       }
     });
-    effect(() => {
-      this.user = this.firebaseService.userSignal();
-      if (this.user) {
-        this.charData = this.charService.campaignCharacters();
-        this.charData = this.charData.filter((char: any) => char.campaignId === id);
-        this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
-        this.charData.forEach((char) => {
-          if (char.status.userId === this.user.id) {
-            this.selectedChar = char;
-          }
-        });
-      }
-    });
+
+    // const id = window.location.href.split('campaign-view/').pop();
+    // this.campaignService.getSignalSingleCampaing(id);
+    // effect(() => {
+    //   this.user = this.firebaseService.userSignal();
+    //   if (this.user) {
+    //     this.campaignData = this.campaignService.campaigns();
+    //     this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
+    //     if (this.campaignData) {
+    //       this.campaignData.id = id;
+    //       this.calcSessionNumber();
+    //       this.isOwner = this.user.id === this.campaignData.ownerId;
+    //       if (!this.isOwner) {
+    //         const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === this.user.id);
+    //         if (!alreadyJoined) {
+    //           this.matDialog.open(TicketCampaignDialogComponent, {
+    //             width: window.innerWidth < 768 ? '90%' : '60%',
+    //             autoFocus: false,
+    //             disableClose: true,
+    //           }).afterClosed().subscribe((result) => {
+    //             if (result && result.status === 'success') {
+    //               window.location.reload();
+    //             }
+    //           });
+    //         }
+    //       }
+    //     }
+    //   }
+    // });
+    // effect(() => {
+    //   this.user = this.firebaseService.userSignal();
+    //   if (this.user) {
+    //     this.charData = this.charService.campaignCharacters();
+    //     this.charData = this.charData.filter((char: any) => char.campaignId === id);
+    //     this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
+    //     this.charData.forEach((char) => {
+    //       if (char.status.userId === this.user.id) {
+    //         this.selectedChar = char;
+    //       }
+    //     });
+    //   }
+    // });
   }
 
   public openSidenav() {
     this.sidenavService.toggle();
   }
 
-  public openDiceSelector(): void {this.diceSelector.open(DiceComponent);
+  public openDiceSelector(): void {
+    this.diceSelector.open(DiceComponent);
   }
 
   private calcSessionNumber() {

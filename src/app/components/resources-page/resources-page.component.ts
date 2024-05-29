@@ -10,6 +10,8 @@ import { AddSpellDialogComponent } from '../character-view/sub-components/trucch
 import { Spell } from 'src/app/models/spell';
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
 import { Item } from 'src/app/models/item';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { AdventurerUser } from 'src/app/models/adventurerUser';
 
 @Component({
   selector: 'app-resources-page',
@@ -18,23 +20,25 @@ import { Item } from 'src/app/models/item';
 })
 export class ResourcesPageComponent {
 
+  public user: AdventurerUser | null;
+
   constructor(
+    private firebaseService: FirebaseService,
     public sidenavService: SidenavService,
     private resService: ResourcesService,
     private dialog: MatDialog,
     public tooltip: DescriptionTooltipService) {
-    const userId: string = getAuth().currentUser.uid;
-    if (userId) {
-      this.resService.getSignalResourcesByUserId(userId);
-      effect(() => {
-        this.resourcesData = this.resService.resources();
-      });
-    }
-  }
+    // const userId: string = getAuth().currentUser.uid;
+    effect(() => {
+      this.user = this.firebaseService.userSignal();
+      if (!this.user) return;
+      this.resService.getSignalResourcesByUserId(this.user.id);
+    });
 
-  ngAfterViewInit() {
-    const userId: string = getAuth().currentUser.uid;
-    this.retryGetUserCharactersAndCampaigns(userId, 5, 5000)
+    effect(() => {
+        this.resourcesData = this.resService.resources();
+        if (this.resourcesData) {
+          this.retryGetUserCharactersAndCampaigns(this.user.id, 5, 5000)
       .then((result) => {
         this.characters = result.characters;
         this.campaigns = result.campaigns;
@@ -42,7 +46,28 @@ export class ResourcesPageComponent {
       .catch((error) => {
         console.error("Failed to fetch user characters and campaigns:", error);
       });
+        }
+    });
+    
+    // if (user) {
+    //   this.resService.getSignalResourcesByUserId(user.id);
+    //   effect(() => {
+    //     this.resourcesData = this.resService.resources();
+    //   });
+    // }
   }
+
+  // ngAfterViewInit() {
+  //   const userId: string = getAuth().currentUser.uid;
+  //   this.retryGetUserCharactersAndCampaigns(userId, 5, 5000)
+  //     .then((result) => {
+  //       this.characters = result.characters;
+  //       this.campaigns = result.campaigns;
+  //     })
+  //     .catch((error) => {
+  //       console.error("Failed to fetch user characters and campaigns:", error);
+  //     });
+  // }
 
   private retryGetUserCharactersAndCampaigns(userId: string, retries: number, delay: number): Promise<any> {
     return new Promise((resolve, reject) => {
