@@ -1,8 +1,9 @@
-import { Injectable, WritableSignal, signal } from '@angular/core';
+import { Injectable, WritableSignal, effect, signal } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { addDoc, arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { FormGroup } from '@angular/forms';
+import { AdventurerUser } from '../models/adventurerUser';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,12 @@ import { FormGroup } from '@angular/forms';
 export class CampaignService {
 
   public campaigns: WritableSignal<any[]> = signal([]);
+  public user: AdventurerUser | null = null;
 
   constructor(private firebaseService: FirebaseService) {
+    effect(() => {
+      this.user = this.firebaseService.userSignal();
+    });
     // const ownerId = getAuth().currentUser!.uid;
     // this.getSignalCampaigns(ownerId);
   }
@@ -52,13 +57,13 @@ export class CampaignService {
   // }
 
   public async addCampaign(infoCampaign: any): Promise<any> {
-    const user = this.firebaseService.user.value!;
-    const newCampaignId = user.id + '-C-' + (user.campaignProgressive + 1);
+    // const user = this.firebaseService.user.value!;
+    const newCampaignId = this.user.id + '-C-' + (this.user.campaignProgressive + 1);
     const docRef = doc(this.firebaseService.database, 'campaigns', newCampaignId);
     return await setDoc(docRef, {
       title: infoCampaign.title,
       password: infoCampaign.password,
-      ownerId: user.id,
+      ownerId: this.user.id,
       dmName: infoCampaign.dmName,
       partecipants: [],
       characters: [],
@@ -82,10 +87,10 @@ export class CampaignService {
         statusMessage: 'Nuova'
       }
     }).then(() => {
-      const userRef = doc(this.firebaseService.database, 'users', user.id);
+      const userRef = doc(this.firebaseService.database, 'users', this.user.id);
       setDoc(userRef, {
         createdCampaigns: arrayUnion(newCampaignId),
-        campaignProgressive: user.campaignProgressive + 1
+        campaignProgressive: this.user.campaignProgressive + 1
       }, { merge: true });
     });
   }
@@ -93,7 +98,7 @@ export class CampaignService {
   public async deleteCampaignById(id: string): Promise<any> {
     const ref = doc(this.firebaseService.database, 'campaigns', id);
     return await deleteDoc(ref).then(() => {
-      const userRef = doc(this.firebaseService.database, 'users', this.firebaseService.user.value!.id);
+      const userRef = doc(this.firebaseService.database, 'users', this.user.id);
       setDoc(userRef, {
         createdCampaigns: arrayRemove(id)
       }, { merge: true });
@@ -101,9 +106,9 @@ export class CampaignService {
   }
 
   public async getUserCampaigns(): Promise<any> {
-    const user = getAuth().currentUser!;
-    const asOwner = await this.getCampaignsByOwnerID(user.uid);
-    const asPartecipant = await this.getCampaignsByPartecipantID(user.uid);
+    // this.user = this.firebaseService.userSignal();
+    const asOwner = await this.getCampaignsByOwnerID(this.user.id);
+    const asPartecipant = await this.getCampaignsByPartecipantID(this.user.id);
     return {
       asOwner: asOwner,
       asPartecipant: asPartecipant
@@ -202,7 +207,7 @@ export class CampaignService {
   public async checkCampaign(id: string, password: string): Promise<boolean> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     const docSnap = await getDoc(docRef);
-    if (docSnap.data()['ownerId'] === this.firebaseService.user.value!.id) {
+    if (docSnap.data()['ownerId'] === this.user.id) {
       return false;
     }
     if (docSnap.exists()) {

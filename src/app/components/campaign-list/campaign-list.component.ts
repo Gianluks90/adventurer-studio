@@ -1,43 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { AddCampaignDialogComponent } from './add-campaign-dialog/add-campaign-dialog.component';
 import { Platform } from '@angular/cdk/platform';
 import { CampaignService } from 'src/app/services/campaign.service';
-import { getAuth } from 'firebase/auth';
 import { DeleteCampaignDialogComponent } from './delete-campaign-dialog/delete-campaign-dialog.component';
 import { TicketCampaignDialogComponent } from './ticket-campaign-dialog/ticket-campaign-dialog.component';
+import { AdventurerUser } from 'src/app/models/adventurerUser';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-campaign-list',
   templateUrl: './campaign-list.component.html',
   styleUrl: './campaign-list.component.scss'
 })
-export class CampaignListComponent implements OnInit {
+export class CampaignListComponent {
 
-  public menuIcon = 'menu';
-  public ownedCampaigns: any[] = [];
-  public partecipantCampaigns: any[] = [];
+  public user: AdventurerUser | null;
+  public ownedCampaigns: any[] | null;
+  public partecipantCampaigns: any[] | null;
   public today: Date = new Date();
 
-  constructor(public sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
-
-  }
-
-  ngOnInit() {
-    const ownerId = getAuth().currentUser.uid;
-    if (ownerId) {
-      this.campaignService.getUserCampaigns().then((result) => {
-        this.ownedCampaigns = result.asOwner;
-        this.partecipantCampaigns = result.asPartecipant;
-        this.sortCampaignsByLastUpdate(this.ownedCampaigns);
-        this.sortCampaignsByLastUpdate(this.partecipantCampaigns);
-      });
-
-      // this.campaignService.getCampaignsByOwnerID(ownerId).then((result) => {
-      //   this.campaigns = result;
-      // })
-    }
+  constructor(public firebaseService: FirebaseService, public sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
+    effect(() => {
+      this.user = this.firebaseService.userSignal();
+      if (this.user) {
+        if (!this.ownedCampaigns || !this.partecipantCampaigns) {
+          const requests = [this.campaignService.getCampaignsByOwnerID(this.user.id), this.campaignService.getCampaignsByPartecipantID(this.user.id)];
+          Promise.all(requests).then((results) => {
+            this.ownedCampaigns = results[0] || [];
+            this.partecipantCampaigns = results[1] || [];
+            this.sortCampaignsByLastUpdate(this.ownedCampaigns);
+            this.sortCampaignsByLastUpdate(this.partecipantCampaigns);
+          });
+        }
+      }
+    });
   }
 
   private sortCampaignsByLastUpdate(list: any[]) {

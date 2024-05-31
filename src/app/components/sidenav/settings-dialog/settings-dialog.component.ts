@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, effect } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AdventurerUser, Role } from 'src/app/models/adventurerUser';
 import { CharacterService } from 'src/app/services/character.service';
 import { DddiceService } from 'src/app/services/dddice.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -21,30 +22,25 @@ export class SettingsDialogComponent {
     rollTheme: ['dungeonscompanion2023-enemy-lp882vo8', Validators.required],
   });
 
+  public user: AdventurerUser | null;
+
   constructor(
-    private dialogRef: MatDialogRef<SettingsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { dddiceToken: string, privateSlug: string },
     public dddice: DddiceService,
     public rollService: RollDiceService,
-    public firebaseService: FirebaseService,
+    private firebaseService: FirebaseService,
     private characterService: CharacterService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder) {
+      effect(() => {
+        this.user = this.firebaseService.userSignal();
+        if (this.user && this.user.role === Role.ADMIN) {
+          this.isAdmin = true;
+        }
+      });
+    }
 
   ngOnInit() {
-    const user = this.firebaseService.user.value!;
-    if (user.id === "1v1WaSUh7LP68D9a4VqCGGmXmDZ2" || user.id === "TghUf9a989N9iMWKTGb0tsAv0L12" || user.id === "n9PxwrkTgUR4yR4sGcfJCpAgIRe2") {
-      this.isAdmin = true;
-    }
     this.getTheme();
-    // if(this.data.dddiceToken) {
-    //   this.dddice.dddiceInit(this.data.dddiceToken).then((dddice) => {
-    //     this.dddice.authenticated.next(true);
-    //     if (this.data.privateSlug) {
-    //       dddice.connect(this.data.privateSlug);
-
-    //     }
-    //   }).catch((error) => { this.dddice.authenticated.next(false); })
-    // }
   }
 
   public getActivationCode() {

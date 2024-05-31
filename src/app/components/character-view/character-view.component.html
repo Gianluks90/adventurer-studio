@@ -1,95 +1,97 @@
-<div class="view-container" *ngIf="character">
-    <div class="view-header">
-        <img class="character-image" *ngIf="character.informazioniBase"
-            [src]="character.informazioniBase.urlImmaginePersonaggio !== ''? character.informazioniBase.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
-        <div class="character-info-container">
-            <div class="character-name">{{!isMobile && character.informazioniBase.nomePersonaggioEsteso !== '' ? character.informazioniBase.nomePersonaggioEsteso :
-                character.informazioniBase.nomePersonaggio}}</div>
-            <!--Quando c'è Breakpoint Observer implementare header dinamico, mostrare alcuni dati in desktop e meno in mobile-->
-            <!-- <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}} <span *ngIf="character.informazioniBase.dettaglioBackground !== ''"> ({{character.informazioniBase.dettaglioBackground}})</span>, {{character.informazioniBase.allineamento}}</span> -->
-            <span>{{character.informazioniBase.razza}} <span
-                    *ngIf="!isMobile && character.informazioniBase.sottorazza !== ''">({{character.informazioniBase.sottorazza}})</span><span
-                    *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">
-                    (</span>{{character.informazioniBase.genere !== '' ? character.informazioniBase.genere : ''}}<span
-                    *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">
-                </span> {{character.informazioniBase.pronomi !== '' ? character.informazioniBase.pronomi : ''}}<span
-                    *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">)</span>,
-                {{character.informazioniBase.allineamento}}<span *ngIf="!isMobile">,
-                    {{character.informazioniBase.background}}<span
-                        *ngIf="character.informazioniBase.dettaglioBackground !== ''">
-                        ({{character.informazioniBase.dettaglioBackground}})</span></span></span>
-            <div *ngFor="let cl of character.informazioniBase.classi">
-                <!-- <div class="character-class">{{cl.nome}} {{cl.livello}}° LV<span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div> -->
-                <div class="character-class">{{cl.nome}} {{cl.livello}}° LV {{cl.sottoclasse !== '' && !isMobile ? cl.sottoclasse : ''}}</div>
+@if (user && character) {
+    <div class="view-container">
+        <div class="view-header">
+            <img class="character-image"
+                [src]="character.informazioniBase.urlImmaginePersonaggio !== ''? character.informazioniBase.urlImmaginePersonaggio : './assets/images/hero-placeholder.png'">
+            <div class="character-info-container">
+                <div class="character-name">{{!isMobile && character.informazioniBase.nomePersonaggioEsteso !== '' ? character.informazioniBase.nomePersonaggioEsteso :
+                    character.informazioniBase.nomePersonaggio}}</div>
+                <!--Quando c'è Breakpoint Observer implementare header dinamico, mostrare alcuni dati in desktop e meno in mobile-->
+                <!-- <span>{{character.informazioniBase.razza}}, {{character.informazioniBase.background}} <span *ngIf="character.informazioniBase.dettaglioBackground !== ''"> ({{character.informazioniBase.dettaglioBackground}})</span>, {{character.informazioniBase.allineamento}}</span> -->
+                <span>{{character.informazioniBase.razza}} <span
+                        *ngIf="!isMobile && character.informazioniBase.sottorazza !== ''">({{character.informazioniBase.sottorazza}})</span><span
+                        *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">
+                        (</span>{{character.informazioniBase.genere !== '' ? character.informazioniBase.genere : ''}}<span
+                        *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">
+                    </span> {{character.informazioniBase.pronomi !== '' ? character.informazioniBase.pronomi : ''}}<span
+                        *ngIf="character.informazioniBase.genere !== '' || character.informazioniBase.pronomi !== ''">)</span>,
+                    {{character.informazioniBase.allineamento}}<span *ngIf="!isMobile">,
+                        {{character.informazioniBase.background}}<span
+                            *ngIf="character.informazioniBase.dettaglioBackground !== ''">
+                            ({{character.informazioniBase.dettaglioBackground}})</span></span></span>
+                <div *ngFor="let cl of character.informazioniBase.classi">
+                    <!-- <div class="character-class">{{cl.nome}} {{cl.livello}}° LV<span *ngIf="cl.sottoclasse != ''">, {{cl.sottoclasse}}</span></div> -->
+                    <div class="character-class">{{cl.nome}} {{cl.livello}}° LV {{cl.sottoclasse !== '' && !isMobile ? cl.sottoclasse : ''}}</div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="view-tabs">
-        <div class="status-container" [ngStyle]="{'background-color': character.status.sheetColor || '#FFFFFF40'}">
-            <app-character-view-status [character]="character" [editMode]="editMode"></app-character-view-status>
+        <div class="view-tabs">
+            <div class="status-container" [ngStyle]="{'background-color': character.status.sheetColor || '#FFFFFF40'}">
+                <app-character-view-status [character]="character" [editMode]="editMode"></app-character-view-status>
+            </div>
+            <mat-tab-group color="accent">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <img src="./assets/tabs-icons/skills.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab1-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                    </ng-template>
+                    <app-abilita-tab-view [character]="character"></app-abilita-tab-view>
+                </mat-tab>
+    
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <img src="./assets/tabs-icons/talents.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab2-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                    </ng-template>
+                    <app-privilegi-tratti-tab-view [character]="character"></app-privilegi-tratti-tab-view>
+                </mat-tab>
+    
+                <mat-tab [disabled]="!editMode">
+                    <ng-template mat-tab-label>
+                        <img src="./assets/tabs-icons/inventory.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab3-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                    </ng-template>
+                    <app-equipaggiamento-tab-view [character]="character"></app-equipaggiamento-tab-view>
+                    <!-- <app-inventory [inventory]="[]"></app-inventory> -->
+                </mat-tab>
+    
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <img src="./assets/tabs-icons/tied-scroll.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab4-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                    </ng-template>
+                    <app-descrizione-background-tab-view
+                        [editMode]="editMode"
+                        [character]="character"></app-descrizione-background-tab-view>
+                </mat-tab>
+    
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <img src="./assets/tabs-icons/ally.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab5-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                    </ng-template>
+                    <app-companion-tab-view [character]="character"></app-companion-tab-view>
+                </mat-tab>
+    
+                <mat-tab [disabled]="!editMode">
+                    <ng-template mat-tab-label>
+                        <img src="./assets/tabs-icons/magic.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab6-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                    </ng-template>
+                    <app-trucchetti-incantesimi-tab-view [character]="character"></app-trucchetti-incantesimi-tab-view>
+                </mat-tab>
+    
+                <mat-tab [disabled]="!editMode">
+                    <ng-template mat-tab-label>
+                        <img src="./assets/tabs-icons/attacks.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab7-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                    </ng-template>
+                    <app-attacchi-tab-view [attacchi]="character.attacchi"></app-attacchi-tab-view>
+                </mat-tab>
+    
+                <mat-tab [disabled]="!editMode">
+                    <ng-template mat-tab-label>
+                        <img src="./assets/tabs-icons/cog.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab8-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
+                    </ng-template>
+                    <app-settings-tab-view [character]="character"></app-settings-tab-view>
+                </mat-tab>
+            </mat-tab-group>
         </div>
-        <mat-tab-group color="accent">
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/skills.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab1-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                </ng-template>
-                <app-abilita-tab-view [character]="character"></app-abilita-tab-view>
-            </mat-tab>
-
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/talents.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab2-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                </ng-template>
-                <app-privilegi-tratti-tab-view [character]="character"></app-privilegi-tratti-tab-view>
-            </mat-tab>
-
-            <mat-tab [disabled]="!editMode">
-                <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/inventory.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab3-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                </ng-template>
-                <app-equipaggiamento-tab-view [character]="character"></app-equipaggiamento-tab-view>
-                <!-- <app-inventory [inventory]="[]"></app-inventory> -->
-            </mat-tab>
-
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/tied-scroll.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab4-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                </ng-template>
-                <app-descrizione-background-tab-view
-                    [editMode]="editMode"
-                    [character]="character"></app-descrizione-background-tab-view>
-            </mat-tab>
-
-            <mat-tab>
-                <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/ally.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab5-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                </ng-template>
-                <app-companion-tab-view [character]="character"></app-companion-tab-view>
-            </mat-tab>
-
-            <mat-tab [disabled]="!editMode">
-                <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/magic.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab6-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                </ng-template>
-                <app-trucchetti-incantesimi-tab-view [character]="character"></app-trucchetti-incantesimi-tab-view>
-            </mat-tab>
-
-            <mat-tab [disabled]="!editMode">
-                <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/attacks.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab7-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                </ng-template>
-                <app-attacchi-tab-view [attacchi]="character.attacchi"></app-attacchi-tab-view>
-            </mat-tab>
-
-            <mat-tab [disabled]="!editMode">
-                <ng-template mat-tab-label>
-                    <img src="./assets/tabs-icons/cog.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab8-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
-                </ng-template>
-                <app-settings-tab-view [character]="character"></app-settings-tab-view>
-            </mat-tab>
-        </mat-tab-group>
     </div>
-</div>
+}
 
 <div as-bottom-buttons-container as-bottom-left id="menu-button" *ngIf="!inCampaign">
     <button as-bottom-btn (click)="openSidenav()" (mouseover)="tooltip.showTooltip($event, 'up-right', true, 'menu-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">

@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { getAuth } from 'firebase/auth';
+import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { CharacterService } from 'src/app/services/character.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 export interface Character {
   name: string;
@@ -18,7 +20,7 @@ export interface Character {
 })
 export class TicketCampaignDialogComponent {
 
-
+  public user: AdventurerUser | null;
   public checked: boolean = false;
   public characters: Character[] = [];
 
@@ -31,13 +33,23 @@ export class TicketCampaignDialogComponent {
     selected: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<TicketCampaignDialogComponent>, private campaignService: CampaignService, private characterService: CharacterService, private router: Router) { }
+  constructor(
+    private fb: FormBuilder, 
+    public dialogRef: MatDialogRef<TicketCampaignDialogComponent>, 
+    private campaignService: CampaignService, 
+    private characterService: CharacterService, 
+    private router: Router, 
+    private firebaseService: FirebaseService) {
+    effect(() => {
+      this.user = this.firebaseService.userSignal();
+    });
+  }
 
   public checkForm() {
     this.campaignService.checkCampaign(this.campForm.value.id, this.campForm.value.password).then((result) => {
       if (result) {
         this.checked = true;
-        this.characterService.getCharactersByUserId(getAuth().currentUser.uid).then((result) => {
+        this.characterService.getCharactersByUserId(this.user.id).then((result) => {
           result.map((character) => {
             if (character.campaignId !== '') return;
             this.characters.push({
@@ -54,9 +66,8 @@ export class TicketCampaignDialogComponent {
   }
 
   public confirm(): void {
-    const userId = getAuth().currentUser.uid;
-    const heroId = this.charForm.value.selected;
-    this.campaignService.subscribeToCampaign(this.campForm.value.id, userId, heroId).then(() => {
+    const charId = this.charForm.value.selected;
+    this.campaignService.subscribeToCampaign(this.campForm.value.id, this.user.id, charId).then(() => {
       this.dialogRef.close({
         status: 'success'
       });

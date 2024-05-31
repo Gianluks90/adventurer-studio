@@ -45,7 +45,7 @@ export class ResourcesService {
       spells: [],
       items: [],
       status: {
-        limit: userId === 'VW7xs0JqZrf5TIvpIqoE6lDviXf2' ? -1 : 100 // 100 is the default value, -1 unlimited
+        limit: 100 // 100 is the default value, -1 unlimited
       }
     })
   }

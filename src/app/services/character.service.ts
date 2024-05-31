@@ -1,18 +1,24 @@
-import { Injectable, WritableSignal, signal } from '@angular/core';
+import { Injectable, WritableSignal, effect, signal } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { FormGroup } from '@angular/forms';
 import { arrayRemove, arrayUnion, collection, deleteDoc, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { Item } from '../models/item';
 import { Spell } from '../models/spell';
+import { AdventurerUser } from '../models/adventurerUser';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterService {
 
+  public user: AdventurerUser | null;
+
   constructor(private firebaseService: FirebaseService) { 
-    this.getSignalCharacters();
+    // this.getSignalCharacters();
+    effect(() => {
+      this.user = this.firebaseService.userSignal();
+    });
   }
 
   public campaignCharacters: WritableSignal<any[]> = signal([]);
@@ -100,8 +106,7 @@ export class CharacterService {
   }
 
   public async createCharacter(form: FormGroup): Promise<any> {
-    const user = this.firebaseService.user.value!;
-    const newCharacterId = user.id + '-' + (user.progressive + 1);
+    const newCharacterId = this.user.id + '-' + (this.user.progressive + 1);
     const docRef = doc(this.firebaseService.database, 'characters', newCharacterId);
     return await setDoc(docRef, {
       ...form.value,
@@ -110,16 +115,16 @@ export class CharacterService {
       status: {
         creationDate: new Date(),
         lastUpdateDate: new Date(),
-        userId: user.id,
-        author: user.displayName,
+        userId: this.user.id,
+        author: this.user.displayName,
         statusCode: 0,
         sheetColor: '#FFFFFF40'
       }
     }).then(() => {
-      const userRef = doc(this.firebaseService.database, 'users', user.id);
+      const userRef = doc(this.firebaseService.database, 'users', this.user.id);
       setDoc(userRef, {
         characters: arrayUnion(newCharacterId),
-        progressive: user.progressive + 1
+        progressive: this.user.progressive + 1
       }, { merge: true });
     });
   }
@@ -127,7 +132,7 @@ export class CharacterService {
   public async deleteCharacterById(id: string): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await deleteDoc(docRef).then(() => {
-      const userRef = doc(this.firebaseService.database, 'users', this.firebaseService.user.value!.id);
+      const userRef = doc(this.firebaseService.database, 'users', this.user.id);
       setDoc(userRef, {
         characters: arrayRemove(id)
       }, { merge: true });

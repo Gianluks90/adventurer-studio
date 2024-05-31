@@ -10,6 +10,8 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { DiceComponent } from '../utilities/dice/dice.component';
 import { NextSessionDialogComponent } from './next-session-dialog/next-session-dialog.component';
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
+import { AdventurerUser } from 'src/app/models/adventurerUser';
 
 @Component({
   selector: 'app-campaign-view',
@@ -17,6 +19,8 @@ import { DescriptionTooltipService } from '../utilities/description-tooltip/desc
   styleUrl: './campaign-view.component.scss'
 })
 export class CampaignViewComponent {
+  public user: AdventurerUser | null;
+
   public campaignData: any;
   public charData: any[] = [];
   public isOwner: boolean = false;
@@ -25,60 +29,103 @@ export class CampaignViewComponent {
   public today = new Date();
 
   constructor(
+    private firebaseService: FirebaseService,
     private diceSelector: MatBottomSheet,
     private campaignService: CampaignService,
     private sidenavService: SidenavService,
     private matDialog: MatDialog,
-    private platform: Platform,
     private charService: CharacterService,
     public tooltip: DescriptionTooltipService) {
 
-    const id = window.location.href.split('campaign-view/').pop();
-    this.campaignService.getSignalSingleCampaing(id);
     effect(() => {
-      this.campaignData = this.campaignService.campaigns();
-      this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
-      if (this.campaignData) {
-        this.campaignData.id = id;
-        this.calcSessionNumber();
-        // if (this.campaignData.dddiceSlug && this.campaignData.dddiceSlug !== '') {
-        //   this.firebaseService.getUserById(getAuth().currentUser.uid).then((user) => {
-        //     this.dddiceService.dddiceCampaignInit(user.data()['dddiceToken']).then((dddice) => {
-        //       dddice.connect(this.campaignData.dddiceSlug);
-        //     });
-        //   });
-        // }
-
-        const userId = getAuth().currentUser?.uid;
-        this.isOwner = userId === this.campaignData.ownerId;
-        if (!this.isOwner) {
-          const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === getAuth().currentUser?.uid);
-          if (!alreadyJoined) {
-            this.matDialog.open(TicketCampaignDialogComponent, {
-              width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
-              autoFocus: false,
-              disableClose: true,
-            }).afterClosed().subscribe((result) => {
-              if (result && result.status === 'success') {
-                window.location.reload();
-              }
-            });
-          }
-        }
-      }
+      this.user = this.firebaseService.userSignal();
+      if (!this.user) return;
+      this.charService.getSignalCharacters();
     });
+
     effect(() => {
       this.charData = this.charService.campaignCharacters();
+      if (!this.charData && !this.user) return;
+
+      const id = window.location.href.split('campaign-view/').pop();
       this.charData = this.charData.filter((char: any) => char.campaignId === id);
       this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
-      // this.partecipantIndex = this.charData.findIndex((char: any) => char.status.userId === getAuth().currentUser?.uid);
-      const userId = getAuth().currentUser.uid;
       this.charData.forEach((char) => {
-        if (char.status.userId === userId) {
+        if (char.status.userId === this.user.id) {
           this.selectedChar = char;
         }
       });
+
+      this.campaignService.getSignalSingleCampaing(id);
     });
+
+    effect(() => {
+      const campaigns = this.campaignService.campaigns();
+      if (campaigns.length <= 0) return;
+
+      const id = window.location.href.split('campaign-view/').pop();
+      this.campaignData = campaigns.find((campaign: any) => campaign.id === id);
+      if (!this.campaignData) return;
+      this.campaignData.id = id;
+      this.calcSessionNumber();
+      this.isOwner = this.user.id === this.campaignData.ownerId;
+      if (!this.isOwner) {
+        const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === this.user.id);
+        if (!alreadyJoined) {
+          this.matDialog.open(TicketCampaignDialogComponent, {
+            width: window.innerWidth < 768 ? '90%' : '60%',
+            autoFocus: false,
+            disableClose: true,
+          }).afterClosed().subscribe((result) => {
+            if (result && result.status === 'success') {
+              window.location.reload();
+            }
+          });
+        }
+      }
+    });
+
+    // const id = window.location.href.split('campaign-view/').pop();
+    // this.campaignService.getSignalSingleCampaing(id);
+    // effect(() => {
+    //   this.user = this.firebaseService.userSignal();
+    //   if (this.user) {
+    //     this.campaignData = this.campaignService.campaigns();
+    //     this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
+    //     if (this.campaignData) {
+    //       this.campaignData.id = id;
+    //       this.calcSessionNumber();
+    //       this.isOwner = this.user.id === this.campaignData.ownerId;
+    //       if (!this.isOwner) {
+    //         const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === this.user.id);
+    //         if (!alreadyJoined) {
+    //           this.matDialog.open(TicketCampaignDialogComponent, {
+    //             width: window.innerWidth < 768 ? '90%' : '60%',
+    //             autoFocus: false,
+    //             disableClose: true,
+    //           }).afterClosed().subscribe((result) => {
+    //             if (result && result.status === 'success') {
+    //               window.location.reload();
+    //             }
+    //           });
+    //         }
+    //       }
+    //     }
+    //   }
+    // });
+    // effect(() => {
+    //   this.user = this.firebaseService.userSignal();
+    //   if (this.user) {
+    //     this.charData = this.charService.campaignCharacters();
+    //     this.charData = this.charData.filter((char: any) => char.campaignId === id);
+    //     this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
+    //     this.charData.forEach((char) => {
+    //       if (char.status.userId === this.user.id) {
+    //         this.selectedChar = char;
+    //       }
+    //     });
+    //   }
+    // });
   }
 
   public openSidenav() {
@@ -86,10 +133,6 @@ export class CampaignViewComponent {
   }
 
   public openDiceSelector(): void {
-    // this.firebaseService.getUserById(this.campaignData.ownerId).then((user) => {
-    //   this.dddiceService.connectPrivateRoom(user.data()['dddiceToken'], user.data()['privateSlug']);
-    // });
-    // this.dddiceService.dddice.connect(this.campaignData.dddiceSlug);
     this.diceSelector.open(DiceComponent);
   }
 
@@ -103,7 +146,7 @@ export class CampaignViewComponent {
 
   public openNextSessionDialog() {
     this.matDialog.open(NextSessionDialogComponent, {
-      width: window.innerWidth < 600 ? '80%' : '30%',
+      width: window.innerWidth < 768 ? '90%' : '30%',
       autoFocus: false,
     });
   }
