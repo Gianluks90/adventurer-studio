@@ -395,6 +395,19 @@ button[as-bottom-btn] {
   }
 }
 
+button[as-bottom-btn]:hover {
+  opacity: 0.9;
+}
+
+button[as-bottom-btn][disabled] {
+  cursor: default;
+  opacity: 0.5;
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+
 @media screen and (max-width: 768px) {
   div[as-bottom-buttons-container][as-bottom-left] {
     left: 8px;
@@ -408,10 +421,6 @@ button[as-bottom-btn] {
 button[as-bottom-btn][disabled] {
   cursor: default;
   opacity: 0.5;
-}
-
-button[as-bottom-btn]:hover {
-  opacity: 0.9;
 }
 
 // Dettaglio espandibile con icona personalizzata e contenuto ristretto.

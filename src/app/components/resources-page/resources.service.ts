@@ -50,6 +50,24 @@ export class ResourcesService {
     })
   }
 
+  public async resourceReset(userId: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'resources', userId);
+    return await setDoc(docRef, {
+      addons: [],
+      allies: [],
+      organizations: [],
+      spells: [],
+      items: []
+    }, { merge: true })
+  }
+
+  public async resourceResetByType(userId: string, type: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'resources', userId);
+    return await setDoc(docRef, {
+      [type]: []
+    }, { merge: true })
+  }
+
   public async getUserCharactersAndCampaigns(userId: string): Promise<any> {
     const result: any = {
       characters: [],

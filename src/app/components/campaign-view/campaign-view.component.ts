@@ -56,7 +56,9 @@ export class CampaignViewComponent {
         }
       });
 
-      this.campaignService.getSignalSingleCampaing(id);
+      // if (!this.campaignData) {
+        this.campaignService.getSignalSingleCampaing(id);
+      // }
     });
 
     effect(() => {

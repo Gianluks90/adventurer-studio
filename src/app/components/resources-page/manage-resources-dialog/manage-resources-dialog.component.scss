@@ -1,0 +1,69 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.dialog-content {
+    width: 100%;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.description {
+    margin-bottom: 8px;
+    text-align: justify;
+}
+
+.custom-form-field {
+    width: 100%;
+}
+
+mat-form-field {
+    // width: 100% !important;
+    margin-bottom: 12px;
+}
+
+.competenze-label {
+    // font-size: medium;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+    margin-bottom: 8px;
+}
+
+.action-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-step-button {
+    height: 30px;
+    width: 30px;
+}
+
+.resources-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.resource-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.resource-label {
+    font-size: medium;
+    font-weight: bold;
+}

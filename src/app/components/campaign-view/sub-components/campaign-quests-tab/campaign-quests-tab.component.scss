@@ -66,6 +66,27 @@
     cursor: pointer;
 }
 
+.quests-category-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 1500px) {
+    .quests-category-container {
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+
+        &>div[as-subtitle] {
+            display: none;
+        }
+
+        .quest-container {
+            width: 50%;
+        }
+    }
+}
+
 .quest-container {
     margin: 8px 0;
 }

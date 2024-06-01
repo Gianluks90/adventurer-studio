@@ -12,6 +12,7 @@ import { DescriptionTooltipService } from '../utilities/description-tooltip/desc
 import { Item } from 'src/app/models/item';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
+import { ManageResourcesDialogComponent } from './manage-resources-dialog/manage-resources-dialog.component';
 
 @Component({
   selector: 'app-resources-page',
@@ -150,7 +151,7 @@ export class ResourcesPageComponent {
           break;
         case 'inventory':
           char.equipaggiamento.forEach((item) => {
-            if (!this.resourcesData.items.find((i) => i.name === item.name)) {
+            if (!this.resourcesData.items.find((i) => i.id === item.id)) {
               item.quantity = 0;
               item.weared = false;
               this.resourcesData.items.push(item);
@@ -207,7 +208,7 @@ export class ResourcesPageComponent {
           break;
         case 'inventory':
           camp.inventory.forEach((item) => {
-            if (!this.resourcesData.items.find((i) => i.name === item.name)) {
+            if (!this.resourcesData.items.find((i) => i.id === item.id)) {
               this.resourcesData.items.push(item);
               imported++;
             }
@@ -370,5 +371,13 @@ export class ResourcesPageComponent {
         }
       }
     });
+  }
+
+  public openManageResourcesDialog() {
+    this.dialog.open(ManageResourcesDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '50%',
+      autoFocus: false,
+      data: { user: this.user }
+    })
   }
 }

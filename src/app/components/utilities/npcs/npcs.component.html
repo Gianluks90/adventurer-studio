@@ -3,7 +3,8 @@
     <div as-section-title>{{listTitleData !== '' ? listTitleData : 'PNG e Organizzazioni'}}</div>
     <div as-description-text *ngIf="!isOwner">Qui troverai <strong>PNG</strong> (ovvero Personaggi non giocanti) e
         <strong>Organizzazioni</strong> relative alla Campagna in corso. Il tasto di aggiunta (+) permette di
-        trasferire, se non presenti, le info di un PNG o una Organizzazione nella Scheda del proprio Personaggio.</div>
+        trasferire, se non presenti, le info di un PNG o una Organizzazione nella Scheda del proprio Personaggio.
+    </div>
     }
     @if (!isCampaign && isTab) {
     <div as-section-title>Gregari, Evocazioni, Trasformazioni, ecc...</div>
@@ -330,127 +331,134 @@
     } @else {
     <!-- SONO NELLA CAMPAIGN VIEW -->
     @if (!isDM) {
-    <div class="competenze-label">Personaggi non giocanti</div>
-    @if (npcsData.length > 0) {
-    @for (npc of npcsData; track i; let i = $index) {
-    @if (npc.visible || isOwner) {
-    <div class="org-line">
-        @if (npc.reveled) {
-        <img src="./assets/images/unknown.png">
+    <div class="pngs-container">
+        @if (npcsData.length > 0) {
+            <div class="pngs-inner-container">
+                    <div class="competenze-label">Personaggi non giocanti</div>
+            @for (npc of npcsData; track i; let i = $index) {
+            @if (npc.visible || isOwner) {
+            <div class="org-line">
+                @if (npc.reveled) {
+                <img src="./assets/images/unknown.png">
+                } @else {
+                @if (npc.imgUrl !== '') {
+                <img [src]="npc.imgUrl" referrerpolicy="no-referrer">
+                }
+                }
+                <div class="org-title-container">
+                    <div class="org-title">
+                        <span class="org-visibility" *ngIf="!npc.visible">
+                            <mat-icon>visibility_off</mat-icon>
+                        </span> {{npc.name}}
+                    </div>
+                    <div class="org-place">{{npc.lastPlace}}</div>
+                </div>
+                <button as-mini-circle-btn inverted-color class="npc-action-button"
+                    (click)="addToCharSheet('allies', i)" *ngIf="!isOwner && npc.addable">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+                <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="openAddNpcDialog(npc, i)"
+                    *ngIf="isOwner">
+                    <div class="material-symbols-outlined">edit</div>
+                </button>
+            </div>
+            @if (npc.notes !== '' || npc.isDealer || npc.isMerchant) {
+            <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
+                @if (npc.notes !== '') {
+                <div>{{npc.notes}}</div>
+                }
+                @if (npc.relationship || npc.isDealer || npc.isMerchant) {
+                <div class="npc-footer">
+                    @if (npc.isDealer) {
+                    <img src="./assets/npcs/ricettatore.svg" matTooltip="Ricettatore">
+                    }
+                    @if (npc.isMerchant) {
+                    <img src="./assets/npcs/mercante.svg" matTooltip="Mercante">
+                    }
+                    @if (npc.relationship) {
+                    @switch(npc.relationship) {
+                    @case ('Amichevole') {
+                    <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                    }
+                    @case ('Neutrale') {
+                    <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                    }
+                    @case ('Indifferente') {
+                    <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                    }
+                    @case ('Ostile') {
+                    <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                    }
+                    }
+                    }
+                </div>
+                }
+            </div>
+            }
+            }
+            }
+        </div>
         } @else {
-        @if (npc.imgUrl !== '') {
-        <img [src]="npc.imgUrl" referrerpolicy="no-referrer">
+        <div class="empty-list">Nessun PNG presente.</div>
         }
-        }
-        <div class="org-title-container">
-            <div class="org-title">
-                <span class="org-visibility" *ngIf="!npc.visible">
-                    <mat-icon>visibility_off</mat-icon>
-                </span> {{npc.name}}
-            </div>
-            <div class="org-place">{{npc.lastPlace}}</div>
-        </div>
-        <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="addToCharSheet('allies', i)"
-            *ngIf="!isOwner && npc.addable">
-            <div class="material-symbols-outlined">add</div>
-        </button>
-        <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="openAddNpcDialog(npc, i)"
-            *ngIf="isOwner">
-            <div class="material-symbols-outlined">edit</div>
-        </button>
-    </div>
-    @if (npc.notes !== '' || npc.isDealer || npc.isMerchant) {
-    <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
-        @if (npc.notes !== '') {
-        <div>{{npc.notes}}</div>
-        }
-        @if (npc.relationship || npc.isDealer || npc.isMerchant) {
-        <div class="npc-footer">
-            @if (npc.isDealer) {
-            <img src="./assets/npcs/ricettatore.svg" matTooltip="Ricettatore">
-            }
-            @if (npc.isMerchant) {
-            <img src="./assets/npcs/mercante.svg" matTooltip="Mercante">
-            }
-            @if (npc.relationship) {
-            @switch(npc.relationship) {
-            @case ('Amichevole') {
-            <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
-            }
-            @case ('Neutrale') {
-            <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
-            }
-            @case ('Indifferente') {
-            <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
-            }
-            @case ('Ostile') {
-            <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
-            }
-            }
-            }
-        </div>
-        }
-    </div>
-    }
-    }
-    }
-    } @else {
-    <div class="empty-list">Nessun PNG presente.</div>
-    }
-    <div class="competenze-label">Organizazzioni</div>
-    @if (organizationsData.length > 0) {
-    @for (org of organizationsData; track i; let i = $index) {
-    @if (org.visible || isOwner) {
-    <div class="org-line">
-        @if (org.imgUrl !== '') {
-        <img [src]="org.imgUrl" referrerpolicy="no-referrer">
-        }
-        <div class="org-title-container">
-            <div class="org-title">
-                <span class="org-visibility" *ngIf="!org.visible">
-                    <mat-icon>visibility_off</mat-icon>
-                </span> {{org.name}}
-            </div>
-            <div class="org-place">{{org.lastPlace}}</div>
-        </div>
-        <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="addToCharSheet('allies', i)"
-            *ngIf="!isOwner && org.addable">
-            <div class="material-symbols-outlined">add</div>
-        </button>
-        <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="openAddOrganizationDialog(org, i)"
-            *ngIf="isOwner">
-            <div class="material-symbols-outlined">edit</div>
-        </button>
-    </div>
-    <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
-        <div>{{org.notes}}</div>
-        @if (org.relationship) {
-        <div class="npc-footer">
-            @if (org.relationship) {
-            @switch(org.relationship) {
-            @case ('Amichevole') {
-            <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
-            }
-            @case ('Neutrale') {
-            <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
-            }
-            @case ('Indifferente') {
-            <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
-            }
-            @case ('Ostile') {
-            <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
-            }
-            }
-            }
-        </div>
-        }
-    </div>
+        @if (organizationsData.length > 0) {
+            <div class="pngs-inner-container">
+            <div class="competenze-label">Organizazzioni</div>
 
-    }
-    }
-    } @else {
-    <div class="empty-list">Nessun'organizzazione presente.</div>
-    }
+            @for (org of organizationsData; track i; let i = $index) {
+            @if (org.visible || isOwner) {
+            <div class="org-line">
+                @if (org.imgUrl !== '') {
+                <img [src]="org.imgUrl" referrerpolicy="no-referrer">
+                }
+                <div class="org-title-container">
+                    <div class="org-title">
+                        <span class="org-visibility" *ngIf="!org.visible">
+                            <mat-icon>visibility_off</mat-icon>
+                        </span> {{org.name}}
+                    </div>
+                    <div class="org-place">{{org.lastPlace}}</div>
+                </div>
+                <button as-mini-circle-btn inverted-color class="npc-action-button" (click)="addToCharSheet('allies', i)"
+                    *ngIf="!isOwner && org.addable">
+                    <div class="material-symbols-outlined">add</div>
+                </button>
+                <button as-mini-circle-btn inverted-color class="npc-action-button"
+                    (click)="openAddOrganizationDialog(org, i)" *ngIf="isOwner">
+                    <div class="material-symbols-outlined">edit</div>
+                </button>
+            </div>
+            <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
+                <div>{{org.notes}}</div>
+                @if (org.relationship) {
+                <div class="npc-footer">
+                    @if (org.relationship) {
+                    @switch(org.relationship) {
+                    @case ('Amichevole') {
+                    <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                    }
+                    @case ('Neutrale') {
+                    <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                    }
+                    @case ('Indifferente') {
+                    <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                    }
+                    @case ('Ostile') {
+                    <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                    }
+                    }
+                    }
+                </div>
+                }
+            </div>
+    
+            }
+            }
+            </div>
+        } @else {
+        <div class="empty-list">Nessun'organizzazione presente.</div>
+        }
+    </div>
     }
     @if (isDM) {
     <!-- <div class="competenze-label">Schede</div> -->

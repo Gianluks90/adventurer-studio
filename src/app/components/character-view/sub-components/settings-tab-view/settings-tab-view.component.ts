@@ -76,6 +76,10 @@ export class SettingsTabViewComponent {
     const newSheetTitleColor = '#212121';
     this.charService.updateCharacterSheetColorById(this.charData.id, newSheetColor, newSheetTitleColor);
   }
+
+  public togglePrideRule(event: any) {
+    this.charService.updatePrideRule(window.location.href.split('/').pop()!, event.target.checked);
+  }
   public toggleWeightRule(event: any) {
     this.charService.updateWeightRule(window.location.href.split('/').pop()!, event.target.checked);
   }

@@ -20,30 +20,37 @@
 <div as-section-title>Background: {{charData.informazioniBase.background}} <span
         *ngIf="charData.informazioniBase.dettaglioBackground !== ''">
         ({{charData.informazioniBase.dettaglioBackground}})</span></div>
-<details as-details>
-    <summary as-summary>Tratti caratteriali</summary>
-    <div class="bg-description">
-        {{charData.trattiBackground.trattiCaratteriali}}
-    </div>
-</details>
-<details as-details>
-    <summary as-summary>Ideali</summary>
-    <div class="bg-description">
-        {{charData.trattiBackground.ideali}}
-    </div>
-</details>
-<details as-details>
-    <summary as-summary>Legami</summary>
-    <div class="bg-description">
-        {{charData.trattiBackground.legami}}
-    </div>
-</details>
-<details as-details>
-    <summary as-summary>Difetti</summary>
-    <div class="bg-description">
-        {{charData.trattiBackground.difetti}}
-    </div>
-</details>
+        <div class="traits-container">
+            <div class="traits-column">
+                <details as-details>
+                    <summary as-summary>Tratti caratteriali</summary>
+                    <div class="bg-description">
+                        {{charData.trattiBackground.trattiCaratteriali}}
+                    </div>
+                </details>
+                <details as-details>
+                    <summary as-summary>Ideali</summary>
+                    <div class="bg-description">
+                        {{charData.trattiBackground.ideali}}
+                    </div>
+                </details>
+            </div>
+            <div class="traits-column">
+                <details as-details>
+                    <summary as-summary>Legami</summary>
+                    <div class="bg-description">
+                        {{charData.trattiBackground.legami}}
+                    </div>
+                </details>
+                <details as-details>
+                    <summary as-summary>Difetti</summary>
+                    <div class="bg-description">
+                        {{charData.trattiBackground.difetti}}
+                    </div>
+                </details>
+            </div>
+        </div>
+
 <div as-section-title>Ritratto personaggio</div>
 <div class="picture-container">
     <img [src]="charData.informazioniBase.urlImmaginePersonaggio" referrerpolicy="no-referrer">

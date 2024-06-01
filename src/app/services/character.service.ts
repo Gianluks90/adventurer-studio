@@ -184,16 +184,14 @@ export class CharacterService {
   }
 
   // Cambiare i parametri da aggiornare su tutti i PG a piacere prima di lanciare il comando.
-  public async adminCharUpdate(id: string): Promise<any> {
+  public async adminCharUpdate(id: string, equip?: any[]): Promise<any> {
     const ref = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(ref, {
-      // campaignId: ''
       // sets: [],
-      // status: {
-      //   useWeightRule: false,
-      //   useOpacityInventoryRule: false,
-      //   sheetTitleColor: '#212121',
-      // }
+      // equipaggiamento: equip,
+      status: {
+        usePrideRule: true
+      }
     }, { merge: true })
   }
 
@@ -296,6 +294,15 @@ export class CharacterService {
     return await setDoc(docRef, {
       magia: {
         slotIncantesimi: slots
+      }
+    }, { merge: true });
+  }
+
+  public async updatePrideRule(id: string, rule: boolean): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      status: {
+        usePrideRule: rule
       }
     }, { merge: true });
   }

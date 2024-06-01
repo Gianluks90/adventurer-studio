@@ -13,7 +13,7 @@
     color: white;
     display: flex;
     align-items: center;
-    gap: 12px;
+    // gap: 12px;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
     height: 110px;
 }
@@ -32,6 +32,26 @@
     justify-content: center;
     align-items: flex-start;
     gap: 8px;
+    margin-left: 12px;
+}
+
+.name-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    &>.material-symbols-outlined {
+        font-size: x-large;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .name-container {
+        gap: 4px;
+        &>.material-symbols-outlined {
+            font-size: medium;
+        }
+    }
 }
 
 .character-name {
@@ -214,4 +234,49 @@
         max-width: 35%;
         min-width: 35%;
     }
+}
+
+.pride-flag-column {
+    display: flex;
+    width: 10px;
+    height: 100%;
+    flex-direction: column;
+    align-self: flex-end;
+
+    &>div {
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    &>div.red {
+        background-color: red;
+        height: calc(100% / 6);
+    }
+    &>div.orange {
+
+        background-color: orange;
+        height: calc(100% / 6);
+    }
+    &>div.yellow {
+        background-color: yellow;
+        height: calc(100% / 6);
+    }
+    &>div.green {
+        background-color: green;
+        height: calc(100% / 6);
+    }
+    &>div.blue {
+        background-color: blue;
+        height: calc(100% / 6);
+    }
+    &>div.purple {
+        background-color: purple;
+        height: calc(100% / 6);
+    }
+}
+
+.inspired {
+    color: yellow;
+    text-shadow: 0px 0px 8px yellow;
+    cursor: default;
 }

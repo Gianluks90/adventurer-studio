@@ -15,7 +15,7 @@ export class ItemInfoSheetComponent {
   public maxMinDamage: string;
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean },
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean, fromEquip?: boolean },
     private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>,
     private dialog: MatDialog) {
     this.isCampaign = window.location.href.includes('campaign-view');

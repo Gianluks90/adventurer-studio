@@ -57,7 +57,7 @@ export class ExchangeDialogComponent {
   
     items.forEach((item: any) => {
       // Controlla se il receiver ha già l'item
-      const receiverItem = receiver.equipaggiamento?.find((i: any) => i.name === item.name);
+      const receiverItem = receiver.equipaggiamento?.find((i: any) => i.id === item.id);
       if (receiverItem) {
         // Incrementa la quantità se l'item esiste già
         receiverItem.quantity += 1;
@@ -67,7 +67,7 @@ export class ExchangeDialogComponent {
       }
   
       // Trova l'item nel personaggio selezionato e decrementa la quantità
-      const selectedCharItem = this.data.selectedChar.equipaggiamento?.find((i: any) => i.name === item.name);
+      const selectedCharItem = this.data.selectedChar.equipaggiamento?.find((i: any) => i.id === item.id);
       if (selectedCharItem) {
         selectedCharItem.quantity -= 1;
         // if (selectedCharItem.quantity === 0) {

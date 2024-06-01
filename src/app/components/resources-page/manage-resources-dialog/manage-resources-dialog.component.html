@@ -1,0 +1,47 @@
+<div mat-dialog-title class="dialog-title">Gestisci spazio</div>
+<div mat-dialog-content class="dialog-content">
+    <div as-description-text>
+        Utilizza le funzioni successive per liberare dello spazio nella tua collezione di risorse. Puoi liberarti di
+        ogni risorsa oppure scegli una categoria e svuotala. <strong>Attenzione</strong>: questa operazione è irreversibile.
+    </div>
+    <div class="resources-container">
+        <div class="resource-line">
+            <div class="resource-label">Oggetti</div>
+            <button as-mini-circle-btn as-btn-warn (click)="deleteResource('items')">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </div>
+        <div class="resource-line">
+            <div class="resource-label">Incantesimi</div>
+            <button as-mini-circle-btn as-btn-warn (click)="deleteResource('spells')">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </div>
+        <div class="resource-line">
+            <div class="resource-label">PNG</div>
+            <button as-mini-circle-btn as-btn-warn (click)="deleteResource('allies')">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </div>
+        <div class="resource-line">
+            <div class="resource-label">Organizzazioni</div>
+            <button as-mini-circle-btn as-btn-warn (click)="deleteResource('organizations')">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </div>
+        <div class="resource-line">
+            <div class="resource-label">Schede</div>
+            <button as-mini-circle-btn as-btn-warn (click)="deleteResource('addons')">
+                <div class="material-symbols-outlined">delete</div>
+            </button>
+        </div>
+    </div>
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn as-btn-warn mat-dialog-close (click)="deleteAll()">
+        <div class="material-symbols-outlined">delete</div> Elimina tutto
+    </button>
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> Annulla
+    </button>
+</div>

@@ -108,6 +108,7 @@ import { AddResourceSpellDialogComponent } from './components/character-view/sub
 import { AddAlliesResourcesDialogComponent } from './components/utilities/npcs/add-allies-resources-dialog/add-allies-resources-dialog.component';
 import { AddAddonsResourcesDialogComponent } from './components/utilities/npcs/add-addons-resources-dialog/add-addons-resources-dialog.component';
 import { AddOrganizationsResourcesDialogComponent } from './components/utilities/npcs/add-organizations-resources-dialog/add-organizations-resources-dialog.component';
+import { ManageResourcesDialogComponent } from './components/resources-page/manage-resources-dialog/manage-resources-dialog.component';
 
 @NgModule({ declarations: [
         // MAIN COMPONENTS
@@ -222,6 +223,7 @@ import { AddOrganizationsResourcesDialogComponent } from './components/utilities
         AddAlliesResourcesDialogComponent,
         AddAddonsResourcesDialogComponent,
         AddOrganizationsResourcesDialogComponent,
+        ManageResourcesDialogComponent,
     ],
     bootstrap: [AppComponent], imports: [SharedModule,
         BrowserModule,

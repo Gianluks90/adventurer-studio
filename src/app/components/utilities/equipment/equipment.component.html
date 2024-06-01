@@ -7,23 +7,36 @@
         <button as-mini-circle-btn [disabled]="setsData.length <= 1" (click)="changeSet()">
             <div class="material-symbols-outlined">restart_alt</div>
         </button>
-        <button as-mini-circle-btn disabled>
+        <!-- <button as-mini-circle-btn disabled>
             <div class="material-symbols-outlined">info</div>
-        </button>
+        </button> -->
     </div>
 }
 <!-- Elenco equipaggiamento come icone -->
-@if (wearedItems.length > 0) {
+<!-- @if (wearedItems.length > 0) {
     <div class="equip-container">
         @for (i of wearedItems; track $index) {
-            <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}"
-            (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
-            <app-item-tooltip id="item-tooltip-equip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem" class="tooltip" [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
+            @if (i) {
+                <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}"
+                (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()">
+                <app-item-tooltip id="item-tooltip-equip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem" class="tooltip" [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
+            }
         }
     </div>
     } @else {
         <div [ngStyle]="{'color': charData.status.sheetTitleColor}" class="no-equip">Nessun oggetto equipaggiato</div>
-    }
+    } -->
+    <div class="equip-container" [ngStyle]="{'grid-template-columns': wearedItems.length <= 0 ? '1fr' : 'repeat(10, 1fr)'}">
+        @for (i of wearedItems; track idx; let idx = $index) {
+            <!-- @if (i) { -->
+                <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}"
+                (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()" (click)="openInfoSheet(i, idx)">
+                <app-item-tooltip id="item-tooltip-equip" [item]="i" *ngIf="showItemTooltip && i === currentTooltipItem" class="tooltip" [ngStyle]="{'top.px': tooltipPosition.top, 'left.px': tooltipPosition.left}"></app-item-tooltip>
+            <!-- } -->
+        } @empty {
+            <div [ngStyle]="{'color': charData.status.sheetTitleColor}" class="no-equip">Nessun oggetto equipaggiato</div>
+        }
+    </div>
 
 <div class="parameter-grid">
     

@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Damage, Item } from 'src/app/models/item';
 import { ManageEquipDialogComponent } from './manage-equip-dialog/manage-equip-dialog.component';
 import { CharacterService } from 'src/app/services/character.service';
+import { ItemInfoSheetComponent } from '../inventory/item-info-sheet/item-info-sheet.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-equipment',
@@ -11,7 +13,7 @@ import { CharacterService } from 'src/app/services/character.service';
 })
 export class EquipmentComponent {
 
-  constructor(private matDialog: MatDialog, private charService: CharacterService) { 
+  constructor(private matDialog: MatDialog, private charService: CharacterService, private bottomSheet: MatBottomSheet) { 
     this.isCampaign = window.location.href.includes('campaign-view');
   }
 
@@ -98,10 +100,10 @@ export class EquipmentComponent {
     // Filtra gli oggetti del set precedente e rimuovili da wearedItems
     const previousSet = this.setsData[(this.setIndex === 0 ? this.setsData.length - 1 : this.setIndex - 1)];
     if (previousSet.mainHand) {
-      this.wearedItems = this.wearedItems.filter(item => item.name !== previousSet.mainHand.name);
+      this.wearedItems = this.wearedItems.filter(item => item.id !== previousSet.mainHand.id);
     }
     if (previousSet.offHand) {
-      this.wearedItems = this.wearedItems.filter(item => item.name !== previousSet.offHand.name);
+      this.wearedItems = this.wearedItems.filter(item => item.id !== previousSet.offHand.id);
     }
 
     // Aggiungi gli oggetti del nuovo set a wearedItems
@@ -116,7 +118,7 @@ export class EquipmentComponent {
     this.inventoryData.forEach(item => {
       item.weared = false;
       this.wearedItems.forEach(wearedItem => {
-        if (item.name === wearedItem.name) {
+        if (item.id === wearedItem.id) {
           item.weared = true;
         }
       });
@@ -201,7 +203,9 @@ export class EquipmentComponent {
       // console.log(result);
 
       if (result && result.status === 'success') {
-        this.wearedItems = result.weared;
+        console.log('result', result);
+        
+        this.wearedItems = [...new Set(result.weared)] as Item[];
         if (result.sets && result.sets.length > 0) {
           this.wearedItems.push(result.sets[0].mainHand);
           this.wearedItems.push(result.sets[0].offHand);
@@ -211,7 +215,7 @@ export class EquipmentComponent {
         this.inventoryData.forEach(item => {
           item.weared = false;
           this.wearedItems.forEach(wearedItem => {
-            if (item.name === wearedItem.name) {
+            if (item.id === wearedItem.id) {
               item.weared = true;
             }
           });
@@ -317,6 +321,15 @@ export class EquipmentComponent {
       });
     }
     return resultFormula + (skillMod > 0 ? `+${skillMod}` : '');
+  }
+
+  public openInfoSheet(item: Item, index: number) {
+    this.bottomSheet.open(ItemInfoSheetComponent, {
+      // disableClose: true,
+      panelClass: 'item-info-sheet',
+      autoFocus: false,
+      data: { item: item, isOwner: false, fromEquip: true }
+    });
   }
 
   // TOOLTIP

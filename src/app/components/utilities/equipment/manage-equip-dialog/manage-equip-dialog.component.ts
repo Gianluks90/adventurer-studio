@@ -52,8 +52,8 @@ export class ManageEquipDialogComponent {
     if (this.data.sets.length > 0) {
       this.data.sets.forEach(set => {
         // Utilizza find per ottenere l'oggetto Item corrispondente ai valori di mainHand e offHand
-        const mainHandItem = this.mainHandSelection.find(item => item.name === (set.mainHand ? set.mainHand.name : ''));
-        const offHandItem = this.offHandSelection.find(item => item.name === (set.offHand ? set.offHand.name : ''));
+        const mainHandItem = this.mainHandSelection.find(item => item.id === (set.mainHand ? set.mainHand.id : ''));
+        const offHandItem = this.offHandSelection.find(item => item.id === (set.offHand ? set.offHand.id : ''));
         this.sets.push(this.fb.group({
           name: [set.name, Validators.required],
           skill: [set.skill, Validators.required],
@@ -81,7 +81,7 @@ export class ManageEquipDialogComponent {
     set.get('mainHand').valueChanges.subscribe((value: any) => {
       if (value) {
         this.offHandSelection = this.originalOffHandSelection.slice(); // Copia profonda dell'array originale
-        const index = this.offHandSelection.findIndex((item: Item) => item.name === value.name && item.category === value.category);
+        const index = this.offHandSelection.findIndex((item: Item) => item.id === value.id);
         if (index > -1) {
           this.offHandSelection = this.offHandSelection.filter((item: Item, i: number) => i !== index);
         } else {

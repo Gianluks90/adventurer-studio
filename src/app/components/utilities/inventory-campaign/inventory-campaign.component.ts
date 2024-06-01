@@ -135,7 +135,7 @@ export class InventoryCampaignComponent {
           result.items.forEach((item) => {
             item.quantity = 0;
             item.visible = false;
-            if (!this.inventoryData.find((i) => i.name === item.name)) this.inventoryData.push(item);
+            if (!this.inventoryData.find((i) => i.id === item.id)) this.inventoryData.push(item);
           });
           this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
           this.sortInventory();
@@ -160,9 +160,9 @@ export class InventoryCampaignComponent {
         this.campaignService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
       }
       if (result && result.status === 'reclamed' && this.selectedCharData) {
-        const itemExists = this.selectedCharData.equipaggiamento.find((item) => item.name === result.item.name);
+        const itemExists = this.selectedCharData.equipaggiamento.find((item) => item.id === result.item.id);
         if (itemExists) {
-          this.selectedCharData.equipaggiamento.find((item) => item.name === result.item.name).quantity += result.quantity;
+          this.selectedCharData.equipaggiamento.find((item) => item.id === result.item.id).quantity += result.quantity;
           this.characterService.updateInventory(this.selectedCharData.id, this.selectedCharData.equipaggiamento).then(() => {
             this.inventoryData[index].quantity -= result.quantity;
             this.inventoryData[index].visible = this.inventoryData[index].quantity > 0;

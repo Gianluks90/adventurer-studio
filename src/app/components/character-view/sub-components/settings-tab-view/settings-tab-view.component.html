@@ -69,6 +69,14 @@
 </div> -->
 <div as-subtitle>Regole aggiuntive</div>
 
+<div as-description-text>Modalità Pride! Se la disattivi sei omofob*. Puoi farlo ma sei omofob*.</div>
+<div class="toggle-container">
+    <label as-toggle-button>
+        <input type="checkbox" [(ngModel)]="charData.status.usePrideRule" (change)="togglePrideRule($event)">
+        <span as-slider></span>
+    </label> Modalità Pride: {{charData.status.usePrideRule ? 'Attivata' : 'Disattivata'}}
+</div>
+
 <div as-description-text> Usa le regole dell'<em>Ingombro</em> (visualizza il peso nell'inventario, calcola
     gli ingombri e ti avvisa se il PG è appesantito e quali sono gli svantaggi, vedi PHB 176).</div>
 <div class="toggle-container">

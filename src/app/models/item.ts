@@ -1,6 +1,7 @@
 import { FormBuilder, Validators } from "@angular/forms";
 
 export class Item {
+    id: string = '';
     name: string = '';
     icon: string = '';
     filtered: boolean = false;
@@ -40,8 +41,13 @@ export class Item {
 
     constructor() {}
 
+    private static randomUID() {
+        return Math.random().toString(36).substring(2);
+    }
+
     static create(builder: FormBuilder) {
         return {
+            id: Item.randomUID(),
             name: ['', Validators.required],
             icon: ['', Validators.required],
             filtered: false,

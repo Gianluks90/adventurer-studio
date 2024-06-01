@@ -95,6 +95,21 @@ export class CampaignService {
     });
   }
 
+  public getAllCampaigns(): Promise<any> {
+    const ref = collection(this.firebaseService.database, 'campaigns');
+    return getDocs(ref).then((doc) => {
+      const result: any[] = [];
+      doc.forEach(doc => {
+        const campaign = {
+          id: doc.id,
+          ...doc.data()
+        }
+        result.push(campaign);
+      });
+      return result;
+    })
+  }
+
   public async deleteCampaignById(id: string): Promise<any> {
     const ref = doc(this.firebaseService.database, 'campaigns', id);
     return await deleteDoc(ref).then(() => {

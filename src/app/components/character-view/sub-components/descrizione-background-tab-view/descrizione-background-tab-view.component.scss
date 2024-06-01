@@ -111,3 +111,12 @@
     display: flex;
     justify-content: flex-end;
 }
+
+@media screen and (min-width: 1500px)  {
+    .traits-container {
+        display: grid;
+        gap: 4px;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+}

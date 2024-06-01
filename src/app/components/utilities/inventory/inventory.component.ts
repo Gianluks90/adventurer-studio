@@ -82,7 +82,7 @@ export class InventoryComponent {
         if (result.items.length > 0) {
           result.items.forEach((item) => {
             item.quantity = 1;
-            if (!this.inventoryData.find((i) => i.name === item.name)) this.inventoryData.push(item);
+            if (!this.inventoryData.find((i) => i.id === item.id)) this.inventoryData.push(item);
           });
           this.characterService.updateInventory(window.location.href.split('/').pop(), this.inventoryData);
           this.sortInventory();
@@ -179,10 +179,10 @@ export class InventoryComponent {
     switch (action) {
       case 'edited':
         sets.forEach((set) => {
-          if (set.mainHand && set.mainHand.name === item.name) {
+          if (set.mainHand && set.mainHand.id === item.id) {
             set.mainHand = item;
           }
-          if (set.offHand && set.offHand.name === item.name) {
+          if (set.offHand && set.offHand.id === item.id) {
             set.offHand = item;
           }
         });
@@ -192,10 +192,10 @@ export class InventoryComponent {
         // Trova gli indici dei set che contengono l'oggetto nell'offHand o nel mainHand
         const setIndexesToDelete: number[] = [];
         sets.forEach((set, index) => {
-          if (set.mainHand && set.mainHand.name === item.name) {
+          if (set.mainHand && set.mainHand.id === item.id) {
             setIndexesToDelete.push(index);
           }
-          if (set.offHand && set.offHand.name === item.name) {
+          if (set.offHand && set.offHand.id === item.id) {
             setIndexesToDelete.push(index);
           }
         });

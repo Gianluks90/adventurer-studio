@@ -2,6 +2,7 @@ import { Component, Inject, effect } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AdventurerUser, Role } from 'src/app/models/adventurerUser';
+import { CampaignService } from 'src/app/services/campaign.service';
 import { CharacterService } from 'src/app/services/character.service';
 import { DddiceService } from 'src/app/services/dddice.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -30,6 +31,7 @@ export class SettingsDialogComponent {
     public rollService: RollDiceService,
     private firebaseService: FirebaseService,
     private characterService: CharacterService,
+    private campaignService: CampaignService,
     private fb: FormBuilder) {
       effect(() => {
         this.user = this.firebaseService.userSignal();
@@ -72,7 +74,27 @@ export class SettingsDialogComponent {
       allcharacters = characters;
       // allcharacters.push(characters[0]);
       allcharacters.forEach(character => {
-        this.characterService.adminCharUpdate(character.id);
+        // if (character.id === 'TghUf9a989N9iMWKTGb0tsAv0L12-17') {
+          // character.equipaggiamento.forEach((item) => {
+          //   item.weared = false;
+          //   item.id = Math.random().toString(36).substring(2);
+          // })
+          this.characterService.adminCharUpdate(character.id);
+        // }
+      });
+    });
+  }
+
+  public resetStatusCampaigns() {
+    let allCampaigns = []
+    this.campaignService.getAllCampaigns().then((campaigns) => {
+      campaigns.forEach(campaign => {
+        campaign.inventory.forEach((item) => {
+          item.visible = false;
+          item.quantity = 0;
+          item.id = Math.random().toString(36).substring(2);
+        });
+        this.campaignService.updateInventory(campaign.id, campaign.inventory);
       });
     });
   }

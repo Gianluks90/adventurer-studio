@@ -346,3 +346,20 @@ details[open]>summary::after {
 .npc-action-button {
     margin: 0 8px;
 }
+
+.pngs-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 1500px) {
+    .pngs-container {
+        flex-direction: row;
+        gap: 12px;
+
+        &>.pngs-inner-container {
+            width: 50%;
+        }
+    }
+    
+}
