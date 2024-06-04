@@ -68,35 +68,39 @@ export class SettingsDialogComponent {
     }).catch((error) => console.log(error));
   }
 
+  // COMMENTARE PER INTERO IL METODO PER EVITARE DI RESETTARE I PERSONAGGI
   public resetStatusAllCharacter() {
-    let allcharacters = []
-    this.characterService.getCharacters().then((characters) => {
-      allcharacters = characters;
-      // allcharacters.push(characters[0]);
-      allcharacters.forEach(character => {
-        // if (character.id === 'TghUf9a989N9iMWKTGb0tsAv0L12-17') {
-          // character.equipaggiamento.forEach((item) => {
-          //   item.weared = false;
-          //   item.id = Math.random().toString(36).substring(2);
-          // })
-          this.characterService.adminCharUpdate(character.id);
-        // }
-      });
-    });
+    // let allcharacters = []
+    // this.characterService.getCharacters().then((characters) => {
+    //   allcharacters = characters;
+    //   // allcharacters.push(characters[0]);
+    //   allcharacters.forEach(character => {
+    //     // if (character.id === 'TghUf9a989N9iMWKTGb0tsAv0L12-17') {
+    //       character.equipaggiamento.forEach((item) => {
+    //         item.weared = false;
+    //         item.id = Math.random().toString(36).substring(2);
+    //       })
+    //       this.characterService.updateInventory(character.id, character.equipaggiamento).then(() => {
+    //         this.characterService.adminCharUpdate(character.id);
+    //       });
+    //     // }
+    //   });
+    // });
   }
 
+  // COMMENTARE PER INTERO IL METODO PER EVITARE DI RESETTARE LE CAMPAGNE
   public resetStatusCampaigns() {
-    let allCampaigns = []
-    this.campaignService.getAllCampaigns().then((campaigns) => {
-      campaigns.forEach(campaign => {
-        campaign.inventory.forEach((item) => {
-          item.visible = false;
-          item.quantity = 0;
-          item.id = Math.random().toString(36).substring(2);
-        });
-        this.campaignService.updateInventory(campaign.id, campaign.inventory);
-      });
-    });
+    // let allCampaigns = []
+    // this.campaignService.getAllCampaigns().then((campaigns) => {
+    //   campaigns.forEach(campaign => {
+    //     campaign.inventory.forEach((item) => {
+    //       item.visible = false;
+    //       item.quantity = 0;
+    //       item.id = Math.random().toString(36).substring(2);
+    //     });
+    //     this.campaignService.updateInventory(campaign.id, campaign.inventory);
+    //   });
+    // });
   }
 
   public resetSpellCharacters() {

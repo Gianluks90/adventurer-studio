@@ -1,0 +1,55 @@
+<div as-section-title>Incontro</div>
+<div *ngIf="isOwnerData">
+    <form [formGroup]="form">
+        <div as-description-text>
+            Decidi chi prenderà parte all'Incontro <em>deselezionando</em> Personaggi assenti e selezionando i nemici.
+            Per quanto riguarda i nemici potrai scegliere successivamente la quantità dello stesso tipo.
+        </div>
+        <div class="line-container">
+            <mat-form-field class="line-input" appearance="outline" color="accent">
+                <mat-label>Personaggi</mat-label>
+                <mat-select formControlName="characters" multiple>
+                    <mat-option *ngFor="let character of charData" [value]="character">
+                        {{character.informazioniBase.nomePersonaggio}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="line-input" appearance="outline" color="accent">
+                <mat-label>Schede dei nemici</mat-label>
+                <mat-select multiple [value]="selectedAddons" (selectionChange)="onAddonSelectionChange($event)">
+                    <mat-option *ngFor="let addon of addonsData" [value]="addon">
+                        {{addon.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="addons.controls.length > 0">
+            <div as-subtitle>Schede selezionate</div>
+            <div formArrayName="addons">
+                @for(addon of addons.controls; track i; let i = $index) {
+                <div [formGroupName]="i" class="addon-group">
+                    <!-- <span>{{addon.value.addon.name}}</span>
+              <input type="number" formControlName="quantity" min="1">
+              <button type="button" (click)="removeEnemy(i)">Rimuovi</button> -->
+                    <mat-form-field class="addon-input" appearance="outline" color="accent">
+                        <mat-label>{{addon.value.addon.name}} (quantità)</mat-label>
+                        <input matInput type="number" formControlName="quantity" min="1">
+                    </mat-form-field>
+                    <button as-mini-circle-btn as-btn-warn (click)="removeEnemy(i)">
+                        <div class="material-symbols-outlined">close</div>
+                    </button>
+                </div>
+                }
+            </div>
+        </div>
+        <div as-buttons-container>
+            <button as-btn [disabled]="!form.valid">
+                <div class="material-symbols-outlined">add</div> Aggiungi
+            </button>
+        </div>
+    </form>
+</div>
+<div *ngIf="!isOwnerData" as-description-text>
+    Quando è in corso un Incontro puoi vedere in questa sezione l'ordine di azione dei personaggi e delle creature
+    coinvolte.
+</div>

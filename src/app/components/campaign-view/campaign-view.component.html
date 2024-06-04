@@ -38,7 +38,7 @@
             <div class="status-container">
                 <app-campaign-char-list [characters]="charData" [isOwner]="isOwner" (selectCharEmitter)="onCharEmitted($event)"></app-campaign-char-list>
             </div>
-            <mat-tab-group color="accent" #tabGroup>
+            <mat-tab-group color="accent" #tabGroup selectedIndex="6">
                 <mat-tab>
                     <ng-template mat-tab-label>
                         <img src="./assets/campaign-tabs-icon/story.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab1-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
@@ -98,10 +98,11 @@
                     <app-campaign-achievements-tab [campaign]="campaignData" [isOwner]="isOwner"
                         [characters]="charData"></app-campaign-achievements-tab>
                 </mat-tab>
-                <mat-tab disabled>
+                <mat-tab>
                     <ng-template mat-tab-label>
                         <img src="./assets/campaign-tabs-icon/encounter.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab7-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                     </ng-template>
+                    <app-campaign-encounter-tab [campaign]="campaignData" [characters]="charData" [isOwner]="isOwner"></app-campaign-encounter-tab>
                 </mat-tab>
                 <mat-tab *ngIf="isOwner">
                     <ng-template mat-tab-label>

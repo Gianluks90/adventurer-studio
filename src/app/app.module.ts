@@ -110,6 +110,7 @@ import { AddAddonsResourcesDialogComponent } from './components/utilities/npcs/a
 import { AddOrganizationsResourcesDialogComponent } from './components/utilities/npcs/add-organizations-resources-dialog/add-organizations-resources-dialog.component';
 import { ManageResourcesDialogComponent } from './components/resources-page/manage-resources-dialog/manage-resources-dialog.component';
 import { DocumentDialogComponent } from './components/utilities/inventory/item-info-sheet/document-dialog/document-dialog.component';
+import { CampaignEncounterTabComponent } from './components/campaign-view/sub-components/campaign-encounter-tab/campaign-encounter-tab.component';
 
 @NgModule({ declarations: [
         // MAIN COMPONENTS
@@ -226,6 +227,7 @@ import { DocumentDialogComponent } from './components/utilities/inventory/item-i
         AddOrganizationsResourcesDialogComponent,
         ManageResourcesDialogComponent,
         DocumentDialogComponent,
+        CampaignEncounterTabComponent,
     ],
     bootstrap: [AppComponent], imports: [SharedModule,
         BrowserModule,

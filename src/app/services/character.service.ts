@@ -187,11 +187,11 @@ export class CharacterService {
   public async adminCharUpdate(id: string, equip?: any[]): Promise<any> {
     const ref = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(ref, {
-      // sets: [],
+      sets: [],
       // equipaggiamento: equip,
-      status: {
-        usePrideRule: true
-      }
+      // status: {
+      //   usePrideRule: true
+      // }
     }, { merge: true })
   }
 
