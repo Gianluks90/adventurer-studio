@@ -9,6 +9,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'app-character-view',
@@ -30,6 +31,7 @@ export class CharacterViewComponent {
   // initize a breakpointObserver
   public isMobile: boolean = false;
   // public menuIcon = 'menu';
+  public isiPad: boolean = false;
 
   constructor(
     // private menuService: MenuService,
@@ -39,13 +41,18 @@ export class CharacterViewComponent {
     private diceSelector: MatBottomSheet,
     public diceService: DddiceService,
     private campaignService: CampaignService,
-    breakpointObserver: BreakpointObserver,
-    public tooltip: DescriptionTooltipService) {
+    public breakpointObserver: BreakpointObserver,
+    public tooltip: DescriptionTooltipService,
+    private platform: Platform) {
 
     effect(() => {
       this.user = this.firebaseService.userSignal();
       if (!this.user) return;
       this.characterService.getCharacterSignalById(this.charId);
+      if (this.platform.SAFARI) {
+        this.isiPad = true;
+        
+      }
     });
 
     effect(() => {

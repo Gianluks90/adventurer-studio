@@ -1,5 +1,5 @@
 @defer (when user) {
-  <div class="main-container">
+  <div class="main-container" [ngClass]="{'iPad-padding': isiPad}">
     @if (ownedCampaigns && ownedCampaigns.length > 0) {
       <div class="card-container">
         <div class="cart-title">Le tue campagne</div>
@@ -32,9 +32,9 @@
   
     @if (partecipantCampaigns && partecipantCampaigns.length > 0) {
       <div class="card-container">
-        <div class="cart-title">Iscrizioni</div>
+        <div class="cart-title ">Iscrizioni</div>
         @for (c of partecipantCampaigns; track $index) {
-          <div class="card-details" [ngStyle]="{'margin-bottom': $last ? '80px' : '0'}">
+          <div class="card-details" [ngClass]="{'last-card': $last && isMobile }">
             <div class="card-info-container">
               <div class="campaign-title">{{c.title}}</div>
               <div class="campaign-dm">DM | {{c.dmName}}</div>

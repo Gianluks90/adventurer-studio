@@ -4,6 +4,8 @@ import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bott
 import { MatDialog } from '@angular/material/dialog';
 import { Damage, Item } from 'src/app/models/item';
 import { AddItemDialogComponent } from '../add-item-dialog/add-item-dialog.component';
+import { DocumentDialogComponent } from './document-dialog/document-dialog.component';
+import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
   selector: 'app-item-info-sheet',
@@ -17,7 +19,8 @@ export class ItemInfoSheetComponent {
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean, fromEquip?: boolean },
     private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private campService: CampaignService) {
     this.isCampaign = window.location.href.includes('campaign-view');
   }
 
@@ -43,6 +46,19 @@ export class ItemInfoSheetComponent {
         this.sheetRef.dismiss({ status: 'deleted', item: result.item });
       }
     })
+  }
+
+  public openDocumentDialog(item: Item) {
+    this.dialog.open(DocumentDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '50%',
+      autoFocus: false,
+      data: { item: item }
+    }).afterClosed().subscribe((result: any) => {
+      if (result && result.message === 'notes') {
+        const campId = window.location.href.split('/').pop();
+        this.campService.addEntry(campId, result.entry);
+      }
+    });
   }
 
   public reclameItem(item: Item, quantity: number) {

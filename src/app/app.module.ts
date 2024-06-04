@@ -109,6 +109,7 @@ import { AddAlliesResourcesDialogComponent } from './components/utilities/npcs/a
 import { AddAddonsResourcesDialogComponent } from './components/utilities/npcs/add-addons-resources-dialog/add-addons-resources-dialog.component';
 import { AddOrganizationsResourcesDialogComponent } from './components/utilities/npcs/add-organizations-resources-dialog/add-organizations-resources-dialog.component';
 import { ManageResourcesDialogComponent } from './components/resources-page/manage-resources-dialog/manage-resources-dialog.component';
+import { DocumentDialogComponent } from './components/utilities/inventory/item-info-sheet/document-dialog/document-dialog.component';
 
 @NgModule({ declarations: [
         // MAIN COMPONENTS
@@ -224,6 +225,7 @@ import { ManageResourcesDialogComponent } from './components/resources-page/mana
         AddAddonsResourcesDialogComponent,
         AddOrganizationsResourcesDialogComponent,
         ManageResourcesDialogComponent,
+        DocumentDialogComponent,
     ],
     bootstrap: [AppComponent], imports: [SharedModule,
         BrowserModule,

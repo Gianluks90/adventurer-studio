@@ -5,13 +5,14 @@ import { V } from '@angular/cdk/keycodes';
 import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
 import { SidenavService } from './services/sidenav.service';
 import { DddiceService } from './services/dddice.service';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'Adventurer Studio';
   showFiller = false;
@@ -23,9 +24,6 @@ export class AppComponent implements OnInit {
     public authGuardService: AuthGuardService,
     private sidenavService: SidenavService,
     private dddiceService: DddiceService) { }
-
-  ngOnInit(): void {
-  }
 
   ngAfterViewInit(): void {
     this.sidenavService.setSidenav(this.sidenav);

@@ -1,4 +1,4 @@
-import { Component, effect } from '@angular/core';
+import { Component, ViewChild, effect } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
@@ -27,6 +27,7 @@ export class CampaignViewComponent {
   public selectedChar: any;
   public sessionNumber: number = 1;
   public today = new Date();
+  public isiPad: boolean = false;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -35,12 +36,17 @@ export class CampaignViewComponent {
     private sidenavService: SidenavService,
     private matDialog: MatDialog,
     private charService: CharacterService,
-    public tooltip: DescriptionTooltipService) {
+    public tooltip: DescriptionTooltipService,
+    private platform: Platform) {
 
     effect(() => {
       this.user = this.firebaseService.userSignal();
       if (!this.user) return;
       this.charService.getSignalCharacters();
+      if (this.platform.SAFARI) {
+        this.isiPad = true;
+        
+      }
     });
 
     effect(() => {
@@ -86,48 +92,13 @@ export class CampaignViewComponent {
         }
       }
     });
+  }
 
-    // const id = window.location.href.split('campaign-view/').pop();
-    // this.campaignService.getSignalSingleCampaing(id);
-    // effect(() => {
-    //   this.user = this.firebaseService.userSignal();
-    //   if (this.user) {
-    //     this.campaignData = this.campaignService.campaigns();
-    //     this.campaignData = this.campaignData.find((campaign: any) => campaign.id === id);
-    //     if (this.campaignData) {
-    //       this.campaignData.id = id;
-    //       this.calcSessionNumber();
-    //       this.isOwner = this.user.id === this.campaignData.ownerId;
-    //       if (!this.isOwner) {
-    //         const alreadyJoined = this.campaignData.partecipants.find((player: any) => player === this.user.id);
-    //         if (!alreadyJoined) {
-    //           this.matDialog.open(TicketCampaignDialogComponent, {
-    //             width: window.innerWidth < 768 ? '90%' : '60%',
-    //             autoFocus: false,
-    //             disableClose: true,
-    //           }).afterClosed().subscribe((result) => {
-    //             if (result && result.status === 'success') {
-    //               window.location.reload();
-    //             }
-    //           });
-    //         }
-    //       }
-    //     }
-    //   }
-    // });
-    // effect(() => {
-    //   this.user = this.firebaseService.userSignal();
-    //   if (this.user) {
-    //     this.charData = this.charService.campaignCharacters();
-    //     this.charData = this.charData.filter((char: any) => char.campaignId === id);
-    //     this.charData.sort((a, b) => a.informazioniBase.nomePersonaggio.localeCompare(b.informazioniBase.nomePersonaggio));
-    //     this.charData.forEach((char) => {
-    //       if (char.status.userId === this.user.id) {
-    //         this.selectedChar = char;
-    //       }
-    //     });
-    //   }
-    // });
+  @ViewChild('tabGroup') tabGroup: any;
+  public onCharEmitted(charId: string) {
+    console.log('sono il DM', charId);
+    this.selectedChar = this.charData.find((char) => char.id === charId);
+    this.tabGroup.selectedIndex = 2;
   }
 
   public openSidenav() {

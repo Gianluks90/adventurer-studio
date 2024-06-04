@@ -1,0 +1,15 @@
+<div mat-dialog-title class="dialog-title">{{data.item.documentTitle}}</div>
+<div mat-dialog-content class="dialog-content">
+    <div class="doc-description">
+        {{data.item.documentDescription}}
+    </div>
+</div>
+<div as-buttons-container mat-dialog-actions>
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> <div>Chiudi</div>
+    </button>
+    <button as-btn (click)="addToNotes()">
+        <div class="material-symbols-outlined">note_add</div> <div>Aggiungi alle note</div>
+    </button>
+</div>
+

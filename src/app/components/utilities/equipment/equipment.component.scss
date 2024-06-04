@@ -30,6 +30,14 @@
 .parameter-label {
     font-weight: 400;
     font-size: small;
+
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.mini-dice-icon {
+    font-size: small;
 }
 
 .speed-title {

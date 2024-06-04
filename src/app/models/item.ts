@@ -9,6 +9,9 @@ export class Item {
     rarity: string = '';
     category: string = '';
     description: string = '';
+    isDocument: boolean = false;
+    documentTitle: string = '';
+    documentDescription: string = '';
     value: number = 0;
     weight: number = 0;
     advanced: boolean = false;
@@ -55,6 +58,9 @@ export class Item {
             rarity: ['', Validators.required],
             category: ['', Validators.required],
             description: ['', Validators.required],
+            isDocument: false,
+            documentTitle: '',
+            documentDescription: '',
             value: 0,
             weight: 0,
             advanced: false,

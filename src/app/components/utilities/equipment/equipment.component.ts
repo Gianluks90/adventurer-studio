@@ -360,4 +360,11 @@ export class EquipmentComponent {
     this.showItemTooltip = false;
   }
 
+  public getHitCheckString(index: number): string {
+    const set = this.setsData[index];
+    const skillMod = Math.floor((this.charData.caratteristiche[set.skill] - 10) / 2);
+    const bonusProficiency = this.charData.tiriSalvezza.bonusCompetenza;
+    return `1d20${skillMod + bonusProficiency > 0 ? `+${skillMod + bonusProficiency}` : ''}`;
+  }
+
 }

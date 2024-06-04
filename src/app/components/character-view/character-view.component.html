@@ -1,5 +1,5 @@
 @if (user && character) {
-    <div class="view-container">
+    <div class="view-container" [ngClass]="{'iPad-padding': isiPad}">
         <div class="view-header">
             <div class="pride-flag-column" *ngIf="character.status.usePrideRule">
                 <div class="red"></div>

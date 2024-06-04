@@ -4,6 +4,11 @@
         <div class="item-type">{{data.item.category}}, {{data.item.rarity}}<span *ngIf="data.item.magicItem">, magico</span><span *ngIf="data.item.cursed">, maledetto</span></div>
     </div>
     <div class="actions-container" as-mini-buttons-container *ngIf="!data.fromEquip">
+        @if (data.item.isDocument) {
+            <button as-mini-circle-btn (click)="openDocumentDialog(data.item)">
+                <div class="material-symbols-outlined">description</div>
+            </button>
+        }
         @if (!isCampaign && data.item.consumable) {
             <button as-mini-circle-btn (click)="consumeSingleItem()" [disabled]="data.item.quantity <= 0">
                 <div class="material-symbols-outlined">exposure_neg_1</div>

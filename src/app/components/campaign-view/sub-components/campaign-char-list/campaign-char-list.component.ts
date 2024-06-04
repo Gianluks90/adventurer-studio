@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterBottomSheetComponent } from '../character-bottom-sheet/character-bottom-sheet.component';
 import { Router } from '@angular/router';
@@ -63,8 +63,14 @@ export class CampaignCharListComponent {
     localStorage.setItem('detailsOpen', this.detailsOpen.toString());
   }
 
+  @Output() public selectCharEmitter = new EventEmitter<string>();
   public navigateToChar(charId: string): void {
-    window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');
+    if (!this.isOwnerData) {
+      window.open(`https://adventurer-studio.web.app/#/view/${charId}`, '_blank');
+    } else {
+      console.log('sono il DM');
+      this.selectCharEmitter.emit(charId);
+    }
   }
 
   private calcPassiveSkills(): void {

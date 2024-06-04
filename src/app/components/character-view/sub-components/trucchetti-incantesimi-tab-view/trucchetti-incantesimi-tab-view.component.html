@@ -10,15 +10,19 @@
 </div>
 <div as-subtitle>Slot Incantesimi</div>
 <div class="slot-container-line">
-    <div *ngFor="let slot of slotIncantesimi; let i = index;">
-        <div class="risorsa-container" *ngIf="slot.used.length > 0">
-            <div class="risorsa-title">{{showLevel(i+1)}}</div>
-            <div *ngFor="let used of slot.used; let j = index" [ngClass]="{'active': !used, 'used': used}" class="resource-circle"
-                (click)="useSlot(i, j)">
-                <div class="material-symbols-outlined">circle</div>
+    @for(slot of slotIncantesimi; track i; let i = $index) {
+        <!-- <div *ngFor="let slot of slotIncantesimi; let i = index;"> -->
+            <div class="risorsa-container" *ngIf="slot.used.length > 0">
+                <div class="risorsa-title">{{showLevel(i+1)}}</div>
+                <div *ngFor="let used of slot.used; let j = index" [ngClass]="{'active': !used, 'used': used}" class="resource-circle"
+                    (click)="useSlot(i, j)">
+                    <div class="material-symbols-outlined">circle</div>
+                </div>
             </div>
-        </div>
-    </div>
+        <!-- </div> -->
+    } @empty {
+        <div as-description-text>Il personaggio non possiede alcun slot incantesimo.</div>
+    }
 </div>
 
 <div as-subtitle>Elenco</div>

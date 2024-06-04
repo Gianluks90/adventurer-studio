@@ -107,6 +107,10 @@
       Uso singolo
     </mat-checkbox>
 
+    <mat-checkbox formControlName="isDocument">
+      È un documento
+    </mat-checkbox>
+
     <!-- <mat-checkbox formControlName="weared"
       matTooltip="Attualmente questa funzione ha effetto sulle Armature e sugli Scudi e permette di calcolare la CA in base ai parametri indicati"
       matTooltipPosition="above">
@@ -133,6 +137,95 @@
       Richiede Sintonia
     </mat-checkbox>
   </div>
+
+  @if (form.value.isDocument) {
+  <!-- <div class="line-container"> -->
+  <div as-section-title>Documento</div>
+    <mat-form-field class="line-input" color="accent" appearance="outline">
+      <mat-label>Titolo</mat-label>
+      <input matInput formControlName="documentTitle">
+    </mat-form-field>
+    <mat-form-field class="line-input" color="accent" appearance="outline">
+      <mat-label>Contenuto</mat-label>
+      <textarea matInput formControlName="documentDescription" rows="5"></textarea>
+    </mat-form-field>
+  <!-- </div> -->
+  }
+
+  @if (form.value.cursed) {
+  <div as-section-title>Maledizione</div>
+  <mat-form-field color="accent" appearance="outline" class="text-area-input">
+    <mat-label>Descrizione Maledizione</mat-label>
+    <textarea matInput formControlName="cursedDescription" rows="3"></textarea>
+  </mat-form-field>
+  }
+
+  <div class="magic-item-container" *ngIf="form.value.magicItem">
+    <div as-section-title>Proprietà Magiche</div>
+    <ng-container class="" formArrayName="traits">
+      <ng-container *ngFor="let traitForm of traits.controls; let i = index;">
+        <div class="step-form" [formGroupName]="i">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Titolo</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Descrizione</mat-label>
+            <textarea matInput formControlName="description" rows="3"></textarea>
+          </mat-form-field>
+
+          <div as-buttons-container>
+            <button as-btn as-btn-warn (click)="deleteTrait(i)">
+              <div class="material-symbols-outlined">delete</div>
+              <div>Rimuovi</div>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="button-container">
+      <button as-btn (click)="addTrait()">
+        <div class="material-symbols-outlined">add</div>
+        <div>Aggiungi nuova</div>
+      </button>
+    </div>
+  </div>
+
+  <div class="magic-item-container" *ngIf="form.value.artifact">
+    <div as-section-title>Proprietà Artefatto</div>
+    <ng-container class="" formArrayName="artifactProperties">
+      <ng-container *ngFor="let propForm of artifactProperties.controls; let i = index;">
+        <div class="step-form" [formGroupName]="i">
+          <mat-form-field class="line-input" color="accent" appearance="outline">
+            <mat-label>Titolo</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+
+          <mat-form-field color="accent" appearance="outline">
+            <mat-label>Descrizione</mat-label>
+            <textarea matInput formControlName="description" rows="3"></textarea>
+          </mat-form-field>
+
+          <div as-buttons-container>
+            <button as-btn as-btn-warn (click)="deleteProp(i)">
+              <div class="material-symbols-outlined">delete</div>
+              <div>Rimuovi</div>
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="button-container">
+      <button as-btn (click)="addProp()">
+        <div class="material-symbols-outlined">add</div>
+        <div>Aggiungi nuova</div>
+      </button>
+    </div>
+  </div>
+
   <div>
     <mat-button-toggle-group class="toggle-group" [formControl]="getFormControl('type')">
       <mat-button-toggle class="toggle-button" value="armatura">Armatura</mat-button-toggle>
@@ -271,81 +364,9 @@
       </div>
     </div>
   </div>
-
-  @if (form.value.cursed) {
-  <div as-section-title>Maledizione</div>
-  <mat-form-field color="accent" appearance="outline" class="text-area-input">
-    <mat-label>Descrizione Maledizione</mat-label>
-    <textarea matInput formControlName="cursedDescription" rows="3"></textarea>
-  </mat-form-field>
   }
 
-  <div class="magic-item-container" *ngIf="form.value.magicItem">
-    <div as-section-title>Proprietà Magiche</div>
-    <ng-container class="" formArrayName="traits">
-      <ng-container *ngFor="let traitForm of traits.controls; let i = index;">
-        <div class="step-form" [formGroupName]="i">
-          <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>Titolo</mat-label>
-            <input matInput formControlName="title">
-          </mat-form-field>
-
-          <mat-form-field color="accent" appearance="outline">
-            <mat-label>Descrizione</mat-label>
-            <textarea matInput formControlName="description" rows="3"></textarea>
-          </mat-form-field>
-
-          <div as-buttons-container>
-            <button as-btn as-btn-warn (click)="deleteTrait(i)">
-              <div class="material-symbols-outlined">delete</div>
-              <div>Rimuovi</div>
-            </button>
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-
-    <div class="button-container">
-      <button as-btn (click)="addTrait()">
-        <div class="material-symbols-outlined">add</div>
-        <div>Aggiungi nuova</div>
-      </button>
-    </div>
-  </div>
-
-  <div class="magic-item-container" *ngIf="form.value.artifact">
-    <div as-section-title>Proprietà Artefatto</div>
-    <ng-container class="" formArrayName="artifactProperties">
-      <ng-container *ngFor="let propForm of artifactProperties.controls; let i = index;">
-        <div class="step-form" [formGroupName]="i">
-          <mat-form-field class="line-input" color="accent" appearance="outline">
-            <mat-label>Titolo</mat-label>
-            <input matInput formControlName="title">
-          </mat-form-field>
-
-          <mat-form-field color="accent" appearance="outline">
-            <mat-label>Descrizione</mat-label>
-            <textarea matInput formControlName="description" rows="3"></textarea>
-          </mat-form-field>
-
-          <div as-buttons-container>
-            <button as-btn as-btn-warn (click)="deleteProp(i)">
-              <div class="material-symbols-outlined">delete</div>
-              <div>Rimuovi</div>
-            </button>
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-
-    <div class="button-container">
-      <button as-btn (click)="addProp()">
-        <div class="material-symbols-outlined">add</div>
-        <div>Aggiungi nuova</div>
-      </button>
-    </div>
-  </div>
-  }
+  
 
 </div>
 <div mat-dialog-actions align="end" class="buttons-container">

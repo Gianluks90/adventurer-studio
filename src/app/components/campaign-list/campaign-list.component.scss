@@ -1,8 +1,14 @@
 .main-container {
   display: flex;
   flex-direction: column;
+  gap: 12px;
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  padding: 16px 0;
+}
+
+.iPad-padding {
+    padding: 32px 0;
 }
 
 .empty-card-container {
@@ -36,7 +42,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 12px;
-  padding: 20px;
+  // padding: 20px;
 }
 
 .cart-title {
@@ -170,5 +176,9 @@
 
   .card-details {
     flex-direction: column;
+  }
+
+  .last-card {
+    margin-bottom: 80px;
   }
 }

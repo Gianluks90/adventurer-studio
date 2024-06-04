@@ -20,10 +20,18 @@ export class CampaignListComponent {
   public ownedCampaigns: any[] | null;
   public partecipantCampaigns: any[] | null;
   public today: Date = new Date();
+  public isiPad: boolean = false;
+  public isMobile: boolean = false;
 
   constructor(public firebaseService: FirebaseService, public sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
     effect(() => {
       this.user = this.firebaseService.userSignal();
+      if (this.platform.SAFARI) {
+        this.isiPad = true;
+      }
+      if (window.innerWidth < 768) {
+        this.isMobile = true;
+      }
       if (this.user) {
         if (!this.ownedCampaigns || !this.partecipantCampaigns) {
           const requests = [this.campaignService.getCampaignsByOwnerID(this.user.id), this.campaignService.getCampaignsByPartecipantID(this.user.id)];

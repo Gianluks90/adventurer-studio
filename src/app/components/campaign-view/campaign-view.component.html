@@ -1,5 +1,5 @@
 @if (user && campaignData && charData) {
-    <div class="home-container">
+    <div class="home-container" [ngClass]="{'iPad-padding': isiPad}">
         <div class="header-container">
             <div class="pride-flag-column">
                 <div class="red"></div>
@@ -36,9 +36,9 @@
         </div>
         <div class="view-tabs">
             <div class="status-container">
-                <app-campaign-char-list [characters]="charData" [isOwner]="isOwner"></app-campaign-char-list>
+                <app-campaign-char-list [characters]="charData" [isOwner]="isOwner" (selectCharEmitter)="onCharEmitted($event)"></app-campaign-char-list>
             </div>
-            <mat-tab-group color="accent">
+            <mat-tab-group color="accent" #tabGroup>
                 <mat-tab>
                     <ng-template mat-tab-label>
                         <img src="./assets/campaign-tabs-icon/story.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab1-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
@@ -52,7 +52,7 @@
                     </ng-template>
                     <app-campaign-quests-tab [campaign]="campaignData" [isOwner]="isOwner"></app-campaign-quests-tab>
                 </mat-tab>
-                @if(!isOwner) {
+                <!-- @if(!isOwner) { -->
                     @defer (when charData) {
                         <mat-tab *ngIf="selectedChar">
                             <ng-template mat-tab-label>
@@ -61,13 +61,15 @@
                             <app-campaign-char-tab [character]="selectedChar"></app-campaign-char-tab>
                         </mat-tab>
                     } @loading (minimum 1s) {
-                        <mat-tab>
-                            <ng-template mat-tab-label>
-                                <mat-spinner class="accent" diameter="30"></mat-spinner>
-                            </ng-template>
-                        </mat-tab>
+                        @if (!isOwner) {
+                            <mat-tab>
+                                <ng-template mat-tab-label>
+                                    <mat-spinner class="accent" diameter="30"></mat-spinner>
+                                </ng-template>
+                            </mat-tab>
+                        }
                     }
-                }
+                <!-- } -->
                 
                 <mat-tab>
                     <ng-template mat-tab-label>

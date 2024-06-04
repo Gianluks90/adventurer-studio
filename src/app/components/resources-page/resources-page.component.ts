@@ -13,6 +13,7 @@ import { Item } from 'src/app/models/item';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { ManageResourcesDialogComponent } from './manage-resources-dialog/manage-resources-dialog.component';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'app-resources-page',
@@ -22,18 +23,23 @@ import { ManageResourcesDialogComponent } from './manage-resources-dialog/manage
 export class ResourcesPageComponent {
 
   public user: AdventurerUser | null;
+  public isiPad: boolean = false;
 
   constructor(
     private firebaseService: FirebaseService,
     public sidenavService: SidenavService,
     private resService: ResourcesService,
     private dialog: MatDialog,
-    public tooltip: DescriptionTooltipService) {
+    public tooltip: DescriptionTooltipService,
+    private platform: Platform) {
     // const userId: string = getAuth().currentUser.uid;
     effect(() => {
       this.user = this.firebaseService.userSignal();
       if (!this.user) return;
       this.resService.getSignalResourcesByUserId(this.user.id);
+      if (this.platform.SAFARI) {
+        this.isiPad = true;
+      }
     });
 
     effect(() => {
