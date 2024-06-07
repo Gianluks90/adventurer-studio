@@ -20,7 +20,7 @@ export class CampaignEncounterTabComponent {
 
   public campId: string = '';
   public addonsData: any;
-  public encounterData: any[];
+  public encounterData: any;
   @Input() set campaign(campaign: any) {
     if (!campaign) return;
     this.campId = campaign.id;
@@ -49,7 +49,12 @@ export class CampaignEncounterTabComponent {
   }
 
   public clearEncounter(): void {
-    this.campService.newEncounter(this.campId, []);
+    const encounter: any = {
+      list: [],
+      started: false,
+      activeIndex: 0
+    }
+    this.campService.newEncounter(this.campId, encounter);
   }
 
   public hpTimer: any = null;
@@ -61,14 +66,14 @@ export class CampaignEncounterTabComponent {
     }
     switch(action) {
       case 'remove':
-        if (this.encounterData[index].HP <= 0) return;
+        if (this.encounterData.list[index].HP <= 0) return;
         this.hpCounter -= 1;
-        this.encounterData[index].HP -= 1;
+        this.encounterData.list[index].HP -= 1;
         break;
       case 'add':
-        if (this.encounterData[index].HP >= this.encounterData[index].HPmax) return;
+        if (this.encounterData.list[index].HP >= this.encounterData.list[index].HPmax) return;
         this.hpCounter += 1;
-        this.encounterData[index].HP += 1;
+        this.encounterData.list[index].HP += 1;
         break;
     }
     const spanCounter = document.getElementById('counter_' + index);
@@ -78,7 +83,7 @@ export class CampaignEncounterTabComponent {
     }
 
     this.hpTimer = setTimeout(() => {
-      this.campService.newEncounter(this.campId, this.encounterData).then(() => {
+      this.campService.newEncounter(this.campId, {...this.encounterData}).then(() => {
         this.hpTimer = null;
         this.hpCounter = 0;
         this.showCounter = false;
@@ -108,7 +113,7 @@ export class CampaignEncounterTabComponent {
   }
 
   public enemiesSelected(): any[] {
-    const result = JSON.parse(JSON.stringify(this.encounterData.filter((e: any) => e.type === 'enemy')));
+    const result = JSON.parse(JSON.stringify(this.encounterData.list.filter((e: any) => e.type === 'enemy')));
     result.forEach((e: any) => {
       const lastSpaceIndex = e.name.lastIndexOf(' ');
       if (lastSpaceIndex !== -1) {
@@ -119,5 +124,17 @@ export class CampaignEncounterTabComponent {
     return result.filter((e: any, index: number, self: any[]) => {
       return self.findIndex((el: any) => el.name === e.name) === index;
     });
+  }
+
+  public nextActive(): void {
+    let activeIndex = this.encounterData.activeIndex + 1;
+    if (activeIndex >= this.encounterData.list.length) activeIndex = 0;
+    if (this.encounterData.list[activeIndex].type === 'enemy' && this.encounterData.list[activeIndex].HP <= 0) activeIndex++;
+    if (activeIndex >= this.encounterData.list.length) activeIndex = 0;
+    this.campService.newEncounter(this.campId, { ...this.encounterData, activeIndex });
+  }
+
+  public startEncounter(): void {
+    this.campService.newEncounter(this.campId, { ...this.encounterData, started: true });
   }
 }

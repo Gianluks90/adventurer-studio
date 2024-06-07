@@ -21,6 +21,19 @@
     }
 }
 
+.active-card {
+    animation: activeScale 0.5s forwards;
+}
+
+@keyframes activeScale {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.03);
+    }
+}
+
 .defeated-enemy {
     filter: saturate(0);
 }

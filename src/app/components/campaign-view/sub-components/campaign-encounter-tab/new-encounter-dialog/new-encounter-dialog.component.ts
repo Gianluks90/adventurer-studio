@@ -119,7 +119,11 @@ export class NewEncounterDialogComponent {
     encounter.sort((a, b) => b.initiative - a.initiative);
     this.dialogRef.close({
       status: 'success',
-      encounter: encounter
+      encounter: {
+        list: encounter,
+        started: false,
+        activeIndex: 0
+      }
     });
   }
 

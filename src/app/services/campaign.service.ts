@@ -21,43 +21,7 @@ export class CampaignService {
     // this.getSignalCampaigns(ownerId);
   }
 
-  // old
-  // public async addCampaign(infoCampaign: any): Promise<any> {
-  //   const user = this.firebaseService.user.value!;
-  //   const newCampaignId = user.id + '-C-' + (user.campaignProgressive + 1);
-  //   const docRef = doc(this.firebaseService.database, 'campaigns', newCampaignId);
-  //   return await setDoc(docRef, {
-  //     title: infoCampaign.title,
-  //     password: infoCampaign.password,
-  //     ownerId: user.id,
-  //     dmName: infoCampaign.dmName,
-  //     partecipants: [],
-  //     characters: [],
-  //     imgUrl: '',
-  //     description: infoCampaign.description || '',
-  //     createdAt: new Date(),
-  //     lastUpdate: new Date(),
-  //     story: [],
-  //     quests: [],
-  //     npcs: [],
-  //     rules: [],
-  //     entries: [],
-  //     achievements: [],
-  //     status: {
-  //       statusCode: 0,
-  //       statusMessage: 'Nuova'
-  //     }
-  //   }).then(() => {
-  //     const userRef = doc(this.firebaseService.database, 'users', user.id);
-  //     setDoc(userRef, {
-  //       createdCampaigns: arrayUnion(newCampaignId),
-  //       campaignProgressive: user.campaignProgressive + 1
-  //     }, { merge: true });
-  //   });
-  // }
-
   public async addCampaign(infoCampaign: any): Promise<any> {
-    // const user = this.firebaseService.user.value!;
     const newCampaignId = this.user.id + '-C-' + (this.user.campaignProgressive + 1);
     const docRef = doc(this.firebaseService.database, 'campaigns', newCampaignId);
     return await setDoc(docRef, {
@@ -81,6 +45,11 @@ export class CampaignService {
       addons: [],
       inventory: [],
       archive: [],
+      encounter: {
+        list: [],
+        started: false,
+        activeIndex: 0
+      },
       nextSession: '',
       status: {
         statusCode: 0,
@@ -422,7 +391,7 @@ export class CampaignService {
     }, { merge: true });
   }
 
-  public async newEncounter(campId: string, encounter: any[]): Promise<any> {
+  public async newEncounter(campId: string, encounter: any): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', campId);
     return await setDoc(docRef, {
       encounter: encounter,
