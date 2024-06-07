@@ -56,7 +56,7 @@
         </ul>
         }
 
-        @if (isCampaign && !data.isOwner) {
+        @if (isCampaign && !data.isOwner && data.reclame) {
         <div class="reclame-container">
             <button *ngIf="data.item.quantity > 1" as-btn (click)="reclameItem(data.item, 1)"
                 autofocus="false">Reclama 1</button>

@@ -233,28 +233,20 @@ export class EquipmentComponent {
       case 'Comune':
         // return '#212121'
         return '000000'
-        break;
       case 'Non comune':
         return '#00ff01'
-        break;
       case 'Raro':
         return '#6d9eeb'
-        break;
       case 'Molto raro':
         return '#9a00ff'
-        break;
       case 'Leggendario':
         return '#e29138'
-        break;
       case 'Unico':
         return '#e06467'
-        break;
       case 'Oggetto chiave':
         return '#DDD605'
-        break;
       default:
         return '#212121'
-        break;
     }
   }
 
@@ -328,7 +320,7 @@ export class EquipmentComponent {
       // disableClose: true,
       panelClass: 'item-info-sheet',
       autoFocus: false,
-      data: { item: item, isOwner: false, fromEquip: true }
+      data: { item: item, isOwner: false, fromEquip: true, reclame: false, edit: false }
     });
   }
 

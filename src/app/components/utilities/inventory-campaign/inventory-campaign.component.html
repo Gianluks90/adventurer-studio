@@ -7,7 +7,7 @@
     </div> -->
     <div as-mini-buttons-container>
         <button as-mini-circle-btn (click)="openExchangeDialog()" *ngIf="!isOwnerData"
-            [disabled]="charsData.length < 2">
+            [disabled]="charsData.length < 1">
             <div class="material-symbols-outlined">compare_arrows</div>
         </button>
         <button as-mini-circle-btn [disabled]="!isResources" (click)="openResourcesDialog()" *ngIf="isOwnerData">

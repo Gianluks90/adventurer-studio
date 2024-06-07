@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, effect } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Item } from 'src/app/models/item';
@@ -16,13 +16,19 @@ export class ExchangeDialogComponent {
     receiver: [null, Validators.required]
   });
   public validItems: Item[] = [];
+  public characters: any[] = [];
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: { selectedChar: any, characters: any[] }, private charService: CharacterService) {
+    this.charService.getSignalCharacters();
+    effect(() => {
+      this.characters = this.charService.character();
+    });
     this.form = this.fb.group({
       items: [[], [Validators.required, this.arrayNotEmptyValidator()]],
       receiver: [null, Validators.required]
     });
     this.validItems = this.data.selectedChar.equipaggiamento.filter((item: any) => !item.weared && item.quantity > 0);
+
   }
 
   // Validatore personalizzato per verificare che l'array non sia vuoto
@@ -54,7 +60,7 @@ export class ExchangeDialogComponent {
     if (!receiver) return;
     const items = this.form.value.items;
     if (!Array.isArray(items)) return;
-  
+
     items.forEach((item: any) => {
       // Controlla se il receiver ha già l'item
       const receiverItem = receiver.equipaggiamento?.find((i: any) => i.id === item.id);
@@ -65,7 +71,7 @@ export class ExchangeDialogComponent {
         // Aggiungi l'item se non esiste
         receiver.equipaggiamento.push({ ...item, quantity: 1 });
       }
-  
+
       // Trova l'item nel personaggio selezionato e decrementa la quantità
       const selectedCharItem = this.data.selectedChar.equipaggiamento?.find((i: any) => i.id === item.id);
       if (selectedCharItem) {
@@ -79,7 +85,7 @@ export class ExchangeDialogComponent {
         // }
       }
     });
-  
+
     // Aggiorna l'inventario per entrambi i personaggi
     const requests = [];
     requests.push(this.charService.updateInventory(receiver.id, receiver.equipaggiamento));
@@ -93,11 +99,11 @@ export class ExchangeDialogComponent {
     // this.charService.updateInventory(receiver.id, receiver.equipaggiamento).then(() => {
     //   this.charService.updateInventory(this.data.selectedChar.id, this.data.selectedChar.equipaggiamento);
     // });
-  
+
     // Resetta il form alla fine, se necessario
     // this.resetForm();
   }
-  
+
 
   public resetForm() {
     this.form.reset();

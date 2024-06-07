@@ -242,7 +242,7 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
 
     .home-container {
         width: 90%;
@@ -278,7 +278,7 @@
 
     .character-info-container {
         gap: 0;
-        font-size: small;
+        font-size: x-small;
     }
 
     .character-name {

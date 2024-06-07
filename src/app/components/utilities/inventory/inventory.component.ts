@@ -105,7 +105,7 @@ export class InventoryComponent {
       // disableClose: true,
       panelClass: 'item-info-sheet',
       autoFocus: false,
-      data: { item: item, isOwner: this.isOwnerData }
+      data: { item: item, isOwner: this.isOwnerData, fromEquip: false, reclame: false, edit: true }
     }).afterDismissed().subscribe((result: any) => {
       if (result && result.status === 'edited') {
         this.inventoryData[index] = result.item;
@@ -214,28 +214,20 @@ export class InventoryComponent {
       case 'Comune':
         // return '#212121' // Quando le icone saranno state modificate con lo sfondo di questo colore
         return '000000'
-        break;
       case 'Non comune':
         return '#00ff01'
-        break;
       case 'Raro':
         return '#6d9eeb'
-        break;
       case 'Molto raro':
         return '#9a00ff'
-        break;
       case 'Leggendario':
         return '#e29138'
-        break;
       case 'Unico':
         return '#e06467'
-        break;
       case 'Oggetto chiave':
         return '#DDD605'
-        break;
       default:
         return '#212121'
-        break;
     }
   }
 

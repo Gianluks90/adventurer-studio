@@ -149,7 +149,7 @@ export class InventoryCampaignComponent {
       // disableClose: true,
       panelClass: 'item-info-sheet',
       autoFocus: false,
-      data: { item: item, isOwner: this.isOwnerData }
+      data: { item: item, isOwner: this.isOwnerData, fromEquip: false, reclame: true, edit: true }
     }).afterDismissed().subscribe((result: any) => {
       if (result && result.status === 'edited') {
         this.inventoryData[index] = result.item;

@@ -17,7 +17,7 @@ export class ItemInfoSheetComponent {
   public maxMinDamage: string;
 
   constructor(
-    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean, fromEquip?: boolean },
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: { item: Item, isOwner: boolean, fromEquip: boolean, reclame: boolean, edit: boolean },
     private sheetRef: MatBottomSheetRef<ItemInfoSheetComponent>,
     private dialog: MatDialog,
     private campService: CampaignService) {

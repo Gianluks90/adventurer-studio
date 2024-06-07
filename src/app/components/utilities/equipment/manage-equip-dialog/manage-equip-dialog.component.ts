@@ -55,7 +55,7 @@ export class ManageEquipDialogComponent {
         const mainHandItem = this.mainHandSelection.find(item => item.id === (set.mainHand ? set.mainHand.id : ''));
         const offHandItem = this.offHandSelection.find(item => item.id === (set.offHand ? set.offHand.id : ''));
         this.sets.push(this.fb.group({
-          name: [set.name, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+          name: [set.name, Validators.required],
           skill: [set.skill, Validators.required],
           mainHand: [mainHandItem], // Utilizza direttamente l'oggetto Item
           offHand: [offHandItem], // Utilizza direttamente l'oggetto Item

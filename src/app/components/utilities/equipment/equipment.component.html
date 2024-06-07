@@ -26,8 +26,8 @@
     } @else {
         <div [ngStyle]="{'color': charData.status.sheetTitleColor}" class="no-equip">Nessun oggetto equipaggiato</div>
     } -->
-    <div class="equip-container" [ngStyle]="{'grid-template-columns': wearedItems.length <= 0 ? '1fr' : 'repeat(10, 1fr)'}">
-        @for (i of wearedItems; track idx; let idx = $index) {
+    <div class="equip-container" [ngStyle]="{'grid-template-columns': wearedItems.length <= 0 ? '1fr' : ''}">
+        @for (i of wearedItems; track i.id; let idx = $index) {
             <!-- @if (i) { -->
                 <img class="equip-card" [src]="i.icon" [ngStyle]="{'border-color': setColor(i.rarity)}"
                 (mouseover)="showTooltip($event, i)" (mouseleave)="hideTooltip()" (click)="openInfoSheet(i, idx)">
@@ -43,7 +43,34 @@
     <!-- Danni -->
     @if (setsData.length > 0) {
         @if (setsData[setIndex].mainHand && setsData[setIndex].mainHand.name !== '') {
-        <div class="grid-item">
+            <div class="grid-item grid-damage">
+                <div class="parameter-label"><strong>Danni ({{setsData[setIndex].name}})</strong></div>
+                <div class="damage-line">
+                    <div class="parameter-label">Tiro per colpire</div>
+                    <div class="damage-label">
+                        <img class="dice-icon" src="./assets/dice/dice-d20-black.svg"> {{getHitCheckString(setIndex)}}
+                    </div>
+                </div>
+                <div class="damage-line">
+                    <div class="parameter-label">Tiro per i danni</div>
+                    <div class="damage-label">
+                        <img class="dice-icon" src="./assets/dice/dice-d20-black.svg">{{
+                                (setsData[setIndex].versatile ? getDiceFormula(setsData[setIndex].mainHand.versatileDice, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) : 
+                                (setsData[setIndex].dualWield ? getDiceFormula(setsData[setIndex].mainHand.damageFormula + '+' + setsData[setIndex].offHand.damageFormula, setsData[setIndex].skill) :
+                                (getDiceFormula(setsData[setIndex].mainHand.damageFormula, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) || '1'))
+                            )
+                            }}
+                            ({{ 
+                                (setsData[setIndex].versatile ? getDamagesString(setsData[setIndex].mainHand.versatileDice, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) : 
+                                    (setsData[setIndex].dualWield ? getDamagesString(setsData[setIndex].mainHand.damageFormula + '+' + setsData[setIndex].offHand.damageFormula, setsData[setIndex].skill) :
+                                        (getDamagesString(setsData[setIndex].mainHand.damageFormula, setsData[setIndex].skill, setsData[setIndex].mainHand.extraDamages) || '1')
+                                    )
+                                )
+                            }})
+                    </div>
+                </div>
+            </div>
+        <!-- <div class="grid-item">
             <span class="parameter-label">Danni ({{setsData[setIndex].name}} <span class="material-symbols-outlined mini-dice-icon">casino</span> {{getHitCheckString(setIndex)}})</span> 
             <div class="speed-container">
                 {{ 
@@ -61,7 +88,7 @@
                     }})
                 </span>         
             </div>
-        </div> 
+        </div>  -->
         } @else {
         <div class="grid-item"><span class="parameter-label">Danni ({{setsData[setIndex].name}})</span> 1</div>
         }
