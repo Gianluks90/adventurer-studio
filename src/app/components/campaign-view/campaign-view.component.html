@@ -38,7 +38,7 @@
             <div class="status-container">
                 <app-campaign-char-list [characters]="charData" [isOwner]="isOwner" (selectCharEmitter)="onCharEmitted($event)"></app-campaign-char-list>
             </div>
-            <mat-tab-group color="accent" #tabGroup selectedIndex="6">
+            <mat-tab-group color="accent" #tabGroup>
                 <mat-tab>
                     <ng-template mat-tab-label>
                         <img src="./assets/campaign-tabs-icon/story.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab1-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">

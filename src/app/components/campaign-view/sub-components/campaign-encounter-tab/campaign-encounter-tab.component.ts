@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { NewEncounterDialogComponent } from './new-encounter-dialog/new-encounter-dialog.component';
+import { CampaignService } from 'src/app/services/campaign.service';
+import { J } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-campaign-encounter-tab',
@@ -8,22 +12,20 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CampaignEncounterTabComponent {
 
-  public form: FormGroup;
-  public selectedAddons: any[] = [];
-
   public charData: any[] = [];
   @Input() set characters(characters: any[]) {
+    if (!characters) return;
     this.charData = characters;
-    if (!this.charData) return;
-    if (this.form) {
-      this.form.patchValue({ characters: this.charData });
-    }
   }
 
+  public campId: string = '';
   public addonsData: any;
+  public encounterData: any[];
   @Input() set campaign(campaign: any) {
+    if (!campaign) return;
+    this.campId = campaign.id;
     this.addonsData = campaign.addons;
-    if (!this.addonsData) return;
+    this.encounterData = campaign.encounter;
   }
 
   public isOwnerData: boolean = false;
@@ -31,56 +33,91 @@ export class CampaignEncounterTabComponent {
     this.isOwnerData = isOwner || false;
   }
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      characters: [[], [Validators.required, Validators.minLength(1)]],
-      addons: this.fb.array([], Validators.required)
+  constructor(private dialog: MatDialog, private campService: CampaignService) {}
+
+  public openNewEncounterDialog(): void {
+    this.dialog.open(NewEncounterDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '50%',
+      autoFocus: false,
+      disableClose: true,
+      data: { characters: this.charData, addons: this.addonsData }
+    }).afterClosed().subscribe((result: any) => {
+      if(result && result.status === 'success') {
+        this.campService.newEncounter(this.campId, result.encounter);
+      }
     });
   }
 
-  ngOnInit() {
-    if (this.charData.length > 0) {
-      this.form.get('characters')?.setValue(this.charData);
+  public clearEncounter(): void {
+    this.campService.newEncounter(this.campId, []);
+  }
+
+  public hpTimer: any = null;
+  public hpCounter: number = 0;
+  public showCounter: boolean = false;
+  public HPaction(action: string, index: number): void {
+    if (this.hpTimer) {
+      clearTimeout(this.hpTimer);
+    }
+    switch(action) {
+      case 'remove':
+        if (this.encounterData[index].HP <= 0) return;
+        this.hpCounter -= 1;
+        this.encounterData[index].HP -= 1;
+        break;
+      case 'add':
+        if (this.encounterData[index].HP >= this.encounterData[index].HPmax) return;
+        this.hpCounter += 1;
+        this.encounterData[index].HP += 1;
+        break;
+    }
+    const spanCounter = document.getElementById('counter_' + index);
+    if (spanCounter) {
+      spanCounter.style.opacity = '1';
+      spanCounter.innerText = this.hpCounter.toString();
+    }
+
+    this.hpTimer = setTimeout(() => {
+      this.campService.newEncounter(this.campId, this.encounterData).then(() => {
+        this.hpTimer = null;
+        this.hpCounter = 0;
+        this.showCounter = false;
+        if (spanCounter) {
+          spanCounter.style.opacity = '0';
+          spanCounter.innerText = '0';
+        }
+      });
+    }, 3000);
+  }
+
+  public getHealthSituationString(hp: number, hpMax: number) {
+    const perc = (hp / hpMax) * 100;
+    if (perc >= 75) {
+      return 'In salute';
+    } else if (perc >= 50) {
+      return 'Ferito';
+    } else if (perc >= 25) {
+      return 'Barcollante';
+    } else if (perc >= 10) {
+      return 'Morente';
+    } else if (perc === 0) {
+      return 'Sconfitto';
+    } else {
+      return 'Agonizzante';
     }
   }
 
-  get addons(): FormArray {
-    return this.form.get('addons') as FormArray;
-  }
-
-  private addEnemy(addon: any) {
-    const group = this.fb.group({
-      addon: [addon, Validators.required],
-      quantity: [1, [Validators.required, Validators.min(1)]]
-    });
-    this.addons.push(group);
-    this.selectedAddons.push(addon); // Aggiungi l'addon ai selezionati
-  }
-
-  public removeEnemy(index: number) {
-    const removedAddon = this.addons.at(index).value.addon;
-    this.addons.removeAt(index);
-    this.selectedAddons = this.selectedAddons.filter(addon => addon !== removedAddon); // Rimuovi l'addon dai selezionati
-  }
-
-  public onAddonSelectionChange(event: any) {
-    const selectedAddons = event.value;
-    const currentAddons = this.getSelectedAddons();
-  
-    selectedAddons.forEach((addon: any) => {
-      if (!currentAddons.includes(addon)) {
-        this.addEnemy(addon);
+  public enemiesSelected(): any[] {
+    const result = JSON.parse(JSON.stringify(this.encounterData.filter((e: any) => e.type === 'enemy')));
+    result.forEach((e: any) => {
+      const lastSpaceIndex = e.name.lastIndexOf(' ');
+      if (lastSpaceIndex !== -1) {
+        e.name = e.name.substring(0, lastSpaceIndex);
       }
     });
-  
-    currentAddons.forEach((addon: any, index: number) => {
-      if (!selectedAddons.includes(addon)) {
-        this.removeEnemy(index);
-      }
+
+    return result.filter((e: any, index: number, self: any[]) => {
+      return self.findIndex((el: any) => el.name === e.name) === index;
     });
-  }
-  
-  private getSelectedAddons(): any[] {
-    return this.addons.value.map((e: any) => e.addon);
   }
 }

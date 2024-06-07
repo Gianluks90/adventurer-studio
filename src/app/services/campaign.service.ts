@@ -422,6 +422,14 @@ export class CampaignService {
     }, { merge: true });
   }
 
+  public async newEncounter(campId: string, encounter: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'campaigns', campId);
+    return await setDoc(docRef, {
+      encounter: encounter,
+      lastUpdate: new Date()
+    }, { merge: true });
+  }
+
   public async updateNextSession(id: string, nextSession: Date): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'campaigns', id);
     return await setDoc(docRef, {

@@ -87,7 +87,7 @@
             </button>
         </mat-menu>
         }
-        @if (isCampaign && isDM) {
+        @if (isCampaign && isDM && listTitleData !== "Schede dell'incontro") {
         <!-- <button mat-mini-fab color="accent" class="add-button" (click)="openAddonDialog()"
             disableRipple><mat-icon>add</mat-icon></button> -->
         <button as-mini-circle-btn (click)="collapseAll()">
@@ -479,9 +479,12 @@
             </div>
             <div class="org-place">{{addon.race}}<span *ngIf="addon.relationship">, {{addon.relationship}}</span></div>
         </div>
-        <button mat-mini-fab color="accent" class="edit-button" (click)="openAddonDialog(addon, i)" *ngIf="isOwner">
-            <mat-icon>edit</mat-icon>
-        </button>
+        @if (listTitleData !== "Schede dell'incontro") {
+            <button mat-mini-fab color="accent" class="edit-button" (click)="openAddonDialog(addon, i)" *ngIf="isOwner">
+                <mat-icon>edit</mat-icon>
+            </button>
+        }
+        
     </div>
     <details class="main-details">
         <summary class="addon-name">Statistiche</summary>

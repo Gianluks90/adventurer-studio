@@ -62,30 +62,6 @@ export class HealthBarComponent {
     });
   }
 
-  public PFActionOld(action: string) {
-    switch (action) {
-      case 'add':
-        this.parametriVitaliData.pf += 1;
-        this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData);
-        break;
-      case 'remove':
-        if (this.parametriVitaliData.pft > 0) {
-          this.parametriVitaliData.pft -= 1;
-          if (this.parametriVitaliData.pft <= 0) {
-            this.parametriVitaliData.pf -= Math.abs(this.parametriVitaliData.pft);
-            this.parametriVitaliData.pft = 0;
-            this.parametriVitaliData.pftMax = 0;
-          }
-        } else {
-          this.parametriVitaliData.pf -= 1;
-        }
-        this.charService.updateCharacterPFById(this.idData, this.parametriVitaliData);
-        break;
-      default:
-        break;
-    }
-  }
-
   public pfTimer: any = null;
   public pfCounter: number = 0;
   public showCounter: boolean = false;

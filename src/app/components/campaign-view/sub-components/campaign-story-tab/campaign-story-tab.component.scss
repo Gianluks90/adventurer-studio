@@ -63,8 +63,13 @@
 
 .story-title {
     font-weight: bold;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     color: #212121;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    letter-spacing: 1px;
+    text-align: center;
+    font-size: large;
+    margin-bottom: 24px;
 }
 
 .story-content {
@@ -87,7 +92,7 @@
     font-size: large;
     font-weight: bold;
     color: rgba($color: #212121, $alpha: 0.6);
-    // font-family: 'Times New Roman', Times, serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 .story-divider {
