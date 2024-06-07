@@ -1,0 +1,33 @@
+@defer (when user) {
+<div class="main-container" [ngClass]="{'iPad-padding': isiPad}">
+    <div class="card-container">
+        <div class="cart-title">Le tue avventure</div>
+        @for (a of adventures; track a.id) {
+        <div class="card-details">
+            <div class="card-info-container">
+                <div class="adventure-title">{{a.title}}</div>
+                <div as-pills-container>
+                    <div as-pill>{{a.status.statusMessage}}</div>
+                    <div as-pill>Capitoli {{a.chapters.length}}</div>
+                    <div as-pill>Ultima modifica {{a.status.lastUpdate.toDate() | date: 'dd/MM HH:mm'}}</div>
+                </div>
+            </div>
+            <button as-btn>
+                <div class="material-symbols-outlined">{{a.chapters.length === 0 ? 'star' : 'edit'}}</div>
+                <div>{{a.chapters.length === 0 ? 'Crea' : 'Modifica'}}</div>
+            </button>
+        </div>
+        }
+    </div>
+</div>
+<div as-bottom-buttons-container as-bottom-left id="menu-button">
+    <button as-bottom-btn (click)="sidenavService.toggle()">
+        <div class="material-symbols-outlined">menu</div>
+    </button>
+</div>
+<div as-bottom-buttons-container as-bottom-right id="add-button">
+    <button as-bottom-btn (click)="newAdventure()" [disabled]="user.createdAdventures.length >= 3">
+        <div class="material-symbols-outlined">add</div>
+    </button>
+</div>
+}

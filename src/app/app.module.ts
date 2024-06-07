@@ -112,6 +112,8 @@ import { ManageResourcesDialogComponent } from './components/resources-page/mana
 import { DocumentDialogComponent } from './components/utilities/inventory/item-info-sheet/document-dialog/document-dialog.component';
 import { CampaignEncounterTabComponent } from './components/campaign-view/sub-components/campaign-encounter-tab/campaign-encounter-tab.component';
 import { NewEncounterDialogComponent } from './components/campaign-view/sub-components/campaign-encounter-tab/new-encounter-dialog/new-encounter-dialog.component';
+import { AdventuresPageComponent } from './components/adventures-page/adventures-page.component';
+import { NewAdventureDialogComponent } from './components/adventures-page/new-adventure-dialog/new-adventure-dialog.component';
 
 @NgModule({ declarations: [
         // MAIN COMPONENTS
@@ -230,6 +232,8 @@ import { NewEncounterDialogComponent } from './components/campaign-view/sub-comp
         DocumentDialogComponent,
         CampaignEncounterTabComponent,
         NewEncounterDialogComponent,
+        AdventuresPageComponent,
+        NewAdventureDialogComponent,
     ],
     bootstrap: [AppComponent], imports: [SharedModule,
         BrowserModule,

@@ -1,0 +1,23 @@
+<div mat-dialog-title class="dialog-title">Nuova Avventura</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div as-description-text>
+        Inserisci un Titolo per una nuova Avventura. Differentemente da una normale Avventura/Campagna, l'applicazione considera
+        questo elemento più come una "Saga" (o una raccolta) che al suo interno contiene dei Capitoli, le vere e proprie Avventure/Campagne.
+        Il titolo, modificabile anche successivamente, può descrivere a grandi linee quello che hai intenzione di creare
+        (es. "La Saga degli Avventurieri").
+    </div>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Titolo</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">done</div>
+        <div>Conferma</div>
+    </button>
+</div>

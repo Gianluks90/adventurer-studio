@@ -14,6 +14,9 @@ export class AdventurerUser {
     campaignAsPartecipant: string[] = [];
     favoriteCampaign: string = '';
 
+    adventuresProgressive: number = 0;
+    createdAdventures: string[] = [];
+
     dddiceToken: string = '';
     privateSlug: string = '';
     rollTheme: string = '';
@@ -32,6 +35,8 @@ export class AdventurerUser {
         result.campaignProgressive = data.campaignProgressive || 0;
         result.createdCampaigns = data.createdCampaigns || [];
         result.campaignAsPartecipant = data.campaignAsPartecipant || [];
+        result.favoriteCampaign = data.favoriteCampaign || '';
+        result.adventuresProgressive = data.adventuresProgressive || 0;
         result.dddiceToken = data.dddiceToken || '';
         result.privateSlug = data.privateSlug || '';
         result.rollTheme = data.rollTheme || '';

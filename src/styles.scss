@@ -148,6 +148,12 @@ app-character-view {
   width: 100% !important;
 }
 
+app-adventures-page {
+  display: flex;
+  width: 100% !important;
+  justify-content: center;
+}
+
 .mdc-button__label {
   z-index: 0 !important;
 }
