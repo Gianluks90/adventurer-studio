@@ -50,6 +50,7 @@ export class SidenavComponent {
     getAuth().signOut().then(() => {
       localStorage.setItem('dndCS-2023-logged', 'false');
       this.drawer.close();
+      this.router.navigate(['/']);
     });
   }
 

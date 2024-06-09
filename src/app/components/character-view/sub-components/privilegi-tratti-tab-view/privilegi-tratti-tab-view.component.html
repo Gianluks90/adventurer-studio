@@ -2,8 +2,9 @@
 <div as-section-title>Razza: {{razzaData}} <span *ngIf="sottorazzaData !==''">({{sottorazzaData}})</span></div>
 <div class="classi-container">
     <div *ngFor="let c of classiData">
-        <div as-pill>{{c.nome}} <span *ngIf="c.sottoclasse !== ''">({{c.sottoclasse}})</span> di
-            {{c.livello}}° livello</div>
+        <!-- <div as-pill>{{c.nome}} <span *ngIf="c.sottoclasse !== ''">({{c.sottoclasse}}) </span> di
+            {{c.livello}}° livello</div> -->
+            <div as-pill>{{composeClassString(c)}}</div>
     </div>
 </div>
 }

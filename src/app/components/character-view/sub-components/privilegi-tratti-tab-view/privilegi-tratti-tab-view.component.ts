@@ -57,4 +57,9 @@ export class PrivilegiTrattiTabViewComponent {
     });
   }
 
+  public composeClassString(classe: any): string {
+    const result: string = '';
+    return classe.nome + (classe.sottoclasse !== '' ? ` (${classe.sottoclasse})` : '') + ' di ' + classe.livello + '° livello';
+  }
+
 }
