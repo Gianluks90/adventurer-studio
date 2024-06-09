@@ -40,7 +40,7 @@
         Campagne
       </button>
     
-      <button as-btn disabled>
+      <button as-btn [routerLink]="['/adventures']" (click)="close()">
         <mat-icon>map</mat-icon>
         Avventure
       </button>
@@ -53,7 +53,7 @@
           <img class="social-icon" src="./assets/socials/telegram.svg">
         </a>
       </div>
-      <div class="version-label">vers. 04062024</div>
+      <div class="version-label">vers. 09062024</div>
       <button as-btn (click)="openSettingsDialog()" [disabled]="!user">
         <mat-icon>settings</mat-icon>
         Impostazioni
