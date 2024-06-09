@@ -1,0 +1,68 @@
+@if (adventureData) {
+    @for (c of adventureData.chapters; track c.id; let i = $index) {
+        <div class="chapter-number">{{i+1}}</div>
+        <div class="chapter-title-divider"></div>
+        <h3 class="chapter-title">{{c.title}}</h3>
+        <h3 class="chapter-subtitle">{{c.subtitle}}</h3>
+        <div class="element-simple-text">{{c.description}}</div>
+        
+        @for (e of c.elements; track e.id; let j = $index) {
+            @switch (e.type) {
+                @case ('title') {
+                    <h3 [ngStyle]="{'color': e.color }" class="element-title">{{e.text}}</h3>
+                }
+                @case ('subtitle') {
+                    <h3 [ngStyle]="{'color': e.color }" class="element-subtitle">{{e.text}}</h3>
+                }
+                @case ('simple-text') {
+                    <div class="element-simple-text">{{e.text}}</div>
+                }
+                @case ('descriptive-text') {
+                    <div [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }" class="element-descriptive-text">{{e.text}}</div>
+                }
+                @case ('note') {
+                    <div class="element-note" [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }">
+                        <div class="element-note-title">{{e.title}}</div>
+                        <div class="element-note-text">{{e.text}}</div>
+                    </div>
+                }
+                @case ('image') {
+                    <img [src]="e.src" class="element-image">
+                    <div class="element-caption">{{e.caption !== '' ? e.caption : 'Nessuna didascalia fornita.'}}</div>
+                }
+                @case ('list') {
+                    @for (item of e.items; track item.id; let k = $index) {
+                       @if (e.bulleted) {
+                            <ul class="element-list-item">
+                               <li class="element-list-item-text">{{item.text}}</li>
+                            </ul>
+                        } @else { 
+                            <div class="element-list-item">
+                                <strong>{{item.title}}</strong>: <span class="element-list-item-text">{{item.text}}</span>
+                            </div>
+                        }
+                    }
+                }
+                @case ('table') {
+                    <div class="table-container">
+                        <div class="element-table-header" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
+                            <div class="table-header-left">{{e.header_left}}</div>
+                            <div class="table-header-right">{{e.header_right}}</div>
+                        </div>
+                        @for (row of e.rows; track row.id; let k = $index) {
+                            <div class="element-table-row" [ngClass]="{'even-row': $odd}" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
+                                <div class="table-row-left">{{row.left}}</div>
+                                <div class="table-row-right">{{row.right}}</div>
+                            </div>
+                        }
+                    </div>
+                    <div class="element-caption">{{e.caption}}</div>
+                }
+            }
+        } @empty {
+            <div as-description-text>Non hai ancora creato alcun componente in questo capitolo.</div>
+        }
+    } @empty {
+        <div as-description-text>Non hai ancora creato alcun capitolo.</div>
+    }
+}

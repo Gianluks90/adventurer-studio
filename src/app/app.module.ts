@@ -114,6 +114,10 @@ import { CampaignEncounterTabComponent } from './components/campaign-view/sub-co
 import { NewEncounterDialogComponent } from './components/campaign-view/sub-components/campaign-encounter-tab/new-encounter-dialog/new-encounter-dialog.component';
 import { AdventuresPageComponent } from './components/adventures-page/adventures-page.component';
 import { NewAdventureDialogComponent } from './components/adventures-page/new-adventure-dialog/new-adventure-dialog.component';
+import { AdventureEditorComponent } from './components/adventure-editor/adventure-editor.component';
+import { AdventureViewComponent } from './components/adventure-view/adventure-view.component';
+import { NewAdventureChapterDialogComponent } from "./components/adventure-editor/new-adventure-chapter-dialog/new-adventure-chapter-dialog.component";
+import { AddElementsDialogComponent } from './components/adventure-editor/add-elements-dialog/add-elements-dialog.component';
 
 @NgModule({ declarations: [
         // MAIN COMPONENTS
@@ -234,6 +238,10 @@ import { NewAdventureDialogComponent } from './components/adventures-page/new-ad
         NewEncounterDialogComponent,
         AdventuresPageComponent,
         NewAdventureDialogComponent,
+        AdventureEditorComponent,
+        AdventureViewComponent,
+        NewAdventureChapterDialogComponent,
+        AddElementsDialogComponent
     ],
     bootstrap: [AppComponent], imports: [SharedModule,
         BrowserModule,

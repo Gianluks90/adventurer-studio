@@ -1,0 +1,227 @@
+<div mat-dialog-title class="dialog-title">Nuovo Componente</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div as-description-text>
+        Seleziona il componente da aggiungere nella tendina sottostante, compilalo e conferma per aggiungerlo al Capitolo.
+        Ricorda che il nuovo componente viene aggiunto sempre in fondo all'elenco di quelli già creati.
+    </div>
+
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <mat-select formControlName="type">
+            <mat-option value="title">Titolo</mat-option>
+            <mat-option value="subtitle">Sottotitolo</mat-option>
+            <mat-option value="simple-text">Testo semplice</mat-option>
+            <mat-option value="descriptive-text">Testo descrittivo</mat-option>
+            <mat-option value="note">Nota</mat-option>
+            <mat-option value="image">Immagine (link esterno)</mat-option>
+            <mat-option value="list">Elenco</mat-option>
+            <mat-option value="table">Tabella (2 colonne)</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    @switch (form.value.type) {
+        @case ('title') {
+            <div as-section-title>Titolo</div>
+            <div as-description-text>
+                Un semplice titolo. Da usare per dividere in sezioni la tua Avventura.
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Testo</mat-label>
+                <input type="text" matInput formControlName="text">
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Colore del testo</mat-label>
+                <input type="color" matInput formControlName="color">
+            </mat-form-field>
+        }
+        @case ('subtitle') {
+            <div as-section-title>Sottotitolo</div>
+            <div as-description-text>
+                Un semplice sottotitolo, leggermente più piccolo (in termine di carattere) rispetto ad un Titolo. Da usare per
+                dividere in paragrafi una varie parti di testo.
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Testo</mat-label>
+                <input type="text" matInput formControlName="text">
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Colore del testo</mat-label>
+                <input type="color" matInput formControlName="color">
+            </mat-form-field>
+        }
+        @case ('simple-text') {
+            <div as-section-title>Testo semplice</div>
+            <div as-description-text>
+                Un testo libero senza particolari funzioni, solitamente segue un Titolo oppure un Sottotitolo.
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Testo</mat-label>
+                <textarea matInput formControlName="text" rows="5"></textarea>
+            </mat-form-field>
+        }
+        @case ('descriptive-text') {
+            <div as-section-title>Testo descrittivo</div>
+            <div as-description-text>
+                Un testo descrittivo da leggere ad alta voce. È possibile sceglierne i colori così da distinguerlo dagli altri testi più
+                facilmente. Il colore visualizzato sarà leggermente più opaco rispetto a quello scelto (50%).
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Testo</mat-label>
+                <textarea matInput formControlName="text" rows="5"></textarea>
+            </mat-form-field>
+            <div class="line-container">
+                <mat-form-field color="accent" class="line-input" appearance="outline">
+                    <mat-label>Colore del testo</mat-label>
+                    <input type="color" matInput formControlName="textColor">
+                </mat-form-field>
+                <mat-form-field color="accent" class="line-input" appearance="outline">
+                    <mat-label>Colore di sfondo</mat-label>
+                    <input type="color" matInput formControlName="backgroundColor">
+                </mat-form-field>
+            </div>
+        }
+        @case ('note') {
+            <div as-section-title>Nota</div>
+            <div as-description-text>
+                Un testo di supporto per il DM che prevede anche un titolo (in grassetto) oltre che la descrizione. È possibile sceglierne i colori così da distinguerlo dagli altri testi più
+                facilmente. Il colore visualizzato sarà leggermente più opaco rispetto a quello scelto (50%).
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Titolo</mat-label>
+                <input type="text" matInput formControlName="title">
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Testo</mat-label>
+                <textarea matInput formControlName="text" rows="5"></textarea>
+            </mat-form-field>
+            <div class="line-container">
+                <mat-form-field color="accent" class="line-input" appearance="outline">
+                    <mat-label>Colore del testo</mat-label>
+                    <input type="color" matInput formControlName="textColor">
+                </mat-form-field>
+                <mat-form-field color="accent" class="line-input" appearance="outline">
+                    <mat-label>Colore di sfondo</mat-label>
+                    <input type="color" matInput formControlName="backgroundColor">
+                </mat-form-field>
+            </div>
+        }
+        @case ('image') {
+            <div as-section-title>Immagine</div>
+            <div as-description-text>
+                Un'immagine da visualizzare. Inserisci il link dell'immagine e una didascalia (facoltativa).
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Link</mat-label>
+                <input type="text" matInput formControlName="src">
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Didascalia</mat-label>
+                <input type="text" matInput formControlName="caption">
+            </mat-form-field>
+            @if (form.value.src) {
+                <img [src]="form.value.src" class="image-preview">
+            }
+        }
+        @case ('list') {
+            <div as-section-title>Elenco</div>
+            <div as-description-text>
+                Un elenco di <em>qualsiasi-cosa</em> che abbia un nome (che verrà visualizzato in grassetto) e una descrizione. Utile
+                per elencare proprietà di luoghi, personaggi minori e altro... 
+            </div>
+            <div as-subtitle class="advanced-label">Opzioni</div>
+            <div as-description-text>
+                Seleziona <strong>elenco puntato</strong> per ignorare il
+                titolo ed avere un elenco di punti e descrizioni.
+            </div>
+            <mat-checkbox class="bulleted-checkbox" color="accent" formControlName="bulleted">Elenco puntato</mat-checkbox>
+            <div formArrayName="items">
+                @for (item of list.controls; track item.value.id; let k = $index) {
+                    <div [formGroupName]="k" class="list-item">
+                        <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                            <mat-label>Titolo</mat-label>
+                            <input type="text" matInput formControlName="title">
+                        </mat-form-field>
+                        <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                            <mat-label>Testo</mat-label>
+                            <input type="text" matInput formControlName="text">
+                        </mat-form-field>
+                        <div as-buttons-container>
+                            <button as-btn as-btn-warn [disabled]="list.length === 1" (click)="removeListItem(k)">
+                                <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
+                            </button>
+                        </div>
+                    </div>
+                }
+                <button as-btn (click)="addListItem()">
+                    <div class="material-symbols-outlined">add</div> <div>Nuovo elemento</div>
+                </button>
+            </div>
+        }
+        @case ('table') {
+            <div as-section-title>Tabella</div>
+            <div as-description-text>
+                Una tabella con due colonne. Compila l'intestazione e poi aggiungi elementi nell'elenco delle righe. Una tabella può
+                essere utile per assegnare ricopense a seconda di un tiro di dado, per esempio.
+            </div>
+            <div as-subtitle>Intestazioni</div>
+            <div class="line-container">
+                <mat-form-field color="accent" class="line-input" appearance="outline">
+                    <mat-label>Colonna (sinistra)</mat-label>
+                    <input type="text" matInput formControlName="header_left">
+                </mat-form-field>
+                <mat-form-field color="accent" class="line-input" appearance="outline">
+                    <mat-label>Colonna (destra)</mat-label>
+                    <input type="text" matInput formControlName="header_right">
+                </mat-form-field>
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Larghezza (sinistra)</mat-label>
+                <input type="number" inputmode="numeric" matInput formControlName="header_left_width" min="10" max="50">
+            </mat-form-field>
+            <div as-buttons-container>
+                <button as-btn (click)="resetWidth()">
+                    <div class="material-symbols-outlined">restart_alt</div> <div>Resetta larghezze</div>
+                </button>
+            </div>
+            <div class="rows-container" formArrayName="rows">
+                <div as-subtitle>Righe</div>
+                @for (row of rows.controls; track row.value.id; let l = $index) {
+                    <div [formGroupName]="l" class="table-row">
+                        <div class="line-container">
+                            <mat-form-field color="accent" class="line-input" appearance="outline">
+                                <mat-label>Colonna sinistra</mat-label>
+                                <input type="text" matInput formControlName="left">
+                            </mat-form-field>
+                            <mat-form-field color="accent" class="line-input" appearance="outline">
+                                <mat-label>Colonna destra</mat-label>
+                                <input type="text" matInput formControlName="right">
+                            </mat-form-field>
+                        </div>
+                        <div as-buttons-container>
+                            <button as-btn as-btn-warn [disabled]="rows.length === 1" (click)="removeTableRow(l)">
+                                <div class="material-symbols-outlined">delete</div> <div>Elimina</div>
+                            </button>
+                        </div>
+                    </div>
+                }
+                <button as-btn (click)="addTableRow()">
+                    <div class="material-symbols-outlined">add</div> <div>Nuova riga</div>
+                </button>
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Didascalia</mat-label>
+                <input type="text" matInput formControlName="caption">
+            </mat-form-field>
+        }
+    }
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">done</div>
+        <div>Conferma</div>
+    </button>
+</div>

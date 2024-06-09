@@ -11,6 +11,7 @@ import { CampaignViewComponent } from "./components/campaign-view/campaign-view.
 import { HomePageComponent } from "./components/home-page/home-page.component";
 import { ResourcesPageComponent } from "./components/resources-page/resources-page.component";
 import { AdventuresPageComponent } from "./components/adventures-page/adventures-page.component";
+import { AdventureEditorComponent } from "./components/adventure-editor/adventure-editor.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'campaign-view/:id', component: CampaignViewComponent, canActivate: [AuthGuardService] },
   { path: 'resources', component: ResourcesPageComponent, canActivate: [AuthGuardService] },
   { path: 'adventures', component: AdventuresPageComponent, canActivate: [AuthGuardService] },
+  { path: 'adventures/:id', component: AdventureEditorComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

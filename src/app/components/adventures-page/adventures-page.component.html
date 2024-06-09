@@ -12,7 +12,7 @@
                     <div as-pill>Ultima modifica {{a.status.lastUpdate.toDate() | date: 'dd/MM HH:mm'}}</div>
                 </div>
             </div>
-            <button as-btn>
+            <button as-btn [routerLink]="'/adventures/' + a.id">
                 <div class="material-symbols-outlined">{{a.chapters.length === 0 ? 'star' : 'edit'}}</div>
                 <div>{{a.chapters.length === 0 ? 'Crea' : 'Modifica'}}</div>
             </button>

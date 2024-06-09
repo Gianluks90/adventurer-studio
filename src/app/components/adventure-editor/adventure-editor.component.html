@@ -1,0 +1,128 @@
+@defer (when user && adventureData) {
+<div class="main-container" [ngClass]="{'iPad-padding': isiPad}">
+    <div class="header-container">
+        <h3 class="header-title">{{adventureData.title}}</h3>
+        <div class="header-subtitle">{{subtitle}}</div>
+    </div>
+    <div class="view-container">
+        <div class="editor-container">
+            <div as-section-title>Editor</div>
+            <div as-mini-buttons-container>
+                <button as-long-circle-btn (click)="newChapter()">
+                    <div class="material-symbols-outlined">add</div>
+                    <div>Nuovo capitolo</div>
+                </button>
+            </div>
+            @for (c of adventureData.chapters; track c.id; let i = $index) {
+            <details as-details [open]="adventureData.chapters.length === 1 || c.bookmarked">
+                <summary as-summary>
+                    <span class="chapter-summary"><span class="chapter-number">{{i+1}}</span>{{c.title}}</span>
+                </summary>
+                <div class="chapter-container">
+                    <div as-mini-buttons-container>
+                        <button as-long-circle-btn (click)="addElement(i)">
+                            <div class="material-symbols-outlined">add</div>
+                            <div>Nuovo componente</div>
+                        </button>
+                        <button as-mini-circle-btn (click)="ediChapter(i)">
+                            <div class="material-symbols-outlined">edit</div>
+                        </button>
+                        <button as-mini-circle-btn [ngClass]="{'icon-bookmarked': c.bookmarked}" (click)="chapterBookmarkToggle(i)">
+                            <div class="material-symbols-outlined">bookmark</div>
+                        </button>
+                    </div>
+                    @for (e of c.elements; track e.id; let j = $index) {
+                        @switch (e.type) {
+                            @case ('title') {
+                                <div class="element-type">Titolo</div>
+                                <h3 [ngStyle]="{'color': e.color }">{{e.text}}</h3>
+                            }
+                            @case ('subtitle') {
+                                <div class="element-type">Sottotitolo</div>
+                                <h3 [ngStyle]="{'color': e.color }">{{e.text}}</h3>
+                            }
+                            @case ('simple-text') {
+                                <div class="element-type">Testo semplice</div>
+                                <p class="element-simple-text">{{e.text}}</p>
+                            }
+                            @case ('descriptive-text') {
+                                <div class="element-type">Testo descrittivo</div>
+                                <p [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }" class="element-simple-text element-descriptive-text">{{e.text}}</p>
+                            }
+                            @case ('note') {
+                                <div class="element-type">Testo descrittivo</div>
+                                <p [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }" class="element-simple-text element-descriptive-text">{{e.title}}: {{e.text}}</p>
+                            }
+                            @case ('image') {
+                                <div class="element-type">Immagine</div>
+                                <img [src]="e.src" class="element-image">
+                                <div class="element-caption">{{e.caption !== '' ? e.caption : 'Nessuna didascalia fornita.'}}</div>
+                            }
+                            @case ('list') {
+                                <div class="element-type">Elenco <span *ngIf="e.bulleted">puntato</span></div>
+                                @for (item of e.items; track item.id; let k = $index) {
+                                    @if (e.bulleted) {
+                                        <ul class="element-list-item">
+                                            <li class="element-list-item-text">{{item.text}}</li>
+                                        </ul>
+                                    } @else {
+                                        <p class="element-list-item">
+                                            <strong>{{item.title}}</strong>: {{item.text}}
+                                        </p>
+                                    }
+                                }
+                            }
+                            @case ('table') {
+                                <div class="element-type">Tabella</div>
+                                <div class="table-container">
+                                    <div class="element-table-header" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
+                                        <div class="table-header-left">{{e.header_left}}</div>
+                                        <div class="table-header-right">{{e.header_right}}</div>
+                                    </div>
+                                    @for (row of e.rows; track row.id; let k = $index) {
+                                        <div class="element-table-row" [ngClass]="{'even-row': $odd}" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
+                                            <div class="table-row-left">{{row.left}}</div>
+                                            <div class="table-row-right">{{row.right}}</div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        }
+                        <div as-mini-buttons-container>
+                            <button as-mini-circle-btn [disabled]="$first" (click)="moveElement(i, j, 'up')">
+                                <div class="material-symbols-outlined">vertical_align_top</div>
+                            </button>
+                            <button as-mini-circle-btn [disabled]="$last" (click)="moveElement(i, j, 'down')">
+                                <div class="material-symbols-outlined">vertical_align_bottom</div>
+                            </button>
+                            <button as-mini-circle-btn (click)="editElement(i, j)">
+                                <div class="material-symbols-outlined">edit</div>
+                            </button>
+                            <button as-mini-circle-btn [ngClass]="{'icon-bookmarked': e.bookmarked}" (click)="elementBookmarkToggle(i, j)">
+                                <div class="material-symbols-outlined">bookmark</div>
+                            </button>
+                            <button as-mini-circle-btn as-btn-warn (click)="deleteElement(i, j)">
+                                <div class="material-symbols-outlined">delete</div>
+                            </button>
+                        </div>
+                    } @empty {
+                        <div as-description-text>Non hai ancora creato alcun componente in questo capitolo.</div>
+                    }
+                </div>
+            </details>
+            }@empty {
+            <div as-description-text>Non hai ancora creato alcun capitolo.</div>
+            }
+        </div>
+        <div class="preview-container">
+            <div as-section-title>Anteprima</div>
+            <app-adventure-view [adventure]="adventureData"></app-adventure-view>
+        </div>
+    </div>
+</div>
+<div as-bottom-buttons-container as-bottom-left id="menu-button">
+    <button as-bottom-btn (click)="sidenavService.toggle()">
+        <div class="material-symbols-outlined">menu</div>
+    </button>
+</div>
+}

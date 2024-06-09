@@ -1,0 +1,31 @@
+<div mat-dialog-title class="dialog-title">Nuovo Capitolo</div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div as-description-text>
+        Compila i seguenti campi per creare un nuovo capitolo. Un <strong>Capitolo</strong> altri non è che un
+        contenitore di componenti (descrizioni, schede, immagini, ecc...) che vanno a comporre una grande sezione della
+        tua Campagna. Se lo paragassimo ad un manuale di Avventure un Capitolo corrisponderebbe ad un'intera Campagna,
+        l'Avventura qui sull'app quindi è in realtà una serie di Campagne.
+    </div>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Titolo</mat-label>
+        <input matInput formControlName="title">
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Sottotitolo</mat-label>
+        <input matInput formControlName="subtitle">
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Descrizione</mat-label>
+        <textarea matInput formControlName="description" rows="5"></textarea>
+    </mat-form-field>
+</div>
+<div as-buttons-container mat-dialog-actions align="end">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div>
+        <div>Annulla</div>
+    </button>
+    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+        <div class="material-symbols-outlined">done</div>
+        <div>Conferma</div>
+    </button>
+</div>

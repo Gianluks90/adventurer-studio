@@ -16,7 +16,6 @@ export class AdventuresPageComponent {
 
   public user: AdventurerUser | null;
   public isiPad: boolean = false;
-  public isMobile: boolean = false;
   public adventures: any[] = [];
  
   constructor(
@@ -29,9 +28,6 @@ export class AdventuresPageComponent {
       this.user = this.firebaseService.userSignal();
       if (this.platform.SAFARI) {
         this.isiPad = true;
-      }
-      if (window.innerWidth < 768) {
-        this.isMobile = true;
       }
       if (this.user) {
         this.adventureService.getAdventuresByUserId().then((adventures) => {

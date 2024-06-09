@@ -66,4 +66,34 @@ export class AdventureService {
     });
     return result;
   }
+
+  public async addChapter(adventureId: string, chapter: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'adventures', adventureId);
+    const chapterData: any = {
+      id: this.randomId(),
+      ...chapter,
+      elements: [],
+      bookmarked: false
+    };
+    return await setDoc(docRef, {
+      chapters: arrayUnion(chapterData),
+      status: {
+        lastUpdate: new Date()
+      }
+    }, { merge: true });
+  }
+
+  public async updateChapter(adventureId: string, chapters: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'adventures', adventureId);
+    return await setDoc(docRef, {
+      chapters: chapters,
+      status: {
+        lastUpdate: new Date()
+      }
+    }, { merge: true });
+  }
+
+  private randomId(): string {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  }
 }
