@@ -312,10 +312,10 @@ export class ResourcesPageComponent {
         const userId: string = getAuth().currentUser.uid;
         switch (result.status) {
           case 'success':
-            this.resService.addResource(userId, 'allies', result.data);
+            this.resService.addResource(userId, 'allies', result.npc);
             break;
           case 'edited':
-            this.resourcesData.allies[index] = result.data;
+            this.resourcesData.allies[index] = result.npc;
             this.resService.updateResources(userId, this.resourcesData);
             break;
           case 'deleted':
@@ -360,14 +360,14 @@ export class ResourcesPageComponent {
       disableClose: true,
       data: { npcs: this.resourcesData.addons, npc: addon, isTab: true }
     }).afterClosed().subscribe((result: any) => {
-      if (result) {
+      if (result) {        
         const userId: string = getAuth().currentUser.uid;
         switch (result.status) {
           case 'success':
-            this.resService.addResource(userId, 'addons', result.data);
+            this.resService.addResource(userId, 'addons', result.npc);
             break;
           case 'edited':
-            this.resourcesData.addons[index] = result.data;
+            this.resourcesData.addons[index] = result.npc;
             this.resService.updateResources(userId, this.resourcesData);
             break;
           case 'deleted':
