@@ -128,3 +128,103 @@
 .even-row {
     background-color: rgba(0, 0, 0, 0.05);
 }
+
+.element-skill-title {
+    font-weight: bold;
+    opacity: 0.4;
+    font-size: smaller;
+    text-transform: uppercase;
+}
+
+.element-skill-container {
+    display: grid;
+    grid-template-columns: 10% 1fr;
+    align-items: center;
+    margin: 8px 0;
+    border: 1px solid rgba($color: #212121, $alpha: 0.5);
+}
+
+.skill-cd {
+    background-color: #212121;
+    color: whitesmoke;
+    padding: 12px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+}
+
+.skill-info {
+    background-color: rgba($color: #212121, $alpha: 0.5);
+    color: whitesmoke;
+    padding: 12px;
+}
+
+.element-result-container {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+}
+
+.element-result-label {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.element-org-container {
+    width: 100%;
+    background-color: rgba($color: #212121, $alpha: 0.9);
+    border: 1px solid rgba($color: #212121, $alpha: 0.9);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    max-height: 70px;
+}
+
+.element-org-container>img {
+    object-fit: cover;
+    height: 70px;
+    width: 70px;
+}
+
+.element-org-container>button {
+    margin-right: 8px;
+}
+
+.org-title-container {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 2px;
+    flex-grow: 1;
+    color: whitesmoke;
+}
+
+.org-title {
+    font-family: 'Cinzel', serif;
+    font-size: large;
+    display: flex;
+    align-items: center;
+}
+
+.org-place {
+    font-size: smaller;
+}
+
+.element-org-description {
+    background-color: whitesmoke;
+    color: #212121;
+    font-size: small;
+    padding: 8px;
+    border: 1px solid rgba($color: #212121, $alpha: 0.9);
+    margin-bottom: 8px;
+}
+
+.npc-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.npc-footer>img {
+    height: 16px;
+    width: 16px;
+}

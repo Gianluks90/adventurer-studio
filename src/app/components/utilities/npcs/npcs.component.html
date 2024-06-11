@@ -431,24 +431,24 @@
             <div class="org-description" [style]="{'margin-bottom': $last ? '12px' : '4px'}">
                 <div>{{org.notes}}</div>
                 @if (org.relationship) {
-                <div class="npc-footer">
-                    @if (org.relationship) {
-                    @switch(org.relationship) {
-                    @case ('Amichevole') {
-                    <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
-                    }
-                    @case ('Neutrale') {
-                    <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
-                    }
-                    @case ('Indifferente') {
-                    <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
-                    }
-                    @case ('Ostile') {
-                    <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
-                    }
-                    }
-                    }
-                </div>
+                    <div class="npc-footer">
+                        @if (org.relationship) {
+                            @switch(org.relationship) {
+                                @case ('Amichevole') {
+                                    <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                                }
+                                @case ('Neutrale') {
+                                    <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                                }
+                                @case ('Indifferente') {
+                                    <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                                }
+                                @case ('Ostile') {
+                                    <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                                }
+                            }
+                        }
+                    </div>
                 }
             </div>
     

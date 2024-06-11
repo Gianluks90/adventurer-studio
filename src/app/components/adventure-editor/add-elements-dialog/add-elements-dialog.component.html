@@ -16,6 +16,8 @@
             <mat-option value="image">Immagine (link esterno)</mat-option>
             <mat-option value="list">Elenco</mat-option>
             <mat-option value="table">Tabella (2 colonne)</mat-option>
+            <mat-option value="skill-check">Prova di Caratteristica</mat-option>
+            <mat-option value="organization">Organizzazione/i</mat-option>
         </mat-select>
     </mat-form-field>
 
@@ -212,6 +214,62 @@
                 <mat-label>Didascalia</mat-label>
                 <input type="text" matInput formControlName="caption">
             </mat-form-field>
+        }
+        @case ('skill-check') {
+            <div as-section-title>Prova di Caratteristica</div>
+            <div as-description-text>
+                Inserisci una CD (classe difficoltà) e una descrizione per una prova di caratteristica. Puoi anche compilare il risultato a seconda di un successo o un fallimento. Questo componente è utile per mostrare una prova di caratteristica in maniera evidente.
+            </div>
+            <div class="line-container">
+                <mat-form-field color="accent" class="line-input" appearance="outline">
+                    <mat-label>CD (Classe difficoltà)</mat-label>
+                    <input type="number" inputmode="numeric" matInput formControlName="cd" min="1">
+                </mat-form-field>
+                <mat-form-field color="accent" class="line-input" appearance="outline">
+                    <mat-label>Abilità/Caratteristica</mat-label>
+                    <input type="text" matInput formControlName="skill">
+                </mat-form-field>
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Successo</mat-label>
+                <textarea matInput formControlName="success" rows="2"></textarea>
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Fallimento</mat-label>
+                <textarea matInput formControlName="failure" rows="2"></textarea>
+            </mat-form-field>
+            <div as-subtitle>Critici</div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Successo critico</mat-label>
+                <textarea matInput formControlName="criticalSuccess" rows="2"></textarea>
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Fallimento critico</mat-label>
+                <textarea matInput formControlName="criticalFailure" rows="2"></textarea>
+            </mat-form-field>
+        }
+
+        @case ('organization') {
+            <div as-section-title>Organizzazione/i</div>
+            <div as-description-text>
+                Inserisci una o più Organizzazioni direttamente dalle tue Risorse create. I componenti <strong>Risorsa</strong> vengono
+                copiati dall'omonima collezione pertanto ogni modifica effettuata successivamente non sarà allineata con il componente
+                presente in questo Capitolo.
+            </div>
+            @if (data.resources.organizations.length === 0) {
+                <div as-description-text>
+                    Non hai ancora creato nessuna Organizzazione. Vai alla sezione <strong>Risorse</strong> per crearne una.
+                </div>
+            } @else {
+                <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                    <mat-label>Organizzazione</mat-label>
+                    <mat-select formControlName="organizations" multiple>
+                        @for (o of data.resources.organizations; track o.id) {
+                            <mat-option [value]="o">{{ o.name }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            }
         }
     }
 </div>

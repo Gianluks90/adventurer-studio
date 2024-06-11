@@ -8,6 +8,7 @@ import { SidenavService } from 'src/app/services/sidenav.service';
 import { Adventure } from './models/adventure';
 import { NewAdventureChapterDialogComponent } from './new-adventure-chapter-dialog/new-adventure-chapter-dialog.component';
 import { AddElementsDialogComponent } from './add-elements-dialog/add-elements-dialog.component';
+import { ResourcesService } from '../resources-page/resources.service';
 
 @Component({
   selector: 'app-adventure-editor',
@@ -18,12 +19,14 @@ export class AdventureEditorComponent {
   public user: AdventurerUser | null;
   public isiPad: boolean = false;
   public adventureData: Adventure | null = null;
+  public resourcesData: any | null = null;
  
   constructor(
     public firebaseService: FirebaseService, 
     private platform: Platform, 
     public sidenavService: SidenavService,
     private adventureService: AdventureService,
+    private resService: ResourcesService,
     private dialog: MatDialog) {
     effect(() => {
       this.user = this.firebaseService.userSignal();
@@ -33,6 +36,9 @@ export class AdventureEditorComponent {
       if (this.user) {
         const adventureId = window.location.href.split('/').pop();
         this.adventureService.getSignalAdventure(adventureId);
+        this.resService.getResourcesByUserId(this.user.id).then((res) => {
+          this.resourcesData = res;
+        });
       }
     });
 
@@ -75,7 +81,7 @@ export class AdventureEditorComponent {
         this.adventureData.chapters[index].title = result.chapter.title;
         this.adventureData.chapters[index].subtitle = result.chapter.subtitle;
         this.adventureData.chapters[index].description = result.chapter.description;
-        this.adventureService.updateChapter(this.adventureData.id, this.adventureData.chapters);
+        this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
       }
     });
   }
@@ -89,18 +95,19 @@ export class AdventureEditorComponent {
       }
       return chapter;
     });
-    this.adventureService.updateChapter(this.adventureData.id, this.adventureData.chapters);
+    this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
   }
 
   public addElement(index: number): void {
     this.dialog.open(AddElementsDialogComponent, {
       width: window.innerWidth < 768 ? '90%' : '50%',
       autoFocus: false,
-      disableClose: true
+      disableClose: true,
+      data: { element: null, resources: this.resourcesData }
     }).afterClosed().subscribe((result) => {
       if (result && result.status === 'success') {
         this.adventureData.chapters[index].elements.push(result.element);
-        this.adventureService.updateChapter(this.adventureData.id, this.adventureData.chapters);
+        this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
       }
     });
   }
@@ -110,25 +117,25 @@ export class AdventureEditorComponent {
       width: window.innerWidth < 768 ? '90%' : '50%',
       autoFocus: false,
       disableClose: true,
-      data: this.adventureData.chapters[chapterIndex].elements[index]
+      data: { element: this.adventureData.chapters[chapterIndex].elements[index], resources: this.resourcesData }
     }).afterClosed().subscribe((result) => {
       if (result && result.status === 'edited') {
         this.adventureData.chapters[chapterIndex].elements[index] = result.element;
-        this.adventureService.updateChapter(this.adventureData.id, this.adventureData.chapters);
+        this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
       }
     });
   }
 
   public deleteElement(chapterIndex: number, index: number): void {
     this.adventureData.chapters[chapterIndex].elements.splice(index, 1);
-    this.adventureService.updateChapter(this.adventureData.id, this.adventureData.chapters);
+    this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
   }
 
   public moveElement(chapterIndex: number, index: number, direction: 'up' | 'down'): void {
     const element = this.adventureData.chapters[chapterIndex].elements[index];
     this.adventureData.chapters[chapterIndex].elements.splice(index, 1);
     this.adventureData.chapters[chapterIndex].elements.splice(direction === 'up' ? index - 1 : index + 1, 0, element);
-    this.adventureService.updateChapter(this.adventureData.id, this.adventureData.chapters);
+    this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
   }
 
   public elementBookmarkToggle(chapterIndex: number, index: number): void {
@@ -140,6 +147,6 @@ export class AdventureEditorComponent {
       }
       return element;
     });
-    this.adventureService.updateChapter(this.adventureData.id, this.adventureData.chapters);
+    this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
   }
 }

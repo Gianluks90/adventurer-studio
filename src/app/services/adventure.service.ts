@@ -83,7 +83,7 @@ export class AdventureService {
     }, { merge: true });
   }
 
-  public async updateChapter(adventureId: string, chapters: any[]): Promise<any> {
+  public async updateChapters(adventureId: string, chapters: any[]): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'adventures', adventureId);
     return await setDoc(docRef, {
       chapters: chapters,

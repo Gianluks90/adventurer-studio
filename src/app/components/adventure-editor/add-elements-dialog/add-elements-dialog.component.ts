@@ -16,15 +16,17 @@ export class AddElementsDialogComponent {
   public rows: FormArray | null = null;
 
   public form: FormGroup | null;
-  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<NewAdventureChapterDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<NewAdventureChapterDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { element: any, resources: any }) {
     this.form = this.fb.group({
       id: this.randomId(),
       type: ['', Validators.required],
       bookmarked: false
     });
 
-    if (this.data) {
-      switch (this.data.type) {
+    console.log(this.data.resources);
+
+    if (this.data.element) {
+      switch (this.data.element.type) {
         case 'title':
           this.form.addControl('text', this.fb.control('', [Validators.required, Validators.minLength(3)]));
           this.form.addControl('color', this.fb.control('#212121'));
@@ -51,7 +53,7 @@ export class AddElementsDialogComponent {
           this.form.addControl('items', this.fb.array([]));
           this.form.addControl('bulleted', this.fb.control(false));
           this.list = this.form.get('items') as FormArray;
-          this.data.items.forEach((item: any) => {
+          this.data.element.items.forEach((item: any) => {
             const listItem = this.fb.group({
               id: item.id,
               title: item.title,
@@ -61,15 +63,15 @@ export class AddElementsDialogComponent {
           });
           this.form?.get('bulleted')?.valueChanges.subscribe((value) => {
             if (value) {
-            this.list?.controls.forEach((control) => {
-              control.get('title')?.clearValidators();
-              control.get('title')?.updateValueAndValidity();
-            });
+              this.list?.controls.forEach((control) => {
+                control.get('title')?.clearValidators();
+                control.get('title')?.updateValueAndValidity();
+              });
             } else {
-            this.list?.controls.forEach((control) => {
-              control.get('title')?.setValidators([Validators.required]);
-              control.get('title')?.updateValueAndValidity();
-            });
+              this.list?.controls.forEach((control) => {
+                control.get('title')?.setValidators([Validators.required]);
+                control.get('title')?.updateValueAndValidity();
+              });
             }
           });
           break;
@@ -84,7 +86,7 @@ export class AddElementsDialogComponent {
           this.form.addControl('rows', this.fb.array([]));
           this.form.addControl('caption', this.fb.control(''));
           this.rows = this.form.get('rows') as FormArray;
-          this.data.rows.forEach((row: any) => {
+          this.data.element.rows.forEach((row: any) => {
             const tableRow = this.fb.group({
               id: row.id,
               left: row.left,
@@ -93,9 +95,20 @@ export class AddElementsDialogComponent {
             this.rows?.push(tableRow);
           });
           break;
+        case 'skill-check':
+          this.form?.addControl('cd', this.fb.control('', Validators.required));
+          this.form?.addControl('skill', this.fb.control('', Validators.required));
+          this.form?.addControl('success', this.fb.control('', Validators.required));
+          this.form?.addControl('criticalSuccess', this.fb.control(''));
+          this.form?.addControl('failure', this.fb.control('', Validators.required));
+          this.form?.addControl('criticalFailure', this.fb.control(''));
+          break;
+        case 'organization':
+          this.form.addControl('organizations', this.fb.control([], Validators.required));
+          break;
       }
 
-      this.form.patchValue(this.data);
+      this.form.patchValue(this.data.element);
     }
 
     this.form.get('type')?.valueChanges.subscribe((value) => {
@@ -140,6 +153,17 @@ export class AddElementsDialogComponent {
           this.form?.addControl('caption', this.fb.control(''));
           this.rows = this.form.get('rows') as FormArray;
           break;
+        case 'skill-check':
+          this.form?.addControl('cd', this.fb.control('', Validators.required));
+          this.form?.addControl('skill', this.fb.control('', Validators.required));
+          this.form?.addControl('success', this.fb.control('', Validators.required));
+          this.form?.addControl('criticalSuccess', this.fb.control(''));
+          this.form?.addControl('failure', this.fb.control('', Validators.required));
+          this.form?.addControl('criticalFailure', this.fb.control(''));
+          break;
+        case 'organization':
+          this.form.addControl('organizations', this.fb.control([], Validators.required));
+          break;
       }
     });
   }
@@ -174,15 +198,15 @@ export class AddElementsDialogComponent {
 
     this.form?.get('bulleted')?.valueChanges.subscribe((value) => {
       if (value) {
-      this.list?.controls.forEach((control) => {
-        control.get('title')?.clearValidators();
-        control.get('title')?.updateValueAndValidity();
-      });
+        this.list?.controls.forEach((control) => {
+          control.get('title')?.clearValidators();
+          control.get('title')?.updateValueAndValidity();
+        });
       } else {
-      this.list?.controls.forEach((control) => {
-        control.get('title')?.setValidators([Validators.required]);
-        control.get('title')?.updateValueAndValidity();
-      });
+        this.list?.controls.forEach((control) => {
+          control.get('title')?.setValidators([Validators.required]);
+          control.get('title')?.updateValueAndValidity();
+        });
       }
     });
   }
@@ -209,6 +233,6 @@ export class AddElementsDialogComponent {
   }
 
   public confirm(): void {
-    this.dialogRef.close({ status: this.data ? 'edited' : 'success', element: this.form.value });
+    this.dialogRef.close({ status: this.data.element ? 'edited' : 'success', element: this.form.value });
   }
 }

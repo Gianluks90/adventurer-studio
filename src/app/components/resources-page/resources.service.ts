@@ -27,8 +27,8 @@ export class ResourcesService {
     const document = await getDoc(docRef);
     if (document.exists()) {
       return {
-        ...document.data(),
-        id: document.id
+        id: document.id,
+        ...document.data()
       };
     } else {
       return null;

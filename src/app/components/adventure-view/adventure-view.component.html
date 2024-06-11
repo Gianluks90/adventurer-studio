@@ -58,6 +58,64 @@
                     </div>
                     <div class="element-caption">{{e.caption}}</div>
                 }
+                @case ('skill-check') {
+                    <div class="element-skill-title">Prova di Caratteristica</div>
+                    <div class="element-skill-container">
+                        <div class="skill-cd">
+                            {{e.cd}}
+                        </div>
+                        <div class="skill-info">
+                            {{e.skill}}
+                        </div>
+                    </div>
+                    <div class="element-result-container">
+                        <div class="element-result-label">Successo</div>
+                        <p>{{e.success}} <span *ngIf="e.criticalSuccess"><strong>Critico</strong>: {{e.criticalSuccess}}</span></p>
+                        <div class="element-result-label">Fallimento</div>
+                        <p>{{e.failure}} <span *ngIf="e.criticalFailure"><strong>Critico</strong>: {{e.criticalFailure}}</span></p>
+                    </div>
+                }
+                @case ('organization') {
+                    @for (o of e.organizations; track o.id; let k = $index) {
+                        <div class="element-org-container">
+                            @if (o.imgUrl !== '') {
+                                <img [src]="o.imgUrl" class="element-org-image">
+                            }
+                            <div class="org-title-container">
+                                <div class="org-title">
+                                    {{o.name}}
+                                </div>
+                                <div class="org-place">{{o.lastPlace}}</div>
+                            </div>
+                            <button as-mini-circle-btn inverted-color (click)="editOrg(i, j, k)">
+                                <div class="material-symbols-outlined">edit</div>
+                            </button>
+                        </div>
+                        <div class="element-org-description">
+                            <div>{{o.notes}}</div>
+                        @if (o.relationship) {
+                            <div class="npc-footer">
+                                @if (o.relationship) {
+                                    @switch(o.relationship) {
+                                        @case ('Amichevole') {
+                                            <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                                        }
+                                        @case ('Neutrale') {
+                                            <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                                        }
+                                        @case ('Indifferente') {
+                                            <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                                        }
+                                        @case ('Ostile') {
+                                            <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                                        }
+                                    }
+                                }
+                            </div>
+                        }
+                        </div>
+                    }
+                }
             }
         } @empty {
             <div as-description-text>Non hai ancora creato alcun componente in questo capitolo.</div>

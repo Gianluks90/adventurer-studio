@@ -87,6 +87,24 @@
                                     }
                                 </div>
                             }
+                            @case ('skill-check') {
+                                <div class="element-type">Prova di caratteristica</div>
+                                <div class="element-skill-check">
+                                    Prova di {{e.skill}} con CD {{e.cd}}
+                                </div>
+                            }
+                            @case ('organization') {
+                                <div class="element-type">Organizzazione/i (Risorsa)</div>
+                                <div class="element-type element-warning"><span class="material-symbols-outlined">warning</span>Ogni modifica (icona matita) a questo componente lo sovrascrive per intero.</div>
+                                <div class="element-organization-container">
+                                    @for (item of e.organizations; track item.id; let k = $index) {
+                                        <div class="element-organization">
+                                            <img src="{{item.imgUrl}}" class="organization-item-image">
+                                            <div class="organization-item-title">{{item.name}}</div>
+                                        </div>
+                                    }
+                                </div>
+                            }
                         }
                         <div as-mini-buttons-container>
                             <button as-mini-circle-btn [disabled]="$first" (click)="moveElement(i, j, 'up')">
