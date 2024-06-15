@@ -27,7 +27,7 @@
 </div>
 <div as-subtitle>Titolo e Descrizione</div>
 <div as-description-text>
-    Vuoi cambiare il titolo o la descrizione della tua Campagna? Puoi farlo qui.
+    Attraverso i seguenti campi puoi aggiornare Titolo, Descrizione, Immagine e Avventura collegata alla Campagna.
 </div>
 <form class="form-container" [formGroup]="form">
     <mat-form-field color="accent" class="custom-form-field" appearance="outline">
@@ -41,6 +41,14 @@
     <mat-form-field color="accent" class="custom-form-field" appearance="outline">
         <mat-label>Immagine capitolo</mat-label>
         <input matInput formControlName="chapterUrl" placeholder="Inserisci URL valido">
+    </mat-form-field>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Avventura connessa</mat-label>
+        <mat-select formControlName="adventure">
+        @for (a of adventures; track a.id) {
+            <mat-option [value]="a.id">{{a.title}}</mat-option>
+        }
+        </mat-select>
     </mat-form-field>
     <div as-buttons-container>
         <button as-btn (click)="editTitleDescription()" [disabled]="!form.dirty">

@@ -8,6 +8,8 @@ import { RemoveCharDialogComponent } from './remove-char-dialog/remove-char-dial
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RemoveCampaignDialogComponent } from './remove-campaign-dialog/remove-campaign-dialog.component';
 import { Router } from '@angular/router';
+import { AdventureService } from 'src/app/services/adventure.service';
+import { getAuth } from 'firebase/auth';
 
 @Component({
   selector: 'app-campaign-settings-tab',
@@ -20,14 +22,20 @@ export class CampaignSettingsTabComponent {
     private campaignService: CampaignService,
     private dddiceService: DddiceService,
     private firebaseService: FirebaseService,
+    private adventureService: AdventureService,
     private matDialog: MatDialog,
     private fb: FormBuilder,
     private router: Router) {
     this.form = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      chapterUrl: ['']
+      chapterUrl: [''],
+      adventure: ['']
     })
+
+    this.adventureService.getAdventuresByUserId().then((adventures) => {
+      this.adventures = adventures;
+    });
   }
 
   public campaignData: any;
@@ -35,6 +43,7 @@ export class CampaignSettingsTabComponent {
   public isOwnerData: boolean = false;
 
   public form: FormGroup;
+  public adventures: any[] = [];
 
   @Input() set campaign(data: any) {
     this.campaignData = data;

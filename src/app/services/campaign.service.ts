@@ -232,6 +232,7 @@ export class CampaignService {
       title: form.title,
       description: form.description,
       chapterUrl: form.chapterUrl,
+      adventure: form.adventure,
       lastUpdate: new Date()
     }, { merge: true });
   }

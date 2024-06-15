@@ -245,7 +245,7 @@
 @media screen and (max-width: 768px) {
 
     .home-container {
-        width: 90%;
+        width: 100%;
     }
 
     .view-tabs>mat-tab-group {
@@ -365,4 +365,33 @@
         background-color: purple;
         height: calc(100% / 6);
     }
+}
+
+.adventure-sidenav-container {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    width: 400px;
+    height: 100dvh;
+    background-color: whitesmoke;
+    padding: 8px;
+    z-index: 4000;
+    overflow: auto;
+    box-sizing: border-box;
+    box-shadow: -5px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    padding-top: 32px;
+
+    &>button[as-mini-circle-btn] {
+        position: fixed;
+        top: 8px;
+        right: 8px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .adventure-sidenav-container {
+        width: 90%;
+        height: 100dvh;
+    }
+    
 }

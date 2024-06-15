@@ -20,7 +20,9 @@ export class AdventureViewComponent {
     if (this.adventureData) {
       setTimeout(() => {
         this.adventureData.chapters.forEach((chapter) => {
-          this.scrollToElement(chapter.elements.findIndex((element) => element.bookmarked));
+          const chapterIndex = this.adventureData.chapters.findIndex((c) => c.elements.some((element) => element.bookmarked)) || 0;
+          const elementIndex = chapter.elements.findIndex((element) => element.bookmarked);
+          this.scrollToElement(chapterIndex, elementIndex);
         });
       }, 1);
     }
@@ -115,11 +117,10 @@ export class AdventureViewComponent {
     this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
   }
 
-  private scrollToElement(bookmarkIndex: number): void {
+  private scrollToElement(chapterIndex: number, bookmarkIndex: number): void {
     if (bookmarkIndex !== -1) {
-      const element = document.getElementById(`elem_${bookmarkIndex}`);
+      const element = document.getElementById(`elem_${chapterIndex}_${bookmarkIndex}`);
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
-
 }

@@ -1,7 +1,8 @@
 import { Injectable, WritableSignal, effect, signal } from '@angular/core';
 import { FirebaseService } from './firebase.service';
 import { AdventurerUser } from '../models/adventurerUser';
-import { arrayUnion, collection, doc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
+import { arrayUnion, collection, doc, getDoc, getDocs, onSnapshot, query, setDoc, where } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +55,7 @@ export class AdventureService {
 
   public async getAdventuresByUserId(): Promise<any> {
     const ref = collection(this.firebaseService.database, 'adventures');
-    const q = query(ref, where('status.userId', '==', this.user.id));
+    const q = query(ref, where('status.userId', '==', getAuth().currentUser?.uid));
     const docs = await getDocs(q);
     const result: any[] = [];
     docs.forEach(doc => {
@@ -65,6 +66,18 @@ export class AdventureService {
       result.push(adventure);
     });
     return result;
+  }
+
+  public async getAdventureById(id: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'adventures', id);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      return {
+        id: docSnap.id,
+        ...docSnap.data()
+      }
+    }
+    return null;
   }
 
   public async addChapter(adventureId: string, chapter: any): Promise<any> {

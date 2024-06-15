@@ -12,6 +12,7 @@ import { NextSessionDialogComponent } from './next-session-dialog/next-session-d
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
+import { AdventureService } from 'src/app/services/adventure.service';
 
 @Component({
   selector: 'app-campaign-view',
@@ -28,12 +29,16 @@ export class CampaignViewComponent {
   public sessionNumber: number = 1;
   public today = new Date();
   public isiPad: boolean = false;
+  
+  public adventureData: any;
+  public showAdventure: boolean = false;
 
   constructor(
     private firebaseService: FirebaseService,
     private diceSelector: MatBottomSheet,
     private campaignService: CampaignService,
     private sidenavService: SidenavService,
+    private adventureService: AdventureService,
     private matDialog: MatDialog,
     private charService: CharacterService,
     public tooltip: DescriptionTooltipService,
@@ -75,6 +80,13 @@ export class CampaignViewComponent {
       this.campaignData = campaigns.find((campaign: any) => campaign.id === id);
       if (!this.campaignData) return;
       this.campaignData.id = id;
+      if (!this.adventureData) {
+        if (this.campaignData.adventure && this.campaignData.adventure !== '') {
+          this.adventureService.getAdventureById(this.campaignData.adventure).then((adventure) => {
+            this.adventureData = adventure;
+          });
+        }
+      }
       this.calcSessionNumber();
       this.isOwner = this.user.id === this.campaignData.ownerId;
       if (!this.isOwner) {
@@ -122,5 +134,9 @@ export class CampaignViewComponent {
       width: window.innerWidth < 768 ? '90%' : '30%',
       autoFocus: false,
     });
+  }
+
+  public toggleAdventure() {
+    this.showAdventure = !this.showAdventure;
   }
 }

@@ -11,42 +11,42 @@
                 <div class="material-symbols-outlined micro-icon" (click)="elementBookmarkToggle(i, j)" [ngClass]="{'bookmarked': e.bookmarked}">bookmark</div>
                 @switch (e.type) {
                     @case ('title') {
-                        <h3 [id]="'elem_'+j" [ngStyle]="{'color': e.color }" class="element-title">{{e.text}}</h3>
+                        <h3 [id]="'elem_'+i+'_'+j" [ngStyle]="{'color': e.color }" class="element-title">{{e.text}}</h3>
                     }
                     @case ('subtitle') {
-                        <h3 [id]="'elem_'+j" [ngStyle]="{'color': e.color }" class="element-subtitle">{{e.text}}</h3>
+                        <h3 [id]="'elem_'+i+'_'+j" [ngStyle]="{'color': e.color }" class="element-subtitle">{{e.text}}</h3>
                     }
                     @case ('simple-text') {
-                        <div [id]="'elem_'+j" class="element-simple-text">{{e.text}}</div>
+                        <div [id]="'elem_'+i+'_'+j" class="element-simple-text">{{e.text}}</div>
                     }
                     @case ('descriptive-text') {
-                        <div [id]="'elem_'+j" [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }" class="element-descriptive-text">{{e.text}}</div>
+                        <div [id]="'elem_'+i+'_'+j" [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }" class="element-descriptive-text">{{e.text}}</div>
                     }
                     @case ('note') {
-                        <div [id]="'elem_'+j" class="element-note" [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }">
+                        <div [id]="'elem_'+i+'_'+j" class="element-note" [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }">
                             <div class="element-note-title">{{e.title}}</div>
                             <div class="element-note-text">{{e.text}}</div>
                         </div>
                     }
                     @case ('image') {
-                        <img [id]="'elem_'+j" [src]="e.src" class="element-image">
+                        <img [id]="'elem_'+i+'_'+j" [src]="e.src" class="element-image">
                         <div class="element-caption">{{e.caption !== '' ? e.caption : 'Nessuna didascalia fornita.'}}</div>
                     }
                     @case ('list') {
                         @for (item of e.items; track item.id; let k = $index) {
                            @if (e.bulleted) {
-                                <ul [id]="'elem_'+j" class="element-list-item">
+                                <ul [id]="'elem_'+i+'_'+j" class="element-list-item">
                                    <li class="element-list-item-text">{{item.text}}</li>
                                 </ul>
                             } @else { 
-                                <div [id]="'elem_'+j" class="element-list-item">
+                                <div [id]="'elem_'+i+'_'+j" class="element-list-item">
                                     <strong>{{item.title}}</strong>: <span class="element-list-item-text">{{item.text}}</span>
                                 </div>
                             }
                         }
                     }
                     @case ('table') {
-                        <div [id]="'elem_'+j" class="table-container">
+                        <div [id]="'elem_'+i+'_'+j" class="table-container">
                             <div class="element-table-header" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
                                 <div class="table-header-left">{{e.header_left}}</div>
                                 <div class="table-header-right">{{e.header_right}}</div>
@@ -62,7 +62,7 @@
                     }
                     @case ('skill-check') {
                         <!-- <div class="element-skill-title">Prova di Caratteristica</div> -->
-                        <div [id]="'elem_'+j" class="element-skill-container">
+                        <div [id]="'elem_'+i+'_'+j" class="element-skill-container">
                             <div class="skill-title">
                                 {{e.skill}}
                             </div>
@@ -78,7 +78,7 @@
                         </div>
                     }
                     @case ('organization') {
-                        <div [id]="'elem_'+j">
+                        <div [id]="'elem_'+i+'_'+j">
     
                         @for (o of e.organizations; track o.id; let k = $index) {
                             <div class="element-org-container">
@@ -122,7 +122,7 @@
                         </div>
                     }
                     @case ('npc') {
-                        <div [id]="'elem_'+j">
+                        <div [id]="'elem_'+i+'_'+j">
                             @for (o of e.npcs; track k; let k = $index) {
                                 <div class="element-org-container">
                                     @if (o.imgUrl !== '') {
@@ -165,7 +165,7 @@
                         </div>
                     }
                     @case ('addon') {
-                        <div [id]="'elem_'+j">
+                        <div [id]="'elem_'+i+'_'+j">
                             @for (a of e.addons; track k; let k = $index) {
                                 <div class="element-org-container">
                                     @if (a.imgUrl !== '') {

@@ -128,6 +128,23 @@
     </button>
 </div>
 
+@if (campaignData && campaignData.adventure !== '') {
+    <div as-bottom-buttons-container as-bottom-right id="adventure-button">
+        <button as-bottom-btn (click)="toggleAdventure()">
+            <div class="material-symbols-outlined">menu_book</div>
+        </button>
+    </div>
+}
+
+@if (adventureData && isOwner) {
+    <div class="adventure-sidenav-container" *ngIf="showAdventure" [ngClass]="{'opening-sidenav': showAdventure}">
+        <button as-mini-circle-btn (click)="toggleAdventure()">
+            <div class="material-symbols-outlined">close</div>
+        </button>
+        <app-adventure-view [adventure]="adventureData"></app-adventure-view>
+    </div>
+}
+
 <!-- <div class="dice-buttons" id="dice-button" *ngIf="campaignData && campaignData.dddiceSlug !== undefined">
     <button class="step-button" mat-icon-button (click)="openDiceSelector()" matTooltip="Dadi"
         matTooltipPosition="right" [disabled]="campaignData.dddiceSlug === ''">
