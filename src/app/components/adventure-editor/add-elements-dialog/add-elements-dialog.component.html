@@ -18,6 +18,8 @@
             <mat-option value="table">Tabella (2 colonne)</mat-option>
             <mat-option value="skill-check">Prova di Caratteristica</mat-option>
             <mat-option value="organization">Organizzazione/i</mat-option>
+            <mat-option value="npc">PNG</mat-option>
+            <mat-option value="addon">Scheda/e Nemico/i</mat-option>
         </mat-select>
     </mat-form-field>
 
@@ -266,6 +268,50 @@
                     <mat-select formControlName="organizations" multiple>
                         @for (o of data.resources.organizations; track o.id) {
                             <mat-option [value]="o">{{ o.name }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            }
+        }
+        @case ('npc') {
+            <div as-section-title>NPC</div>
+            <div as-description-text>
+                Inserisci uno o più Personaggi non giocanti direttamente dalle tue Risorse create. I componenti <strong>Risorsa</strong> vengono
+                copiati dall'omonima collezione pertanto ogni modifica effettuata successivamente non sarà allineata con il componente
+                presente in questo Capitolo.
+            </div>
+            @if (data.resources.allies.length === 0) {
+                <div as-description-text>
+                    Non hai ancora creato nessun Personaggio non giocante. Vai alla sezione <strong>Risorse</strong> per crearne una.
+                </div>
+            } @else {
+                <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                    <mat-label>Personaggio non giocante</mat-label>
+                    <mat-select formControlName="npcs" multiple>
+                        @for (n of data.resources.allies; track $index) {
+                            <mat-option [value]="n">{{ n.name }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            }
+        }
+        @case ('addon') {
+            <div as-section-title>Scheda/e Nemico/i</div>
+            <div as-description-text>
+                Inserisci una o più Schede dei Nemici direttamente dalle tue Risorse create. I componenti <strong>Risorsa</strong> vengono
+                copiati dall'omonima collezione pertanto ogni modifica effettuata successivamente non sarà allineata con il componente
+                presente in questo Capitolo.
+            </div>
+            @if (data.resources.addons.length === 0) {
+                <div as-description-text>
+                    Non hai ancora creato nessuna Scheda dei Nemici. Vai alla sezione <strong>Risorse</strong> per crearne una.
+                </div>
+            } @else {
+                <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                    <mat-label>Schede Nemici</mat-label>
+                    <mat-select formControlName="addons" multiple>
+                        @for (a of data.resources.addons; track $index) {
+                            <mat-option [value]="a">{{ a.name }}</mat-option>
                         }
                     </mat-select>
                 </mat-form-field>

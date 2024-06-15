@@ -106,6 +106,12 @@ export class AddElementsDialogComponent {
         case 'organization':
           this.form.addControl('organizations', this.fb.control([], Validators.required));
           break;
+        case 'npc':
+          this.form.addControl('npcs', this.fb.control([], Validators.required));
+          break;
+        case 'addon':
+          this.form.addControl('addon', this.fb.control('', Validators.required));
+          break;
       }
 
       this.form.patchValue(this.data.element);
@@ -163,6 +169,12 @@ export class AddElementsDialogComponent {
           break;
         case 'organization':
           this.form.addControl('organizations', this.fb.control([], Validators.required));
+          break;
+        case 'npc':
+          this.form.addControl('npcs', this.fb.control([], Validators.required));
+          break;
+        case 'addon':
+          this.form.addControl('addons', this.fb.control('', Validators.required));
           break;
       }
     });

@@ -4,119 +4,320 @@
         <div class="chapter-title-divider"></div>
         <h3 class="chapter-title">{{c.title}}</h3>
         <h3 class="chapter-subtitle">{{c.subtitle}}</h3>
-        <div class="element-simple-text">{{c.description}}</div>
+        <div class="element-simple-text chapter-description">{{c.description}}</div>
         
         @for (e of c.elements; track e.id; let j = $index) {
-            @switch (e.type) {
-                @case ('title') {
-                    <h3 [ngStyle]="{'color': e.color }" class="element-title">{{e.text}}</h3>
-                }
-                @case ('subtitle') {
-                    <h3 [ngStyle]="{'color': e.color }" class="element-subtitle">{{e.text}}</h3>
-                }
-                @case ('simple-text') {
-                    <div class="element-simple-text">{{e.text}}</div>
-                }
-                @case ('descriptive-text') {
-                    <div [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }" class="element-descriptive-text">{{e.text}}</div>
-                }
-                @case ('note') {
-                    <div class="element-note" [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }">
-                        <div class="element-note-title">{{e.title}}</div>
-                        <div class="element-note-text">{{e.text}}</div>
-                    </div>
-                }
-                @case ('image') {
-                    <img [src]="e.src" class="element-image">
-                    <div class="element-caption">{{e.caption !== '' ? e.caption : 'Nessuna didascalia fornita.'}}</div>
-                }
-                @case ('list') {
-                    @for (item of e.items; track item.id; let k = $index) {
-                       @if (e.bulleted) {
-                            <ul class="element-list-item">
-                               <li class="element-list-item-text">{{item.text}}</li>
-                            </ul>
-                        } @else { 
-                            <div class="element-list-item">
-                                <strong>{{item.title}}</strong>: <span class="element-list-item-text">{{item.text}}</span>
-                            </div>
+            <div class="element-container">
+                <div class="material-symbols-outlined micro-icon" (click)="elementBookmarkToggle(i, j)" [ngClass]="{'bookmarked': e.bookmarked}">bookmark</div>
+                @switch (e.type) {
+                    @case ('title') {
+                        <h3 [id]="'elem_'+j" [ngStyle]="{'color': e.color }" class="element-title">{{e.text}}</h3>
+                    }
+                    @case ('subtitle') {
+                        <h3 [id]="'elem_'+j" [ngStyle]="{'color': e.color }" class="element-subtitle">{{e.text}}</h3>
+                    }
+                    @case ('simple-text') {
+                        <div [id]="'elem_'+j" class="element-simple-text">{{e.text}}</div>
+                    }
+                    @case ('descriptive-text') {
+                        <div [id]="'elem_'+j" [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }" class="element-descriptive-text">{{e.text}}</div>
+                    }
+                    @case ('note') {
+                        <div [id]="'elem_'+j" class="element-note" [ngStyle]="{'color': e.textColor, 'background-color': e.backgroundColor+'40' }">
+                            <div class="element-note-title">{{e.title}}</div>
+                            <div class="element-note-text">{{e.text}}</div>
+                        </div>
+                    }
+                    @case ('image') {
+                        <img [id]="'elem_'+j" [src]="e.src" class="element-image">
+                        <div class="element-caption">{{e.caption !== '' ? e.caption : 'Nessuna didascalia fornita.'}}</div>
+                    }
+                    @case ('list') {
+                        @for (item of e.items; track item.id; let k = $index) {
+                           @if (e.bulleted) {
+                                <ul [id]="'elem_'+j" class="element-list-item">
+                                   <li class="element-list-item-text">{{item.text}}</li>
+                                </ul>
+                            } @else { 
+                                <div [id]="'elem_'+j" class="element-list-item">
+                                    <strong>{{item.title}}</strong>: <span class="element-list-item-text">{{item.text}}</span>
+                                </div>
+                            }
                         }
                     }
-                }
-                @case ('table') {
-                    <div class="table-container">
-                        <div class="element-table-header" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
-                            <div class="table-header-left">{{e.header_left}}</div>
-                            <div class="table-header-right">{{e.header_right}}</div>
-                        </div>
-                        @for (row of e.rows; track row.id; let k = $index) {
-                            <div class="element-table-row" [ngClass]="{'even-row': $odd}" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
-                                <div class="table-row-left">{{row.left}}</div>
-                                <div class="table-row-right">{{row.right}}</div>
+                    @case ('table') {
+                        <div [id]="'elem_'+j" class="table-container">
+                            <div class="element-table-header" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
+                                <div class="table-header-left">{{e.header_left}}</div>
+                                <div class="table-header-right">{{e.header_right}}</div>
                             </div>
-                        }
-                    </div>
-                    <div class="element-caption">{{e.caption}}</div>
-                }
-                @case ('skill-check') {
-                    <div class="element-skill-title">Prova di Caratteristica</div>
-                    <div class="element-skill-container">
-                        <div class="skill-cd">
-                            {{e.cd}}
-                        </div>
-                        <div class="skill-info">
-                            {{e.skill}}
-                        </div>
-                    </div>
-                    <div class="element-result-container">
-                        <div class="element-result-label">Successo</div>
-                        <p>{{e.success}} <span *ngIf="e.criticalSuccess"><strong>Critico</strong>: {{e.criticalSuccess}}</span></p>
-                        <div class="element-result-label">Fallimento</div>
-                        <p>{{e.failure}} <span *ngIf="e.criticalFailure"><strong>Critico</strong>: {{e.criticalFailure}}</span></p>
-                    </div>
-                }
-                @case ('organization') {
-                    @for (o of e.organizations; track o.id; let k = $index) {
-                        <div class="element-org-container">
-                            @if (o.imgUrl !== '') {
-                                <img [src]="o.imgUrl" class="element-org-image">
-                            }
-                            <div class="org-title-container">
-                                <div class="org-title">
-                                    {{o.name}}
+                            @for (row of e.rows; track row.id; let k = $index) {
+                                <div class="element-table-row" [ngClass]="{'even-row': $odd}" [ngStyle]="{'grid-template-columns': e.header_left_width > 0 ? e.header_left_width + '%' + ' 1fr' : '1fr 1fr'}">
+                                    <div class="table-row-left">{{row.left}}</div>
+                                    <div class="table-row-right">{{row.right}}</div>
                                 </div>
-                                <div class="org-place">{{o.lastPlace}}</div>
-                            </div>
-                            <button as-mini-circle-btn inverted-color (click)="editOrg(i, j, k)">
-                                <div class="material-symbols-outlined">edit</div>
-                            </button>
+                            }
                         </div>
-                        <div class="element-org-description">
-                            <div>{{o.notes}}</div>
-                        @if (o.relationship) {
-                            <div class="npc-footer">
-                                @if (o.relationship) {
-                                    @switch(o.relationship) {
-                                        @case ('Amichevole') {
-                                            <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
-                                        }
-                                        @case ('Neutrale') {
-                                            <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
-                                        }
-                                        @case ('Indifferente') {
-                                            <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
-                                        }
-                                        @case ('Ostile') {
-                                            <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                        <div class="element-caption">{{e.caption}}</div>
+                    }
+                    @case ('skill-check') {
+                        <!-- <div class="element-skill-title">Prova di Caratteristica</div> -->
+                        <div [id]="'elem_'+j" class="element-skill-container">
+                            <div class="skill-title">
+                                {{e.skill}}
+                            </div>
+                            <div class="skill-cd">
+                                {{e.cd}}
+                            </div>
+                            <div class="element-result-container">
+                                <div class="element-result-label">Successo</div>
+                                <p class="p-divider">{{e.success}} <span *ngIf="e.criticalSuccess"><strong>Critico</strong>: {{e.criticalSuccess}}</span></p>
+                                <div class="element-result-label">Fallimento</div>
+                                <p>{{e.failure}} <span *ngIf="e.criticalFailure"><strong>Critico</strong>: {{e.criticalFailure}}</span></p>
+                            </div>
+                        </div>
+                    }
+                    @case ('organization') {
+                        <div [id]="'elem_'+j">
+    
+                        @for (o of e.organizations; track o.id; let k = $index) {
+                            <div class="element-org-container">
+                                @if (o.imgUrl !== '') {
+                                    <img [src]="o.imgUrl" class="element-org-image">
+                                }
+                                <div class="org-title-container">
+                                    <div class="org-title">
+                                        {{o.name}}
+                                    </div>
+                                    <div class="org-place">{{o.lastPlace}}</div>
+                                </div>
+                                <button as-mini-circle-btn inverted-color (click)="editOrg(i, j, k)">
+                                    <div class="material-symbols-outlined">edit</div>
+                                </button>
+                            </div>
+                            <div class="element-org-description">
+                                <div>{{o.notes}}</div>
+                            @if (o.relationship) {
+                                <div class="npc-footer">
+                                    @if (o.relationship) {
+                                        @switch(o.relationship) {
+                                            @case ('Amichevole') {
+                                                <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                                            }
+                                            @case ('Neutrale') {
+                                                <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                                            }
+                                            @case ('Indifferente') {
+                                                <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                                            }
+                                            @case ('Ostile') {
+                                                <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                                            }
                                         }
                                     }
-                                }
+                                </div>
+                            }
                             </div>
                         }
                         </div>
                     }
+                    @case ('npc') {
+                        <div [id]="'elem_'+j">
+                            @for (o of e.npcs; track k; let k = $index) {
+                                <div class="element-org-container">
+                                    @if (o.imgUrl !== '') {
+                                        <img [src]="o.imgUrl" class="element-org-image">
+                                    }
+                                    <div class="org-title-container">
+                                        <div class="org-title">
+                                            {{o.name}}
+                                        </div>
+                                        <div class="org-place">{{o.lastPlace}}</div>
+                                    </div>
+                                    <button as-mini-circle-btn inverted-color (click)="editNpc(i, j, k)">
+                                        <div class="material-symbols-outlined">edit</div>
+                                    </button>
+                                </div>
+                                <div class="element-org-description">
+                                    <div>{{o.notes}}</div>
+                                @if (o.relationship) {
+                                    <div class="npc-footer">
+                                        @if (o.relationship) {
+                                            @switch(o.relationship) {
+                                                @case ('Amichevole') {
+                                                    <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                                                }
+                                                @case ('Neutrale') {
+                                                    <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                                                }
+                                                @case ('Indifferente') {
+                                                    <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                                                }
+                                                @case ('Ostile') {
+                                                    <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                }
+                                </div>
+                            }
+                        </div>
+                    }
+                    @case ('addon') {
+                        <div [id]="'elem_'+j">
+                            @for (a of e.addons; track k; let k = $index) {
+                                <div class="element-org-container">
+                                    @if (a.imgUrl !== '') {
+                                        <img [src]="a.imgUrl" class="element-org-image">
+                                    }
+                                    <div class="org-title-container">
+                                        <div class="org-title">
+                                            {{a.name}}
+                                        </div>
+                                        <div class="org-place">{{a.lastPlace}}</div>
+                                    </div>
+                                    <button as-mini-circle-btn inverted-color (click)="editAddon(i, j, k)">
+                                        <div class="material-symbols-outlined">edit</div>
+                                    </button>
+                                </div>
+                                <details class="main-details">
+                                    <summary class="addon-name">Statistiche</summary>
+                                    <div class="hp-container">
+                                        <div class="hp-value"><span>{{a.HP}} /</span> {{a.HPmax}}</div>
+                                        <progress [max]="a.HPmax" [value]="a.HP" class="hp-bar"></progress>
+                                    </div>
+                                    <div class="caratteristiche-main-container">
+                                        <div class="caratteristiche-line">
+                                            <div class="caratteristiche-container">
+                                                <div class="caratteristica-label">FOR</div>
+                                                <div class="caratteristica-value">{{a.strength}}</div>
+                                                <div class="caratteristica-mod">{{a.strengthMod > 0 ? '+' : ''}}{{a.strengthMod}}</div>
+                                            </div>
+                                            <div class="caratteristiche-container">
+                                                <div class="caratteristica-label">DES</div>
+                                                <div class="caratteristica-value">{{a.dexterity}}</div>
+                                                <div class="caratteristica-mod">{{a.dexterityMod > 0 ? '+' : ''}}{{a.dexterityMod}}</div>
+                                            </div>
+                                            <div class="caratteristiche-container">
+                                                <div class="caratteristica-label">COS</div>
+                                                <div class="caratteristica-value">{{a.constitution}}</div>
+                                                <div class="caratteristica-mod">{{a.constitutionMod > 0 ? '+' : ''}}{{a.constitutionMod}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="caratteristiche-line">
+                                            <div class="caratteristiche-container">
+                                                <div class="caratteristica-label">INT</div>
+                                                <div class="caratteristica-value">{{a.intelligence}}</div>
+                                                <div class="caratteristica-mod">{{a.intelligenceMod > 0 ? '+' : ''}}{{a.intelligenceMod}}
+                                                </div>
+                                            </div>
+                                            <div class="caratteristiche-container">
+                                                <div class="caratteristica-label">SAG</div>
+                                                <div class="caratteristica-value">{{a.wisdom}}</div>
+                                                <div class="caratteristica-mod">{{a.wisdomMod > 0 ? '+' : ''}}{{a.wisdomMod}}</div>
+                                            </div>
+                                            <div class="caratteristiche-container">
+                                                <div class="caratteristica-label">CAR</div>
+                                                <div class="caratteristica-value">{{a.charisma}}</div>
+                                                <div class="caratteristica-mod">{{a.charismaMod > 0 ? '+' : ''}}{{a.charismaMod}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="info-container">
+                                        <div class="info-line" *ngIf="a.CA">
+                                            <div class="info-label">CA</div>
+                                            <div class="info-value">{{a.CA}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.speed !== ''">
+                                            <div class="info-label">Velocità</div>
+                                            <div class="info-value">{{a.speed}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.saveThrows !== ''">
+                                            <div class="info-label">Tiri Salvezza</div>
+                                            <div class="info-value">{{a.saveThrows}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.skills !== ''">
+                                            <div class="info-label">Abilità</div>
+                                            <div class="info-value">{{a.skills}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.vulnerabilities !== ''">
+                                            <div class="info-label">Vulnerabilità</div>
+                                            <div class="info-value">{{a.vulnerabilities}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.resistances !== ''">
+                                            <div class="info-label">Resistenze</div>
+                                            <div class="info-value">{{a.resistances}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.immunities !== ''">
+                                            <div class="info-label">Immunità</div>
+                                            <div class="info-value">{{a.immunities}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.senses !== ''">
+                                            <div class="info-label">Sensi</div>
+                                            <div class="info-value">{{a.senses}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.languages !== ''">
+                                            <div class="info-label">Linguaggi</div>
+                                            <div class="info-value">{{a.languages}}</div>
+                                        </div>
+                                        <div class="info-line" *ngIf="a.challenge !== ''">
+                                            <div class="info-label">Sfida</div>
+                                            <div class="info-value">{{a.challenge}}</div>
+                                        </div>
+                                    </div>
+                                    @if (a.traits.length > 0) {
+                                    <details class="inner-details">
+                                        <summary class="addon-name sub-summary">Tratti</summary>
+                                        @for (trait of a.traits; track $index) {
+                                        <div class="inner-line">
+                                            <div class="inner-label">{{trait.title}}</div>
+                                            <div class="inner-value">{{trait.description}}</div>
+                                        </div>
+                                        }
+                                    </details>
+                                    }
+                                    @if (a.actions.length > 0) {
+                                    <details class="inner-details">
+                                        <summary class="addon-name sub-summary">Azioni</summary>
+                                        @for (action of a.actions; track $index) {
+                                        <div class="inner-line">
+                                            <div class="inner-label">{{action.title}}</div>
+                                            <div class="inner-value">{{action.description}}</div>
+                                        </div>
+                                        }
+                                    </details>
+                                    }
+                                </details>
+                                <div class="element-org-description">
+                                    <div>{{a.notes}}</div>
+                                @if (a.relationship) {
+                                    <div class="npc-footer">
+                                        @if (a.relationship) {
+                                            @switch(a.relationship) {
+                                                @case ('Amichevole') {
+                                                    <img src="./assets/npcs/amichevole.svg" matTooltip="Amichevole">
+                                                }
+                                                @case ('Neutrale') {
+                                                    <img src="./assets/npcs/neutrale.svg" matTooltip="Neutrale">
+                                                }
+                                                @case ('Indifferente') {
+                                                    <img src="./assets/npcs/neutrale.svg" matTooltip="Indifferente">
+                                                }
+                                                @case ('Ostile') {
+                                                    <img src="./assets/npcs/ostile.svg" matTooltip="Ostile">
+                                                }
+                                            }
+                                        }
+                                    </div>
+                                }
+                                </div>
+                            }
+                        </div>
+                    }
                 }
-            }
+            </div>
         } @empty {
             <div as-description-text>Non hai ancora creato alcun componente in questo capitolo.</div>
         }

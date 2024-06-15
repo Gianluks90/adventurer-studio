@@ -24,7 +24,7 @@
                             <div class="material-symbols-outlined">add</div>
                             <div>Nuovo componente</div>
                         </button>
-                        <button as-mini-circle-btn (click)="ediChapter(i)">
+                        <button as-mini-circle-btn (click)="editChapter(i)">
                             <div class="material-symbols-outlined">edit</div>
                         </button>
                         <button as-mini-circle-btn [ngClass]="{'icon-bookmarked': c.bookmarked}" (click)="chapterBookmarkToggle(i)">
@@ -105,6 +105,30 @@
                                     }
                                 </div>
                             }
+                            @case ('npc') {
+                                <div class="element-type">PNG (Personaggio Non Giocante)</div>
+                                <div class="element-type element-warning"><span class="material-symbols-outlined">warning</span>Ogni modifica (icona matita) a questo componente lo sovrascrive per intero.</div>
+                                <div class="element-organization-container">
+                                    @for (item of e.npcs; track $index) {
+                                        <div class="element-organization">
+                                            <img src="{{item.imgUrl}}" class="organization-item-image">
+                                            <div class="organization-item-title">{{item.name}}</div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @case ('addon') {
+                                <div class="element-type">Scheda/e Nemico/i</div>
+                                <div class="element-type element-warning"><span class="material-symbols-outlined">warning</span>Ogni modifica (icona matita) a questo componente lo sovrascrive per intero.</div>
+                                <div class="element-organization-container">
+                                    @for (item of e.addons; track $index) {
+                                        <div class="element-organization">
+                                            <img src="{{item.imgUrl}}" class="organization-item-image">
+                                            <div class="organization-item-title">{{item.name}}</div>
+                                        </div>
+                                    }
+                                </div>
+                            }
                         }
                         <div as-mini-buttons-container>
                             <button as-mini-circle-btn [disabled]="$first" (click)="moveElement(i, j, 'up')">
@@ -113,12 +137,15 @@
                             <button as-mini-circle-btn [disabled]="$last" (click)="moveElement(i, j, 'down')">
                                 <div class="material-symbols-outlined">vertical_align_bottom</div>
                             </button>
+                            <button as-mini-circle-btn (click)="addElementBelow(i, j)">
+                                <img src="./assets/icons/add_below.svg">
+                            </button>
                             <button as-mini-circle-btn (click)="editElement(i, j)">
                                 <div class="material-symbols-outlined">edit</div>
                             </button>
-                            <button as-mini-circle-btn [ngClass]="{'icon-bookmarked': e.bookmarked}" (click)="elementBookmarkToggle(i, j)">
+                            <!-- <button as-mini-circle-btn [ngClass]="{'icon-bookmarked': e.bookmarked}" (click)="elementBookmarkToggle(i, j)">
                                 <div class="material-symbols-outlined">bookmark</div>
-                            </button>
+                            </button> -->
                             <button as-mini-circle-btn as-btn-warn (click)="deleteElement(i, j)">
                                 <div class="material-symbols-outlined">delete</div>
                             </button>
@@ -126,10 +153,18 @@
                     } @empty {
                         <div as-description-text>Non hai ancora creato alcun componente in questo capitolo.</div>
                     }
+                    @if (c.elements.length > 4) {
+                        <div as-mini-buttons-container>
+                            <button as-long-circle-btn (click)="addElement(i)">
+                                <div class="material-symbols-outlined">add</div>
+                                <div>Nuovo componente</div>
+                            </button>
+                        </div>
+                    }
                 </div>
             </details>
-            }@empty {
-            <div as-description-text>Non hai ancora creato alcun capitolo.</div>
+            } @empty {
+                <div as-description-text>Non hai ancora creato alcun capitolo.</div>
             }
         </div>
         <div class="preview-container">

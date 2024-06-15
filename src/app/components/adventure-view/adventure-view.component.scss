@@ -29,6 +29,32 @@
     font-size: 1.5rem;
 }
 
+.chapter-description {
+    margin-bottom: 16px;
+}
+
+.element-container {
+    display: grid;
+    grid-template-columns: 10px 1fr;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.micro-icon {
+    align-self: start;
+    font-size: x-small;
+    color: rgba($color: #212121, $alpha: 0.2);
+
+    &:hover {
+        color: #212121;
+        cursor: pointer;
+    }
+}
+
+.bookmarked {
+    color: #FFD700;
+}
+
 .element-title {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     text-transform: uppercase;
@@ -39,7 +65,7 @@
     }
 
     font-size: 1.8rem;
-    margin: 16px 0 8px 0;
+    margin: 0;
 }
 
 .element-subtitle {
@@ -51,12 +77,14 @@
     }
 
     font-size: 1.2rem;
-    margin: 0 0 8px 0;
+    margin: 0;
 }
 
 .element-simple-text {
     text-align: justify;
     line-height: 1.5;
+    font-family: 'Times New Roman', serif;
+
 }
 
 .element-descriptive-text {
@@ -65,14 +93,12 @@
     font-style: italic;
     padding: 12px;
     font-family: 'Times New Roman', Times, serif;
-    margin: 8px 0;
     border-left: 1px dotted rgba(0, 0, 0, 0.7);
     border-right: 1px dotted rgba(0, 0, 0, 0.7);
 }
 
 .element-note {
     padding: 12px;
-    margin: 8px 0;
 
     &>.element-note-title {
         font-weight: bold;
@@ -114,9 +140,9 @@
     font-weight: bold;
 }
 
-.table-container {
-    margin-bottom: 8px;
-}
+// .table-container {
+//     margin-bottom: 8px;
+// }
 
 .element-table-row {
     display: grid;
@@ -129,6 +155,11 @@
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+// .element-skill-container {
+//     // border: 1px solid rgba($color: #212121, $alpha: 0.8);
+//     margin-bottom: 8px;
+// }
+
 .element-skill-title {
     font-weight: bold;
     opacity: 0.4;
@@ -136,21 +167,22 @@
     text-transform: uppercase;
 }
 
-.element-skill-container {
-    display: grid;
-    grid-template-columns: 10% 1fr;
-    align-items: center;
-    margin: 8px 0;
-    border: 1px solid rgba($color: #212121, $alpha: 0.5);
+.skill-title {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    background-color: rgba($color: #212121, $alpha: 0.9);
+    color: whitesmoke;
+    padding: 8px;
 }
 
 .skill-cd {
-    background-color: #212121;
-    color: whitesmoke;
-    padding: 12px;
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.2rem;
+    font-size: large;
+    border-left: 1px solid rgba($color: #212121, $alpha: 0.8);
+    border-right: 1px solid rgba($color: #212121, $alpha: 0.8);
+    padding: 8px;
+    font-family: 'Cinzel', serif;
+    font-size: x-large;
 }
 
 .skill-info {
@@ -160,13 +192,28 @@
 }
 
 .element-result-container {
+    border-left: 1px solid rgba($color: #212121, $alpha: 0.8);
+    border-right: 1px solid rgba($color: #212121, $alpha: 0.8);
+    padding: 8px;
     display: grid;
-    grid-template-columns: 30% 1fr;
+    grid-template-columns: 25% 1fr;
+    background-color: rgba($color: #212121, $alpha: 0.9);
+    color: whitesmoke;
+    
+    &>p {
+        font-size: smaller;
+        margin: 0;
+    }
+}
+
+.p-divider {
+    border-bottom: 1px solid whitesmoke;
 }
 
 .element-result-label {
     font-weight: bold;
     margin-bottom: 4px;
+    font-size: x-small;
 }
 
 .element-org-container {
@@ -182,7 +229,9 @@
 .element-org-container>img {
     object-fit: cover;
     height: 70px;
-    width: 70px;
+    min-width: 70px;
+    border-top: 1px solid #212121;
+    box-sizing: border-box;
 }
 
 .element-org-container>button {
@@ -227,4 +276,186 @@
 .npc-footer>img {
     height: 16px;
     width: 16px;
+}
+
+.addon-name {
+    background-color: #212121;
+    color: white;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sub-summary {
+    opacity: 0.9;
+}
+
+.bg-description {
+    padding: 8px;
+}
+
+.main-details[open] {
+    border: 1px solid #212121;
+}
+
+details>summary {
+    list-style: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+summary::after {
+    content: url("/assets/icons/chevron_right.svg");
+    cursor: pointer;
+}
+
+details[open]>summary::after {
+    content: url("/assets/icons/chevron_down.svg");
+    cursor: pointer;
+}
+
+.caratteristiche-main-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 4px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.caratteristiche-line {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    gap: 4px;
+}
+
+.caratteristiche-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #212121;
+    min-width: 30%;
+}
+
+.caratteristica-label {
+    font-size: small;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    background-color: #212121;
+    padding: 5px 0;
+    color: whitesmoke;
+}
+
+.caratteristica-value {
+    font-size: small;
+    padding: 4px 0;
+    font-weight: bold;
+    background-color: whitesmoke;
+    width: 100%;
+    letter-spacing: 2px;
+}
+
+.caratteristica-mod {
+    font-size: small;
+    font-weight: 700;
+    background-color: #212121;
+    width: 100%;
+    padding: 5px 0;
+    color: whitesmoke;
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4px;
+    width: 100%;
+}
+
+.info-line {
+    display: flex;
+    gap: 8px;
+}
+
+.info-label {
+    font-size: small;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.info-value {
+    font-size: small;
+}
+
+.hp-container {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    // height: 25px;
+    position: relative;
+}
+
+.hp-value {
+    position: absolute;
+    font-weight: bold;
+    background-color: white;
+    color: #212121;
+    padding: 0 5px;
+    // top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hp-bar {
+    flex-grow: 1;
+    height: 8px;
+    background-color: lightgray;
+}
+
+.hp-button {
+    height: 25px;
+    width: 25px;
+}
+
+.hp-button>mat-icon {
+    overflow: clip !important;
+}
+
+.inner-details {
+    padding: 0 4px;
+    padding-bottom: 4px;
+}
+
+.inner-line {
+    padding: 4px;
+}
+
+.inner-label {
+    font-size: small;
+    font-weight: bold;
+}
+
+.inner-value {
+    font-size: smaller;
+}
+
+.section-title {
+    margin: 8px 0;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
 }

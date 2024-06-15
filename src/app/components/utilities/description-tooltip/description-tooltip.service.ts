@@ -1,3 +1,4 @@
+import { Platform } from '@angular/cdk/platform';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -26,6 +27,7 @@ export class DescriptionTooltipService {
   public tooltipPosition: { top: number | string, left: number | string } = { top: 0, left: 0 };
 
   public showTooltip(event: MouseEvent, position: string, ignore: boolean, id: string, near?: boolean) {
+    
     this.id = id;
     if (!ignore) return;
   

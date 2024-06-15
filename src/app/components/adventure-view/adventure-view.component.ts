@@ -3,6 +3,7 @@ import { Adventure } from '../adventure-editor/models/adventure';
 import { MatDialog } from '@angular/material/dialog';
 import { AddOrganizationDialogComponent } from '../utilities/npcs/add-organization-dialog/add-organization-dialog.component';
 import { AdventureService } from 'src/app/services/adventure.service';
+import { AddNpcDialogComponent } from '../utilities/npcs/add-npc-dialog/add-npc-dialog.component';
 
 @Component({
   selector: 'app-adventure-view',
@@ -16,13 +17,21 @@ export class AdventureViewComponent {
   public adventureData: Adventure | null = null;
   @Input() set adventure(adventure: Adventure) {
     this.adventureData = adventure;
+    if (this.adventureData) {
+      setTimeout(() => {
+        this.adventureData.chapters.forEach((chapter) => {
+          this.scrollToElement(chapter.elements.findIndex((element) => element.bookmarked));
+        });
+      }, 1);
+    }
     // this.createSubtitle();
   }
+  
 
   public editOrg(chapterIndex: number, elementIndex: number, orgIndex: number): void {
     const org = this.adventureData.chapters[chapterIndex].elements[elementIndex].organizations[orgIndex];
     this.dialog.open(AddOrganizationDialogComponent, {
-      width: window.innerWidth < 600 ? '90%' : '60%',
+      width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false,
       disableClose: true,
       data: { organizations: this.adventureData.chapters[chapterIndex].elements[elementIndex].organizations, organization: org }
@@ -38,6 +47,79 @@ export class AdventureViewComponent {
           break;
       }
     });
-  
   }
+
+  public editNpc(chapterIndex: number, elementIndex: number, npcIndex: number): void {
+    const npc = this.adventureData.chapters[chapterIndex].elements[elementIndex].npcs[npcIndex];
+    this.dialog.open(AddNpcDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      disableClose: true,
+      data: { npcs: this.adventureData.chapters[chapterIndex].elements[elementIndex].npcs, npc, isTab: false }
+    }).afterClosed().subscribe((result: any) => {
+      switch (result.status) {
+        case 'edited':
+          this.adventureData.chapters[chapterIndex].elements[elementIndex].npcs[npcIndex] = result.npc;
+          this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+          break;
+        case 'deleted':
+          this.adventureData.chapters[chapterIndex].elements[elementIndex].npcs.splice(npcIndex, 1);
+          this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+          break;
+      }
+    });
+  }
+
+  public editAddon(chapterIndex: number, elementIndex: number, addonIndex: number): void {
+    const addon = this.adventureData.chapters[chapterIndex].elements[elementIndex].addons[addonIndex];
+    this.dialog.open(AddNpcDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '60%',
+      autoFocus: false,
+      disableClose: true,
+      data: { npcs: this.adventureData.chapters[chapterIndex].elements[elementIndex].addons, npc: addon, isTab: true }
+    }).afterClosed().subscribe((result: any) => {
+      switch (result.status) {
+        case 'edited':
+          this.adventureData.chapters[chapterIndex].elements[elementIndex].addons[addonIndex] = result.npc;
+          this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+          break;
+        case 'deleted':
+          this.adventureData.chapters[chapterIndex].elements[elementIndex].addons.splice(addonIndex, 1);
+          this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+          break;
+      }
+    });
+  }
+
+  public chapterBookmarkToggle(index: number): void {
+    this.adventureData.chapters.map((chapter, i) => {
+      if (i === index) {
+        chapter.bookmarked = !chapter.bookmarked;
+      } else {
+        chapter.bookmarked = false;
+      }
+      return chapter;
+    });
+    this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+  }
+
+  public elementBookmarkToggle(chapterIndex: number, index: number): void {
+    this.adventureData.chapters[chapterIndex].elements.map((element, i) => {
+      if (i === index) {
+        element.bookmarked = !element.bookmarked;
+      } else {
+        element.bookmarked = false;
+      }
+      return element;
+    });
+    this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+  }
+
+  private scrollToElement(bookmarkIndex: number): void {
+    if (bookmarkIndex !== -1) {
+      const element = document.getElementById(`elem_${bookmarkIndex}`);
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
 }

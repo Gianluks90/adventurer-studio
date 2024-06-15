@@ -71,7 +71,7 @@ export class AdventureEditorComponent {
     });
   }
 
-  public ediChapter(index: number): void {
+  public editChapter(index: number): void {
     this.dialog.open(NewAdventureChapterDialogComponent, {
       width: window.innerWidth < 768 ? '90%' : '50%',
       autoFocus: false,
@@ -129,6 +129,20 @@ export class AdventureEditorComponent {
   public deleteElement(chapterIndex: number, index: number): void {
     this.adventureData.chapters[chapterIndex].elements.splice(index, 1);
     this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+  }
+
+  public addElementBelow(chapterIndex: number, index: number): void {
+    this.dialog.open(AddElementsDialogComponent, {
+      width: window.innerWidth < 768 ? '90%' : '50%',
+      autoFocus: false,
+      disableClose: true,
+      data: { element: null, resources: this.resourcesData }
+    }).afterClosed().subscribe((result) => {
+      if (result && result.status === 'success') {
+        this.adventureData.chapters[chapterIndex].elements.splice(index + 1, 0, result.element);
+        this.adventureService.updateChapters(this.adventureData.id, this.adventureData.chapters);
+      }
+    });
   }
 
   public moveElement(chapterIndex: number, index: number, direction: 'up' | 'down'): void {
