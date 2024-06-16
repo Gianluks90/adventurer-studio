@@ -60,7 +60,7 @@
                             </ng-template>
                             <app-campaign-char-tab [character]="selectedChar"></app-campaign-char-tab>
                         </mat-tab>
-                    } @loading (minimum 1s) {
+                    } @loading (minimum 2s) {
                         @if (!isOwner) {
                             <mat-tab>
                                 <ng-template mat-tab-label>
@@ -138,9 +138,14 @@
 
 @if (adventureData && isOwner) {
     <div class="adventure-sidenav-container" *ngIf="showAdventure" [ngClass]="{'opening-sidenav': showAdventure}">
-        <button as-mini-circle-btn (click)="toggleAdventure()">
-            <div class="material-symbols-outlined">close</div>
-        </button>
+        <div as-mini-buttons-container>
+            <button as-long-circle-btn (click)="editAdventure()">
+                <div class="material-symbols-outlined">open_in_new</div> <div>Modifica</div>
+            </button>
+            <button as-mini-circle-btn (click)="toggleAdventure()">
+                <div class="material-symbols-outlined">close</div>
+            </button>
+        </div>
         <app-adventure-view [adventure]="adventureData"></app-adventure-view>
     </div>
 }

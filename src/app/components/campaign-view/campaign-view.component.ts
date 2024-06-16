@@ -13,6 +13,7 @@ import { DescriptionTooltipService } from '../utilities/description-tooltip/desc
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { AdventureService } from 'src/app/services/adventure.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-campaign-view',
@@ -29,7 +30,7 @@ export class CampaignViewComponent {
   public sessionNumber: number = 1;
   public today = new Date();
   public isiPad: boolean = false;
-  
+
   public adventureData: any;
   public showAdventure: boolean = false;
 
@@ -42,7 +43,8 @@ export class CampaignViewComponent {
     private matDialog: MatDialog,
     private charService: CharacterService,
     public tooltip: DescriptionTooltipService,
-    private platform: Platform) {
+    private platform: Platform,
+    private router: Router) {
 
     effect(() => {
       this.user = this.firebaseService.userSignal();
@@ -50,7 +52,7 @@ export class CampaignViewComponent {
       this.charService.getSignalCharacters();
       if (this.platform.SAFARI) {
         this.isiPad = true;
-        
+
       }
     });
 
@@ -68,7 +70,7 @@ export class CampaignViewComponent {
       });
 
       // if (!this.campaignData) {
-        this.campaignService.getSignalSingleCampaing(id);
+      this.campaignService.getSignalSingleCampaing(id);
       // }
     });
 
@@ -138,5 +140,10 @@ export class CampaignViewComponent {
 
   public toggleAdventure() {
     this.showAdventure = !this.showAdventure;
+  }
+
+  public editAdventure() {
+    this.showAdventure = !this.showAdventure;
+    this.router.navigate(['adventures/' + this.adventureData.id]);
   }
 }
