@@ -31,6 +31,7 @@
 
 .chapter-description {
     margin-bottom: 16px;
+    white-space: pre-wrap;
 }
 
 .element-container {
@@ -83,8 +84,8 @@
 .element-simple-text {
     text-align: justify;
     line-height: 1.5;
-    font-family: 'Times New Roman', serif;
-
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    white-space: pre-wrap;
 }
 
 .element-descriptive-text {
@@ -92,9 +93,10 @@
     line-height: 1.5;
     font-style: italic;
     padding: 12px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     border-left: 1px dotted rgba(0, 0, 0, 0.7);
     border-right: 1px dotted rgba(0, 0, 0, 0.7);
+    white-space: pre-wrap;
 }
 
 .element-note {
@@ -111,6 +113,7 @@
     }
 
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    white-space: pre-wrap;
 }
 
 .element-image {
@@ -126,6 +129,10 @@
 .element-list-item {
     text-align: justify;
     line-height: 1.5;
+}
+
+.element-list-item-text {
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .element-table-header {
@@ -212,7 +219,6 @@
 
 .element-result-label {
     font-weight: bold;
-    margin-bottom: 4px;
     font-size: x-small;
 }
 
@@ -458,4 +464,25 @@ details[open]>summary::after {
     text-transform: uppercase;
     letter-spacing: 1px;
     border-bottom: 1px solid rgba($color: #212121, $alpha: 0.3);
+}
+
+.element-encounter-title {
+    font-size: small;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 4px;
+}
+
+.element-encounter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #212121;
+    max-height: 32px;
+
+    &>.encounter-item-image{
+        width: 32px;
+        height: 32px;
+        object-fit: cover;
+    }
 }

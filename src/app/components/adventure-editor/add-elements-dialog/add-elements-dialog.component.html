@@ -20,6 +20,7 @@
             <mat-option value="organization">Organizzazione/i</mat-option>
             <mat-option value="npc">PNG</mat-option>
             <mat-option value="addon">Scheda/e Nemico/i</mat-option>
+            <mat-option value="encounter">Incontro</mat-option>
         </mat-select>
     </mat-form-field>
 
@@ -315,6 +316,48 @@
                         }
                     </mat-select>
                 </mat-form-field>
+            }
+        }
+        @case ('encounter') {
+            <div as-section-title>Incontro</div>
+            <div as-description-text>
+                Decidi i nemici che prenderanno parte a questo incontro. I componenti <strong>Risorsa</strong> vengono
+                copiati dall'omonima collezione pertanto ogni modifica effettuata successivamente non sarà allineata con il
+                componente presente in questo Capitolo.
+            </div>
+            @if (data.resources.addons.length === 0) {
+                <div as-description-text>
+                    Non hai ancora creato nessuna Scheda dei Nemici. Vai alla sezione <strong>Risorse</strong> per crearne una.
+                </div>
+            } @else {
+                <!-- <form [formGroup]="form"> -->
+                <div as-description-text>
+                    Decidi chi prenderà parte all'Incontro <em>deselezionando</em> Personaggi assenti e selezionando i nemici.
+                    Per quanto riguarda i nemici potrai scegliere successivamente la quantità dello stesso tipo.
+                </div>
+                <mat-form-field class="custom-form-field" appearance="outline" color="accent">
+                    <mat-label>Schede dei nemici</mat-label>
+                    <mat-select multiple [value]="selectedAddons" (selectionChange)="onAddonSelectionChange($event)">
+                        <mat-option *ngFor="let addon of data.resources.addons" [value]="addon">
+                            {{addon.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div *ngIf="enemies.controls.length > 0">
+                    <div as-subtitle>Schede selezionate</div>
+                    <div formArrayName="enemies">
+                        @for(e of enemies.controls; track i; let i = $index) {                            <div [formGroupName]="i" class="addon-group">
+                            <mat-form-field class="addon-input" appearance="outline" color="accent">
+                                <mat-label>{{e.value.addon.name}} (quantità)</mat-label>
+                                <input matInput type="number" formControlName="quantity" min="1">
+                            </mat-form-field>
+                            <button as-mini-circle-btn as-btn-warn (click)="removeEnemy(i)">                                    <div class="material-symbols-outlined">close</div>
+                            </button>
+                        </div>
+                        }
+                    </div>
+                </div>
+                <!-- </form> -->
             }
         }
     }

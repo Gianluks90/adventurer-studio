@@ -29,21 +29,25 @@
                         </div>
                     }
                     @case ('image') {
-                        <img [id]="'elem_'+i+'_'+j" [src]="e.src" class="element-image">
-                        <div class="element-caption">{{e.caption !== '' ? e.caption : 'Nessuna didascalia fornita.'}}</div>
+                        <div>
+                            <img [id]="'elem_'+i+'_'+j" [src]="e.src" class="element-image">
+                            <div class="element-caption">{{e.caption !== '' ? e.caption : 'Nessuna didascalia fornita.'}}</div>
+                        </div>
                     }
                     @case ('list') {
-                        @for (item of e.items; track item.id; let k = $index) {
-                           @if (e.bulleted) {
-                                <ul [id]="'elem_'+i+'_'+j" class="element-list-item">
-                                   <li class="element-list-item-text">{{item.text}}</li>
-                                </ul>
-                            } @else { 
-                                <div [id]="'elem_'+i+'_'+j" class="element-list-item">
-                                    <strong>{{item.title}}</strong>: <span class="element-list-item-text">{{item.text}}</span>
-                                </div>
+                        <div>
+                            @for (item of e.items; track item.id; let k = $index) {
+                               @if (e.bulleted) {
+                                    <ul [id]="'elem_'+i+'_'+j" class="element-list-item">
+                                       <li class="element-list-item-text">{{item.text}}</li>
+                                    </ul>
+                                } @else { 
+                                    <div [id]="'elem_'+i+'_'+j" class="element-list-item">
+                                        <strong class="element-list-item-text">{{item.title}}</strong>: <span class="element-list-item-text">{{item.text}}</span>
+                                    </div>
+                                }
                             }
-                        }
+                        </div>
                     }
                     @case ('table') {
                         <div [id]="'elem_'+i+'_'+j" class="table-container">
@@ -70,7 +74,7 @@
                                 {{e.cd}}
                             </div>
                             <div class="element-result-container">
-                                <div class="element-result-label">Successo</div>
+                                <div class="element-result-label p-divider">Successo</div>
                                 <p class="p-divider">{{e.success}} <span *ngIf="e.criticalSuccess"><strong>Critico</strong>: {{e.criticalSuccess}}</span></p>
                                 <div class="element-result-label">Fallimento</div>
                                 <p>{{e.failure}} <span *ngIf="e.criticalFailure"><strong>Critico</strong>: {{e.criticalFailure}}</span></p>
@@ -312,6 +316,17 @@
                                         }
                                     </div>
                                 }
+                                </div>
+                            }
+                        </div>
+                    }
+                    @case ('encounter') {
+                        <div>
+                            <div class="element-encounter-title">Incontro</div>
+                            @for (o of e.enemies; track $index) {
+                                <div class="element-encounter">
+                                    <img src="{{o.addon.imgUrl}}" class="encounter-item-image">
+                                    <div class="encounter-item-title">{{o.quantity}} {{o.addon.name}}</div>
                                 </div>
                             }
                         </div>

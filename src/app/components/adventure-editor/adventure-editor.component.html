@@ -129,6 +129,18 @@
                                     }
                                 </div>
                             }
+                            @case ('encounter') {
+                                <div class="element-type">Incontro</div>
+                                <div class="element-type element-warning"><span class="material-symbols-outlined">warning</span>Ogni modifica (icona matita) a questo componente lo sovrascrive per intero.</div>
+                                <div class="element-organization-container">
+                                    @for (item of e.enemies; track $index) {
+                                        <div class="element-organization">
+                                            <img src="{{item.addon.imgUrl}}" class="organization-item-image">
+                                            <div class="organization-item-title">{{item.quantity}} {{item.addon.name}}</div>
+                                        </div>
+                                    }
+                                </div>
+                            }
                         }
                         <div as-mini-buttons-container>
                             <button as-mini-circle-btn [disabled]="$first" (click)="moveElement(i, j, 'up')">

@@ -55,3 +55,16 @@ mat-form-field {
 .rows-container {
     margin-bottom: 12px;
 }
+
+.addon-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.addon-input {
+    flex-grow: 1;
+    margin-bottom: 0;
+}

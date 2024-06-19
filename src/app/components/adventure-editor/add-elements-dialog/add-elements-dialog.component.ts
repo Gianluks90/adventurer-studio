@@ -14,6 +14,7 @@ export class AddElementsDialogComponent {
   public mockDescription: string = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc tincidunt ultricies. Nullam nec purus nec nunc tincidunt ultricies.';
   public list: FormArray | null = null;
   public rows: FormArray | null = null;
+  public enemies: FormArray | null = null;
 
   public form: FormGroup | null;
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<NewAdventureChapterDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { element: any, resources: any }) {
@@ -112,8 +113,11 @@ export class AddElementsDialogComponent {
         case 'addon':
           this.form.addControl('addon', this.fb.control('', Validators.required));
           break;
+        case 'encounter':
+          this.form?.addControl('enemies', this.fb.array([]));
+          this.enemies = this.form.get('enemies') as FormArray;
+          break;
       }
-
       this.form.patchValue(this.data.element);
     }
 
@@ -140,11 +144,11 @@ export class AddElementsDialogComponent {
           this.form?.addControl('title', this.fb.control('', Validators.required));
           this.form?.addControl('text', this.fb.control('', Validators.required));
           this.form?.addControl('textColor', this.fb.control('#212121'));
-          this.form?.addControl('backgroundColor', this.fb.control('#6def98'));
+          this.form?.addControl('backgroundColor', this.fb.control('#FFFF00'));
           break;
         case 'list':
           this.form?.addControl('items', this.fb.array([]));
-          this.form.addControl('bulleted', this.fb.control(false));
+          this.form?.addControl('bulleted', this.fb.control(false));
           this.list = this.form.get('items') as FormArray;
           break;
         case 'image':
@@ -168,13 +172,17 @@ export class AddElementsDialogComponent {
           this.form?.addControl('criticalFailure', this.fb.control(''));
           break;
         case 'organization':
-          this.form.addControl('organizations', this.fb.control([], Validators.required));
+          this.form?.addControl('organizations', this.fb.control([], Validators.required));
           break;
         case 'npc':
-          this.form.addControl('npcs', this.fb.control([], Validators.required));
+          this.form?.addControl('npcs', this.fb.control([], Validators.required));
           break;
         case 'addon':
-          this.form.addControl('addons', this.fb.control('', Validators.required));
+          this.form?.addControl('addons', this.fb.control('', Validators.required));
+          break;
+        case 'encounter':
+          this.form?.addControl('enemies', this.fb.array([]));
+          this.enemies = this.form.get('enemies') as FormArray;
           break;
       }
     });
@@ -242,6 +250,47 @@ export class AddElementsDialogComponent {
 
   public resetWidth(): void {
     this.form?.get('header_left_width')?.setValue('');
+  }
+
+  public selectedAddons: any[] = [];
+  // get addons(): FormArray {
+  //   return this.form.get('enemies') as FormArray;
+  // }
+
+  private addEnemy(addon: any) {
+    const group = this.fb.group({
+      addon: [addon, Validators.required],
+      quantity: [1, [Validators.required, Validators.min(1)]]
+    });
+    this.enemies.push(group);
+    this.selectedAddons.push(addon); // Aggiungi l'addon ai selezionati
+  }
+
+  public removeEnemy(index: number) {
+    const removedAddon = this.enemies.at(index).value.addon;
+    this.enemies.removeAt(index);
+    this.selectedAddons = this.selectedAddons.filter(addon => addon !== removedAddon); // Rimuovi l'addon dai selezionati
+  }
+
+  public onAddonSelectionChange(event: any) {
+    const selectedAddons = event.value;
+    const currentAddons = this.getSelectedAddons();
+
+    selectedAddons.forEach((addon: any) => {
+      if (!currentAddons.includes(addon)) {
+        this.addEnemy(addon);
+      }
+    });
+
+    currentAddons.forEach((addon: any, index: number) => {
+      if (!selectedAddons.includes(addon)) {
+        this.removeEnemy(index);
+      }
+    });
+  }
+
+  private getSelectedAddons(): any[] {
+    return this.enemies.value.map((e: any) => e.addon);
   }
 
   public confirm(): void {
