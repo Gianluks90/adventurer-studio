@@ -87,8 +87,8 @@
 }
 <div as-subtitle>Preparati <span *ngIf="charData.magia.incantesimiPreparabili > 0" [ngClass]="{'warn-prepared-spells': checkPreparedSpell() > charData.magia.incantesimiPreparabili}">({{checkPreparedSpell()}}/{{charData.magia.incantesimiPreparabili}})</span></div>
 @for (t of lista; track i; let i = $index) {
-    @if(t.preparato && t.livello > 0) {
-        <details *ngIf="t.preparato && t.livello > 0" as-details [hidden]="t.filtered" id="details-m">
+    @if((t.preparato || t.semprePreparato) && t.livello > 0) {
+        <details as-details [hidden]="t.filtered" id="details-m">
             <summary as-summary as-summary-with-icon>
                 <div class="t-header-container">
                     <img class="spell-icon" [src]="t.icon">
@@ -162,7 +162,7 @@
 @if(!isCampaign) {
     <div as-subtitle>Conosciuti (non preparati)</div>
     @for(t of lista; track i; let i = $index) {
-        <details *ngIf="!t.preparato" as-details [hidden]="t.filtered" id="details-m">
+        <details *ngIf="!t.preparato && !t.semprePreparato" as-details [hidden]="t.filtered" id="details-m">
             <summary as-summary as-summary-with-icon>
                 <div class="t-header-container">
                     <img class="spell-icon" [src]="t.icon">

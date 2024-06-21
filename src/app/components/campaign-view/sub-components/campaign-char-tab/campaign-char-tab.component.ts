@@ -16,6 +16,11 @@ export class CampaignCharTabComponent {
     this.abilitaData.sort((a, b) => a.name.localeCompare(b.name));
   }
 
+  public isOwnerData: boolean = false;
+  @Input() set isOwner(isOwner: boolean) {
+    this.isOwnerData = isOwner;
+  }
+
   public abilitaData: any[] = [];
   public maestrieData: any[] = [];
 

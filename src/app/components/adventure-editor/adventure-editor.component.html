@@ -1,5 +1,5 @@
 @defer (when user && adventureData) {
-<div class="main-container" [ngClass]="{'iPad-padding': isiPad}">
+<div class="main-container" >
     <div class="header-container">
         <h3 class="header-title">{{adventureData.title}}</h3>
         <div class="header-subtitle">{{subtitle}}</div>
@@ -138,6 +138,31 @@
                                             <img src="{{item.addon.imgUrl}}" class="organization-item-image">
                                             <div class="organization-item-title">{{item.quantity}} {{item.addon.name}}</div>
                                         </div>
+                                    }
+                                </div>
+                            }
+                            @case ('item') {
+                                <div class="element-type">Oggetto/i</div>
+                                <div class="element-type element-warning"><span class="material-symbols-outlined">warning</span>Ogni modifica (icona matita) a questo componente lo sovrascrive per intero.</div>
+                                <div class="element-organization-container">
+                                    @for (item of e.items; track item.id) {
+                                        <div class="element-organization">
+                                            <img src="{{item.icon}}" class="organization-item-image">
+                                            <div class="organization-item-title">{{item.name}}</div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @case ('quest') {
+                                <div class="element-type">Missione</div>
+                                <div class="quest-title">{{e.title}}</div>
+                                <div class="quest-description">{{e.description}}</div>
+                            }
+                            @case ('tag') {
+                                <div class="element-type">Etichette</div>
+                                <div as-pills-container>
+                                    @for (tag of e.tags; track $index) {
+                                        <div as-pill>{{tag}}</div>
                                     }
                                 </div>
                             }

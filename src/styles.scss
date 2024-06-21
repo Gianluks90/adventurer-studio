@@ -595,6 +595,27 @@ div[as-pill] {
   }
 }
 
+div[as-mini-pill] {
+  display: flex;
+  align-items: center;
+  background-color: #212121;
+  color: whitesmoke;
+  padding: 2px 8px;
+  text-align: center;
+  border-radius: 12px;
+  font-size: smaller;
+
+  .material-symbols-outlined {
+    font-size: 1rem;
+    margin-right: 4px;
+  }
+
+  span {
+    margin-left: 4px;
+  }
+
+}
+
 // Titolo di sezione, con bordo inferiore.
 div[as-section-title] {
   margin: 8px 0;

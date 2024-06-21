@@ -11,11 +11,7 @@
     <button as-mini-circle-btn (click)="openNewEncounterDialog()">
         <div class="material-symbols-outlined">add</div>
     </button>
-    @if (encounterData.started) {
-        <button as-long-circle-btn (click)="nextActive()">
-            <div class="material-symbols-outlined">arrow_forward</div> <div>Prossimo</div>
-        </button>
-    } @else {
+    @if (!encounterData.started) {
         <button as-long-circle-btn (click)="startEncounter()" [disabled]="encounterData.list.length <= 0">
             <div class="material-symbols-outlined">play_arrow</div> <div>Avvia</div>
         </button>
@@ -28,34 +24,47 @@
         <strong>Non iniziato</strong>: Premi il pulsante "Avvia" per iniziare l'Incontro.
     </div>
     }
+    @if (encounterData.started) {
+        <div class="round-indicator">{{encounterData.roundCounter}}° Round</div>
+    }
 <div class="encounter-container">
     @for(e of encounterData.list; track e.id; let i = $index) {
-    <div class="encounter-card" [ngClass]="{'active-card': encounterData.activeIndex === i}">
-        <div class="initiative-label" [ngStyle]="{'opacity':  e.type === 'enemy' && e.HP <= 0 ? '0.5' : '1' }">{{i+1}}
-        </div>
-        <img [src]="e.imgUrl" [ngClass]="{'defeated-enemy': e.type === 'enemy' && e.HP <= 0}">
-        <div class="encounter-content">
-            <div class="name-label">{{e.name}}</div>
-            @if(e.type === 'enemy') {
-            @if (isOwnerData) {
-            <div class="enemy-health-container">
-                <!-- <div class="health-situation">{{getHealthSituationString(e.HP, e.HPmax)}}</div> -->
-                <div class="material-symbols-outlined">favorite</div> <span>{{e.HP}} / {{e.HPmax}}</span>
-                <button as-mini-circle-light-btn (click)="HPaction('remove', i)">
-                    <div class="material-symbols-outlined">remove</div>
-                </button>
-                <button as-mini-circle-light-btn (click)="HPaction('add', i)">
-                    <div class="material-symbols-outlined">add</div>
-                </button>
-                <div class="counter_span" [id]="'counter_' + i">12</div>
+        <div [id]="'card_' + i"  class="encounter-card" [ngClass]="{'active-card': encounterData.activeIndex === i}">
+            <div class="initiative-label" [ngStyle]="{'opacity':  e.type === 'enemy' && e.HP <= 0 ? '0.5' : '1' }">{{i+1}}
             </div>
-            } @else {
-            <div class="health-situation">{{getHealthSituationString(e.HP, e.HPmax)}}</div>
-            }
+            <img [src]="e.imgUrl" [ngClass]="{'defeated-enemy': e.type === 'enemy' && e.HP <= 0}">
+            <div class="encounter-content">
+                <div class="name-label">{{e.name}}</div>
+                @if(e.type === 'enemy') {
+                @if (isOwnerData) {
+                <div class="enemy-health-container">
+                    <div class="material-symbols-outlined">shield</div> {{e.CA}}
+                    <!-- <div class="health-situation">{{getHealthSituationString(e.HP, e.HPmax)}}</div> -->
+                    <div class="material-symbols-outlined red-icon">favorite</div> <span>{{e.HP}} / {{e.HPmax}}</span>
+                </div>
+                } @else {
+                <div class="health-situation">{{getHealthSituationString(e.HP, e.HPmax)}}</div>
+                }
 
-            }
+                }
+            </div>
         </div>
-    </div>
+        @if (encounterData.started && i === encounterData.activeIndex && isOwnerData) {
+            <div class="player-controller">
+                @if (e.type === 'enemy' && e.HP > 0) {
+                    <div class="counter_span" [id]="'counter_' + i"></div>
+                    <button as-mini-circle-btn (click)="HPaction('remove', i)">
+                        <div class="material-symbols-outlined">remove</div>
+                    </button>
+                    <button as-mini-circle-btn (click)="HPaction('add', i)">
+                        <div class="material-symbols-outlined">add</div>
+                    </button>
+                }
+                <button as-long-circle-btn (click)="nextActive()">
+                    <div class="material-symbols-outlined">arrow_forward</div> <div>Prossimo</div>
+                </button>
+            </div>
+        }
     }
     @if (isOwnerData) {
         <app-npcs [npcs]="[]" [organizations]="[]" [addons]="enemiesSelected()" [tab]="false" [dm]="true" [isCampaignOwner]="isOwnerData" listTitle="Schede dell'incontro"></app-npcs>

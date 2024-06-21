@@ -12,48 +12,53 @@
     <div as-pill>{{charData.informazioniBase.allineamento}}</div>
     <div as-pill>{{charData.informazioniBase.background}} <span *ngIf="charData.informazioniBase.dettaglioBackground !== ''"> ({{charData.informazioniBase.dettaglioBackground}})</span></div>
 </div>
-<!-- <div as-subtitle>Caratteristiche</div>
-<div class="skill-container">
-    <div class="skill-line">
-        <div class="skill">
-            <div class="skill-title">FOR</div>
-            <div class="skill-value">{{charData.caratteristiche.forza}}</div>
-            <div class="skill-title">{{calcModifier(charData.caratteristiche.forza)}}</div>
+<app-money-controller [char]="charData"></app-money-controller>
+@if (isOwnerData) {
+    <div as-subtitle>Caratteristiche</div>
+    <div class="skill-container">
+        <div class="skill-line">
+            <div class="skill">
+                <div class="skill-title">FOR</div>
+                <div class="skill-value">{{charData.caratteristiche.forza}}</div>
+                <div class="skill-title">{{calcModifier(charData.caratteristiche.forza)}}</div>
+            </div>
+            <div class="skill">
+                <div class="skill-title">DES</div>
+                <div class="skill-value">{{charData.caratteristiche.destrezza}}</div>
+                <div class="skill-title">{{calcModifier(charData.caratteristiche.destrezza)}}</div>
+            </div>
+            <div class="skill">
+                <div class="skill-title">COS</div>
+                <div class="skill-value">{{charData.caratteristiche.costituzione}}</div>
+                <div class="skill-title">{{calcModifier(charData.caratteristiche.costituzione)}}</div>
+            </div>
         </div>
-        <div class="skill">
-            <div class="skill-title">DES</div>
-            <div class="skill-value">{{charData.caratteristiche.destrezza}}</div>
-            <div class="skill-title">{{calcModifier(charData.caratteristiche.destrezza)}}</div>
-        </div>
-        <div class="skill">
-            <div class="skill-title">COS</div>
-            <div class="skill-value">{{charData.caratteristiche.costituzione}}</div>
-            <div class="skill-title">{{calcModifier(charData.caratteristiche.costituzione)}}</div>
+        <div class="skill-line">
+            <div class="skill">
+                <div class="skill-title">INT</div>
+                <div class="skill-value">{{charData.caratteristiche.intelligenza}}</div>
+                <div class="skill-title">{{calcModifier(charData.caratteristiche.intelligenza)}}</div>
+            </div>
+            <div class="skill">
+                <div class="skill-title">SAG</div>
+                <div class="skill-value">{{charData.caratteristiche.saggezza}}</div>
+                <div class="skill-title">{{calcModifier(charData.caratteristiche.saggezza)}}</div>
+            </div>
+            <div class="skill">
+                <div class="skill-title">CAR</div>
+                <div class="skill-value">{{charData.caratteristiche.carisma}}</div>
+                <div class="skill-title">{{calcModifier(charData.caratteristiche.carisma)}}</div>
+            </div>
         </div>
     </div>
-    <div class="skill-line">
-        <div class="skill">
-            <div class="skill-title">INT</div>
-            <div class="skill-value">{{charData.caratteristiche.intelligenza}}</div>
-            <div class="skill-title">{{calcModifier(charData.caratteristiche.intelligenza)}}</div>
-        </div>
-        <div class="skill">
-            <div class="skill-title">SAG</div>
-            <div class="skill-value">{{charData.caratteristiche.saggezza}}</div>
-            <div class="skill-title">{{calcModifier(charData.caratteristiche.saggezza)}}</div>
-        </div>
-        <div class="skill">
-            <div class="skill-title">CAR</div>
-            <div class="skill-value">{{charData.caratteristiche.carisma}}</div>
-            <div class="skill-title">{{calcModifier(charData.caratteristiche.carisma)}}</div>
-        </div>
+
+    <div class="proficiency-container">
+        <div class="prof-label">Bonus Competenza</div>
+        <div class="prof-label">{{charData.tiriSalvezza.bonusCompetenza > 0 ? "+ " + charData.tiriSalvezza.bonusCompetenza : charData.tiriSalvezza.bonusCompetenza}}</div>
     </div>
-</div> -->
-<!-- <div as-subtitle>Tiri salvezza</div>
-<div class="proficiency-container">
-    <div class="prof-label">Bonus Competenza</div>
-    <div class="prof-label">{{charData.tiriSalvezza.bonusCompetenza > 0 ? "+ " + charData.tiriSalvezza.bonusCompetenza : charData.tiriSalvezza.bonusCompetenza}}</div>
-</div>
+
+    <div as-subtitle>Tiri salvezza</div>
+
 <div class="skill-container">
     <div class="skill-line">
         <div class="skill" [ngStyle]="{'border-bottom' : charData.tiriSalvezza.forza ? '6px solid #212121' : ''}">
@@ -83,9 +88,8 @@
             <div class="skill-value">{{calcSaveThrow(charData.caratteristiche.carisma, 'carisma')}}</div>
         </div>
     </div>
-</div> -->
-<app-money-controller [char]="charData"></app-money-controller>
-
+</div>
+}
 <div as-subtitle>Abilità</div>
 <div class="a-container">
     @for(a of abilitaData; track i; let i = $index) {

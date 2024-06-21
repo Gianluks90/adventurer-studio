@@ -15,20 +15,15 @@ import { NewAdventureDialogComponent } from './new-adventure-dialog/new-adventur
 export class AdventuresPageComponent {
 
   public user: AdventurerUser | null;
-  public isiPad: boolean = false;
   public adventures: any[] = [];
  
   constructor(
-    public firebaseService: FirebaseService, 
-    private platform: Platform, 
+    public firebaseService: FirebaseService,
     public sidenavService: SidenavService,
     private adventureService: AdventureService,
     private dialog: MatDialog) {
     effect(() => {
       this.user = this.firebaseService.userSignal();
-      if (this.platform.SAFARI) {
-        this.isiPad = true;
-      }
       if (this.user) {
         this.adventureService.getAdventuresByUserId().then((adventures) => {
           this.adventures = adventures;

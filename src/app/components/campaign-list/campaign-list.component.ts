@@ -20,15 +20,15 @@ export class CampaignListComponent {
   public ownedCampaigns: any[] | null;
   public partecipantCampaigns: any[] | null;
   public today: Date = new Date();
-  public isiPad: boolean = false;
   public isMobile: boolean = false;
 
-  constructor(public firebaseService: FirebaseService, public sidenavService: SidenavService, private campaignService: CampaignService, private dialog: MatDialog, private platform: Platform) {
+  constructor(
+    public firebaseService: FirebaseService, 
+    public sidenavService: SidenavService, 
+    private campaignService: CampaignService, 
+    private dialog: MatDialog) {
     effect(() => {
       this.user = this.firebaseService.userSignal();
-      if (this.platform.SAFARI) {
-        this.isiPad = true;
-      }
       if (window.innerWidth < 768) {
         this.isMobile = true;
       }
@@ -60,7 +60,7 @@ export class CampaignListComponent {
 
   public createCampaigns() {
     this.dialog.open(AddCampaignDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      width: window.innerWidth < 768 ? '90%' : '50%',
       autoFocus: false,
     }).afterClosed().subscribe((result: any) => {
       if (result && result.status === 'confirm') {
@@ -74,7 +74,7 @@ export class CampaignListComponent {
   public deleteCampaigns(id: string) {
 
     this.dialog.open(DeleteCampaignDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      width: window.innerWidth < 768 ? '90%' : '50%',
       autoFocus: false,
       data: {
         id: id
@@ -88,7 +88,7 @@ export class CampaignListComponent {
 
   public ticketCampaign() {
     this.dialog.open(TicketCampaignDialogComponent, {
-      width: (this.platform.ANDROID || this.platform.IOS) ? '80%' : '50%',
+      width: window.innerWidth < 768 ? '90%' : '60%',
       autoFocus: false
     }).afterClosed().subscribe((result: any) => {
       if (result && result.status === 'success') {

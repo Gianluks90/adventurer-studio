@@ -31,7 +31,6 @@ export class CharacterViewComponent {
   // initize a breakpointObserver
   public isMobile: boolean = false;
   // public menuIcon = 'menu';
-  public isiPad: boolean = false;
 
   constructor(
     // private menuService: MenuService,
@@ -42,17 +41,12 @@ export class CharacterViewComponent {
     public diceService: DddiceService,
     private campaignService: CampaignService,
     public breakpointObserver: BreakpointObserver,
-    public tooltip: DescriptionTooltipService,
-    private platform: Platform) {
+    public tooltip: DescriptionTooltipService) {
 
     effect(() => {
       this.user = this.firebaseService.userSignal();
       if (!this.user) return;
       this.characterService.getCharacterSignalById(this.charId);
-      if (this.platform.SAFARI) {
-        this.isiPad = true;
-        
-      }
     });
 
     effect(() => {

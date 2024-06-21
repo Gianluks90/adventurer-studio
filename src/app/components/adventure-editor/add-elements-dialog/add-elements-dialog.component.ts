@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NewAdventureChapterDialogComponent } from '../new-adventure-chapter-dialog/new-adventure-chapter-dialog.component';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-add-elements-dialog',
@@ -15,6 +17,8 @@ export class AddElementsDialogComponent {
   public list: FormArray | null = null;
   public rows: FormArray | null = null;
   public enemies: FormArray | null = null;
+  public tags: FormArray | null = null;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
   public form: FormGroup | null;
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<NewAdventureChapterDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { element: any, resources: any }) {
@@ -117,6 +121,24 @@ export class AddElementsDialogComponent {
           this.form?.addControl('enemies', this.fb.array([]));
           this.enemies = this.form.get('enemies') as FormArray;
           break;
+        case 'item':
+          this.form.addControl('items', this.fb.control('', Validators.required));
+          break;
+        case 'quest':
+          this.form?.addControl('title', this.fb.control('', Validators.required));
+          this.form?.addControl('description', this.fb.control('', Validators.required));
+          this.form?.addControl('dmNotes', this.fb.control(''));
+          this.form?.addControl('visible', this.fb.control(false));
+          this.form?.addControl('completed', this.fb.control(false));
+          this.form?.addControl('result', this.fb.control(''));
+          break;
+        case 'tag':
+          this.form?.addControl('tags', this.fb.array([], Validators.required));
+          this.tags = this.form.get('tags') as FormArray;
+          this.data.element.tags.forEach((tag: any) => {
+            this.tags.push(this.fb.control(tag));
+          });
+          break;
       }
       this.form.patchValue(this.data.element);
     }
@@ -184,6 +206,22 @@ export class AddElementsDialogComponent {
           this.form?.addControl('enemies', this.fb.array([]));
           this.enemies = this.form.get('enemies') as FormArray;
           break;
+        case 'item':
+          this.form?.addControl('items', this.fb.control('', Validators.required));
+          break;
+        case 'quest':
+          this.form?.addControl('title', this.fb.control('', Validators.required));
+          this.form?.addControl('description', this.fb.control('', Validators.required));
+          this.form?.addControl('dmNotes', this.fb.control(''));
+          this.form?.addControl('visible', this.fb.control(false));
+          this.form?.addControl('completed', this.fb.control(false));
+          this.form?.addControl('result', this.fb.control(''));
+          break;
+        case 'tag':
+          this.form?.addControl('tags', this.fb.array([], Validators.minLength(1)));
+          this.tags = this.form.get('tags') as FormArray;
+          break;
+          
       }
     });
   }
@@ -295,5 +333,32 @@ export class AddElementsDialogComponent {
 
   public confirm(): void {
     this.dialogRef.close({ status: this.data.element ? 'edited' : 'success', element: this.form.value });
+  }
+
+  public addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (!value) return;
+    this.tags?.push(this.fb.control(value));
+    event.chipInput!.clear();
+  }
+
+  public editTag(input: any, event: MatChipEditedEvent): void {
+    const value = event.value.trim();
+    if (!value) {
+      this.removeTag(input);
+      return;
+    }
+
+    const index = this.tags?.controls.indexOf(input);
+    if (index >= 0) {
+      this.tags?.at(index)?.patchValue(value);
+    }
+  }
+
+  public removeTag(input: any): void {
+    const index = this.tags?.controls.indexOf(input);
+    if (index >= 0) {
+      this.tags?.removeAt(index);
+    }
   }
 }

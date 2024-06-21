@@ -321,7 +321,7 @@
                         </div>
                     }
                     @case ('encounter') {
-                        <div>
+                        <div [id]="'elem_'+i+'_'+j" class="items-container">
                             <div class="element-encounter-title">Incontro</div>
                             @for (o of e.enemies; track $index) {
                                 <div class="element-encounter">
@@ -330,6 +330,46 @@
                                 </div>
                             }
                         </div>
+                    }
+                    @case ('item') {
+                        <div [id]="'elem_'+i+'_'+j" class="items-container">
+                            <div class="element-encounter-title">Oggetto/i</div>
+                            @for (item of e.items; track item.id) {
+                                <div class="element-encounter element-item" [ngStyle]="{'box-shadow': 'inset 0 0 7px 4px' + setColor(item.rarity) + '60 '}">
+                                    <img src="{{item.icon}}" class="encounter-item-image">
+                                    <div class="element-item-title">{{item.name}}</div>
+                                </div>
+                                <div class="item-description">{{item.description}}</div>
+                            }
+                        </div>
+                    }
+                    @case ('quest') {
+                        <div [id]="'elem_'+i+'_'+j" class="items-container">
+                            <div class="element-encounter-title">Missione</div>
+                            <details as-details>
+                                <summary as-summary>{{e.title}}</summary>
+                                <div class="element-quest-container">
+                                    <div class="quest-description">{{e.description}}</div>
+                                    @if (e.dmNotes !== '') {
+                                        <div class="dm-notes-label">Note del DM</div>
+                                        <div class="quest-dm-notes">{{e.dmNotes}}</div>
+                                    }
+                                    @if (e.result !== '') {
+                                        <div class="quest-result">{{e.result}}</div>
+                                    }
+                                </div>
+                            </details>
+                        </div>
+                    }
+                    @case ('tag') {
+                        <div [id]="'elem_'+i+'_'+j">
+                            <div as-pills-container class="pills-container">
+                                @for (tag of e.tags; track $index) {
+                                    <div as-mini-pill>{{tag}}</div>
+                                }
+                            </div>
+                        </div>
+                    
                     }
                 }
             </div>

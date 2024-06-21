@@ -21,6 +21,9 @@
             <mat-option value="npc">PNG</mat-option>
             <mat-option value="addon">Scheda/e Nemico/i</mat-option>
             <mat-option value="encounter">Incontro</mat-option>
+            <mat-option value="item">Oggetto/i</mat-option>
+            <mat-option value="quest">Missione</mat-option>
+            <mat-option value="tag">Etichette</mat-option>
         </mat-select>
     </mat-form-field>
 
@@ -360,6 +363,71 @@
                 <!-- </form> -->
             }
         }
+        @case ('item') {
+            <div as-section-title>Oggetto/i</div>
+            <div as-description-text>
+                Seleziona uno o più oggetti da mostrare nel punto prestabilito (utile per annotare una ricompensa o un tesoro nascosto). I
+                componenti <strong>Risorsa</strong> vengono copiati dall'omonima collezione pertanto ogni modifica effettuata 
+                successivamente non sarà allineata con il componente presente in questo Capitolo.
+            </div>
+            @if (data.resources.items.length === 0) {
+                <div as-description-text>
+                    Non hai ancora creato nessun Oggetto. Vai alla sezione <strong>Risorse</strong> per crearne uno.
+                </div>
+            } @else {
+                <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                    <mat-label>Oggetto/i</mat-label>
+                    <mat-select formControlName="items" multiple>
+                        @for (a of data.resources.items; track $index) {
+                            <mat-option [value]="a">{{ a.name }}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            }
+        }
+        @case ('quest') {
+            <div as-section-title>Missione</div>
+            <div as-description-text>
+                Un componente riassuntivo che permette di creare una Missione come appare nella vista campagna (utilizza altri
+                componenti per aiutarti a studiare il progresso della missione e gli eventi che la compongono).
+            </div>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Titolo</mat-label>
+                <input type="text" matInput formControlName="title">
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Descrizione</mat-label>
+                <textarea matInput formControlName="description" rows="3"></textarea>
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Note del DM</mat-label>
+                <textarea matInput formControlName="dmNotes" rows="3"></textarea>
+            </mat-form-field>
+            <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+                <mat-label>Risultato</mat-label>
+                <textarea matInput formControlName="result" rows="3"></textarea>
+            </mat-form-field>
+        }
+        @case ('tag') {
+            <div as-section-title>Etichette</div>
+            <div as-description-text>
+                Utilizza questo componente per creare dei tag utili a riconoscere al volo ciò che si sta per leggere. Le etichette sono
+                pensate per essere posizionate al di sotto di un Titolo o Sottotitolo ma puoi usarle ovunque vuoi.
+            </div>
+            <mat-form-field color="accent" appearance="outline" class="custom-form-field">
+                <mat-label>Tags</mat-label>
+                <mat-chip-grid #chipGrid>
+                    <mat-chip-row *ngFor="let t of tags.controls" (removed)="removeTag(t)" [editable]="true" (edited)="editTag(t, $event)">
+                        {{t.value}}
+                        <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip-row>
+                    <input [matChipInputFor]="chipGrid" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addTag($event)" />
+                </mat-chip-grid>
+            </mat-form-field>
+        }
     }
 </div>
 <div as-buttons-container mat-dialog-actions align="end">
@@ -367,7 +435,7 @@
         <div class="material-symbols-outlined">close</div>
         <div>Annulla</div>
     </button>
-    <button as-btn [disabled]="!form.valid" (click)="confirm()">
+    <button as-btn [disabled]="!form.valid || (form.value.tags && form.value.tags.length <= 0)" (click)="confirm()">
         <div class="material-symbols-outlined">done</div>
         <div>Conferma</div>
     </button>

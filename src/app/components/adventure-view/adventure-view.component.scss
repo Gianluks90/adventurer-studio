@@ -470,7 +470,6 @@ details[open]>summary::after {
     font-size: small;
     text-transform: uppercase;
     opacity: 0.6;
-    margin-bottom: 4px;
 }
 
 .element-encounter {
@@ -485,4 +484,52 @@ details[open]>summary::after {
         height: 32px;
         object-fit: cover;
     }
+}
+
+.element-item {
+    background-color: rgba($color: #212121, $alpha: 0.9);
+    color: whitesmoke;
+}
+
+.items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.element-item-title {
+    font-size: small;
+    font-family: 'Cinzel', serif;
+}
+
+.item-description {
+    padding: 8px;
+    border: 1px solid #212121;
+    border-top: 0;
+    opacity: 0.7;
+    font-size: small;
+    white-space: pre-wrap;
+}
+
+.element-quest-container {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &>.quest-description, .quest-result {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-style: italic;
+    }
+    &>.dm-notes-label {
+        font-weight: bold;
+        opacity: 0.7;
+    }
+    &>.quest-dm-notes {
+        opacity: 0.7;
+    }
+}
+
+.pills-container {
+    margin-bottom: 0 !important;
 }

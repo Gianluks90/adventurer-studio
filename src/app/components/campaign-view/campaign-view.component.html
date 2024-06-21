@@ -1,5 +1,5 @@
 @if (user && campaignData && charData) {
-    <div class="home-container" [ngClass]="{'iPad-padding': isiPad}">
+    <div class="home-container" >
         <div class="header-container">
             <div class="pride-flag-column">
                 <div class="red"></div>
@@ -58,7 +58,7 @@
                             <ng-template mat-tab-label>
                                 <img class="player-tab" [src]="selectedChar.informazioniBase.urlImmaginePersonaggio">
                             </ng-template>
-                            <app-campaign-char-tab [character]="selectedChar"></app-campaign-char-tab>
+                            <app-campaign-char-tab [character]="selectedChar" [isOwner]="isOwner"></app-campaign-char-tab>
                         </mat-tab>
                     } @loading (minimum 2s) {
                         @if (!isOwner) {

@@ -123,4 +123,33 @@ export class AdventureViewComponent {
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }
+
+  public setColor(rarity: string): string {
+    switch (rarity) {
+      case 'Comune':
+        return '#212121'
+        break;
+      case 'Non comune':
+        return '#00ff01'
+        break;
+      case 'Raro':
+        return '#6d9eeb'
+        break;
+      case 'Molto raro':
+        return '#9a00ff'
+        break;
+      case 'Leggendario':
+        return '#e29138'
+        break;
+      case 'Unico':
+        return '#e06467'
+        break;
+      case 'Oggetto chiave':
+        return '#DDD605'
+        break;
+      default:
+        return '#212121'
+        break;
+    }
+  }
 }

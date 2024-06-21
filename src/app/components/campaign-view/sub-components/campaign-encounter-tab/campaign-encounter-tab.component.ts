@@ -33,6 +33,8 @@ export class CampaignEncounterTabComponent {
     this.isOwnerData = isOwner || false;
   }
 
+  public isMobile: boolean = window.innerWidth < 768;
+
   constructor(private dialog: MatDialog, private campService: CampaignService) {}
 
   public openNewEncounterDialog(): void {
@@ -52,7 +54,8 @@ export class CampaignEncounterTabComponent {
     const encounter: any = {
       list: [],
       started: false,
-      activeIndex: 0
+      activeIndex: 0,
+      roundCounter: 0
     }
     this.campService.newEncounter(this.campId, encounter);
   }
@@ -128,13 +131,20 @@ export class CampaignEncounterTabComponent {
 
   public nextActive(): void {
     let activeIndex = this.encounterData.activeIndex + 1;
-    if (activeIndex >= this.encounterData.list.length) activeIndex = 0;
+    if (activeIndex >= this.encounterData.list.length) {
+      activeIndex = 0;
+      this.encounterData.roundCounter += 1;
+    }
     if (this.encounterData.list[activeIndex].type === 'enemy' && this.encounterData.list[activeIndex].HP <= 0) activeIndex++;
-    if (activeIndex >= this.encounterData.list.length) activeIndex = 0;
+    
     this.campService.newEncounter(this.campId, { ...this.encounterData, activeIndex });
+
+    const doc = document.getElementById('card_' + activeIndex);
+    doc.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   public startEncounter(): void {
+    this.encounterData.roundCounter = 1;
     this.campService.newEncounter(this.campId, { ...this.encounterData, started: true });
   }
 }

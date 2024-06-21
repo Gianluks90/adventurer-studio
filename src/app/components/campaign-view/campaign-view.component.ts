@@ -29,7 +29,6 @@ export class CampaignViewComponent {
   public selectedChar: any;
   public sessionNumber: number = 1;
   public today = new Date();
-  public isiPad: boolean = false;
 
   public adventureData: any;
   public showAdventure: boolean = false;
@@ -43,17 +42,12 @@ export class CampaignViewComponent {
     private matDialog: MatDialog,
     private charService: CharacterService,
     public tooltip: DescriptionTooltipService,
-    private platform: Platform,
     private router: Router) {
 
     effect(() => {
       this.user = this.firebaseService.userSignal();
       if (!this.user) return;
       this.charService.getSignalCharacters();
-      if (this.platform.SAFARI) {
-        this.isiPad = true;
-
-      }
     });
 
     effect(() => {

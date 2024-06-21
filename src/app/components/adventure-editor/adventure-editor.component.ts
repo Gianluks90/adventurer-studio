@@ -17,22 +17,17 @@ import { ResourcesService } from '../resources-page/resources.service';
 })
 export class AdventureEditorComponent {
   public user: AdventurerUser | null;
-  public isiPad: boolean = false;
   public adventureData: Adventure | null = null;
   public resourcesData: any | null = null;
  
   constructor(
-    public firebaseService: FirebaseService, 
-    private platform: Platform, 
+    public firebaseService: FirebaseService,
     public sidenavService: SidenavService,
     private adventureService: AdventureService,
     private resService: ResourcesService,
     private dialog: MatDialog) {
     effect(() => {
       this.user = this.firebaseService.userSignal();
-      if (this.platform.SAFARI) {
-        this.isiPad = true;
-      }
       if (this.user) {
         const adventureId = window.location.href.split('/').pop();
         this.adventureService.getSignalAdventure(adventureId);
@@ -45,7 +40,6 @@ export class AdventureEditorComponent {
     effect(() => {
       this.adventureData = this.adventureService.adventure() ? Adventure.parseData(this.adventureService.adventure()) : null;
       if (this.adventureData.id !== '') {
-        console.log(this.adventureData);
         this.createSubtitle();
       }
     });

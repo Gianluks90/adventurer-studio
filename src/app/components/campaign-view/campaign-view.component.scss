@@ -3,13 +3,9 @@
     flex-direction: column;
     gap: 8px;
     width: 80%;
-    padding: 16px;
+    padding: 32px;
     box-sizing: border-box;
     max-width: 1200px;
-}
-
-.iPad-padding {
-    padding: 32px 16px;
 }
 
 .header-container {
@@ -374,7 +370,7 @@
     width: 400px;
     height: 100dvh;
     background-color: whitesmoke;
-    padding: 8px;
+    padding: 16px 26px 16px 16px;
     z-index: 4000;
     overflow: auto;
     box-sizing: border-box;
@@ -392,6 +388,15 @@
     .adventure-sidenav-container {
         width: 90%;
         height: 100dvh;
+        padding: 8px;
+    }
+
+    .home-container {
+        padding: 16px;
+    }
+
+    .menu-container {
+        padding: 16px;
     }
     
 }

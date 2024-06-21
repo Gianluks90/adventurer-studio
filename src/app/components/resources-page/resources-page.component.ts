@@ -23,23 +23,18 @@ import { Platform } from '@angular/cdk/platform';
 export class ResourcesPageComponent {
 
   public user: AdventurerUser | null;
-  public isiPad: boolean = false;
 
   constructor(
     private firebaseService: FirebaseService,
     public sidenavService: SidenavService,
     private resService: ResourcesService,
     private dialog: MatDialog,
-    public tooltip: DescriptionTooltipService,
-    private platform: Platform) {
+    public tooltip: DescriptionTooltipService) {
     // const userId: string = getAuth().currentUser.uid;
     effect(() => {
       this.user = this.firebaseService.userSignal();
       if (!this.user) return;
       this.resService.getSignalResourcesByUserId(this.user.id);
-      if (this.platform.SAFARI) {
-        this.isiPad = true;
-      }
     });
 
     effect(() => {
