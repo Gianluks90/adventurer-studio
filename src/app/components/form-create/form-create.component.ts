@@ -48,9 +48,9 @@ export class FormCreateComponent implements OnInit {
     if (this.form.value.status.statusCode < 2) {
       const characterId = window.location.href.split('/').pop();
       this.formService.saveDraft(characterId, this.formService.formSubject.value);
-      this.notification.openSnackBar('Bozza salvata con successo', 'check', 3000, 'limegreen');
+      // this.notification.openSnackBar('Bozza salvata con successo', 'check', 3000, 'limegreen');
     } else {
-      this.notification.openSnackBar('Non puoi salvare un Form Completo', 'warning', 3000, 'red');
+      // this.notification.openSnackBar('Non puoi salvare un Form Completo', 'warning', 3000, 'red');
     }
   }
 
@@ -67,7 +67,7 @@ export class FormCreateComponent implements OnInit {
       }).afterClosed().subscribe((result: string) => {
         if ( result === 'confirm') {
           this.router.navigate(['/characters']).then(() => {
-            this.notification.openSnackBar('Scheda Personaggio Completata', 'check', 4000, 'limegreen');
+            // this.notification.openSnackBar('Scheda Personaggio Completata', 'check', 4000, 'limegreen');
           });
         }
       });

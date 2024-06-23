@@ -61,6 +61,11 @@ export class CampaignService {
         createdCampaigns: arrayUnion(newCampaignId),
         campaignProgressive: this.user.campaignProgressive + 1
       }, { merge: true });
+      const logRef = doc(this.firebaseService.database, 'logs', newCampaignId);
+      setDoc(logRef, {
+        logs: [],
+        campId: newCampaignId
+      });
     });
   }
 

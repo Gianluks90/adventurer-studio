@@ -23,7 +23,9 @@ export class NextSessionDialogComponent {
 
   public confirm() {
     this.campaignService.updateNextSession(window.location.href.split('campaign-view/').pop(), this.form.value.nextDate).then(() => {
-      this.dialogRef.close();
+      this.dialogRef.close(
+        { date: this.form.value.nextDate.toLocaleDateString() }
+      );
     });
   }
 }

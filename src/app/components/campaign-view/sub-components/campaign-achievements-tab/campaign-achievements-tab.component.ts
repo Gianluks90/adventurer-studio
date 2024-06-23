@@ -5,6 +5,7 @@ import { CampaignService } from 'src/app/services/campaign.service';
 import { AddAchievementDialogComponent } from './add-achievement-dialog/add-achievement-dialog.component';
 import { ArchiveAchievementDialogComponent } from './archive-achievement-dialog/archive-achievement-dialog.component';
 import { getAuth } from 'firebase/auth';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-campaign-achievements-tab',
@@ -20,7 +21,11 @@ export class CampaignAchievementsTabComponent {
   public isOwnerData: boolean = false;
   public charactersData: any[];
 
-  constructor(private dialog: MatDialog, private platform: Platform, private campaignService: CampaignService) {}
+  constructor(
+    private dialog: MatDialog, 
+    private platform: Platform, 
+    private campaignService: CampaignService, 
+    private notificationService: NotificationService) {}
 
   @Input() set campaign(campaign: any) {
     this.achievementsData = campaign.achievements;
@@ -60,11 +65,24 @@ export class CampaignAchievementsTabComponent {
         case 'success':
           this.campaignService.addAchievement(window.location.href.split('/').pop(), result.achievement).then(() => {
             // this.achievementsData = this.sortRuleAlphabetical(this.achievementsData);
+            if (result.achievement.reclamedBy && result.achievement.reclamedBy.length > 0) {
+              this.notificationService.newLog(window.location.href.split('/').pop(), {
+                message: `Nuovo obiettivo reclamato da uno o più Personaggi: "${result.achievement.title}"`,
+                type: 'text-trophy'
+              })
+            }
           });
         break;
         case 'edited':
           this.achievementsData[index] = result.achievement;
-          this.campaignService.updateCampaignAchievement(window.location.href.split('/').pop(), this.achievementsData);
+          this.campaignService.updateCampaignAchievement(window.location.href.split('/').pop(), this.achievementsData).then(() => {
+            if (result.achievement.reclamedBy && result.achievement.reclamedBy.length > 0) {
+              this.notificationService.newLog(window.location.href.split('/').pop(), {
+                message: `Un obbiettivo è stato reclamato da uno o più Personaggi: "${result.achievement.title}"`,
+                type: 'text-trophy'
+              })
+            }
+          });
         break;
         case 'deleted':
           this.achievementsData.splice(index, 1);

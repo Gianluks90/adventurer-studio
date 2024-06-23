@@ -32,7 +32,7 @@ export class RollDiceService {
       ).then((result) => {
         DDDICE.on(ThreeDDiceRollEvent.RollFinished, () => {
           this.notification.dismissSnackBar();
-          // this.notification.openDiceSnackBar("Ottenuto: " + result.data.total_value, "casino");
+          this.notification.openDiceSnackBar("Ottenuto: " + result.data.total_value, "casino");
         });
       });
     }
@@ -149,7 +149,7 @@ export class RollDiceService {
               } else {
                 this.notification.openSnackBar("Ottenuto: " + rollResult, "casino");
               }
-              // this.notification.openSnackBar("Ottenuto: " + rollResult + (modifier > 0 ? ' + ' + modifier : '') + " = " + finalResult, "casino");
+              this.notification.openSnackBar("Ottenuto: " + rollResult + (modifier > 0 ? ' + ' + modifier : '') + " = " + finalResult, "casino");
             });
           } else {
             rollResult = result.data.values[0].value < result.data.values[1].value ? result.data.values[0].value : result.data.values[1].value;
@@ -168,7 +168,7 @@ export class RollDiceService {
               } else {
                 this.notification.openSnackBar("Ottenuto: " + rollResult, "casino");
               }
-              // this.notification.openSnackBar("Ottenuto: " + rollResult + (modifier > 0 ? ' + ' + modifier : '') + " = " + finalResult, "casino");
+              this.notification.openSnackBar("Ottenuto: " + rollResult + (modifier > 0 ? ' + ' + modifier : '') + " = " + finalResult, "casino");
             });
           }
         });
@@ -196,7 +196,7 @@ export class RollDiceService {
           this.notification.dismissSnackBar();
           if (modifier) {
             const finalResult = Number(result.data.total_value) + modifier;
-            // this.notification.openDiceSnackBar("Ottenuto: " + diceFormula + " +  " + finalResult, "casino");
+            this.notification.openDiceSnackBar("Ottenuto: " + diceFormula + " +  " + finalResult, "casino");
             this.notification.openDiceSnackBar("Ottenuto: " + result.data.total_value + (modifier > 0 ? " +" + modifier : " " + modifier) + " = " + finalResult, "casino")
           } else {
             const finalResult = result.data.total_value;

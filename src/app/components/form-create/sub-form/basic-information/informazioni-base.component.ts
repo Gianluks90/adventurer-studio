@@ -41,7 +41,7 @@ export class InformazioniBaseComponent {
 
   public onPicSelected(event: any) {
     if (event.target.files[0].size > 500000) {
-      this.notification.openSnackBar('Immagine troppo grande, dim. massima: 500kb.', 'warning', 3000, 'yellow');
+      // this.notification.openSnackBar('Immagine troppo grande, dim. massima: 500kb.', 'warning', 3000, 'yellow');
     } else {
       this.formService.uploadImage(event).then((result) => {
         if (result !== 'error') {
@@ -50,10 +50,10 @@ export class InformazioniBaseComponent {
             nomeImmaginePersonaggio: result.name,
           });
           this.formService.updatePicCharacter(window.location.href.split('/').pop(), result.url, result.name).then(() => {
-            this.notification.openSnackBar('Immagine caricata con successo!', 'add_photo_alternate', 3000, 'limegreen');
+            // this.notification.openSnackBar('Immagine caricata con successo!', 'add_photo_alternate', 3000, 'limegreen');
           });
         } else {
-          this.notification.openSnackBar('Errore nel caricamento dell\'immagine', 'error');
+          // this.notification.openSnackBar('Errore nel caricamento dell\'immagine', 'error');
         }
       })
     }
@@ -68,7 +68,7 @@ export class InformazioniBaseComponent {
           nomeImmaginePersonaggio: '',
         })
         this.formService.updatePicCharacter(window.location.href.split('/').pop(), '', '').then(() => {
-          this.notification.openSnackBar('Immagine eliminata con successo', 'check');
+          // this.notification.openSnackBar('Immagine eliminata con successo', 'check');
         });
       }
     });
@@ -141,7 +141,7 @@ export class InformazioniBaseComponent {
     });
     this.totalLevel = levels;
     if (this.totalLevel > 20) {
-      this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
+      // this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
       this.totalLevel = 20;
     }
     this.groupInfo?.get('livello')?.setValue(this.totalLevel);

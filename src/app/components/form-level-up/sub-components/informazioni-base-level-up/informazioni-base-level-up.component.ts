@@ -39,7 +39,7 @@ export class InformazioniBaseLevelUpComponent {
 
   public addClasse() {
     if (this.groupInfo.get('livello')?.value === 20) {
-      this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
+      // this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
       return;
     }
     let maxLevelValidator = 20 - this.totalLevel;
@@ -96,7 +96,7 @@ export class InformazioniBaseLevelUpComponent {
     });
     this.totalLevel = levels;
     if (this.totalLevel > 20) {
-      this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
+      // this.notification.openSnackBar('Livello massimo raggiunto', 'error', 3000);
       this.totalLevel = 20;
     }
     this.groupInfo?.get('livello')?.setValue(this.totalLevel);

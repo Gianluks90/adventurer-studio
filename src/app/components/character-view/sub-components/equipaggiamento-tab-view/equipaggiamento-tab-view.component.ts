@@ -75,7 +75,7 @@ export class EquipaggiamentoTabViewComponent {
         // console.log('RESULT', result);
         // this.denaroData = result.newValue;
         // this.charService.updateMoney(this.idData, this.denaroData).then(() => {
-          this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, '');
+          // this.notification.openSnackBar('Denaro aggiornato.', 'toll', 3000, '');
         // });
       }
     });

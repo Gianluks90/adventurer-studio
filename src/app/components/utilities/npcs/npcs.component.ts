@@ -10,6 +10,7 @@ import { ResourcesService } from '../../resources-page/resources.service';
 import { AddAlliesResourcesDialogComponent } from './add-allies-resources-dialog/add-allies-resources-dialog.component';
 import { AddAddonsResourcesDialogComponent } from './add-addons-resources-dialog/add-addons-resources-dialog.component';
 import { AddOrganizationsResourcesDialogComponent } from './add-organizations-resources-dialog/add-organizations-resources-dialog.component';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-npcs',
@@ -32,7 +33,8 @@ export class NpcsComponent {
     private dialog: MatDialog,
     private charService: CharacterService,
     private campaignService: CampaignService,
-    private resService: ResourcesService) {
+    private resService: ResourcesService, 
+    private notificationService: NotificationService) {
     this.isCampaign = window.location.href.includes('campaign-view') || false;
     this.isCharacterPage = window.location.href.includes('character-view') || false;
 
@@ -112,7 +114,13 @@ export class NpcsComponent {
           if (!this.isCampaign) {
             this.charService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
           } else {
-            this.campaignService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
+            this.campaignService.updateAllies(window.location.href.split('/').pop(), this.npcsData).then(() => {
+              this.notificationService.newLog(window.location.href.split('/').pop(), {
+                message: `Il PNG "${result.npc.name}" è stato appena aggiornato.`,
+                type: 'text-edited'
+              
+              });
+            });
           }
           // this.charService.updateAllies(window.location.href.split('/').pop(), this.npcsData);
           break;
@@ -242,7 +250,12 @@ export class NpcsComponent {
           if (!this.isCampaign) {
             this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
           } else {
-            this.campaignService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
+            this.campaignService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData).then(() => {
+              this.notificationService.newLog(window.location.href.split('/').pop(), {
+                message: `L'Organizzazione "${result.organization.name}" è stata appena aggiornata.`,
+                type: 'text-edited'
+              });
+            });
           }
           // this.charService.updateOrganizations(window.location.href.split('/').pop(), this.organizationsData);
           break;

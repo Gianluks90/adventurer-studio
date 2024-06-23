@@ -14,6 +14,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-campaign-view',
@@ -25,6 +26,9 @@ export class CampaignViewComponent {
 
   public campaignData: any;
   public charData: any[] = [];
+  public logsData: any;
+  public logs: any[] = [];
+  public selectedLog: any = null;
   public isOwner: boolean = false;
   public selectedChar: any;
   public sessionNumber: number = 1;
@@ -32,6 +36,7 @@ export class CampaignViewComponent {
 
   public adventureData: any;
   public showAdventure: boolean = false;
+  public showNotification: boolean = false;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -39,6 +44,7 @@ export class CampaignViewComponent {
     private campaignService: CampaignService,
     private sidenavService: SidenavService,
     private adventureService: AdventureService,
+    private notificationService: NotificationService,
     private matDialog: MatDialog,
     private charService: CharacterService,
     public tooltip: DescriptionTooltipService,
@@ -99,8 +105,28 @@ export class CampaignViewComponent {
           });
         }
       }
+      this.notificationService.getSignalLogs(id);
+    });
+
+    effect(() => {
+      this.logsData = this.notificationService.logs();
+      if (!this.logsData) return;
+      this.logs = this.logsData.logs.length > 0 ? this.logsData.logs.sort((a: any, b: any) => b.createdAt - a.createdAt) : [];
+      if (this.logs.length > 0 && !this.logs[0].read) {
+        this.selectedLog = this.logs[0];
+        if (this.selectedLog) {
+          setTimeout(() => {
+            this.selectedLog.read = true;
+            this.notificationService.updateLogs(this.campaignData.id, this.logs).then(() => {
+              this.selectedLog = null;
+            });
+            
+          }, 5000);
+        }
+      }
     });
   }
+
 
   @ViewChild('tabGroup') tabGroup: any;
   public onCharEmitted(charId: string) {
@@ -129,11 +155,24 @@ export class CampaignViewComponent {
     this.matDialog.open(NextSessionDialogComponent, {
       width: window.innerWidth < 768 ? '90%' : '30%',
       autoFocus: false,
+    }).afterClosed().subscribe((result) => {
+      this.notificationService.newLog(this.campaignData.id, {
+        message: `Prossima sessione è stata programmata per il ${result.date}.`,
+        type: 'text-calendar'
+      });
     });
   }
 
   public toggleAdventure() {
     this.showAdventure = !this.showAdventure;
+  }
+
+  public toggleNotification() {
+    this.showNotification = !this.showNotification;
+  }
+
+  public clearNotification() {
+    this.notificationService.clearLogs(this.campaignData.id);
   }
 
   public editAdventure() {

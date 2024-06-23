@@ -133,7 +133,7 @@ export class CharacterViewStatusComponent {
     // } else {
     // const risorse = this.risorseAggiuntiveData.filter((risorsa: any) => risorsa.nome !== 'Ispirazione');
     this.charService.updateAdditionalResources(this.characterData.id, this.risorseAggiuntiveData).then(() => {
-      this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
+      // this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
     });
     // }
   }
@@ -146,7 +146,7 @@ export class CharacterViewStatusComponent {
       resource.used[0] = false;
     }
     this.charService.updateInspiration(this.characterData.id, resource.used[0]).then(() => {
-      this.notification.openSnackBar('Ispirazione aggiornata.', 'check', 1000, 'limegreen');
+      // this.notification.openSnackBar('Ispirazione aggiornata.', 'check', 1000, 'limegreen');
     });
   }
 
@@ -155,7 +155,7 @@ export class CharacterViewStatusComponent {
     if (resource.valoreAttuale > 0) {
       resource.valoreAttuale--;
       this.charService.updateAdditionalResources(this.characterData.id, this.risorseAggiuntiveData).then(() => {
-        this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
+        // this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
       });
     }
   }
@@ -165,7 +165,7 @@ export class CharacterViewStatusComponent {
     if (resource.valoreAttuale < resource.valoreMassimo) {
       resource.valoreAttuale++;
       this.charService.updateAdditionalResources(this.characterData.id, this.risorseAggiuntiveData).then(() => {
-        this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
+        // this.notification.openSnackBar('Risorsa aggiornata.', 'check', 1000, 'limegreen');
       });
     }
   }
@@ -173,7 +173,7 @@ export class CharacterViewStatusComponent {
   public removeResource(risorsaIndex: number): void {
     this.risorseAggiuntiveData.splice(risorsaIndex, 1);
     this.charService.updateAdditionalResources(this.characterData.id, this.risorseAggiuntiveData).then(() => {
-      this.notification.openSnackBar('Risorsa rimossa.', 'check', 1000, 'limegreen');
+      // this.notification.openSnackBar('Risorsa rimossa.', 'check', 1000, 'limegreen');
     });
   }
 

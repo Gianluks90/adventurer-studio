@@ -90,7 +90,7 @@ export class TrucchettiIncantesimiTabViewComponent {
       }
     }
     this.characterService.updateSlotIncantesimi(window.location.href.split('/').pop(), this.slotIncantesimi).then(() => {
-      this.notification.openSnackBar(message, 'check', 1000, "limegreen");
+      // this.notification.openSnackBar(message, 'check', 1000, "limegreen");
     });
 
     // Aggiorna il tuo HTML o fai altre azioni necessarie per riflettere il cambiamento

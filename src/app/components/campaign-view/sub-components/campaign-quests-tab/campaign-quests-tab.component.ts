@@ -4,6 +4,7 @@ import { AddQuestDialogComponent } from './add-quest-dialog/add-quest-dialog.com
 import { Platform } from '@angular/cdk/platform';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { ArchiveQuestDialogComponent } from './archive-quest-dialog/archive-quest-dialog.component';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-campaign-quests-tab',
@@ -12,11 +13,13 @@ import { ArchiveQuestDialogComponent } from './archive-quest-dialog/archive-ques
 })
 export class CampaignQuestsTabComponent {
 
+  public campId: string;
   public questsData: any[] = [];
   public archiveData: any[] = [];
   public isOwnerData: boolean = false;
 
   @Input() set campaign(value: any) {
+    this.campId = value.id;
     this.questsData = value.quests;
     this.archiveData = value.archive;
     this.questsData = this.sortQuestByLastUpdate(this.questsData);
@@ -26,7 +29,11 @@ export class CampaignQuestsTabComponent {
     this.isOwnerData = value;
   }
 
-  constructor(private dialog: MatDialog, private platform: Platform, private campaignService: CampaignService) { }
+  constructor(
+    private dialog: MatDialog, 
+    private platform: Platform, 
+    private campaignService: CampaignService,
+    private notificationService: NotificationService) { }
 
   public openQuestDialog(quest?: any, index?: number) {
     this.dialog.open(AddQuestDialogComponent, {
@@ -41,11 +48,21 @@ export class CampaignQuestsTabComponent {
           break;
         case 'edited':
           this.questsData[index] = result.quest;
-          this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData);
+          this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData).then(() => {
+            this.notificationService.newLog(this.campId, {
+              message: `La Missione "${quest.title}" è stata appena aggiornata.`,
+              type: 'text-edited'
+            })
+          });
           break;
         case 'delete':
           this.questsData.splice(index, 1);
-          this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData);
+          this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData).then(() => {
+            this.notificationService.newLog(this.campId, {
+              message: `La Missione "${quest.title}" è stata eliminata.`,
+              type: 'text-removed'
+            })
+          });
           break;
         default:
           break;
@@ -87,6 +104,13 @@ export class CampaignQuestsTabComponent {
 
   public questToggleVisibility(index: number): void {
     this.questsData[index].visible = !this.questsData[index].visible;
-    this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData);
+    this.campaignService.updateCampaignQuest(window.location.href.split('/').pop(), this.questsData).then(() => {
+      if (this.questsData[index].visible) {
+        this.notificationService.newLog(this.campId, {
+          message: `La Missione "${this.questsData[index].title}" è stata rivelata.`,
+          type: 'text-visibility'
+        });
+      }
+    });
   }
 }

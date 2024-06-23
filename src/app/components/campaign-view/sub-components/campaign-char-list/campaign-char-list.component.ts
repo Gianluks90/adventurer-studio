@@ -6,6 +6,7 @@ import { CharacterService } from 'src/app/services/character.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { getAuth } from 'firebase/auth';
 import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-campaign-char-list',
@@ -47,7 +48,11 @@ export class CampaignCharListComponent {
     this.isOwnerData = isOwner;
   }
 
-  constructor(private breakpointObserver: BreakpointObserver, public tooltip: DescriptionTooltipService, private charService: CharacterService) {
+  constructor(
+    private breakpointObserver: BreakpointObserver, 
+    public tooltip: DescriptionTooltipService, 
+    private charService: CharacterService,
+    private notificationService: NotificationService) {
     this.breakpointObserver.observe('(max-width: 600px)').subscribe(result => {
       this.isMobile = result.matches;
     });
@@ -142,7 +147,16 @@ export class CampaignCharListComponent {
   }
 
   public ispirazioneToggle(char: any) {
-    this.charService.updateInspiration(char.id, !char.ispirazione);
+    this.charService.updateInspiration(char.id, !char.ispirazione).then(() => {
+      if (char.ispirazione) {
+        this.notificationService.newLog(char.campaignId, {
+          message: `${char.informazioniBase.nomePersonaggioEsteso !== '' ? char.informazioniBase.nomePersonaggioEsteso : char.informazioniBase.nomePersonaggio} ha trovato l'ispirazione!`,
+          type: 'text-image',
+          imageUrl: char.informazioniBase.urlImmaginePersonaggio
+        });
+      }
+    });
+
   }
 }
 

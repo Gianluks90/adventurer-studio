@@ -115,7 +115,7 @@ export class MoneyComponent {
       this.group.get('MA').setValue(bagToAdd.MA);
       this.group.get('MR').setValue(bagToAdd.MR);
     } else {
-      this.notificationService.openSnackBar("Non hai abbastanza monete per farlo!", 'toll', 3000, 'red');
+      // this.notificationService.openSnackBar("Non hai abbastanza monete per farlo!", 'toll', 3000, 'red');
     }
   }
 

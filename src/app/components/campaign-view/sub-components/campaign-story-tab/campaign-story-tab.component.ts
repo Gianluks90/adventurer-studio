@@ -4,6 +4,7 @@ import { AddStoryDialogComponent } from './add-story-dialog/add-story-dialog.com
 import { Platform } from '@angular/cdk/platform';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { ArchiveStoryDialogComponent } from './archive-story-dialog/archive-story-dialog.component';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-campaign-story-tab',
@@ -19,7 +20,11 @@ export class CampaignStoryTabComponent {
   public sessionNumberData: number = 1;
   public isOwnerData: boolean = false;
 
-  constructor(private dialog: MatDialog, private platform: Platform, private campaignService: CampaignService) {}
+  constructor(
+    private dialog: MatDialog,
+    private platform: Platform, 
+    private campaignService: CampaignService,
+    private notificationService: NotificationService) {}
 
   public campaignData: any;
   @Input() set campaign(campaign: any) {
@@ -50,11 +55,15 @@ export class CampaignStoryTabComponent {
         case 'success':
           this.campaignService.addStory(window.location.href.split('/').pop(), result.story).then(() => {
             this.storyData = this.sortStoryByLastUpdate(this.storyData);
+            this.notificationService.newLog(this.campaignData.id, {
+              message: `Nuovo resoconto: "${result.story.title}"`,
+              type: 'text-added'
+            });
           });
         break;
         case 'edited':
           this.storyData[index] = result.story;
-          this.campaignService.updateCampaignStory(window.location.href.split('/').pop(), this.storyData);
+          this.campaignService.updateCampaignStory(window.location.href.split('/').pop(), this.storyData)
         break;
         default:
         break;

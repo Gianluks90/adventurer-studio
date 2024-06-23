@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, WritableSignal, signal } from '@angular/core';
+import { FirebaseService } from './firebase.service';
+import { arrayUnion, doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../components/utilities/snackbar/snackbar.component';
 import { SnackbarDiceComponent } from '../components/utilities/dice/snackbar-dice/snackbar-dice.component';
@@ -8,7 +10,51 @@ import { SnackbarDiceComponent } from '../components/utilities/dice/snackbar-dic
 })
 export class NotificationService {
 
-  constructor(private _snackBar: MatSnackBar) { }
+  // constructor(private _snackBar: MatSnackBar) { }
+  constructor(private firebaseService: FirebaseService, private _snackBar: MatSnackBar) {}
+
+  public logs: WritableSignal<any> = signal(null)
+
+  public getSignalLogs(campId: string): void {
+    const docRef = doc(this.firebaseService.database, 'logs', campId);
+    const unsub = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        const log = {
+          id: doc.id,
+          ...doc.data()
+        };
+        this.logs.set(log);
+      }
+    });
+  }
+
+  public async newLog(campId: string, log: any): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'logs', campId);
+    const newLog = {
+      ...log,
+      read: false,
+      createdAt: new Date()
+    }
+    return await setDoc(docRef, {
+      logs: arrayUnion(newLog)
+    }, { merge: true });
+  }
+
+  public async updateLogs(campId: string, logs: any[]): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'logs', campId);
+    return await setDoc(docRef, {
+      logs: logs
+    }, { merge: true });
+  }
+
+  public async clearLogs(campId: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'logs', campId);
+    return await setDoc(docRef, {
+      logs: []
+    }, { merge: true });
+  }
+
+  // public async getLogs
 
   /**
    * Apre uno snackbar con un messaggio e un'icona

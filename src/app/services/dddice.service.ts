@@ -51,7 +51,7 @@ export class DddiceService {
     const canvas = document.getElementById("dddice") as HTMLCanvasElement;
     this.dddice = new ThreeDDice(canvas, token, { autoClear: 3, dice: { drawOutlines: false } });
     this.dddice.start();
-    this.notification.openSnackBar("DDDice: inizializzato", "check", 1000, 'limegreen');
+    // this.notification.openSnackBar("DDDice: inizializzato", "check", 1000, 'limegreen');
     return this.dddice;
   }
 

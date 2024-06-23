@@ -130,6 +130,9 @@
 
 @if (campaignData && campaignData.adventure !== '') {
     <div as-bottom-buttons-container as-bottom-right id="adventure-button">
+        <button as-bottom-btn (click)="toggleNotification()">
+            <div class="material-symbols-outlined">notifications</div>
+        </button>
         <button as-bottom-btn (click)="toggleAdventure()">
             <div class="material-symbols-outlined">menu_book</div>
         </button>
@@ -147,6 +150,82 @@
             </button>
         </div>
         <app-adventure-view [adventure]="adventureData"></app-adventure-view>
+    </div>
+}
+
+@if (logsData) {
+    <div class="adventure-sidenav-container" *ngIf="showNotification" [ngClass]="{'opening-sidenav': showNotification}">
+        <div as-mini-buttons-container>
+            <button *ngIf="isOwner" as-long-circle-btn (click)="clearNotification()" [disabled]="logsData.logs <= 0">
+                <div class="material-symbols-outlined">mop</div> <div>Pulisci</div>
+            </button>
+            <button as-mini-circle-btn (click)="toggleNotification()">
+                <div class="material-symbols-outlined">close</div>
+            </button>
+        </div>
+        @for (log of logs; track log.id) {
+            <div class="notification-date">
+                {{log.createdAt.seconds*1000 | date: 'dd/MM/yyyy HH:mm'}}
+            </div>
+            <div class="notification-history-container">
+                @switch(log.type) {
+                    @case('text-edited') {
+                        <div class="material-symbols-outlined inverted-icon">edit</div> <div>{{log.message}}</div>
+                    }
+                    @case('text-removed') {
+                        <div class="material-symbols-outlined inverted-icon warn-icon">delete</div> <div>{{log.message}}</div>
+                    }
+                    @case ('text-visibility') {
+                        <div class="material-symbols-outlined inverted-icon">visibility</div> <div>{{log.message}}</div>
+                    }
+                    @case ('text-calendar') {
+                        <div class="material-symbols-outlined inverted-icon">calendar_today</div> <div>{{log.message}}</div>
+                    }
+                    @case ('text-image') {
+                        <img src="{{log.imageUrl}}">
+                        <div>{{log.message}}</div>
+                    }
+                    @case ('text-trophy') {
+                        <div class="material-symbols-outlined inverted-icon">trophy</div> <div>{{log.message}}</div>
+                    }
+                }
+            </div>
+            
+            <!-- <div>{{log.message}}</div> -->
+        } @empty {
+            <div class="no-logs">
+                <div>Nessuna notifica presente.</div>
+            </div>
+        }
+    </div>
+}
+
+@if (selectedLog) {
+    <div class="notification-container">
+        @switch(selectedLog.type) {
+            @case ('text-added') {
+                <div class="material-symbols-outlined inverted-icon">add</div> <div>{{selectedLog.message}}</div>
+            }
+            @case('text-edited') {
+                <div class="material-symbols-outlined inverted-icon">edit</div> <div>{{selectedLog.message}}</div>
+            }
+            @case('text-removed') {
+                <div class="material-symbols-outlined inverted-icon warn-icon">delete</div> <div>{{selectedLog.message}}</div>
+            }
+            @case ('text-visibility') {
+                <div class="material-symbols-outlined inverted-icon">visibility</div> <div>{{selectedLog.message}}</div>
+            }
+            @case ('text-calendar') {
+                <div class="material-symbols-outlined inverted-icon">calendar_today</div> <div>{{selectedLog.message}}</div>
+            }
+            @case ('text-image') {
+                <img src="{{selectedLog.imageUrl}}">
+                <div>{{selectedLog.message}}</div>
+            }
+            @case ('text-trophy') {
+                <div class="material-symbols-outlined inverted-icon">trophy</div> <div>{{selectedLog.message}}</div>
+            }
+        }
     </div>
 }
 

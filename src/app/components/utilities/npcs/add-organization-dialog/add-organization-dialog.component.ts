@@ -58,7 +58,7 @@ export class AddOrganizationDialogComponent {
 
   public onPicSelected(event: any) {
     if (event.target.files[0].size > 100000) {
-      this.notification.openSnackBar('Immagine troppo grande, dim. massima: 100kb.', 'warning', 3000, 'yellow');
+      // this.notification.openSnackBar('Immagine troppo grande, dim. massima: 100kb.', 'warning', 3000, 'yellow');
     } else {
       this.formService.uploadNPCImage(event, this.form.get('name').value).then((result) => {
         if (result !== 'error') {
@@ -67,7 +67,7 @@ export class AddOrganizationDialogComponent {
             imgName: result.name,
           });
         } else {
-          this.notification.openSnackBar('Errore nel caricamento dell\'immagine', 'error');
+          // this.notification.openSnackBar('Errore nel caricamento dell\'immagine', 'error');
         }
       })
     }
