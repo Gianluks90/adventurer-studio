@@ -81,8 +81,7 @@
                     <ng-template mat-tab-label>
                         <img src="./assets/tabs-icons/inventory.svg" class="label-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'tab4-tooltip', true)" (mouseleave)="tooltip.hideTooltip()">
                     </ng-template>
-                    <app-campaign-inventory-tab [campaign]="campaignData" [isOwner]="isOwner"
-                        [characters]="charData"></app-campaign-inventory-tab>
+                    <app-campaign-inventory-tab [campaign]="campaignData" [isOwner]="isOwner" [characters]="charData"></app-campaign-inventory-tab>
                 </mat-tab>
                 <mat-tab>
                     <ng-template mat-tab-label>
@@ -128,14 +127,16 @@
     </button>
 </div>
 
-@if (campaignData && campaignData.adventure !== '') {
+@if (campaignData) {
     <div as-bottom-buttons-container as-bottom-right id="adventure-button">
         <button as-bottom-btn (click)="toggleNotification()">
             <div class="material-symbols-outlined">notifications</div>
         </button>
-        <button as-bottom-btn (click)="toggleAdventure()">
-            <div class="material-symbols-outlined">menu_book</div>
-        </button>
+        @if(campaignData.adventure && campaignData.adventure !== '' && isOwner) {
+            <button as-bottom-btn (click)="toggleAdventure()">
+                <div class="material-symbols-outlined">menu_book</div>
+            </button>
+        }
     </div>
 }
 
@@ -169,6 +170,9 @@
             </div>
             <div class="notification-history-container">
                 @switch(log.type) {
+                    @case ('text-added') {
+                        <div class="material-symbols-outlined inverted-icon">add</div> <div>{{log.message}}</div>
+                    }
                     @case('text-edited') {
                         <div class="material-symbols-outlined inverted-icon">edit</div> <div>{{log.message}}</div>
                     }

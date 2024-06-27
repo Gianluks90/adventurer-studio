@@ -19,16 +19,12 @@ export class ExchangeDialogComponent {
   public characters: any[] = [];
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: { selectedChar: any, characters: any[] }, private charService: CharacterService) {
-    this.charService.getSignalCharacters();
-    effect(() => {
-      this.characters = this.charService.character();
-    });
+    this.characters = this.data.characters;
     this.form = this.fb.group({
       items: [[], [Validators.required, this.arrayNotEmptyValidator()]],
       receiver: [null, Validators.required]
     });
     this.validItems = this.data.selectedChar.equipaggiamento.filter((item: any) => !item.weared && item.quantity > 0);
-
   }
 
   // Validatore personalizzato per verificare che l'array non sia vuoto

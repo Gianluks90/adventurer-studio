@@ -187,6 +187,8 @@ export class InventoryCampaignComponent {
 
   public openExchangeDialog() {
     const filteredChars = this.charsData.filter((char) => char.id !== this.selectedCharData.id);
+    console.log(filteredChars);
+    
     this.dialog.open(ExchangeDialogComponent, {
       width: window.innerWidth < 500 ? '90%' : '60%',
       autoFocus: false,
