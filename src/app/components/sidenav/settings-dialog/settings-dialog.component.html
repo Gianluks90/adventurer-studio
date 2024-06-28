@@ -1,59 +1,6 @@
 <div mat-dialog-title class="dialog-title">Impostazioni</div>
 @defer (when user) {
   <div mat-dialog-content class="dialog-content">
-    <div as-section-title>Autenticazione dddice.com</div>
-    <div as-description-text>Qui puoi autenticarti al servizio per lanciare dadi virtuali in tutta l'app. È
-      consigliabile essere autenticati <a href="https://dddice.com" target="_blank">qui</a> prima di iniziare la
-      procedura di collegamento (evitando di esaurire il tempo limite a disposizione).</div>
-  
-    <div class="authentication-container">
-      <button as-btn (click)="getActivationCode()"
-        *ngIf="user.dddiceToken === undefined && activationCode === '' && !dddice.authenticated.value">
-        <mat-icon>vpn_key</mat-icon> Ottieni codice
-      </button>
-      <div class="inner-container" *ngIf="activationCode !== ''">
-        <div class="auth-code">{{activationCode}}</div>
-        <a href="https://dddice.com/activate" target="_blank">
-          <button as-btn>
-            <mat-icon>open_in_new</mat-icon> Inserisci codice
-          </button>
-        </a>
-        <span class="spinner-span" *ngIf="activationCode && !dddice.authenticated.value">
-          <mat-spinner color="accent"></mat-spinner>
-          In attesa...
-        </span>
-      </div>
-      <span class="spinner-span" *ngIf="dddice.authenticated.value">
-        <mat-icon>check</mat-icon> Autenticazione eseguita!
-      </span>
-    </div>
-  
-    <div as-section-title>Tema dei dadi</div>
-    <!-- <div class="description">Inserisci il tema dei dadi che preferisci e usali nell'app. Puoi trovare i temi esplorado
-      l'apposita sezione alla <a href="https://dddice.com/dice">pagina</a> su dddice.com. Trovi l'ID del tema in fondo
-      all'URL della pagina visualizzata.</div> -->
-    <div as-description-text>Puoi scegliere il tuo tema dei dadi preferito direttamente da <a
-        href="https://dddice.com/dice">dddice.com</a>. Una volta deciso, copia e incolla l'url di quella pagina nello
-      spazio qui sotto poi premi 'Applica'. Verrà effettuato un tiro di prova. Assicurati che il tema scelto non sia tra
-      quelli a pagamento o non funzionerà.</div>
-    <form [formGroup]="form">
-      <div class="form-container">
-        <mat-form-field class="form-field" color="accent" appearance="outline">
-          <mat-label>Tema dadi</mat-label>
-          <input matInput formControlName="rollTheme">
-        </mat-form-field>
-        <div as-buttons-container>
-          <button as-btn (click)="resetTheme()"
-            [disabled]="!form.valid || !dddice.authenticated.value">
-            <mat-icon>restart_alt</mat-icon> Reset
-          </button>
-          <button as-btn (click)="setDiceTheme()"
-            [disabled]="!form.valid || !dddice.authenticated.value">
-            <mat-icon>save</mat-icon> Applica
-          </button>
-        </div>
-      </div>
-    </form>
   
     @if (isAdmin) {
       <div as-section-title>Admin Panel</div>

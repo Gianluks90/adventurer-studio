@@ -6,7 +6,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 import { SettingsDialogComponent } from './settings-dialog/settings-dialog.component';
 import { CharacterService } from 'src/app/services/character.service';
 import { Router } from '@angular/router';
-import { AdventurerUser } from 'src/app/models/adventurerUser';
+import { AdventurerUser, Role } from 'src/app/models/adventurerUser';
 import { CampaignService } from 'src/app/services/campaign.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class SidenavComponent {
   // public disableSettings: boolean = true;
   public favChar: any;
   public favCampaign: any;
+  public isAdmin: boolean = false;
 
   constructor(
     private firebaseService: FirebaseService,
@@ -41,6 +42,9 @@ export class SidenavComponent {
           this.campService.getCampaignById(this.user.favoriteCampaign).then((data) => {
             this.favCampaign = data;
           });
+        }
+        if (this.user && this.user.role === Role.ADMIN) {
+          this.isAdmin = true;
         }
       }
     });

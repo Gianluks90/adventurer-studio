@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,13 +20,25 @@ export class SettingsTabViewComponent {
   public campaignIdData: string = '';
   public campaignData: any;
   public isFavorite: boolean = false;
+  public prideFlags: any[] = [];
 
   public formColor: FormGroup;
 
-  constructor(private charService: CharacterService, private campaignService: CampaignService, private router: Router, private fb: FormBuilder, public tooltip: DescriptionTooltipService) {
+  constructor(
+    private charService: CharacterService, 
+    private campaignService: CampaignService, 
+    private router: Router, 
+    private fb: FormBuilder, 
+    public tooltip: DescriptionTooltipService,
+  private http: HttpClient) {
     this.formColor = this.fb.group({
       sheetColor: '#FFFFFF40',
-      sheetTitleColor: '#212121'
+      sheetTitleColor: '#212121',
+      prideFlag: ''
+    });
+
+    this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
+      this.prideFlags = data;
     });
    }
   
@@ -37,7 +50,8 @@ export class SettingsTabViewComponent {
     this.charData = character;
     this.formColor.patchValue({
       sheetColor: character.status.sheetColor.split('40')[0],
-      sheetTitleColor: character.status.sheetTitleColor || '#212121'
+      sheetTitleColor: character.status.sheetTitleColor || '#212121',
+      prideFlag: character.status.prideFlag || ''
     });
     // this.sheetColorData = character.status.sheetColor.split('40')[0];
     // this.sheetColorTitleData = character.status.sheetColor || '#212121';
@@ -80,6 +94,12 @@ export class SettingsTabViewComponent {
   public togglePrideRule(event: any) {
     this.charService.updatePrideRule(window.location.href.split('/').pop()!, event.target.checked);
   }
+
+  public updatePrideFlag(): void {
+    const newPrideFlag = this.formColor.value.prideFlag;
+    this.charService.updatePrideFlag(window.location.href.split('/').pop()!, newPrideFlag);
+  }
+
   public toggleWeightRule(event: any) {
     this.charService.updateWeightRule(window.location.href.split('/').pop()!, event.target.checked);
   }

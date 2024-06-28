@@ -44,8 +44,8 @@
 </div>
 <div class="caratteristiche-main-container">
     <div class="caratteristiche-line">
-        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Forza', initTiroSalvezza('forza'))">
+        <div class="ts" 
+            (click)="rollFromSheet('1d20+'+initTiroSalvezza('forza'), 'tiro salvezza (forza)')">
             <div class="ts-label">
                 FOR
             </div>
@@ -53,8 +53,8 @@
             (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.forza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('forza')}}</div>
         </div>
-        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Destrezza', initTiroSalvezza('destrezza'))">
+        <div class="ts" 
+            (click)="rollFromSheet('1d20+'+initTiroSalvezza('destrezza'), 'tiro salvezza (destrezza)')">
             <div class="ts-label">
                 DES
             </div>
@@ -62,8 +62,8 @@
             (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.destrezza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('destrezza')}}</div>
         </div>
-        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Costituzione', initTiroSalvezza('costituzione'))">
+        <div class="ts" 
+            (click)="rollFromSheet('1d20+'+initTiroSalvezza('costituzione'), 'tiro salvezza (costituzione)')">
             <div class="ts-label">
                 COS
             </div>
@@ -73,8 +73,8 @@
         </div>
     </div>
     <div class="caratteristiche-line">
-        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Intelligenza', initTiroSalvezza('intelligenza'))">
+        <div class="ts" 
+            (click)="rollFromSheet('1d20+'+initTiroSalvezza('intelligenza'), 'tiro salvezza (intelligenza)')">
             <div class="ts-label">
                 INT
             </div>
@@ -83,8 +83,8 @@
                 {{initTiroSalvezza('intelligenza')}}
             </div>
         </div>
-        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Saggezza', initTiroSalvezza('saggezza'))">
+        <div class="ts" 
+            (click)="rollFromSheet('1d20+'+initTiroSalvezza('saggezza'), 'tiro salvezza (saggezza)')">
             <div class="ts-label">
                 SAG
             </div>
@@ -92,8 +92,8 @@
             (mouseover)="tooltip.showTooltip($event, 'center', characterData.tiriSalvezza.saggezza, 'ts-tooltip')" (mouseleave)="tooltip.hideTooltip()">
                 {{initTiroSalvezza('saggezza')}}</div>
         </div>
-        <div class="ts" [ngClass]="{'dice-rolls': diceService.roomConnected}"
-            (click)="rollDice('Tiro Salvezza su Carisma', initTiroSalvezza('carisma'))">
+        <div class="ts"
+            (click)="rollFromSheet('1d20+'+initTiroSalvezza('carisma'), 'tiro salvezza (carisma)')">
             <div class="ts-label">
                 CAR
             </div>

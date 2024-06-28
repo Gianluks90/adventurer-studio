@@ -1,14 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormService } from 'src/app/services/form.service';
 import { Item } from 'src/app/models/item';
-import { RollDiceService } from 'src/app/services/roll-dice.service';
-import { DddiceService } from 'src/app/services/dddice.service';
 import { CharacterService } from 'src/app/services/character.service';
-import { NotificationService } from 'src/app/services/notification.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddResourceDialogComponent } from './add-resource-dialog/add-resource-dialog.component';
 import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
+import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/dice-roller.component';
 
 @Component({
   selector: 'app-character-view-status',
@@ -36,15 +33,11 @@ export class CharacterViewStatusComponent {
   public isCampaign: boolean = false;
 
   constructor(
-    private formService: FormService,
-    private rollService: RollDiceService,
-    public diceService: DddiceService,
     private charService: CharacterService,
-    private notification: NotificationService,
     public tooltip: DescriptionTooltipService,
-    private matDialog: MatDialog) { 
-      this.isCampaign = window.location.href.includes('campaign-view');
-    }
+    private matDialog: MatDialog) {
+    this.isCampaign = window.location.href.includes('campaign-view');
+  }
 
   @Input() set character(character: any) {
     if (!character) return;
@@ -188,7 +181,19 @@ export class CharacterViewStatusComponent {
 
     if (!dadoVita.used[index]) {
       const modCostituzione = Math.floor((this.characterData.caratteristiche.costituzione - 10) / 2);
-      this.rollService.rollFromCharView(dadoVita.tipologia, 'Dado vita, resupero punti ferita', modCostituzione, true);
+      const formula = '1' + dadoVita.tipologia + '+' + modCostituzione;
+
+      this.matDialog.open(DiceRollerComponent, {
+        width: window.innerWidth < 768 ? '90%' : '500px',
+        autoFocus: false,
+        disableClose: true,
+        data: {
+          char: this.characterData,
+          formula: formula,
+          extra: 'dado vita, recupero punti ferita'
+        }
+      });
+
       const lastFalseIndex = dadoVita.used.lastIndexOf(false);
       if (lastFalseIndex !== -1) {
         dadoVita.used[lastFalseIndex] = true;
@@ -199,14 +204,10 @@ export class CharacterViewStatusComponent {
         dadoVita.used[firstTrueIndex] = false;
       }
     }
-    this.charService.updateDadiVita(this.characterData.id, this.dadiVitaData).then(() => {
-      // this.notification.openSnackBar('Dado vita aggiornato.', 'check', 1000, 'limegreen');
-    });
+
+    this.charService.updateDadiVita(this.characterData.id, this.dadiVitaData);
   }
 
-  public rollDice(message: string, modifier?: string): void {
-    this.rollService.rollFromCharView('d20', message, Number(modifier));
-  }
 
   public newAdditionalResource(): void {
     this.matDialog.open(AddResourceDialogComponent, {
@@ -217,5 +218,18 @@ export class CharacterViewStatusComponent {
         charId: this.characterData.id
       }
     })
+  }
+
+  public rollFromSheet(formula: string, extra: string) {
+    this.matDialog.open(DiceRollerComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true,
+      data: {
+        char: this.characterData,
+        formula: formula,
+        extra: extra
+      }
+    });
   }
 }

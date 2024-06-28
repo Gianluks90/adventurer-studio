@@ -53,12 +53,10 @@ import { AddItemDialogComponent } from "./components/utilities/inventory/add-ite
 import { SettingsTabViewComponent } from './components/character-view/sub-components/settings-tab-view/settings-tab-view.component';
 import { HealthBarComponent } from './components/utilities/health-bar/health-bar.component';
 import { MoneyComponent } from "./components/utilities/money/money.component";
-import { DiceComponent } from "./components/utilities/dice/dice.component";
 import { ItemInfoSheetComponent } from './components/utilities/inventory/item-info-sheet/item-info-sheet.component';
 import { CampaignListComponent } from './components/campaign-list/campaign-list.component';
 import { AddCampaignDialogComponent } from './components/campaign-list/add-campaign-dialog/add-campaign-dialog.component';
 import { DeleteCampaignDialogComponent } from './components/campaign-list/delete-campaign-dialog/delete-campaign-dialog.component';
-import { SnackbarDiceComponent } from "./components/utilities/dice/snackbar-dice/snackbar-dice.component";
 import { AddSpellDialogComponent } from './components/character-view/sub-components/trucchetti-incantesimi-tab-view/add-spell-dialog/add-spell-dialog.component';
 import { CampaignViewComponent } from './components/campaign-view/campaign-view.component';
 import { TicketCampaignDialogComponent } from './components/campaign-list/ticket-campaign-dialog/ticket-campaign-dialog.component';
@@ -118,6 +116,7 @@ import { AdventureEditorComponent } from './components/adventure-editor/adventur
 import { AdventureViewComponent } from './components/adventure-view/adventure-view.component';
 import { NewAdventureChapterDialogComponent } from "./components/adventure-editor/new-adventure-chapter-dialog/new-adventure-chapter-dialog.component";
 import { AddElementsDialogComponent } from './components/adventure-editor/add-elements-dialog/add-elements-dialog.component';
+import { DiceRollerComponent } from './components/utilities/dice-roller/dice-roller.component';
 
 @NgModule({ declarations: [
         // MAIN COMPONENTS
@@ -140,13 +139,11 @@ import { AddElementsDialogComponent } from './components/adventure-editor/add-el
         // UTILITIES COMPONENTS
         MoneyComponent,
         SnackbarComponent,
-        DiceComponent,
         HealthPointDialogComponent,
         MoneyDialogComponent,
         InventoryComponent,
         AddItemDialogComponent,
         HealthBarComponent,
-        SnackbarDiceComponent,
         ItemTooltipComponent,
         EquipmentComponent,
         ManageEquipDialogComponent,
@@ -241,7 +238,8 @@ import { AddElementsDialogComponent } from './components/adventure-editor/add-el
         AdventureEditorComponent,
         AdventureViewComponent,
         NewAdventureChapterDialogComponent,
-        AddElementsDialogComponent
+        AddElementsDialogComponent,
+        DiceRollerComponent
     ],
     bootstrap: [AppComponent], imports: [SharedModule,
         BrowserModule,

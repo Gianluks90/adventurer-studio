@@ -1,15 +1,14 @@
 import { Component, Input, effect } from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CharacterService } from 'src/app/services/character.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
-import { DiceComponent } from '../utilities/dice/dice.component';
-import { DddiceService } from 'src/app/services/dddice.service';
 import { CampaignService } from 'src/app/services/campaign.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
 import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { Platform } from '@angular/cdk/platform';
+import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { DiceRollerComponent } from '../utilities/dice-roller/dice-roller.component';
 
 @Component({
   selector: 'app-character-view',
@@ -32,16 +31,18 @@ export class CharacterViewComponent {
   public isMobile: boolean = false;
   // public menuIcon = 'menu';
 
+  public prideFlag: any;
+
   constructor(
     // private menuService: MenuService,
     private firebaseService: FirebaseService,
     private characterService: CharacterService,
     private sidenavService: SidenavService,
-    private diceSelector: MatBottomSheet,
-    public diceService: DddiceService,
     private campaignService: CampaignService,
     public breakpointObserver: BreakpointObserver,
-    public tooltip: DescriptionTooltipService) {
+    public tooltip: DescriptionTooltipService,
+    private http: HttpClient,
+    private matDialog: MatDialog) {
 
     effect(() => {
       this.user = this.firebaseService.userSignal();
@@ -54,7 +55,10 @@ export class CharacterViewComponent {
       if (!this.character) return;
       this.verifyEditMode();
       this.calcCA();
-      // this.composeCharInfoString();
+
+      this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
+        this.prideFlag = data.find((flag) => flag.name === this.character.status.prideFlag) || null;
+      });
     });
 
     if (window.location.href.includes('campaign-view/')) {
@@ -67,6 +71,8 @@ export class CharacterViewComponent {
     if (this.charId === '' && !window.location.href.includes('campaign-view')) {
       this.charId = window.location.href.split('/').pop();
     }
+
+    
   }
 
   @Input() public set characterId(id: string) {
@@ -75,10 +81,6 @@ export class CharacterViewComponent {
 
   public openSidenav() {
     this.sidenavService.toggle();
-  }
-
-  public openDiceSelector() {
-    this.diceSelector.open(DiceComponent);
   }
 
   private verifyEditMode() {
@@ -130,5 +132,17 @@ export class CharacterViewComponent {
 
     let result = infos.join(', ');
     return result;
+  }
+
+  public openDiceRoller() {
+    this.matDialog.open(DiceRollerComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true,
+      data: {
+        char: this.character,
+        formula: null
+      }
+    });
   }
 }

@@ -93,7 +93,7 @@
 <div as-subtitle>Abilità</div>
 <div class="a-container">
     @for(a of abilitaData; track i; let i = $index) {
-        <div class="a-line" [ngClass]="{'even-a': getEvenLine(i)}">
+        <div class="a-line" [ngClass]="{'even-a': getEvenLine(i)}" (click)="rollFromSheet('1d20+'+a.mod, a.name+' ('+a.caratteristica+')')">
             <div class="material-symbols-outlined material-no-fill" *ngIf="!a.value && !a.maestria">
                 radio_button_unchecked</div>
             <div class="material-symbols-outlined material-no-fill" *ngIf="a.value && !a.maestria">radio_button_checked</div>

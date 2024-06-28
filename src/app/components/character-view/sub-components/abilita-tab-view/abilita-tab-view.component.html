@@ -10,8 +10,7 @@
 </div>
 <div class="abilita-container">
     @for (a of abilitaData; track i; let i = $index) {
-    <div [ngClass]="{'dice-rolls': diceService.roomConnected, 'even-a': getEvenLine(i)}" class="a-container"
-        (click)="rollDice(a.name, a.mod)">
+    <div [ngClass]="{'even-a': getEvenLine(i)}" class="a-container" (click)="rollFromSheet('1d20+'+a.mod, a.name+' ('+a.caratteristica+')')">
         <div class="a-inner-container">
             <div class="material-symbols-outlined material-no-fill" *ngIf="!a.value && !a.maestria">
                 radio_button_unchecked</div>
@@ -45,7 +44,7 @@
     <div as-subtitle>Linguaggi</div>
     <div class="competenze-container">
         <div *ngFor="let l of competenzeData.linguaggi">
-            <div as-pill>{{l}}</div>
+            <div as-mini-pill>{{l}}</div>
         </div>
     </div>
     }
@@ -53,7 +52,7 @@
     <div as-subtitle>Armi</div>
     <div class="competenze-container">
         @for(a of competenzeData.armi; track $index) {
-        <div as-pill>{{a}}</div>
+            <div as-mini-pill>{{a}}</div>
         }
     </div>
     }
@@ -61,7 +60,7 @@
     <div as-subtitle>Armature</div>
     <div class="competenze-container">
         @for(a of competenzeData.armature; track $index) {
-        <div as-pill>{{a}}</div>
+            <div as-mini-pill>{{a}}</div>
         }
     </div>
     }
@@ -69,7 +68,7 @@
     <div as-subtitle>Strumenti</div>
     <div class="competenze-container">
         @for(s of competenzeData.strumenti; track $index) {
-        <div as-pill>{{s}}</div>
+            <div as-mini-pill>{{s}}</div>
         }
     </div>
     }

@@ -3,8 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddAttackDialogComponent } from './add-attack-dialog/add-attack-dialog.component';
 import { Attack } from 'src/app/models/attack';
 import { CharacterService } from 'src/app/services/character.service';
-import { RollDiceService } from 'src/app/services/roll-dice.service';
-import { DddiceService } from 'src/app/services/dddice.service';
 
 @Component({
   selector: 'app-attacchi-tab-view',
@@ -22,9 +20,7 @@ export class AttacchiTabViewComponent {
 
   constructor(
     private dialog: MatDialog,
-    private charService: CharacterService,
-    private rollService: RollDiceService,
-    public diceService: DddiceService) { }
+    private charService: CharacterService) { }
 
   public filterSearch(event: any) {
     const filter = event.target.value.toLowerCase().trim();
@@ -68,13 +64,5 @@ export class AttacchiTabViewComponent {
         return 1;
       }
     });
-  }
-
-  public attackRoll(attack: Attack) {
-    this.rollService.rollFromCharView('d20', 'Tiro per colpire', attack.attackBonus);
-  }
-
-  public damageRoll(attack: Attack) {
-    this.rollService.rollDamage(attack.damage);
   }
 }

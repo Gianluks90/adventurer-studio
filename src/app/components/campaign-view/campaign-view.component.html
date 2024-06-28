@@ -132,6 +132,9 @@
         <button as-bottom-btn (click)="toggleNotification()">
             <div class="material-symbols-outlined">notifications</div>
         </button>
+        <button as-bottom-btn (click)="openDiceRollerDialog()">
+            <div class="material-symbols-outlined">casino</div>
+        </button>
         @if(campaignData.adventure && campaignData.adventure !== '' && isOwner) {
             <button as-bottom-btn (click)="toggleAdventure()">
                 <div class="material-symbols-outlined">menu_book</div>
@@ -192,6 +195,9 @@
                     @case ('text-trophy') {
                         <div class="material-symbols-outlined inverted-icon">trophy</div> <div>{{log.message}}</div>
                     }
+                    @case ('text-casino') {
+                        <div class="material-symbols-outlined inverted-icon">casino</div> <div>{{log.message}}</div>
+                    }
                 }
             </div>
             
@@ -228,6 +234,9 @@
             }
             @case ('text-trophy') {
                 <div class="material-symbols-outlined inverted-icon">trophy</div> <div>{{selectedLog.message}}</div>
+            }
+            @case ('text-casino') {
+                <div class="material-symbols-outlined inverted-icon">casino</div> <div>{{selectedLog.message}}</div>
             }
         }
     </div>

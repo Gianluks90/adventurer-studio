@@ -1,0 +1,53 @@
+<div mat-dialog-title class="dialog-title">Tiro <span class="extra-label" *ngIf="data.extra && data.extra !== ''">{{data.extra}}</span></div>
+<div mat-dialog-content class="dialog-content" [formGroup]="form">
+    <div as-description-text>
+        Scrivi una formula di tiro (senza spazi) oppure utilizza i tasti sottostanti per selezionare i dadi, dopodichè
+        premi "Tiro" per ottenere il risultato.
+    </div>
+    <div class="dice-result">
+        {{diceResult}}
+    </div>
+    <mat-button-toggle-group class="toggle-group" formControlName="advDis">
+        <mat-button-toggle class="toggle-button" value="adv">Vantaggio</mat-button-toggle>
+        <mat-button-toggle class="toggle-button" value="dis">Svantaggio</mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Formula del tiro</mat-label>
+        <input matInput type="text" formControlName="diceFormula" color="accent" placeholder="Es. 2d6+3">
+    </mat-form-field>
+        <div class="dice-container">
+            <img src="./assets/dice/dice-d4.svg" (click)="addDice('d4')">
+            <img src="./assets/dice/dice-d6.svg" (click)="addDice('d6')">
+            <img src="./assets/dice/dice-d8.svg" (click)="addDice('d8')">
+            <img src="./assets/dice/dice-d10.svg" (click)="addDice('d10')">
+            <img src="./assets/dice/dice-d12.svg" (click)="addDice('d12')">
+            <img class="d100-image" src="./assets/dice/dice-d10x.svg" (click)="addDice('d100')">
+            <img class="d20-image" src="./assets/dice/dice-d20.svg" (click)="addDice('d20')">
+        </div>
+        <div class="modifier-container">
+            <button (click)="addModifier(-5)">- 5</button>
+            <button (click)="addModifier(-3)">- 3</button>
+            <button (click)="addModifier(-1)">- 1</button>
+            <button (click)="addModifier(1)">+ 1</button>
+            <button (click)="addModifier(3)">+ 3</button>
+            <button (click)="addModifier(5)">+ 5</button>
+        </div>
+        @if(isCampaignOwner) {
+            <mat-checkbox formControlName="isHidden" color="accent">Il tiro è segreto</mat-checkbox>
+        } @else {
+            @if(data.char && data.char.campaignId !== '' && !isCampaign) {
+                <mat-checkbox formControlName="rollOnCampaign" color="accent">Visibile su campagna</mat-checkbox>
+            }
+        }
+</div>
+<div as-buttons-container mat-dialog-actions align="end" class="action-buttons">
+    <button as-btn mat-dialog-close>
+        <div class="material-symbols-outlined">close</div> Chiudi
+    </button>
+    <button as-btn [disabled]="!form.valid" (click)="clear()">
+        <div class="material-symbols-outlined">restart_alt</div> Cancella
+    </button>
+    <button as-btn [disabled]="!form.valid" (click)="roll()">
+        <div class="material-symbols-outlined">casino</div> Tira
+    </button>
+</div>

@@ -307,6 +307,15 @@ export class CharacterService {
     }, { merge: true });
   }
 
+  public async updatePrideFlag(id: string, flag: string): Promise<any> {
+    const docRef = doc(this.firebaseService.database, 'characters', id);
+    return await setDoc(docRef, {
+      status: {
+        prideFlag: flag
+      }
+    }, { merge: true });
+  }
+
   public async updateWeightRule(id: string, rule: boolean): Promise<any> {
     const docRef = doc(this.firebaseService.database, 'characters', id);
     return await setDoc(docRef, {

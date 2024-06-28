@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/dice-roller.component';
 
 @Component({
   selector: 'app-campaign-char-tab',
@@ -6,6 +8,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './campaign-char-tab.component.scss'
 })
 export class CampaignCharTabComponent {
+
+  constructor(private matDialog: MatDialog) {}
 
   public charData: any;
   @Input() set character(character: any) {
@@ -128,5 +132,20 @@ export class CampaignCharTabComponent {
     details.forEach((detail: any) => {
       detail.open = false;
     });
+  }
+
+  public rollFromSheet(formula: string, extra: string) {
+    if (!this.isOwnerData) {
+      this.matDialog.open(DiceRollerComponent, {
+        width: window.innerWidth < 768 ? '90%' : '500px',
+        autoFocus: false,
+        disableClose: true,
+        data: {
+          char: this.charData,
+          formula: formula,
+          extra: extra
+        }
+      });
+    }
   }
 }

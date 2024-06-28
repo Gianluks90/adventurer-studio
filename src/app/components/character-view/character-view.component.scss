@@ -249,31 +249,35 @@
         opacity: 0.9;
     }
 
-    &>div.red {
-        background-color: red;
-        height: calc(100% / 6);
+    &>.pride-flag-color {
+        flex-grow: 1;
     }
-    &>div.orange {
 
-        background-color: orange;
-        height: calc(100% / 6);
-    }
-    &>div.yellow {
-        background-color: yellow;
-        height: calc(100% / 6);
-    }
-    &>div.green {
-        background-color: green;
-        height: calc(100% / 6);
-    }
-    &>div.blue {
-        background-color: blue;
-        height: calc(100% / 6);
-    }
-    &>div.purple {
-        background-color: purple;
-        height: calc(100% / 6);
-    }
+    // &>div.red {
+    //     background-color: red;
+    //     height: calc(100% / 6);
+    // }
+    // &>div.orange {
+
+    //     background-color: orange;
+    //     height: calc(100% / 6);
+    // }
+    // &>div.yellow {
+    //     background-color: yellow;
+    //     height: calc(100% / 6);
+    // }
+    // &>div.green {
+    //     background-color: green;
+    //     height: calc(100% / 6);
+    // }
+    // &>div.blue {
+    //     background-color: blue;
+    //     height: calc(100% / 6);
+    // }
+    // &>div.purple {
+    //     background-color: purple;
+    //     height: calc(100% / 6);
+    // }
 }
 
 .inspired {

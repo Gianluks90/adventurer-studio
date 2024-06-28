@@ -24,12 +24,6 @@
         </div>
         <div class="attack-description"> <span class="attack-label">Note</span> {{a.notes != '' ? a.notes : "-"}}</div>
         <div as-buttons-container as-buttons-container-details>
-            <button as-btn (click)="attackRoll(a)" [disabled]="!diceService.roomConnected">
-                <div class="material-symbols-outlined">casino</div> <div>Tiro per colpire</div>
-            </button>
-            <button as-btn (click)="damageRoll(a)" [disabled]="!diceService.roomConnected">
-                <div class="material-symbols-outlined">casino</div> <div>Tiro danno</div>
-            </button>
             <button as-btn (click)="openAddAttackDialog(a, i)">
                 <div class="material-symbols-outlined">edit</div> <div>Modifica</div>
             </button>

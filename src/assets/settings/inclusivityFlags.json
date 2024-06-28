@@ -1,0 +1,187 @@
+[
+    {
+        "name": "bandiera_lgbt_1",
+        "label": "Bandiera LGBTQ+",
+        "colors": ["#D12D20", "#F09336", "#FBED4F", "#377D32", "#1E4CF5", "#6C1684"] 
+    },
+    {
+        "name": "bandiera_lgbt_2",
+        "label": "Bandiera dell’orgoglio LGBTQ+ inclusiva delle persone di colore",
+        "colors": ["#010101", "#725123", "#D12D20", "#F09336", "#FBED4F", "#377D32", "#1C43AC", "#B33BD5"] 
+    },
+    {
+        "name": "bandiera_lgbt_3",
+        "label": "Bandiera Progress (Progress Flag)",
+        "colors": ["#FFFFFF", "#ECAAB8", "#7BCCF4", "#010101", "#725123", "#D12D20", "#F09336", "#FBED4F", "#377D32", "#1C43AC", "#B33BD5"] 
+    },
+    {
+        "name": "bandiera_lgbt_4",
+        "label": "Bandiera dell'orgoglio bisessuale",
+        "colors": ["#EB5494", "#A746E0", "#415BB4"] 
+    },
+    {
+        "name": "bandiera_lgbt_5",
+        "label": "Bandiera dell’orgoglio transgender (Monica Helms)",
+        "colors": ["#7BCCF4", "#ECAAB8", "#FFFFFF", "#ECAAB8", "#7BCCF4"] 
+    },
+    {
+        "name": "bandiera_lgbt_6",
+        "label": "Bandiera dell’orgoglio transgender (Michelle Lindsay)",
+        "colors": ["#D72E89", "#FFFFFF", "#4091CB"] 
+    },
+    {
+        "name": "bandiera_lgbt_7",
+        "label": "Bandiera dell’orgoglio transgender (Jennifer Pellinen)",
+        "colors": ["#E933F7", "#BC40F6", "#8B1BC4", "#5C0E94", "#0101F5"] 
+    },
+    {
+        "name": "bandiera_lgbt_8",
+        "label": "Bandiera dell’orgoglio lesbico",
+        "colors": ["#C34B23", "#D67A3B", "#E4B87E", "#FFFFFF", "#DBB1D5", "#B35EB8", "#841970"] 
+    },
+    {
+        "name": "bandiera_lgbt_9",
+        "label": "Bandiera dell’orgoglio lesbico (Butch)",
+        "colors": ["#36406D", "#6E79A2", "#8B90A4", "#EDEAE7", "#BFB4D9", "#704FBE", "#4A0D84"] 
+    },
+    {
+        "name": "bandiera_lgbt_10",
+        "label": "Bandiera dell’orgoglio lesbico (Labrys)",
+        "colors": ["#6F2B8C", "#010101", "#FFFFFF"] 
+    },
+    {
+        "name": "bandiera_lgbt_11",
+        "label": "Bandiera dell’orgoglio agender",
+        "colors": ["#010101", "#BBBBBB", "#FFFFFF", "#C5F192", "#FFFFFF", "#BBBBBB", "#010101"] 
+    },
+    {
+        "name": "bandiera_lgbt_12",
+        "label": "Bandiera dell’alleanza etero (Straight Ally Flag)",
+        "colors": ["#D12E20", "#ED9135", "#FCEE4F", "#377D33", "#1D4AF4", "#6B1482", "#010101", "#FFFFFF"] 
+    },
+    {
+        "name": "bandiera_lgbt_13",
+        "label": "Bandiera dell’orgoglio androgino",
+        "colors": ["#9A959E", "#7176BF", "#9A959E", "#C177C0", "#9A959E"] 
+    },
+    {
+        "name": "bandiera_lgbt_14",
+        "label": "Bandiera dell’orgoglio aromantico",
+        "colors": ["#5BA350", "#AFD384", "#FFFFFF", "#A9A9A9", "#010101"] 
+    },
+    {
+        "name": "bandiera_lgbt_15",
+        "label": "Bandiera dell’orgoglio asessuale",
+        "colors": ["#010101", "#A4A4A4", "#FFFFFF", "#75157F"] 
+    },
+    {
+        "name": "bandiera_lgbt_16",
+        "label": "Bandiera dell’orgoglio demisessuale",
+        "colors": ["#010101", "#FFFFFF", "#651170", "#D3D3D3"] 
+    },
+    {
+        "name": "bandiera_lgbt_17",
+        "label": "Bandiera dell’orgoglio graysessuale",
+        "colors": ["#6D138F", "#AFB3AD", "#FFFFFF", "#AFB3AD", "#6D138F"] 
+    },
+    {
+        "name": "bandiera_lgbt_18",
+        "label": "Bandiera dell’orgoglio bear",
+        "colors": ["#5C3A14", "#C76928", "#F8DE77", "#FAE7BF", "#FFFFFF", "#555555", "#010101", "#010101"] 
+    },
+    {
+        "name": "bandiera_lgbt_19",
+        "label": "Bandiera dell’orgoglio twink",
+        "colors": ["#F2B3F9", "#FFFFFF", "#FEFF91", "#010101"] 
+    },
+    {
+        "name": "bandiera_lgbt_20",
+        "label": "Bandiera dell’orgoglio bigender",
+        "colors": ["#B87CA2", "#E2A7CD", "#D4C7E8", "#FFFFFF", "#D3C8E6", "#A4C5E6", "#7181CD"] 
+    },
+    {
+        "name": "bandiera_lgbt_21",
+        "label": "Bandiera dell’orgoglio demigender",
+        "colors": ["#7E7E7E", "#C4C4C4", "#FCFE8A", "#FFFFFF", "#FCFE8A", "#C4C4C4", "#7E7E7E"] 
+    },
+    {
+        "name": "bandiera_lgbt_22",
+        "label": "Bandiera dell’orgoglio drag (Nuova)",
+        "colors": ["#C568F0", "#FFFFFF", "#5576F3", "#F0A5DF"] 
+    },
+    {
+        "name": "bandiera_lgbt_23",
+        "label": "Bandiera dell’orgoglio genderfluid",
+        "colors": ["#ED7D9F", "#FFFFFF", "#AF2DD2", "#010101", "#353EB5"] 
+    },
+    {
+        "name": "bandiera_lgbt_24",
+        "label": "Bandiera dell’orgoglio genderflux",
+        "colors": ["#E37D96", "#E9A6BA", "#CECECE", "#93DCF6", "#6AC8F4", "#FBF599"] 
+    },
+    {
+        "name": "bandiera_lgbt_25",
+        "label": "Bandiera dell’orgoglio genderqueer",
+        "colors": ["#AB7FD7", "#FFFFFF", "#577F33"] 
+    },
+    {
+        "name": "bandiera_lgbt_26",
+        "label": "Bandiera dell’orgoglio gender questioning",
+        "colors": ["#F19DBA", "#EC6A91", "#D9B7DD", "#C9F399", "#DDDDDD", "#FBF6A0", "#A1DCF9", "#4EAAE8", "#83CDD2"] 
+    },
+    {
+        "name": "bandiera_lgbt_27",
+        "label": "Bandiera dell’orgoglio trigender",
+        "colors": ["#F19BC2", "#9181F7", "#84D474", "#9181F7", "#F19BC2"] 
+    },
+    {
+        "name": "bandiera_lgbt_28",
+        "label": "Bandiera dell’orgoglio intersessuale",
+        "colors": ["#F9D949", "#6C14A4", "#F9D949"] 
+    },
+    {
+        "name": "bandiera_lgbt_29",
+        "label": "Bandiera dell’orgoglio neutrois",
+        "colors": ["#FFFFFF", "#4D9D2C", "#010101"] 
+    },
+    {
+        "name": "bandiera_lgbt_30",
+        "label": "Bandiera dell’orgoglio non binary",
+        "colors": ["#FDF461", "#FFFFFF", "#925CCE", "#010101"] 
+    },
+    {
+        "name": "bandiera_lgbt_31",
+        "label": "Bandiera dell’orgoglio omnisessuale",
+        "colors": ["#925CCE", "#EC61BB", "#010101", "#6761F6", "#92A5F8"] 
+    },
+    {
+        "name": "bandiera_lgbt_32",
+        "label": "Bandiera dell’orgoglio pangender",
+        "colors": ["#DF4C64", "#6C9CF1", "#BA64F1", "#F5D850", "#FFFFFF", "#F6D1FC", "#F6C6AB", "#FDF593"] 
+    },
+    {
+        "name": "bandiera_lgbt_33",
+        "label": "Bandiera dell’orgoglio pansessuale",
+        "colors": ["#EA3E8B", "#F9D949", "#55ADF7"] 
+    },
+    {
+        "name": "bandiera_lgbt_34",
+        "label": "Bandiera dell’orgoglio polisessuale",
+        "colors": ["#E23AB9", "#61D174", "#458EEE"] 
+    },
+    {
+        "name": "bandiera_lgbt_35",
+        "label": "Bandiera dell’orgoglio Maverique",
+        "colors": ["#FDF461", "#FFFFFF", "#E69A41"] 
+    },
+    {
+        "name": "bandiera_lgbt_36",
+        "label": "Bandiera dell’orgoglio penultisessuale",
+        "colors": ["#010101", "#C3C3C3", "#F2B1C8", "#C3C3C3", "#010101"] 
+    },
+    {
+        "name": "bandiera_lgbt_37",
+        "label": "Bandiera dell’orgoglio pomosessuale",
+        "colors": ["#F1B2C8", "#F3C9DA", "#FFFFFF", "#E1CFF9", "FFFFFF", "#F3C9DA", "#F1B2C8"] 
+    }
+]

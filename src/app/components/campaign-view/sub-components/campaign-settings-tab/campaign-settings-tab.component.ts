@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CampaignService } from 'src/app/services/campaign.service';
-import { DddiceService } from 'src/app/services/dddice.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
 import { NewChapterDialogComponent } from './new-chapter-dialog/new-chapter-dialog.component';
 import { RemoveCharDialogComponent } from './remove-char-dialog/remove-char-dialog.component';
@@ -20,7 +19,6 @@ export class CampaignSettingsTabComponent {
 
   constructor(
     private campaignService: CampaignService,
-    private dddiceService: DddiceService,
     private firebaseService: FirebaseService,
     private adventureService: AdventureService,
     private matDialog: MatDialog,
@@ -61,14 +59,6 @@ export class CampaignSettingsTabComponent {
   public startCampaign(): void {
     this.campaignService.startCampaign(this.campaignData.id).then(() => {
       window.location.reload();
-    });
-  }
-
-  public createCampaignRoom(): void {
-    this.firebaseService.getUserDDDiceToken().then(token => {
-      this.dddiceService.createRoom(token, this.campaignData.id, this.campaignData.password).then((room) => {
-        this.campaignService.setDDDiceRoomSlug(this.campaignData.id, room.data.slug);
-      });
     });
   }
 

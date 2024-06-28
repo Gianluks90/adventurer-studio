@@ -69,12 +69,27 @@
 </div> -->
 <div as-subtitle>Regole aggiuntive</div>
 
-<div as-description-text>Modalità Pride! Se la disattivi sei omofob*. Puoi farlo ma sei omofob*.</div>
+<div as-description-text>Modalità Pride! Seleziona, se lo desideri, la bandiera che più rappresenta la tua identità e il tuo orgoglio.</div>
 <div class="toggle-container">
     <label as-toggle-button>
         <input type="checkbox" [(ngModel)]="charData.status.usePrideRule" (change)="togglePrideRule($event)">
         <span as-slider></span>
     </label> Modalità Pride: {{charData.status.usePrideRule ? 'Attivata' : 'Disattivata'}}
+</div>
+<div [formGroup]="formColor" *ngIf="charData.status.usePrideRule">
+    <mat-form-field color="accent" class="custom-form-field" appearance="outline">
+        <mat-label>Bandiera</mat-label>
+        <mat-select formControlName="prideFlag">
+            <mat-option *ngFor="let flag of prideFlags" [value]="flag.name">
+                {{flag.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div as-buttons-container>
+        <button as-btn (click)="updatePrideFlag()">
+            <div class="material-symbols-outlined">check</div> <div>Applica</div>
+        </button>
+    </div>
 </div>
 
 <div as-description-text> Usa le regole dell'<em>Ingombro</em> (visualizza il peso nell'inventario, calcola

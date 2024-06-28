@@ -5,6 +5,7 @@ import { ManageEquipDialogComponent } from './manage-equip-dialog/manage-equip-d
 import { CharacterService } from 'src/app/services/character.service';
 import { ItemInfoSheetComponent } from '../inventory/item-info-sheet/item-info-sheet.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { DiceRollerComponent } from '../dice-roller/dice-roller.component';
 
 @Component({
   selector: 'app-equipment',
@@ -357,6 +358,19 @@ export class EquipmentComponent {
     const skillMod = Math.floor((this.charData.caratteristiche[set.skill] - 10) / 2);
     const bonusProficiency = this.charData.tiriSalvezza.bonusCompetenza;
     return `1d20${skillMod + bonusProficiency > 0 ? `+${skillMod + bonusProficiency}` : ''}`;
+  }
+
+  public rollFromSheet(formula: string, extra: string) {
+    this.matDialog.open(DiceRollerComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true,
+      data: {
+        char: this.charData,
+        formula: formula,
+        extra: extra
+      }
+    });
   }
 
 }

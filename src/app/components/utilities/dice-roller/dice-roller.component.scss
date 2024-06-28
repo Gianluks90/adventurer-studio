@@ -1,0 +1,131 @@
+.dialog-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.description {
+    opacity: 0.8;
+    font-size: small;
+}
+
+.dialog-content {
+    width: 100%;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.description {
+    margin-bottom: 8px;
+    text-align: justify;
+}
+
+.custom-form-field {
+    width: 100%;
+}
+
+mat-form-field {
+    // width: 100% !important;
+    margin-bottom: 12px;
+}
+
+.action-buttons {
+    margin-bottom: 0;
+}
+
+.dice-result {
+    height: 100px;
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+}
+
+.no-result {
+    font-size: 1rem;
+    animation: pulseOpacity 3s infinite;
+}
+
+@keyframes pulseOpacity {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.toggle-group {
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 8px;
+}
+
+.toggle-button {
+    max-width: 50%;
+    flex-grow: 1;
+}
+
+.dice-icons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+.dice-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    width: 100%;
+    flex-wrap: wrap;
+
+    &>img {
+        height: 40px;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &>.d100-image {
+        height: 50px;
+    }
+
+    // &>.d20-image {
+    //     height: 55px;
+    // }
+}
+
+.modifier-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 4px;
+
+    &>button {
+        border: none;
+        background-color: #212121;
+        color: whitesmoke;
+        flex-grow: 1;
+        padding: 8px;
+        border-radius: 8px;
+
+        &:hover {
+            opacity: 0.9;
+            cursor: pointer;
+        }
+    }
+}
+
+.extra-label {
+    font-size: small;
+    letter-spacing: 0;
+}

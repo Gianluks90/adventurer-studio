@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { DescriptionTooltipService } from 'src/app/components/utilities/description-tooltip/description-tooltip.service';
-import { DddiceService } from 'src/app/services/dddice.service';
-import { RollDiceService } from 'src/app/services/roll-dice.service';
+import { DiceRollerComponent } from 'src/app/components/utilities/dice-roller/dice-roller.component';
 
 @Component({
   selector: 'app-abilita-tab-view',
@@ -12,12 +12,12 @@ import { RollDiceService } from 'src/app/services/roll-dice.service';
 export class AbilitaTabViewComponent {
 
   constructor(
-    private rollService: RollDiceService, 
-    public diceService: DddiceService,
     private http: HttpClient,
-    public tooltip: DescriptionTooltipService
-  ){}
+    public tooltip: DescriptionTooltipService,
+    private matDialog: MatDialog
+  ) { }
 
+  public charData: any;
   public abilitaData: any[] = [];
   public maestrieData: any[] = [];
   public competenzeData: any = {};
@@ -35,7 +35,7 @@ export class AbilitaTabViewComponent {
 
   @Input() set character(character: any) {
     if (!character) return;
-
+    this.charData = character;
     this.initMaestrieArray(character.competenzaAbilita);
     this.bonusCompetenzaData = character.tiriSalvezza.bonusCompetenza;
     this.caratteristicheData = character.caratteristiche;
@@ -127,11 +127,6 @@ export class AbilitaTabViewComponent {
     // });
   }
 
-  public rollDice(name: string, modifier?: string): void {
-    const message = "Prova di " + name;
-    this.rollService.rollFromCharView('d20', message, Number(modifier));
-  }
-
   public showSkillInfo(event: any): void {
     this.showInfo = !this.showInfo;
   }
@@ -141,11 +136,24 @@ export class AbilitaTabViewComponent {
   }
 
   public getEvenLine(index: number): boolean {
-    if(window.innerWidth < 1500) {
+    if (window.innerWidth < 1500) {
       return index % 2 === 0;
     } else {
       const columnsIndex: number[] = [0, 3, 4, 7, 8, 11, 12, 15, 16];
       return columnsIndex.includes(index);
     }
+  }
+
+  public rollFromSheet(formula: string, extra: string) {
+    this.matDialog.open(DiceRollerComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true,
+      data: {
+        char: this.charData,
+        formula: formula,
+        extra: extra
+      }
+    });
   }
 }

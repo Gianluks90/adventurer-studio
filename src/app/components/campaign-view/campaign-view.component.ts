@@ -7,7 +7,6 @@ import { TicketCampaignDialogComponent } from '../campaign-list/ticket-campaign-
 import { getAuth } from 'firebase/auth';
 import { CharacterService } from 'src/app/services/character.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { DiceComponent } from '../utilities/dice/dice.component';
 import { NextSessionDialogComponent } from './next-session-dialog/next-session-dialog.component';
 import { DescriptionTooltipService } from '../utilities/description-tooltip/description-tooltip.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
@@ -15,6 +14,7 @@ import { AdventurerUser } from 'src/app/models/adventurerUser';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
+import { DiceRollerComponent } from '../utilities/dice-roller/dice-roller.component';
 
 @Component({
   selector: 'app-campaign-view',
@@ -139,10 +139,6 @@ export class CampaignViewComponent {
     this.sidenavService.toggle();
   }
 
-  public openDiceSelector(): void {
-    this.diceSelector.open(DiceComponent);
-  }
-
   private calcSessionNumber() {
     let result = this.campaignData.story.length;
     this.campaignData.archive.forEach((element: any) => {
@@ -178,5 +174,18 @@ export class CampaignViewComponent {
   public editAdventure() {
     this.showAdventure = !this.showAdventure;
     this.router.navigate(['adventures/' + this.adventureData.id]);
+  }
+
+  public openDiceRollerDialog(): void {
+    this.matDialog.open(DiceRollerComponent, {
+      width: window.innerWidth < 768 ? '90%' : '500px',
+      autoFocus: false,
+      disableClose: true,
+      data: {
+        char: this.isOwner ? null : this.selectedChar,
+        formula: null,
+        extra: null
+      }
+    });
   }
 }
