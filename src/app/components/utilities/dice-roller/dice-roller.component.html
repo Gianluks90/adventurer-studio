@@ -7,6 +7,9 @@
     <div class="dice-result">
         {{diceResult}}
     </div>
+    <div class="critical-message">
+        {{ criticalMessage !== '' ? criticalMessage : ''}}
+      </div>
     <mat-button-toggle-group class="toggle-group" formControlName="advDis">
         <mat-button-toggle class="toggle-button" value="adv">Vantaggio</mat-button-toggle>
         <mat-button-toggle class="toggle-button" value="dis">Svantaggio</mat-button-toggle>

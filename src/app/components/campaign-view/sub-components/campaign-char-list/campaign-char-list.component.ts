@@ -41,6 +41,7 @@ export class CampaignCharListComponent {
     this.calcCA();
     this.calcMoney();
     this.calcInspiration();
+    this.calcPF();
   }
 
   public isOwnerData: boolean = false;
@@ -95,6 +96,7 @@ export class CampaignCharListComponent {
 
   private calcCA(): void {
     this.charData.forEach(char => {
+      const bonuses = char.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
       char.CA = 10 + Math.floor((char.caratteristiche.destrezza - 10) / 2);
       char.equipaggiamento.forEach(item => {
         if (item.category.includes('Armatura') && item.weared) {
@@ -104,12 +106,23 @@ export class CampaignCharListComponent {
           char.shieldCA = '+' + item.CA;
         }
       })
+      bonuses.forEach((bonus: any) => {
+        if (bonus.element === 'CA') {
+          char.CA += bonus.value;
+        }
+      });
     });
   }
 
-  public calcTotalCA(CA: string, shieldCA?: string): string {
-    const bonusCA = shieldCA ? parseInt(shieldCA.replace('+', '')) : 0;
-    return (parseInt(CA) + bonusCA).toString();
+  public calcTotalCA(char: any): string {
+    const bonuses = char.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+    let bonusCA = char.shieldCA ? parseInt(char.shieldCA.replace('+', '')) : 0;
+    bonuses.forEach((bonus: any) => {
+      if (bonus.element === 'CA') {
+        bonusCA += bonus.value;
+      }
+    });
+    return (parseInt(char.CA) + bonusCA).toString();
   }
 
   public calcMoney(): void {
@@ -132,6 +145,30 @@ export class CampaignCharListComponent {
 
   public calcInspiration(): void {
     this.ispirazioneParty = this.charData.reduce((acc, char) => acc + (!char.ispirazione ? 1 : 0), 0);
+  }
+
+  // char.parametriVitali.puntiFeritaAttuali}}/{{char.parametriVitali.massimoPuntiFerita
+  public calcPF(): void {
+    this.charData.forEach(char => {
+      const bonuses = char.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+      bonuses.forEach((bonus: any) => {
+        if (bonus.element === 'punti ferita') {
+          char.parametriVitali.massimoPuntiFerita += bonus.value;
+        }
+      });
+      // char.parametriVitali.pfMax = char.parametriVitali.massimoPuntiFerita;
+      // char.privilegiTratti.forEach(privilegioTratto => {
+      //   if (!privilegioTratto.bonuses) return;
+      //   privilegioTratto.bonuses.forEach(bonus => {
+      //     if (bonus.element === 'punti ferita') {
+      //       char.parametriVitali.pfMax += bonus.value;
+      //     }
+      //   });
+      // });
+      if (char.parametriVitali.puntiFeritaAttuali > char.parametriVitali.massimoPuntiFerita) {
+        char.parametriVitali.puntiFeritaAttuali = char.parametriVitali.massimoPuntiFerita;
+      }
+    });
   }
 
   public userFirst(): void {

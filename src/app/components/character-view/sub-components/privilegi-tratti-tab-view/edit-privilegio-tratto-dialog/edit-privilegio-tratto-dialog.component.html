@@ -31,6 +31,42 @@
         <mat-label>Descrizione</mat-label>
         <textarea matInput formControlName="descrizione" rows="5"></textarea>
     </mat-form-field>
+    <div as-subtitle>Bonus</div>
+    <div as-description-text>Aggiungi manualmente i bonus tra quelli selezionabili per far in modo che i parametri coinvolti
+      siano aggiornati automaticamente.</div>
+    <ng-container formArrayName="bonuses">
+      <ng-container *ngFor="let b of bonuses.controls; let i = index">
+          <div [formGroupName]="i" class="line-container">
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Elemento</mat-label>
+              <mat-select formControlName="element">
+                <mat-option value="forza">Forza</mat-option>
+                <mat-option value="destrezza">Destrezza</mat-option>
+                <mat-option value="costituzione">Costituzione</mat-option>
+                <mat-option value="intelligenza">Intelligenza</mat-option>
+                <mat-option value="saggezza">Saggezza</mat-option>
+                <mat-option value="carisma">Carisma</mat-option>
+                <mat-option value="iniziativa">Iniziativa</mat-option>
+                <mat-option value="CA">CA</mat-option>
+                <mat-option value="velocità">Velocità</mat-option>
+                <mat-option value="punti ferita">Punti ferita massimi</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="line-input" color="accent" appearance="outline">
+              <mat-label>Valore</mat-label>
+              <input type="number" inputmode="numeric" matInput formControlName="value">
+            </mat-form-field>
+            <button as-mini-circle-btn as-btn-warn (click)="removeBonus(i)">
+              <div class="material-symbols-outlined">close</div>
+            </button>
+          </div>
+      </ng-container>
+  </ng-container>
+  <div as-buttons-container>
+    <button as-mini-circle-btn color="accent" (click)="addBonus()">
+        <div class="material-symbols-outlined">add</div>
+    </button>
+</div>
     
 </div>
 <div as-buttons-container mat-dialog-actions align="end">

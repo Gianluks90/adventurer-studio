@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -10,6 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class EditPrivilegioTrattoDialogComponent {
 
   public form: FormGroup | null = null;
+  public bonuses: FormArray;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<EditPrivilegioTrattoDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: { privilegioTratto: any }) {
     this.form = this.fb.group({
@@ -18,12 +19,32 @@ export class EditPrivilegioTrattoDialogComponent {
       tag: [''],
       tipologia: ['', Validators.required],
       riferimento: [''],
+      bonuses: this.fb.array([]),
     })
   }
 
   ngOnInit(): void {
     // console.log(this.data.privilegioTratto);
     this.form.patchValue(this.data.privilegioTratto);
+    this.bonuses = this.fb.array([]);
+    this.bonuses = this.form.controls['bonuses'] as FormArray;
+    if (this.data.privilegioTratto.bonuses) {
+      this.data.privilegioTratto.bonuses.forEach((bonus: any) => {
+        this.bonuses.push(this.fb.group(bonus));
+      });
+    }
+
+  }
+
+  public addBonus(): void {
+    this.bonuses.push(this.fb.group({
+      element: ['', Validators.required],
+      value: ['', Validators.required],
+    }));
+  }
+
+  public removeBonus(index: number): void {
+    this.bonuses.removeAt(index);
   }
 
   public confirm(): void {

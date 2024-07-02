@@ -54,6 +54,7 @@ export class CharacterViewStatusComponent {
     };
     // this.risorseAggiuntiveData.push(this.ispirazione);
     this.initProvePassive();
+    this.initSkills();
   }
 
   @Input() set editMode(editMode: boolean) {
@@ -102,6 +103,13 @@ export class CharacterViewStatusComponent {
     this.indagarePassiva += this.characterData.competenzaAbilita.maestriaIndagare ? this.characterData.tiriSalvezza.bonusCompetenza : 0;
     this.percezionePassiva += this.characterData.competenzaAbilita.maestriaPercezione ? this.characterData.tiriSalvezza.bonusCompetenza : 0;
     this.intuizionePassiva += this.characterData.competenzaAbilita.maestriaIntuizione ? this.characterData.tiriSalvezza.bonusCompetenza : 0;
+  }
+
+  public initSkills(): void {
+    const bonuses = this.characterData.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+    bonuses.forEach((bonus: any) => {
+      this.characterData.caratteristiche[bonus.element] += bonus.value;
+    });
   }
 
   useRisorsa(risorsaIndex: number, index: number): void {

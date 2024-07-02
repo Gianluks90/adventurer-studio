@@ -55,6 +55,7 @@ export class CharacterViewComponent {
       if (!this.character) return;
       this.verifyEditMode();
       this.calcCA();
+      this.calcBonus();
 
       this.http.get('./assets/settings/inclusivityFlags.json').subscribe((data: any[]) => {
         this.prideFlag = data.find((flag) => flag.name === this.character.status.prideFlag) || null;
@@ -111,6 +112,21 @@ export class CharacterViewComponent {
       }
       if (item.CA > 0 && item.shield && item.weared) {
         this.character.CAShield = '+ ' + item.CA;
+      }
+    });
+  }
+
+  private calcBonus() {
+    const bonuses = this.character.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+    bonuses.forEach((bonus: any) => {
+      if (bonus.element === 'punti ferita') {
+        this.character.parametriVitali.massimoPuntiFerita += bonus.value;
+        if (this.character.parametriVitali.puntiFeritaAttuali > this.character.parametriVitali.massimoPuntiFerita) {
+          this.character.parametriVitali.puntiFeritaAttuali = this.character.parametriVitali.massimoPuntiFerita;
+        }
+      }
+      if (bonus.element === 'velocità') {
+        this.character.velocita += bonus.value;
       }
     });
   }

@@ -17,6 +17,7 @@ export class DiceRollerComponent {
   private modifier: number = 0;
   public isCampaignOwner: boolean = false;
   public isCampaign: boolean = false;
+  public criticalMessage: string = "";
 
   constructor(
     private fb: FormBuilder,
@@ -100,34 +101,96 @@ export class DiceRollerComponent {
     this.clear();
   }
 
+  // private rollDice(formula: string): number {
+  //   const diceRegex = /(\d*)d(\d+)|([+-]\d+)/g;
+  //   let match;
+  //   let total = 0;
+
+  //   while ((match = diceRegex.exec(formula)) !== null) {
+  //     if (match[2]) {
+  //       const numDice = parseInt(match[1], 10) || 1;
+  //       const diceType = parseInt(match[2], 10);
+  //       for (let i = 0; i < numDice; i++) {
+  //         total += Math.floor(Math.random() * diceType) + 1;
+  //       }
+  //     } else if (match[3]) {
+  //       total += parseInt(match[3], 10);
+  //     }
+  //   }
+
+  //   return total;
+  // }
+
   private rollDice(formula: string): number {
     const diceRegex = /(\d*)d(\d+)|([+-]\d+)/g;
     let match;
     let total = 0;
-
+  
+    this.criticalMessage = ''; // Reset the critical message
+  
     while ((match = diceRegex.exec(formula)) !== null) {
       if (match[2]) {
         const numDice = parseInt(match[1], 10) || 1;
         const diceType = parseInt(match[2], 10);
         for (let i = 0; i < numDice; i++) {
-          total += Math.floor(Math.random() * diceType) + 1;
+          const roll = Math.floor(Math.random() * diceType) + 1;
+          total += roll;
+          // Check for critical success or failure
+          if (diceType === 20) {
+            if (roll === 20) {
+              this.criticalMessage = 'Successo Critico';
+            } else if (roll === 1) {
+              this.criticalMessage = 'Fallimento Critico';
+            }
+          }
         }
       } else if (match[3]) {
         total += parseInt(match[3], 10);
       }
     }
-
+  
     return total;
   }
+
+  // private rollWithAdvantageOrDisadvantage(formula: string, advDis: string): number {
+  //   const d20Rolls = [Math.floor(Math.random() * 20) + 1, Math.floor(Math.random() * 20) + 1];
+  //   const d20Result = advDis === 'adv' ? Math.max(...d20Rolls) : Math.min(...d20Rolls);
+
+  //   let total = d20Result;
+  //   const diceRegex = /(\d*)d(\d+)|([+-]\d+)/g;
+  //   let match;
+
+  //   while ((match = diceRegex.exec(formula)) !== null) {
+  //     if (match[2] && match[2] !== '20') {
+  //       const numDice = parseInt(match[1], 10) || 1;
+  //       const diceType = parseInt(match[2], 10);
+  //       for (let i = 0; i < numDice; i++) {
+  //         total += Math.floor(Math.random() * diceType) + 1;
+  //       }
+  //     } else if (match[3]) {
+  //       total += parseInt(match[3], 10);
+  //     }
+  //   }
+
+  //   return total;
+  // }
 
   private rollWithAdvantageOrDisadvantage(formula: string, advDis: string): number {
     const d20Rolls = [Math.floor(Math.random() * 20) + 1, Math.floor(Math.random() * 20) + 1];
     const d20Result = advDis === 'adv' ? Math.max(...d20Rolls) : Math.min(...d20Rolls);
-
+  
+    this.criticalMessage = ''; // Reset the critical message
+  
+    if (d20Result === 20) {
+      this.criticalMessage = 'Successo Critico';
+    } else if (d20Result === 1) {
+      this.criticalMessage = 'Fallimento Critico';
+    }
+  
     let total = d20Result;
     const diceRegex = /(\d*)d(\d+)|([+-]\d+)/g;
     let match;
-
+  
     while ((match = diceRegex.exec(formula)) !== null) {
       if (match[2] && match[2] !== '20') {
         const numDice = parseInt(match[1], 10) || 1;
@@ -139,7 +202,7 @@ export class DiceRollerComponent {
         total += parseInt(match[3], 10);
       }
     }
-
+  
     return total;
   }
 

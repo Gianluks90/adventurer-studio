@@ -47,7 +47,7 @@
                     </div>
                     <div class="CA-container" *ngIf="isMobile">
                         <mat-icon
-                            class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ca-tooltip')" (mouseleave)="tooltip.hideTooltip()">shield</mat-icon>{{calcTotalCA(char.CA, char.shieldCA)}}
+                            class="passive-icon" (mouseover)="tooltip.showTooltip($event, 'center', true, 'ca-tooltip')" (mouseleave)="tooltip.hideTooltip()">shield</mat-icon>{{calcTotalCA(char)}}
                             <!-- <span
                             *ngIf="char.shieldCA && char.shieldCA !== ''">{{char.shieldCA}}</span>  -->
                             <!-- <span

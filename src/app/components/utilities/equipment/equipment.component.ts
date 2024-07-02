@@ -19,6 +19,7 @@ export class EquipmentComponent {
   }
 
   public charData: any;
+  private bonuses: any[] = [];
   private inventoryData: Item[] = [];
   public setsData: any[] = [];
   public setIndex: number = 0;
@@ -31,6 +32,7 @@ export class EquipmentComponent {
 
   @Input() set character(character: any) {
     this.charData = character;
+    this.bonuses = this.charData.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
     this.inventoryData = character.equipaggiamento;
     this.setsData = character.sets || [];
     this.calculateCA();
@@ -162,13 +164,23 @@ export class EquipmentComponent {
     // Costruisci la stringa per il bonus dello scudo solo se è diverso da zero
     const shieldBonusString = parseInt(shieldBonus) !== 0 ? `${shieldBonus}` : '';
 
+    this.bonuses.forEach((bonus: any) => {
+      if (bonus.element === 'CA') {
+        baseCA += bonus.value;
+      }
+    });
     // Aggiorna la CA con la stringa composta dal valore base e dal bonus dello scudo
     this.CA = `${baseCA}${shieldBonusString !== '' ? shieldBonusString : ''}`;
     }
   }
 
   private calculateInitiative(): void {
-    const dexModifier = Math.floor((this.charData.caratteristiche.destrezza - 10) / 2);
+    let dexModifier = Math.floor((this.charData.caratteristiche.destrezza - 10) / 2);
+    this.bonuses.forEach((bonus: any) => {
+      if (bonus.element === 'iniziativa') {
+        dexModifier += bonus.value;
+      }
+    });
     this.initiative = dexModifier > 0 ? `+${dexModifier}` : `${dexModifier}`;
   }
 

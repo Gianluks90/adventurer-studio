@@ -96,7 +96,13 @@ export class NewEncounterDialogComponent {
     const encounter: any[] = [];
     parts.map((part: any) => {
       if (part.informazioniBase) {
-        const modDex = Math.floor((part.caratteristiche.destrezza - 10) / 2);
+        let modDex = Math.floor((part.caratteristiche.destrezza - 10) / 2);
+        const bonuses = part.privilegiTratti.flatMap((privilegioTratto: any) => privilegioTratto.bonuses).filter((bonus: any) => bonus !== undefined);
+        bonuses.forEach((bonus: any) => {
+          if (bonus.element === 'iniziativa') {
+            modDex += bonus.value;
+          }
+        });
         const customInitiative = this.form.value.initiatives.find((i: any) => i.name === part.informazioniBase.nomePersonaggio)?.initiative;
         encounter.push({
           id: this.randomUID(),
